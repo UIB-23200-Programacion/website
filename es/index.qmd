@@ -5,3 +5,5 @@ title: "Material Teórico"
 # Bienvenidos al curso de Python para Matemática
 
 Este sitio contiene los apuntes teóricos, las guías de laboratorio y las referencias del curso.
+
+"Esta es una prueba de actualización automática."
