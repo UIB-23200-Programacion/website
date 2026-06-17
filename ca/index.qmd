@@ -1,0 +1,7 @@
+---
+title: "Material Teòric"
+---
+
+# Benvinguts al curs de Python per a Matemàtica
+
+Aquest lloc conté els apunts teòrics, les guies de laboratori i les referències del curs.

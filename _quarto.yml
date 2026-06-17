@@ -1,0 +1,21 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Programación en Python para Matemáticos"
+  navbar:
+    background: primary
+    search: true
+    left:
+      - text: "Español"
+        href: es/index.qmd
+      - text: "Catalán"
+        href: ca/index.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    mathrenderer: mathjax # Fundamental para tus expresiones matemáticas
