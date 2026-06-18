@@ -1,16 +1,177 @@
 [
   {
-    "objectID": "es/index.html",
-    "href": "es/index.html",
-    "title": "Material Teórico",
+    "objectID": "es/ejercicios/index.html",
+    "href": "es/ejercicios/index.html",
+    "title": "Ejercicios y Laboratorios",
     "section": "",
-    "text": "Bienvenidos al curso de Python para Matemática\nEste sitio contiene los apuntes teóricos, las guías de laboratorio y las referencias del curso.\n“Esta es una prueba de actualización automática.”"
+    "text": "A continuación se listan las plantillas de los ejercicios. Al hacer clic, serás redirigido a GitHub para aceptar la asignación e iniciar tu entorno en Codespaces.\n\nLaboratorio 0: Configuración inicial y entorno\nLaboratorio 1: Estructuras de Control y Lógica Básica\nProyecto Final: Diseño y Resolución Algorítmica"
+  },
+  {
+    "objectID": "es/contenido/tema5.html",
+    "href": "es/contenido/tema5.html",
+    "title": "5. Estructuras de Datos y POO",
+    "section": "",
+    "text": "Estudiaremos estructuras nativas como diccionarios y conjuntos, dando el salto a la Programación Orientada a Objetos. Utilizaremos clases para modelar entidades matemáticas abstractas, encapsulando las propiedades y operaciones de elementos como polinomios, matrices o autómatas."
+  },
+  {
+    "objectID": "es/contenido/tema2.html",
+    "href": "es/contenido/tema2.html",
+    "title": "2. Componentes del Lenguaje y Control de Flujo",
+    "section": "",
+    "text": "Exploraremos las variables, los tipos de datos básicos y las estructuras de control condicionales e iterativas. Veremos cómo traducir secuencias lógicas y sumatorias abstractas en bucles for y while eficientes, prestando especial atención a las condiciones de parada."
+  },
+  {
+    "objectID": "es/contenido/tema1.html",
+    "href": "es/contenido/tema1.html",
+    "title": "1. Fundamentos, Entornos Modernos y Asistentes IA",
+    "section": "",
+    "text": "Para un matemático, un algoritmo es una secuencia finita, no ambigua y rigurosa de instrucciones diseñada para resolver una clase de problemas o realizar un cómputo. En este curso, traduciremos ese rigor analítico a Python.\nUn programa informático toma un conjunto de datos de entrada, aplica transformaciones lógicas y devuelve una salida. Por ejemplo, en lugar de simplemente demostrar que existe una raíz para \\(f(x) = 0\\), escribiremos las instrucciones para que la máquina aproxime esa raíz mediante el método de Newton-Raphson en fracciones de segundo."
+  },
+  {
+    "objectID": "es/contenido/tema1.html#el-concepto-de-algoritmo-y-programa",
+    "href": "es/contenido/tema1.html#el-concepto-de-algoritmo-y-programa",
+    "title": "1. Fundamentos, Entornos Modernos y Asistentes IA",
+    "section": "",
+    "text": "Para un matemático, un algoritmo es una secuencia finita, no ambigua y rigurosa de instrucciones diseñada para resolver una clase de problemas o realizar un cómputo. En este curso, traduciremos ese rigor analítico a Python.\nUn programa informático toma un conjunto de datos de entrada, aplica transformaciones lógicas y devuelve una salida. Por ejemplo, en lugar de simplemente demostrar que existe una raíz para \\(f(x) = 0\\), escribiremos las instrucciones para que la máquina aproxime esa raíz mediante el método de Newton-Raphson en fracciones de segundo."
+  },
+  {
+    "objectID": "es/contenido/tema1.html#entornos-de-desarrollo-modernos",
+    "href": "es/contenido/tema1.html#entornos-de-desarrollo-modernos",
+    "title": "1. Fundamentos, Entornos Modernos y Asistentes IA",
+    "section": "1.2 Entornos de Desarrollo Modernos",
+    "text": "1.2 Entornos de Desarrollo Modernos\nLa ingeniería de software moderna requiere minimizar la fricción técnica. Para evitar el clásico problema de “en mi computadora sí funciona”, estandarizaremos nuestro entorno utilizando tecnologías de contenedores en la nube:\n\nGitHub Codespaces: Un editor profesional (VS Code) que se ejecuta íntegramente en tu navegador.\nGestor uv: Una herramienta escrita en Rust que gestiona nuestras versiones de Python e instala bibliotecas a velocidades extremas.\nMarimo Notebooks: A diferencia de los cuadernos tradicionales, Marimo es reactivo (funciona bajo un grafo acíclico dirigido, similar a una hoja de cálculo). Si cambias el valor de una variable \\(x\\), todas las celdas que dependen de \\(x\\) se reevalúan automáticamente. Es el entorno ideal para la experimentación matemática."
+  },
+  {
+    "objectID": "es/contenido/tema1.html#asistentes-de-ia-el-método-socrático",
+    "href": "es/contenido/tema1.html#asistentes-de-ia-el-método-socrático",
+    "title": "1. Fundamentos, Entornos Modernos y Asistentes IA",
+    "section": "1.3 Asistentes de IA: El Método Socrático",
+    "text": "1.3 Asistentes de IA: El Método Socrático\nEl uso de Inteligencia Artificial Generativa (como GitHub Copilot o asistentes conversacionales) no solo está permitido, sino que es una herramienta oficial del curso. Sin embargo, su uso requiere madurez académica.\nLa regla fundamental de esta asignatura es: La IA es tu tutor y auditor, no tu resolutor.\nDelegar la solución de un problema a la IA anula el desarrollo de tu pensamiento computacional. En su lugar, debes aprender a guiar al modelo (Prompt Engineering) para que te asista pedagógicamente.\n❌ Prompt incorrecto (Buscando la solución): &gt; “Escribe un código en Python para calcular los números primos menores que 100.”\n✅ Prompt correcto (Buscando comprensión socrática): &gt; “Estoy intentando escribir una función para encontrar números primos usando la criba de Eratóstenes, pero mi bucle for genera un error IndexError. No me des la solución en código. Explícame conceptualmente qué suele causar este error al trabajar con listas de tamaño fijo y hazme dos preguntas para que yo mismo descubra el fallo.”"
+  },
+  {
+    "objectID": "es/contenido/tema8.html",
+    "href": "es/contenido/tema8.html",
+    "title": "8. Diseño Algorítmico",
+    "section": "",
+    "text": "Consolidaremos las herramientas y patrones arquitectónicos del curso enfrentándonos a la resolución de problemas abiertos. Integraremos control de versiones, evaluación continua automatizada y asistencia mediante IA para el diseño de estrategias computacionales robustas."
+  },
+  {
+    "objectID": "ca/contingut/tema6.html",
+    "href": "ca/contingut/tema6.html",
+    "title": "6. Gestió de Dades i Fitxers",
+    "section": "",
+    "text": "Abordarem la lectura i escriptura de fitxers externs (TXT, CSV, JSON) per processar conjunts de dades persistents. Aprendrem a estructurar l’entrada d’informació per alimentar els nostres algorismes i a exportar els resultats del càlcul numèric."
+  },
+  {
+    "objectID": "ca/contingut/tema4.html",
+    "href": "ca/contingut/tema4.html",
+    "title": "4. Algorismes i Verificació",
+    "section": "",
+    "text": "Introduirem algorismes clàssics de cerca i ordenació, analitzant la seva eficiència. A més, utilitzarem pytest per construir proves unitàries rigoroses (assertions) que demostrin empíricament la correcció de les nostres implementacions enfront de casos límit."
+  },
+  {
+    "objectID": "ca/contingut/tema3.html",
+    "href": "ca/contingut/tema3.html",
+    "title": "3. Funcions, Mòduls i Organització",
+    "section": "",
+    "text": "Aprendrem a modularitzar el codi mitjançant funcions, entenent l’abast (scope) de les variables i el pas de paràmetres. L’objectiu és escriure codi reutilitzable i estructurat, aplicant principis similars a la composició de funcions matemàtiques pures."
+  },
+  {
+    "objectID": "ca/contingut/tema7.html",
+    "href": "ca/contingut/tema7.html",
+    "title": "7. Ecosistema Científic",
+    "section": "",
+    "text": "Ens submergirem en les biblioteques estàndard de la computació científica i l’àlgebra lineal vectorial. Aprofitarem l’entorn reactiu dels quaderns Marimo per visualitzar el comportament geomètric de funcions, fractals i distribucions de dades."
+  },
+  {
+    "objectID": "ca/contingut/tema8.html",
+    "href": "ca/contingut/tema8.html",
+    "title": "8. Disseny Algorísmic",
+    "section": "",
+    "text": "Consolidarem les eines i patrons arquitectònics del curs enfrontant-nos a la resolució de problemes oberts. Integrarem control de versions, avaluació contínua automatitzada i assistència mitjançant IA per al disseny d’estratègies computacionals robustes."
+  },
+  {
+    "objectID": "ca/contingut/tema1.html",
+    "href": "ca/contingut/tema1.html",
+    "title": "1. Fonaments, Entorns Moderns i Assistents IA",
+    "section": "",
+    "text": "Per a un matemàtic, un algorisme és una seqüència finita, no ambigua i rigorosa d’instruccions dissenyada per resoldre una classe de problemes o realitzar un còmput. En aquest curs, traduirem aquest rigor analític a Python.\nUn programa informàtic pren un conjunt de dades d’entrada, hi aplica transformacions lògiques i en retorna una sortida. Per exemple, en lloc de simplement demostrar que existeix una arrel per a \\(f(x) = 0\\), escriurem les instruccions perquè la màquina aproximi aquesta arrel mitjançant el mètode de Newton-Raphson en fraccions de segon."
+  },
+  {
+    "objectID": "ca/contingut/tema1.html#el-concepte-dalgorisme-i-programa",
+    "href": "ca/contingut/tema1.html#el-concepte-dalgorisme-i-programa",
+    "title": "1. Fonaments, Entorns Moderns i Assistents IA",
+    "section": "",
+    "text": "Per a un matemàtic, un algorisme és una seqüència finita, no ambigua i rigorosa d’instruccions dissenyada per resoldre una classe de problemes o realitzar un còmput. En aquest curs, traduirem aquest rigor analític a Python.\nUn programa informàtic pren un conjunt de dades d’entrada, hi aplica transformacions lògiques i en retorna una sortida. Per exemple, en lloc de simplement demostrar que existeix una arrel per a \\(f(x) = 0\\), escriurem les instruccions perquè la màquina aproximi aquesta arrel mitjançant el mètode de Newton-Raphson en fraccions de segon."
+  },
+  {
+    "objectID": "ca/contingut/tema1.html#entorns-de-desenvolupament-moderns",
+    "href": "ca/contingut/tema1.html#entorns-de-desenvolupament-moderns",
+    "title": "1. Fonaments, Entorns Moderns i Assistents IA",
+    "section": "1.2 Entorns de Desenvolupament Moderns",
+    "text": "1.2 Entorns de Desenvolupament Moderns\nL’enginyeria de programari moderna requereix minimitzar la fricció tècnica. Per evitar el clàssic problema d’“a la meva màquina sí que funciona”, estandarditzarem el nostre entorn utilitzant tecnologies de contenidors al núvol:\n\nGitHub Codespaces: Un editor professional (VS Code) que s’executa íntegrament al teu navegador.\nGestor uv: Una eina escrita en Rust que gestiona les nostres versions de Python i instal·la biblioteques a velocitats extremes.\nMarimo Notebooks: A diferència dels quaderns tradicionals, Marimo és reactiu (funciona sota un graf acíclic dirigit, de manera similar a un full de càlcul). Si canvies el valor d’una variable \\(x\\), totes les cel·les que depenen de \\(x\\) es reavaluen automàticament. És l’entorn ideal per a l’experimentació matemàtica."
+  },
+  {
+    "objectID": "ca/contingut/tema1.html#assistents-dia-el-mètode-socràtic",
+    "href": "ca/contingut/tema1.html#assistents-dia-el-mètode-socràtic",
+    "title": "1. Fonaments, Entorns Moderns i Assistents IA",
+    "section": "1.3 Assistents d’IA: El Mètode Socràtic",
+    "text": "1.3 Assistents d’IA: El Mètode Socràtic\nL’ús d’Intel·ligència Artificial Generativa (com GitHub Copilot o assistents conversacionals) no només està permès, sinó que és una eina oficial del curs. Això no obstant, el seu ús requereix maduresa acadèmica.\nLa regla fonamental d’aquesta assignatura és: La IA és el teu tutor i auditor, no el teu resolutor.\nDelegar la solució d’un problema a la IA anul·la el desenvolupament del teu pensament computacional. En lloc d’això, has d’aprendre a guiar el model (Prompt Engineering) perquè t’assisteixi pedagògicament.\n❌ Prompt incorrecte (Buscant la solució): &gt; “Escriu un codi en Python per calcular els nombres primers menors que 100.”\n✅ Prompt correcte (Buscant comprensió socràtica): &gt; “Estic intentant escriure una funció per trobar nombres primers utilitzant el sedàs d’Eratòstenes, però el meu bucle for genera un error IndexError. No em donis la solució en codi. Explica’m conceptualment què sol causar aquest error en treballar amb llistes de mida fixa i fes-me dues preguntes perquè jo mateix descobreixi l’errada.”"
+  },
+  {
+    "objectID": "ca/contingut/tema2.html",
+    "href": "ca/contingut/tema2.html",
+    "title": "2. Components i Control de Flux",
+    "section": "",
+    "text": "Explorarem les variables, els tipus de dades bàsics i les estructures de control condicionals i iteratives. Veurem com traduir seqüències lògiques i sumatoris abstractes en bucles for i while eficients, prestant especial atenció a les condicions de parada."
+  },
+  {
+    "objectID": "ca/contingut/tema5.html",
+    "href": "ca/contingut/tema5.html",
+    "title": "5. Estructures de Dades i POO",
+    "section": "",
+    "text": "Estudiarem estructures natives com diccionaris i conjunts, fent el salt a la Programació Orientada a Objectes. Utilitzarem classes per modelar entitats matemàtiques abstractes, encapsulant les propietats i operacions d’elements com polinomis, matrius o autòmats."
   },
   {
     "objectID": "ca/index.html",
     "href": "ca/index.html",
-    "title": "Material Teòric",
+    "title": "Programació (23200)",
     "section": "",
-    "text": "Benvinguts al curs de Python per a Matemàtica\nAquest lloc conté els apunts teòrics, les guies de laboratori i les referències del curs."
+    "text": "Universitat de les Illes Balears\nBenvinguts al lloc de l’assignatura de Programació per al grau en Matemàtiques.\nUtilitzeu el menú superior per navegar pels apunts o accedir als repositoris d’exercicis."
+  },
+  {
+    "objectID": "es/contenido/tema7.html",
+    "href": "es/contenido/tema7.html",
+    "title": "7. Ecosistema Científico",
+    "section": "",
+    "text": "Nos sumergiremos en las bibliotecas estándar de la computación científica y el álgebra lineal vectorial. Aprovecharemos el entorno reactivo de los cuadernos Marimo para visualizar el comportamiento geométrico de funciones, fractales y distribuciones de datos."
+  },
+  {
+    "objectID": "es/contenido/tema3.html",
+    "href": "es/contenido/tema3.html",
+    "title": "3. Funciones, Módulos y Organización",
+    "section": "",
+    "text": "Aprenderemos a modularizar el código mediante funciones, entendiendo el alcance (scope) de las variables y el paso de parámetros. El objetivo es escribir código reutilizable y estructurado, aplicando principios similares a la composición de funciones matemáticas puras."
+  },
+  {
+    "objectID": "es/contenido/tema4.html",
+    "href": "es/contenido/tema4.html",
+    "title": "4. Algoritmos Básicos y Verificación",
+    "section": "",
+    "text": "Introduciremos algoritmos clásicos de búsqueda y ordenación, analizando su eficiencia. Además, utilizaremos pytest para construir pruebas unitarias rigurosas (assertions) que demuestren empíricamente la corrección de nuestras implementaciones frente a casos borde."
+  },
+  {
+    "objectID": "es/contenido/tema6.html",
+    "href": "es/contenido/tema6.html",
+    "title": "6. Gestión de Datos y Ficheros",
+    "section": "",
+    "text": "Abordaremos la lectura y escritura de ficheros externos (TXT, CSV, JSON) para procesar conjuntos de datos persistentes. Aprenderemos a estructurar la entrada de información para alimentar nuestros algoritmos y a exportar los resultados del cálculo numérico."
+  },
+  {
+    "objectID": "es/index.html",
+    "href": "es/index.html",
+    "title": "Programación (23200)",
+    "section": "",
+    "text": "Universitat de les Illes Balears\nBienvenido al sitio de la asignatura de Programación 232000 para el grado en Matemáticas.\nUtiliza el menú superior para navegar por los apuntes o acceder a los repositorios de ejercicios."
   }
 ]

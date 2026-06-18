@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Redirigiendo… – Programación (23200)</title>
+<title>1. Fundamentos, Entornos Modernos y Asistentes IA – Programación (23200)</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,27 +26,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-366cb8ec674e47143b072bc2c76f74d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-090e4568e165f7d74d1237fe666b9f1c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-366cb8ec674e47143b072bc2c76f74d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-366cb8ec674e47143b072bc2c76f74d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-090e4568e165f7d74d1237fe666b9f1c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-366cb8ec674e47143b072bc2c76f74d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,6 +75,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -248,7 +277,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Programación (23200)</span>
     </a>
   </div>
@@ -263,7 +292,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Inicio</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./es/contenido/index.qmd"> 
+    <a class="nav-link" href="../../es/contenido/index.qmd"> 
 <span class="menu-text">Contenido</span></a>
   </li>  
   <li class="nav-item">
@@ -297,8 +326,16 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#el-concepto-de-algoritmo-y-programa" id="toc-el-concepto-de-algoritmo-y-programa" class="nav-link active" data-scroll-target="#el-concepto-de-algoritmo-y-programa">1.1 El Concepto de Algoritmo y Programa</a></li>
+  <li><a href="#entornos-de-desarrollo-modernos" id="toc-entornos-de-desarrollo-modernos" class="nav-link" data-scroll-target="#entornos-de-desarrollo-modernos">1.2 Entornos de Desarrollo Modernos</a></li>
+  <li><a href="#asistentes-de-ia-el-método-socrático" id="toc-asistentes-de-ia-el-método-socrático" class="nav-link" data-scroll-target="#asistentes-de-ia-el-método-socrático">1.3 Asistentes de IA: El Método Socrático</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -306,7 +343,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Redirigiendo…</h1>
+<h1 class="title">1. Fundamentos, Entornos Modernos y Asistentes IA</h1>
 </div>
 
 
@@ -323,10 +360,30 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<meta http-equiv="refresh" content="0; url=es/index.html">
-<script>window.location.href = "es/index.html";</script>
+<section id="el-concepto-de-algoritmo-y-programa" class="level2">
+<h2 class="anchored" data-anchor-id="el-concepto-de-algoritmo-y-programa">1.1 El Concepto de Algoritmo y Programa</h2>
+<p>Para un matemático, un algoritmo es una secuencia finita, no ambigua y rigurosa de instrucciones diseñada para resolver una clase de problemas o realizar un cómputo. En este curso, traduciremos ese rigor analítico a <strong>Python</strong>.</p>
+<p>Un programa informático toma un conjunto de datos de entrada, aplica transformaciones lógicas y devuelve una salida. Por ejemplo, en lugar de simplemente demostrar que existe una raíz para <span class="math inline">\(f(x) = 0\)</span>, escribiremos las instrucciones para que la máquina aproxime esa raíz mediante el método de Newton-Raphson en fracciones de segundo.</p>
+</section>
+<section id="entornos-de-desarrollo-modernos" class="level2">
+<h2 class="anchored" data-anchor-id="entornos-de-desarrollo-modernos">1.2 Entornos de Desarrollo Modernos</h2>
+<p>La ingeniería de software moderna requiere minimizar la fricción técnica. Para evitar el clásico problema de “en mi computadora sí funciona”, estandarizaremos nuestro entorno utilizando tecnologías de contenedores en la nube:</p>
+<ul>
+<li><strong>GitHub Codespaces:</strong> Un editor profesional (VS Code) que se ejecuta íntegramente en tu navegador.</li>
+<li><strong>Gestor <code>uv</code>:</strong> Una herramienta escrita en Rust que gestiona nuestras versiones de Python e instala bibliotecas a velocidades extremas.</li>
+<li><strong>Marimo Notebooks:</strong> A diferencia de los cuadernos tradicionales, Marimo es reactivo (funciona bajo un grafo acíclico dirigido, similar a una hoja de cálculo). Si cambias el valor de una variable <span class="math inline">\(x\)</span>, todas las celdas que dependen de <span class="math inline">\(x\)</span> se reevalúan automáticamente. Es el entorno ideal para la experimentación matemática.</li>
+</ul>
+</section>
+<section id="asistentes-de-ia-el-método-socrático" class="level2">
+<h2 class="anchored" data-anchor-id="asistentes-de-ia-el-método-socrático">1.3 Asistentes de IA: El Método Socrático</h2>
+<p>El uso de Inteligencia Artificial Generativa (como GitHub Copilot o asistentes conversacionales) no solo está permitido, sino que es una herramienta oficial del curso. Sin embargo, su uso requiere madurez académica.</p>
+<p>La regla fundamental de esta asignatura es: <strong>La IA es tu tutor y auditor, no tu resolutor.</strong></p>
+<p>Delegar la solución de un problema a la IA anula el desarrollo de tu pensamiento computacional. En su lugar, debes aprender a guiar al modelo (Prompt Engineering) para que te asista pedagógicamente.</p>
+<p><strong>❌ Prompt incorrecto (Buscando la solución):</strong> &gt; <em>“Escribe un código en Python para calcular los números primos menores que 100.”</em></p>
+<p><strong>✅ Prompt correcto (Buscando comprensión socrática):</strong> &gt; <em>“Estoy intentando escribir una función para encontrar números primos usando la criba de Eratóstenes, pero mi bucle <code>for</code> genera un error <code>IndexError</code>. No me des la solución en código. Explícame conceptualmente qué suele causar este error al trabajar con listas de tamaño fijo y hazme dos preguntas para que yo mismo descubra el fallo.”</em></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
