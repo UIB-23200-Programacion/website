@@ -1,0 +1,5 @@
+---
+title: "3. Funciones, Módulos y Organización"
+---
+
+Aprenderemos a modularizar el código mediante funciones, entendiendo el alcance (scope) de las variables y el paso de parámetros. El objetivo es escribir código reutilizable y estructurado, aplicando principios similares a la composición de funciones matemáticas puras.

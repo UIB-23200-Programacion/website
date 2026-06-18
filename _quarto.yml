@@ -3,19 +3,79 @@ project:
   output-dir: _site
 
 website:
-  title: "Programación en Python para Matemáticos"
+  title: "Programación (23200)"
+  
+  # Navegación Superior (Banner)
   navbar:
     background: primary
-    search: true
     left:
-      - text: "Español"
-        href: es/index.qmd
-      - text: "Catalán"
-        href: ca/index.qmd
+      - text: "Inicio"
+        href: /es/index.qmd
+      - text: "Contenido"
+        href: /es/contenido/index.qmd
+      - text: "Ejercicios"
+        href: /es/ejercicios/index.qmd
+    right:
+      - text: "ES"
+        href: /es/index.qmd
+      - text: "CA"
+        href: /ca/index.qmd
+      - icon: github
+        href: https://github.com/tu-organizacion
+        aria-label: "GitHub Organization"
+
+  # Menús Laterales Contextuales
+  sidebar:
+    # Este menú solo aparece si la URL contiene /es/contenido/
+    - title: "Temario del Curso"
+      style: "docked"
+      contents:
+        # - /es/contenido/index.qmd
+        - text: "1. Fundamentos, Entornos y Asistentes IA"
+          file: /es/contenido/tema1.qmd
+        - text: "2. Componentes y Control de Flujo"
+          file: /es/contenido/tema2.qmd
+        - text: "3. Funciones, Módulos y Organización"
+          file: /es/contenido/tema3.qmd
+        - text: "4. Algoritmos y Verificación (Testing)"
+          file: /es/contenido/tema4.qmd
+        - text: "5. Estructuras de Datos y POO"
+          file: /es/contenido/tema5.qmd
+        - text: "6. Gestión de Datos y Ficheros"
+          file: /es/contenido/tema6.qmd
+        - text: "7. Ecosistema Científico"
+          file: /es/contenido/tema7.qmd
+        - text: "8. Diseño Algorítmico"
+          file: /es/contenido/tema8.qmd
+
+    # Este menú solo aparece si la URL contiene /ca/contingut/
+    - title: "Temari del Curs"
+      style: "docked"
+      contents:
+        # - /ca/contingut/index.qmd
+        - text: "1. Fonaments, Entorns i Assistents IA"
+          file: /ca/contingut/tema1.qmd
+        - text: "2. Components i Control de Flux"
+          file: /ca/contingut/tema2.qmd
+        - text: "3. Funcions, Mòduls i Organització"
+          file: /ca/contingut/tema3.qmd
+        - text: "4. Algorismes i Verificació"
+          file: /ca/contingut/tema4.qmd
+        - text: "5. Estructures de Dades i POO"
+          file: /ca/contingut/tema5.qmd
+        - text: "6. Gestió de Dades i Fitxers"
+          file: /ca/contingut/tema6.qmd
+        - text: "7. Ecosistema Científic"
+          file: /ca/contingut/tema7.qmd
+        - text: "8. Disseny Algorísmic"
+          file: /ca/contingut/tema8.qmd
 
 format:
   html:
-    theme: cosmo
+    theme:
+      # Interruptor Dark/Light nativo de Quarto
+      light: cosmo
+      dark: darkly
     css: styles.css
     toc: true
-    mathrenderer: mathjax # Fundamental para tus expresiones matemáticas
+    mathrenderer: mathjax

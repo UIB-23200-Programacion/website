@@ -1,7 +1,8 @@
 ---
-title: "Material Teòric"
+title: "Programació (23200)"
 ---
+# Universitat de les Illes Balears
 
-# Benvinguts al curs de Python per a Matemàtica
+Benvinguts al lloc de l'assignatura de Programació per al grau en Matemàtiques.
 
-Aquest lloc conté els apunts teòrics, les guies de laboratori i les referències del curs.
+Utilitzeu el menú superior per navegar pels apunts o accedir als repositoris d'exercicis.

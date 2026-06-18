@@ -1,0 +1,5 @@
+---
+title: "3. Funcions, Mòduls i Organització"
+---
+
+Aprendrem a modularitzar el codi mitjançant funcions, entenent l'abast (scope) de les variables i el pas de paràmetres. L'objectiu és escriure codi reutilitzable i estructurat, aplicant principis similars a la composició de funcions matemàtiques pures.

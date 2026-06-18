@@ -1,0 +1,5 @@
+---
+title: "5. Estructures de Dades i POO"
+---
+
+Estudiarem estructures natives com diccionaris i conjunts, fent el salt a la Programació Orientada a Objectes. Utilitzarem classes per modelar entitats matemàtiques abstractes, encapsulant les propietats i operacions d'elements com polinomis, matrius o autòmats.

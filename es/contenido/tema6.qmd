@@ -1,0 +1,5 @@
+---
+title: "6. Gestión de Datos y Ficheros"
+---
+
+Abordaremos la lectura y escritura de ficheros externos (TXT, CSV, JSON) para procesar conjuntos de datos persistentes. Aprenderemos a estructurar la entrada de información para alimentar nuestros algoritmos y a exportar los resultados del cálculo numérico.

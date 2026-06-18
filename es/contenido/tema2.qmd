@@ -1,0 +1,5 @@
+---
+title: "2. Componentes del Lenguaje y Control de Flujo"
+---
+
+Exploraremos las variables, los tipos de datos básicos y las estructuras de control condicionales e iterativas. Veremos cómo traducir secuencias lógicas y sumatorias abstractas en bucles `for` y `while` eficientes, prestando especial atención a las condiciones de parada.

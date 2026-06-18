@@ -1,0 +1,5 @@
+---
+title: "4. Algoritmos Básicos y Verificación"
+---
+
+Introduciremos algoritmos clásicos de búsqueda y ordenación, analizando su eficiencia. Además, utilizaremos `pytest` para construir pruebas unitarias rigurosas (assertions) que demuestren empíricamente la corrección de nuestras implementaciones frente a casos borde.

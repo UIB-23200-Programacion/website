@@ -1,0 +1,5 @@
+---
+title: "2. Components i Control de Flux"
+---
+
+Explorarem les variables, els tipus de dades bàsics i les estructures de control condicionals i iteratives. Veurem com traduir seqüències lògiques i sumatoris abstractes en bucles `for` i `while` eficients, prestant especial atenció a les condicions de parada.

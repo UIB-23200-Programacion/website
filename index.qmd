@@ -1,0 +1,5 @@
+---
+title: "Redirigiendo..."
+---
+<meta http-equiv="refresh" content="0; url=es/index.html">
+<script>window.location.href = "es/index.html";</script>

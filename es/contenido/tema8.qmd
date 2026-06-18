@@ -1,0 +1,5 @@
+---
+title: "8. Diseño Algorítmico"
+---
+
+Consolidaremos las herramientas y patrones arquitectónicos del curso enfrentándonos a la resolución de problemas abiertos. Integraremos control de versiones, evaluación continua automatizada y asistencia mediante IA para el diseño de estrategias computacionales robustas.
