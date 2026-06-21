@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ca" xml:lang="ca"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8. Disseny Algorísmic – Programación (23200)</title>
+<title>Tema 8 – Programación (23200)</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -27,32 +24,34 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../ca/exercicis/tema1.html" rel="next">
+<link href="../../ca/contingut/tema7.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-366cb8ec674e47143b072bc2c76f74d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-090e4568e165f7d74d1237fe666b9f1c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-366cb8ec674e47143b072bc2c76f74d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-fe839f7715ebcdbad7a07c709ae06b28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-bac4d22b2bca5ca58db192775c64c60d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-fe839f7715ebcdbad7a07c709ae06b28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -61,25 +60,28 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Cap resultat",
+    "search-matching-documents-text": "documents que coincideixen",
+    "search-copy-link-title": "Copia l'enllaç a la cerca",
+    "search-hide-matches-text": "Amaga les coincidències addicionals",
+    "search-more-match-text": "altra coincidència en aquest document",
+    "search-more-matches-text": "altres coincidències en aquest document",
+    "search-clear-button-title": "Neteja",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancel·la",
+    "search-submit-button-title": "Envia",
+    "search-label": "Cerca"
   }
 }</script>
 
 
 <link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="Tema 8 – Programación (23200)">
+<meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:site_name" content="Programación (23200)">
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -245,57 +247,248 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Programación (23200)</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="//es/index.html"> 
-<span class="menu-text">Inicio</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../es/contenido/index.qmd"> 
-<span class="menu-text">Contenido</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="//es/ejercicios/index.html"> 
-<span class="menu-text">Ejercicios</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="//es/index.html"> 
-<span class="menu-text">ES</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="//ca/index.html"> 
-<span class="menu-text">CA</span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/tu-organizacion"> <i class="bi bi-github" role="img" aria-label="GitHub Organization">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ca/contingut/tema1.html">Temes</a></li><li class="breadcrumb-item"><a href="../../ca/contingut/tema8.html">8. Tema 8</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Cerca" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/UIB-23200-Programacion" title="GitHub Organization" class="quarto-navigation-tool px-1" aria-label="GitHub Organization"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Idioma / Llengua" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Idioma / Llengua"><i class="bi bi-globe"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../../es/index.html">
+            Español
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../../ca/index.html">
+            Català
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Commuta el mode fosc"><i class="bi"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Cerca"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inici</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Informacions</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/informacions/guia-docent.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Guia docent</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/informacions/horaris.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Horaris</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/informacions/professorat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Professorat</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/informacions/contacte.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Contacte</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Temes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Fonaments, Entorns i Assistents IA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Components i Control de Flux</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Tema 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Tema 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Tema 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Tema 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Tema 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema8.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">8. Tema 8</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Exercicis</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 8</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Pràctica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/practica/examens.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Examens anteriors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/practica/resolts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis resolts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/practica/ampliacio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes d’ampliació</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
@@ -304,9 +497,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ca/contingut/tema1.html">Temes</a></li><li class="breadcrumb-item"><a href="../../ca/contingut/tema8.html">8. Tema 8</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">8. Disseny Algorísmic</h1>
+<h1 class="title">Tema 8</h1>
 </div>
 
 
@@ -323,7 +516,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Consolidarem les eines i patrons arquitectònics del curs enfrontant-nos a la resolució de problemes oberts. Integrarem control de versions, avaluació contínua automatitzada i assistència mitjançant IA per al disseny d’estratègies computacionals robustes.</p>
+<p><em>(Contenido pendiente.)</em></p>
 
 
 
@@ -366,12 +559,12 @@ ul.task-list li input[type="checkbox"] {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiat!");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiat!");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -414,7 +607,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/UIB-23200-Programacion\.github\.io\/website\/");
+        var filterRegex = new RegExp("https:\/\/uib-23200-programacion\.github\.io\/website\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -741,7 +934,33 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../ca/contingut/tema7.html" class="pagination-link" aria-label="7. Tema 7">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">7. Tema 7</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../ca/exercicis/tema1.html" class="pagination-link" aria-label="Exercicis — Tema 1">
+        <span class="nav-page-text">Exercicis — Tema 1</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2026, Alejandro Mesejo, <a href="https://eps.uib.es/">UIB-EPS</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Esta página está construida con <a href="https://github.com/sta210-s22">sta210-s22</a> y <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+<script src="../../logo-href.js"></script>
 
 
 

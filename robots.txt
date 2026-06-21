@@ -1,1 +1,1 @@
-Sitemap: https://UIB-23200-Programacion.github.io/website/sitemap.xml
+Sitemap: https://uib-23200-programacion.github.io/website/sitemap.xml
