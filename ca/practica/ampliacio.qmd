@@ -1,0 +1,7 @@
+---
+title: "Notes d'ampliació"
+lang: ca
+sidebar: barra-ca
+---
+
+*(Contenido pendiente.)*

@@ -1,8 +1,16 @@
 ---
-title: "Programació (23200)"
+title: "Inici"
+lang: ca
+sidebar: barra-ca
 ---
-# Universitat de les Illes Balears
 
-Benvinguts al lloc de l'assignatura de Programació per al grau en Matemàtiques.
+::: {style="text-align: center; font-size: 2em;"}
+[**Assignatura Programació (23200), Curs 2026-2027, UIB-EPS**](https://estudis.uib.cat/estudis-de-grau/grau/matematiques/GMA3-P/23200/index.html)
+:::
 
-Utilitzeu el menú superior per navegar pels apunts o accedir als repositoris d'exercicis.
+
+![](/images/nbapro01.png)
+
+::: {style="text-align: center"}
+Imatge generada amb [Nano Banana Pro de Google DeepMind](https://deepmind.google/models/gemini-image/pro/).
+:::

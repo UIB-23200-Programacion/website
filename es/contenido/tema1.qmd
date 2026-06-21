@@ -1,31 +1,7 @@
 ---
-title: "1. Fundamentos, Entornos Modernos y Asistentes IA"
+title: "Tema 1"
+lang: es
+sidebar: barra-es
 ---
 
-## 1.1 El Concepto de Algoritmo y Programa
-
-Para un matemático, un algoritmo es una secuencia finita, no ambigua y rigurosa de instrucciones diseñada para resolver una clase de problemas o realizar un cómputo. En este curso, traduciremos ese rigor analítico a **Python**. 
-
-Un programa informático toma un conjunto de datos de entrada, aplica transformaciones lógicas y devuelve una salida. Por ejemplo, en lugar de simplemente demostrar que existe una raíz para $f(x) = 0$, escribiremos las instrucciones para que la máquina aproxime esa raíz mediante el método de Newton-Raphson en fracciones de segundo.
-
-## 1.2 Entornos de Desarrollo Modernos
-
-La ingeniería de software moderna requiere minimizar la fricción técnica. Para evitar el clásico problema de "en mi computadora sí funciona", estandarizaremos nuestro entorno utilizando tecnologías de contenedores en la nube:
-
-*   **GitHub Codespaces:** Un editor profesional (VS Code) que se ejecuta íntegramente en tu navegador.
-*   **Gestor `uv`:** Una herramienta escrita en Rust que gestiona nuestras versiones de Python e instala bibliotecas a velocidades extremas.
-*   **Marimo Notebooks:** A diferencia de los cuadernos tradicionales, Marimo es reactivo (funciona bajo un grafo acíclico dirigido, similar a una hoja de cálculo). Si cambias el valor de una variable $x$, todas las celdas que dependen de $x$ se reevalúan automáticamente. Es el entorno ideal para la experimentación matemática.
-
-## 1.3 Asistentes de IA: El Método Socrático
-
-El uso de Inteligencia Artificial Generativa (como GitHub Copilot o asistentes conversacionales) no solo está permitido, sino que es una herramienta oficial del curso. Sin embargo, su uso requiere madurez académica. 
-
-La regla fundamental de esta asignatura es: **La IA es tu tutor y auditor, no tu resolutor.**
-
-Delegar la solución de un problema a la IA anula el desarrollo de tu pensamiento computacional. En su lugar, debes aprender a guiar al modelo (Prompt Engineering) para que te asista pedagógicamente.
-
-**❌ Prompt incorrecto (Buscando la solución):**
-> *"Escribe un código en Python para calcular los números primos menores que 100."*
-
-**✅ Prompt correcto (Buscando comprensión socrática):**
-> *"Estoy intentando escribir una función para encontrar números primos usando la criba de Eratóstenes, pero mi bucle `for` genera un error `IndexError`. No me des la solución en código. Explícame conceptualmente qué suele causar este error al trabajar con listas de tamaño fijo y hazme dos preguntas para que yo mismo descubra el fallo."*
+*(Contenido pendiente.)*

@@ -1,5 +1,7 @@
 ---
-title: "7. Ecosistema Científico"
+title: "Tema 7"
+lang: es
+sidebar: barra-es
 ---
 
-Nos sumergiremos en las bibliotecas estándar de la computación científica y el álgebra lineal vectorial. Aprovecharemos el entorno reactivo de los cuadernos Marimo para visualizar el comportamiento geométrico de funciones, fractales y distribuciones de datos.
+*(Contenido pendiente.)*

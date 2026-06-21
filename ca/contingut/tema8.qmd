@@ -1,5 +1,7 @@
 ---
-title: "8. Disseny Algorísmic"
+title: "Tema 8"
+lang: ca
+sidebar: barra-ca
 ---
 
-Consolidarem les eines i patrons arquitectònics del curs enfrontant-nos a la resolució de problemes oberts. Integrarem control de versions, avaluació contínua automatitzada i assistència mitjançant IA per al disseny d'estratègies computacionals robustes.
+*(Contenido pendiente.)*

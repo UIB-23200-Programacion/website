@@ -1,0 +1,7 @@
+---
+title: "Ejercicios — Tema 7"
+lang: es
+sidebar: barra-es
+---
+
+*(Contenido pendiente.)*

@@ -1,0 +1,7 @@
+---
+title: "Guia docent"
+lang: ca
+sidebar: barra-ca
+---
+
+*(Contenido pendiente.)*

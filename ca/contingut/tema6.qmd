@@ -1,5 +1,7 @@
 ---
-title: "6. Gestió de Dades i Fitxers"
+title: "Tema 6"
+lang: ca
+sidebar: barra-ca
 ---
 
-Abordarem la lectura i escriptura de fitxers externs (TXT, CSV, JSON) per processar conjunts de dades persistents. Aprendrem a estructurar l'entrada d'informació per alimentar els nostres algorismes i a exportar els resultats del càlcul numèric.
+*(Contenido pendiente.)*

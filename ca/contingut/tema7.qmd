@@ -1,5 +1,7 @@
 ---
-title: "7. Ecosistema Científic"
+title: "Tema 7"
+lang: ca
+sidebar: barra-ca
 ---
 
-Ens submergirem en les biblioteques estàndard de la computació científica i l'àlgebra lineal vectorial. Aprofitarem l'entorn reactiu dels quaderns Marimo per visualitzar el comportament geomètric de funcions, fractals i distribucions de dades.
+*(Contenido pendiente.)*

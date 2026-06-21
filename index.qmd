@@ -1,5 +1,12 @@
 ---
-title: "Redirigiendo..."
+title: "Programación (23200)"
+format:
+  html:
+    page-layout: full
+    toc: false
+include-in-header:
+  text: |
+    <meta http-equiv="refresh" content="0; url=es/index.html">
 ---
-<meta http-equiv="refresh" content="0; url=es/index.html">
-<script>window.location.href = "es/index.html";</script>
+
+Redirigiendo a la [página de inicio en español](es/index.qmd)…

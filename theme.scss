@@ -1,0 +1,65 @@
+/*-- scss:defaults --*/
+
+@import 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap';
+
+$font-family: "Atkinson Hyperlegible", sans-serif;
+
+// Colores de navegación en modo claro — identidad UIB
+$sidebar-bg: #0060A8;   // Azul UIB
+$sidebar-fg: #ffffff;   // Texto blanco sobre azul
+$sidebar-hl: #004a8f;   // Azul más oscuro para ítem activo/hover
+$footer-bg: #0060A8;    // Footer mismo azul
+
+/*-- scss:rules --*/
+
+// Separar la fila de botones (tools) del logo
+.sidebar-tools-main {
+  margin-top: 1rem;
+}
+
+// Iconos normales del sidebar (GitHub, globo de idioma): círculo blanco de fondo
+.sidebar-tools-main .quarto-navigation-tool {
+  background-color: #ffffff !important;
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  color: #0065BD !important;   // Icono azul UIB sobre fondo blanco
+  font-size: 1.4rem !important;
+  margin: 0 3px;
+}
+
+.sidebar-tools-main .quarto-navigation-tool:hover {
+  background-color: #cce0f5 !important;
+}
+
+// Toggle de modo oscuro/claro: mismo círculo blanco + mismo tamaño,
+// sin forzar el color del icono interno (deja el color por defecto de Bootstrap)
+.sidebar-tools-main .quarto-color-scheme-toggle {
+  background-color: #ffffff !important;
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  margin: 0 3px;
+}
+
+.sidebar-tools-main .quarto-color-scheme-toggle .bi {
+  width: 1.4rem;
+  height: 1.4rem;
+  display: inline-block;
+}
+
+.sidebar-tools-main .quarto-color-scheme-toggle .bi::before {
+  background-size: 1.4rem 1.4rem !important;
+  width: 1.4rem !important;
+  height: 1.4rem !important;
+}
+
+.sidebar-tools-main .quarto-color-scheme-toggle:hover {
+  background-color: #cce0f5 !important;
+}

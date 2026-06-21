@@ -1,5 +1,7 @@
 ---
-title: "4. Algorismes i Verificació"
+title: "Tema 4"
+lang: ca
+sidebar: barra-ca
 ---
 
-Introduirem algorismes clàssics de cerca i ordenació, analitzant la seva eficiència. A més, utilitzarem `pytest` per construir proves unitàries rigoroses (assertions) que demostrin empíricament la correcció de les nostres implementacions enfront de casos límit.
+*(Contenido pendiente.)*

@@ -1,31 +1,7 @@
 ---
-title: "1. Fonaments, Entorns Moderns i Assistents IA"
+title: "Tema 1"
+lang: ca
+sidebar: barra-ca
 ---
 
-## 1.1 El Concepte d'Algorisme i Programa
-
-Per a un matemàtic, un algorisme és una seqüència finita, no ambigua i rigorosa d'instruccions dissenyada per resoldre una classe de problemes o realitzar un còmput. En aquest curs, traduirem aquest rigor analític a **Python**.
-
-Un programa informàtic pren un conjunt de dades d'entrada, hi aplica transformacions lògiques i en retorna una sortida. Per exemple, en lloc de simplement demostrar que existeix una arrel per a $f(x) = 0$, escriurem les instruccions perquè la màquina aproximi aquesta arrel mitjançant el mètode de Newton-Raphson en fraccions de segon.
-
-## 1.2 Entorns de Desenvolupament Moderns
-
-L'enginyeria de programari moderna requereix minimitzar la fricció tècnica. Per evitar el clàssic problema d'"a la meva màquina sí que funciona", estandarditzarem el nostre entorn utilitzant tecnologies de contenidors al núvol:
-
-*   **GitHub Codespaces:** Un editor professional (VS Code) que s'executa íntegrament al teu navegador.
-*   **Gestor `uv`:** Una eina escrita en Rust que gestiona les nostres versions de Python i instal·la biblioteques a velocitats extremes.
-*   **Marimo Notebooks:** A diferència dels quaderns tradicionals, Marimo és reactiu (funciona sota un graf acíclic dirigit, de manera similar a un full de càlcul). Si canvies el valor d'una variable $x$, totes les cel·les que depenen de $x$ es reavaluen automàticament. És l'entorn ideal per a l'experimentació matemàtica.
-
-## 1.3 Assistents d'IA: El Mètode Socràtic
-
-L'ús d'Intel·ligència Artificial Generativa (com GitHub Copilot o assistents conversacionals) no només està permès, sinó que és una eina oficial del curs. Això no obstant, el seu ús requereix maduresa acadèmica.
-
-La regla fonamental d'aquesta assignatura és: **La IA és el teu tutor i auditor, no el teu resolutor.**
-
-Delegar la solució d'un problema a la IA anul·la el desenvolupament del teu pensament computacional. En lloc d'això, has d'aprendre a guiar el model (Prompt Engineering) perquè t'assisteixi pedagògicament.
-
-**❌ Prompt incorrecte (Buscant la solució):**
-> *"Escriu un codi en Python per calcular els nombres primers menors que 100."*
-
-**✅ Prompt correcte (Buscant comprensió socràtica):**
-> *"Estic intentant escriure una funció per trobar nombres primers utilitzant el sedàs d'Eratòstenes, però el meu bucle `for` genera un error `IndexError`. No em donis la solució en codi. Explica'm conceptualment què sol causar aquest error en treballar amb llistes de mida fixa i fes-me dues preguntes perquè jo mateix descobreixi l'errada."*
+*(Contenido pendiente.)*

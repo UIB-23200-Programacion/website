@@ -1,0 +1,7 @@
+---
+title: "Contacte"
+lang: ca
+sidebar: barra-ca
+---
+
+*(Contenido pendiente.)*

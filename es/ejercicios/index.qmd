@@ -1,9 +1,0 @@
----
-title: "Ejercicios y Laboratorios"
----
-
-A continuación se listan las plantillas de los ejercicios. Al hacer clic, serás redirigido a GitHub para aceptar la asignación e iniciar tu entorno en Codespaces.
-
-* **Laboratorio 0:** [Configuración inicial y entorno](https://github.com/tu-organizacion/lab00-template)
-* **Laboratorio 1:** [Estructuras de Control y Lógica Básica](https://github.com/tu-organizacion/lab01-template)
-* **Proyecto Final:** [Diseño y Resolución Algorítmica](https://github.com/tu-organizacion/final-project-template)

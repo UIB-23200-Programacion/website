@@ -1,81 +1,173 @@
 project:
   type: website
-  output-dir: _site
 
 website:
+  page-navigation: true
   title: "Programación (23200)"
-  
-  # Navegación Superior (Banner)
-  navbar:
-    background: primary
-    left:
-      - text: "Inicio"
-        href: /es/index.qmd
-      - text: "Contenido"
-        href: /es/contenido/index.qmd
-      - text: "Ejercicios"
-        href: /es/ejercicios/index.qmd
-    right:
-      - text: "ES"
-        href: /es/index.qmd
-      - text: "CA"
-        href: /ca/index.qmd
-      - icon: github
-        href: https://github.com/tu-organizacion
-        aria-label: "GitHub Organization"
+  description: "Material docente de la asignatura Programación (23200), UIB-EPS."
+  site-url: "https://uib-23200-programacion.github.io/website/"
 
-  # Menús Laterales Contextuales
+  open-graph: true
+
+  page-footer:
+    right: "Esta página está construida con [sta210-s22](https://github.com/sta210-s22) y [Quarto](https://quarto.org/)."
+    left: "&copy; Copyright 2026, Alejandro Mesejo, [UIB-EPS](https://eps.uib.es/)"
+    background: "#0060A8"
+
   sidebar:
-    # Este menú solo aparece si la URL contiene /es/contenido/
-    - title: "Temario del Curso"
-      style: "docked"
-      contents:
-        # - /es/contenido/index.qmd
-        - text: "1. Fundamentos, Entornos y Asistentes IA"
-          file: /es/contenido/tema1.qmd
-        - text: "2. Componentes y Control de Flujo"
-          file: /es/contenido/tema2.qmd
-        - text: "3. Funciones, Módulos y Organización"
-          file: /es/contenido/tema3.qmd
-        - text: "4. Algoritmos y Verificación (Testing)"
-          file: /es/contenido/tema4.qmd
-        - text: "5. Estructuras de Datos y POO"
-          file: /es/contenido/tema5.qmd
-        - text: "6. Gestión de Datos y Ficheros"
-          file: /es/contenido/tema6.qmd
-        - text: "7. Ecosistema Científico"
-          file: /es/contenido/tema7.qmd
-        - text: "8. Diseño Algorítmico"
-          file: /es/contenido/tema8.qmd
+    - id: barra-es
+      logo: "/images/logo.png"
+      pinned: true
+      align: center
+      tools:
+        - icon: github
+          href: https://github.com/UIB-23200-Programacion
+          text: "GitHub Organization"
+        - icon: globe
+          text: "Idioma / Llengua"
+          menu:
+            - text: "Español"
+              url: es/index.qmd
+            - text: "Català"
+              url: ca/index.qmd
 
-    # Este menú solo aparece si la URL contiene /ca/contingut/
-    - title: "Temari del Curs"
       style: "docked"
+      search: true
+      collapse-level: 1
       contents:
-        # - /ca/contingut/index.qmd
-        - text: "1. Fonaments, Entorns i Assistents IA"
-          file: /ca/contingut/tema1.qmd
-        - text: "2. Components i Control de Flux"
-          file: /ca/contingut/tema2.qmd
-        - text: "3. Funcions, Mòduls i Organització"
-          file: /ca/contingut/tema3.qmd
-        - text: "4. Algorismes i Verificació"
-          file: /ca/contingut/tema4.qmd
-        - text: "5. Estructures de Dades i POO"
-          file: /ca/contingut/tema5.qmd
-        - text: "6. Gestió de Dades i Fitxers"
-          file: /ca/contingut/tema6.qmd
-        - text: "7. Ecosistema Científic"
-          file: /ca/contingut/tema7.qmd
-        - text: "8. Disseny Algorísmic"
-          file: /ca/contingut/tema8.qmd
+        - es/index.qmd
+
+        - section: "Informaciones"
+          contents:
+            - href: es/informaciones/guia-docente.qmd
+              text: "Guía docente"
+            - href: es/informaciones/horarios.qmd
+              text: "Horarios"
+            - href: es/informaciones/profesorado.qmd
+              text: "Profesorado"
+            - href: es/informaciones/contacto.qmd
+              text: "Contacto"
+
+        - section: "Temas"
+          contents:
+            - href: es/contenido/tema1.qmd
+              text: "1. Fundamentos, Entornos y Asistentes IA"
+            - href: es/contenido/tema2.qmd
+              text: "2. Componentes y Control de Flujo"
+            - href: es/contenido/tema3.qmd
+              text: "3. Tema 3"
+            - href: es/contenido/tema4.qmd
+              text: "4. Tema 4"
+            - href: es/contenido/tema5.qmd
+              text: "5. Tema 5"
+            - href: es/contenido/tema6.qmd
+              text: "6. Tema 6"
+            - href: es/contenido/tema7.qmd
+              text: "7. Tema 7"
+            - href: es/contenido/tema8.qmd
+              text: "8. Tema 8"
+
+        - section: "Ejercicios"
+          contents:
+            - href: es/ejercicios/tema1.qmd
+              text: "Ejercicios — Tema 1"
+            - href: es/ejercicios/tema2.qmd
+              text: "Ejercicios — Tema 2"
+            - href: es/ejercicios/tema3.qmd
+              text: "Ejercicios — Tema 3"
+            - href: es/ejercicios/tema4.qmd
+              text: "Ejercicios — Tema 4"
+            - href: es/ejercicios/tema5.qmd
+              text: "Ejercicios — Tema 5"
+            - href: es/ejercicios/tema6.qmd
+              text: "Ejercicios — Tema 6"
+            - href: es/ejercicios/tema7.qmd
+              text: "Ejercicios — Tema 7"
+            - href: es/ejercicios/tema8.qmd
+              text: "Ejercicios — Tema 8"
+
+        - section: "Práctica"
+          contents:
+            - href: es/practica/examenes.qmd
+              text: "Exámenes anteriores"
+            - href: es/practica/resueltos.qmd
+              text: "Ejercicios resueltos"
+            - href: es/practica/ampliacion.qmd
+              text: "Notas de ampliación"
+
+    - id: barra-ca
+      contents:
+        - ca/index.qmd
+
+        - section: "Informacions"
+          contents:
+            - href: ca/informacions/guia-docent.qmd
+              text: "Guia docent"
+            - href: ca/informacions/horaris.qmd
+              text: "Horaris"
+            - href: ca/informacions/professorat.qmd
+              text: "Professorat"
+            - href: ca/informacions/contacte.qmd
+              text: "Contacte"
+
+        - section: "Temes"
+          contents:
+            - href: ca/contingut/tema1.qmd
+              text: "1. Fonaments, Entorns i Assistents IA"
+            - href: ca/contingut/tema2.qmd
+              text: "2. Components i Control de Flux"
+            - href: ca/contingut/tema3.qmd
+              text: "3. Tema 3"
+            - href: ca/contingut/tema4.qmd
+              text: "4. Tema 4"
+            - href: ca/contingut/tema5.qmd
+              text: "5. Tema 5"
+            - href: ca/contingut/tema6.qmd
+              text: "6. Tema 6"
+            - href: ca/contingut/tema7.qmd
+              text: "7. Tema 7"
+            - href: ca/contingut/tema8.qmd
+              text: "8. Tema 8"
+
+        - section: "Exercicis"
+          contents:
+            - href: ca/exercicis/tema1.qmd
+              text: "Exercicis — Tema 1"
+            - href: ca/exercicis/tema2.qmd
+              text: "Exercicis — Tema 2"
+            - href: ca/exercicis/tema3.qmd
+              text: "Exercicis — Tema 3"
+            - href: ca/exercicis/tema4.qmd
+              text: "Exercicis — Tema 4"
+            - href: ca/exercicis/tema5.qmd
+              text: "Exercicis — Tema 5"
+            - href: ca/exercicis/tema6.qmd
+              text: "Exercicis — Tema 6"
+            - href: ca/exercicis/tema7.qmd
+              text: "Exercicis — Tema 7"
+            - href: ca/exercicis/tema8.qmd
+              text: "Exercicis — Tema 8"
+
+        - section: "Pràctica"
+          contents:
+            - href: ca/practica/examens.qmd
+              text: "Examens anteriors"
+            - href: ca/practica/resolts.qmd
+              text: "Exercicis resolts"
+            - href: ca/practica/ampliacio.qmd
+              text: "Notes d'ampliació"
 
 format:
   html:
     theme:
-      # Interruptor Dark/Light nativo de Quarto
-      light: cosmo
-      dark: darkly
+      light: [cosmo, theme.scss]
+      dark: [cosmo, theme-dark.scss]
     css: styles.css
     toc: true
     mathrenderer: mathjax
+    include-after-body:
+      text: |
+        <script src="/logo-href.js"></script>
+
+freeze: auto
+editor: source

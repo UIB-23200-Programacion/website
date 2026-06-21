@@ -1,0 +1,7 @@
+---
+title: "Exercicis — Tema 4"
+lang: ca
+sidebar: barra-ca
+---
+
+*(Contenido pendiente.)*

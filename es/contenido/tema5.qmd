@@ -1,5 +1,7 @@
 ---
-title: "5. Estructuras de Datos y POO"
+title: "Tema 5"
+lang: es
+sidebar: barra-es
 ---
 
-Estudiaremos estructuras nativas como diccionarios y conjuntos, dando el salto a la Programación Orientada a Objetos. Utilizaremos clases para modelar entidades matemáticas abstractas, encapsulando las propiedades y operaciones de elementos como polinomios, matrices o autómatas.
+*(Contenido pendiente.)*
