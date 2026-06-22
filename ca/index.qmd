@@ -2,11 +2,12 @@
 title: "Inici"
 lang: ca
 sidebar: barra-ca
+toc: false
 ---
 
 ## Benvinguts
 
-Aquest lloc recull el material docent de l'assignatura **Programació (23200)** del Grau de Matemàtiques de la [Universitat de les Illes Balears](https://estudis.uib.cat/estudis-de-grau/grau/matematiques/GMA3-P/23200/index.html). L'assignatura introdueix la programació en Python assumint que l'estudiant no té experiència prèvia.
+Aquest lloc recull el material docent de l'assignatura **Programació (23200) del Grau de Matemàtiques de la [Universitat de les Illes Balears]**(https://estudis.uib.cat/estudis-de-grau/grau/matematiques/GMA3-P/23200/index.html). L'assignatura introdueix la programació en Python assumint que l'estudiant no té experiència prèvia.
 
 ---
 
@@ -29,3 +30,23 @@ Material de suport complementari: exàmens de convocatòries anteriors, tutorial
 
 **Bibliografia**
 Referències bibliogràfiques del curs, dividides en bibliografia principal (lectures essencials) i complementària (lectures d'ampliació).
+
+---
+
+::: {.important}
+## **MOLT IMPORTANT**
+
+Aquest lloc web és un complement de l'Aula Digital de l'assignatura.
+
+L´Aula Digital és la plataforma oficial de teleeducació i aprenentatge en línia de la UIB. Basada en el programari Moodle, funciona com a espai virtual de suport per a la gran majoria d'assignatures presencials i semipresencials.
+
+És l'entorn centralitzat on els estudiants poden:
+
+- Accedir als materials i apunts de cada assignatura.
+- Consulteu el calendari acadèmic i les dates d'exàmens.
+- Lliurar treballs, fer qüestionaris i participar en fòrums.
+- Revisar les qualificacions i les notes finals.
+
+L'accés a aquesta plataforma es gestiona mitjançant el [Portal de l'Alumnat](https://alu.uib.cat/), i també compta amb suport per a dispositius mòbils.
+
+:::
