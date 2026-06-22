@@ -14,7 +14,7 @@
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Práctica",
-      "Exámenes anteriores"
+      "Práctica del Curso"
     ]
   },
   {
@@ -141,7 +141,7 @@
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Pràctica",
-      "Examens anteriors"
+      "Pràctica del Curs"
     ]
   },
   {
@@ -371,22 +371,14 @@
     "href": "ca/practica/ampliacio.html",
     "title": "Notes d’ampliació",
     "section": "",
-    "text": "(Contenido pendiente.)",
-    "crumbs": [
-      "Pràctica",
-      "Notes d'ampliació"
-    ]
+    "text": "(Contenido pendiente.)"
   },
   {
     "objectID": "ca/practica/resolts.html",
     "href": "ca/practica/resolts.html",
     "title": "Exercicis resolts",
     "section": "",
-    "text": "(Contenido pendiente.)",
-    "crumbs": [
-      "Pràctica",
-      "Exercicis resolts"
-    ]
+    "text": "(Contenido pendiente.)"
   },
   {
     "objectID": "es/contenido/tema2.html",
@@ -499,21 +491,13 @@
     "href": "es/practica/ampliacion.html",
     "title": "Notas de ampliación",
     "section": "",
-    "text": "(Contenido pendiente.)",
-    "crumbs": [
-      "Práctica",
-      "Notas de ampliación"
-    ]
+    "text": "(Contenido pendiente.)"
   },
   {
     "objectID": "es/practica/resueltos.html",
     "href": "es/practica/resueltos.html",
     "title": "Ejercicios resueltos",
     "section": "",
-    "text": "(Contenido pendiente.)",
-    "crumbs": [
-      "Práctica",
-      "Ejercicios resueltos"
-    ]
+    "text": "(Contenido pendiente.)"
   }
 ]
