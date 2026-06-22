@@ -43,10 +43,6 @@ website:
               text: "Guía docente"
             - href: es/informaciones/horarios.qmd
               text: "Horarios"
-            - href: es/informaciones/profesorado.qmd
-              text: "Profesorado"
-            - href: es/informaciones/contacto.qmd
-              text: "Contacto"
 
         - section: "Temas"
           contents:
@@ -105,10 +101,6 @@ website:
               text: "Guia docent"
             - href: ca/informacions/horaris.qmd
               text: "Horaris"
-            - href: ca/informacions/professorat.qmd
-              text: "Professorat"
-            - href: ca/informacions/contacte.qmd
-              text: "Contacte"
 
         - section: "Temes"
           contents:
