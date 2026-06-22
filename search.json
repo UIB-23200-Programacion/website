@@ -73,7 +73,7 @@
     "href": "es/index.html",
     "title": "Inicio",
     "section": "",
-    "text": "Este sitio recoge el material docente de la asignatura Programación (23200) del Grado de Matemáticas de la Universitat de les Illes Balears. La asignatura introduce la programación en Python asumiendo que el estudiante no tiene experiencia previa.",
+    "text": "Este sitio recoge el material docente de la asignatura Programación (23200) del Grado de Matemáticas de la [Universitat de les Illes Balears](https://estudis.uib.es/estudis-de-grau/grau/matematiques/GMA3-P/23200/index.html). La asignatura introduce la programación en Python asumiendo que el estudiante no tiene experiencia previa.",
     "crumbs": [
       "Inicio"
     ]
@@ -83,7 +83,7 @@
     "href": "es/index.html#bienvenidos",
     "title": "Inicio",
     "section": "",
-    "text": "Este sitio recoge el material docente de la asignatura Programación (23200) del Grado de Matemáticas de la Universitat de les Illes Balears. La asignatura introduce la programación en Python asumiendo que el estudiante no tiene experiencia previa.",
+    "text": "Este sitio recoge el material docente de la asignatura Programación (23200) del Grado de Matemáticas de la [Universitat de les Illes Balears](https://estudis.uib.es/estudis-de-grau/grau/matematiques/GMA3-P/23200/index.html). La asignatura introduce la programación en Python asumiendo que el estudiante no tiene experiencia previa.",
     "crumbs": [
       "Inicio"
     ]
@@ -94,6 +94,16 @@
     "title": "Inicio",
     "section": "Qué encontrarás en este sitio",
     "text": "Qué encontrarás en este sitio\nInformaciones Documentos administrativos del curso: un resumen de la guía docente oficial, el calendario y los horarios de clase.\nTemas El contenido teórico-práctico del curso, organizado en 8 temas que van desde los fundamentos del lenguaje hasta el diseño algorítmico y el ecosistema científico de Python.\nEjercicios Colección de ejercicios propuestos para cada tema, pensados para consolidar los conceptos trabajados en clase.\nPráctica del Curso Elemento de evaluación continua: enunciado, plazo y entrega de la práctica del curso.\nRecursos Material de apoyo complementario: exámenes de convocatorias anteriores, tutoriales, manuales, guías de referencia, y herramientas de software recomendadas.\nBibliografía Referencias bibliográficas del curso, divididas en bibliografía principal (lecturas esenciales) y complementaria (lecturas de ampliación).",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "es/index.html#muy-importante",
+    "href": "es/index.html#muy-importante",
+    "title": "Inicio",
+    "section": "MUY IMPORTANTE",
+    "text": "MUY IMPORTANTE\nEste sitio es un complemento del Aula Digital de la asignatura.\nEl Aula Digital es la plataforma oficial de teleeducación y aprendizaje en línea de la UIB. Basada en el software Moodle, funciona como el espacio virtual de apoyo para la gran mayoría de asignaturas presenciales y semipresenciales.\nEs el entorno centralizado donde los estudiantes pueden:\n\nAcceder a los materiales y apuntes de cada asignatura.\nConsultar el calendario académico y las fechas de exámenes.\nEntregar trabajos, realizar cuestionarios y participar en foros.\nRevisar las calificaciones y notas finales.\n\nEl acceso a esa plataforma se gestiona a través del Portal del Alumnado, y también cuenta con soporte para dispositivos móviles.",
     "crumbs": [
       "Inicio"
     ]
@@ -253,7 +263,7 @@
     "href": "ca/index.html",
     "title": "Inici",
     "section": "",
-    "text": "Aquest lloc recull el material docent de l’assignatura Programació (23200) del Grau de Matemàtiques de la Universitat de les Illes Balears. L’assignatura introdueix la programació en Python assumint que l’estudiant no té experiència prèvia.",
+    "text": "Aquest lloc recull el material docent de l’assignatura Programació (23200) del Grau de Matemàtiques de la [Universitat de les Illes Balears](https://estudis.uib.cat/estudis-de-grau/grau/matematiques/GMA3-P/23200/index.html). L’assignatura introdueix la programació en Python assumint que l’estudiant no té experiència prèvia.",
     "crumbs": [
       "Inici"
     ]
@@ -263,7 +273,7 @@
     "href": "ca/index.html#benvinguts",
     "title": "Inici",
     "section": "",
-    "text": "Aquest lloc recull el material docent de l’assignatura Programació (23200) del Grau de Matemàtiques de la Universitat de les Illes Balears. L’assignatura introdueix la programació en Python assumint que l’estudiant no té experiència prèvia.",
+    "text": "Aquest lloc recull el material docent de l’assignatura Programació (23200) del Grau de Matemàtiques de la [Universitat de les Illes Balears](https://estudis.uib.cat/estudis-de-grau/grau/matematiques/GMA3-P/23200/index.html). L’assignatura introdueix la programació en Python assumint que l’estudiant no té experiència prèvia.",
     "crumbs": [
       "Inici"
     ]
@@ -274,6 +284,16 @@
     "title": "Inici",
     "section": "Què trobaràs en aquest lloc",
     "text": "Què trobaràs en aquest lloc\nInformacions Documents administratius del curs: un resum de la guia docent oficial, el calendari i els horaris de classe.\nTemes El contingut teòric-pràctic del curs, organitzat en 8 temes que van des dels fonaments del llenguatge fins al disseny algorítmic i l’ecosistema científic de Python.\nExercicis Col·lecció d’exercicis proposats per a cada tema, pensats per consolidar els conceptes treballats a classe.\nPràctica del Curs Element d’avaluació contínua: enunciat, termini i lliurament de la pràctica del curs.\nRecursos Material de suport complementari: exàmens de convocatòries anteriors, tutorials, manuals, guies de referència, i eines de programari recomanades.\nBibliografia Referències bibliogràfiques del curs, dividides en bibliografia principal (lectures essencials) i complementària (lectures d’ampliació).",
+    "crumbs": [
+      "Inici"
+    ]
+  },
+  {
+    "objectID": "ca/index.html#molt-important",
+    "href": "ca/index.html#molt-important",
+    "title": "Inici",
+    "section": "MOLT IMPORTANT",
+    "text": "MOLT IMPORTANT\nAquest lloc web és un complement de l’Aula Digital de l’assignatura.\nL´Aula Digital és la plataforma oficial de teleeducació i aprenentatge en línia de la UIB. Basada en el programari Moodle, funciona com a espai virtual de suport per a la gran majoria d’assignatures presencials i semipresencials.\nÉs l’entorn centralitzat on els estudiants poden:\n\nAccedir als materials i apunts de cada assignatura.\nConsulteu el calendari acadèmic i les dates d’exàmens.\nLliurar treballs, fer qüestionaris i participar en fòrums.\nRevisar les qualificacions i les notes finals.\n\nL’accés a aquesta plataforma es gestiona mitjançant el Portal de l’Alumnat, i també compta amb suport per a dispositius mòbils.",
     "crumbs": [
       "Inici"
     ]
