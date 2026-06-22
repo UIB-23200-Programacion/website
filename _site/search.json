@@ -73,7 +73,27 @@
     "href": "es/index.html",
     "title": "Inicio",
     "section": "",
-    "text": "Asignatura Programación (23200), Curso 2026-2027, UIB-EPS\n\n\n\nImagen generada con Nano Banana Pro de Google DeepMind.",
+    "text": "Asignatura Programación (23200), Curso 2026-2027, UIB-EPS",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "es/index.html#bienvenidos",
+    "href": "es/index.html#bienvenidos",
+    "title": "Inicio",
+    "section": "Bienvenidos",
+    "text": "Bienvenidos\nEste sitio recoge el material docente de la asignatura Programación (23200) del Grado de Matemáticas de la Universitat de les Illes Balears. La asignatura introduce la programación en Python asumiendo que el estudiante no tiene experiencia previa.",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "es/index.html#qué-encontrarás-en-este-sitio",
+    "href": "es/index.html#qué-encontrarás-en-este-sitio",
+    "title": "Inicio",
+    "section": "Qué encontrarás en este sitio",
+    "text": "Qué encontrarás en este sitio\nInformaciones Documentos administrativos del curso: un resumen de la guía docente oficial, el calendario y los horarios de clase.\nTemas El contenido teórico-práctico del curso, organizado en 8 temas que van desde los fundamentos del lenguaje hasta el diseño algorítmico y el ecosistema científico de Python.\nEjercicios Colección de ejercicios propuestos para cada tema, pensados para consolidar los conceptos trabajados en clase.\nPráctica del Curso Elemento de evaluación continua: enunciado, plazo y entrega de la práctica del curso.\nRecursos Material de apoyo complementario: exámenes de convocatorias anteriores, tutoriales, manuales, guías de referencia, y herramientas de software recomendadas.\nBibliografía Referencias bibliográficas del curso, divididas en bibliografía principal (lecturas esenciales) y complementaria (lecturas de ampliación).",
     "crumbs": [
       "Inicio"
     ]
@@ -233,7 +253,27 @@
     "href": "ca/index.html",
     "title": "Inici",
     "section": "",
-    "text": "Assignatura Programació (23200), Curs 2026-2027, UIB-EPS\n\n\n\nImatge generada amb Nano Banana Pro de Google DeepMind.",
+    "text": "Assignatura Programació (23200), Curs 2026-2027, UIB-EPS",
+    "crumbs": [
+      "Inici"
+    ]
+  },
+  {
+    "objectID": "ca/index.html#benvinguts",
+    "href": "ca/index.html#benvinguts",
+    "title": "Inici",
+    "section": "Benvinguts",
+    "text": "Benvinguts\nAquest lloc recull el material docent de l’assignatura Programació (23200) del Grau de Matemàtiques de la Universitat de les Illes Balears. L’assignatura introdueix la programació en Python assumint que l’estudiant no té experiència prèvia.",
+    "crumbs": [
+      "Inici"
+    ]
+  },
+  {
+    "objectID": "ca/index.html#què-trobaràs-en-aquest-lloc",
+    "href": "ca/index.html#què-trobaràs-en-aquest-lloc",
+    "title": "Inici",
+    "section": "Què trobaràs en aquest lloc",
+    "text": "Què trobaràs en aquest lloc\nInformacions Documents administratius del curs: un resum de la guia docent oficial, el calendari i els horaris de classe.\nTemes El contingut teòric-pràctic del curs, organitzat en 8 temes que van des dels fonaments del llenguatge fins al disseny algorítmic i l’ecosistema científic de Python.\nExercicis Col·lecció d’exercicis proposats per a cada tema, pensats per consolidar els conceptes treballats a classe.\nPràctica del Curs Element d’avaluació contínua: enunciat, termini i lliurament de la pràctica del curs.\nRecursos Material de suport complementari: exàmens de convocatòries anteriors, tutorials, manuals, guies de referència, i eines de programari recomanades.\nBibliografia Referències bibliogràfiques del curs, dividides en bibliografia principal (lectures essencials) i complementària (lectures d’ampliació).",
     "crumbs": [
       "Inici"
     ]

@@ -4,20 +4,9 @@ lang: es
 sidebar: barra-es
 ---
 
-::: {style="text-align: center; font-size: 2em;"}
-[**Asignatura Programación (23200), Curso 2026-2027, UIB-EPS**](https://estudis.uib.es/estudis-de-grau/grau/matematiques/GMA3-P/23200/index.html)
-:::
-
-
-![](/images/nbapro01.png)
-
-::: {style="text-align: center"}
-Imagen generada con [Nano Banana Pro de Google DeepMind](https://deepmind.google/models/gemini-image/pro/).
-:::
-
 ## Bienvenidos
 
-Este sitio recoge el material docente de la asignatura **Programación (23200)** del Grado de Matemáticas de la [Universitat de les Illes Balears](https://www.uib.es). La asignatura introduce la programación en Python asumiendo que el estudiante no tiene experiencia previa.
+Este sitio recoge el material docente de la asignatura **Programación (23200)** del Grado de Matemáticas de la [Universitat de les Illes Balears](https://estudis.uib.es/estudis-de-grau/grau/matematiques/GMA3-P/23200/index.html). La asignatura introduce la programación en Python asumiendo que el estudiante no tiene experiencia previa.
 
 ---
 
