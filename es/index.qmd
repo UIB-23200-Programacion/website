@@ -14,3 +14,29 @@ sidebar: barra-es
 ::: {style="text-align: center"}
 Imagen generada con [Nano Banana Pro de Google DeepMind](https://deepmind.google/models/gemini-image/pro/).
 :::
+
+## Bienvenidos
+
+Este sitio recoge el material docente de la asignatura **Programación (23200)** del Grado de Matemáticas de la [Universitat de les Illes Balears](https://www.uib.es). La asignatura introduce la programación en Python asumiendo que el estudiante no tiene experiencia previa.
+
+---
+
+## Qué encontrarás en este sitio
+
+**Informaciones**
+Documentos administrativos del curso: un resumen de la guía docente oficial, el calendario y los horarios de clase.
+
+**Temas**
+El contenido teórico-práctico del curso, organizado en 8 temas que van desde los fundamentos del lenguaje hasta el diseño algorítmico y el ecosistema científico de Python.
+
+**Ejercicios**
+Colección de ejercicios propuestos para cada tema, pensados para consolidar los conceptos trabajados en clase.
+
+**Práctica del Curso**
+Elemento de evaluación continua: enunciado, plazo y entrega de la práctica del curso.
+
+**Recursos**
+Material de apoyo complementario: exámenes de convocatorias anteriores, tutoriales, manuales, guías de referencia, y herramientas de software recomendadas.
+
+**Bibliografía**
+Referencias bibliográficas del curso, divididas en bibliografía principal (lecturas esenciales) y complementaria (lecturas de ampliación).

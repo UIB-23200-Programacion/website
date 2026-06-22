@@ -7,9 +7,42 @@
     "text": "Redirigiendo a la página de inicio en español…"
   },
   {
+    "objectID": "es/bibliografia/principal.html",
+    "href": "es/bibliografia/principal.html",
+    "title": "Bibliografía principal",
+    "section": "",
+    "text": "(Contenido pendiente.)",
+    "crumbs": [
+      "Bibliografía",
+      "Principal"
+    ]
+  },
+  {
+    "objectID": "es/recursos/manuales-guias.html",
+    "href": "es/recursos/manuales-guias.html",
+    "title": "Manuales y guías",
+    "section": "",
+    "text": "(Contenido pendiente.)",
+    "crumbs": [
+      "Recursos",
+      "Manuales y guías"
+    ]
+  },
+  {
+    "objectID": "es/recursos/examenes-anteriores.html",
+    "href": "es/recursos/examenes-anteriores.html",
+    "title": "Exámenes anteriores",
+    "section": "",
+    "text": "(Contenido pendiente.)",
+    "crumbs": [
+      "Recursos",
+      "Exámenes anteriores"
+    ]
+  },
+  {
     "objectID": "es/practica/examenes.html",
     "href": "es/practica/examenes.html",
-    "title": "Exámenes anteriores",
+    "title": "Práctica del Curso",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
@@ -134,9 +167,42 @@
     ]
   },
   {
+    "objectID": "ca/bibliografia/principal.html",
+    "href": "ca/bibliografia/principal.html",
+    "title": "Bibliografia principal",
+    "section": "",
+    "text": "(Contingut pendent.)",
+    "crumbs": [
+      "Bibliografia",
+      "Principal"
+    ]
+  },
+  {
+    "objectID": "ca/recursos/manuals-guies.html",
+    "href": "ca/recursos/manuals-guies.html",
+    "title": "Manuals i guies",
+    "section": "",
+    "text": "(Contingut pendent.)",
+    "crumbs": [
+      "Recursos",
+      "Manuals i guies"
+    ]
+  },
+  {
+    "objectID": "ca/recursos/examens-anteriors.html",
+    "href": "ca/recursos/examens-anteriors.html",
+    "title": "Exàmens anteriors",
+    "section": "",
+    "text": "(Contingut pendent.)",
+    "crumbs": [
+      "Recursos",
+      "Exàmens anteriors"
+    ]
+  },
+  {
     "objectID": "ca/practica/examens.html",
     "href": "ca/practica/examens.html",
-    "title": "Exàmens anteriors",
+    "title": "Pràctica del Curs",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
@@ -381,6 +447,39 @@
     "text": "(Contenido pendiente.)"
   },
   {
+    "objectID": "ca/recursos/tutorials.html",
+    "href": "ca/recursos/tutorials.html",
+    "title": "Tutorials",
+    "section": "",
+    "text": "(Contingut pendent.)",
+    "crumbs": [
+      "Recursos",
+      "Tutorials"
+    ]
+  },
+  {
+    "objectID": "ca/recursos/eines-programari.html",
+    "href": "ca/recursos/eines-programari.html",
+    "title": "Eines de programari",
+    "section": "",
+    "text": "(Contingut pendent.)",
+    "crumbs": [
+      "Recursos",
+      "Eines de programari"
+    ]
+  },
+  {
+    "objectID": "ca/bibliografia/complementaria.html",
+    "href": "ca/bibliografia/complementaria.html",
+    "title": "Bibliografia complementària",
+    "section": "",
+    "text": "(Contingut pendent.)",
+    "crumbs": [
+      "Bibliografia",
+      "Complementària"
+    ]
+  },
+  {
     "objectID": "es/contenido/tema2.html",
     "href": "es/contenido/tema2.html",
     "title": "Tema 2: Componentes del Lenguaje y Control de Flujo",
@@ -499,5 +598,38 @@
     "title": "Ejercicios resueltos",
     "section": "",
     "text": "(Contenido pendiente.)"
+  },
+  {
+    "objectID": "es/recursos/tutoriales.html",
+    "href": "es/recursos/tutoriales.html",
+    "title": "Tutoriales",
+    "section": "",
+    "text": "(Contenido pendiente.)",
+    "crumbs": [
+      "Recursos",
+      "Tutoriales"
+    ]
+  },
+  {
+    "objectID": "es/recursos/herramientas-software.html",
+    "href": "es/recursos/herramientas-software.html",
+    "title": "Herramientas de software",
+    "section": "",
+    "text": "(Contenido pendiente.)",
+    "crumbs": [
+      "Recursos",
+      "Herramientas de software"
+    ]
+  },
+  {
+    "objectID": "es/bibliografia/complementaria.html",
+    "href": "es/bibliografia/complementaria.html",
+    "title": "Bibliografía complementaria",
+    "section": "",
+    "text": "(Contenido pendiente.)",
+    "crumbs": [
+      "Bibliografía",
+      "Complementaria"
+    ]
   }
 ]
