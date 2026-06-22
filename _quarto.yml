@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  page-navigation: true
+  page-navigation: false
   title: "Programación (23200)"
   description: "Material docente de la asignatura Programación (23200), UIB-EPS."
   site-url: "https://uib-23200-programacion.github.io/website/"
@@ -55,17 +55,17 @@ website:
             - href: es/contenido/tema2.qmd
               text: "2. Componentes y Control de Flujo"
             - href: es/contenido/tema3.qmd
-              text: "3. Tema 3"
+              text: "3. Funciones, Módulos y Organización"
             - href: es/contenido/tema4.qmd
-              text: "4. Tema 4"
+              text: "4. Algoritmos Básicos y Verificación"
             - href: es/contenido/tema5.qmd
-              text: "5. Tema 5"
+              text: "5. Estructuras de Datos y POO"
             - href: es/contenido/tema6.qmd
-              text: "6. Tema 6"
+              text: "6. Gestión de Datos y Ficheros"
             - href: es/contenido/tema7.qmd
-              text: "7. Tema 7"
+              text: "7. Ecosistema Científico de Python"
             - href: es/contenido/tema8.qmd
-              text: "8. Tema 8"
+              text: "8. Diseño Algorítmico y Resolución de Problemas"
 
         - section: "Ejercicios"
           contents:
@@ -117,17 +117,17 @@ website:
             - href: ca/contingut/tema2.qmd
               text: "2. Components i Control de Flux"
             - href: ca/contingut/tema3.qmd
-              text: "3. Tema 3"
+              text: "3. Funcions, Mòduls i Organització"
             - href: ca/contingut/tema4.qmd
-              text: "4. Tema 4"
+              text: "4. Algorismes Bàsics i Verificació"
             - href: ca/contingut/tema5.qmd
-              text: "5. Tema 5"
+              text: "5. Estructures de Dades i POO"
             - href: ca/contingut/tema6.qmd
-              text: "6. Tema 6"
+              text: "6. Gestió de Dades i Fitxers"
             - href: ca/contingut/tema7.qmd
-              text: "7. Tema 7"
+              text: "7. Ecosistema Científic de Python"
             - href: ca/contingut/tema8.qmd
-              text: "8. Tema 8"
+              text: "8. Disseny Algorítmic i Resolució de Problemes"
 
         - section: "Exercicis"
           contents:

@@ -1,5 +1,5 @@
 ---
-title: "Tema 7"
+title: "Tema 7: Ecosistema Científic de Python"
 lang: ca
 sidebar: barra-ca
 ---

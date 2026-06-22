@@ -1,5 +1,5 @@
 ---
-title: "Tema 1"
+title: "Tema 1: Fonaments, Entorns Moderns i Assistents d'IA"
 lang: ca
 sidebar: barra-ca
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Tema 3"
+title: "Tema 3: Funciones, Módulos y Organización del Código"
 lang: es
 sidebar: barra-es
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Tema 5"
+title: "Tema 5: Estructuras de Datos y Programación Orientada a Objetos"
 lang: es
 sidebar: barra-es
 ---

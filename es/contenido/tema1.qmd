@@ -1,5 +1,5 @@
 ---
-title: "Tema 1"
+title: "Tema 1: Fundamentos, Entornos Modernos y Asistentes IA"
 lang: es
 sidebar: barra-es
 ---

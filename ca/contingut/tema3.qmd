@@ -1,5 +1,5 @@
 ---
-title: "Tema 3"
+title: "Tema 3: Funcions, Mòduls i Organització del Codi"
 lang: ca
 sidebar: barra-ca
 ---

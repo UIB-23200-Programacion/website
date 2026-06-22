@@ -1,5 +1,5 @@
 ---
-title: "Tema 2"
+title: "Tema 2: Components del Llenguatge i Control de Flux"
 lang: ca
 sidebar: barra-ca
 ---

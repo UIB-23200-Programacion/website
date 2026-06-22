@@ -1,5 +1,5 @@
 ---
-title: "Tema 4"
+title: "Tema 4: Algorismes Bàsics i Verificació"
 lang: ca
 sidebar: barra-ca
 ---

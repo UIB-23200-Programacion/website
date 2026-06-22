@@ -1,5 +1,5 @@
 ---
-title: "Tema 6"
+title: "Tema 6: Gestió de Dades i Fitxers"
 lang: ca
 sidebar: barra-ca
 ---

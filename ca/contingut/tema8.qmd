@@ -1,5 +1,5 @@
 ---
-title: "Tema 8"
+title: "Tema 8: Disseny Algorítmic i Resolució de Problemes"
 lang: ca
 sidebar: barra-ca
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Tema 5"
+title: "Tema 5: Estructures de Dades i Programació Orientada a Objectes"
 lang: ca
 sidebar: barra-ca
 ---
