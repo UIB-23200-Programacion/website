@@ -87,6 +87,24 @@ website:
             - href: es/practica/examenes.qmd
               text: "Práctica del Curso"
 
+        - section: "Recursos"
+          contents:
+            - href: es/recursos/examenes-anteriores.qmd
+              text: "Exámenes anteriores"
+            - href: es/recursos/tutoriales.qmd
+              text: "Tutoriales"
+            - href: es/recursos/manuales-guias.qmd
+              text: "Manuales y guías"
+            - href: es/recursos/herramientas-software.qmd
+              text: "Herramientas de software"
+
+        - section: "Bibliografía"
+          contents:
+            - href: es/bibliografia/principal.qmd
+              text: "Principal"
+            - href: es/bibliografia/complementaria.qmd
+              text: "Complementaria"
+
     - id: barra-ca
       contents:
         - ca/index.qmd
@@ -140,6 +158,24 @@ website:
           contents:
             - href: ca/practica/examens.qmd
               text: "Pràctica del Curs"
+
+        - section: "Recursos"
+          contents:
+            - href: ca/recursos/examens-anteriors.qmd
+              text: "Exàmens anteriors"
+            - href: ca/recursos/tutorials.qmd
+              text: "Tutorials"
+            - href: ca/recursos/manuals-guies.qmd
+              text: "Manuals i guies"
+            - href: ca/recursos/eines-programari.qmd
+              text: "Eines de programari"
+
+        - section: "Bibliografia"
+          contents:
+            - href: ca/bibliografia/principal.qmd
+              text: "Principal"
+            - href: ca/bibliografia/complementaria.qmd
+              text: "Complementària"
 
 format:
   html:

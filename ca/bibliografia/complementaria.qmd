@@ -1,0 +1,7 @@
+---
+title: "Bibliografia complementària"
+lang: ca
+sidebar: barra-ca
+---
+
+*(Contingut pendent.)*

@@ -1,5 +1,5 @@
 ---
-title: "Práctica del Curso"
+title: "Manuales y guías"
 lang: es
 sidebar: barra-es
 ---
