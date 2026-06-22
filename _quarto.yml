@@ -85,11 +85,7 @@ website:
         - section: "Práctica"
           contents:
             - href: es/practica/examenes.qmd
-              text: "Exámenes anteriores"
-            - href: es/practica/resueltos.qmd
-              text: "Ejercicios resueltos"
-            - href: es/practica/ampliacion.qmd
-              text: "Notas de ampliación"
+              text: "Práctica del Curso"
 
     - id: barra-ca
       contents:
@@ -143,11 +139,7 @@ website:
         - section: "Pràctica"
           contents:
             - href: ca/practica/examens.qmd
-              text: "Examens anteriors"
-            - href: ca/practica/resolts.qmd
-              text: "Exercicis resolts"
-            - href: ca/practica/ampliacio.qmd
-              text: "Notes d'ampliació"
+              text: "Pràctica del Curs"
 
 format:
   html:
