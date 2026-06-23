@@ -1,0 +1,34 @@
+/* Igualar el título al tamaño de texto base */
+.callout-title-container {
+  font-size: 1.5em !important;
+  font-weight: bold; /* Opcional: mantén el negrita si quieres que resalte un poco */
+}
+
+
+/* Si quieres que el icono también se ajuste proporcionalmente */
+.callout-icon-container {
+  font-size: 1.5em !important;
+}
+
+
+.callout-body {
+  font-size: 1em !important; /* Fuerza el tamaño estándar del root */
+}
+
+
+/* Igualar el tamaño del código al texto normal */
+code.sourceCode {
+  font-size: 1.15em !important; 
+}
+
+
+/* Si usas bloques de código con nombre de archivo, ajusta también el título */
+.code-with-filename .code-with-filename-file {
+  font-size: 1em !important;
+}
+
+
+/* Para el código "inline" (entre ` `) */
+code:not(.sourceCode) {
+  font-size: 1em !important;
+}
