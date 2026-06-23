@@ -1,7 +1,0 @@
----
-title: "Notas de ampliación"
-lang: es
-sidebar: barra-es
----
-
-*(Contenido pendiente.)*

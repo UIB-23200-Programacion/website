@@ -1,7 +1,0 @@
----
-title: "Ejercicios resueltos"
-lang: es
-sidebar: barra-es
----
-
-*(Contenido pendiente.)*

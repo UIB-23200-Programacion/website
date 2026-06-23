@@ -1,7 +1,0 @@
----
-title: "Exercicis resolts"
-lang: ca
-sidebar: barra-ca
----
-
-*(Contenido pendiente.)*

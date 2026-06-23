@@ -1,7 +1,0 @@
----
-title: "Profesorado"
-lang: es
-sidebar: barra-es
----
-
-*(Contenido pendiente.)*

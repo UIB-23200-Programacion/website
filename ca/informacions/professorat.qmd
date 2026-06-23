@@ -1,7 +1,0 @@
----
-title: "Professorat"
-lang: ca
-sidebar: barra-ca
----
-
-*(Contenido pendiente.)*

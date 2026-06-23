@@ -84,7 +84,7 @@ website:
 
         - section: "Práctica"
           contents:
-            - href: es/practica/examenes.qmd
+            - href: es/practica/practica.qmd
               text: "Práctica del Curso"
 
         - section: "Recursos"
@@ -156,7 +156,7 @@ website:
 
         - section: "Pràctica"
           contents:
-            - href: ca/practica/examens.qmd
+            - href: ca/practica/practica.qmd
               text: "Pràctica del Curs"
 
         - section: "Recursos"

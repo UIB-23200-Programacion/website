@@ -1,7 +1,0 @@
----
-title: "Contacto"
-lang: es
-sidebar: barra-es
----
-
-*(Contenido pendiente.)*
