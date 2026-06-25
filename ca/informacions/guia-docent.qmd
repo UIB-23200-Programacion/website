@@ -4,4 +4,143 @@ lang: ca
 sidebar: barra-ca
 ---
 
-*(Contenido pendiente.)*
+## Introducció
+
+A continuació un resum de la Guia Docent de l'assignatura. La versió completa es pot accedir aquí. Es recomana consultar la versió completa.
+
+## Professor Responsable
+
+José Alejandro Mesejo Chiong ([fitxa UIB](https://www.uib.es/personal/ABjUwMDIxMA/))
+Correu de contacte: alejandro.mesejo@uib.es
+Despatx 171: Edifici Anselm Turmeda, 1a planta
+
+## Contextualització de l'Assignatura
+
+Programació és una assignatura de formació bàsica dins de la branca de coneixement de Ciències de la Computació i té un caràcter introductori general. El seu objectiu principal és proporcionar a l'estudiantat una primera aproximació rigorosa a la programació d'ordinadors.
+
+Més concretament, l'assignatura se centra en una fase fonamental del procés algorítmic: el disseny d'algorismes mitjançant descomposició i abstracció, i la seva implementació de manera correcta i verificable. L'alumnat aprendrà a aplicar tècniques de disseny descendent i a utilitzar abstraccions, tant d'operacions com de dades, amb l'objectiu que les solucions no solament resolguin el problema plantejat, sinó que ho facin amb un nivell de qualitat que en faciliti la llegibilitat, la correcció i el manteniment futur. En aquesta línia, s'introdueixen de manera transversal els entorns de desenvolupament moderns i els assistents de programació basats en intel·ligència artificial (copilots), que es treballen sempre des d'una perspectiva crítica i orientada a l'especificació, la generació i la verificació del codi, de manera que l'estudiant mantingui en tot moment el control i la responsabilitat sobre aquest.
+
+Atès que es tracta d'una assignatura adreçada a estudiants de matemàtiques, es presta una atenció especial a l'ús de la programació com a eina per experimentar i resoldre problemes matemàtics, mitjançant l'ecosistema científic de Python (càlcul numèric, càlcul simbòlic i visualització).
+
+D'altra banda, l'assignatura està estretament relacionada amb les matèries que componen el mòdul de computació i, en general, amb qualsevol assignatura en la qual sigui necessari desenvolupar algorismes en qualsevol llenguatge i entorn de programació. En aquest sentit, estableix els fonaments metodològics i les bases d'anàlisi algorítmica necessaris per afrontar amb garanties assignatures i problemes relacionats de cursos més avançats.
+
+## Recomanacions
+
+És recomanable que l'estudiantat tingui coneixements previs d'ús dels ordinadors a nivell d'usuari i sàpiga emprar les funcions bàsiques d'un sistema operatiu, com la instal·lació de programes i la gestió de carpetes i arxius, així com certa familiaritat amb la navegació per internet i l'ús de comptes en línia.
+
+## Continguts
+
+Tema 1: Fonaments, Entorns Moderns i Assistents d'IA (2 hores presencials, 4 hores no presencials)
+
+- 1.1. Concepte de programa, llenguatges d'alt nivell (Python) i el procés d'interpretació.
+- 1.2. Introducció a Visual Studio Code (VS Code).
+- 1.3. Configuració i arrencada de GitHub Codespaces.
+- 1.4. Assistents d'IA de Codi (Copilots): Què fan els Models de Llenguatge Grans (LLMs) aplicats a codi?
+
+Tema 2: Components del Llenguatge i Control de Flux (8 hores presencials, 16 hores no presencials)
+
+- 2.1. Scripts de Python vs. Execució interactiva.
+- 2.2. Variables, tipus primitius, operadors matemàtics i lògics.
+- 2.3. Control de Flux - Condicionals.
+- 2.4. Control de Flux - Iteracions.
+- 2.5. Entrada i sortida bàsiques: fluxos entre teclat i pantalla.
+
+Tema 3: Funcions, Mòduls i Organització del Codi (4 hores presencials, 8 hores no presencials)
+
+- 3.1. Definició de funcions, pas de paràmetres i retorn de valors.
+- 3.2. Visibilitat de variables (Scope) local i global.
+- 3.3. Docstrings, anotacions de tipus (*type hints*) i precondicions/postcondicions com a contracte.
+- 3.4. Concepte de mòdul. Importació de mòduls i creació de mòduls propis.
+- 3.5. Organització de projectes.
+
+Tema 4: Algorismes Bàsics i Verificació (Testing) (8 hores presencials, 16 hores no presencials)
+
+- 4.1. Concepte de seqüència i exemples.
+- 4.2. Patrons de recorregut, cerca, acumulació i recompte.
+- 4.3. Nocions d'invariant de bucle com a eina de raonament.
+- 4.4. Ús de la instrucció ˋassertˋ i fonaments del framework ˋpytestˋ.
+
+Tema 5: Estructures de Dades i Programació Orientada a Objectes (16 hores presencials, 32 hores no presencials)
+
+- 5.1. Llistes, Tuples, Diccionaris i Conjunts.
+- 5.2. Tipus Abstractes de Dades (TADs).
+- 5.3. Classes, objectes, atributs i mètodes.
+- 5.4. Encapsulació bàsica.
+- 5.5. Mètodes Màgics i Sobrecàrrega d'Operadors.
+
+Tema 6: Gestió de Dades i Fitxers (4 hores presencials, 8 hores no presencials)
+
+- 6.1. Fitxers i Rutes.
+- 6.2. Lectura i escriptura de text.
+- 6.3. Lectura i escriptura de fitxers CSV (dades tabulars) i JSON (dades jeràrquiques).
+- 6.4. Pandas: manipulació i neteja de dades estructurades.
+
+Tema 7: Ecosistema Científic de Python (12 hores presencials, 24 hores no presencials)
+
+- 7.1. NumPy: matrius multidimensionals, funcions matemàtiques d'alt nivell i àlgebra lineal.
+- 7.2. Matplotlib: La biblioteca clàssica per a la generació de gràfics en 2D i 3D.
+- 7.3. SymPy: càlcul simbòlic: simplificació, resolució d'equacions, derivació i integració.
+
+Tema 8: Disseny Algorítmic i Resolució de Problemes (6 hores presencials, 12 hores no presencials)
+
+- 8.1. Estratègies per dividir un problema en subrutines independents.
+- 8.2. Disseny descendent (Top-Down) i disseny ascendent (Bottom-Up).
+- 8.3. Ordenació bàsica i cerca binària.
+- 8.4. Complexitat Computacional (Notació Big-O).
+
+## Metodologia docent
+
+### Activitats Presencials
+
+| Nom de l'activitat | Descripció | Agrupació |
+| :----- | :--------------- | :----- |
+| Teoria | Classe expositiva i participativa en la qual s'introdueixen els conceptes fonamentals i s'il·lustren mitjançant programació en viu i la resolució raonada de problemes, fomentant la discussió i la formulació de preguntes per part de l'estudiantat. | Grup Gran |
+| Pràctiques presencials | Sessions pràctiques en les quals l'estudiantat resol problemes de programació de manera individual, amb activitats d'autoavaluació i coavaluació que fomenten la revisió crítica del codi propi. | Grup Gran/Mitjà |
+| Avaluació | Prova escrita de desenvolupament en la qual l'estudiantat resol problemes de programació dissenyant algorismes i raonant-ne la correcció, més enllà de la simple escriptura de codi. | Grup Gran |
+| Tallers | Activitats avaluatives breus, centrades en conceptes o tècniques concretes, que serveixen per fer un seguiment continuat del progrés de l'estudiantat al llarg del curs. | Grup Mitjà |
+
+### Activitats No Presencials
+
+| Nom de l'activitat | Descripció |
+| Pràctica | Desenvolupament autònom d'un petit projecte de programació en el qual l'estudiantat aplica el cicle complet d'especificació, disseny, implementació i verificació de la solució. L'objectiu és que l'anàlisi del problema i el disseny precedeixin la implementació, i que aquesta es validi de manera sistemàtica. |
+| Estudi | Treball autònom de l'estudiantat per assimilar els continguts: estudi de la teoria, repàs dels exemples i resolució d'exercicis complementaris. |
+
+## Activitats d'avaluació
+
+| Activitat | Període | Pes (\%) | Nota de validació |
+| :--- | :------ | :--- | :--- |
+| Examen | Avaluació complementària | 45\% | 4.5 |
+| Tallers | Avaluació contínua | 25\% | - |
+| Pràctica | Avaluació complementària | 30\% | 5 |
+
+### Millora de la qualificació
+
+No es pot millorar la qualificació de l'Examen ni la de la Pràctica de l'assignatura.
+
+## Condicions d'ús de la IA
+
+L'ús d'eines d'intel·ligència artificial està autoritzat per elaborar exclusivament les activitats d'avaluació següents: Pràctica i Tallers durant l'avaluació contínua.
+Per a qualsevol altra activitat no inclosa en aquesta llista, caldrà obtenir autorització prèvia del professor responsable i explicar la finalitat i el tipus d'ús previst.
+
+- Eines autoritzades: Microsoft Copilot, ChatGPT, Grammarly, Perplexity, Claude, DeepSeek o altres eines similars.
+- Contextos d'ús acceptable:
+- Demanar explicacions de conceptes ja treballats a classe o de la documentació oficial (p. ex., la diferència entre una llista i una tupla, o el significat d'un missatge d'error).
+- Sol·licitar que l'assistent revisi codi escrit per l'estudiant per detectar errors o suggerir millores de llegibilitat, sempre que l'estudiant avaluï i decideixi quins canvis aplica.
+- Generar casos de prova addicionals o identificar casos límit, perquè l'estudiant en validi la pertinència i els incorpori de manera raonada.
+- Millorar la documentació del codi propi: docstrings, anotacions de tipus (type hints) i comentaris.
+- Obtenir exemples d'ús de funcions de l'ecosistema científic (NumPy, Matplotlib, SymPy, pandas) que després l'estudiant adapta i comprova.
+- Generar codi rutinari o repetitiu (boilerplate) que no constitueixi l'objectiu d'aprenentatge avaluat de l'activitat, sempre que l'estudiant comprengui cada línia i sigui capaç d'explicar-la, modificar-la i justificar-la.
+- Ajudar a redactar o millorar la prosa de memòries i informes (claredat, ortografia), respectant els requisits de citació de l'apartat anterior.
+- Contextos d'ús no acceptable:
+- Usar IA en qualsevol activitat no autoritzada explícitament, i en particular durant l'examen i les proves presencials.
+- Lliurar com a pròpia una solució generada per IA sense comprendre-la: si l'estudiant no és capaç d'explicar, justificar o modificar qualsevol part del que lliura, es considera ús indegut.
+- Delegar la resolució completa del problema (copiar l'enunciat a l'assistent i lliurar la seva resposta) sense passar pel cicle d'especificació, generació i verificació.
+- Encarregar a la IA precisament la competència que s'avalua i presentar-la com a raonament propi (p. ex., demanar-li els invariants de bucle, les proves de correcció o el disseny algorítmic que són l'objectiu de l'activitat).
+- Introduir a les eines d'IA enunciats d'examen, materials docents protegits, codi de companys o dades personals o sensibles, pròpies o de tercers (vegeu el punt 11).
+- Ometre la declaració d'ús de la IA o falsificar quines parts del treball s'han elaborat amb assistència.
+- Requisits de citació i declaració. Quan s'utilitzin eines d'IA, caldrà indicar clarament:
+- El nom i la versió de l'eina.
+- La finalitat específica de l'ús.
+- La part del treball en la qual s'ha aplicat.
+
+L'ús no autoritzat o indegut de la IA es considerarà frau acadèmic. L'absència de declaració d'ús es considerarà una conducta contrària al Codi d'integritat.
