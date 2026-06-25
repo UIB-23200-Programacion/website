@@ -11,7 +11,9 @@ A continuación un resumen de la Guía Docente de la asignatura. La versión com
 ## Profesor Responsable
 
 José Alejandro Mesejo Chiong ([ficha UIB](https://www.uib.es/personal/ABjUwMDIxMA/))
+
 Correo de contacto: alejandro.mesejo@uib.es
+
 Despacho 171: Edificio Anselm Turmeda, 1era planta
 
 ## Contextualización de la Asignatura
@@ -102,6 +104,7 @@ Tema 8: Diseño Algorítmico y Resolución de Problemas (6 horas presenciales, 1
 ### Actividades No Presenciales
 
 | Nombre de la actividad | Descripción |
+| :------ | :--------------- |
 | Práctica | Desarrollo autónomo de un pequeño proyecto de programación en el que el estudiantado aplica el ciclo completo de especificación, diseño, implementación y verificación de la solución. El objetivo es que el análisis del problema y el diseño precedan a la implementación, y que esta se valide de manera sistemática. |
 | Estudio | Trabajo autónomo del estudiantado para asimilar los contenidos: estudio de la teoría, repaso de los ejemplos y resolución de ejercicios complementarios. |
 
