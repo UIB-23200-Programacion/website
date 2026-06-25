@@ -423,7 +423,95 @@
     "href": "ca/informacions/guia-docent.html",
     "title": "Guia docent",
     "section": "",
-    "text": "(Contenido pendiente.)",
+    "text": "A continuació un resum de la Guia Docent de l’assignatura. La versió completa es pot accedir aquí. Es recomana consultar la versió completa.",
+    "crumbs": [
+      "Informacions",
+      "Guia docent"
+    ]
+  },
+  {
+    "objectID": "ca/informacions/guia-docent.html#introducció",
+    "href": "ca/informacions/guia-docent.html#introducció",
+    "title": "Guia docent",
+    "section": "",
+    "text": "A continuació un resum de la Guia Docent de l’assignatura. La versió completa es pot accedir aquí. Es recomana consultar la versió completa.",
+    "crumbs": [
+      "Informacions",
+      "Guia docent"
+    ]
+  },
+  {
+    "objectID": "ca/informacions/guia-docent.html#professor-responsable",
+    "href": "ca/informacions/guia-docent.html#professor-responsable",
+    "title": "Guia docent",
+    "section": "Professor Responsable",
+    "text": "Professor Responsable\nJosé Alejandro Mesejo Chiong (fitxa UIB) Correu de contacte: alejandro.mesejo@uib.es Despatx 171: Edifici Anselm Turmeda, 1a planta",
+    "crumbs": [
+      "Informacions",
+      "Guia docent"
+    ]
+  },
+  {
+    "objectID": "ca/informacions/guia-docent.html#contextualització-de-lassignatura",
+    "href": "ca/informacions/guia-docent.html#contextualització-de-lassignatura",
+    "title": "Guia docent",
+    "section": "Contextualització de l’Assignatura",
+    "text": "Contextualització de l’Assignatura\nProgramació és una assignatura de formació bàsica dins de la branca de coneixement de Ciències de la Computació i té un caràcter introductori general. El seu objectiu principal és proporcionar a l’estudiantat una primera aproximació rigorosa a la programació d’ordinadors.\nMés concretament, l’assignatura se centra en una fase fonamental del procés algorítmic: el disseny d’algorismes mitjançant descomposició i abstracció, i la seva implementació de manera correcta i verificable. L’alumnat aprendrà a aplicar tècniques de disseny descendent i a utilitzar abstraccions, tant d’operacions com de dades, amb l’objectiu que les solucions no solament resolguin el problema plantejat, sinó que ho facin amb un nivell de qualitat que en faciliti la llegibilitat, la correcció i el manteniment futur. En aquesta línia, s’introdueixen de manera transversal els entorns de desenvolupament moderns i els assistents de programació basats en intel·ligència artificial (copilots), que es treballen sempre des d’una perspectiva crítica i orientada a l’especificació, la generació i la verificació del codi, de manera que l’estudiant mantingui en tot moment el control i la responsabilitat sobre aquest.\nAtès que es tracta d’una assignatura adreçada a estudiants de matemàtiques, es presta una atenció especial a l’ús de la programació com a eina per experimentar i resoldre problemes matemàtics, mitjançant l’ecosistema científic de Python (càlcul numèric, càlcul simbòlic i visualització).\nD’altra banda, l’assignatura està estretament relacionada amb les matèries que componen el mòdul de computació i, en general, amb qualsevol assignatura en la qual sigui necessari desenvolupar algorismes en qualsevol llenguatge i entorn de programació. En aquest sentit, estableix els fonaments metodològics i les bases d’anàlisi algorítmica necessaris per afrontar amb garanties assignatures i problemes relacionats de cursos més avançats.",
+    "crumbs": [
+      "Informacions",
+      "Guia docent"
+    ]
+  },
+  {
+    "objectID": "ca/informacions/guia-docent.html#recomanacions",
+    "href": "ca/informacions/guia-docent.html#recomanacions",
+    "title": "Guia docent",
+    "section": "Recomanacions",
+    "text": "Recomanacions\nÉs recomanable que l’estudiantat tingui coneixements previs d’ús dels ordinadors a nivell d’usuari i sàpiga emprar les funcions bàsiques d’un sistema operatiu, com la instal·lació de programes i la gestió de carpetes i arxius, així com certa familiaritat amb la navegació per internet i l’ús de comptes en línia.",
+    "crumbs": [
+      "Informacions",
+      "Guia docent"
+    ]
+  },
+  {
+    "objectID": "ca/informacions/guia-docent.html#continguts",
+    "href": "ca/informacions/guia-docent.html#continguts",
+    "title": "Guia docent",
+    "section": "Continguts",
+    "text": "Continguts\nTema 1: Fonaments, Entorns Moderns i Assistents d’IA (2 hores presencials, 4 hores no presencials)\n\n1.1. Concepte de programa, llenguatges d’alt nivell (Python) i el procés d’interpretació.\n1.2. Introducció a Visual Studio Code (VS Code).\n1.3. Configuració i arrencada de GitHub Codespaces.\n1.4. Assistents d’IA de Codi (Copilots): Què fan els Models de Llenguatge Grans (LLMs) aplicats a codi?\n\nTema 2: Components del Llenguatge i Control de Flux (8 hores presencials, 16 hores no presencials)\n\n2.1. Scripts de Python vs. Execució interactiva.\n2.2. Variables, tipus primitius, operadors matemàtics i lògics.\n2.3. Control de Flux - Condicionals.\n2.4. Control de Flux - Iteracions.\n2.5. Entrada i sortida bàsiques: fluxos entre teclat i pantalla.\n\nTema 3: Funcions, Mòduls i Organització del Codi (4 hores presencials, 8 hores no presencials)\n\n3.1. Definició de funcions, pas de paràmetres i retorn de valors.\n3.2. Visibilitat de variables (Scope) local i global.\n3.3. Docstrings, anotacions de tipus (type hints) i precondicions/postcondicions com a contracte.\n3.4. Concepte de mòdul. Importació de mòduls i creació de mòduls propis.\n3.5. Organització de projectes.\n\nTema 4: Algorismes Bàsics i Verificació (Testing) (8 hores presencials, 16 hores no presencials)\n\n4.1. Concepte de seqüència i exemples.\n4.2. Patrons de recorregut, cerca, acumulació i recompte.\n4.3. Nocions d’invariant de bucle com a eina de raonament.\n4.4. Ús de la instrucció ˋassertˋ i fonaments del framework ˋpytestˋ.\n\nTema 5: Estructures de Dades i Programació Orientada a Objectes (16 hores presencials, 32 hores no presencials)\n\n5.1. Llistes, Tuples, Diccionaris i Conjunts.\n5.2. Tipus Abstractes de Dades (TADs).\n5.3. Classes, objectes, atributs i mètodes.\n5.4. Encapsulació bàsica.\n5.5. Mètodes Màgics i Sobrecàrrega d’Operadors.\n\nTema 6: Gestió de Dades i Fitxers (4 hores presencials, 8 hores no presencials)\n\n6.1. Fitxers i Rutes.\n6.2. Lectura i escriptura de text.\n6.3. Lectura i escriptura de fitxers CSV (dades tabulars) i JSON (dades jeràrquiques).\n6.4. Pandas: manipulació i neteja de dades estructurades.\n\nTema 7: Ecosistema Científic de Python (12 hores presencials, 24 hores no presencials)\n\n7.1. NumPy: matrius multidimensionals, funcions matemàtiques d’alt nivell i àlgebra lineal.\n7.2. Matplotlib: La biblioteca clàssica per a la generació de gràfics en 2D i 3D.\n7.3. SymPy: càlcul simbòlic: simplificació, resolució d’equacions, derivació i integració.\n\nTema 8: Disseny Algorítmic i Resolució de Problemes (6 hores presencials, 12 hores no presencials)\n\n8.1. Estratègies per dividir un problema en subrutines independents.\n8.2. Disseny descendent (Top-Down) i disseny ascendent (Bottom-Up).\n8.3. Ordenació bàsica i cerca binària.\n8.4. Complexitat Computacional (Notació Big-O).",
+    "crumbs": [
+      "Informacions",
+      "Guia docent"
+    ]
+  },
+  {
+    "objectID": "ca/informacions/guia-docent.html#metodologia-docent",
+    "href": "ca/informacions/guia-docent.html#metodologia-docent",
+    "title": "Guia docent",
+    "section": "Metodologia docent",
+    "text": "Metodologia docent\n\nActivitats Presencials\n\n\n\n\n\n\n\n\nNom de l’activitat\nDescripció\nAgrupació\n\n\n\n\nTeoria\nClasse expositiva i participativa en la qual s’introdueixen els conceptes fonamentals i s’il·lustren mitjançant programació en viu i la resolució raonada de problemes, fomentant la discussió i la formulació de preguntes per part de l’estudiantat.\nGrup Gran\n\n\nPràctiques presencials\nSessions pràctiques en les quals l’estudiantat resol problemes de programació de manera individual, amb activitats d’autoavaluació i coavaluació que fomenten la revisió crítica del codi propi.\nGrup Gran/Mitjà\n\n\nAvaluació\nProva escrita de desenvolupament en la qual l’estudiantat resol problemes de programació dissenyant algorismes i raonant-ne la correcció, més enllà de la simple escriptura de codi.\nGrup Gran\n\n\nTallers\nActivitats avaluatives breus, centrades en conceptes o tècniques concretes, que serveixen per fer un seguiment continuat del progrés de l’estudiantat al llarg del curs.\nGrup Mitjà\n\n\n\n\n\nActivitats No Presencials\nNom de l’activitat | Descripció |\nPràctica | Desenvolupament autònom d’un petit projecte de programació en el qual l’estudiantat aplica el cicle complet d’especificació, disseny, implementació i verificació de la solució. L’objectiu és que l’anàlisi del problema i el disseny precedeixin la implementació, i que aquesta es validi de manera sistemàtica. |\nEstudi | Treball autònom de l’estudiantat per assimilar els continguts: estudi de la teoria, repàs dels exemples i resolució d’exercicis complementaris. |",
+    "crumbs": [
+      "Informacions",
+      "Guia docent"
+    ]
+  },
+  {
+    "objectID": "ca/informacions/guia-docent.html#activitats-davaluació",
+    "href": "ca/informacions/guia-docent.html#activitats-davaluació",
+    "title": "Guia docent",
+    "section": "Activitats d’avaluació",
+    "text": "Activitats d’avaluació\n\n\n\nActivitat\nPeríode\nPes (%)\nNota de validació\n\n\n\n\nExamen\nAvaluació complementària\n45%\n4.5\n\n\nTallers\nAvaluació contínua\n25%\n-\n\n\nPràctica\nAvaluació complementària\n30%\n5\n\n\n\n\nMillora de la qualificació\nNo es pot millorar la qualificació de l’Examen ni la de la Pràctica de l’assignatura.",
+    "crumbs": [
+      "Informacions",
+      "Guia docent"
+    ]
+  },
+  {
+    "objectID": "ca/informacions/guia-docent.html#condicions-dús-de-la-ia",
+    "href": "ca/informacions/guia-docent.html#condicions-dús-de-la-ia",
+    "title": "Guia docent",
+    "section": "Condicions d’ús de la IA",
+    "text": "Condicions d’ús de la IA\nL’ús d’eines d’intel·ligència artificial està autoritzat per elaborar exclusivament les activitats d’avaluació següents: Pràctica i Tallers durant l’avaluació contínua. Per a qualsevol altra activitat no inclosa en aquesta llista, caldrà obtenir autorització prèvia del professor responsable i explicar la finalitat i el tipus d’ús previst.\n\nEines autoritzades: Microsoft Copilot, ChatGPT, Grammarly, Perplexity, Claude, DeepSeek o altres eines similars.\nContextos d’ús acceptable:\nDemanar explicacions de conceptes ja treballats a classe o de la documentació oficial (p. ex., la diferència entre una llista i una tupla, o el significat d’un missatge d’error).\nSol·licitar que l’assistent revisi codi escrit per l’estudiant per detectar errors o suggerir millores de llegibilitat, sempre que l’estudiant avaluï i decideixi quins canvis aplica.\nGenerar casos de prova addicionals o identificar casos límit, perquè l’estudiant en validi la pertinència i els incorpori de manera raonada.\nMillorar la documentació del codi propi: docstrings, anotacions de tipus (type hints) i comentaris.\nObtenir exemples d’ús de funcions de l’ecosistema científic (NumPy, Matplotlib, SymPy, pandas) que després l’estudiant adapta i comprova.\nGenerar codi rutinari o repetitiu (boilerplate) que no constitueixi l’objectiu d’aprenentatge avaluat de l’activitat, sempre que l’estudiant comprengui cada línia i sigui capaç d’explicar-la, modificar-la i justificar-la.\nAjudar a redactar o millorar la prosa de memòries i informes (claredat, ortografia), respectant els requisits de citació de l’apartat anterior.\nContextos d’ús no acceptable:\nUsar IA en qualsevol activitat no autoritzada explícitament, i en particular durant l’examen i les proves presencials.\nLliurar com a pròpia una solució generada per IA sense comprendre-la: si l’estudiant no és capaç d’explicar, justificar o modificar qualsevol part del que lliura, es considera ús indegut.\nDelegar la resolució completa del problema (copiar l’enunciat a l’assistent i lliurar la seva resposta) sense passar pel cicle d’especificació, generació i verificació.\nEncarregar a la IA precisament la competència que s’avalua i presentar-la com a raonament propi (p. ex., demanar-li els invariants de bucle, les proves de correcció o el disseny algorítmic que són l’objectiu de l’activitat).\nIntroduir a les eines d’IA enunciats d’examen, materials docents protegits, codi de companys o dades personals o sensibles, pròpies o de tercers (vegeu el punt 11).\nOmetre la declaració d’ús de la IA o falsificar quines parts del treball s’han elaborat amb assistència.\nRequisits de citació i declaració. Quan s’utilitzin eines d’IA, caldrà indicar clarament:\nEl nom i la versió de l’eina.\nLa finalitat específica de l’ús.\nLa part del treball en la qual s’ha aplicat.\n\nL’ús no autoritzat o indegut de la IA es considerarà frau acadèmic. L’absència de declaració d’ús es considerarà una conducta contrària al Codi d’integritat.",
     "crumbs": [
       "Informacions",
       "Guia docent"
@@ -566,7 +654,95 @@
     "href": "es/informaciones/guia-docente.html",
     "title": "Guía docente",
     "section": "",
-    "text": "(Contenido pendiente.)",
+    "text": "A continuación un resumen de la Guía Docente de la asignatura. La versión completa puede ser accedida aquí. Se recomienda consultar la versión completa.",
+    "crumbs": [
+      "Informaciones",
+      "Guía docente"
+    ]
+  },
+  {
+    "objectID": "es/informaciones/guia-docente.html#introducción",
+    "href": "es/informaciones/guia-docente.html#introducción",
+    "title": "Guía docente",
+    "section": "",
+    "text": "A continuación un resumen de la Guía Docente de la asignatura. La versión completa puede ser accedida aquí. Se recomienda consultar la versión completa.",
+    "crumbs": [
+      "Informaciones",
+      "Guía docente"
+    ]
+  },
+  {
+    "objectID": "es/informaciones/guia-docente.html#profesor-responsable",
+    "href": "es/informaciones/guia-docente.html#profesor-responsable",
+    "title": "Guía docente",
+    "section": "Profesor Responsable",
+    "text": "Profesor Responsable\nJosé Alejandro Mesejo Chiong (ficha UIB) Correo de contacto: alejandro.mesejo@uib.es Despacho 171: Edificio Anselm Turmeda, 1era planta",
+    "crumbs": [
+      "Informaciones",
+      "Guía docente"
+    ]
+  },
+  {
+    "objectID": "es/informaciones/guia-docente.html#contextualización-de-la-asignatura",
+    "href": "es/informaciones/guia-docente.html#contextualización-de-la-asignatura",
+    "title": "Guía docente",
+    "section": "Contextualización de la Asignatura",
+    "text": "Contextualización de la Asignatura\nProgramación es una asignatura de formación básica dentro de la rama de conocimiento de Ciencias de la Computación y tiene un carácter introductorio general. Su objetivo principal es proporcionar al estudiantado una primera aproximación rigurosa a la programación de ordenadores.\nMás concretamente, la asignatura se centra en una fase fundamental del proceso algorítmico: el diseño de algoritmos mediante descomposición y abstracción, y su implementación de manera correcta y verificable. El alumnado aprenderá a aplicar técnicas de diseño descendente y a utilizar abstracciones, tanto de operaciones como de datos, con el objetivo de que las soluciones no solo resuelvan el problema planteado, sino que lo hagan con un nivel de calidad que facilite su legibilidad, su corrección y su mantenimiento futuro. En esta línea, se introducen de manera transversal los entornos de desarrollo modernos y los asistentes de programación basados en inteligencia artificial (copilots), que se trabajan siempre desde una perspectiva crítica y orientada a la especificación, la generación y la verificación del código, de modo que el estudiante mantenga en todo momento el control y la responsabilidad sobre este.\nDado que se trata de una asignatura dirigida a estudiantes de matemáticas, se presta una atención especial al uso de la programación como herramienta para experimentar y resolver problemas matemáticos, mediante el ecosistema científico de Python (cálculo numérico, cálculo simbólico y visualización).\nPor otra parte, la asignatura está estrechamente relacionada con las materias que componen el módulo de computación y, en general, con cualquier asignatura en la que sea necesario desarrollar algoritmos en cualquier lenguaje y entorno de programación. En este sentido, sienta los fundamentos metodológicos y las bases de análisis algorítmico necesarios para afrontar con garantías asignaturas y problemas relacionados de cursos más avanzados.",
+    "crumbs": [
+      "Informaciones",
+      "Guía docente"
+    ]
+  },
+  {
+    "objectID": "es/informaciones/guia-docente.html#recomendaciones",
+    "href": "es/informaciones/guia-docente.html#recomendaciones",
+    "title": "Guía docente",
+    "section": "Recomendaciones",
+    "text": "Recomendaciones\nEs recomendable que el estudiantado tenga conocimientos previos de uso de los ordenadores a nivel de usuario y sepa emplear las funciones básicas de un sistema operativo, como la instalación de programas y la gestión de carpetas y archivos, así como cierta familiaridad con la navegación por internet y el uso de cuentas en línea.",
+    "crumbs": [
+      "Informaciones",
+      "Guía docente"
+    ]
+  },
+  {
+    "objectID": "es/informaciones/guia-docente.html#contenidos",
+    "href": "es/informaciones/guia-docente.html#contenidos",
+    "title": "Guía docente",
+    "section": "Contenidos",
+    "text": "Contenidos\nTema 1: Fundamentos, Entornos Modernos y Asistentes IA (2 horas presenciales, 4 horas no presenciales)\n\n1.1. Concepto de programa, lenguajes de alto nivel (Python) y el proceso de interpretación.\n1.2. Introducción a Visual Studio Code (VS Code).\n1.3. Configuración y arranque de GitHub Codespaces.\n1.4. Asistentes IA de Código (Copilots): ¿Qué hacen los Modelos de Lenguaje Grandes (LLMs) aplicados a código?\n\nTema 2: Componentes del Lenguaje y Control de Flujo (8 horas presenciales, 16 horas no presenciales)\n\n2.1. Scripts de Python vs. Ejecución interactiva.\n2.2. Variables, tipos primitivos, operadores matemáticos y lógicos.\n2.3. Control de Flujo - Condicionales.\n2.4. Control de Flujo - Iteraciones.\n2.5. Entrada y salida básicas: flujos entre teclado y pantalla.\n\nTema 3: Funciones, Módulos y Organización del Código (4 horas presenciales, 8 horas no presenciales)\n\n3.1. Definición de funciones, paso de parámetros y retorno de valores.\n3.2. Visibilidad de variables (Scope) local y global.\n3.3. Docstrings, anotaciones de tipo (type hints) y precondiciones/postcondiciones como contrato.\n3.4. Concepto de módulo. Importación de módulos y creación de módulos propios.\n3.5. Organización de proyectos.\n\nTema 4: Algoritmos Básicos y Verificación (Testing) (8 horas presenciales, 16 horas no presenciales)\n\n4.1. Concepto de secuencia y ejemplos.\n4.2. Patrones de recorrido, búsqueda, acumulación y conteo.\n4.3. Nociones de invariante de bucle como herramienta de razonamiento.\n4.4. Uso de la instrucción ˋassertˋ y fundamentos del framework ˋpytestˋ.\n\nTema 5: Estructuras de Datos y Programación Orientada a Objetos (16 horas presenciales, 32 horas no presenciales)\n\n5.1. Listas, Tuplas, Diccionarios y Conjuntos.\n5.2. Tipos Abstractos de Datos (TADs).\n5.3. Clases, objetos, atributos y métodos.\n5.4. Encapsulación básica.\n5.5. Métodos Mágicos y Sobrecarga de Operadores.\n\nTema 6: Gestión de Datos y Ficheros (4 horas presenciales, 8 horas no presenciales)\n\n6.1. Ficheros y Rutas.\n6.2. Lectura y escritura de texto.\n6.3. Lectura y escritura de ficheros CSV (datos tabulares) y JSON (datos jerárquicos).\n6.4. Pandas: manipulación y limpieza de datos estructurados.\n\nTema 7: Ecosistema Científico de Python ( 12 horas presenciales, 24 horas no presenciales)\n\n7.1. NumPy: matrices multidimensionales, funciones matemáticas de alto nivel y álgebra lineal.\n7.2. Matplotlib: La librería clásica para la generación de gráficos en 2D y 3D.\n7.3. SymPy: cálculo simbólico: simplificación, resolución de ecuaciones, derivación e integración.\n\nTema 8: Diseño Algorítmico y Resolución de Problemas (6 horas presenciales, 12 horas no presenciales)\n\n8.1. Estrategias para dividir un problema en subrutinas independientes.\n8.2. Diseño descendente (Top-Down) y diseño ascendente (Bottom-Up).\n8.3. Ordenación básica y búsqueda binaria.\n8.4. Complejidad Computacional (Notación Big-O).",
+    "crumbs": [
+      "Informaciones",
+      "Guía docente"
+    ]
+  },
+  {
+    "objectID": "es/informaciones/guia-docente.html#metodología-docente",
+    "href": "es/informaciones/guia-docente.html#metodología-docente",
+    "title": "Guía docente",
+    "section": "Metodología docente",
+    "text": "Metodología docente\n\nActividades Presenciales\n\n\n\n\n\n\n\n\nNombre de la actividad\nDescripción\nAgrupación\n\n\n\n\nTeoría\nClase expositiva y participativa en la que se introducen los conceptos fundamentales y se ilustran mediante programación en vivo y la resolución razonada de problemas, fomentando la discusión y la formulación de preguntas por parte del estudiantado.\nGrupo Grande\n\n\nPrácticas presenciales\nSesiones prácticas en las que el estudiantado resuelve problemas de programación de manera individual, con actividades de autoevaluación y coevaluación que fomentan la revisión crítica del código propio.\nGrupo Grande/Medio\n\n\nEvaluación\nPrueba escrita de desarrollo en la que el estudiantado resuelve problemas de programación diseñando algoritmos y razonando su corrección, más allá de la simple escritura de código.\nGrupo Grande\n\n\nTalleres\nActividades evaluativas breves, centradas en conceptos o técnicas concretas, que sirven para hacer un seguimiento continuado del progreso del estudiantado a lo largo del curso.\nGrupo Medio\n\n\n\n\n\nActividades No Presenciales\nNombre de la actividad | Descripción |\nPráctica | Desarrollo autónomo de un pequeño proyecto de programación en el que el estudiantado aplica el ciclo completo de especificación, diseño, implementación y verificación de la solución. El objetivo es que el análisis del problema y el diseño precedan a la implementación, y que esta se valide de manera sistemática. |\nEstudio | Trabajo autónomo del estudiantado para asimilar los contenidos: estudio de la teoría, repaso de los ejemplos y resolución de ejercicios complementarios. |",
+    "crumbs": [
+      "Informaciones",
+      "Guía docente"
+    ]
+  },
+  {
+    "objectID": "es/informaciones/guia-docente.html#actividades-de-evaluación",
+    "href": "es/informaciones/guia-docente.html#actividades-de-evaluación",
+    "title": "Guía docente",
+    "section": "Actividades de evaluación",
+    "text": "Actividades de evaluación\n\n\n\nActividad\nPeriodo\nPeso (%)\nNota de validación\n\n\n\n\nExamen\nEvaluación complementaria\n45%\n4.5\n\n\nTalleres\nEvaluación continua\n25%\n-\n\n\nPráctica\nEvaluación complementaria\n30%\n5\n\n\n\n\nMejora de la calificación\nNo se puede mejorar la calificación del Examen ni la de la Práctica de la asignatura.",
+    "crumbs": [
+      "Informaciones",
+      "Guía docente"
+    ]
+  },
+  {
+    "objectID": "es/informaciones/guia-docente.html#condiciones-de-uso-de-la-ia",
+    "href": "es/informaciones/guia-docente.html#condiciones-de-uso-de-la-ia",
+    "title": "Guía docente",
+    "section": "Condiciones de uso de la IA",
+    "text": "Condiciones de uso de la IA\nEl uso de herramientas de inteligencia artificial está autorizado para elaborar exclusivamente las siguientes actividades de evaluación: Práctica y Talleres durante evaluación continua. Para cualquier otra actividad no incluida en esta lista, será necesario obtener autorización previa del profesor responsable y explicar la finalidad y el tipo de uso previsto.\n\nHerramientas autorizadas: Microsoft Copilot, ChatGPT, Grammarly, Perplexity, Claude, DeepSeek u otras herramientas similares.\nContextos de uso aceptable:\nPedir explicaciones de conceptos ya trabajados en clase o de la documentación oficial (p. ej., la diferencia entre una lista y una tupla, o el significado de un mensaje de error).\nSolicitar que el asistente revise código escrito por el estudiante para detectar errores o sugerir mejoras de legibilidad, siempre que el estudiante evalúe y decida qué cambios aplica.\nGenerar casos de prueba adicionales o identificar casos límite, para que el estudiante valide su pertinencia y los incorpore de manera razonada.\nMejorar la documentación del código propio: docstrings, anotaciones de tipos (type hints) y comentarios.\nObtener ejemplos de uso de funciones del ecosistema científico (NumPy, Matplotlib, SymPy, pandas) que después el estudiante adapta y comprueba.\nGenerar código rutinario o repetitivo (boilerplate) que no constituya el objetivo de aprendizaje evaluado de la actividad, siempre que el estudiante comprenda cada línea y sea capaz de explicarla, modificarla y justificarla.\nAyudar a redactar o mejorar la prosa de memorias e informes (claridad, ortografía), respetando los requisitos de citación del apartado anterior.\nContextos de uso no aceptable:\nUsar IA en cualquier actividad no autorizada explícitamente, y en particular durante el examen y las pruebas presenciales.\nEntregar como propia una solución generada por IA sin comprenderla: si el estudiante no es capaz de explicar, justificar o modificar cualquier parte de lo que entrega, se considera uso indebido.\nDelegar la resolución completa del problema (copiar el enunciado al asistente y entregar su respuesta) sin pasar por el ciclo de especificación, generación y verificación.\nEncargar a la IA precisamente la competencia que se evalúa y presentarla como razonamiento propio (p. ej., pedirle los invariantes de bucle, las pruebas de corrección o el diseño algorítmico que son el objetivo de la actividad).\nIntroducir en las herramientas de IA enunciados de examen, materiales docentes protegidos, código de compañeros o datos personales o sensibles, propios o de terceros (véase el punto 11).\nOmitir la declaración de uso de la IA o falsear qué partes del trabajo se han elaborado con asistencia.\nRequisitos de citación y declaración. Cuando se utilicen herramientas de IA, se deberá indicar claramente:\nEl nombre y la versión de la herramienta.\nLa finalidad específica del uso.\nLa parte del trabajo en la que se ha aplicado.\n\nEl uso no autorizado o indebido de la IA se considerará fraude académico. La ausencia de declaración de uso se considerará una conducta contraria al Código de integridad.",
     "crumbs": [
       "Informaciones",
       "Guía docente"
