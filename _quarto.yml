@@ -177,6 +177,20 @@ website:
             - href: ca/bibliografia/complementaria.qmd
               text: "Complementària"
 
+language:
+  crossref-imp-title: "Concepto Clave"
+  crossref-imp-prefix: "concepto clave"
+  crossref-nte-title: "Ejemplo"
+  crossref-nte-prefix: "ejemplo"
+  crossref-cau-title: "Error Frecuente"
+  crossref-cau-prefix: "error frecuente"
+  crossref-wrn-title: "Técnica de Depuración"
+  crossref-wrn-prefix: "técnica de depuración"
+
+crossref:
+  chapters: true
+  ref-hyperlink: true
+
 format:
   html:
     theme:
