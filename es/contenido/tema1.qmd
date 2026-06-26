@@ -2,6 +2,417 @@
 title: "Tema 1: Fundamentos, Entornos Modernos y Asistentes IA"
 lang: es
 sidebar: barra-es
+bibliography: tema1.bib
 ---
 
-*(Contenido pendiente.)*
+## 1.1. Arquitectura del ordenador moderno
+
+Un **ordenador** es una máquina capaz de ejecutar secuencias de instrucciones sobre datos
+de forma automática, rápida y repetible. Comprender su organización interna ayuda a
+entender por qué los programas se escriben como se escriben y por qué algunas operaciones
+son más costosas que otras.
+
+### Arquitecturas
+
+#### Arquitectura de Von Neumann
+
+La mayoría de los ordenadores modernos se basan en el modelo propuesto en 1945 por John
+von Neumann, que establece que **instrucciones y datos comparten el mismo espacio de
+memoria** [@vonneumann1945].
+
+![Arquitectura de Von Neumann ()](../images/vonNeumannES.png){#fig-von-neumann width=60%}
+
+::: {#imp-von-neumann .callout-important title="Arquitectura de Von Neumann"}
+La arquitectura de Von Neumann organiza el ordenador en cuatro componentes principales
+interconectados por un **bus**:
+
+- **Unidad Central de Proceso (CPU)**: ejecuta instrucciones.
+- **Memoria principal (RAM)**: almacena instrucciones y datos en uso.
+- **Unidades de entrada/salida**: teclado, pantalla, disco, red.
+- **Bus del sistema**: canal de comunicación entre los componentes.
+
+El ciclo fundamental es: *capturar instrucción → decodificarla → ejecutarla* (ciclo
+Fetch-Decode-Execute).
+:::
+
+La arquitectura de Von Neumann introduce el llamado *cuello de botella de Von Neumann*:
+CPU y memoria comparten el mismo bus, lo que limita la velocidad de transferencia de
+datos. Los procesadores modernos mitigan este problema con memorias caché de varios
+niveles (L1, L2, L3) integradas directamente en el chip.
+
+#### Arquitecturas Harvard modificadas
+
+Los procesadores actuales utilizan internamente una **arquitectura Harvard modificada**,
+en la que las cachés de instrucciones y de datos son físicamente separadas, aunque hacia
+el exterior siguen presentando una memoria unificada al estilo Von Neumann. Esto permite
+leer instrucciones y datos en paralelo, aumentando significativamente el rendimiento.
+
+Los microcontroladores de sistemas embebidos (Arduino, Raspberry Pi Pico) utilizan la
+arquitectura Harvard pura, con memorias de programa y de datos completamente separadas
+e independientes.
+
+
+### Tipos de procesadores modernos
+
+El término "procesador" abarca hoy una familia diversa de chips especializados
+[@pattersonhennessy2021]:
+
+| Tipo | Descripción | Ejemplos |
+| :--- | :--- | :--- |
+| **CPU** | Procesador de propósito general, optimizado para tareas secuenciales y de baja latencia. | Intel Core, AMD Ryzen, Apple M-series |
+| **GPU** | Miles de núcleos simples en paralelo, ideales para cálculo matricial y gráficos. | NVIDIA RTX, AMD Radeon |
+| **NPU / TPU** | Unidades especializadas en operaciones de redes neuronales. | Google TPU, Apple Neural Engine |
+| **SoC** | Integra CPU, GPU y otros componentes en un único chip. | Apple M4, Snapdragon X Elite |
+
+#### Procesadores ARM
+
+La arquitectura **ARM** (*Advanced RISC Machine*) domina hoy los dispositivos móviles y
+ha irrumpido con fuerza en portátiles y servidores. A diferencia de la arquitectura
+x86-64 (Intel/AMD), ARM utiliza un conjunto de instrucciones reducido (RISC), lo que
+permite diseños más eficientes energéticamente sin sacrificar rendimiento.
+
+Los procesadores **Apple Silicon** (M1, M2, M3, M4) son SoC basados en ARM que integran
+CPU, GPU y NPU en un único chip. Su relación rendimiento/consumo es notablemente
+superior a la de los chips x86-64 equivalentes, lo que los convierte en una opción muy
+competitiva para el trabajo científico y de programación.
+
+### Descripción de la configuración de un ordenador moderno
+
+**Procesador (CPU)**: determina cuántas instrucciones se ejecutan por segundo. Sus
+características clave son la frecuencia de reloj (GHz), el número de núcleos y la
+cantidad de caché.
+
+**Memoria RAM**: almacenamiento temporal y rápido que contiene el sistema operativo, los
+programas en ejecución y los datos activos. Al apagar el ordenador, su contenido se
+pierde. Para Python, 8 GB es suficiente para el trabajo habitual del curso; 16 GB es
+recomendable para conjuntos de datos grandes.
+
+**Almacenamiento**: los discos SSD NVMe son hoy el estándar. Guardan el sistema
+operativo, los programas y los archivos de forma permanente. Son entre 10 y 100 veces
+más rápidos que los HDD tradicionales.
+
+**Tarjeta gráfica (GPU)**: imprescindible para el entrenamiento de modelos de
+aprendizaje profundo. Para el uso en este curso la GPU
+integrada de la CPU es suficiente.
+
+::: {.callout-tip appearance="simple" title="Consejo: ¿Qué ordenador comprar?"}
+Para este curso, cualquier portátil moderno es más que suficiente, ya que el trabajo
+computacionalmente intensivo se realiza en los servidores de GitHub Codespaces. 
+
+No obstante, si desea tener un ordenador para trabajar localmente, las especificaciones mínimas recomendadas son:
+
+- **Procesador**: Intel Core i5 (12.ª generación o posterior), AMD Ryzen 5 (serie 5000
+  o posterior) o Apple M1 o superior.
+- **Memoria RAM**: 8 GB mínimo; 16 GB recomendado para trabajar cómodamente con varias
+  aplicaciones abiertas.
+- **Almacenamiento**: SSD de 256 GB mínimo. Evita los HDD tradicionales: ralentizan
+  significativamente el arranque del sistema y las aplicaciones.
+- **Pantalla**: 13–15 pulgadas, resolución Full HD (1920×1080) o superior.
+- **Sistema operativo**: Windows 10/11, macOS 12 o posterior, o cualquier distribución
+  Linux moderna. Los tres son completamente compatibles con las herramientas del curso.
+:::
+
+Para profundizar en la arquitectura de ordenadores, consulta el clásico
+*Computer Organization and Design* [@pattersonhennessy2021], disponible en la
+biblioteca de la UIB.
+
+---
+
+## 1.2. Lenguajes de programación y Python
+
+### Lenguajes de alto nivel
+
+Los ordenadores solo comprenden [**lenguaje de máquina**](https://es.wikipedia.org/wiki/Lenguaje_de_m%C3%A1quina){target="_blank" rel="noopener noreferrer"}: secuencias de ceros y unos
+específicas para cada arquitectura. Escribir directamente en código máquina es inviable
+para proyectos reales. Los **lenguajes de alto nivel** resuelven esto: permiten expresar
+algoritmos de forma legible, cercana al lenguaje matemático o natural, abstrayendo los
+detalles del hardware.
+
+::: {#imp-programa .callout-important title="Programa"}
+Un **programa** es una descripción precisa y sin ambigüedades de un proceso
+computacional, escrita en un lenguaje formal. A diferencia del lenguaje natural, no
+puede contener instrucciones vagas o contradictorias: el ordenador ejecuta exactamente
+lo que se le indica, ni más ni menos.
+:::
+
+### Compilación vs. interpretación
+
+Para que el código fuente en alto nivel sea ejecutable, debe transformarse en
+instrucciones que el procesador comprenda. Existen dos estrategias principales:
+
+::: {#imp-compilacion-interpretacion .callout-important title="Compilar vs. Interpretar"}
+- **Compilación**: el código fuente se traduce íntegramente a código máquina *antes* de
+  ejecutarse. El resultado es un fichero ejecutable independiente. Ejemplos: C, C++,
+  Fortran, Rust.
+- **Interpretación**: el código se lee y ejecuta *línea a línea* en tiempo de ejecución
+  por un programa llamado intérprete. No se genera un ejecutable independiente.
+  Ejemplos: Python, R, Ruby.
+- **Modelos híbridos**: algunos lenguajes compilan a un *bytecode* intermedio que luego
+  ejecuta una máquina virtual. Ejemplos: Java (JVM), Python (CPython).
+:::
+
+| Característica | Compilado | Interpretado |
+| :--- | :--- | :--- |
+| Velocidad de ejecución | Alta | Menor |
+| Portabilidad del ejecutable | Baja (depende del SO/arquitectura) | Alta (el intérprete es portable) |
+| Ciclo de desarrollo | Más lento (compilar → ejecutar) | Más rápido (ejecutar directamente) |
+| Detección de errores | En tiempo de compilación | En tiempo de ejecución |
+
+### El lenguaje Python
+
+Python fue creado por Guido van Rossum y publicado en 1991. Hoy es el lenguaje más
+utilizado en ciencia de datos, inteligencia artificial y computación científica, y uno
+de los más populares en educación.
+
+::: {#imp-python .callout-important title="Python"}
+Python es un lenguaje de alto nivel, **interpretado**, de tipado dinámico y con una
+sintaxis diseñada para favorecer la legibilidad. Su filosofía se resume en el
+*Zen de Python* [@pythonpep20]: *explícito es mejor que implícito; simple es mejor que
+complejo; la legibilidad cuenta*.
+
+```python
+import this  # muestra el Zen de Python en el intérprete
+```
+:::
+
+Sus características más relevantes para este curso son la sintaxis limpia (no usa llaves
+ni puntos y coma), el tipado dinámico (las variables no declaran su tipo), el ecosistema
+científico maduro (NumPy, Matplotlib, SymPy, pandas) y la integración nativa con
+herramientas de IA.
+
+Python distingue entre mayúsculas y minúsculas: `Variable`, `variable` y `VARIABLE` son
+tres identificadores distintos. La indentación no es opcional: es parte de la sintaxis
+del lenguaje y delimita los bloques de código.
+
+#### El intérprete interactivo: Python REPL
+
+Una de las características más útiles de Python es su **intérprete interactivo**, conocido como **REPL** (*Read-Eval-Print Loop*): lee una expresión, la evalúa, imprime el resultado y espera la siguiente. Se accede escribiendo `python` en el terminal.
+
+```python
+>>> 2 ** 10          # potencia de 2
+1024
+>>> import math
+>>> math.sqrt(2)     # raíz cuadrada de 2
+1.4142135623730951
+>>> sum(range(1, 101))   # suma de 1 a 100
+5050
+```
+
+::: {.callout-tip appearance="simple" title="Consejo"}
+El REPL es ideal para experimentar: probar una expresión, verificar el comportamiento de
+una función o explorar una biblioteca sin necesidad de crear un fichero. Los matemáticos
+lo encuentran especialmente natural —es la calculadora científica más potente que
+existe— y es la herramienta perfecta para dar los primeros pasos con Python.
+
+El REPL no guarda el código entre sesiones. En cuanto cierras el terminal, todo lo que
+escribiste se pierde. Para conservar tu trabajo, escríbelo en un fichero `.py` o en un
+cuaderno Jupyter o Marimo. En este curso utilizarás principalmente ficheros `.py` desde VS Code
+y Codespaces.
+:::
+
+La documentación oficial de Python está en [docs.python.org](https://docs.python.org/3/)
+[@python3docs]. Es la referencia más fiable y está actualizada con cada versión del
+lenguaje.
+
+---
+
+## 1.3. IDEs modernos
+
+Un **IDE** (Integrated Development Environment en inglés o Entorno de Desarrollo Integrado) es una aplicación que integra en una sola interfaz las herramientas necesarias para escribir, ejecutar y depurar programas.
+
+### Características comunes
+
+Los IDEs modernos comparten un conjunto de funcionalidades esenciales:
+
+- **Resaltado de sintaxis**: colorea palabras clave, cadenas y comentarios para
+  facilitar la lectura.
+- **Autocompletado**: sugiere nombres de variables, funciones y métodos mientras se
+  escribe.
+- **Depurador integrado** (*debugger*): permite ejecutar el programa paso a paso,
+  inspeccionar el valor de las variables y establecer puntos de ruptura (*breakpoints*).
+- **Terminal integrado**: acceso a la línea de comandos sin salir del entorno.
+- **Control de versiones**: integración con Git para registrar cambios en el código.
+- **Sistema de extensiones**: permite añadir soporte para nuevos lenguajes,
+  herramientas y servicios.
+
+::: {.callout-tip appearance="simple" title="Consejo"}
+El depurador integrado es una de las herramientas más infrautilizadas por los
+programadores principiantes. Aprender a usarlo desde el principio —en lugar de depender
+exclusivamente de `print`— acelera significativamente la detección y corrección de
+errores.
+:::
+
+### Locales vs. la nube
+
+Los entornos de desarrollo pueden ejecutarse **localmente** en el ordenador del
+programador o **en la nube** en servidores remotos accesibles desde el navegador.
+
+#### Visual Studio Code (local)
+
+**Visual Studio Code** (VS Code) es un editor de código ligero, extensible y gratuito
+desarrollado por Microsoft, el más utilizado en la actualidad [@vscode_docs]. Cuando se
+instala localmente, Python y todas las extensiones residen en el ordenador del
+desarrollador.
+
+La interfaz se organiza en:
+
+- **Barra lateral izquierda**: explorador de archivos, búsqueda, Git y extensiones.
+- **Editor central**: área de escritura de código con múltiples pestañas.
+- **Terminal integrado**: consola para ejecutar programas y comandos del sistema.
+- **Barra de estado**: intérprete de Python activo, rama Git y estado del entorno.
+
+
+La documentación oficial de VS Code se puede consultar en [@vscode_docs].
+
+#### Visual Studio Code en GitHub Codespaces
+
+**GitHub Codespaces** proporciona VS Code completamente configurado y ejecutándose en
+servidores de Microsoft en la nube, accesible desde cualquier navegador sin instalar
+nada en el ordenador local [@codespaces_docs].
+
+::: {#imp-codespaces .callout-important title="Codespace"}
+Un Codespace es un contenedor de desarrollo (*dev container*) alojado en la nube que
+incluye el sistema operativo, el intérprete de Python, las bibliotecas y las
+extensiones preconfiguradas. El programador solo necesita un navegador y una **cuenta de
+GitHub**.
+:::
+
+**Ventajas para este curso:**
+
+- Entorno idéntico para todos los estudiantes, eliminando problemas de configuración.
+- El código se guarda en la nube mediante Git.
+- Accesible desde cualquier dispositivo y sistema operativo.
+
+::: {.callout-warning title="Atención"}
+En el [Ejercicio 1](../ejercicios/ejercicio1.qmd) pondrás en práctica el arranque de tu
+primer Codespace.
+
+Cierra el Codespace al terminar la sesión para no consumir las horas gratuitas del plan
+educativo: `Ctrl+Shift+P` → *Codespaces: Stop Current Codespace*.
+:::
+
+La documentación de GitHub Codespaces puede consultarse en [@codespaces_docs].
+
+---
+
+## 1.4. Programación asistida por IA
+
+La incorporación de la inteligencia artificial al flujo de trabajo del programador es
+uno de los cambios más significativos de los últimos años. Comprender estas herramientas
+—y sus límites— es hoy parte de la formación de cualquier programador.
+
+### Modelos de Lenguaje Grandes (LLMs)
+
+::: {#imp-llm .callout-important title="LLM"}
+Un **LLM** (Large Language Model, Modelo de Lenguaje Grande) es un sistema de
+inteligencia artificial entrenado con enormes volúmenes de texto —incluyendo código
+fuente, documentación y foros técnicos— para predecir la continuación más probable de
+una secuencia de palabras o tokens. Su capacidad para generar texto coherente y
+contextualmente relevante emerge del aprendizaje estadístico sobre miles de millones de
+parámetros.
+:::
+
+Los LLMs aplicados a código no "comprenden" la lógica del programa en el sentido
+matemático: generan código *plausible* basándose en patrones aprendidos. Esto explica
+tanto sus impresionantes capacidades como sus fallos inesperados.
+
+::: {.callout-note appearance="minimal" collapse="true" title="Profundización"}
+La arquitectura que subyace a los LLMs modernos es el **Transformer**, introducido en
+2017 en el artículo *Attention Is All You Need* [@vaswani2017]. El mecanismo clave, la
+*atención*, permite al modelo relacionar cualquier par de palabras en una secuencia
+independientemente de su distancia.
+:::
+
+### Asistentes IA de código
+
+Un **asistente de código** (*coding assistant* o *copilot*) es una herramienta de IA integrada en el entorno de desarrollo que ayuda al programador durante la escritura del código. A diferencia de un buscador o un chatbot genérico, el asistente de código tiene acceso al fichero que se está editando, al contexto del proyecto y al historial reciente de cambios, lo que le permite ofrecer sugerencias precisas y relevantes.
+
+::: {#imp-coding-assistant .callout-important title="Asistente de código"}
+Un **asistente de código** combina un LLM especializado en programación con integración directa en el IDE. Actúa en dos modalidades principales:
+
+- **Autocompletado en línea**: sugiere la continuación del código mientras el programador escribe, sin interrumpir el flujo de trabajo.
+- **Chat integrado**: responde preguntas sobre el código, explica errores, refactoriza fragmentos y genera implementaciones a partir de una descripción en lenguaje natural.
+:::
+
+#### GitHub Copilot
+
+GitHub Copilot es un asistente de código basado en LLM desarrollado por GitHub y
+OpenAI, integrado directamente en VS Code y Codespaces [@copilot_docs]. Sugiere
+completaciones de código en tiempo real, genera funciones a partir de comentarios y
+responde preguntas sobre el código en un chat integrado.
+
+**¿Qué puede hacer Copilot?**
+
+- Completar código a partir del contexto (nombre de función, comentario, docstring).
+- Generar una primera implementación a partir de una descripción.
+- Explicar qué hace un fragmento de código.
+- Detectar errores y sugerir correcciones.
+- Generar casos de prueba.
+
+::: {.callout-warning title="Atención"}
+Copilot genera código *plausible*, no código *verificado*. Puede producir soluciones
+incorrectas, ineficientes o con errores sutiles que pasan desapercibidos. En este curso
+el ciclo de trabajo es siempre **especificar → generar → verificar**: primero se define
+con precisión qué debe hacer el código, después se genera (con o sin IA), y finalmente
+se comprueba sistemáticamente que hace lo que debe.
+:::
+
+La documentación oficial de GitHub Copilot se puede consultar en [@copilot_docs].
+
+### Vibe Coding
+
+El término **vibe coding** fue acuñado por Andrej Karpathy en febrero de 2025 para
+describir una forma de programar en la que el desarrollador delega casi por completo la
+escritura del código al asistente de IA, interactuando con él principalmente en lenguaje
+natural e integrando el código generado sin revisarlo en profundidad [@karpathy2025].
+
+::: {.callout-warning title="Atención"}
+El vibe coding puede ser productivo para crear prototipos rápidos o explorar ideas. Sin
+embargo, delegar la escritura del código sin comprenderlo conduce inevitablemente a
+sistemas frágiles, difíciles de corregir y de mantener. **En este curso el vibe coding
+no es una práctica aceptable**: el estudiante debe ser capaz de explicar, justificar y
+modificar cualquier línea que entregue, con independencia de cómo se haya generado.
+:::
+
+La distinción entre uso productivo y vibe coding es conceptualmente la misma que existe
+entre usar una calculadora comprendiendo las matemáticas y usarla sin saber qué
+operación realizar. La IA amplifica la capacidad del programador competente; no
+reemplaza la competencia que aún no existe.
+
+### Agentes de desarrollo autónomos
+
+Los **agentes de desarrollo autónomos** (*coding agents*) son sistemas de IA capaces de
+descomponer tareas de programación complejas en subtareas, ejecutar código, leer la
+salida, corregir errores y repetir el ciclo de forma autónoma, con mínima intervención
+humana.
+
+::: {#imp-coding-agents .callout-important title="Coding Agent"}
+Un **coding agent** combina un LLM con la capacidad de usar herramientas: ejecutar
+comandos en una terminal, leer y escribir ficheros, buscar en internet y llamar a APIs.
+El agente planifica, actúa y corrige su propio trabajo en un bucle autónomo.
+:::
+
+Ejemplos representativos en 2025–2026: 
+
+| Agente | Desarrollador | Descripción |
+| :--- | :--- | :--- |
+| [Devin](https://www.cognition.ai/){target="_blank" rel="noopener noreferrer"} | Cognition AI | Primer agente de ingeniería de software autónomo; puede planificar, implementar y depurar proyectos completos. |
+| [GitHub Copilot Workspace](https://githubnext.com/projects/copilot-workspace){target="_blank" rel="noopener noreferrer"} | GitHub / Microsoft | Agente integrado en GitHub que transforma issues en implementaciones completas dentro del repositorio. |
+| [Cursor Agent](https://www.cursor.com/){target="_blank" rel="noopener noreferrer"} | Anysphere | IDE basado en VS Code con agente que puede editar múltiples ficheros, ejecutar código y corregir errores en bucle. |
+| [Windsurf](https://codeium.com/windsurf){target="_blank" rel="noopener noreferrer"} | Codeium | IDE con agente (*Cascade*) que mantiene conciencia del contexto completo del proyecto y actúa de forma proactiva. |
+| [Claude Code](https://www.anthropic.com/claude-code){target="_blank" rel="noopener noreferrer"} | Anthropic | Agente de línea de comandos que entiende bases de código completas y ejecuta tareas de ingeniería end-to-end. |
+| [Codex CLI](https://openai.com/codex){target="_blank" rel="noopener noreferrer"} | OpenAI | Agente de línea de comandos que ejecuta tareas de programación en un entorno seguro (*sandbox*), con acceso a terminal, ficheros e internet. |
+| [Tongyi Lingma](https://tongyi.aliyun.com/lingma){target="_blank" rel="noopener noreferrer"} | Alibaba Cloud | Asistente de código basado en los modelos Qwen; integrado en VS Code y JetBrains, con capacidades de chat y completado en línea. |
+| [Baidu Comate](https://comate.baidu.com/){target="_blank" rel="noopener noreferrer"} | Baidu | Asistente de código basado en ERNIE; extensión para VS Code y JetBrains con generación, explicación y revisión de código. |
+| [MarsCode](https://www.marscode.com/){target="_blank" rel="noopener noreferrer"} | ByteDance | IDE en la nube (basado en VS Code) con agente integrado basado en los modelos Doubao; orientado al desarrollo colaborativo. |
+| [CodeGeeX](https://codegeex.cn/){target="_blank" rel="noopener noreferrer"} | Zhipu AI / Tsinghua | Modelo de código abierto desarrollado en la Universidad de Tsinghua; extensión para VS Code con completado y chat multilingüe. |
+
+Estos sistemas representan el estado del arte actual, pero presentan limitaciones
+importantes: pueden acumular errores silenciosamente, son difíciles de auditar y
+requieren que el programador humano mantenga el criterio sobre qué construir y cómo
+verificarlo. El orden de aparición de los agentes en la tabla no indica calidad ni rendimiento: cada uno tiene fortalezas y debilidades distintas.
+
+## Bibliografía {.unnumbered}
+
+::: {#refs}
+:::
