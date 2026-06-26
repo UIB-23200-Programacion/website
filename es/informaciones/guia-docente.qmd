@@ -10,11 +10,11 @@ A continuación un resumen de la Guía Docente de la asignatura. La versión com
 
 ## Profesor Responsable
 
-José Alejandro Mesejo Chiong ([ficha UIB](https://www.uib.es/personal/ABjUwMDIxMA/))
+**José Alejandro Mesejo Chiong** ([ficha UIB](https://www.uib.es/personal/ABjUwMDIxMA/){target="_blank" rel="noopener noreferrer"})
 
-Correo de contacto: alejandro.mesejo@uib.es
+**Correo de contacto:** alejandro.mesejo@uib.es
 
-Despacho 171: Edificio Anselm Turmeda, 1era planta
+**Despacho 171**, Edificio Anselm Turmeda, 1era planta
 
 ## Contextualización de la Asignatura
 
@@ -123,11 +123,18 @@ No se puede mejorar la calificación del Examen ni la de la Práctica de la asig
 
 ## Condiciones de uso de la IA
 
-El uso de herramientas de inteligencia artificial está autorizado para elaborar exclusivamente las siguientes actividades de evaluación: Práctica y Talleres durante evaluación continua.
+El uso de herramientas de inteligencia artificial está autorizado para elaborar exclusivamente las siguientes actividades de evaluación: 
+
+- Práctica y Talleres durante evaluación continua.
+
 Para cualquier otra actividad no incluida en esta lista, será necesario obtener autorización previa del profesor responsable y explicar la finalidad y el tipo de uso previsto.
 
-- Herramientas autorizadas: Microsoft Copilot, ChatGPT, Grammarly, Perplexity, Claude, DeepSeek u otras herramientas similares.
-- Contextos de uso aceptable:
+**Herramientas autorizadas:** 
+
+- Microsoft Copilot, ChatGPT, Grammarly, Perplexity, Claude, DeepSeek u otras herramientas similares.
+
+**Contextos de uso aceptables:**
+
 - Pedir explicaciones de conceptos ya trabajados en clase o de la documentación oficial (p. ej., la diferencia entre una lista y una tupla, o el significado de un mensaje de error).
 - Solicitar que el asistente revise código escrito por el estudiante para detectar errores o sugerir mejoras de legibilidad, siempre que el estudiante evalúe y decida qué cambios aplica.
 - Generar casos de prueba adicionales o identificar casos límite, para que el estudiante valide su pertinencia y los incorpore de manera razonada.
@@ -135,16 +142,22 @@ Para cualquier otra actividad no incluida en esta lista, será necesario obtener
 - Obtener ejemplos de uso de funciones del ecosistema científico (NumPy, Matplotlib, SymPy, pandas) que después el estudiante adapta y comprueba.
 - Generar código rutinario o repetitivo (boilerplate) que no constituya el objetivo de aprendizaje evaluado de la actividad, siempre que el estudiante comprenda cada línea y sea capaz de explicarla, modificarla y justificarla.
 - Ayudar a redactar o mejorar la prosa de memorias e informes (claridad, ortografía), respetando los requisitos de citación del apartado anterior.
-- Contextos de uso no aceptable:
+
+**Contextos de uso no aceptables:**
+
 - Usar IA en cualquier actividad no autorizada explícitamente, y en particular durante el examen y las pruebas presenciales.
 - Entregar como propia una solución generada por IA sin comprenderla: si el estudiante no es capaz de explicar, justificar o modificar cualquier parte de lo que entrega, se considera uso indebido.
 - Delegar la resolución completa del problema (copiar el enunciado al asistente y entregar su respuesta) sin pasar por el ciclo de especificación, generación y verificación.
 - Encargar a la IA precisamente la competencia que se evalúa y presentarla como razonamiento propio (p. ej., pedirle los invariantes de bucle, las pruebas de corrección o el diseño algorítmico que son el objetivo de la actividad).
 - Introducir en las herramientas de IA enunciados de examen, materiales docentes protegidos, código de compañeros o datos personales o sensibles, propios o de terceros (véase el punto 11).
 - Omitir la declaración de uso de la IA o falsear qué partes del trabajo se han elaborado con asistencia.
-- Requisitos de citación y declaración. Cuando se utilicen herramientas de IA, se deberá indicar claramente:
+
+**Requisitos de citación y declaración:**
+
+Cuando se utilicen herramientas de IA, se deberá indicar claramente:
+
 - El nombre y la versión de la herramienta.
 - La finalidad específica del uso.
 - La parte del trabajo en la que se ha aplicado.
 
-El uso no autorizado o indebido de la IA se considerará fraude académico. La ausencia de declaración de uso se considerará una conducta contraria al Código de integridad.
+**El uso no autorizado o indebido de la IA se considerará** [**fraude académico.**](https://eps.uib.cat/estudiants/normativa-frau/){target="_blank" rel="noopener noreferrer"} **La ausencia de declaración de uso se considerará una conducta contraria al Código de integridad.**

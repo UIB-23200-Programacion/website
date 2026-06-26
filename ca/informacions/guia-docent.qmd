@@ -10,11 +10,11 @@ A continuació un resum de la Guia Docent de l'assignatura. La versió completa 
 
 ## Professor Responsable
 
-José Alejandro Mesejo Chiong ([fitxa UIB](https://www.uib.es/personal/ABjUwMDIxMA/))
+**José Alejandro Mesejo Chiong** ([fitxa UIB](https://www.uib.es/personal/ABjUwMDIxMA/){target="_blank" rel="noopener noreferrer"})
 
-Correu de contacte: alejandro.mesejo@uib.es
+**Correu de contacte:** alejandro.mesejo@uib.es
 
-Despatx 171: Edifici Anselm Turmeda, 1a planta
+**Despatx 171**, Edifici Anselm Turmeda, 1a planta
 
 ## Contextualització de l'Assignatura
 
@@ -122,11 +122,18 @@ No es pot millorar la qualificació de l'Examen ni la de la Pràctica de l'assig
 
 ## Condicions d'ús de la IA
 
-L'ús d'eines d'intel·ligència artificial està autoritzat per elaborar exclusivament les activitats d'avaluació següents: Pràctica i Tallers durant l'avaluació contínua.
+L'ús d'eines d'intel·ligència artificial està autoritzat per elaborar exclusivament les activitats d'avaluació següents: 
+
+- Pràctica i Tallers durant l'avaluació contínua.
+
 Per a qualsevol altra activitat no inclosa en aquesta llista, caldrà obtenir autorització prèvia del professor responsable i explicar la finalitat i el tipus d'ús previst.
 
-- Eines autoritzades: Microsoft Copilot, ChatGPT, Grammarly, Perplexity, Claude, DeepSeek o altres eines similars.
-- Contextos d'ús acceptable:
+**Eines autoritzades:** 
+
+- Microsoft Copilot, ChatGPT, Grammarly, Perplexity, Claude, DeepSeek o altres eines similars.
+
+**Contextos d'ús aceptables:**
+
 - Demanar explicacions de conceptes ja treballats a classe o de la documentació oficial (p. ex., la diferència entre una llista i una tupla, o el significat d'un missatge d'error).
 - Sol·licitar que l'assistent revisi codi escrit per l'estudiant per detectar errors o suggerir millores de llegibilitat, sempre que l'estudiant avaluï i decideixi quins canvis aplica.
 - Generar casos de prova addicionals o identificar casos límit, perquè l'estudiant en validi la pertinència i els incorpori de manera raonada.
@@ -134,16 +141,22 @@ Per a qualsevol altra activitat no inclosa en aquesta llista, caldrà obtenir au
 - Obtenir exemples d'ús de funcions de l'ecosistema científic (NumPy, Matplotlib, SymPy, pandas) que després l'estudiant adapta i comprova.
 - Generar codi rutinari o repetitiu (boilerplate) que no constitueixi l'objectiu d'aprenentatge avaluat de l'activitat, sempre que l'estudiant comprengui cada línia i sigui capaç d'explicar-la, modificar-la i justificar-la.
 - Ajudar a redactar o millorar la prosa de memòries i informes (claredat, ortografia), respectant els requisits de citació de l'apartat anterior.
-- Contextos d'ús no acceptable:
+
+**Contextos d'ús no aceptables:**
+
 - Usar IA en qualsevol activitat no autoritzada explícitament, i en particular durant l'examen i les proves presencials.
 - Lliurar com a pròpia una solució generada per IA sense comprendre-la: si l'estudiant no és capaç d'explicar, justificar o modificar qualsevol part del que lliura, es considera ús indegut.
 - Delegar la resolució completa del problema (copiar l'enunciat a l'assistent i lliurar la seva resposta) sense passar pel cicle d'especificació, generació i verificació.
 - Encarregar a la IA precisament la competència que s'avalua i presentar-la com a raonament propi (p. ex., demanar-li els invariants de bucle, les proves de correcció o el disseny algorítmic que són l'objectiu de l'activitat).
 - Introduir a les eines d'IA enunciats d'examen, materials docents protegits, codi de companys o dades personals o sensibles, pròpies o de tercers (vegeu el punt 11).
 - Ometre la declaració d'ús de la IA o falsificar quines parts del treball s'han elaborat amb assistència.
-- Requisits de citació i declaració. Quan s'utilitzin eines d'IA, caldrà indicar clarament:
+
+**Requisits de citació i declaració:**
+
+Quan s'utilitzin eines d'IA, caldrà indicar clarament:
+
 - El nom i la versió de l'eina.
 - La finalitat específica de l'ús.
 - La part del treball en la qual s'ha aplicat.
 
-L'ús no autoritzat o indegut de la IA es considerarà frau acadèmic. L'absència de declaració d'ús es considerarà una conducta contrària al Codi d'integritat.
+**L'ús no autoritzat o indegut de la IA es considerarà** [**frau acadèmic**.](https://eps.uib.cat/estudiants/normativa-frau/){target="_blank" rel="noopener noreferrer"} **L'absència de declaració d'ús es considerarà una conducta contrària al Codi d'integritat.**
