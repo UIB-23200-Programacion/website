@@ -20,7 +20,7 @@ La mayoría de los ordenadores modernos se basan en el modelo propuesto en 1945 
 von Neumann, que establece que **instrucciones y datos comparten el mismo espacio de
 memoria** [@vonneumann1945].
 
-![Arquitectura de Von Neumann ()](../images/vonNeumannES.png){#fig-von-neumann width=60%}
+![Arquitectura de Von Neumann ()](../../images/vonNeumannES.png){#fig-von-neumann width=60%}
 
 ::: {#imp-von-neumann .callout-important title="Arquitectura de Von Neumann"}
 La arquitectura de Von Neumann organiza el ordenador en cuatro componentes principales
