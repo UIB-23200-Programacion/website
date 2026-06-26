@@ -20,7 +20,7 @@ La mayoría de los ordenadores modernos se basan en el modelo propuesto en 1945 
 von Neumann, que establece que **instrucciones y datos comparten el mismo espacio de
 memoria** [@vonneumann1945].
 
-![Arquitectura de Von Neumann ()](../../images/vonNeumannES.png){#fig-von-neumann width=60%}
+![Arquitectura de Von Neumann](../../images/vonNeumannES.png){#fig-von-neumann width=90%}
 
 ::: {#imp-von-neumann .callout-important title="Arquitectura de Von Neumann"}
 La arquitectura de Von Neumann organiza el ordenador en cuatro componentes principales
@@ -138,7 +138,7 @@ lo que se le indica, ni más ni menos.
 ### Compilación vs. interpretación
 
 Para que el código fuente en alto nivel sea ejecutable, debe transformarse en
-instrucciones que el procesador comprenda. Existen dos estrategias principales:
+instrucciones que el procesador comprenda (lenguaje de máquina). Existen dos estrategias principales:
 
 ::: {#imp-compilacion-interpretacion .callout-important title="Compilar vs. Interpretar"}
 - **Compilación**: el código fuente se traduce íntegramente a código máquina *antes* de
@@ -147,7 +147,7 @@ instrucciones que el procesador comprenda. Existen dos estrategias principales:
 - **Interpretación**: el código se lee y ejecuta *línea a línea* en tiempo de ejecución
   por un programa llamado intérprete. No se genera un ejecutable independiente.
   Ejemplos: Python, R, Ruby.
-- **Modelos híbridos**: algunos lenguajes compilan a un *bytecode* intermedio que luego
+- **Modelos híbridos**: algunos lenguajes compilan a un [*bytecode*](https://es.wikipedia.org/wiki/Bytecode){target="_blank" rel="noopener noreferrer"} intermedio que luego
   ejecuta una máquina virtual. Ejemplos: Java (JVM), Python (CPython).
 :::
 
@@ -180,13 +180,9 @@ ni puntos y coma), el tipado dinámico (las variables no declaran su tipo), el e
 científico maduro (NumPy, Matplotlib, SymPy, pandas) y la integración nativa con
 herramientas de IA.
 
-Python distingue entre mayúsculas y minúsculas: `Variable`, `variable` y `VARIABLE` son
-tres identificadores distintos. La indentación no es opcional: es parte de la sintaxis
-del lenguaje y delimita los bloques de código.
-
 #### El intérprete interactivo: Python REPL
 
-Una de las características más útiles de Python es su **intérprete interactivo**, conocido como **REPL** (*Read-Eval-Print Loop*): lee una expresión, la evalúa, imprime el resultado y espera la siguiente. Se accede escribiendo `python` en el terminal.
+Una de las características más útiles de Python es su **intérprete interactivo**, conocido como **REPL** (*Read-Eval-Print Loop*): lee una expresión, la evalúa, imprime el resultado y espera la siguiente. Se accede escribiendo `python` en la terminal.
 
 ```python
 >>> 2 ** 10          # potencia de 2
@@ -218,7 +214,7 @@ lenguaje.
 
 ## 1.3. IDEs modernos
 
-Un **IDE** (Integrated Development Environment en inglés o Entorno de Desarrollo Integrado) es una aplicación que integra en una sola interfaz las herramientas necesarias para escribir, ejecutar y depurar programas.
+Un **IDE** (Integrated Development Environment en inglés o Entorno de Desarrollo Integrado en español) es una aplicación que integra en una sola interfaz las herramientas necesarias para escribir, ejecutar y depurar programas.
 
 ### Características comunes
 
@@ -259,8 +255,8 @@ La interfaz se organiza en:
 - **Barra lateral izquierda**: explorador de archivos, búsqueda, Git y extensiones.
 - **Editor central**: área de escritura de código con múltiples pestañas.
 - **Terminal integrado**: consola para ejecutar programas y comandos del sistema.
-- **Barra de estado**: intérprete de Python activo, rama Git y estado del entorno.
 
+![Visual Studio Code](../../images/vscode.png){#fig-vscode width=90%}
 
 La documentación oficial de VS Code se puede consultar en [@vscode_docs].
 
