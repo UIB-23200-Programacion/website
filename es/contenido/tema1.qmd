@@ -5,14 +5,24 @@ sidebar: barra-es
 bibliography: tema1.bib
 ---
 
-## 1.1. Arquitectura del ordenador moderno
+## 1.1. Ordenadores modernos
 
-Un **ordenador** es una máquina capaz de ejecutar secuencias de instrucciones sobre datos
-de forma automática, rápida y repetible. Comprender su organización interna ayuda a
-entender por qué los programas se escriben como se escriben y por qué algunas operaciones
-son más costosas que otras.
+Un **ordenador** puede definirse como un dispositivo capaz de ejecutar, de manera automática, rápida y repetible, secuencias de instrucciones aplicadas sobre datos. El estudio de su organización interna resulta fundamental para comprender las razones por las cuales los programas adoptan determinadas estructuras y por qué ciertas operaciones implican un mayor coste computacional que otras.
 
-### Arquitecturas
+Los ordenadores modernos son sistemas heterogéneos optimizados para rendimiento, eficiencia energética y conectividad, con arquitecturas multinúcleo (CPU), aceleradores de propósito específico (GPUs, NPUs), memoria RAM rápida, almacenamiento NVMe, y fuertes capas de seguridad y virtualización.
+
+Un ordenador ejecuta programas leyendo una secuencia de instrucciones almacenadas en memoria y procesándolas de forma ordenada por la Unidad Central de Procesamiento (CPU, Central Processing Unit en inglés), que repite continuamente un ciclo básico: 
+
+- primero busca la instrucción, 
+- después la interpreta para saber qué operación debe realizar, 
+- luego la ejecuta sobre datos que pueden estar en registros, caché o memoria RAM, y
+- finalmente guarda el resultado si es necesario. 
+
+Para hacerlo con rapidez, el procesador utiliza componentes internos como la unidad de control, que coordina las señales, la Unidad Aritmético-Lógica (ALU, Arithmetic Logic Unit en inglés), que realiza cálculos y operaciones lógicas, y una jerarquía de memoria que intenta acercar al máximo los datos que se usan con más frecuencia. En la práctica, mientras un programa se ejecuta, la CPU va avanzando instrucción por instrucción, tomando decisiones, moviendo datos y coordinando la interacción con otros dispositivos, hasta completar la tarea que el programa define.
+
+La descripción anterior del funcionamiento del ordenador se basa principalmente en la arquitectura de von Neumann. En ese modelo, la CPU ejecuta instrucciones almacenadas en memoria siguiendo un ciclo secuencial de búsqueda, decodificación y ejecución, con una misma memoria para datos e instrucciones. En los ordenadores modernos, esa idea sigue siendo la base conceptual, aunque suele aparecer combinada con rasgos de Harvard modificada, como cachés separadas para instrucciones y datos, para mejorar el rendimiento.
+
+### Arquitecturas de ordenadores
 
 #### Arquitectura de Von Neumann
 
@@ -35,80 +45,73 @@ El ciclo fundamental es: *capturar instrucción → decodificarla → ejecutarla
 Fetch-Decode-Execute).
 :::
 
-La arquitectura de Von Neumann introduce el llamado *cuello de botella de Von Neumann*:
-CPU y memoria comparten el mismo bus, lo que limita la velocidad de transferencia de
-datos. Los procesadores modernos mitigan este problema con memorias caché de varios
-niveles (L1, L2, L3) integradas directamente en el chip.
+En la arquitectura de von Neumann, instrucciones y datos comparten una misma memoria y, por tanto, también suelen compartir el mismo camino de acceso. El funcionamiento se basa en el ciclo de instrucción: la CPU toma una instrucción de memoria, la interpreta, la ejecuta y después pasa a la siguiente. Este modelo es conceptualmente sencillo y sigue siendo la base de muchos sistemas actuales, aunque presenta el llamado **cuello de botella de von Neumann**, ya que el acceso secuencial a una memoria compartida limita el rendimiento cuando la CPU necesita instrucciones y datos al mismo tiempo.
 
-#### Arquitecturas Harvard modificadas
+#### Arquitectura Harvard modificada
 
-Los procesadores actuales utilizan internamente una **arquitectura Harvard modificada**,
-en la que las cachés de instrucciones y de datos son físicamente separadas, aunque hacia
-el exterior siguen presentando una memoria unificada al estilo Von Neumann. Esto permite
-leer instrucciones y datos en paralelo, aumentando significativamente el rendimiento.
+La **arquitectura Harvard modificada** es una variante de la arquitectura Harvard que mantiene separadas las memorias o buses de instrucciones y datos, pero permite que el contenido de la memoria de instrucciones pueda leerse también como datos. Esto combina la velocidad del acceso paralelo con una flexibilidad mayor que la Harvard pura, y por eso aparece en muchos procesadores modernos, especialmente en microcontroladores y DSP (Digital Signal Processor).
 
-Los microcontroladores de sistemas embebidos (Arduino, Raspberry Pi Pico) utilizan la
-arquitectura Harvard pura, con memorias de programa y de datos completamente separadas
-e independientes.
+En los ordenadores actuales, el modelo teórico se complementa con una jerarquía de memoria: registros, caché L1/L2/L3, RAM y almacenamiento secundario. La CPU intenta trabajar primero con la información más cercana y rápida, porque acceder a la RAM o al SSD es mucho más costoso en tiempo. Por eso, aunque el ordenador siga apoyándose en la lógica de von Neumann o Harvard modificada, en la práctica el rendimiento depende de la organización del subsistema de memoria y de la capacidad del procesador para explotar paralelismo interno.
 
+### Tipos de ordenadores
 
-### Tipos de procesadores modernos
+Desde una perspectiva clasificatoria, los ordenadores pueden estudiarse según su capacidad de procesamiento, su finalidad o su grado de portabilidad. Esta tipología resulta útil para comprender tanto la evolución histórica de la informática como la especialización actual de los sistemas computacionales.
 
-El término "procesador" abarca hoy una familia diversa de chips especializados
-[@pattersonhennessy2021]:
+En el ámbito universitario, conviene distinguir entre sistemas de propósito general, capaces de ejecutar múltiples aplicaciones, y sistemas de propósito específico, diseñados para una función concreta. Esta distinción permite interpretar mejor la diversidad de dispositivos informáticos contemporáneos y su inserción en contextos académicos, empresariales e industriales.
 
-| Tipo | Descripción | Ejemplos |
-| :--- | :--- | :--- |
-| **CPU** | Procesador de propósito general, optimizado para tareas secuenciales y de baja latencia. | Intel Core, AMD Ryzen, Apple M-series |
-| **GPU** | Miles de núcleos simples en paralelo, ideales para cálculo matricial y gráficos. | NVIDIA RTX, AMD Radeon |
-| **NPU / TPU** | Unidades especializadas en operaciones de redes neuronales. | Google TPU, Apple Neural Engine |
-| **SoC** | Integra CPU, GPU y otros componentes en un único chip. | Apple M4, Snapdragon X Elite |
+| Tipo de ordenador | Definición | Características principales | Usos habituales |
+|---|---|---|---|
+| Supercomputadora | Sistema informático de altísima capacidad de procesamiento, diseñado para ejecutar operaciones complejas en paralelo. | Gran potencia de cálculo, arquitectura masivamente paralela, elevado consumo energético y alto coste. | Simulación científica, meteorología, inteligencia artificial, modelado físico y criptografía. |
+| Mainframe | Ordenador de gran escala orientado al tratamiento masivo de datos y a la gestión simultánea de múltiples usuarios. | Alta fiabilidad, disponibilidad continua, gran capacidad de E/S y fuerte tolerancia a fallos. | Banca, administración pública, seguros, telecomunicaciones y grandes corporaciones. |
+| Servidor | Equipo dedicado a proporcionar servicios, recursos o datos a otros ordenadores dentro de una red. | Estabilidad, escalabilidad, capacidad de almacenamiento y procesamiento sostenido. | Alojamiento web, bases de datos, virtualización, correo electrónico y archivos compartidos. |
+| Estación de trabajo | Ordenador de alto rendimiento destinado a tareas técnicas o científicas que exigen gran capacidad de cómputo y gráficos. | Procesadores potentes, memoria abundante, GPU dedicada y componentes de alta calidad. | Diseño asistido por computadora, modelado 3D, edición audiovisual, simulación e investigación. |
+| Ordenador de sobremesa | Sistema informático fijo, generalmente modular y ampliable, pensado para uso general. | Buen equilibrio entre rendimiento, coste y capacidad de ampliación. | Uso doméstico, ofimática, programación, educación y videojuegos. |
+| Ordenador portátil | Equipo compacto e integrado que combina pantalla, teclado, batería y sistema de procesamiento en un solo dispositivo. | Alta portabilidad, autonomía energética y menor capacidad de ampliación que un sobremesa. | Trabajo móvil, docencia, estudio y uso profesional itinerante. |
+| Mini PC | Ordenador de tamaño reducido con bajo consumo y prestaciones variables según la configuración. | Formato compacto, eficiencia energética y ocupación mínima de espacio. | Entornos de oficina, centros multimedia, laboratorios y aplicaciones embebidas. |
+| Tableta | Dispositivo portátil con interfaz táctil, concebido para la interacción directa con el usuario. | Ligereza, movilidad, simplicidad de uso y dependencia de pantalla táctil. | Lectura, anotación, docencia, navegación web y consumo multimedia. |
+| Smartphone | Dispositivo móvil de propósito general que integra funciones de telefonía, computación y conectividad avanzada. | Gran integración de sensores, conectividad permanente y elevada portabilidad. | Comunicación, aplicaciones móviles, navegación, fotografía y productividad básica. |
+| Wearable | Dispositivo electrónico vestible que se incorpora al cuerpo o a la vestimenta. | Tamaño reducido, sensores integrados y funcionamiento complementario a otros dispositivos. | Monitorización de actividad física, salud, notificaciones y asistencia contextual. |
 
-#### Procesadores ARM
+La clasificación en la tabla anterior muestra que la noción de ordenador abarca desde grandes sistemas de cálculo científico hasta dispositivos personales altamente portátiles. En consecuencia, la elección de un tipo u otro depende de variables como rendimiento, coste, movilidad, fiabilidad y ámbito de aplicación.
 
-La arquitectura **ARM** (*Advanced RISC Machine*) domina hoy los dispositivos móviles y
-ha irrumpido con fuerza en portátiles y servidores. A diferencia de la arquitectura
-x86-64 (Intel/AMD), ARM utiliza un conjunto de instrucciones reducido (RISC), lo que
-permite diseños más eficientes energéticamente sin sacrificar rendimiento.
+### Componentes de un ordenador
 
-Los procesadores **Apple Silicon** (M1, M2, M3, M4) son SoC basados en ARM que integran
-CPU, GPU y NPU en un único chip. Su relación rendimiento/consumo es notablemente
-superior a la de los chips x86-64 equivalentes, lo que los convierte en una opción muy
-competitiva para el trabajo científico y de programación.
+La siguiente tabla resume los componentes principales de un ordenador moderno incluyendo ejemplos actuales de gama común/alta.
 
-### Descripción de la configuración de un ordenador moderno
+| Componente | Función | Tipos actuales / ejemplos |
+|---|---|---|
+| Procesador (CPU) | Ejecuta instrucciones y coordina el sistema. | Intel Core i9, Intel Core Ultra, AMD Ryzen 9, Apple M-series. |
+| Placa base | Conecta y comunica todos los componentes. | Chipsets con soporte para DDR5, PCIe 4.0/5.0, M.2 NVMe, USB-C/USB4, Wi‑Fi 6E/7. |
+| Memoria RAM | Mantiene datos e instrucciones de uso inmediato. | DDR5, y en algunos equipos todavía DDR4; en portátiles también LPDDR5/LPDDR5X. |
+| Almacenamiento | Guarda sistema, programas y archivos. | SSD NVMe M.2, SSD SATA, HDD para archivos masivos. |
+| Tarjeta gráfica (GPU) | Acelera gráficos y cómputo paralelo. | NVIDIA GeForce RTX, AMD Radeon RX, e iGPU integradas en CPU modernas. |
+| Fuente de alimentación | Suministra energía al equipo. | Fuentes ATX de 80 Plus Bronze/Gold/Platinum, según potencia y eficiencia. |
+| Refrigeración | Disipa calor y mantiene estabilidad. | Disipadores por aire, AIO líquida, ventiladores PWM de alto flujo. |
+| Caja o chasis | Aloja y protege los componentes. | ATX, microATX, Mini-ITX, torres compactas y mini-PC. |
+| Red y conectividad | Permite acceso a Internet y periféricos. | Ethernet Gigabit/2.5G/10G, Wi‑Fi 6/6E/7, Bluetooth, USB-C. |
 
-**Procesador (CPU)**: determina cuántas instrucciones se ejecutan por segundo. Sus
-características clave son la frecuencia de reloj (GHz), el número de núcleos y la
-cantidad de caché.
+**Procesador (CPU)**: sus características clave son la frecuencia de reloj (GHz), el número de núcleos y la cantidad de caché.
 
-**Memoria RAM**: almacenamiento temporal y rápido que contiene el sistema operativo, los
-programas en ejecución y los datos activos. Al apagar el ordenador, su contenido se
-pierde. Para Python, 8 GB es suficiente para el trabajo habitual del curso; 16 GB es
-recomendable para conjuntos de datos grandes.
+**Memoria de Acceso Aleatorio (RAM, Random Access Memory en inglés)**: almacenamiento temporal y rápido que contiene el sistema operativo, los programas en ejecución y los datos activos. Al apagar el ordenador, su contenido se pierde.
 
-**Almacenamiento**: los discos SSD NVMe son hoy el estándar. Guardan el sistema
-operativo, los programas y los archivos de forma permanente. Son entre 10 y 100 veces
-más rápidos que los HDD tradicionales.
+**Almacenamiento**: las unidades de estado sólido (SSD NVMe, Solid State Drive en inglés) son hoy el estándar. Guardan el sistema operativo, los programas y los archivos de forma permanente. Son entre 10 y 100 veces más rápidos que las unidades de disco duro (HDD, Hard Disk Drive en inglés) tradicionales.
 
-**Tarjeta gráfica (GPU)**: imprescindible para el entrenamiento de modelos de
-aprendizaje profundo. Para el uso en este curso la GPU
-integrada de la CPU es suficiente.
+**Tarjeta gráfica (GPU, Graphics Processing Unit en inglés)**: imprescindible para el entrenamiento de modelos de aprendizaje profundo. 
 
 ::: {.callout-tip appearance="simple" title="Consejo: ¿Qué ordenador comprar?"}
-Para este curso, cualquier portátil moderno es más que suficiente, ya que el trabajo
-computacionalmente intensivo se realiza en los servidores de GitHub Codespaces. 
+**Para este curso, cualquier portátil moderno es más que suficiente, ya que el trabajo
+computacionalmente intensivo se realiza en los servidores de GitHub Codespaces.** 
 
-No obstante, si desea tener un ordenador para trabajar localmente, las especificaciones mínimas recomendadas son:
+No obstante, si desea tener un ordenador para trabajar localmente, la siguiente tabla presenta tres configuraciones según presupuesto disponible:
 
-- **Procesador**: Intel Core i5 (12.ª generación o posterior), AMD Ryzen 5 (serie 5000
-  o posterior) o Apple M1 o superior.
-- **Memoria RAM**: 8 GB mínimo; 16 GB recomendado para trabajar cómodamente con varias
-  aplicaciones abiertas.
-- **Almacenamiento**: SSD de 256 GB mínimo. Evita los HDD tradicionales: ralentizan
-  significativamente el arranque del sistema y las aplicaciones.
-- **Pantalla**: 13–15 pulgadas, resolución Full HD (1920×1080) o superior.
-- **Sistema operativo**: Windows 10/11, macOS 12 o posterior, o cualquier distribución
+| Nivel | CPU | RAM | Almacenamiento | Gráfica | Uso recomendado |
+|---|---|---:|---|---|---|
+| Barata | Intel Core i3 / Ryzen 3 o equivalente, 2 núcleos / 4 hilos | 8 GB | SSD SATA de 256 GB | Integrada | Programación básica en Python, ejercicios, scripts pequeños, VS Code con pocas extensiones. |
+| Equilibrada | Intel Core i5 / Ryzen 5 o equivalente, 4 a 6 núcleos | 16 GB | SSD NVMe de 512 GB | Integrada | Estudio cómodo, varios proyectos abiertos, navegador + VS Code + terminal sin demasiada lentitud. |
+| Ideal | Intel Core i7 / Core Ultra 7 / Ryzen 7 o equivalente, 8 núcleos o más | 16 a 32 GB | SSD NVMe de 1 TB | Integrada o dedicada ligera | Trabajo fluido con proyectos grandes, Jupyter, análisis de datos, Docker ligero y multitarea intensa. |
+
+
+**Sistema operativo**: Windows 10/11, macOS 12 o posterior, o cualquier distribución
   Linux moderna. Los tres son completamente compatibles con las herramientas del curso.
 :::
 
