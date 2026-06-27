@@ -20,7 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -76,7 +131,10 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Tema 1: Fonaments, Entorns Moderns i Assistents d’IA – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/vonNeumannCA.png">
 <meta property="og:site_name" content="Programación (23200)">
+<meta property="og:image:height" content="768">
+<meta property="og:image:width" content="1376">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -522,8 +580,38 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En aquesta pàgina</h2>
+   
+  <ul>
+  <li><a href="#ordinadors-moderns" id="toc-ordinadors-moderns" class="nav-link active" data-scroll-target="#ordinadors-moderns">1.1. Ordinadors moderns</a>
+  <ul class="collapse">
+  <li><a href="#arquitectures-dordinadors" id="toc-arquitectures-dordinadors" class="nav-link" data-scroll-target="#arquitectures-dordinadors">Arquitectures d’ordinadors</a></li>
+  <li><a href="#tipus-dordinadors" id="toc-tipus-dordinadors" class="nav-link" data-scroll-target="#tipus-dordinadors">Tipus d’ordinadors</a></li>
+  <li><a href="#components-dun-ordinador" id="toc-components-dun-ordinador" class="nav-link" data-scroll-target="#components-dun-ordinador">Components d’un ordinador</a></li>
+  </ul></li>
+  <li><a href="#llenguatges-de-programació-i-python" id="toc-llenguatges-de-programació-i-python" class="nav-link" data-scroll-target="#llenguatges-de-programació-i-python">1.2. Llenguatges de programació i Python</a>
+  <ul class="collapse">
+  <li><a href="#llenguatges-dalt-nivell" id="toc-llenguatges-dalt-nivell" class="nav-link" data-scroll-target="#llenguatges-dalt-nivell">Llenguatges d’alt nivell</a></li>
+  <li><a href="#compilació-vs.-interpretació" id="toc-compilació-vs.-interpretació" class="nav-link" data-scroll-target="#compilació-vs.-interpretació">Compilació vs.&nbsp;interpretació</a></li>
+  <li><a href="#el-llenguatge-python" id="toc-el-llenguatge-python" class="nav-link" data-scroll-target="#el-llenguatge-python">El llenguatge Python</a></li>
+  </ul></li>
+  <li><a href="#ides-moderns" id="toc-ides-moderns" class="nav-link" data-scroll-target="#ides-moderns">1.3. IDEs moderns</a>
+  <ul class="collapse">
+  <li><a href="#característiques-comunes" id="toc-característiques-comunes" class="nav-link" data-scroll-target="#característiques-comunes">Característiques comunes</a></li>
+  <li><a href="#locals-vs.-el-núvol" id="toc-locals-vs.-el-núvol" class="nav-link" data-scroll-target="#locals-vs.-el-núvol">Locals vs.&nbsp;el núvol</a></li>
+  </ul></li>
+  <li><a href="#programació-assistida-per-ia" id="toc-programació-assistida-per-ia" class="nav-link" data-scroll-target="#programació-assistida-per-ia">1.4. Programació assistida per IA</a>
+  <ul class="collapse">
+  <li><a href="#models-de-llenguatge-grans-llms" id="toc-models-de-llenguatge-grans-llms" class="nav-link" data-scroll-target="#models-de-llenguatge-grans-llms">Models de Llenguatge Grans (LLMs)</a></li>
+  <li><a href="#assistents-dia-de-codi" id="toc-assistents-dia-de-codi" class="nav-link" data-scroll-target="#assistents-dia-de-codi">Assistents d’IA de codi</a></li>
+  <li><a href="#vibe-coding" id="toc-vibe-coding" class="nav-link" data-scroll-target="#vibe-coding">Vibe Coding</a></li>
+  <li><a href="#agents-de-desenvolupament-autònoms" id="toc-agents-de-desenvolupament-autònoms" class="nav-link" data-scroll-target="#agents-de-desenvolupament-autònoms">Agents de desenvolupament autònoms</a></li>
+  </ul></li>
+  <li><a href="#bibliografia" id="toc-bibliografia" class="nav-link" data-scroll-target="#bibliografia">Bibliografia</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -548,9 +636,711 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contenido pendiente.)</em></p>
+<section id="ordinadors-moderns" class="level2">
+<h2 class="anchored" data-anchor-id="ordinadors-moderns">1.1. Ordinadors moderns</h2>
+<p>Un <strong>ordinador</strong> pot definir-se com un dispositiu capaç d’executar, de manera automàtica, ràpida i repetible, seqüències d’instruccions aplicades sobre dades. L’estudi de la seva organització interna resulta fonamental per comprendre les raons per les quals els programes adopten determinades estructures i per què certes operacions impliquen un cost computacional més elevat que d’altres.</p>
+<p>Els ordinadors moderns són sistemes heterogenis optimitzats per al rendiment, l’eficiència energètica i la connectivitat, amb arquitectures multinucli (CPU), acceleradors de propòsit específic (GPUs, NPUs), memòria RAM ràpida, emmagatzematge NVMe, i fortes capes de seguretat i virtualització.</p>
+<p>Un ordinador executa programes llegint una seqüència d’instruccions emmagatzemades en memòria i processant-les de manera ordenada per la Unitat Central de Processament (CPU, <em>Central Processing Unit</em> en anglès), que repeteix contínuament un cicle bàsic:</p>
+<ul>
+<li>primer cerca la instrucció,</li>
+<li>després la interpreta per saber quina operació ha de realitzar,</li>
+<li>tot seguit l’executa sobre dades que poden estar en registres, caché o memòria RAM, i</li>
+<li>finalment desa el resultat si cal.</li>
+</ul>
+<p>Per fer-ho amb rapidesa, el processador utilitza components interns com la unitat de control, que coordina els senyals, la Unitat Aritmètica i Lògica (ALU, <em>Arithmetic Logic Unit</em> en anglès), que realitza càlculs i operacions lògiques, i una jerarquia de memòria que intenta apropar al màxim les dades que s’utilitzen amb més freqüència. En la pràctica, mentre un programa s’executa, la CPU va avançant instrucció per instrucció, prenent decisions, movent dades i coordinant la interacció amb altres dispositius, fins a completar la tasca que el programa defineix.</p>
+<p>La descripció anterior del funcionament de l’ordinador es basa principalment en l’arquitectura de von Neumann. En aquest model, la CPU executa instruccions emmagatzemades en memòria seguint un cicle seqüencial de cerca, descodificació i execució, amb una mateixa memòria per a dades i instruccions. En els ordinadors moderns, aquesta idea continua sent la base conceptual, tot i que sol aparèixer combinada amb trets de Harvard modificada, com ara cachés separades per a instruccions i dades, per millorar el rendiment.</p>
+<section id="arquitectures-dordinadors" class="level3">
+<h3 class="anchored" data-anchor-id="arquitectures-dordinadors">Arquitectures d’ordinadors</h3>
+<section id="arquitectura-de-von-neumann" class="level4">
+<h4 class="anchored" data-anchor-id="arquitectura-de-von-neumann">Arquitectura de Von Neumann</h4>
+<p>La majoria dels ordinadors moderns es basen en el model proposat el 1945 per John von Neumann, que estableix que <strong>instruccions i dades comparteixen el mateix espai de memòria</strong> <span class="citation" data-cites="vonneumann1945">(<a href="#ref-vonneumann1945" role="doc-biblioref">Neumann 1945</a>)</span>.</p>
+<div id="fig-von-neumann" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-von-neumann-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/vonNeumannCA.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-von-neumann-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Arquitectura de Von Neumann
+</figcaption>
+</figure>
+</div>
+<div id="imp-von-neumann" class="callout callout-style-default callout-important callout-titled" title="Arquitectura de Von Neumann">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;1: Arquitectura de Von Neumann
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>L’arquitectura de Von Neumann organitza l’ordinador en quatre components principals interconnectats per un <strong>bus</strong>:</p>
+<ul>
+<li><strong>Unitat Central de Procés (CPU)</strong>: executa instruccions.</li>
+<li><strong>Memòria principal (RAM)</strong>: emmagatzema instruccions i dades en ús.</li>
+<li><strong>Unitats d’entrada/sortida</strong>: teclat, pantalla, disc, xarxa.</li>
+<li><strong>Bus del sistema</strong>: canal de comunicació entre els components.</li>
+</ul>
+<p>El cicle fonamental és: <em>capturar instrucció → descodificar-la → executar-la</em> (cicle Fetch-Decode-Execute).</p>
+</div>
+</div>
+<p>En l’arquitectura de von Neumann, instruccions i dades comparteixen una mateixa memòria i, per tant, també solen compartir el mateix camí d’accés. El funcionament es basa en el cicle d’instrucció: la CPU pren una instrucció de memòria, la interpreta, l’executa i després passa a la següent. Aquest model és conceptualment senzill i continua sent la base de molts sistemes actuals, tot i que presenta l’anomenat <strong>coll d’ampolla de von Neumann</strong>, ja que l’accés seqüencial a una memòria compartida limita el rendiment quan la CPU necessita instruccions i dades al mateix temps.</p>
+</section>
+<section id="arquitectura-harvard-modificada" class="level4">
+<h4 class="anchored" data-anchor-id="arquitectura-harvard-modificada">Arquitectura Harvard modificada</h4>
+<p>L’<strong>arquitectura Harvard modificada</strong> és una variant de l’arquitectura Harvard que manté separades les memòries o busos d’instruccions i dades, però permet que el contingut de la memòria d’instruccions pugui llegir-se també com a dades. Això combina la velocitat de l’accés paral·lel amb una flexibilitat més gran que la Harvard pura, i per això apareix en molts processadors moderns, especialment en microcontroladors i DSP (<em>Digital Signal Processor</em>).</p>
+<p>En els ordinadors actuals, el model teòric es complementa amb una jerarquia de memòria: registres, caché L1/L2/L3, RAM i emmagatzematge secundari. La CPU intenta treballar primer amb la informació més propera i ràpida, perquè accedir a la RAM o al SSD és molt més costós en temps. Per això, tot i que l’ordinador continuï recolzant-se en la lògica de von Neumann o Harvard modificada, en la pràctica el rendiment depèn de l’organització del subsistema de memòria i de la capacitat del processador per explotar el paral·lelisme intern.</p>
+</section>
+</section>
+<section id="tipus-dordinadors" class="level3">
+<h3 class="anchored" data-anchor-id="tipus-dordinadors">Tipus d’ordinadors</h3>
+<p>Des d’una perspectiva classificatòria, els ordinadors poden estudiar-se segons la seva capacitat de processament, la seva finalitat o el seu grau de portabilitat. Aquesta tipologia resulta útil per comprendre tant l’evolució històrica de la informàtica com l’especialització actual dels sistemes computacionals.</p>
+<p>En l’àmbit universitari, convé distingir entre sistemes de propòsit general, capaços d’executar múltiples aplicacions, i sistemes de propòsit específic, dissenyats per a una funció concreta. Aquesta distinció permet interpretar millor la diversitat de dispositius informàtics contemporanis i la seva inserció en contextos acadèmics, empresarials i industrials.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tipus d’ordinador</th>
+<th>Definició</th>
+<th>Característiques principals</th>
+<th>Usos habituals</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Superordinador</td>
+<td>Sistema informàtic d’altíssima capacitat de processament, dissenyat per executar operacions complexes en paral·lel.</td>
+<td>Gran potència de càlcul, arquitectura massivament paral·lela, elevat consum energètic i alt cost.</td>
+<td>Simulació científica, meteorologia, intel·ligència artificial, modelatge físic i criptografia.</td>
+</tr>
+<tr class="even">
+<td>Mainframe</td>
+<td>Ordinador de gran escala orientat al tractament massiu de dades i a la gestió simultània de múltiples usuaris.</td>
+<td>Alta fiabilitat, disponibilitat contínua, gran capacitat d’E/S i forta tolerància a fallades.</td>
+<td>Banca, administració pública, assegurances, telecomunicacions i grans corporacions.</td>
+</tr>
+<tr class="odd">
+<td>Servidor</td>
+<td>Equip dedicat a proporcionar serveis, recursos o dades a altres ordinadors dins d’una xarxa.</td>
+<td>Estabilitat, escalabilitat, capacitat d’emmagatzematge i processament sostingut.</td>
+<td>Allotjament web, bases de dades, virtualització, correu electrònic i arxius compartits.</td>
+</tr>
+<tr class="even">
+<td>Estació de treball</td>
+<td>Ordinador d’alt rendiment destinat a tasques tècniques o científiques que exigeixen gran capacitat de còmput i gràfics.</td>
+<td>Processadors potents, memòria abundant, GPU dedicada i components d’alta qualitat.</td>
+<td>Disseny assistit per ordinador, modelatge 3D, edició audiovisual, simulació i recerca.</td>
+</tr>
+<tr class="odd">
+<td>Ordinador de sobretaula</td>
+<td>Sistema informàtic fix, generalment modular i ampliable, pensat per a ús general.</td>
+<td>Bon equilibri entre rendiment, cost i capacitat d’ampliació.</td>
+<td>Ús domèstic, ofimàtica, programació, educació i videojocs.</td>
+</tr>
+<tr class="even">
+<td>Ordinador portàtil</td>
+<td>Equip compacte i integrat que combina pantalla, teclat, bateria i sistema de processament en un sol dispositiu.</td>
+<td>Alta portabilitat, autonomia energètica i menor capacitat d’ampliació que un sobretaula.</td>
+<td>Treball mòbil, docència, estudi i ús professional itinerant.</td>
+</tr>
+<tr class="odd">
+<td>Mini PC</td>
+<td>Ordinador de mida reduïda amb baix consum i prestacions variables segons la configuració.</td>
+<td>Format compacte, eficiència energètica i ocupació mínima d’espai.</td>
+<td>Entorns d’oficina, centres multimèdia, laboratoris i aplicacions embegudes.</td>
+</tr>
+<tr class="even">
+<td>Tauleta</td>
+<td>Dispositiu portàtil amb interfície tàctil, concebut per a la interacció directa amb l’usuari.</td>
+<td>Lleugeresa, mobilitat, simplicitat d’ús i dependència de pantalla tàctil.</td>
+<td>Lectura, anotació, docència, navegació web i consum multimèdia.</td>
+</tr>
+<tr class="odd">
+<td>Smartphone</td>
+<td>Dispositiu mòbil de propòsit general que integra funcions de telefonia, computació i connectivitat avançada.</td>
+<td>Gran integració de sensors, connectivitat permanent i elevada portabilitat.</td>
+<td>Comunicació, aplicacions mòbils, navegació, fotografia i productivitat bàsica.</td>
+</tr>
+<tr class="even">
+<td>Wearable</td>
+<td>Dispositiu electrònic vestible que s’incorpora al cos o a la vestimenta.</td>
+<td>Mida reduïda, sensors integrats i funcionament complementari a altres dispositius.</td>
+<td>Monitoratge d’activitat física, salut, notificacions i assistència contextual.</td>
+</tr>
+</tbody>
+</table>
+<p>La classificació de la taula anterior mostra que la noció d’ordinador abasta des de grans sistemes de càlcul científic fins a dispositius personals altament portàtils. En conseqüència, l’elecció d’un tipus o un altre depèn de variables com rendiment, cost, mobilitat, fiabilitat i àmbit d’aplicació.</p>
+</section>
+<section id="components-dun-ordinador" class="level3">
+<h3 class="anchored" data-anchor-id="components-dun-ordinador">Components d’un ordinador</h3>
+<p>La taula següent resumeix els components principals d’un ordinador modern incloent-hi exemples actuals de gamma comuna/alta.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Funció</th>
+<th>Tipus actuals / exemples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Processador (CPU)</td>
+<td>Executa instruccions i coordina el sistema.</td>
+<td>Intel Core i9, Intel Core Ultra, AMD Ryzen 9, Apple M-series.</td>
+</tr>
+<tr class="even">
+<td>Placa base</td>
+<td>Connecta i comunica tots els components.</td>
+<td>Chipsets amb suport per a DDR5, PCIe 4.0/5.0, M.2 NVMe, USB-C/USB4, Wi‑Fi 6E/7.</td>
+</tr>
+<tr class="odd">
+<td>Memòria RAM</td>
+<td>Manté dades i instruccions d’ús immediat.</td>
+<td>DDR5, i en alguns equips encara DDR4; en portàtils també LPDDR5/LPDDR5X.</td>
+</tr>
+<tr class="even">
+<td>Emmagatzematge</td>
+<td>Desa sistema, programes i arxius.</td>
+<td>SSD NVMe M.2, SSD SATA, HDD per a arxius massius.</td>
+</tr>
+<tr class="odd">
+<td>Targeta gràfica (GPU)</td>
+<td>Accelera gràfics i còmput paral·lel.</td>
+<td>NVIDIA GeForce RTX, AMD Radeon RX, i iGPU integrades en CPU modernes.</td>
+</tr>
+<tr class="even">
+<td>Font d’alimentació</td>
+<td>Subministra energia a l’equip.</td>
+<td>Fonts ATX de 80 Plus Bronze/Gold/Platinum, segons potència i eficiència.</td>
+</tr>
+<tr class="odd">
+<td>Refrigeració</td>
+<td>Dissipa calor i manté estabilitat.</td>
+<td>Dissipadors per aire, AIO líquida, ventiladors PWM d’alt flux.</td>
+</tr>
+<tr class="even">
+<td>Caixa o xassís</td>
+<td>Allotja i protegeix els components.</td>
+<td>ATX, microATX, Mini-ITX, torres compactes i mini-PC.</td>
+</tr>
+<tr class="odd">
+<td>Xarxa i connectivitat</td>
+<td>Permet accés a Internet i perifèrics.</td>
+<td>Ethernet Gigabit/2.5G/10G, Wi‑Fi 6/6E/7, Bluetooth, USB-C.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Processador (CPU)</strong>: les seves característiques clau són la freqüència de rellotge (GHz), el nombre de nuclis i la quantitat de caché.</p>
+<p><strong>Memòria d’Accés Aleatori (RAM, <em>Random Access Memory</em> en anglès)</strong>: emmagatzematge temporal i ràpid que conté el sistema operatiu, els programes en execució i les dades actives. En apagar l’ordinador, el seu contingut es perd.</p>
+<p><strong>Emmagatzematge</strong>: les unitats d’estat sòlid (SSD NVMe, <em>Solid State Drive</em> en anglès) són avui l’estàndard. Desen el sistema operatiu, els programes i els arxius de manera permanent. Són entre 10 i 100 vegades més ràpides que les unitats de disc dur (HDD, <em>Hard Disk Drive</em> en anglès) tradicionals.</p>
+<p><strong>Targeta gràfica (GPU, <em>Graphics Processing Unit</em> en anglès)</strong>: imprescindible per a l’entrenament de models d’aprenentatge profund.</p>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Consell: Quin ordinador comprar?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Consell: Quin ordinador comprar?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Per a aquest curs, qualsevol portàtil modern és més que suficient, ja que el treball computacionalment intensiu es realitza als servidors de GitHub Codespaces.</strong></p>
+<p>No obstant això, si voleu tenir un ordinador per treballar localment, la taula següent presenta tres configuracions segons el pressupost disponible:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 21%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nivell</th>
+<th>CPU</th>
+<th style="text-align: right;">RAM</th>
+<th>Emmagatzematge</th>
+<th>Gràfica</th>
+<th>Ús recomanat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Barat</td>
+<td>Intel Core i3 / Ryzen 3 o equivalent, 2 nuclis / 4 fils</td>
+<td style="text-align: right;">8 GB</td>
+<td>SSD SATA de 256 GB</td>
+<td>Integrada</td>
+<td>Programació bàsica en Python, exercicis, scripts petits, VS Code amb poques extensions.</td>
+</tr>
+<tr class="even">
+<td>Equilibrat</td>
+<td>Intel Core i5 / Ryzen 5 o equivalent, 4 a 6 nuclis</td>
+<td style="text-align: right;">16 GB</td>
+<td>SSD NVMe de 512 GB</td>
+<td>Integrada</td>
+<td>Estudi còmode, diversos projectes oberts, navegador + VS Code + terminal sense massa lentitud.</td>
+</tr>
+<tr class="odd">
+<td>Ideal</td>
+<td>Intel Core i7 / Core Ultra 7 / Ryzen 7 o equivalent, 8 nuclis o més</td>
+<td style="text-align: right;">16 a 32 GB</td>
+<td>SSD NVMe d’1 TB</td>
+<td>Integrada o dedicada lleugera</td>
+<td>Treball fluid amb projectes grans, Jupyter, anàlisi de dades, Docker lleuger i multitasca intensa.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sistema operatiu</strong>: Windows 10/11, macOS 12 o posterior, o qualsevol distribució Linux moderna. Els tres són completament compatibles amb les eines del curs.</p>
+</div>
+</div>
+<p>Per aprofundir en l’arquitectura d’ordinadors, consulteu el clàssic <em>Computer Organization and Design</em> <span class="citation" data-cites="pattersonhennessy2021">(<a href="#ref-pattersonhennessy2021" role="doc-biblioref">Patterson i Hennessy 2021</a>)</span>, disponible a la biblioteca de la UIB.</p>
+<hr>
+</section>
+</section>
+<section id="llenguatges-de-programació-i-python" class="level2">
+<h2 class="anchored" data-anchor-id="llenguatges-de-programació-i-python">1.2. Llenguatges de programació i Python</h2>
+<section id="llenguatges-dalt-nivell" class="level3">
+<h3 class="anchored" data-anchor-id="llenguatges-dalt-nivell">Llenguatges d’alt nivell</h3>
+<p>Els ordinadors només comprenen el <a href="https://ca.wikipedia.org/wiki/Llenguatge_de_m%C3%A0quina" target="_blank" rel="noopener noreferrer"><strong>llenguatge de màquina</strong></a>: seqüències de zeros i uns específiques per a cada arquitectura. Escriure directament en codi màquina és inviable per a projectes reals. Els <strong>llenguatges d’alt nivell</strong> resolen això: permeten expressar algorismes de manera llegible, propera al llenguatge matemàtic o natural, abstraient els detalls del maquinari.</p>
+<div id="imp-programa" class="callout callout-style-default callout-important callout-titled" title="Programa">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;2: Programa
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>programa</strong> és una descripció precisa i sense ambigüitats d’un procés computacional, escrita en un llenguatge formal. A diferència del llenguatge natural, no pot contenir instruccions vagues o contradictòries: l’ordinador executa exactament el que se li indica, ni més ni menys.</p>
+</div>
+</div>
+</section>
+<section id="compilació-vs.-interpretació" class="level3">
+<h3 class="anchored" data-anchor-id="compilació-vs.-interpretació">Compilació vs.&nbsp;interpretació</h3>
+<p>Perquè el codi font en alt nivell sigui executable, s’ha de transformar en instruccions que el processador comprengui (llenguatge de màquina). Hi ha dues estratègies principals:</p>
+<div id="imp-compilacion-interpretacion" class="callout callout-style-default callout-important callout-titled" title="Compilar vs. Interpretar">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;3: Compilar vs.&nbsp;Interpretar
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Compilació</strong>: el codi font es tradueix íntegrament a codi màquina <em>abans</em> d’executar-se. El resultat és un fitxer executable independent. Exemples: C, C++, Fortran, Rust.</li>
+<li><strong>Interpretació</strong>: el codi es llegeix i s’executa <em>línia a línia</em> en temps d’execució per un programa anomenat intèrpret. No es genera cap executable independent. Exemples: Python, R, Ruby.</li>
+<li><strong>Models híbrids</strong>: alguns llenguatges compilen a un <a href="https://ca.wikipedia.org/wiki/Bytecode" target="_blank" rel="noopener noreferrer"><em>bytecode</em></a> intermedi que després executa una màquina virtual. Exemples: Java (JVM), Python (CPython).</li>
+</ul>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Característica</th>
+<th style="text-align: left;">Compilat</th>
+<th style="text-align: left;">Interpretat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Velocitat d’execució</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Menor</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Portabilitat de l’executable</td>
+<td style="text-align: left;">Baixa (depèn del SO/arquitectura)</td>
+<td style="text-align: left;">Alta (l’intèrpret és portable)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cicle de desenvolupament</td>
+<td style="text-align: left;">Més lent (compilar → executar)</td>
+<td style="text-align: left;">Més ràpid (executar directament)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Detecció d’errors</td>
+<td style="text-align: left;">En temps de compilació</td>
+<td style="text-align: left;">En temps d’execució</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="el-llenguatge-python" class="level3">
+<h3 class="anchored" data-anchor-id="el-llenguatge-python">El llenguatge Python</h3>
+<p>Python va ser creat per Guido van Rossum i publicat el 1991. Avui és el llenguatge més utilitzat en ciència de dades, intel·ligència artificial i computació científica, i un dels més populars en educació.</p>
+<div id="imp-python" class="callout callout-style-default callout-important callout-titled" title="Python">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;4: Python
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Python és un llenguatge d’alt nivell, <strong>interpretat</strong>, de tipatge dinàmic i amb una sintaxi dissenyada per afavorir la llegibilitat. La seva filosofia es resumeix en el <em>Zen de Python</em> <span class="citation" data-cites="pythonpep20">(<a href="#ref-pythonpep20" role="doc-biblioref">Peters 2004</a>)</span>: <em>explícit és millor que implícit; simple és millor que complex; la llegibilitat compta</em>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> this  <span class="co"># mostra el Zen de Python a l'intèrpret</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Les seves característiques més rellevants per a aquest curs són la sintaxi neta (no fa servir claus ni punt i coma), el tipatge dinàmic (les variables no declaren el seu tipus), l’ecosistema científic madur (NumPy, Matplotlib, SymPy, pandas) i la integració nativa amb eines d’IA.</p>
+<section id="lintèrpret-interactiu-python-repl" class="level4">
+<h4 class="anchored" data-anchor-id="lintèrpret-interactiu-python-repl">L’intèrpret interactiu: Python REPL</h4>
+<p>Una de les característiques més útils de Python és el seu <strong>intèrpret interactiu</strong>, conegut com a <strong>REPL</strong> (<em>Read-Eval-Print Loop</em>): llegeix una expressió, l’avalua, n’imprimeix el resultat i espera la següent. S’hi accedeix escrivint <code>python</code> al terminal.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">2</span> <span class="op">**</span> <span class="dv">10</span>          <span class="co"># potència de 2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1024</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> math</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> math.sqrt(<span class="dv">2</span>)     <span class="co"># arrel quadrada de 2</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fl">1.4142135623730951</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">sum</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>))   <span class="co"># suma de l'1 al 100</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5050</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Consell">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Consell
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El REPL és ideal per experimentar: provar una expressió, verificar el comportament d’una funció o explorar una biblioteca sense necessitat de crear un fitxer. Els matemàtics el troben especialment natural —és la calculadora científica més potent que existeix— i és l’eina perfecta per donar els primers passos amb Python.</p>
+<p>El REPL no desa el codi entre sessions. En tancar el terminal, tot el que heu escrit es perd. Per conservar la feina, escriviu-la en un fitxer <code>.py</code> o en un quadern Jupyter o Marimo. En aquest curs fareu servir principalment fitxers <code>.py</code> des de VS Code i Codespaces.</p>
+</div>
+</div>
+<p>Vegeu la documentació oficial de Python a <span class="citation" data-cites="python3docs">(<a href="#ref-python3docs" role="doc-biblioref">Python Software Foundation 2025</a>)</span>. És la referència més fiable i s’actualitza amb cada versió del llenguatge.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="ides-moderns" class="level2">
+<h2 class="anchored" data-anchor-id="ides-moderns">1.3. IDEs moderns</h2>
+<p>Un <strong>IDE</strong> (<em>Integrated Development Environment</em> en anglès o Entorn de Desenvolupament Integrat en català) és una aplicació que integra en una sola interfície les eines necessàries per escriure, executar i depurar programes.</p>
+<section id="característiques-comunes" class="level3">
+<h3 class="anchored" data-anchor-id="característiques-comunes">Característiques comunes</h3>
+<p>Els IDEs moderns comparteixen un conjunt de funcionalitats essencials:</p>
+<ul>
+<li><strong>Ressaltat de sintaxi</strong>: coloreja paraules clau, cadenes i comentaris per facilitar la lectura.</li>
+<li><strong>Autocompletat</strong>: suggereix noms de variables, funcions i mètodes mentre s’escriu.</li>
+<li><strong>Depurador integrat</strong> (<em>debugger</em>): permet executar el programa pas a pas, inspeccionar el valor de les variables i establir punts de ruptura (<em>breakpoints</em>).</li>
+<li><strong>Terminal integrat</strong>: accés a la línia d’ordres sense sortir de l’entorn.</li>
+<li><strong>Control de versions</strong>: integració amb Git per registrar canvis en el codi.</li>
+<li><strong>Sistema d’extensions</strong>: permet afegir suport per a nous llenguatges, eines i serveis.</li>
+</ul>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Consell">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Consell
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El depurador integrat és una de les eines més infrautilitzades pels programadors principiants. Aprendre a fer-lo servir des del principi —en lloc de dependre exclusivament de <code>print</code>— accelera significativament la detecció i correcció d’errors.</p>
+</div>
+</div>
+</section>
+<section id="locals-vs.-el-núvol" class="level3">
+<h3 class="anchored" data-anchor-id="locals-vs.-el-núvol">Locals vs.&nbsp;el núvol</h3>
+<p>Els entorns de desenvolupament poden executar-se <strong>localment</strong> a l’ordinador del programador o <strong>al núvol</strong> en servidors remots accessibles des del navegador.</p>
+<section id="visual-studio-code-local" class="level4">
+<h4 class="anchored" data-anchor-id="visual-studio-code-local">Visual Studio Code (local)</h4>
+<p><strong>Visual Studio Code</strong> (VS Code) és un editor de codi lleuger, extensible i gratuït desenvolupat per Microsoft, el més utilitzat en l’actualitat <span class="citation" data-cites="vscode_docs">(<a href="#ref-vscode_docs" role="doc-biblioref">Microsoft 2025</a>)</span>. Quan s’instal·la localment, Python i totes les extensions resideixen a l’ordinador del desenvolupador.</p>
+<p>La interfície s’organitza en:</p>
+<ul>
+<li><strong>Barra lateral esquerra</strong>: explorador d’arxius, cerca, Git i extensions.</li>
+<li><strong>Editor central</strong>: àrea d’escriptura de codi amb múltiples pestanyes.</li>
+<li><strong>Terminal integrat</strong>: consola per executar programes i ordres del sistema.</li>
+</ul>
+<div id="fig-vscode" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vscode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/vscode.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vscode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Visual Studio Code
+</figcaption>
+</figure>
+</div>
+<p>La documentació oficial de VS Code es pot consultar a <span class="citation" data-cites="vscode_docs">(<a href="#ref-vscode_docs" role="doc-biblioref">Microsoft 2025</a>)</span>.</p>
+</section>
+<section id="visual-studio-code-a-github-codespaces" class="level4">
+<h4 class="anchored" data-anchor-id="visual-studio-code-a-github-codespaces">Visual Studio Code a GitHub Codespaces</h4>
+<p><strong>GitHub Codespaces</strong> proporciona VS Code completament configurat i executant-se en servidors de Microsoft al núvol, accessible des de qualsevol navegador sense instal·lar res a l’ordinador local <span class="citation" data-cites="codespaces_docs">(<a href="#ref-codespaces_docs" role="doc-biblioref">GitHub 2025a</a>)</span>.</p>
+<div id="imp-codespaces" class="callout callout-style-default callout-important callout-titled" title="Codespace">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;5: Codespace
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un Codespace és un contenidor de desenvolupament (<em>dev container</em>) allotjat al núvol que inclou el sistema operatiu, l’intèrpret de Python, les biblioteques i les extensions preconfigurades. El programador només necessita un navegador i un <strong>compte de GitHub</strong>.</p>
+</div>
+</div>
+<p><strong>Avantatges per a aquest curs:</strong></p>
+<ul>
+<li>Entorn idèntic per a tots els estudiants, eliminant problemes de configuració.</li>
+<li>El codi es desa al núvol mitjançant Git.</li>
+<li>Accessible des de qualsevol dispositiu i sistema operatiu.</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled" title="Atenció">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Alerta</span>Atenció
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A l’<a href="../../ca/exercicis/tema1.html">Exercici 1</a> posareu en pràctica l’arrencada del vostre primer Codespace.</p>
+<p>Tanqueu el Codespace en acabar la sessió per no consumir les hores gratuïtes del pla educatiu: <code>Ctrl+Shift+P</code> → <em>Codespaces: Stop Current Codespace</em>.</p>
+</div>
+</div>
+<p>La documentació de GitHub Codespaces es pot consultar a <span class="citation" data-cites="codespaces_docs">(<a href="#ref-codespaces_docs" role="doc-biblioref">GitHub 2025a</a>)</span>.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="programació-assistida-per-ia" class="level2">
+<h2 class="anchored" data-anchor-id="programació-assistida-per-ia">1.4. Programació assistida per IA</h2>
+<p>La incorporació de la intel·ligència artificial al flux de treball del programador és un dels canvis més significatius dels últims anys. Comprendre aquestes eines —i els seus límits— és avui part de la formació de qualsevol programador.</p>
+<section id="models-de-llenguatge-grans-llms" class="level3">
+<h3 class="anchored" data-anchor-id="models-de-llenguatge-grans-llms">Models de Llenguatge Grans (LLMs)</h3>
+<div id="imp-llm" class="callout callout-style-default callout-important callout-titled" title="LLM">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;6: LLM
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>LLM</strong> (<em>Large Language Model</em>, Model de Llenguatge Gran) és un sistema d’intel·ligència artificial entrenat amb enormes volums de text —incloent-hi codi font, documentació i fòrums tècnics— per predir la continuació més probable d’una seqüència de paraules o tokens. La seva capacitat per generar text coherent i contextalment rellevant sorgeix de l’aprenentatge estadístic sobre milers de milions de paràmetres.</p>
+</div>
+</div>
+<p>Els LLMs aplicats a codi no “comprenen” la lògica del programa en el sentit matemàtic: generen codi <em>plausible</em> basant-se en patrons apresos. Això explica tant les seves impressionants capacitats com les seves fallades inesperades.</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Aprofundiment">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Aprofundiment
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>L’arquitectura que subjau als LLMs moderns és el <strong>Transformer</strong>, introduït el 2017 a l’article <em>Attention Is All You Need</em> <span class="citation" data-cites="vaswani2017">(<a href="#ref-vaswani2017" role="doc-biblioref">Vaswani et al. 2017</a>)</span>. El mecanisme clau, l’<em>atenció</em>, permet al model relacionar qualsevol parell de paraules en una seqüència independentment de la seva distància.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="assistents-dia-de-codi" class="level3">
+<h3 class="anchored" data-anchor-id="assistents-dia-de-codi">Assistents d’IA de codi</h3>
+<p>Un <strong>assistent de codi</strong> (<em>coding assistant</em> o <em>copilot</em>) és una eina d’IA integrada en l’entorn de desenvolupament que ajuda el programador durant l’escriptura del codi. A diferència d’un cercador o un chatbot genèric, l’assistent de codi té accés al fitxer que s’està editant, al context del projecte i a l’historial recent de canvis, la qual cosa li permet oferir suggeriments precisos i rellevants.</p>
+<div id="imp-coding-assistant" class="callout callout-style-default callout-important callout-titled" title="Assistent de codi">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;7: Assistent de codi
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>assistent de codi</strong> combina un LLM especialitzat en programació amb integració directa en l’IDE. Actua en dues modalitats principals:</p>
+<ul>
+<li><strong>Autocompletat en línia</strong>: suggereix la continuació del codi mentre el programador escriu, sense interrompre el flux de treball.</li>
+<li><strong>Xat integrat</strong>: respon preguntes sobre el codi, explica errors, refactoritza fragments i genera implementacions a partir d’una descripció en llenguatge natural.</li>
+</ul>
+</div>
+</div>
+<section id="github-copilot" class="level4">
+<h4 class="anchored" data-anchor-id="github-copilot">GitHub Copilot</h4>
+<p>GitHub Copilot és un assistent de codi basat en LLM desenvolupat per GitHub i OpenAI, integrat directament a VS Code i Codespaces <span class="citation" data-cites="copilot_docs">(<a href="#ref-copilot_docs" role="doc-biblioref">GitHub 2025b</a>)</span>. Suggereix completacions de codi en temps real, genera funcions a partir de comentaris i respon preguntes sobre el codi en un xat integrat.</p>
+<p><strong>Què pot fer Copilot?</strong></p>
+<ul>
+<li>Completar codi a partir del context (nom de funció, comentari, docstring).</li>
+<li>Generar una primera implementació a partir d’una descripció.</li>
+<li>Explicar què fa un fragment de codi.</li>
+<li>Detectar errors i suggerir correccions.</li>
+<li>Generar casos de prova.</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled" title="Atenció">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Alerta</span>Atenció
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Copilot genera codi <em>plausible</em>, no codi <em>verificat</em>. Pot produir solucions incorrectes, ineficients o amb errors subtils que passen desapercebuts. En aquest curs el cicle de treball és sempre <strong>especificar → generar → verificar</strong>: primer es defineix amb precisió què ha de fer el codi, després es genera (amb o sense IA), i finalment es comprova sistemàticament que fa el que ha de fer.</p>
+</div>
+</div>
+<p>La documentació oficial de GitHub Copilot es pot consultar a <span class="citation" data-cites="copilot_docs">(<a href="#ref-copilot_docs" role="doc-biblioref">GitHub 2025b</a>)</span>.</p>
+</section>
+</section>
+<section id="vibe-coding" class="level3">
+<h3 class="anchored" data-anchor-id="vibe-coding">Vibe Coding</h3>
+<p>El terme <strong>vibe coding</strong> va ser encunyat per Andrej Karpathy el febrer de 2025 per descriure una forma de programar en la qual el desenvolupador delega gairebé per complet l’escriptura del codi a l’assistent d’IA, interactuant amb ell principalment en llenguatge natural i integrant el codi generat sense revisar-lo en profunditat <span class="citation" data-cites="karpathy2025">(<a href="#ref-karpathy2025" role="doc-biblioref">Karpathy 2025</a>)</span>.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Atenció">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Alerta</span>Atenció
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El vibe coding pot ser productiu per crear prototips ràpids o explorar idees. No obstant això, delegar l’escriptura del codi sense comprendre’l condueix inevitablement a sistemes fràgils, difícils de corregir i de mantenir. <strong>En aquest curs el vibe coding no és una pràctica acceptable</strong>: l’estudiant ha de ser capaç d’explicar, justificar i modificar qualsevol línia que lliuri, independentment de com s’hagi generat.</p>
+</div>
+</div>
+<p>La distinció entre ús productiu i vibe coding és conceptualment la mateixa que existeix entre usar una calculadora comprenent les matemàtiques i usar-la sense saber quina operació realitzar. La IA amplifica la capacitat del programador competent; no reemplaça la competència que encara no existeix.</p>
+</section>
+<section id="agents-de-desenvolupament-autònoms" class="level3">
+<h3 class="anchored" data-anchor-id="agents-de-desenvolupament-autònoms">Agents de desenvolupament autònoms</h3>
+<p>Els <strong>agents de desenvolupament autònoms</strong> (<em>coding agents</em>) són sistemes d’IA capaços de descompondre tasques de programació complexes en subtasques, executar codi, llegir la sortida, corregir errors i repetir el cicle de manera autònoma, amb mínima intervenció humana.</p>
+<div id="imp-coding-agents" class="callout callout-style-default callout-important callout-titled" title="Coding Agent">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;8: Coding Agent
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>coding agent</strong> combina un LLM amb la capacitat d’usar eines: executar ordres en un terminal, llegir i escriure fitxers, cercar a internet i cridar APIs. L’agent planifica, actua i corregeix la seva pròpia feina en un bucle autònom.</p>
+</div>
+</div>
+<p>Exemples representatius el 2025–2026:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Agent</th>
+<th style="text-align: left;">Desenvolupador</th>
+<th style="text-align: left;">Descripció</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://www.cognition.ai/" target="_blank" rel="noopener noreferrer">Devin</a></td>
+<td style="text-align: left;">Cognition AI</td>
+<td style="text-align: left;">Primer agent d’enginyeria de programari autònom; pot planificar, implementar i depurar projectes complets.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://githubnext.com/projects/copilot-workspace" target="_blank" rel="noopener noreferrer">GitHub Copilot Workspace</a></td>
+<td style="text-align: left;">GitHub / Microsoft</td>
+<td style="text-align: left;">Agent integrat a GitHub que transforma issues en implementacions completes dins del repositori.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://www.cursor.com/" target="_blank" rel="noopener noreferrer">Cursor Agent</a></td>
+<td style="text-align: left;">Anysphere</td>
+<td style="text-align: left;">IDE basat en VS Code amb agent que pot editar múltiples fitxers, executar codi i corregir errors en bucle.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://codeium.com/windsurf" target="_blank" rel="noopener noreferrer">Windsurf</a></td>
+<td style="text-align: left;">Codeium</td>
+<td style="text-align: left;">IDE amb agent (<em>Cascade</em>) que manté consciència del context complet del projecte i actua de manera proactiva.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://www.anthropic.com/claude-code" target="_blank" rel="noopener noreferrer">Claude Code</a></td>
+<td style="text-align: left;">Anthropic</td>
+<td style="text-align: left;">Agent de línia d’ordres que entén bases de codi completes i executa tasques d’enginyeria end-to-end.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://openai.com/codex" target="_blank" rel="noopener noreferrer">Codex CLI</a></td>
+<td style="text-align: left;">OpenAI</td>
+<td style="text-align: left;">Agent de línia d’ordres que executa tasques de programació en un entorn segur (<em>sandbox</em>), amb accés a terminal, fitxers i internet.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://tongyi.aliyun.com/lingma" target="_blank" rel="noopener noreferrer">Tongyi Lingma</a></td>
+<td style="text-align: left;">Alibaba Cloud</td>
+<td style="text-align: left;">Assistent de codi basat en els models Qwen; integrat a VS Code i JetBrains, amb capacitats de xat i completat en línia.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://comate.baidu.com/" target="_blank" rel="noopener noreferrer">Baidu Comate</a></td>
+<td style="text-align: left;">Baidu</td>
+<td style="text-align: left;">Assistent de codi basat en ERNIE; extensió per a VS Code i JetBrains amb generació, explicació i revisió de codi.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://www.marscode.com/" target="_blank" rel="noopener noreferrer">MarsCode</a></td>
+<td style="text-align: left;">ByteDance</td>
+<td style="text-align: left;">IDE al núvol (basat en VS Code) amb agent integrat basat en els models Doubao; orientat al desenvolupament col·laboratiu.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://codegeex.cn/" target="_blank" rel="noopener noreferrer">CodeGeeX</a></td>
+<td style="text-align: left;">Zhipu AI / Tsinghua</td>
+<td style="text-align: left;">Model de codi obert desenvolupat a la Universitat de Tsinghua; extensió per a VS Code amb completat i xat multilingüe.</td>
+</tr>
+</tbody>
+</table>
+<p>Aquests sistemes representen l’estat de l’art actual, però presenten limitacions importants: poden acumular errors silenciosament, són difícils d’auditar i requereixen que el programador humà mantingui el criteri sobre què construir i com verificar-ho. L’ordre d’aparició dels agents a la taula no indica qualitat ni rendiment: cada un té fortaleses i debilitats diferents.</p>
+</section>
+</section>
+<section id="bibliografia" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="bibliografia">Bibliografia</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-codespaces_docs" class="csl-entry" role="listitem">
+GitHub. 2025a. <span>«GitHub Codespaces Documentation»</span>. <a href="https://docs.github.com/en/codespaces">https://docs.github.com/en/codespaces</a>.
+</div>
+<div id="ref-copilot_docs" class="csl-entry" role="listitem">
+———. 2025b. <span>«GitHub Copilot Documentation»</span>. <a href="https://docs.github.com/en/copilot">https://docs.github.com/en/copilot</a>.
+</div>
+<div id="ref-karpathy2025" class="csl-entry" role="listitem">
+Karpathy, Andrej. 2025. <span>«Vibe coding»</span>. Publicació a <span>X</span> (anteriorment Twitter). <a href="https://x.com/karpathy/status/1886192184808149343">https://x.com/karpathy/status/1886192184808149343</a>.
+</div>
+<div id="ref-vscode_docs" class="csl-entry" role="listitem">
+Microsoft. 2025. <span>«Visual Studio Code Documentation»</span>. <a href="https://code.visualstudio.com/docs">https://code.visualstudio.com/docs</a>.
+</div>
+<div id="ref-vonneumann1945" class="csl-entry" role="listitem">
+Neumann, John von. 1945. <span>«First Draft of a Report on the <span>EDVAC</span>»</span>. University of Pennsylvania.
+</div>
+<div id="ref-pattersonhennessy2021" class="csl-entry" role="listitem">
+Patterson, David A., i John L. Hennessy. 2021. <em>Computer Organization and Design: <span>RISC-V</span> Edition</em>. 2nd ed. Morgan Kaufmann / Elsevier. <a href="https://www.elsevier.com/books/computer-organization-and-design-risc-v-edition/patterson/978-0-12-820331-6">https://www.elsevier.com/books/computer-organization-and-design-risc-v-edition/patterson/978-0-12-820331-6</a>.
+</div>
+<div id="ref-pythonpep20" class="csl-entry" role="listitem">
+Peters, Tim. 2004. <span>«<span>PEP 20 – The Zen of Python</span>»</span>. Python Enhancement Proposal. <a href="https://peps.python.org/pep-0020/">https://peps.python.org/pep-0020/</a>.
+</div>
+<div id="ref-python3docs" class="csl-entry" role="listitem">
+Python Software Foundation. 2025. <span>«Python 3 Documentation»</span>. <a href="https://docs.python.org/3/">https://docs.python.org/3/</a>.
+</div>
+<div id="ref-vaswani2017" class="csl-entry" role="listitem">
+Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, i Illia Polosukhin. 2017. <span>«Attention Is All You Need»</span>. En <em>Advances in Neural Information Processing Systems</em>. Vol. 30. <a href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>.
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

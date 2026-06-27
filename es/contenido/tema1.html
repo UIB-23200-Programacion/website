@@ -20,7 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -76,7 +131,10 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Tema 1: Fundamentos, Entornos Modernos y Asistentes IA – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/vonNeumannES.png">
 <meta property="og:site_name" content="Programación (23200)">
+<meta property="og:image:height" content="768">
+<meta property="og:image:width" content="1376">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -522,8 +580,38 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#ordenadores-modernos" id="toc-ordenadores-modernos" class="nav-link active" data-scroll-target="#ordenadores-modernos">1.1. Ordenadores modernos</a>
+  <ul class="collapse">
+  <li><a href="#arquitecturas-de-ordenadores" id="toc-arquitecturas-de-ordenadores" class="nav-link" data-scroll-target="#arquitecturas-de-ordenadores">Arquitecturas de ordenadores</a></li>
+  <li><a href="#tipos-de-ordenadores" id="toc-tipos-de-ordenadores" class="nav-link" data-scroll-target="#tipos-de-ordenadores">Tipos de ordenadores</a></li>
+  <li><a href="#componentes-de-un-ordenador" id="toc-componentes-de-un-ordenador" class="nav-link" data-scroll-target="#componentes-de-un-ordenador">Componentes de un ordenador</a></li>
+  </ul></li>
+  <li><a href="#lenguajes-de-programación-y-python" id="toc-lenguajes-de-programación-y-python" class="nav-link" data-scroll-target="#lenguajes-de-programación-y-python">1.2. Lenguajes de programación y Python</a>
+  <ul class="collapse">
+  <li><a href="#lenguajes-de-alto-nivel" id="toc-lenguajes-de-alto-nivel" class="nav-link" data-scroll-target="#lenguajes-de-alto-nivel">Lenguajes de alto nivel</a></li>
+  <li><a href="#compilación-vs.-interpretación" id="toc-compilación-vs.-interpretación" class="nav-link" data-scroll-target="#compilación-vs.-interpretación">Compilación vs.&nbsp;interpretación</a></li>
+  <li><a href="#el-lenguaje-python" id="toc-el-lenguaje-python" class="nav-link" data-scroll-target="#el-lenguaje-python">El lenguaje Python</a></li>
+  </ul></li>
+  <li><a href="#ides-modernos" id="toc-ides-modernos" class="nav-link" data-scroll-target="#ides-modernos">1.3. IDEs modernos</a>
+  <ul class="collapse">
+  <li><a href="#características-comunes" id="toc-características-comunes" class="nav-link" data-scroll-target="#características-comunes">Características comunes</a></li>
+  <li><a href="#locales-vs.-la-nube" id="toc-locales-vs.-la-nube" class="nav-link" data-scroll-target="#locales-vs.-la-nube">Locales vs.&nbsp;la nube</a></li>
+  </ul></li>
+  <li><a href="#programación-asistida-por-ia" id="toc-programación-asistida-por-ia" class="nav-link" data-scroll-target="#programación-asistida-por-ia">1.4. Programación asistida por IA</a>
+  <ul class="collapse">
+  <li><a href="#modelos-de-lenguaje-grandes-llms" id="toc-modelos-de-lenguaje-grandes-llms" class="nav-link" data-scroll-target="#modelos-de-lenguaje-grandes-llms">Modelos de Lenguaje Grandes (LLMs)</a></li>
+  <li><a href="#asistentes-ia-de-código" id="toc-asistentes-ia-de-código" class="nav-link" data-scroll-target="#asistentes-ia-de-código">Asistentes IA de código</a></li>
+  <li><a href="#vibe-coding" id="toc-vibe-coding" class="nav-link" data-scroll-target="#vibe-coding">Vibe Coding</a></li>
+  <li><a href="#agentes-de-desarrollo-autónomos" id="toc-agentes-de-desarrollo-autónomos" class="nav-link" data-scroll-target="#agentes-de-desarrollo-autónomos">Agentes de desarrollo autónomos</a></li>
+  </ul></li>
+  <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía">Bibliografía</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -548,9 +636,711 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contenido pendiente.)</em></p>
+<section id="ordenadores-modernos" class="level2">
+<h2 class="anchored" data-anchor-id="ordenadores-modernos">1.1. Ordenadores modernos</h2>
+<p>Un <strong>ordenador</strong> puede definirse como un dispositivo capaz de ejecutar, de manera automática, rápida y repetible, secuencias de instrucciones aplicadas sobre datos. El estudio de su organización interna resulta fundamental para comprender las razones por las cuales los programas adoptan determinadas estructuras y por qué ciertas operaciones implican un mayor coste computacional que otras.</p>
+<p>Los ordenadores modernos son sistemas heterogéneos optimizados para rendimiento, eficiencia energética y conectividad, con arquitecturas multinúcleo (CPU), aceleradores de propósito específico (GPUs, NPUs), memoria RAM rápida, almacenamiento NVMe, y fuertes capas de seguridad y virtualización.</p>
+<p>Un ordenador ejecuta programas leyendo una secuencia de instrucciones almacenadas en memoria y procesándolas de forma ordenada por la Unidad Central de Procesamiento (CPU, Central Processing Unit en inglés), que repite continuamente un ciclo básico:</p>
+<ul>
+<li>primero busca la instrucción,</li>
+<li>después la interpreta para saber qué operación debe realizar,</li>
+<li>luego la ejecuta sobre datos que pueden estar en registros, caché o memoria RAM, y</li>
+<li>finalmente guarda el resultado si es necesario.</li>
+</ul>
+<p>Para hacerlo con rapidez, el procesador utiliza componentes internos como la unidad de control, que coordina las señales, la Unidad Aritmético-Lógica (ALU, Arithmetic Logic Unit en inglés), que realiza cálculos y operaciones lógicas, y una jerarquía de memoria que intenta acercar al máximo los datos que se usan con más frecuencia. En la práctica, mientras un programa se ejecuta, la CPU va avanzando instrucción por instrucción, tomando decisiones, moviendo datos y coordinando la interacción con otros dispositivos, hasta completar la tarea que el programa define.</p>
+<p>La descripción anterior del funcionamiento del ordenador se basa principalmente en la arquitectura de von Neumann. En ese modelo, la CPU ejecuta instrucciones almacenadas en memoria siguiendo un ciclo secuencial de búsqueda, decodificación y ejecución, con una misma memoria para datos e instrucciones. En los ordenadores modernos, esa idea sigue siendo la base conceptual, aunque suele aparecer combinada con rasgos de Harvard modificada, como cachés separadas para instrucciones y datos, para mejorar el rendimiento.</p>
+<section id="arquitecturas-de-ordenadores" class="level3">
+<h3 class="anchored" data-anchor-id="arquitecturas-de-ordenadores">Arquitecturas de ordenadores</h3>
+<section id="arquitectura-de-von-neumann" class="level4">
+<h4 class="anchored" data-anchor-id="arquitectura-de-von-neumann">Arquitectura de Von Neumann</h4>
+<p>La mayoría de los ordenadores modernos se basan en el modelo propuesto en 1945 por John von Neumann, que establece que <strong>instrucciones y datos comparten el mismo espacio de memoria</strong> <span class="citation" data-cites="vonneumann1945">(<a href="#ref-vonneumann1945" role="doc-biblioref">Neumann 1945</a>)</span>.</p>
+<div id="fig-von-neumann" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-von-neumann-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/vonNeumannES.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-von-neumann-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Arquitectura de Von Neumann
+</figcaption>
+</figure>
+</div>
+<div id="imp-von-neumann" class="callout callout-style-default callout-important callout-titled" title="Arquitectura de Von Neumann">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;1: Arquitectura de Von Neumann
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La arquitectura de Von Neumann organiza el ordenador en cuatro componentes principales interconectados por un <strong>bus</strong>:</p>
+<ul>
+<li><strong>Unidad Central de Proceso (CPU)</strong>: ejecuta instrucciones.</li>
+<li><strong>Memoria principal (RAM)</strong>: almacena instrucciones y datos en uso.</li>
+<li><strong>Unidades de entrada/salida</strong>: teclado, pantalla, disco, red.</li>
+<li><strong>Bus del sistema</strong>: canal de comunicación entre los componentes.</li>
+</ul>
+<p>El ciclo fundamental es: <em>capturar instrucción → decodificarla → ejecutarla</em> (ciclo Fetch-Decode-Execute).</p>
+</div>
+</div>
+<p>En la arquitectura de von Neumann, instrucciones y datos comparten una misma memoria y, por tanto, también suelen compartir el mismo camino de acceso. El funcionamiento se basa en el ciclo de instrucción: la CPU toma una instrucción de memoria, la interpreta, la ejecuta y después pasa a la siguiente. Este modelo es conceptualmente sencillo y sigue siendo la base de muchos sistemas actuales, aunque presenta el llamado <strong>cuello de botella de von Neumann</strong>, ya que el acceso secuencial a una memoria compartida limita el rendimiento cuando la CPU necesita instrucciones y datos al mismo tiempo.</p>
+</section>
+<section id="arquitectura-harvard-modificada" class="level4">
+<h4 class="anchored" data-anchor-id="arquitectura-harvard-modificada">Arquitectura Harvard modificada</h4>
+<p>La <strong>arquitectura Harvard modificada</strong> es una variante de la arquitectura Harvard que mantiene separadas las memorias o buses de instrucciones y datos, pero permite que el contenido de la memoria de instrucciones pueda leerse también como datos. Esto combina la velocidad del acceso paralelo con una flexibilidad mayor que la Harvard pura, y por eso aparece en muchos procesadores modernos, especialmente en microcontroladores y DSP (Digital Signal Processor).</p>
+<p>En los ordenadores actuales, el modelo teórico se complementa con una jerarquía de memoria: registros, caché L1/L2/L3, RAM y almacenamiento secundario. La CPU intenta trabajar primero con la información más cercana y rápida, porque acceder a la RAM o al SSD es mucho más costoso en tiempo. Por eso, aunque el ordenador siga apoyándose en la lógica de von Neumann o Harvard modificada, en la práctica el rendimiento depende de la organización del subsistema de memoria y de la capacidad del procesador para explotar paralelismo interno.</p>
+</section>
+</section>
+<section id="tipos-de-ordenadores" class="level3">
+<h3 class="anchored" data-anchor-id="tipos-de-ordenadores">Tipos de ordenadores</h3>
+<p>Desde una perspectiva clasificatoria, los ordenadores pueden estudiarse según su capacidad de procesamiento, su finalidad o su grado de portabilidad. Esta tipología resulta útil para comprender tanto la evolución histórica de la informática como la especialización actual de los sistemas computacionales.</p>
+<p>En el ámbito universitario, conviene distinguir entre sistemas de propósito general, capaces de ejecutar múltiples aplicaciones, y sistemas de propósito específico, diseñados para una función concreta. Esta distinción permite interpretar mejor la diversidad de dispositivos informáticos contemporáneos y su inserción en contextos académicos, empresariales e industriales.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tipo de ordenador</th>
+<th>Definición</th>
+<th>Características principales</th>
+<th>Usos habituales</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Supercomputadora</td>
+<td>Sistema informático de altísima capacidad de procesamiento, diseñado para ejecutar operaciones complejas en paralelo.</td>
+<td>Gran potencia de cálculo, arquitectura masivamente paralela, elevado consumo energético y alto coste.</td>
+<td>Simulación científica, meteorología, inteligencia artificial, modelado físico y criptografía.</td>
+</tr>
+<tr class="even">
+<td>Mainframe</td>
+<td>Ordenador de gran escala orientado al tratamiento masivo de datos y a la gestión simultánea de múltiples usuarios.</td>
+<td>Alta fiabilidad, disponibilidad continua, gran capacidad de E/S y fuerte tolerancia a fallos.</td>
+<td>Banca, administración pública, seguros, telecomunicaciones y grandes corporaciones.</td>
+</tr>
+<tr class="odd">
+<td>Servidor</td>
+<td>Equipo dedicado a proporcionar servicios, recursos o datos a otros ordenadores dentro de una red.</td>
+<td>Estabilidad, escalabilidad, capacidad de almacenamiento y procesamiento sostenido.</td>
+<td>Alojamiento web, bases de datos, virtualización, correo electrónico y archivos compartidos.</td>
+</tr>
+<tr class="even">
+<td>Estación de trabajo</td>
+<td>Ordenador de alto rendimiento destinado a tareas técnicas o científicas que exigen gran capacidad de cómputo y gráficos.</td>
+<td>Procesadores potentes, memoria abundante, GPU dedicada y componentes de alta calidad.</td>
+<td>Diseño asistido por computadora, modelado 3D, edición audiovisual, simulación e investigación.</td>
+</tr>
+<tr class="odd">
+<td>Ordenador de sobremesa</td>
+<td>Sistema informático fijo, generalmente modular y ampliable, pensado para uso general.</td>
+<td>Buen equilibrio entre rendimiento, coste y capacidad de ampliación.</td>
+<td>Uso doméstico, ofimática, programación, educación y videojuegos.</td>
+</tr>
+<tr class="even">
+<td>Ordenador portátil</td>
+<td>Equipo compacto e integrado que combina pantalla, teclado, batería y sistema de procesamiento en un solo dispositivo.</td>
+<td>Alta portabilidad, autonomía energética y menor capacidad de ampliación que un sobremesa.</td>
+<td>Trabajo móvil, docencia, estudio y uso profesional itinerante.</td>
+</tr>
+<tr class="odd">
+<td>Mini PC</td>
+<td>Ordenador de tamaño reducido con bajo consumo y prestaciones variables según la configuración.</td>
+<td>Formato compacto, eficiencia energética y ocupación mínima de espacio.</td>
+<td>Entornos de oficina, centros multimedia, laboratorios y aplicaciones embebidas.</td>
+</tr>
+<tr class="even">
+<td>Tableta</td>
+<td>Dispositivo portátil con interfaz táctil, concebido para la interacción directa con el usuario.</td>
+<td>Ligereza, movilidad, simplicidad de uso y dependencia de pantalla táctil.</td>
+<td>Lectura, anotación, docencia, navegación web y consumo multimedia.</td>
+</tr>
+<tr class="odd">
+<td>Smartphone</td>
+<td>Dispositivo móvil de propósito general que integra funciones de telefonía, computación y conectividad avanzada.</td>
+<td>Gran integración de sensores, conectividad permanente y elevada portabilidad.</td>
+<td>Comunicación, aplicaciones móviles, navegación, fotografía y productividad básica.</td>
+</tr>
+<tr class="even">
+<td>Wearable</td>
+<td>Dispositivo electrónico vestible que se incorpora al cuerpo o a la vestimenta.</td>
+<td>Tamaño reducido, sensores integrados y funcionamiento complementario a otros dispositivos.</td>
+<td>Monitorización de actividad física, salud, notificaciones y asistencia contextual.</td>
+</tr>
+</tbody>
+</table>
+<p>La clasificación en la tabla anterior muestra que la noción de ordenador abarca desde grandes sistemas de cálculo científico hasta dispositivos personales altamente portátiles. En consecuencia, la elección de un tipo u otro depende de variables como rendimiento, coste, movilidad, fiabilidad y ámbito de aplicación.</p>
+</section>
+<section id="componentes-de-un-ordenador" class="level3">
+<h3 class="anchored" data-anchor-id="componentes-de-un-ordenador">Componentes de un ordenador</h3>
+<p>La siguiente tabla resume los componentes principales de un ordenador moderno incluyendo ejemplos actuales de gama común/alta.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Componente</th>
+<th>Función</th>
+<th>Tipos actuales / ejemplos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Procesador (CPU)</td>
+<td>Ejecuta instrucciones y coordina el sistema.</td>
+<td>Intel Core i9, Intel Core Ultra, AMD Ryzen 9, Apple M-series.</td>
+</tr>
+<tr class="even">
+<td>Placa base</td>
+<td>Conecta y comunica todos los componentes.</td>
+<td>Chipsets con soporte para DDR5, PCIe 4.0/5.0, M.2 NVMe, USB-C/USB4, Wi‑Fi 6E/7.</td>
+</tr>
+<tr class="odd">
+<td>Memoria RAM</td>
+<td>Mantiene datos e instrucciones de uso inmediato.</td>
+<td>DDR5, y en algunos equipos todavía DDR4; en portátiles también LPDDR5/LPDDR5X.</td>
+</tr>
+<tr class="even">
+<td>Almacenamiento</td>
+<td>Guarda sistema, programas y archivos.</td>
+<td>SSD NVMe M.2, SSD SATA, HDD para archivos masivos.</td>
+</tr>
+<tr class="odd">
+<td>Tarjeta gráfica (GPU)</td>
+<td>Acelera gráficos y cómputo paralelo.</td>
+<td>NVIDIA GeForce RTX, AMD Radeon RX, e iGPU integradas en CPU modernas.</td>
+</tr>
+<tr class="even">
+<td>Fuente de alimentación</td>
+<td>Suministra energía al equipo.</td>
+<td>Fuentes ATX de 80 Plus Bronze/Gold/Platinum, según potencia y eficiencia.</td>
+</tr>
+<tr class="odd">
+<td>Refrigeración</td>
+<td>Disipa calor y mantiene estabilidad.</td>
+<td>Disipadores por aire, AIO líquida, ventiladores PWM de alto flujo.</td>
+</tr>
+<tr class="even">
+<td>Caja o chasis</td>
+<td>Aloja y protege los componentes.</td>
+<td>ATX, microATX, Mini-ITX, torres compactas y mini-PC.</td>
+</tr>
+<tr class="odd">
+<td>Red y conectividad</td>
+<td>Permite acceso a Internet y periféricos.</td>
+<td>Ethernet Gigabit/2.5G/10G, Wi‑Fi 6/6E/7, Bluetooth, USB-C.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Procesador (CPU)</strong>: sus características clave son la frecuencia de reloj (GHz), el número de núcleos y la cantidad de caché.</p>
+<p><strong>Memoria de Acceso Aleatorio (RAM, Random Access Memory en inglés)</strong>: almacenamiento temporal y rápido que contiene el sistema operativo, los programas en ejecución y los datos activos. Al apagar el ordenador, su contenido se pierde.</p>
+<p><strong>Almacenamiento</strong>: las unidades de estado sólido (SSD NVMe, Solid State Drive en inglés) son hoy el estándar. Guardan el sistema operativo, los programas y los archivos de forma permanente. Son entre 10 y 100 veces más rápidos que las unidades de disco duro (HDD, Hard Disk Drive en inglés) tradicionales.</p>
+<p><strong>Tarjeta gráfica (GPU, Graphics Processing Unit en inglés)</strong>: imprescindible para el entrenamiento de modelos de aprendizaje profundo.</p>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Consejo: ¿Qué ordenador comprar?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Consejo: ¿Qué ordenador comprar?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Para este curso, cualquier portátil moderno es más que suficiente, ya que el trabajo computacionalmente intensivo se realiza en los servidores de GitHub Codespaces.</strong></p>
+<p>No obstante, si desea tener un ordenador para trabajar localmente, la siguiente tabla presenta tres configuraciones según presupuesto disponible:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 21%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nivel</th>
+<th>CPU</th>
+<th style="text-align: right;">RAM</th>
+<th>Almacenamiento</th>
+<th>Gráfica</th>
+<th>Uso recomendado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Barata</td>
+<td>Intel Core i3 / Ryzen 3 o equivalente, 2 núcleos / 4 hilos</td>
+<td style="text-align: right;">8 GB</td>
+<td>SSD SATA de 256 GB</td>
+<td>Integrada</td>
+<td>Programación básica en Python, ejercicios, scripts pequeños, VS Code con pocas extensiones.</td>
+</tr>
+<tr class="even">
+<td>Equilibrada</td>
+<td>Intel Core i5 / Ryzen 5 o equivalente, 4 a 6 núcleos</td>
+<td style="text-align: right;">16 GB</td>
+<td>SSD NVMe de 512 GB</td>
+<td>Integrada</td>
+<td>Estudio cómodo, varios proyectos abiertos, navegador + VS Code + terminal sin demasiada lentitud.</td>
+</tr>
+<tr class="odd">
+<td>Ideal</td>
+<td>Intel Core i7 / Core Ultra 7 / Ryzen 7 o equivalente, 8 núcleos o más</td>
+<td style="text-align: right;">16 a 32 GB</td>
+<td>SSD NVMe de 1 TB</td>
+<td>Integrada o dedicada ligera</td>
+<td>Trabajo fluido con proyectos grandes, Jupyter, análisis de datos, Docker ligero y multitarea intensa.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sistema operativo</strong>: Windows 10/11, macOS 12 o posterior, o cualquier distribución Linux moderna. Los tres son completamente compatibles con las herramientas del curso.</p>
+</div>
+</div>
+<p>Para profundizar en la arquitectura de ordenadores, consulta el clásico <em>Computer Organization and Design</em> <span class="citation" data-cites="pattersonhennessy2021">(<a href="#ref-pattersonhennessy2021" role="doc-biblioref">Patterson y Hennessy 2021</a>)</span>, disponible en la biblioteca de la UIB.</p>
+<hr>
+</section>
+</section>
+<section id="lenguajes-de-programación-y-python" class="level2">
+<h2 class="anchored" data-anchor-id="lenguajes-de-programación-y-python">1.2. Lenguajes de programación y Python</h2>
+<section id="lenguajes-de-alto-nivel" class="level3">
+<h3 class="anchored" data-anchor-id="lenguajes-de-alto-nivel">Lenguajes de alto nivel</h3>
+<p>Los ordenadores solo comprenden <a href="https://es.wikipedia.org/wiki/Lenguaje_de_m%C3%A1quina" target="_blank" rel="noopener noreferrer"><strong>lenguaje de máquina</strong></a>: secuencias de ceros y unos específicas para cada arquitectura. Escribir directamente en código máquina es inviable para proyectos reales. Los <strong>lenguajes de alto nivel</strong> resuelven esto: permiten expresar algoritmos de forma legible, cercana al lenguaje matemático o natural, abstrayendo los detalles del hardware.</p>
+<div id="imp-programa" class="callout callout-style-default callout-important callout-titled" title="Programa">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;2: Programa
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>programa</strong> es una descripción precisa y sin ambigüedades de un proceso computacional, escrita en un lenguaje formal. A diferencia del lenguaje natural, no puede contener instrucciones vagas o contradictorias: el ordenador ejecuta exactamente lo que se le indica, ni más ni menos.</p>
+</div>
+</div>
+</section>
+<section id="compilación-vs.-interpretación" class="level3">
+<h3 class="anchored" data-anchor-id="compilación-vs.-interpretación">Compilación vs.&nbsp;interpretación</h3>
+<p>Para que el código fuente en alto nivel sea ejecutable, debe transformarse en instrucciones que el procesador comprenda (lenguaje de máquina). Existen dos estrategias principales:</p>
+<div id="imp-compilacion-interpretacion" class="callout callout-style-default callout-important callout-titled" title="Compilar vs. Interpretar">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;3: Compilar vs.&nbsp;Interpretar
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Compilación</strong>: el código fuente se traduce íntegramente a código máquina <em>antes</em> de ejecutarse. El resultado es un fichero ejecutable independiente. Ejemplos: C, C++, Fortran, Rust.</li>
+<li><strong>Interpretación</strong>: el código se lee y ejecuta <em>línea a línea</em> en tiempo de ejecución por un programa llamado intérprete. No se genera un ejecutable independiente. Ejemplos: Python, R, Ruby.</li>
+<li><strong>Modelos híbridos</strong>: algunos lenguajes compilan a un <a href="https://es.wikipedia.org/wiki/Bytecode" target="_blank" rel="noopener noreferrer"><em>bytecode</em></a> intermedio que luego ejecuta una máquina virtual. Ejemplos: Java (JVM), Python (CPython).</li>
+</ul>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Característica</th>
+<th style="text-align: left;">Compilado</th>
+<th style="text-align: left;">Interpretado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Velocidad de ejecución</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Menor</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Portabilidad del ejecutable</td>
+<td style="text-align: left;">Baja (depende del SO/arquitectura)</td>
+<td style="text-align: left;">Alta (el intérprete es portable)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ciclo de desarrollo</td>
+<td style="text-align: left;">Más lento (compilar → ejecutar)</td>
+<td style="text-align: left;">Más rápido (ejecutar directamente)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Detección de errores</td>
+<td style="text-align: left;">En tiempo de compilación</td>
+<td style="text-align: left;">En tiempo de ejecución</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="el-lenguaje-python" class="level3">
+<h3 class="anchored" data-anchor-id="el-lenguaje-python">El lenguaje Python</h3>
+<p>Python fue creado por Guido van Rossum y publicado en 1991. Hoy es el lenguaje más utilizado en ciencia de datos, inteligencia artificial y computación científica, y uno de los más populares en educación.</p>
+<div id="imp-python" class="callout callout-style-default callout-important callout-titled" title="Python">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;4: Python
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Python es un lenguaje de alto nivel, <strong>interpretado</strong>, de tipado dinámico y con una sintaxis diseñada para favorecer la legibilidad. Su filosofía se resume en el <em>Zen de Python</em> <span class="citation" data-cites="pythonpep20">(<a href="#ref-pythonpep20" role="doc-biblioref">Peters 2004</a>)</span>: <em>explícito es mejor que implícito; simple es mejor que complejo; la legibilidad cuenta</em>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> this  <span class="co"># muestra el Zen de Python en el intérprete</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Sus características más relevantes para este curso son la sintaxis limpia (no usa llaves ni puntos y coma), el tipado dinámico (las variables no declaran su tipo), el ecosistema científico maduro (NumPy, Matplotlib, SymPy, pandas) y la integración nativa con herramientas de IA.</p>
+<section id="el-intérprete-interactivo-python-repl" class="level4">
+<h4 class="anchored" data-anchor-id="el-intérprete-interactivo-python-repl">El intérprete interactivo: Python REPL</h4>
+<p>Una de las características más útiles de Python es su <strong>intérprete interactivo</strong>, conocido como <strong>REPL</strong> (<em>Read-Eval-Print Loop</em>): lee una expresión, la evalúa, imprime el resultado y espera la siguiente. Se accede escribiendo <code>python</code> en la terminal.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">2</span> <span class="op">**</span> <span class="dv">10</span>          <span class="co"># potencia de 2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1024</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> math</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> math.sqrt(<span class="dv">2</span>)     <span class="co"># raíz cuadrada de 2</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fl">1.4142135623730951</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">sum</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>))   <span class="co"># suma de 1 a 100</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5050</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Consejo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Consejo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El REPL es ideal para experimentar: probar una expresión, verificar el comportamiento de una función o explorar una biblioteca sin necesidad de crear un fichero. Los matemáticos lo encuentran especialmente natural —es la calculadora científica más potente que existe— y es la herramienta perfecta para dar los primeros pasos con Python.</p>
+<p>El REPL no guarda el código entre sesiones. En cuanto cierras el terminal, todo lo que escribiste se pierde. Para conservar tu trabajo, escríbelo en un fichero <code>.py</code> o en un cuaderno Jupyter o Marimo. En este curso utilizarás principalmente ficheros <code>.py</code> desde VS Code y Codespaces.</p>
+</div>
+</div>
+<p>La documentación oficial de Python está en <a href="https://docs.python.org/3/">docs.python.org</a> <span class="citation" data-cites="python3docs">(<a href="#ref-python3docs" role="doc-biblioref">Python Software Foundation 2025</a>)</span>. Es la referencia más fiable y está actualizada con cada versión del lenguaje.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="ides-modernos" class="level2">
+<h2 class="anchored" data-anchor-id="ides-modernos">1.3. IDEs modernos</h2>
+<p>Un <strong>IDE</strong> (Integrated Development Environment en inglés o Entorno de Desarrollo Integrado en español) es una aplicación que integra en una sola interfaz las herramientas necesarias para escribir, ejecutar y depurar programas.</p>
+<section id="características-comunes" class="level3">
+<h3 class="anchored" data-anchor-id="características-comunes">Características comunes</h3>
+<p>Los IDEs modernos comparten un conjunto de funcionalidades esenciales:</p>
+<ul>
+<li><strong>Resaltado de sintaxis</strong>: colorea palabras clave, cadenas y comentarios para facilitar la lectura.</li>
+<li><strong>Autocompletado</strong>: sugiere nombres de variables, funciones y métodos mientras se escribe.</li>
+<li><strong>Depurador integrado</strong> (<em>debugger</em>): permite ejecutar el programa paso a paso, inspeccionar el valor de las variables y establecer puntos de ruptura (<em>breakpoints</em>).</li>
+<li><strong>Terminal integrado</strong>: acceso a la línea de comandos sin salir del entorno.</li>
+<li><strong>Control de versiones</strong>: integración con Git para registrar cambios en el código.</li>
+<li><strong>Sistema de extensiones</strong>: permite añadir soporte para nuevos lenguajes, herramientas y servicios.</li>
+</ul>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Consejo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Consejo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El depurador integrado es una de las herramientas más infrautilizadas por los programadores principiantes. Aprender a usarlo desde el principio —en lugar de depender exclusivamente de <code>print</code>— acelera significativamente la detección y corrección de errores.</p>
+</div>
+</div>
+</section>
+<section id="locales-vs.-la-nube" class="level3">
+<h3 class="anchored" data-anchor-id="locales-vs.-la-nube">Locales vs.&nbsp;la nube</h3>
+<p>Los entornos de desarrollo pueden ejecutarse <strong>localmente</strong> en el ordenador del programador o <strong>en la nube</strong> en servidores remotos accesibles desde el navegador.</p>
+<section id="visual-studio-code-local" class="level4">
+<h4 class="anchored" data-anchor-id="visual-studio-code-local">Visual Studio Code (local)</h4>
+<p><strong>Visual Studio Code</strong> (VS Code) es un editor de código ligero, extensible y gratuito desarrollado por Microsoft, el más utilizado en la actualidad <span class="citation" data-cites="vscode_docs">(<a href="#ref-vscode_docs" role="doc-biblioref">Microsoft 2025</a>)</span>. Cuando se instala localmente, Python y todas las extensiones residen en el ordenador del desarrollador.</p>
+<p>La interfaz se organiza en:</p>
+<ul>
+<li><strong>Barra lateral izquierda</strong>: explorador de archivos, búsqueda, Git y extensiones.</li>
+<li><strong>Editor central</strong>: área de escritura de código con múltiples pestañas.</li>
+<li><strong>Terminal integrado</strong>: consola para ejecutar programas y comandos del sistema.</li>
+</ul>
+<div id="fig-vscode" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vscode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/vscode.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vscode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Visual Studio Code
+</figcaption>
+</figure>
+</div>
+<p>La documentación oficial de VS Code se puede consultar en <span class="citation" data-cites="vscode_docs">(<a href="#ref-vscode_docs" role="doc-biblioref">Microsoft 2025</a>)</span>.</p>
+</section>
+<section id="visual-studio-code-en-github-codespaces" class="level4">
+<h4 class="anchored" data-anchor-id="visual-studio-code-en-github-codespaces">Visual Studio Code en GitHub Codespaces</h4>
+<p><strong>GitHub Codespaces</strong> proporciona VS Code completamente configurado y ejecutándose en servidores de Microsoft en la nube, accesible desde cualquier navegador sin instalar nada en el ordenador local <span class="citation" data-cites="codespaces_docs">(<a href="#ref-codespaces_docs" role="doc-biblioref">GitHub 2025a</a>)</span>.</p>
+<div id="imp-codespaces" class="callout callout-style-default callout-important callout-titled" title="Codespace">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;5: Codespace
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un Codespace es un contenedor de desarrollo (<em>dev container</em>) alojado en la nube que incluye el sistema operativo, el intérprete de Python, las bibliotecas y las extensiones preconfiguradas. El programador solo necesita un navegador y una <strong>cuenta de GitHub</strong>.</p>
+</div>
+</div>
+<p><strong>Ventajas para este curso:</strong></p>
+<ul>
+<li>Entorno idéntico para todos los estudiantes, eliminando problemas de configuración.</li>
+<li>El código se guarda en la nube mediante Git.</li>
+<li>Accesible desde cualquier dispositivo y sistema operativo.</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled" title="Atención">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Atención
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En el <a href="../../es/ejercicios/tema1.html">Ejercicio 1</a> pondrás en práctica el arranque de tu primer Codespace.</p>
+<p>Cierra el Codespace al terminar la sesión para no consumir las horas gratuitas del plan educativo: <code>Ctrl+Shift+P</code> → <em>Codespaces: Stop Current Codespace</em>.</p>
+</div>
+</div>
+<p>La documentación de GitHub Codespaces puede consultarse en <span class="citation" data-cites="codespaces_docs">(<a href="#ref-codespaces_docs" role="doc-biblioref">GitHub 2025a</a>)</span>.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="programación-asistida-por-ia" class="level2">
+<h2 class="anchored" data-anchor-id="programación-asistida-por-ia">1.4. Programación asistida por IA</h2>
+<p>La incorporación de la inteligencia artificial al flujo de trabajo del programador es uno de los cambios más significativos de los últimos años. Comprender estas herramientas —y sus límites— es hoy parte de la formación de cualquier programador.</p>
+<section id="modelos-de-lenguaje-grandes-llms" class="level3">
+<h3 class="anchored" data-anchor-id="modelos-de-lenguaje-grandes-llms">Modelos de Lenguaje Grandes (LLMs)</h3>
+<div id="imp-llm" class="callout callout-style-default callout-important callout-titled" title="LLM">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;6: LLM
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>LLM</strong> (Large Language Model, Modelo de Lenguaje Grande) es un sistema de inteligencia artificial entrenado con enormes volúmenes de texto —incluyendo código fuente, documentación y foros técnicos— para predecir la continuación más probable de una secuencia de palabras o tokens. Su capacidad para generar texto coherente y contextualmente relevante emerge del aprendizaje estadístico sobre miles de millones de parámetros.</p>
+</div>
+</div>
+<p>Los LLMs aplicados a código no “comprenden” la lógica del programa en el sentido matemático: generan código <em>plausible</em> basándose en patrones aprendidos. Esto explica tanto sus impresionantes capacidades como sus fallos inesperados.</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Profundización">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Profundización
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>La arquitectura que subyace a los LLMs modernos es el <strong>Transformer</strong>, introducido en 2017 en el artículo <em>Attention Is All You Need</em> <span class="citation" data-cites="vaswani2017">(<a href="#ref-vaswani2017" role="doc-biblioref">Vaswani et&nbsp;al. 2017</a>)</span>. El mecanismo clave, la <em>atención</em>, permite al modelo relacionar cualquier par de palabras en una secuencia independientemente de su distancia.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="asistentes-ia-de-código" class="level3">
+<h3 class="anchored" data-anchor-id="asistentes-ia-de-código">Asistentes IA de código</h3>
+<p>Un <strong>asistente de código</strong> (<em>coding assistant</em> o <em>copilot</em>) es una herramienta de IA integrada en el entorno de desarrollo que ayuda al programador durante la escritura del código. A diferencia de un buscador o un chatbot genérico, el asistente de código tiene acceso al fichero que se está editando, al contexto del proyecto y al historial reciente de cambios, lo que le permite ofrecer sugerencias precisas y relevantes.</p>
+<div id="imp-coding-assistant" class="callout callout-style-default callout-important callout-titled" title="Asistente de código">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;7: Asistente de código
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>asistente de código</strong> combina un LLM especializado en programación con integración directa en el IDE. Actúa en dos modalidades principales:</p>
+<ul>
+<li><strong>Autocompletado en línea</strong>: sugiere la continuación del código mientras el programador escribe, sin interrumpir el flujo de trabajo.</li>
+<li><strong>Chat integrado</strong>: responde preguntas sobre el código, explica errores, refactoriza fragmentos y genera implementaciones a partir de una descripción en lenguaje natural.</li>
+</ul>
+</div>
+</div>
+<section id="github-copilot" class="level4">
+<h4 class="anchored" data-anchor-id="github-copilot">GitHub Copilot</h4>
+<p>GitHub Copilot es un asistente de código basado en LLM desarrollado por GitHub y OpenAI, integrado directamente en VS Code y Codespaces <span class="citation" data-cites="copilot_docs">(<a href="#ref-copilot_docs" role="doc-biblioref">GitHub 2025b</a>)</span>. Sugiere completaciones de código en tiempo real, genera funciones a partir de comentarios y responde preguntas sobre el código en un chat integrado.</p>
+<p><strong>¿Qué puede hacer Copilot?</strong></p>
+<ul>
+<li>Completar código a partir del contexto (nombre de función, comentario, docstring).</li>
+<li>Generar una primera implementación a partir de una descripción.</li>
+<li>Explicar qué hace un fragmento de código.</li>
+<li>Detectar errores y sugerir correcciones.</li>
+<li>Generar casos de prueba.</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled" title="Atención">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Atención
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Copilot genera código <em>plausible</em>, no código <em>verificado</em>. Puede producir soluciones incorrectas, ineficientes o con errores sutiles que pasan desapercibidos. En este curso el ciclo de trabajo es siempre <strong>especificar → generar → verificar</strong>: primero se define con precisión qué debe hacer el código, después se genera (con o sin IA), y finalmente se comprueba sistemáticamente que hace lo que debe.</p>
+</div>
+</div>
+<p>La documentación oficial de GitHub Copilot se puede consultar en <span class="citation" data-cites="copilot_docs">(<a href="#ref-copilot_docs" role="doc-biblioref">GitHub 2025b</a>)</span>.</p>
+</section>
+</section>
+<section id="vibe-coding" class="level3">
+<h3 class="anchored" data-anchor-id="vibe-coding">Vibe Coding</h3>
+<p>El término <strong>vibe coding</strong> fue acuñado por Andrej Karpathy en febrero de 2025 para describir una forma de programar en la que el desarrollador delega casi por completo la escritura del código al asistente de IA, interactuando con él principalmente en lenguaje natural e integrando el código generado sin revisarlo en profundidad <span class="citation" data-cites="karpathy2025">(<a href="#ref-karpathy2025" role="doc-biblioref">Karpathy 2025</a>)</span>.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Atención">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Atención
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El vibe coding puede ser productivo para crear prototipos rápidos o explorar ideas. Sin embargo, delegar la escritura del código sin comprenderlo conduce inevitablemente a sistemas frágiles, difíciles de corregir y de mantener. <strong>En este curso el vibe coding no es una práctica aceptable</strong>: el estudiante debe ser capaz de explicar, justificar y modificar cualquier línea que entregue, con independencia de cómo se haya generado.</p>
+</div>
+</div>
+<p>La distinción entre uso productivo y vibe coding es conceptualmente la misma que existe entre usar una calculadora comprendiendo las matemáticas y usarla sin saber qué operación realizar. La IA amplifica la capacidad del programador competente; no reemplaza la competencia que aún no existe.</p>
+</section>
+<section id="agentes-de-desarrollo-autónomos" class="level3">
+<h3 class="anchored" data-anchor-id="agentes-de-desarrollo-autónomos">Agentes de desarrollo autónomos</h3>
+<p>Los <strong>agentes de desarrollo autónomos</strong> (<em>coding agents</em>) son sistemas de IA capaces de descomponer tareas de programación complejas en subtareas, ejecutar código, leer la salida, corregir errores y repetir el ciclo de forma autónoma, con mínima intervención humana.</p>
+<div id="imp-coding-agents" class="callout callout-style-default callout-important callout-titled" title="Coding Agent">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;8: Coding Agent
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>coding agent</strong> combina un LLM con la capacidad de usar herramientas: ejecutar comandos en una terminal, leer y escribir ficheros, buscar en internet y llamar a APIs. El agente planifica, actúa y corrige su propio trabajo en un bucle autónomo.</p>
+</div>
+</div>
+<p>Ejemplos representativos en 2025–2026:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Agente</th>
+<th style="text-align: left;">Desarrollador</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://www.cognition.ai/" target="_blank" rel="noopener noreferrer">Devin</a></td>
+<td style="text-align: left;">Cognition AI</td>
+<td style="text-align: left;">Primer agente de ingeniería de software autónomo; puede planificar, implementar y depurar proyectos completos.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://githubnext.com/projects/copilot-workspace" target="_blank" rel="noopener noreferrer">GitHub Copilot Workspace</a></td>
+<td style="text-align: left;">GitHub / Microsoft</td>
+<td style="text-align: left;">Agente integrado en GitHub que transforma issues en implementaciones completas dentro del repositorio.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://www.cursor.com/" target="_blank" rel="noopener noreferrer">Cursor Agent</a></td>
+<td style="text-align: left;">Anysphere</td>
+<td style="text-align: left;">IDE basado en VS Code con agente que puede editar múltiples ficheros, ejecutar código y corregir errores en bucle.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://codeium.com/windsurf" target="_blank" rel="noopener noreferrer">Windsurf</a></td>
+<td style="text-align: left;">Codeium</td>
+<td style="text-align: left;">IDE con agente (<em>Cascade</em>) que mantiene conciencia del contexto completo del proyecto y actúa de forma proactiva.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://www.anthropic.com/claude-code" target="_blank" rel="noopener noreferrer">Claude Code</a></td>
+<td style="text-align: left;">Anthropic</td>
+<td style="text-align: left;">Agente de línea de comandos que entiende bases de código completas y ejecuta tareas de ingeniería end-to-end.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://openai.com/codex" target="_blank" rel="noopener noreferrer">Codex CLI</a></td>
+<td style="text-align: left;">OpenAI</td>
+<td style="text-align: left;">Agente de línea de comandos que ejecuta tareas de programación en un entorno seguro (<em>sandbox</em>), con acceso a terminal, ficheros e internet.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://tongyi.aliyun.com/lingma" target="_blank" rel="noopener noreferrer">Tongyi Lingma</a></td>
+<td style="text-align: left;">Alibaba Cloud</td>
+<td style="text-align: left;">Asistente de código basado en los modelos Qwen; integrado en VS Code y JetBrains, con capacidades de chat y completado en línea.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://comate.baidu.com/" target="_blank" rel="noopener noreferrer">Baidu Comate</a></td>
+<td style="text-align: left;">Baidu</td>
+<td style="text-align: left;">Asistente de código basado en ERNIE; extensión para VS Code y JetBrains con generación, explicación y revisión de código.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://www.marscode.com/" target="_blank" rel="noopener noreferrer">MarsCode</a></td>
+<td style="text-align: left;">ByteDance</td>
+<td style="text-align: left;">IDE en la nube (basado en VS Code) con agente integrado basado en los modelos Doubao; orientado al desarrollo colaborativo.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://codegeex.cn/" target="_blank" rel="noopener noreferrer">CodeGeeX</a></td>
+<td style="text-align: left;">Zhipu AI / Tsinghua</td>
+<td style="text-align: left;">Modelo de código abierto desarrollado en la Universidad de Tsinghua; extensión para VS Code con completado y chat multilingüe.</td>
+</tr>
+</tbody>
+</table>
+<p>Estos sistemas representan el estado del arte actual, pero presentan limitaciones importantes: pueden acumular errores silenciosamente, son difíciles de auditar y requieren que el programador humano mantenga el criterio sobre qué construir y cómo verificarlo. El orden de aparición de los agentes en la tabla no indica calidad ni rendimiento: cada uno tiene fortalezas y debilidades distintas.</p>
+</section>
+</section>
+<section id="bibliografía" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="bibliografía">Bibliografía</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-codespaces_docs" class="csl-entry" role="listitem">
+GitHub. 2025a. <span>«GitHub Codespaces Documentation»</span>. <a href="https://docs.github.com/en/codespaces">https://docs.github.com/en/codespaces</a>.
+</div>
+<div id="ref-copilot_docs" class="csl-entry" role="listitem">
+———. 2025b. <span>«GitHub Copilot Documentation»</span>. <a href="https://docs.github.com/en/copilot">https://docs.github.com/en/copilot</a>.
+</div>
+<div id="ref-karpathy2025" class="csl-entry" role="listitem">
+Karpathy, Andrej. 2025. <span>«Vibe coding»</span>. Publicación en <span>X</span> (anteriormente Twitter). <a href="https://x.com/karpathy/status/1886192184808149343">https://x.com/karpathy/status/1886192184808149343</a>.
+</div>
+<div id="ref-vscode_docs" class="csl-entry" role="listitem">
+Microsoft. 2025. <span>«Visual Studio Code Documentation»</span>. <a href="https://code.visualstudio.com/docs">https://code.visualstudio.com/docs</a>.
+</div>
+<div id="ref-vonneumann1945" class="csl-entry" role="listitem">
+Neumann, John von. 1945. <span>«First Draft of a Report on the <span>EDVAC</span>»</span>. University of Pennsylvania.
+</div>
+<div id="ref-pattersonhennessy2021" class="csl-entry" role="listitem">
+Patterson, David A., y John L. Hennessy. 2021. <em>Computer Organization and Design: <span>RISC-V</span> Edition</em>. 2nd ed. Morgan Kaufmann / Elsevier. <a href="https://www.elsevier.com/books/computer-organization-and-design-risc-v-edition/patterson/978-0-12-820331-6">https://www.elsevier.com/books/computer-organization-and-design-risc-v-edition/patterson/978-0-12-820331-6</a>.
+</div>
+<div id="ref-pythonpep20" class="csl-entry" role="listitem">
+Peters, Tim. 2004. <span>«<span>PEP 20 – The Zen of Python</span>»</span>. Python Enhancement Proposal. <a href="https://peps.python.org/pep-0020/">https://peps.python.org/pep-0020/</a>.
+</div>
+<div id="ref-python3docs" class="csl-entry" role="listitem">
+Python Software Foundation. 2025. <span>«Python 3 Documentation»</span>. <a href="https://docs.python.org/3/">https://docs.python.org/3/</a>.
+</div>
+<div id="ref-vaswani2017" class="csl-entry" role="listitem">
+Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, y Illia Polosukhin. 2017. <span>«Attention Is All You Need»</span>. En <em>Advances in Neural Information Processing Systems</em>. Vol. 30. <a href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>.
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
