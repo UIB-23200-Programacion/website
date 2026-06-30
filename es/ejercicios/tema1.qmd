@@ -131,7 +131,7 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
 
     2. En el campo **Name your file** escribir: 
 
-        ```text
+        ```json
         .devcontainer/devcontainer.json
         ```
     3. Dentro del archivo, pega este contenido:
@@ -185,12 +185,12 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
 
     2. En el campo **Name your file** escribir: 
 
-        ```text
+        ```json
         requirements.txt
         ```
     3. Dentro del archivo, pega este contenido:
 
-        ```text
+        ```json
         ruff
         black
         ```
@@ -213,13 +213,13 @@ GitHub detectará el `.devcontainer` y:
 
 En la terminal del Codespace escribe el siguiente comando para comprobar la versión de Python instalada:
 
-```
+```json
 python --version
 ```
 
 Debe aparecer:
 
-```
+```text
 Python 3.12.x
 ```
 
