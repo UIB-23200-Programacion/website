@@ -36,7 +36,7 @@ Una vez creada la cuenta, completa tu perfil de usuario siguiendo estos pasos:
     - **Bio** → Una breve descripción (por ejemplo: *Estudiante del Grado en Matemáticas (UIB)*).
     - **Company** → Aquí es donde se indica la **Universidad**. Ejemplo: `Universitat de les Illes Balears`
 
-- **Paso 3:** Guardar los cambios. Clic en **Save** al final del formulario.
+- **Paso 3:** Guardar los cambios haciendo clic en **Save** al final del formulario.
 
 Tras completar estos pasos, tendrás un **perfil académico básico y correcto**, adecuado para solicitar el **GitHub Student Developer Pack**
 
@@ -46,7 +46,7 @@ Tras completar estos pasos, tendrás un **perfil académico básico y correcto**
 
 - **Paso 2:** En el menú lateral izquierdo, abrir la sección **Password and authentication**.
 
-- **Paso 3:** Dentro de *Password and authentication*, localizar el apartado **Two-factor authentication → Enable two-factor authentication**
+- **Paso 3:** Dentro de **Password and authentication**, localizar el apartado **Two-factor authentication → Enable two-factor authentication**
 
 - **Paso 4:** Elegir el método de autenticación.
 
@@ -56,7 +56,7 @@ Tras completar estos pasos, tendrás un **perfil académico básico y correcto**
 
     1. Abrir la aplicación **Microsoft Authenticator** en tu móvil.
     2. Escanear el **código QR** que aparece en pantalla.
-    3. Tocar el ícono de GitHub en la app para ver el **código temporal** de 6 dígitos que se genera cada 30 segundos. 
+    3. Tocar el ícono de GitHub en la app (en tu móvil) para ver el **código temporal** de 6 dígitos que se genera cada 30 segundos. 
     4. Introducir el **código temporal** anterior en la página de GitHub.
 
 ### 4. Reportar la cuenta de GitHub en el Aula Digital
@@ -131,7 +131,7 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
 
     2. En el campo **Name your file** escribir: 
 
-        ```
+        ```text
         .devcontainer/devcontainer.json
         ```
     3. Dentro del archivo, pega este contenido:
@@ -185,12 +185,12 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
 
     2. En el campo **Name your file** escribir: 
 
-        ```
+        ```text
         requirements.txt
         ```
     3. Dentro del archivo, pega este contenido:
 
-        ```
+        ```text
         ruff
         black
         ```
