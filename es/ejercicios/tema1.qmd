@@ -4,4 +4,223 @@ lang: es
 sidebar: barra-es
 ---
 
-*(Contenido pendiente.)*
+## Ejercicio 1.1
+
+El objetivo de este ejercicio es que el estudiante cree su propia cuenta en **GitHub** y complete el proceso de solicitud del **GitHub Student Developer Pack**. El GitHub Student Developer Pack ofrece acceso gratuito a herramientas profesionales de desarrollo: dominios, servidores, IDEs, créditos en la nube, herramientas de diseño, bases de datos y mucho más.
+
+A continuación las instrucciones, paso a paso, que debes seguir para completar este ejercicio.
+
+### 1. Crear una cuenta en GitHub
+
+- **Paso 1:** Entra en: [**https://github.com/**](https://github.com/){target="_blank" rel="noopener noreferrer"}
+
+- **Paso 2:** Iniciar el registro. Haz clic en **Sign up** (arriba a la derecha).
+
+- **Paso 3:** Introducir tus datos. GitHub te pedirá:
+
+    - **Correo electrónico** (usa tu correo universitario de la UIB).
+    - **Contraseña** segura.
+    - **Nombre de usuario** (será tu identidad pública en GitHub).
+
+- **Paso 4:** Verificar tu correo. GitHub enviará un mensaje a tu email de la UIB. Abre el correo y pulsa **Verify email address**.
+
+### 2. Completar tu perfil
+
+Una vez creada la cuenta, completa tu perfil de usuario siguiendo estos pasos:
+
+- **Paso 1:** Accede a tu perfil. Haz clic en tu foto o avatar (arriba a la derecha) y selecciona **Your profile**.
+
+- **Paso 2:** Haz clic en **Edit profile** y completa la información solicitada:
+
+    - **Name** → Tu nombre real.
+    - **Bio** → Una breve descripción (por ejemplo: *Estudiante del Grado en Matemáticas (UIB)*).
+    - **Company** → Aquí es donde se indica la **Universidad**. Ejemplo: `Universitat de les Illes Balears`
+
+- **Paso 3:** Guardar los cambios. Clic en **Save** al final del formulario.
+
+Tras completar estos pasos, tendrás un **perfil académico básico y correcto**, adecuado para solicitar el **GitHub Student Developer Pack**
+
+### 3. Activar la autenticación en dos pasos (2FA)
+
+- **Paso 1:** Accede a la configuración de tu cuenta. Haz clic en tu foto o avatar (arriba a la derecha) y selecciona **Settings**.
+
+- **Paso 2:** En el menú lateral izquierdo, abrir la sección **Password and authentication**.
+
+- **Paso 3:** Dentro de *Password and authentication*, localizar el apartado **Two-factor authentication → Enable two-factor authentication**
+
+- **Paso 4:** Elegir el método de autenticación.
+
+    - Se recomienda emplear una aplicación de autenticación (Authenticator app). 
+    - Dado que la UIB requiere la aplicación **Microsoft Authenticator** se sugiere utilizar esta.
+    - Debes:
+
+    1. Abrir la aplicación **Microsoft Authenticator** en tu móvil.
+    2. Escanear el **código QR** que aparece en pantalla.
+    3. Tocar el ícono de GitHub en la app para ver el **código temporal** de 6 dígitos que se genera cada 30 segundos. 
+    4. Introducir el **código temporal** anterior en la página de GitHub.
+
+### 4. Reportar la cuenta de GitHub en el Aula Digital
+
+### 5. Solicitar el GitHub Student Developer Pack
+
+- **Paso 1:** Ve a [**https://education.github.com/pack**](https://education.github.com/pack){target="_blank" rel="noopener noreferrer"}. Haz clic en **Sign up for Student Developer Pack**.
+
+- **Paso 2:** Iniciar sesión con tu cuenta de GitHub. Si no lo has hecho ya, GitHub te pedirá iniciar sesión.
+
+- **Paso 3:** Verificación de identidad académica. GitHub te pedirá demostrar que eres estudiante. Puedes hacerlo de dos formas pero se recomienda la opción de **correo institucional** (el que es xxxxx@estudiant.uib.cat)
+
+- **Paso 4:** Completar el formulario. GitHub te preguntará:
+
+    - Tu **nivel educativo** (Undergraduate)
+    - Tu **universidad**
+    - Tu **motivo para solicitar el Pack** (puedes escribir algo sencillo como: *“I want to use professional development tools for my university degree programming projects.”*)
+
+- **Paso 5:** Enviar la solicitud. Clic en **Submit**.
+
+GitHub suele tardar entre **1 y 5 días** en revisar la solicitud. Recibirás un correo indicando si ha sido aprobada. Una vez aceptado, tendrás acceso a todas las herramientas del Pack desde tu cuenta de GitHub.
+
+## Ejercicio 1.2
+
+Este ejercicio tiene como objetivo que aprendas a:
+
+1. Crear un repositorio en GitHub.  
+2. Configurarlo mínimamente.  
+3. Levantar un Codespace asociado a ese repositorio.
+
+::: {#imp-codespace .callout-important title="Repositorio y Codespace"}
+Un **repositorio de GitHub** es un espacio donde se guarda un proyecto: contiene el código, archivos del proyecto y el historial de revisiones (commits) que permiten seguir y recuperar cambios a lo largo del tiempo.
+
+Los repositorios pueden ser públicos o privados, soportan ramas y colaboraciones (pull requests, issues) para coordinar trabajo en equipo, y actúan como la unidad básica de trabajo dentro de GitHub.
+
+Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar, que te permite programar directamente desde GitHub sin configurar tu máquina local. Suele venir con herramientas y dependencias preconfiguradas para un repositorio concreto, lo que facilita empezar a trabajar rápido.
+:::
+
+### 1. Acceder a tu cuenta de GitHub (si no lo has hecho ya)
+
+- Abrir el navegador.  
+- Ir a: `https://github.com/`  
+- Pulsar **Sign in**.  
+- Introducir usuario y contraseña.
+
+### 2. Crear el repositorio “test-de-codespaces–tema-1”
+
+- **Paso 1:** En la esquina superior izquierda, hacer clic en `+`.
+
+- **Paso 2:** Seleccionar **New repository**.
+
+- **Paso 3:** Aparecerá un formulario con varios campos para configurar el repositorio:
+
+    - **Repository name** → `test-de-codespaces–tema-1`
+    - **Description** → `Repositorio de prueba para Codespaces`
+    - **Visibility** → `Public` (público)
+    - **Initialize this repository with a README** → marcar esta opción.
+
+- **Paso 4:** Hacer clic en el botón **Create repository**.
+
+- **Paso 5:** Verificar que el repositorio se ha creado. Debes ver una página con:
+
+- El nombre del repositorio que has dado arriba.  
+- Un archivo `README.md` ya creado.  
+- Un menú con pestañas como *Code*, *Issues*, *Pull requests*, etc.
+
+### 3. Crear un Codespace preconfigurado para Python
+
+- **Paso 1:** Crear la carpeta `.devcontainer` y el fichero `devcontainer.json` 
+
+    1. En el repositorio creado (`test-de-codespaces–tema-1`), hacer clic en el botón **Add file → Create new file**.
+
+    2. En el campo **Name your file** escribir: 
+
+        ```
+        .devcontainer/devcontainer.json
+        ```
+    3. Dentro del archivo, pega este contenido:
+
+        ```json
+        {
+            "name": "Curso Programación 23200, Python 3.12",
+            "image": "mcr.microsoft.com/devcontainers/python:3.12",
+
+            // -----------------------------
+            // CUSTOMIZATIONS: configuración del editor VS Code
+            // -----------------------------
+            "customizations": {
+                "vscode": {
+                    "extensions": [
+                        "ms-python.python",
+                        "ms-python.vscode-pylance",
+                        "charliermarsh.ruff",
+                        "ms-python.black-formatter",
+                        "oderwat.indent-rainbow",
+				        "CoenraadS.bracket-pair-colorizer-2"
+                    ],
+                    "settings": {
+                        "editor.formatOnSave": true,
+                        "python.formatting.provider": "black",
+                        "python.analysis.typeCheckingMode": "basic",
+                        "ruff.enable": true
+                    }
+                }
+            },
+
+            // -----------------------------
+            // COMANDOS AUTOMÁTICOS
+            // -----------------------------
+            "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt || true",
+            "postStartCommand": "echo 'Entorno listo para Programación 23200'",
+
+            // -----------------------------
+            // PUERTOS ÚTILES PARA PROYECTOS
+            // -----------------------------
+            "forwardPorts": [8000, 8080]
+        }
+
+        ```
+
+    4. Guardar el archivo: Has clic en **Commit new file**.
+
+- **Paso 2:** Crear el fichero `requirements.txt` 
+
+    1. En el repositorio creado (`test-de-codespaces–tema-1`), hacer clic en el botón **Add file → Create new file**.
+
+    2. En el campo **Name your file** escribir: 
+
+        ```
+        requirements.txt
+        ```
+    3. Dentro del archivo, pega este contenido:
+
+        ```
+        ruff
+        black
+        ```
+    4. Guardar el archivo: Has clic en **Commit new file**.
+
+### 4. Arrancar el Codespace
+
+- **Paso 1:** Has clic en **Code → Codespaces**. 
+
+- **Paso 2:** Has clic en **Create codespace on main**.
+
+GitHub detectará el `.devcontainer` y:
+
+- descargará la imagen de Python,  
+- instalará las extensiones,  
+- configurará el entorno,  
+- abrirá VS Code con soporte completo para Python.
+
+### 5. Verificar que Python está configurado
+
+En la terminal del Codespace escribe el siguiente comando para comprobar la versión de Python instalada:
+
+```
+python --version
+```
+
+Debe aparecer:
+
+```
+Python 3.12.x
+```
+
+En la barra inferior de VS Code verás el intérprete de Python seleccionado automáticamente.

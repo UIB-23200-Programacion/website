@@ -209,9 +209,7 @@ cuaderno Jupyter o Marimo. En este curso utilizarás principalmente ficheros `.p
 y Codespaces.
 :::
 
-La documentación oficial de Python está en [docs.python.org](https://docs.python.org/3/)
-[@python3docs]. Es la referencia más fiable y está actualizada con cada versión del
-lenguaje.
+Vea la documentación oficial de Python en [@python3docs]. Es la referencia más fiable y está actualizada con cada versión del lenguaje.
 
 ---
 
@@ -283,7 +281,7 @@ GitHub**.
 - Accesible desde cualquier dispositivo y sistema operativo.
 
 ::: {.callout-warning title="Atención"}
-En el [Ejercicio 1](../ejercicios/ejercicio1.qmd) pondrás en práctica el arranque de tu
+En el [Ejercicio 1](../ejercicios/tema1.qmd) pondrás en práctica el arranque de tu
 primer Codespace.
 
 Cierra el Codespace al terminar la sesión para no consumir las horas gratuitas del plan
