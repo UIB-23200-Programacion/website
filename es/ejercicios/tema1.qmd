@@ -104,7 +104,7 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
 
 ### 2. Crear el repositorio “test-de-codespaces–tema-1”
 
-- **Paso 1:** En la esquina superior izquierda, hacer clic en `+`.
+- **Paso 1:** En la parte superior izquierda, hacer clic en `+` (![](../../images/signomas.png){width="50px"}).
 
 - **Paso 2:** Seleccionar **New repository**.
 
