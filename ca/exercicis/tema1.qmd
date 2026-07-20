@@ -119,9 +119,9 @@ Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per us
 
 - **Pas 5:** Verificar que el repositori s'ha creat. Heu de veure una pàgina amb:
 
-- El nom del repositori que heu donat abans.
-- Un arxiu `README.md` ja creat.
-- Un menú amb pestanyes com *Code*, *Issues*, *Pull requests*, etc.
+    - El nom del repositori que heu donat abans.
+    - Un arxiu `README.md` ja creat.
+    - Un menú amb pestanyes com *Code*, *Issues*, *Pull requests*, etc.
 
 ### 3. Crear un Codespace preconfigurado per a Python
 
@@ -198,12 +198,12 @@ Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per us
 
 - **Pas 2:** Feu clic a **Create codespace on main**.
 
-GitHub detectarà el `.devcontainer` i:
+    GitHub detectarà el `.devcontainer` i:
 
-- descarregarà la imatge de Python,
-- instal·larà les extensions,
-- configurarà l'entorn,
-- obrirà VS Code amb suport complet per a Python.
+    - descarregarà la imatge de Python,
+    - instal·larà les extensions,
+    - configurarà l'entorn,
+    - obrirà VS Code amb suport complet per a Python.
 
 - **Pas 3:** Espereu que el Codespace estigui llest. Això pot trigar uns minuts. Veureu missatges com:
 
@@ -270,7 +270,7 @@ Python 3.12.x
 
 ### 8. Tancar el Codespace
 
-**Aquest és un pas important**. Quan acabeu de treballar al Codespace, l'heu de tancar per alliberar recursos i evitar que s'acumulin càrrecs al vostre compte de GitHub. **Principalment perquè el nombre d'hores de Codespaces gratuïtes és limitat.**
+**Aquest és un pas summament important**. Quan acabeu de treballar al Codespace, l'heu de tancar per alliberar recursos i evitar que s'acumulin càrrecs al vostre compte de GitHub. **Principalment perquè el nombre d'hores de Codespaces gratuïtes és limitat.**
 
 1. Sense sortir del Codespace:
 
