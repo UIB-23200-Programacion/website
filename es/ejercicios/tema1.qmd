@@ -119,9 +119,9 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
 
 - **Paso 5:** Verificar que el repositorio se ha creado. Debes ver una página con:
 
-- El nombre del repositorio que has dado arriba.  
-- Un archivo `README.md` ya creado.  
-- Un menú con pestañas como *Code*, *Issues*, *Pull requests*, etc.
+    - El nombre del repositorio que has dado arriba.  
+    - Un archivo `README.md` ya creado.  
+    - Un menú con pestañas como *Code*, *Issues*, *Pull requests*, etc.
 
 ### 3. Crear un Codespace preconfigurado para Python
 
@@ -198,12 +198,12 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
 
 - **Paso 2:** Has clic en **Create codespace on main**.
 
-GitHub detectará el `.devcontainer` y:
+    GitHub detectará el `.devcontainer` y:
 
-- descargará la imagen de Python,  
-- instalará las extensiones,  
-- configurará el entorno,  
-- abrirá VS Code con soporte completo para Python.
+    - descargará la imagen de Python,  
+    - instalará las extensiones,  
+    - configurará el entorno,  
+    - abrirá VS Code con soporte completo para Python.
 
 - **Paso 3:** Espera a que el Codespace esté listo. Esto puede tardar unos minutos. Verás mensajes como:
 
@@ -270,7 +270,7 @@ Python 3.12.x
 
 ### 8. Cerrar el Codespace
 
-**Este es un paso importante**. Cuando termines de trabajar en el Codespace, debes cerrarlo para liberar recursos y evitar que se acumulen cargos en tu cuenta de GitHub. **Principalmente ya que el número de horas de Codespaces gratuitas es limitado.**
+**Este es un paso sumamente importante**. Cuando termines de trabajar en el Codespace, debes cerrarlo para liberar recursos y evitar que se acumulen cargos en tu cuenta de GitHub. **Principalmente ya que el número de horas de Codespaces gratuitas es limitado.**
 
 1. Sin salir del Codespace:
 
