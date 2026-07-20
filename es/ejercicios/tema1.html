@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -76,7 +111,10 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Ejercicios — Tema 1 – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/signomas.png">
 <meta property="og:site_name" content="Programación (23200)">
+<meta property="og:image:height" content="57">
+<meta property="og:image:width" content="77">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -522,8 +560,32 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#ejercicio-1.1" id="toc-ejercicio-1.1" class="nav-link active" data-scroll-target="#ejercicio-1.1">Ejercicio 1.1</a>
+  <ul class="collapse">
+  <li><a href="#crear-una-cuenta-en-github" id="toc-crear-una-cuenta-en-github" class="nav-link" data-scroll-target="#crear-una-cuenta-en-github">1. Crear una cuenta en GitHub</a></li>
+  <li><a href="#completar-tu-perfil" id="toc-completar-tu-perfil" class="nav-link" data-scroll-target="#completar-tu-perfil">2. Completar tu perfil</a></li>
+  <li><a href="#activar-la-autenticación-en-dos-pasos-2fa" id="toc-activar-la-autenticación-en-dos-pasos-2fa" class="nav-link" data-scroll-target="#activar-la-autenticación-en-dos-pasos-2fa">3. Activar la autenticación en dos pasos (2FA)</a></li>
+  <li><a href="#reportar-la-cuenta-de-github-en-el-aula-digital" id="toc-reportar-la-cuenta-de-github-en-el-aula-digital" class="nav-link" data-scroll-target="#reportar-la-cuenta-de-github-en-el-aula-digital">4. Reportar la cuenta de GitHub en el Aula Digital</a></li>
+  <li><a href="#solicitar-el-github-student-developer-pack" id="toc-solicitar-el-github-student-developer-pack" class="nav-link" data-scroll-target="#solicitar-el-github-student-developer-pack">5. Solicitar el GitHub Student Developer Pack</a></li>
+  </ul></li>
+  <li><a href="#ejercicio-1.2" id="toc-ejercicio-1.2" class="nav-link" data-scroll-target="#ejercicio-1.2">Ejercicio 1.2</a>
+  <ul class="collapse">
+  <li><a href="#acceder-a-tu-cuenta-de-github-si-no-lo-has-hecho-ya" id="toc-acceder-a-tu-cuenta-de-github-si-no-lo-has-hecho-ya" class="nav-link" data-scroll-target="#acceder-a-tu-cuenta-de-github-si-no-lo-has-hecho-ya">1. Acceder a tu cuenta de GitHub (si no lo has hecho ya)</a></li>
+  <li><a href="#crear-el-repositorio-test-de-codespacestema-1" id="toc-crear-el-repositorio-test-de-codespacestema-1" class="nav-link" data-scroll-target="#crear-el-repositorio-test-de-codespacestema-1">2. Crear el repositorio “test-de-codespaces–tema-1”</a></li>
+  <li><a href="#crear-un-codespace-preconfigurado-para-python" id="toc-crear-un-codespace-preconfigurado-para-python" class="nav-link" data-scroll-target="#crear-un-codespace-preconfigurado-para-python">3. Crear un Codespace preconfigurado para Python</a></li>
+  <li><a href="#arrancar-el-codespace" id="toc-arrancar-el-codespace" class="nav-link" data-scroll-target="#arrancar-el-codespace">4. Arrancar el Codespace</a></li>
+  <li><a href="#reconocer-la-interfaz-del-codespace" id="toc-reconocer-la-interfaz-del-codespace" class="nav-link" data-scroll-target="#reconocer-la-interfaz-del-codespace">5. Reconocer la interfaz del Codespace</a></li>
+  <li><a href="#verificar-que-python-está-configurado" id="toc-verificar-que-python-está-configurado" class="nav-link" data-scroll-target="#verificar-que-python-está-configurado">6. Verificar que Python está configurado</a></li>
+  <li><a href="#crear-un-archivo-de-prueba-y-ejecutarlo" id="toc-crear-un-archivo-de-prueba-y-ejecutarlo" class="nav-link" data-scroll-target="#crear-un-archivo-de-prueba-y-ejecutarlo">7. Crear un archivo de prueba y ejecutarlo</a></li>
+  <li><a href="#cerrar-el-codespace" id="toc-cerrar-el-codespace" class="nav-link" data-scroll-target="#cerrar-el-codespace">8. Cerrar el Codespace</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -548,9 +610,279 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contenido pendiente.)</em></p>
+<section id="ejercicio-1.1" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-1.1">Ejercicio 1.1</h2>
+<p>El objetivo de este ejercicio es que el estudiante cree su propia cuenta en <strong>GitHub</strong> y complete el proceso de solicitud del <strong>GitHub Student Developer Pack</strong>. El GitHub Student Developer Pack ofrece acceso gratuito a herramientas profesionales de desarrollo: dominios, servidores, IDEs, créditos en la nube, herramientas de diseño, bases de datos y mucho más.</p>
+<p>A continuación las instrucciones, paso a paso, que debes seguir para completar este ejercicio.</p>
+<section id="crear-una-cuenta-en-github" class="level3">
+<h3 class="anchored" data-anchor-id="crear-una-cuenta-en-github">1. Crear una cuenta en GitHub</h3>
+<ul>
+<li><p><strong>Paso 1:</strong> Entra en: <a href="https://github.com/" target="_blank" rel="noopener noreferrer"><strong>https://github.com/</strong></a></p></li>
+<li><p><strong>Paso 2:</strong> Iniciar el registro. Haz clic en <strong>Sign up</strong> (arriba a la derecha).</p></li>
+<li><p><strong>Paso 3:</strong> Introducir tus datos. GitHub te pedirá:</p>
+<ul>
+<li><strong>Correo electrónico</strong> (usa tu correo universitario de la UIB).</li>
+<li><strong>Contraseña</strong> segura.</li>
+<li><strong>Nombre de usuario</strong> (será tu identidad pública en GitHub).</li>
+</ul></li>
+<li><p><strong>Paso 4:</strong> Verificar tu correo. GitHub enviará un mensaje a tu email de la UIB. Abre el correo y pulsa <strong>Verify email address</strong>.</p></li>
+</ul>
+</section>
+<section id="completar-tu-perfil" class="level3">
+<h3 class="anchored" data-anchor-id="completar-tu-perfil">2. Completar tu perfil</h3>
+<p>Una vez creada la cuenta, completa tu perfil de usuario siguiendo estos pasos:</p>
+<ul>
+<li><p><strong>Paso 1:</strong> Accede a tu perfil. Haz clic en tu foto o avatar (arriba a la derecha) y selecciona <strong>Your profile</strong>.</p></li>
+<li><p><strong>Paso 2:</strong> Haz clic en <strong>Edit profile</strong> y completa la información solicitada:</p>
+<ul>
+<li><strong>Name</strong> → Tu nombre real.</li>
+<li><strong>Bio</strong> → Una breve descripción (por ejemplo: <em>Estudiante del Grado en Matemáticas (UIB)</em>).</li>
+<li><strong>Company</strong> → Aquí es donde se indica la <strong>Universidad</strong>. Ejemplo: <code>Universitat de les Illes Balears</code></li>
+</ul></li>
+<li><p><strong>Paso 3:</strong> Guardar los cambios haciendo clic en <strong>Save</strong> al final del formulario.</p></li>
+</ul>
+<p>Tras completar estos pasos, tendrás un <strong>perfil académico básico y correcto</strong>, adecuado para solicitar el <strong>GitHub Student Developer Pack</strong></p>
+</section>
+<section id="activar-la-autenticación-en-dos-pasos-2fa" class="level3">
+<h3 class="anchored" data-anchor-id="activar-la-autenticación-en-dos-pasos-2fa">3. Activar la autenticación en dos pasos (2FA)</h3>
+<ul>
+<li><p><strong>Paso 1:</strong> Accede a la configuración de tu cuenta. Haz clic en tu foto o avatar (arriba a la derecha) y selecciona <strong>Settings</strong>.</p></li>
+<li><p><strong>Paso 2:</strong> En el menú lateral izquierdo, abrir la sección <strong>Password and authentication</strong>.</p></li>
+<li><p><strong>Paso 3:</strong> Dentro de <strong>Password and authentication</strong>, localizar el apartado <strong>Two-factor authentication → Enable two-factor authentication</strong></p></li>
+<li><p><strong>Paso 4:</strong> Elegir el método de autenticación.</p>
+<ul>
+<li>Se recomienda emplear una aplicación de autenticación (Authenticator app).</li>
+<li>Dado que la UIB requiere la aplicación <strong>Microsoft Authenticator</strong> se sugiere utilizar esta.</li>
+<li>Debes:</li>
+</ul>
+<ol type="1">
+<li>Abrir la aplicación <strong>Microsoft Authenticator</strong> en tu móvil.</li>
+<li>Escanear el <strong>código QR</strong> que aparece en pantalla.</li>
+<li>Tocar el ícono de GitHub en la app (en tu móvil) para ver el <strong>código temporal</strong> de 6 dígitos que se genera cada 30 segundos.</li>
+<li>Introducir el <strong>código temporal</strong> anterior en la página de GitHub.</li>
+</ol></li>
+</ul>
+</section>
+<section id="reportar-la-cuenta-de-github-en-el-aula-digital" class="level3">
+<h3 class="anchored" data-anchor-id="reportar-la-cuenta-de-github-en-el-aula-digital">4. Reportar la cuenta de GitHub en el Aula Digital</h3>
+</section>
+<section id="solicitar-el-github-student-developer-pack" class="level3">
+<h3 class="anchored" data-anchor-id="solicitar-el-github-student-developer-pack">5. Solicitar el GitHub Student Developer Pack</h3>
+<ul>
+<li><p><strong>Paso 1:</strong> Ve a <a href="https://education.github.com/pack" target="_blank" rel="noopener noreferrer"><strong>https://education.github.com/pack</strong></a>. Haz clic en <strong>Sign up for Student Developer Pack</strong>.</p></li>
+<li><p><strong>Paso 2:</strong> Iniciar sesión con tu cuenta de GitHub. Si no lo has hecho ya, GitHub te pedirá iniciar sesión.</p></li>
+<li><p><strong>Paso 3:</strong> Verificación de identidad académica. GitHub te pedirá demostrar que eres estudiante. Puedes hacerlo de dos formas pero se recomienda la opción de <strong>correo institucional</strong> (el que es xxxxx@estudiant.uib.cat)</p></li>
+<li><p><strong>Paso 4:</strong> Completar el formulario. GitHub te preguntará:</p>
+<ul>
+<li>Tu <strong>nivel educativo</strong> (Undergraduate)</li>
+<li>Tu <strong>universidad</strong></li>
+<li>Tu <strong>motivo para solicitar el Pack</strong> (puedes escribir algo sencillo como: <em>“I want to use professional development tools for my university degree programming projects.”</em>)</li>
+</ul></li>
+<li><p><strong>Paso 5:</strong> Enviar la solicitud. Clic en <strong>Submit</strong>.</p></li>
+</ul>
+<p>GitHub suele tardar entre <strong>1 y 5 días</strong> en revisar la solicitud. Recibirás un correo indicando si ha sido aprobada. Una vez aceptado, tendrás acceso a todas las herramientas del Pack desde tu cuenta de GitHub.</p>
+</section>
+</section>
+<section id="ejercicio-1.2" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-1.2">Ejercicio 1.2</h2>
+<p>Este ejercicio tiene como objetivo que aprendas a:</p>
+<ol type="1">
+<li>Crear un repositorio en GitHub.<br>
+</li>
+<li>Configurarlo mínimamente.<br>
+</li>
+<li>Levantar un Codespace asociado a ese repositorio.</li>
+</ol>
+<div id="imp-codespace" class="callout callout-style-default callout-important callout-titled" title="Repositorio y Codespace">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;1: Repositorio y Codespace
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>repositorio de GitHub</strong> es un espacio donde se guarda un proyecto: contiene el código, archivos del proyecto y el historial de revisiones (commits) que permiten seguir y recuperar cambios a lo largo del tiempo.</p>
+<p>Los repositorios pueden ser públicos o privados, soportan ramas y colaboraciones (pull requests, issues) para coordinar trabajo en equipo, y actúan como la unidad básica de trabajo dentro de GitHub.</p>
+<p>Un <strong>GitHub Codespace</strong> es un entorno de desarrollo en la nube, listo para usar, que te permite programar directamente desde GitHub sin configurar tu máquina local. Suele venir con herramientas y dependencias preconfiguradas para un repositorio concreto, lo que facilita empezar a trabajar rápido.</p>
+</div>
+</div>
+<section id="acceder-a-tu-cuenta-de-github-si-no-lo-has-hecho-ya" class="level3">
+<h3 class="anchored" data-anchor-id="acceder-a-tu-cuenta-de-github-si-no-lo-has-hecho-ya">1. Acceder a tu cuenta de GitHub (si no lo has hecho ya)</h3>
+<ul>
+<li>Abrir el navegador.<br>
+</li>
+<li>Ir a: <code>https://github.com/</code><br>
+</li>
+<li>Pulsar <strong>Sign in</strong>.<br>
+</li>
+<li>Introducir usuario y contraseña.</li>
+</ul>
+</section>
+<section id="crear-el-repositorio-test-de-codespacestema-1" class="level3">
+<h3 class="anchored" data-anchor-id="crear-el-repositorio-test-de-codespacestema-1">2. Crear el repositorio “test-de-codespaces–tema-1”</h3>
+<ul>
+<li><p><strong>Paso 1:</strong> En la parte superior izquierda, hacer clic en <code>+</code> (<img src="../../images/signomas.png" class="img-fluid" width="50">).</p></li>
+<li><p><strong>Paso 2:</strong> Seleccionar <strong>New repository</strong>.</p></li>
+<li><p><strong>Paso 3:</strong> Aparecerá un formulario con varios campos para configurar el repositorio:</p>
+<ul>
+<li><strong>Repository name</strong> → <code>test-de-codespaces–tema-1</code></li>
+<li><strong>Description</strong> → <code>Repositorio de prueba para Codespaces</code></li>
+<li><strong>Visibility</strong> → <code>Private</code> (privado)</li>
+<li><strong>Initialize this repository with a README</strong> → marcar esta opción a On.</li>
+</ul></li>
+<li><p><strong>Paso 4:</strong> Hacer clic en el botón <strong>Create repository</strong>.</p></li>
+<li><p><strong>Paso 5:</strong> Verificar que el repositorio se ha creado. Debes ver una página con:</p></li>
+<li><p>El nombre del repositorio que has dado arriba.<br>
+</p></li>
+<li><p>Un archivo <code>README.md</code> ya creado.<br>
+</p></li>
+<li><p>Un menú con pestañas como <em>Code</em>, <em>Issues</em>, <em>Pull requests</em>, etc.</p></li>
+</ul>
+</section>
+<section id="crear-un-codespace-preconfigurado-para-python" class="level3">
+<h3 class="anchored" data-anchor-id="crear-un-codespace-preconfigurado-para-python">3. Crear un Codespace preconfigurado para Python</h3>
+<ul>
+<li><p><strong>Paso 1:</strong> Crear la carpeta <code>.devcontainer</code> y el fichero <code>devcontainer.json</code></p>
+<ol type="1">
+<li><p>En el repositorio creado (<code>test-de-codespaces–tema-1</code>), hacer clic en el botón <strong>Add file → Create new file</strong>.</p></li>
+<li><p>En el campo <strong>Name your file</strong> escribir:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="er">.devcontainer/devcontainer.json</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Dentro del archivo, pega este contenido:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Curso Programación 23200, Python 3.12"</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"image"</span><span class="fu">:</span> <span class="st">"mcr.microsoft.com/devcontainers/python:3.12"</span><span class="fu">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"customizations"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"vscode"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"extensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">"ms-python.python"</span><span class="ot">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">"ms-python.vscode-pylance"</span><span class="ot">,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">"charliermarsh.ruff"</span><span class="ot">,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">"ms-python.black-formatter"</span><span class="ot">,</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                <span class="st">"oderwat.indent-rainbow"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"settings"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"editor.formatOnSave"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"editor.defaultFormatter"</span><span class="fu">:</span> <span class="st">"ms-python.black-formatter"</span><span class="fu">,</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"python.analysis.typeCheckingMode"</span><span class="fu">:</span> <span class="st">"basic"</span><span class="fu">,</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"ruff.enable"</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            <span class="fu">}</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"postCreateCommand"</span><span class="fu">:</span> <span class="st">"pip install --upgrade pip &amp;&amp; pip install -r requirements.txt || true"</span><span class="fu">,</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"postStartCommand"</span><span class="fu">:</span> <span class="st">"echo 'Entorno listo para Programación 23200'"</span><span class="fu">,</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"forwardPorts"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">8000</span><span class="ot">,</span> <span class="dv">8080</span><span class="ot">]</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Guardar el archivo: Has clic en <strong>Commit changes…</strong>.</p></li>
+<li><p>Acepta el mensaje por defecto sobre los cambios y haz clic en <strong>Commit changes</strong>.</p></li>
+</ol></li>
+<li><p><strong>Paso 2:</strong> Crear el fichero <code>requirements.txt</code> en el directorio raíz del repositorio</p>
+<ol type="1">
+<li><p>Dado el paso anterior puede ocurrir que te encuentres en el directorio <code>.devcontainer</code>, <strong>debes ir al directorio raíz del repositorio</strong>, no permanecer dentro de <code>.devcontainer</code>. Para ello haz clic en <code>..</code> (arriba a la izquierda) para volver al directorio raíz.</p></li>
+<li><p>En el directorio raíz del repositorio (<code>test-de-codespaces–tema-1</code>), hacer clic en el botón <strong>Add file → Create new file</strong>.</p></li>
+<li><p>En el campo <strong>Name your file</strong> escribir:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="er">requirements.txt</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Dentro del archivo, pega este contenido:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="er">ruff</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="er">black</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Guardar el archivo: Has clic en <strong>Commit changes…</strong>.</p></li>
+<li><p>Acepta el mensaje por defecto sobre los cambios y haz clic en <strong>Commit changes</strong>.</p></li>
+</ol></li>
+</ul>
+</section>
+<section id="arrancar-el-codespace" class="level3">
+<h3 class="anchored" data-anchor-id="arrancar-el-codespace">4. Arrancar el Codespace</h3>
+<ul>
+<li><p><strong>Paso 1:</strong> Has clic en <strong>Code → Codespaces</strong>.</p></li>
+<li><p><strong>Paso 2:</strong> Has clic en <strong>Create codespace on main</strong>.</p></li>
+</ul>
+<p>GitHub detectará el <code>.devcontainer</code> y:</p>
+<ul>
+<li><p>descargará la imagen de Python,<br>
+</p></li>
+<li><p>instalará las extensiones,<br>
+</p></li>
+<li><p>configurará el entorno,<br>
+</p></li>
+<li><p>abrirá VS Code con soporte completo para Python.</p></li>
+<li><p><strong>Paso 3:</strong> Espera a que el Codespace esté listo. Esto puede tardar unos minutos. Verás mensajes como:</p>
+<ul>
+<li><em>“Setting up your environment…”</em><br>
+</li>
+<li><em>“Installing dependencies…”</em></li>
+</ul>
+<p>Una vez listo, verás un mensaje en la parte inferior derecha de VS Code indicando que el entorno está listo.</p></li>
+</ul>
+</section>
+<section id="reconocer-la-interfaz-del-codespace" class="level3">
+<h3 class="anchored" data-anchor-id="reconocer-la-interfaz-del-codespace">5. Reconocer la interfaz del Codespace</h3>
+<p>El entorno tendrá:</p>
+<ul>
+<li><p><strong>Barra lateral izquierda</strong> con:</p>
+<ul>
+<li><strong>Explorador</strong>, muestra los archivos del proyecto.</li>
+<li><strong>Buscar</strong>, permite buscar texto en los archivos.</li>
+<li><strong>Control de código fuente</strong>, permite ver los cambios y hacer commits.</li>
+<li><strong>Ejecución y depuración</strong>, permite ejecutar y depurar el código.</li>
+<li><strong>Extensiones</strong>, permite gestionar las extensiones de VS Code.</li>
+</ul></li>
+<li><p><strong>Editor de código</strong> en el centro arriba (aparece abierto el README.md).<br>
+</p></li>
+<li><p><strong>Terminal integrada</strong> en el centro abajo.<br>
+</p></li>
+<li><p><strong>Barra lateral derecha</strong> para el <strong>CHAT</strong> con Copilot.</p></li>
+</ul>
+</section>
+<section id="verificar-que-python-está-configurado" class="level3">
+<h3 class="anchored" data-anchor-id="verificar-que-python-está-configurado">6. Verificar que Python está configurado</h3>
+<p>En la <strong>TERMINAL</strong> del Codespace escribe el siguiente comando para comprobar la versión de Python instalada (si copias y pegas el comando, probablemente debas dar permiso en la ventana emergente del navegador para poder pegar texto en la terminal):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="er">python</span> <span class="er">--version</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Debe aparecer:</p>
+<pre class="text"><code>Python 3.12.x</code></pre>
+</section>
+<section id="crear-un-archivo-de-prueba-y-ejecutarlo" class="level3">
+<h3 class="anchored" data-anchor-id="crear-un-archivo-de-prueba-y-ejecutarlo">7. Crear un archivo de prueba y ejecutarlo</h3>
+<ol type="1">
+<li><p>En el explorador, pulsar <strong>New File</strong> o <strong>Nuevo archivo</strong>.</p></li>
+<li><p>Nombrarlo:</p>
+<pre class="text"><code>prueba.py</code></pre></li>
+<li><p>Escribir dentro:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mi primer Codespace funciona correctamente"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Guardar (<code>Ctrl + S</code>).</p></li>
+<li><p>Ejecutar el archivo.</p>
+<ul>
+<li>Variante 1: Escribir en la terminal:</li>
+</ul>
+<pre class="text"><code>python prueba.py</code></pre>
+<ul>
+<li>Variante 2: Hacer clic en <strong>Ejecutar archivo de Python</strong> (triángulo de play arriba a la derecha del editor de código).</li>
+</ul></li>
+</ol>
+</section>
+<section id="cerrar-el-codespace" class="level3">
+<h3 class="anchored" data-anchor-id="cerrar-el-codespace">8. Cerrar el Codespace</h3>
+<p><strong>Este es un paso importante</strong>. Cuando termines de trabajar en el Codespace, debes cerrarlo para liberar recursos y evitar que se acumulen cargos en tu cuenta de GitHub. <strong>Principalmente ya que el número de horas de Codespaces gratuitas es limitado.</strong></p>
+<ol type="1">
+<li><p>Sin salir del Codespace:</p>
+<ul>
+<li>Presiona <code>Ctrl + Shift + P</code> (o <code>Cmd + Shift + P</code> en Mac) para abrir la paleta de comandos.</li>
+<li>Escribe <code>Codespaces: Close Codespace</code> y selecciona la opción que aparece.</li>
+</ul></li>
+<li><p>Alternativamente, puedes cerrar el Codespace desde tu sitio de GitHub:</p>
+<ul>
+<li>Ve a tu repositorio en GitHub.</li>
+<li>Haz clic en <strong>Code → Codespaces</strong>.</li>
+<li>Localiza el Codespace que quieres cerrar y haz clic en <strong>… → Stop Codespace</strong>.</li>
+</ul></li>
+</ol>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
