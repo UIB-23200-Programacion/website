@@ -112,8 +112,8 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
 
     - **Repository name** → `test-de-codespaces–tema-1`
     - **Description** → `Repositorio de prueba para Codespaces`
-    - **Visibility** → `Public` (público)
-    - **Initialize this repository with a README** → marcar esta opción.
+    - **Visibility** → `Private` (privado)
+    - **Initialize this repository with a README** → marcar esta opción a On.
 
 - **Paso 4:** Hacer clic en el botón **Create repository**.
 
@@ -141,9 +141,6 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
             "name": "Curso Programación 23200, Python 3.12",
             "image": "mcr.microsoft.com/devcontainers/python:3.12",
 
-            // -----------------------------
-            // CUSTOMIZATIONS: configuración del editor VS Code
-            // -----------------------------
             "customizations": {
                 "vscode": {
                     "extensions": [
@@ -151,37 +148,34 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
                         "ms-python.vscode-pylance",
                         "charliermarsh.ruff",
                         "ms-python.black-formatter",
-                        "oderwat.indent-rainbow",
-				        "CoenraadS.bracket-pair-colorizer-2"
+                        "oderwat.indent-rainbow"
                     ],
                     "settings": {
                         "editor.formatOnSave": true,
-                        "python.formatting.provider": "black",
+                        "editor.defaultFormatter": "ms-python.black-formatter",
                         "python.analysis.typeCheckingMode": "basic",
                         "ruff.enable": true
                     }
                 }
             },
 
-            // -----------------------------
-            // COMANDOS AUTOMÁTICOS
-            // -----------------------------
             "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt || true",
             "postStartCommand": "echo 'Entorno listo para Programación 23200'",
 
-            // -----------------------------
-            // PUERTOS ÚTILES PARA PROYECTOS
-            // -----------------------------
             "forwardPorts": [8000, 8080]
         }
 
         ```
 
-    4. Guardar el archivo: Has clic en **Commit new file**.
+    4. Guardar el archivo: Has clic en **Commit changes...**.
 
-- **Paso 2:** Crear el fichero `requirements.txt` 
+    5. Acepta el mensaje por defecto sobre los cambios y haz clic en **Commit changes**.
 
-    1. En el repositorio creado (`test-de-codespaces–tema-1`), hacer clic en el botón **Add file → Create new file**.
+- **Paso 2:** Crear el fichero `requirements.txt` en el directorio raíz del repositorio
+
+    1. Dado el paso anterior puede ocurrir que te encuentres en el directorio `.devcontainer`, **debes ir al directorio raíz del repositorio**, no permanecer dentro de `.devcontainer`. Para ello haz clic en `..` (arriba a la izquierda) para volver al directorio raíz.
+
+    2. En el directorio raíz del repositorio (`test-de-codespaces–tema-1`), hacer clic en el botón **Add file → Create new file**. 
 
     2. En el campo **Name your file** escribir: 
 
@@ -194,7 +188,9 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
         ruff
         black
         ```
-    4. Guardar el archivo: Has clic en **Commit new file**.
+    4. Guardar el archivo: Has clic en **Commit changes...**.
+
+    5. Acepta el mensaje por defecto sobre los cambios y haz clic en **Commit changes**.
 
 ### 4. Arrancar el Codespace
 
@@ -209,9 +205,31 @@ GitHub detectará el `.devcontainer` y:
 - configurará el entorno,  
 - abrirá VS Code con soporte completo para Python.
 
-### 5. Verificar que Python está configurado
+- **Paso 3:** Espera a que el Codespace esté listo. Esto puede tardar unos minutos. Verás mensajes como:
 
-En la terminal del Codespace escribe el siguiente comando para comprobar la versión de Python instalada:
+    - *“Setting up your environment…”*  
+    - *“Installing dependencies…”*
+
+    Una vez listo, verás un mensaje en la parte inferior derecha de VS Code indicando que el entorno está listo.
+
+### 5. Reconocer la interfaz del Codespace
+
+El entorno tendrá:
+
+- **Barra lateral izquierda** con:
+
+    - **Explorador**, muestra los archivos del proyecto.
+    - **Buscar**, permite buscar texto en los archivos.
+    - **Control de código fuente**, permite ver los cambios y hacer commits.
+    - **Ejecución y depuración**, permite ejecutar y depurar el código.
+    - **Extensiones**, permite gestionar las extensiones de VS Code. 
+- **Editor de código** en el centro arriba (aparece abierto el README.md).  
+- **Terminal integrada** en el centro abajo.  
+- **Barra lateral derecha** para el **CHAT** con Copilot.
+
+### 6. Verificar que Python está configurado
+
+En la **TERMINAL** del Codespace escribe el siguiente comando para comprobar la versión de Python instalada (si copias y pegas el comando, probablemente debas dar permiso en la ventana emergente del navegador para poder pegar texto en la terminal):
 
 ```json
 python --version
@@ -223,4 +241,44 @@ Debe aparecer:
 Python 3.12.x
 ```
 
-En la barra inferior de VS Code verás el intérprete de Python seleccionado automáticamente.
+### 7. Crear un archivo de prueba y ejecutarlo
+
+1. En el explorador, pulsar **New File** o **Nuevo archivo**.  
+
+2. Nombrarlo:  
+   ```text
+   prueba.py
+   ```
+
+3. Escribir dentro:
+
+   ```python
+   print("Mi primer Codespace funciona correctamente")
+   ```
+
+4. Guardar (`Ctrl + S`).
+
+5. Ejecutar el archivo. 
+
+    - Variante 1: Escribir en la terminal:
+
+    ```text
+    python prueba.py
+    ```
+
+    - Variante 2: Hacer clic en **Ejecutar archivo de Python** (triángulo de play arriba a la derecha del editor de código).
+
+### 8. Cerrar el Codespace
+
+**Este es un paso importante**. Cuando termines de trabajar en el Codespace, debes cerrarlo para liberar recursos y evitar que se acumulen cargos en tu cuenta de GitHub. **Principalmente ya que el número de horas de Codespaces gratuitas es limitado.**
+
+1. Sin salir del Codespace:
+
+    - Presiona `Ctrl + Shift + P` (o `Cmd + Shift + P` en Mac) para abrir la paleta de comandos.
+    - Escribe `Codespaces: Close Codespace` y selecciona la opción que aparece.
+
+2. Alternativamente, puedes cerrar el Codespace desde tu sitio de GitHub:
+
+    - Ve a tu repositorio en GitHub.
+    - Haz clic en **Code → Codespaces**.
+    - Localiza el Codespace que quieres cerrar y haz clic en **... → Stop Codespace**.
