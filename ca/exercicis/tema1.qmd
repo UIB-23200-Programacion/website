@@ -4,4 +4,281 @@ lang: ca
 sidebar: barra-ca
 ---
 
-*(Contenido pendiente.)*
+## Exercici 1.1
+
+L'objectiu d'aquest exercici és que l'estudiant creï el seu propi compte a **GitHub** i completi el procés de sol·licitud del **GitHub Student Developer Pack**. El GitHub Student Developer Pack ofereix accés gratuït a eines professionals de desenvolupament: dominis, servidors, IDEs, crèdits al núvol, eines de disseny, bases de dades i molt més.
+
+A continuació les instruccions, pas a pas, que heu de seguir per completar aquest exercici.
+
+### 1. Crear un compte a GitHub
+
+- **Pas 1:** Entreu a: [**https://github.com/**](https://github.com/){target="_blank" rel="noopener noreferrer"}
+
+- **Pas 2:** Iniciar el registre. Feu clic a **Sign up** (a dalt a la dreta).
+
+- **Pas 3:** Introduir les vostres dades. GitHub us demanarà:
+
+    - **Correu electrònic** (feu servir el vostre correu universitari de la UIB).
+    - **Contrasenya** segura.
+    - **Nom d'usuari** (serà la vostra identitat pública a GitHub).
+
+- **Pas 4:** Verificar el vostre correu. GitHub enviarà un missatge al vostre email de la UIB. Obriu el correu i premeu **Verify email address**.
+
+### 2. Completar el vostre perfil
+
+Un cop creat el compte, completeu el vostre perfil d'usuari seguint aquests passos:
+
+- **Pas 1:** Accediu al vostre perfil. Feu clic a la vostra foto o avatar (a dalt a la dreta) i seleccioneu **Your profile**.
+
+- **Pas 2:** Feu clic a **Edit profile** i completeu la informació sol·licitada:
+
+    - **Name** → El vostre nom real.
+    - **Bio** → Una breu descripció (per exemple: *Estudiant del Grau en Matemàtiques (UIB)*).
+    - **Company** → Aquí és on s'indica la **Universitat**. Exemple: `Universitat de les Illes Balears`
+
+- **Pas 3:** Desar els canvis fent clic a **Save** al final del formulari.
+
+Després de completar aquests passos, tindreu un **perfil acadèmic bàsic i correcte**, adequat per sol·licitar el **GitHub Student Developer Pack**.
+
+### 3. Activar l'autenticació en dos passos (2FA)
+
+- **Pas 1:** Accediu a la configuració del vostre compte. Feu clic a la vostra foto o avatar (a dalt a la dreta) i seleccioneu **Settings**.
+
+- **Pas 2:** Al menú lateral esquerre, obriu la secció **Password and authentication**.
+
+- **Pas 3:** Dins de **Password and authentication**, localitzeu l'apartat **Two-factor authentication → Enable two-factor authentication**.
+
+- **Pas 4:** Triar el mètode d'autenticació.
+
+    - Es recomana fer servir una aplicació d'autenticació (Authenticator app).
+    - Atès que la UIB requereix l'aplicació **Microsoft Authenticator** es suggereix utilitzar aquesta.
+    - Heu de:
+
+    1. Obrir l'aplicació **Microsoft Authenticator** al vostre mòbil.
+    2. Escanejar el **codi QR** que apareix a la pantalla.
+    3. Tocar la icona de GitHub a l'app (al vostre mòbil) per veure el **codi temporal** de 6 dígits que es genera cada 30 segons.
+    4. Introduir el **codi temporal** anterior a la pàgina de GitHub.
+
+### 4. Reportar el compte de GitHub a l'Aula Digital
+
+### 5. Sol·licitar el GitHub Student Developer Pack
+
+- **Pas 1:** Aneu a [**https://education.github.com/pack**](https://education.github.com/pack){target="_blank" rel="noopener noreferrer"}. Feu clic a **Sign up for Student Developer Pack**.
+
+- **Pas 2:** Iniciar sessió amb el vostre compte de GitHub. Si no ho heu fet ja, GitHub us demanarà iniciar sessió.
+
+- **Pas 3:** Verificació d'identitat acadèmica. GitHub us demanarà demostrar que sou estudiant. Podeu fer-ho de dues formes però es recomana l'opció de **correu institucional** (el que és xxxxx@estudiant.uib.cat).
+
+- **Pas 4:** Completar el formulari. GitHub us preguntarà:
+
+    - El vostre **nivell educatiu** (Undergraduate)
+    - La vostra **universitat**
+    - El vostre **motiu per sol·licitar el Pack** (podeu escriure quelcom senzill com: *"I want to use professional development tools for my university degree programming projects."*)
+
+- **Pas 5:** Enviar la sol·licitud. Clic a **Submit**.
+
+GitHub sol tardar entre **1 i 5 dies** a revisar la sol·licitud. Rebreu un correu indicant si ha estat aprovada. Un cop acceptat, tindreu accés a totes les eines del Pack des del vostre compte de GitHub.
+
+## Exercici 1.2
+
+Aquest exercici té com a objectiu que aprengueu a:
+
+1. Crear un repositori a GitHub.
+2. Configurar-lo mínimament.
+3. Aixecar un Codespace associat a aquest repositori.
+
+::: {#imp-codespace .callout-important title="Repositori i Codespace"}
+Un **repositori de GitHub** és un espai on es desa un projecte: conté el codi, arxius del projecte i l'historial de revisions (commits) que permeten seguir i recuperar canvis al llarg del temps.
+
+Els repositoris poden ser públics o privats, suporten branques i col·laboracions (pull requests, issues) per coordinar el treball en equip, i actuen com la unitat bàsica de treball dins de GitHub.
+
+Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per usar, que us permet programar directament des de GitHub sense configurar la vostra màquina local. Sol venir amb eines i dependències preconfigurades per a un repositori concret, la qual cosa facilita començar a treballar ràpidament.
+:::
+
+### 1. Accedir al vostre compte de GitHub (si no ho heu fet ja)
+
+- Obrir el navegador.
+- Anar a: `https://github.com/`
+- Prémer **Sign in**.
+- Introduir usuari i contrasenya.
+
+### 2. Crear el repositori "test-de-codespaces–tema-1"
+
+- **Pas 1:** A la part superior esquerra, fer clic a `+` (![](../../images/signomas.png){width="50px"}).
+
+- **Pas 2:** Seleccionar **New repository**.
+
+- **Pas 3:** Apareixerà un formulari amb diversos camps per configurar el repositori:
+
+    - **Repository name** → `test-de-codespaces–tema-1`
+    - **Description** → `Repositori de prova per a Codespaces`
+    - **Visibility** → `Private` (privat)
+    - **Initialize this repository with a README** → marcar aquesta opció a On.
+
+- **Pas 4:** Fer clic al botó **Create repository**.
+
+- **Pas 5:** Verificar que el repositori s'ha creat. Heu de veure una pàgina amb:
+
+- El nom del repositori que heu donat abans.
+- Un arxiu `README.md` ja creat.
+- Un menú amb pestanyes com *Code*, *Issues*, *Pull requests*, etc.
+
+### 3. Crear un Codespace preconfigurado per a Python
+
+- **Pas 1:** Crear la carpeta `.devcontainer` i el fitxer `devcontainer.json`
+
+    1. Al repositori creat (`test-de-codespaces–tema-1`), fer clic al botó **Add file → Create new file**.
+
+    2. Al camp **Name your file** escriure:
+
+        ```json
+        .devcontainer/devcontainer.json
+        ```
+    3. Dins de l'arxiu, enganxeu aquest contingut:
+
+        ```json
+        {
+            "name": "Curso Programación 23200, Python 3.12",
+            "image": "mcr.microsoft.com/devcontainers/python:3.12",
+
+            "customizations": {
+                "vscode": {
+                    "extensions": [
+                        "ms-python.python",
+                        "ms-python.vscode-pylance",
+                        "charliermarsh.ruff",
+                        "ms-python.black-formatter",
+                        "oderwat.indent-rainbow"
+                    ],
+                    "settings": {
+                        "editor.formatOnSave": true,
+                        "editor.defaultFormatter": "ms-python.black-formatter",
+                        "python.analysis.typeCheckingMode": "basic",
+                        "ruff.enable": true
+                    }
+                }
+            },
+
+            "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt || true",
+            "postStartCommand": "echo 'Entorno listo para Programación 23200'",
+
+            "forwardPorts": [8000, 8080]
+        }
+
+        ```
+
+    4. Desar l'arxiu: Feu clic a **Commit changes...**.
+
+    5. Accepteu el missatge per defecte sobre els canvis i feu clic a **Commit changes**.
+
+- **Pas 2:** Crear el fitxer `requirements.txt` al directori arrel del repositori
+
+    1. Donat el pas anterior pot ocórrer que us trobeu al directori `.devcontainer`, **heu d'anar al directori arrel del repositori**, no romandre dins de `.devcontainer`. Per fer-ho feu clic a `..` (a dalt a l'esquerra) per tornar al directori arrel.
+
+    2. Al directori arrel del repositori (`test-de-codespaces–tema-1`), fer clic al botó **Add file → Create new file**.
+
+    2. Al camp **Name your file** escriure:
+
+        ```json
+        requirements.txt
+        ```
+    3. Dins de l'arxiu, enganxeu aquest contingut:
+
+        ```json
+        ruff
+        black
+        ```
+    4. Desar l'arxiu: Feu clic a **Commit changes...**.
+
+    5. Accepteu el missatge per defecte sobre els canvis i feu clic a **Commit changes**.
+
+### 4. Arrancar el Codespace
+
+- **Pas 1:** Feu clic a **Code → Codespaces**.
+
+- **Pas 2:** Feu clic a **Create codespace on main**.
+
+GitHub detectarà el `.devcontainer` i:
+
+- descarregarà la imatge de Python,
+- instal·larà les extensions,
+- configurarà l'entorn,
+- obrirà VS Code amb suport complet per a Python.
+
+- **Pas 3:** Espereu que el Codespace estigui llest. Això pot trigar uns minuts. Veureu missatges com:
+
+    - *"Setting up your environment…"*
+    - *"Installing dependencies…"*
+
+    Un cop llest, veureu un missatge a la part inferior dreta de VS Code indicant que l'entorn està llest.
+
+### 5. Reconèixer la interfície del Codespace
+
+L'entorn tindrà:
+
+- **Barra lateral esquerra** amb:
+
+    - **Explorador**, mostra els arxius del projecte.
+    - **Cercar**, permet cercar text als arxius.
+    - **Control de codi font**, permet veure els canvis i fer commits.
+    - **Execució i depuració**, permet executar i depurar el codi.
+    - **Extensions**, permet gestionar les extensions de VS Code.
+- **Editor de codi** al centre a dalt (apareix obert el README.md).
+- **Terminal integrada** al centre a baix.
+- **Barra lateral dreta** per al **XATS** amb Copilot.
+
+### 6. Verificar que Python està configurat
+
+A la **TERMINAL** del Codespace escriviu l'ordre següent per comprovar la versió de Python instal·lada (si copieu i enganxeu l'ordre, probablement haureu de donar permís a la finestra emergent del navegador per poder enganxar text al terminal):
+
+```json
+python --version
+```
+
+Ha d'aparèixer:
+
+```text
+Python 3.12.x
+```
+
+### 7. Crear un arxiu de prova i executar-lo
+
+1. A l'explorador, prémer **New File** o **Nou arxiu**.
+
+2. Anomenar-lo:
+   ```text
+   prova.py
+   ```
+
+3. Escriure a dins:
+
+   ```python
+   print("El meu primer Codespace funciona correctament")
+   ```
+
+4. Desar (`Ctrl + S`).
+
+5. Executar l'arxiu.
+
+    - Variant 1: Escriure al terminal:
+
+    ```text
+    python prova.py
+    ```
+
+    - Variant 2: Fer clic a **Executar arxiu de Python** (triangle de play a dalt a la dreta de l'editor de codi).
+
+### 8. Tancar el Codespace
+
+**Aquest és un pas important**. Quan acabeu de treballar al Codespace, l'heu de tancar per alliberar recursos i evitar que s'acumulin càrrecs al vostre compte de GitHub. **Principalment perquè el nombre d'hores de Codespaces gratuïtes és limitat.**
+
+1. Sense sortir del Codespace:
+
+    - Premeu `Ctrl + Shift + P` (o `Cmd + Shift + P` a Mac) per obrir la paleta d'ordres.
+    - Escriviu `Codespaces: Close Codespace` i seleccioneu l'opció que apareix.
+
+2. Alternativament, podeu tancar el Codespace des del vostre lloc de GitHub:
+
+    - Aneu al vostre repositori a GitHub.
+    - Feu clic a **Code → Codespaces**.
+    - Localitzeu el Codespace que voleu tancar i feu clic a **... → Stop Codespace**.
