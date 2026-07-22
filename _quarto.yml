@@ -186,6 +186,8 @@ language:
   crossref-cau-prefix: "error frecuente"
   crossref-wrn-title: "Técnica de Depuración"
   crossref-wrn-prefix: "técnica de depuración"
+  crossref-tip-title: "Fundamento Teórico"
+  crossref-tip-prefix: "fundamento teórico"
 
 crossref:
   chapters: true

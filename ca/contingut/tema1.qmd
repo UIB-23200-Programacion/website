@@ -394,13 +394,10 @@ Exemples representatius el 2025–2026:
 
 | Agent | Desenvolupador | Descripció |
 | :--- | :--- | :--- |
-| [Devin](https://www.cognition.ai/){target="_blank" rel="noopener noreferrer"} | Cognition AI | Primer agent d'enginyeria de programari autònom; pot planificar, implementar i depurar projectes complets. |
-| [GitHub Copilot Workspace](https://githubnext.com/projects/copilot-workspace){target="_blank" rel="noopener noreferrer"} | GitHub / Microsoft | Agent integrat a GitHub que transforma issues en implementacions completes dins del repositori. |
+| [GitHub Copilot](https://githubnext.com/projects/copilot-workspace){target="_blank" rel="noopener noreferrer"} | GitHub / Microsoft | Agent integrat a GitHub que transforma issues en implementacions completes dins del repositori. |
 | [Cursor Agent](https://www.cursor.com/){target="_blank" rel="noopener noreferrer"} | Anysphere | IDE basat en VS Code amb agent que pot editar múltiples fitxers, executar codi i corregir errors en bucle. |
-| [Windsurf](https://codeium.com/windsurf){target="_blank" rel="noopener noreferrer"} | Codeium | IDE amb agent (*Cascade*) que manté consciència del context complet del projecte i actua de manera proactiva. |
 | [Claude Code](https://www.anthropic.com/claude-code){target="_blank" rel="noopener noreferrer"} | Anthropic | Agent de línia d'ordres que entén bases de codi completes i executa tasques d'enginyeria end-to-end. |
 | [Codex CLI](https://openai.com/codex){target="_blank" rel="noopener noreferrer"} | OpenAI | Agent de línia d'ordres que executa tasques de programació en un entorn segur (*sandbox*), amb accés a terminal, fitxers i internet. |
-| [Tongyi Lingma](https://tongyi.aliyun.com/lingma){target="_blank" rel="noopener noreferrer"} | Alibaba Cloud | Assistent de codi basat en els models Qwen; integrat a VS Code i JetBrains, amb capacitats de xat i completat en línia. |
 | [Baidu Comate](https://comate.baidu.com/){target="_blank" rel="noopener noreferrer"} | Baidu | Assistent de codi basat en ERNIE; extensió per a VS Code i JetBrains amb generació, explicació i revisió de codi. |
 | [MarsCode](https://www.marscode.com/){target="_blank" rel="noopener noreferrer"} | ByteDance | IDE al núvol (basat en VS Code) amb agent integrat basat en els models Doubao; orientat al desenvolupament col·laboratiu. |
 | [CodeGeeX](https://codegeex.cn/){target="_blank" rel="noopener noreferrer"} | Zhipu AI / Tsinghua | Model de codi obert desenvolupat a la Universitat de Tsinghua; extensió per a VS Code amb completat i xat multilingüe. |

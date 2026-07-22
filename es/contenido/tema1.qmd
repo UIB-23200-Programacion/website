@@ -393,13 +393,10 @@ Ejemplos representativos en 2025–2026:
 
 | Agente | Desarrollador | Descripción |
 | :--- | :--- | :--- |
-| [Devin](https://www.cognition.ai/){target="_blank" rel="noopener noreferrer"} | Cognition AI | Primer agente de ingeniería de software autónomo; puede planificar, implementar y depurar proyectos completos. |
-| [GitHub Copilot Workspace](https://githubnext.com/projects/copilot-workspace){target="_blank" rel="noopener noreferrer"} | GitHub / Microsoft | Agente integrado en GitHub que transforma issues en implementaciones completas dentro del repositorio. |
+| [GitHub Copilot](https://githubnext.com/projects/copilot-workspace){target="_blank" rel="noopener noreferrer"} | GitHub / Microsoft | Agente integrado en GitHub que transforma issues en implementaciones completas dentro del repositorio. |
 | [Cursor Agent](https://www.cursor.com/){target="_blank" rel="noopener noreferrer"} | Anysphere | IDE basado en VS Code con agente que puede editar múltiples ficheros, ejecutar código y corregir errores en bucle. |
-| [Windsurf](https://codeium.com/windsurf){target="_blank" rel="noopener noreferrer"} | Codeium | IDE con agente (*Cascade*) que mantiene conciencia del contexto completo del proyecto y actúa de forma proactiva. |
 | [Claude Code](https://www.anthropic.com/claude-code){target="_blank" rel="noopener noreferrer"} | Anthropic | Agente de línea de comandos que entiende bases de código completas y ejecuta tareas de ingeniería end-to-end. |
 | [Codex CLI](https://openai.com/codex){target="_blank" rel="noopener noreferrer"} | OpenAI | Agente de línea de comandos que ejecuta tareas de programación en un entorno seguro (*sandbox*), con acceso a terminal, ficheros e internet. |
-| [Tongyi Lingma](https://tongyi.aliyun.com/lingma){target="_blank" rel="noopener noreferrer"} | Alibaba Cloud | Asistente de código basado en los modelos Qwen; integrado en VS Code y JetBrains, con capacidades de chat y completado en línea. |
 | [Baidu Comate](https://comate.baidu.com/){target="_blank" rel="noopener noreferrer"} | Baidu | Asistente de código basado en ERNIE; extensión para VS Code y JetBrains con generación, explicación y revisión de código. |
 | [MarsCode](https://www.marscode.com/){target="_blank" rel="noopener noreferrer"} | ByteDance | IDE en la nube (basado en VS Code) con agente integrado basado en los modelos Doubao; orientado al desarrollo colaborativo. |
 | [CodeGeeX](https://codegeex.cn/){target="_blank" rel="noopener noreferrer"} | Zhipu AI / Tsinghua | Modelo de código abierto desarrollado en la Universidad de Tsinghua; extensión para VS Code con completado y chat multilingüe. |
