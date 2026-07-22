@@ -200,6 +200,7 @@ format:
       dark: [cosmo, theme-dark.scss]
     css: styles.css
     toc: true
+    callout-icon: false
     mathrenderer: mathjax
     include-after-body:
       text: |
