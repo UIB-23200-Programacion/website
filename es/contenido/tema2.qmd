@@ -111,7 +111,7 @@ Si después escribes `y = x`, Python **no copia el objeto**. Simplemente toma un
 
 ![Variables en C vs Python](../../images/variablesCvsPython.jpg){#fig-cvspython width=90%}
 
-::: {.callout-note collapse="true" title="Ampliación: Diferencia con las variables matemáticas"}
+::: {.callout-note collapse="true" title="Diferencia con las variables matemáticas"}
 Una **variable en programación** no es lo mismo que una variable matemática. En matemáticas, $x$ en $f(x) = x^2$ es un símbolo que representa un valor arbitrario pero fijo dentro de un contexto. En programación, una variable representa un **estado que evoluciona con el tiempo** durante la ejecución, lo cual no tiene equivalente directo en el lenguaje matemático estándar. El clásico ejemplo se muestra en la ruptura lógica de $x = x + 1$
 
 - **En matemáticas:** La expresión $x = x + 1$ es una contradicción. Si intentas resolverla restando $x$ en ambos lados, llegas al absurdo lógico de $0 = 1$. El símbolo $=$ representa una equivalencia permanente.
@@ -168,21 +168,24 @@ cosa = True
 ```
 :::
 
-### Tipos built-in
+### Tipos predeterminados (built-in) simples
 
-Python tiene cinco tipos básicos para representar valores simples:
+Los tipos predeterminados (o built-in types) en Python son los tipos de datos fundamentales que vienen integrados en el lenguaje, sin necesidad de importar ninguna librería externa. Python tiene seis tipos predeterminados para representar valores simples:
 
 | Tipo | Clase Python | Ejemplos | Descripción |
-|---|---|---|---|
+|---|---|---|-----|
 | Entero | `int` | `0`, `42`, `-7`, `10**100` | Precisión arbitraria; no hay desbordamiento. |
 | Flotante | `float` | `3.14`, `-0.5`, `1.0e-10` | IEEE 754 doble precisión (~15 dígitos significativos). |
+| Número complejo | `complex` | `3 + 2j`, `1j`, `complex(2, -1)` | La unidad imaginaria se escribe `j` (no `i` como en matemáticas). |
 | Cadena | `str` | `"hola"`, `'mundo'` | Secuencia inmutable de caracteres Unicode. |
 | Booleano | `bool` | `True`, `False` | Subtipo de `int`; `True == 1` y `False == 0`. |
 | Nulo | `NoneType` | `None` | Representa la ausencia de valor. |
 
-La función `type()` devuelve el tipo de cualquier objeto:
+La función `type()` devuelve el tipo de cualquier objeto o variable:
 
 ```python
+x = 42
+print(type(x))         # <class 'int'>
 print(type(42))        # <class 'int'>
 print(type(3.14))      # <class 'float'>
 print(type("hola"))    # <class 'str'>
@@ -223,6 +226,35 @@ print(abs(a - b) < 1e-10)   # True
 Para cálculos numéricos precisos, el módulo `math` y la librería NumPy (Tema 7) ofrecen herramientas adecuadas.
 :::
 
+#### Números complejos (`complex`)
+
+Python incorpora los números complejos como tipo nativo, sin necesidad de importar ninguna librería. La unidad imaginaria se denota con `j` (no `i`, para evitar conflicto con el uso de `i` como índice en código):
+
+```python
+z1 = 3 + 2j
+z2 = complex(1, -4)    # equivale a 1 - 4j
+
+print(z1 + z2)         # (4-2j)
+print(z1 * z2)         # (11-10j)
+print(z1.real)         # 3.0
+print(z1.imag)         # 2.0
+print(z1.conjugate())  # (3-2j)
+print(abs(z1))         # 3.605...  (módulo: √(3² + 2²))
+```
+
+Los números complejos ilustran bien un concepto central en Python: los objetos tienen **atributos** y **métodos** a los que se accede con el operador punto `.`:
+
+- Un **atributo** es un valor asociado al objeto: `z.real` y `z.imag` devuelven las partes real e imaginaria.
+- Un **método** es una función asociada al objeto que se invoca con paréntesis: `z.conjugate()` devuelve el conjugado.
+
+Esta notación `objeto.algo` aparecerá constantemente en Python. En el Tema 5 se estudiará en detalle qué son los objetos y cómo se definen; por ahora basta con saber que todo valor en Python es un objeto y que el punto `.` da acceso a lo que ese objeto "sabe hacer".
+
+Los atributos `.real` e `.imag` devuelven siempre `float`. Las operaciones aritméticas (`+`, `-`, `*`, `/`, `**`) funcionan directamente entre complejos o entre complejos y enteros/flotantes.
+
+::: {.callout-tip appearance="simple"}
+Para cálculos más avanzados con números complejos (funciones trigonométricas, logaritmos, exponencial compleja) se usa el módulo `cmath` de la librería estándar.
+:::
+
 #### Cadenas (`str`)
 
 Las cadenas son secuencias de caracteres delimitadas por comillas simples o dobles (ambas equivalentes). Para cadenas que ocupan varias líneas se usan triples comillas:
@@ -243,6 +275,75 @@ Las **secuencias de escape** permiten incluir caracteres especiales dentro de un
 | `\t` | Tabulador horizontal |
 | `\\` | Barra invertida literal |
 | `\"` | Comilla doble literal |
+
+con la notación `objeto.método()`, explicada en la sección de numeros complejos, podemos acceder a los métodos de las cadenas. Por ejemplo:
+
+```python
+texto = "hola mundo"
+print(texto.upper())    # "HOLA MUNDO"
+```
+
+Aquí `upper` es un método del objeto `texto`. El punto `.` es el operador de acceso a miembros: indica "busca dentro de este objeto algo llamado `upper` y llámalo".
+
+Los métodos de `str` más útiles en la práctica:
+
+| Método | Descripción | Ejemplo |
+|---|---|---|
+| `.upper()` | Convierte a mayúsculas | `"hola".upper()` → `"HOLA"` |
+| `.lower()` | Convierte a minúsculas | `"HOLA".lower()` → `"hola"` |
+| `.strip()` | Elimina espacios al inicio y al final | `"  hola  ".strip()` → `"hola"` |
+| `.replace(a, b)` | Sustituye todas las ocurrencias de `a` por `b` | `"aabbcc".replace("b", "x")` → `"aaxxcc"` |
+| `.split(sep)` | Divide la cadena por `sep` y devuelve una lista | `"a,b,c".split(",")` → `["a", "b", "c"]` |
+| `.startswith(s)` | `True` si la cadena empieza por `s` | `"hola".startswith("ho")` → `True` |
+| `.count(s)` | Cuenta las ocurrencias de `s` | `"banana".count("a")` → `3` |
+
+La función `len()` no es un método sino una función built-in, pero se aplica habitualmente sobre cadenas:
+
+```python
+print(len("matemáticas"))   # 11
+```
+
+::: {.callout-tip appearance="simple"}
+Para ver todos los métodos disponibles de cualquier objeto, usa `dir(objeto)` en el REPL. Para obtener ayuda sobre un método concreto, usa `help(str.replace)`.
+:::
+
+#### Booleanos (`bool`)
+
+Los booleanos representan valores de verdad: `True` o `False`. Son el resultado natural de los operadores de comparación y lógicos:
+
+```python
+print(3 > 2)        # True
+print(type(True))   # <class 'bool'>
+```
+
+`bool` es un subtipo de `int`: `True` vale `1` y `False` vale `0`. Esto permite usarlos directamente en expresiones aritméticas, algo que en matemáticas tiene sentido como función indicadora:
+
+```python
+print(True + True)   # 2
+print(False * 7)     # 0
+print(int(True))     # 1
+```
+
+#### Nulo (`NoneType`)
+
+`None` es el único valor del tipo `NoneType` y representa la **ausencia de valor**. Se usa cuando una variable no tiene ningún objeto asignado, o cuando una función no devuelve nada explícitamente:
+
+```python
+resultado = None
+print(resultado)        # None
+print(type(resultado))  # <class 'NoneType'>
+```
+
+Para comprobar si una variable es `None` se usa `is`, no `==`:
+
+```python
+if resultado is None:
+    print("Sin resultado todavía")
+```
+
+::: {.callout-tip appearance="simple"}
+`is None` comprueba identidad (mismo objeto en memoria), que es lo correcto para `None` ya que existe un único objeto `None` en todo el intérprete. `== None` funcionaría en la práctica pero es considerado mal estilo en Python.
+:::
 
 ### Operadores aritméticos
 
@@ -326,8 +427,8 @@ print(x < 0 or x > 5)     # True   (x < 0 es False, pero x > 5 es True)
 print(not (x == 7))        # False
 ```
 
-::: {.callout-note collapse="true" title="Ampliación: evaluación perezosa (short-circuit)"}
-Los operadores `and` y `or` en Python usan **evaluación perezosa** (*short-circuit evaluation*): si el resultado queda determinado por el primer operando, el segundo no se evalúa.
+::: {.callout-note collapse="true" title="Evaluación en cortocircuito (short-circuit evaluation)"}
+Los operadores `and` y `or` en Python usan **short-circuit evaluation**: si el resultado queda determinado por el primer operando, el segundo no se evalúa.
 
 - `False and expr` → `False` sin evaluar `expr`.
 - `True or expr` → `True` sin evaluar `expr`.
@@ -447,7 +548,7 @@ else:
 
 Cuando la lógica se complica, suele ser preferible combinar condiciones con `and` y `or`, o usar `elif`, en lugar de anidar demasiados niveles.
 
-::: {.callout-note collapse="true" title="Ampliación: expresión condicional (operador ternario)"}
+::: {.callout-note collapse="true" title="Expresión condicional (operador ternario)"}
 Python dispone de una **expresión condicional** que asigna un valor según una condición en una sola línea:
 
 ```python
@@ -646,7 +747,7 @@ Salida:
 2  3  5  7  11  13  17  19  23  29  31  37  41  43  47
 ```
 
-::: {.callout-note collapse="true" title="Ampliación: bucles anidados"}
+::: {.callout-note collapse="true" title="Bucles anidados"}
 Los bucles se pueden **anidar**: un bucle dentro de otro. Cada vez que el bucle exterior avanza una iteración, el bucle interior se ejecuta complete. El número total de iteraciones es el producto de los rangos de ambos bucles.
 
 ```python
@@ -830,7 +931,7 @@ if resultado is not None:
     print(f"{a} {op} {b} = {resultado:.6g}")
 ```
 
-::: {.callout-note collapse="true" title="Ampliación: el especificador :g"}
+::: {.callout-note collapse="true" title="El especificador :g"}
 El especificador `:g` elige automáticamente entre notación decimal y científica según la magnitud del número, y elimina los ceros decimales finales innecesarios:
 
 ```python
