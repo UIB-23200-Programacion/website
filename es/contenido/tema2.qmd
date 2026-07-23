@@ -83,14 +83,43 @@ La definición más precisa distingue tres componentes:
 
 Esta triple asociación nombre–valor–ubicación es lo que define formalmente una variable. Lo que varía entre lenguajes es cuánto de esto es visible o controlable por el programador.
 
-En lenguajes como C, la variable *es* la ubicación: declarar `int x` reserva una celda de memoria y `x` es el nombre de esa celda. En Python, en cambio, la variable es solo el nombre: lo que cambia es a qué objeto apunta ese nombre en memoria, no la celda en sí. Por eso en Python se habla de que una variable *referencia* un objeto, no de que *contiene* un valor directamente. Esta distinción tiene consecuencias prácticas importantes cuando se trabaja con **objetos mutables** (un objeto mutable es un objeto cuyo estado interno puede modificarse después de su creación, sin que cambie su identidad en memoria.)
+En lenguajes como C, la variable *es* la ubicación: declarar `int x` reserva una celda de memoria y `x` es el nombre de esa celda. En Python, en cambio, la variable es solo el nombre: lo que cambia es a qué objeto apunta ese nombre en memoria, no la celda en sí. Para entenderlo fácilmente, se suele usar la metáfora de las "cajas" frente a las "etiquetas".
 
-Una **variable en programación** no es lo mismo que una variable matemática. En matemáticas, $x$ en $f(x) = x^2$ es un símbolo que representa un valor arbitrario pero fijo dentro de un contexto. En programación, una variable representa un **estado que evoluciona con el tiempo** durante la ejecución, lo cual no tiene equivalente directo en el lenguaje matemático estándar.
+**El modelo de C: Variables como "Cajas"**
+
+En C, una variable es un **espacio físico reservado en la memoria** de la computadora.
+
+Cuando escribes `int x = 10;`, el compilador hace lo siguiente:
+
+1. Toma una caja (una dirección de memoria, por ejemplo, `0x7fff...`).
+2. Le pone el nombre `x` a esa caja.
+3. Mete el valor `10` **dentro** de la caja.
+
+Si después escribes `int y = x;`, C crea **otra caja completamente nueva** llamada `y`, y **copia** el valor `10` dentro de ella. Tienes dos cajas separadas con el mismo contenido. Si cambias el valor de `y`, `x` no se entera.
+
+**El modelo de Python: Variables como "Etiquetas"**
+
+En Python, el concepto tradicional de variable no existe. Las variables son en realidad **nombres o referencias** que apuntan a objetos. **Todo en Python es un objeto (incluso los números simples)**.
+
+Cuando escribes `x = 10`, Python hace algo muy distinto:
+
+1. Crea un **objeto** en la memoria que representa al número entero `10`.
+2. Crea el nombre `x` como si fuera una **etiqueta** (un *post-it*).
+3. Pega la etiqueta `x` sobre el objeto `10`.
+
+Si después escribes `y = x`, Python **no copia el objeto**. Simplemente toma una nueva etiqueta llamada `y` y la pega en el **mismo objeto** `10`. Ambas variables apuntan exactamente al mismo lugar en la memoria.
+
+::: {.callout-note collapse="true" title="Diferencia con las variables matemáticas"}
+Una **variable en programación** no es lo mismo que una variable matemática. En matemáticas, $x$ en $f(x) = x^2$ es un símbolo que representa un valor arbitrario pero fijo dentro de un contexto. En programación, una variable representa un **estado que evoluciona con el tiempo** durante la ejecución, lo cual no tiene equivalente directo en el lenguaje matemático estándar. El clásico ejemplo se muestra en la ruptura lógica de $x = x + 1$
+
+- **En matemáticas:** La expresión $x = x + 1$ es una contradicción. Si intentas resolverla restando $x$ en ambos lados, llegas al absurdo lógico de $0 = 1$. El símbolo $=$ representa una equivalencia permanente.
+- **En programación:** La instrucción `x = x + 1` es una de las operaciones más comunes que existen. El símbolo `=` (en la mayoría de lenguajes) no significa "equivalencia", sino **asignación**. La instrucción se lee en el tiempo: "Evalúa el estado actual de $x$, súmale $1$, y actualiza el estado guardando el nuevo resultado en $x$".
+:::
 :::
 
-Una **variable** es un nombre que referencia un valor almacenado en memoria. En Python, las variables no tienen un tipo fijo: pueden referenciar valores de cualquier tipo, y pueden cambiar de tipo a lo largo de la ejecución.
+Tenemos entonces que en Python una **variable** es un nombre que referencia un valor de cierto **tipo** almacenado en memoria. En Python las variables no tienen un tipo fijo, pueden referenciar valores de cualquier tipo, y pueden cambiar de tipo a lo largo de la ejecución.
 
-::: {#tip-tipo .callout-tip title="Tipo de dato"}
+::: {#tip-tipo .callout-tip title="Tipo"}
 Un **tipo de dato** o simplemente **tipo** es una clasificación que especifica qué valores puede tomar un dato y qué operaciones son válidas sobre él.
 
 Por ejemplo, el tipo `int` (entero) admite los valores …−2, −1, 0, 1, 2… y operaciones como suma o división entera; el tipo `str` (cadena o string en inglés) admite secuencias de caracteres y operaciones como concatenación o indexación. Una operación inválida para el tipo —sumar un entero con una cadena sin conversión explícita— produce un error.
