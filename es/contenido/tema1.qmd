@@ -313,7 +313,7 @@ Los LLMs aplicados a código no "comprenden" la lógica del programa en el senti
 matemático: generan código *plausible* basándose en patrones aprendidos. Esto explica
 tanto sus impresionantes capacidades como sus fallos inesperados.
 
-::: {.callout-note appearance="minimal" collapse="true" title="Profundización"}
+::: {.callout-note appearance="minimal" collapse="true" title="Ampliación: Transformers y atención"}
 La arquitectura que subyace a los LLMs modernos es el **Transformer**, introducido en
 2017 en el artículo *Attention Is All You Need* [@vaswani2017]. El mecanismo clave, la
 *atención*, permite al modelo relacionar cualquier par de palabras en una secuencia

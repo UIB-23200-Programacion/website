@@ -307,7 +307,7 @@ Els LLMs aplicats a codi no "comprenen" la lògica del programa en el sentit
 matemàtic: generen codi *plausible* basant-se en patrons apresos. Això explica
 tant les seves impressionants capacitats com les seves fallades inesperades.
 
-::: {.callout-note appearance="minimal" collapse="true" title="Aprofundiment"}
+::: {.callout-note appearance="minimal" collapse="true" title="Ampliació: Transformers i atenció"}
 L'arquitectura que subjau als LLMs moderns és el **Transformer**, introduït el
 2017 a l'article *Attention Is All You Need* [@vaswani2017]. El mecanisme clau, l'*atenció*,
 permet al model relacionar qualsevol parell de paraules en una seqüència

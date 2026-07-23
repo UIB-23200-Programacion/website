@@ -109,7 +109,9 @@ Cuando escribes `x = 10`, Python hace algo muy distinto:
 
 Si después escribes `y = x`, Python **no copia el objeto**. Simplemente toma una nueva etiqueta llamada `y` y la pega en el **mismo objeto** `10`. Ambas variables apuntan exactamente al mismo lugar en la memoria.
 
-::: {.callout-note collapse="true" title="Diferencia con las variables matemáticas"}
+![Variables en C vs Python](../../images/variablesCvsPython.jpg){#fig-cvspython width=90%}
+
+::: {.callout-note collapse="true" title="Ampliación: Diferencia con las variables matemáticas"}
 Una **variable en programación** no es lo mismo que una variable matemática. En matemáticas, $x$ en $f(x) = x^2$ es un símbolo que representa un valor arbitrario pero fijo dentro de un contexto. En programación, una variable representa un **estado que evoluciona con el tiempo** durante la ejecución, lo cual no tiene equivalente directo en el lenguaje matemático estándar. El clásico ejemplo se muestra en la ruptura lógica de $x = x + 1$
 
 - **En matemáticas:** La expresión $x = x + 1$ es una contradicción. Si intentas resolverla restando $x$ en ambos lados, llegas al absurdo lógico de $0 = 1$. El símbolo $=$ representa una equivalencia permanente.
@@ -324,7 +326,7 @@ print(x < 0 or x > 5)     # True   (x < 0 es False, pero x > 5 es True)
 print(not (x == 7))        # False
 ```
 
-::: {.callout-note collapse="true" title="Profundización: evaluación perezosa (short-circuit)"}
+::: {.callout-note collapse="true" title="Ampliación: evaluación perezosa (short-circuit)"}
 Los operadores `and` y `or` en Python usan **evaluación perezosa** (*short-circuit evaluation*): si el resultado queda determinado por el primer operando, el segundo no se evalúa.
 
 - `False and expr` → `False` sin evaluar `expr`.
@@ -445,7 +447,7 @@ else:
 
 Cuando la lógica se complica, suele ser preferible combinar condiciones con `and` y `or`, o usar `elif`, en lugar de anidar demasiados niveles.
 
-::: {.callout-note collapse="true" title="Profundización: expresión condicional (operador ternario)"}
+::: {.callout-note collapse="true" title="Ampliación: expresión condicional (operador ternario)"}
 Python dispone de una **expresión condicional** que asigna un valor según una condición en una sola línea:
 
 ```python
@@ -644,8 +646,8 @@ Salida:
 2  3  5  7  11  13  17  19  23  29  31  37  41  43  47
 ```
 
-::: {.callout-note collapse="true" title="Profundización: bucles anidados"}
-Los bucles se pueden **anidar**: un bucle dentro de otro. Cada vez que el bucle exterior avanza una iteración, el bucle interior se ejecuta completo. El número total de iteraciones es el producto de los rangos de ambos bucles.
+::: {.callout-note collapse="true" title="Ampliación: bucles anidados"}
+Los bucles se pueden **anidar**: un bucle dentro de otro. Cada vez que el bucle exterior avanza una iteración, el bucle interior se ejecuta complete. El número total de iteraciones es el producto de los rangos de ambos bucles.
 
 ```python
 # Tabla de multiplicar del 1 al 6
@@ -828,7 +830,7 @@ if resultado is not None:
     print(f"{a} {op} {b} = {resultado:.6g}")
 ```
 
-::: {.callout-note collapse="true" title="Profundización: el especificador :g"}
+::: {.callout-note collapse="true" title="Ampliación: el especificador :g"}
 El especificador `:g` elige automáticamente entre notación decimal y científica según la magnitud del número, y elimina los ceros decimales finales innecesarios:
 
 ```python
