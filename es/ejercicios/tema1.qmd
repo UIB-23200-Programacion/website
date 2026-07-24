@@ -207,8 +207,8 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
 
 - **Paso 3:** Espera a que el Codespace esté listo. Esto puede tardar unos minutos. Verás mensajes como:
 
-    - *“Setting up your environment…”*  
-    - *“Installing dependencies…”*
+    - *Setting up remote connection: [Building codespace...]”*  
+    - *Installing dependencies…*
 
     Una vez listo, verás un mensaje en la parte inferior derecha de VS Code indicando que el entorno está listo.
 

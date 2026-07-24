@@ -244,7 +244,7 @@ print(abs(z1))         # 3.605...  (módulo: √(3² + 2²))
 
 Los números complejos ilustran bien un concepto central en Python: los objetos tienen **atributos** y **métodos** a los que se accede con el operador punto `.`:
 
-- Un **atributo** es un valor asociado al objeto: `z.real` y `z.imag` devuelven las partes real e imaginaria.
+- Un **atributo** es un valor asociado al objeto: `z.real` y `z.imag` devuelven las partes real e imaginaria del número complejo `z`.
 - Un **método** es una función asociada al objeto que se invoca con paréntesis: `z.conjugate()` devuelve el conjugado.
 
 Esta notación `objeto.algo` aparecerá constantemente en Python. En el Tema 5 se estudiará en detalle qué son los objetos y cómo se definen; por ahora basta con saber que todo valor en Python es un objeto y que el punto `.` da acceso a lo que ese objeto "sabe hacer".
@@ -276,14 +276,14 @@ Las **secuencias de escape** permiten incluir caracteres especiales dentro de un
 | `\\` | Barra invertida literal |
 | `\"` | Comilla doble literal |
 
-con la notación `objeto.método()`, explicada en la sección de numeros complejos, podemos acceder a los métodos de las cadenas. Por ejemplo:
+Con la notación `objeto.método()`, explicada en la sección de números complejos, podemos acceder a diversos métodos útiles de las cadenas. Por ejemplo:
 
 ```python
 texto = "hola mundo"
 print(texto.upper())    # "HOLA MUNDO"
 ```
 
-Aquí `upper` es un método del objeto `texto`. El punto `.` es el operador de acceso a miembros: indica "busca dentro de este objeto algo llamado `upper` y llámalo".
+Aquí `upper` es un método de la variable `texto` (objeto del tipo `str`). El punto `.` es el operador de acceso a miembros: indica "busca dentro de este objeto algo llamado `upper` y llámalo".
 
 Los métodos de `str` más útiles en la práctica:
 
@@ -304,7 +304,11 @@ print(len("matemáticas"))   # 11
 ```
 
 ::: {.callout-tip appearance="simple"}
-Para ver todos los métodos disponibles de cualquier objeto, usa `dir(objeto)` en el REPL. Para obtener ayuda sobre un método concreto, usa `help(str.replace)`.
+Para ver todos los métodos disponibles de cualquier objeto `x`:
+
+- usa `dir(x)` en el REPL,
+    - para obtener ayuda sobre un método concreto, por ejemplo `replace` si `x` es una cadena, usa `help(x.replace)`,
+- en Visual Studio Code o en un notebook de Marimo, escribe `x.` y pulsa **Tab** para ver la lista de métodos.
 :::
 
 #### Booleanos (`bool`)
@@ -347,6 +351,8 @@ if resultado is None:
 
 ### Operadores aritméticos
 
+Python define siete operadores aritméticos que funcionan principalmente con enteros, flotantes y complejos (`int`, `float`, `complex`). La tabla siguiente resume su significado y comportamiento:
+
 | Operador | Operación | Ejemplo | Resultado |
 |:---:|---|---|---:|
 | `+` | Suma | `7 + 3` | `10` |
@@ -357,6 +363,16 @@ if resultado is None:
 | `%` | Módulo (resto) | `7 % 3` | `1` |
 | `**` | Potencia | `2 ** 10` | `1024` |
 
+Algunas excepciones y extensiones de estos operadores según el tipo de dato son:
+
+- `complex` no admite `//` ni `%`, ya que la división entera y el módulo no están definidos para números complejos.
+- `bool`, al ser subtipo de `int`, hereda todos los operadores aritméticos.
+- `str` admite `+` como concatenación y `*` como repetición, pero no el resto.
+
+Para los tipos numéricos, cuando se combinan operandos de tipos distintos el resultado se **promueve** al tipo más general: `int + float` produce `float`, y `int + complex` produce `complex`. 
+
+La potencia `**` admite exponentes negativos y flotantes, pero el resultado es siempre `float` o `complex`. Es además el único operador con asociatividad por la derecha: `2 ** 3 ** 2` se evalúa como `2 ** 9 = 512`, igual que en notación matemática estándar.
+
 ::: {#imp-division .callout-important title="División entera y módulo"}
 En Python 3, el operador `/` **siempre devuelve un flotante**, incluso cuando el resultado es exacto:
 
@@ -365,7 +381,7 @@ print(6 / 2)    # 3.0   (no 3)
 print(7 / 2)    # 3.5
 ```
 
-El operador `//` devuelve el **cociente entero** (*floor division*), y `%` devuelve el **resto** de la división entera:
+El operador `//` devuelve el **cociente entero** (*floor division*) redondeando hacia $-\infty$, no hacia cero. El operador `%` devuelve el **resto** de la división entera:
 
 ```python
 print(17 // 5)  #  3   (cociente)
@@ -374,7 +390,12 @@ print(-7 // 2)  # -4   (floor: redondea hacia menos infinito)
 print(-7 % 2)   #  1
 ```
 
-Se cumple siempre la identidad: `a == (a // b) * b + (a % b)`.
+Se cumple siempre la identidad: `a == (a // b) * b + (a % b)`. Aquí `==` es un operador de comparación (igualdad), no de asignación. Por ejemplo:
+
+```python
+a, b = 17, 5
+print(a == (a // b) * b + (a % b))  # True
+```
 
 El operador `%` es fundamental en teoría de números: la condición `n % 2 == 0` es la prueba de paridad.
 :::
@@ -402,6 +423,32 @@ Los operadores de comparación evalúan una relación entre dos valores y devuel
 | `>` | Mayor que | `5 > 2` | `True` |
 | `<=` | Menor o igual | `3 <= 3` | `True` |
 | `>=` | Mayor o igual | `4 >= 5` | `False` |
+
+Los operadores de comparación se aplican a todos los tipos simples, con dos excepciones importantes:
+
+- **`complex` no admite `<`, `>`, `<=`, `>=`**: los números complejos no tienen orden total, igual que en matemáticas. Solo `==` y `!=` están definidos.
+- **`str` usa orden lexicográfico**: las comparaciones de orden siguen el código Unicode de cada carácter, no el orden alfabético intuitivo. En particular, todas las mayúsculas preceden a todas las minúsculas: `"Z" < "a"` es `True`.
+
+```python
+# complex: == y != funcionan, orden no está definido
+z = 3 + 2j
+print(z == 3 + 2j)   # True
+print(z != 0j)        # True
+# print(z < 1 + 0j)  # TypeError: '<' not supported between 'complex' and 'complex'
+
+# str: orden lexicográfico por código Unicode
+print("Z" < "a")      # True  (ord("Z") = 90, ord("a") = 97)
+print("banana" < "manzana")   # True  (compara carácter a carácter)
+print("abc" == "ABC")  # False
+```
+
+Comparar valores de tipos distintos con `==` no produce error sino `False` directamente (`42 == "42"` es `False`). Usar `<` o `>` entre tipos incompatibles sí lanza `TypeError`.
+
+```python
+# tipos distintos: == devuelve False, orden lanza TypeError
+print(42 == "42")     # False
+# print(42 < "42")    # TypeError: '<' not supported between 'int' and 'str'
+```
 
 Python permite **encadenar comparaciones** de forma natural, exactamente como en notación matemática:
 
