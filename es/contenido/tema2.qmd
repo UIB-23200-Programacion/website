@@ -704,7 +704,7 @@ if x < 0:
 El bloque indentado solo se ejecuta si la condición es `True`. Si la condición es `False`, el bloque se omite y la ejecución continúa en la siguiente instrucción no indentada.
 
 ::: {#imp-indenta .callout-important title="Delimitación de bloques por indentación"}
-En Python la indentación no es una convención estilística sino parte de la sintaxis: es el mecanismo que delimita los bloques de código. A diferencia de lenguajes como C o Java, que usan llaves `{}` para marcar el inicio y el fin de un bloque, Python usa el nivel de sangría. Las instrucciones que pertenecen al bloque de código deben estar indentadas un nivel más adentro de la instrucción cabecera (`if`, `else`, `elif`, `while`, `for`, etc.) para que el intérprete sepa qué instrucciones se repiten y cuáles se ejecutan al salir del bloque (las que están al mismo nivel de indentación que la instrucción cabecera). Python usa **indentación** de 4 espacios por convención [@pep8]. 
+En Python la **indentación** no es una convención estilística sino parte de la sintaxis: es el mecanismo que delimita los bloques de código. A diferencia de lenguajes como C o Java, que usan llaves `{}` para marcar el inicio y el fin de un bloque, Python usa el nivel de sangría. Las instrucciones que pertenecen al bloque de código deben estar indentadas un nivel más adentro de la instrucción cabecera (`if`, `else`, `elif`, `while`, `for`, etc.) para que el intérprete sepa qué instrucciones se repiten y cuáles se ejecutan al salir del bloque (las que están al mismo nivel de indentación que la instrucción cabecera). Python usa indentación de 4 espacios por convención [@pep8]. 
 :::
 
 ### **2.3.2 Estructura `if`-`else`**
@@ -737,8 +737,7 @@ print(f"Nota: {nota} → {calificacion}")
 # Nota: 7.5 → Notable
 ```
 
-### **2.3.4 Ejemplo: análisis de una ecuación cuadrática**
-
+:::{#nte-ecucua .callout-note title="Raíces de una ecuación cuadrática"}
 El discriminante $\Delta = b^2 - 4ac$ determina la naturaleza de las raíces de $ax^2 + bx + c = 0$:
 
 ```python
@@ -758,11 +757,13 @@ else:
     print("Sin raíces reales (discriminante negativo)")
 ```
 
+:::
+
 ::: {.callout-note appearance="simple"}
 La instrucción `import math` hace disponibles las funciones matemáticas del módulo estándar `math`, como `math.sqrt()` (raíz cuadrada), `math.pi` (π), `math.log()` (logaritmo), etc. Los módulos se estudian en profundidad en el Tema 3; por ahora basta con saber que `import math` debe escribirse antes de usar cualquier función de ese módulo. La notación `math.xxxxxx()`, por ejemplo `math.sqrt()`, indica que la función `xxxxxx` pertenece al módulo `math`.
 :::
 
-### **2.3.5 Condicionales anidados**
+### **2.3.4 Condicionales anidados**
 
 Un bloque `if` puede contener otro `if` en su interior. Los condicionales anidados permiten refinar la lógica paso a paso:
 
@@ -812,7 +813,8 @@ while condición:
     # bloque que se repite
 ```
 
-**Ejemplo: imprimir los cuadrados perfectos menores que 100:**
+:::{#nte-cua100 .callout-note title="Imprimir los cuadrados perfectos menores que 100"}
+Empleando un bucle `while` se pueden imprimir los cuadrados perfectos menores que 100:
 
 ```python
 n = 1
@@ -830,6 +832,7 @@ Fin del bucle
 ```
 
 En cada iteración se evalúa la condición. En cuanto es `False`, el bucle termina y la ejecución continúa con la instrucción siguiente.
+:::
 
 ::: {#cau-while .callout-caution title="Bucle infinito"}
 Si la condición del `while` nunca pasa a `False`, el programa no termina nunca. Este error —el **bucle infinito**— es uno de los más frecuentes al empezar a programar:
@@ -925,9 +928,16 @@ La variable acumuladora (`suma`, `factorial`) **debe inicializarse fuera del buc
 
 ### **2.4.4 Ejemplos matemáticos**
 
-#### **Sucesión de Fibonacci**
-
-La sucesión de Fibonacci se define por $F_0 = 0$, $F_1 = 1$ y $F_n = F_{n-1} + F_{n-2}$ para $n \geq 2$. El cálculo iterativo utiliza dos variables que se actualizan simultáneamente:
+::: {#nte-fibonacci .callout-note title="Imprimir $n$ términos de la sucesión de Fibonacci"}
+La sucesión de Fibonacci se define por 
+$$
+F_k = \begin{cases} 
+0 & \text{si } k = 0 \\ 
+1 & \text{si } k = 1 \\ 
+F_{k-1} + F_{k-2} & \text{si } k \geq 2 
+\end{cases}
+$$.
+El cálculo iterativo utiliza dos variables que se actualizan simultáneamente:
 
 ```python
 n = 15   # número de términos a imprimir
@@ -944,9 +954,11 @@ Salida:
 ```
 
 La asignación simultánea `a, b = b, a + b` evalúa primero el lado derecho completo y luego asigna, por lo que no se necesita una variable temporal.
+:::
 
 #### **Suma de una serie**
 
+::: {#nte-sumserie .callout-note title="Cálculo de la suma parcial de una serie"}
 Cálculo de la suma parcial $\displaystyle S_n = \sum_{k=1}^{n} \frac{1}{k^2}$, que converge a $\pi^2/6$ cuando $n \to \infty$ (resultado conocido como problema de Basilea, resuelto por Euler en 1734):
 
 ```python
@@ -961,9 +973,9 @@ print(f"S_{n}   = {suma:.10f}")
 print(f"π²/6    = {math.pi**2 / 6:.10f}")
 print(f"Error   = {abs(suma - math.pi**2 / 6):.2e}")
 ```
+:::
 
-#### **Números primos**
-
+::: {#nte-primos .callout-note title="Imprimir números primos"}
 Un número $p \geq 2$ es **primo** si no tiene divisores propios entre 2 y $\lfloor\sqrt{p}\rfloor$. El siguiente código utiliza una variable booleana de tipo bandera (*flag*) para registrar si se encontró algún divisor:
 
 ```python
@@ -985,6 +997,7 @@ Salida:
 ```text
 2  3  5  7  11  13  17  19  23  29  31  37  41  43  47
 ```
+:::
 
 ::: {.callout-note collapse="true" title="Bucles anidados"}
 Los bucles se pueden **anidar**: un bucle dentro de otro. Cada vez que el bucle exterior avanza una iteración, el bucle interior se ejecuta complete. El número total de iteraciones es el producto de los rangos de ambos bucles.
@@ -1142,7 +1155,8 @@ resultado = n + 1     # correcto
 ```
 :::
 
-### **2.5.4 Ejemplo completo: calculadora interactiva**
+::: {#nte-calculadora .callout-note title="Calculadora interactiva"}
+Vamos a implementar una calculadora básica que solicita dos números y una operación al usuario, y luego muestra el resultado:
 
 ```python
 print("=== Calculadora básica ===")
@@ -1169,6 +1183,7 @@ else:
 if resultado is not None:
     print(f"{a} {op} {b} = {resultado:.6g}")
 ```
+:::
 
 ::: {.callout-note collapse="true" title="El especificador :g"}
 El especificador `:g` elige automáticamente entre notación decimal y científica según la magnitud del número, y elimina los ceros decimales finales innecesarios:
