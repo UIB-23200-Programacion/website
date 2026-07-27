@@ -1045,7 +1045,13 @@ La asignación simultánea `a, b = b, a + b` evalúa primero el lado derecho com
 :::
 
 ::: {#nte-sumserie .callout-note title="Cálculo de la suma parcial de una serie"}
-Cálculo de la suma parcial $\displaystyle S_n = \sum_{k=1}^{n} \frac{1}{k^2}$, que converge a $\pi^2/6$ cuando $n \to \infty$ (resultado conocido como problema de Basilea, resuelto por Euler en 1734):
+Cálculo de la suma parcial 
+
+$$
+S_n = \sum_{k=1}^{n} \frac{1}{k^2}
+$$, 
+
+que converge a $\pi^2/6$ cuando $n \to \infty$ (resultado conocido como problema de Basilea, resuelto por Euler en 1735):
 
 ```python
 import math
@@ -1086,7 +1092,7 @@ Salida:
 :::
 
 ::: {.callout-note collapse="true" title="Bucles anidados"}
-Los bucles se pueden **anidar**: un bucle dentro de otro. Cada vez que el bucle exterior avanza una iteración, el bucle interior se ejecuta complete. El número total de iteraciones es el producto de los rangos de ambos bucles.
+Los bucles se pueden **anidar**, es decir, se puede tener un bucle dentro de otro. Cada vez que el bucle exterior avanza una iteración, el bucle interior se ejecuta completamente. El número total de iteraciones es el producto de los rangos de ambos bucles.
 
 ```python
 # Tabla de multiplicar del 1 al 6
@@ -1115,7 +1121,7 @@ Salida:
    6   6  12  18  24  30  36
 ```
 
-Con bucles anidados es fácil generar costes elevados: un doble bucle sobre $n$ elementos produce $O(n^2)$ operaciones. El análisis de la **complejidad computacional** de los algoritmos (Tema 4) estudia este tipo de costes con detalle.
+Con bucles anidados es fácil generar costes computacionales elevados: un doble bucle sobre $n$ elementos produce $O(n^2)$ operaciones. El análisis de la **complejidad computacional** de los algoritmos (Tema 4) estudia este tipo de costes con detalle.
 :::
 
 ### **2.4.5 Iteración sobre cadenas y `enumerate()`**
@@ -1243,7 +1249,7 @@ x = float(input("Introduce un número real: "))
 print(f"Su raíz cuadrada es {x**0.5:.6f}.")
 ```
 
-::: {#cau-input .callout-caution title="input() siempre devuelve str"}
+::: {#cau-input .callout-caution title="Olvidar que input() siempre devuelve str"}
 Uno de los errores más comunes al empezar con Python:
 
 ```python
