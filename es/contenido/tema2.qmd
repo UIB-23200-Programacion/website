@@ -847,6 +847,59 @@ while n > 0:
 Para detener un programa bloqueado en un bucle infinito, pulsa **Ctrl+C** en la terminal.
 :::
 
+Usos típicos del bucle `while` incluyen:
+
+- **Repetir hasta que se cumpla una condición** — búsqueda del primer múltiplo:
+
+    ```python
+    n = 1
+    while n % 13 != 0:
+        n += 1
+    print(n)   # primer múltiplo de 13
+    ```
+
+- **Aproximación iterativa** — método de bisección (vea [@wikipedia_biseccion]) para encontrar una raíz:
+
+    ```python
+    a, b = 1.0, 2.0
+    while b - a > 1e-10:
+        m = (a + b) / 2
+        if m ** 2 < 2:
+            a = m
+        else:
+            b = m
+    print(m)   # aproximación a √2
+    ```
+
+- **Convergencia de una sucesión** — iterar el método de Newton (vea [@wikipedia_newton]) hasta que dos términos consecutivos sean indistinguibles:
+
+    ```python
+    x = 1.0
+    while True:
+        x_nuevo = (x + 2 / x) / 2   # método de Newton para √2
+        if abs(x_nuevo - x) < 1e-12:
+            break
+        x = x_nuevo
+    print(x)
+    ```
+
+- **Validación de entrada** — repetir hasta obtener un valor válido (la función `input()` se verá en la sección 2.5):
+
+    ```python
+    n = int(input("Introduce un entero positivo: "))
+    while n <= 0:
+        n = int(input("Debe ser positivo. Inténtalo de nuevo: "))
+    ```
+
+- **Dígitos de un número** — procesar cifra a cifra:
+
+    ```python
+    n = 123456
+    while n > 0:
+        print(n % 10)   # última cifra
+        n //= 10
+    ```
+
 ### **2.4.2 `break` y `continue`**
 
 Dentro de cualquier bucle, dos instrucciones permiten modificar el flujo de iteración:
@@ -876,9 +929,15 @@ while i < 10:
 # 1  3  5  7  9
 ```
 
-### **2.4.3 El bucle `for` y la función `range()`**
+### **2.4.3 El bucle `for` (iteración definida) y la función `range()`**
 
-El bucle `for` itera sobre los elementos de una secuencia. La función `range()` genera secuencias de enteros y es la forma habitual de controlar el número de repeticiones:
+El bucle `for` en Python itera sobre los elementos de una secuencia, por ello se dice que es una iteración definida. Este es un caso donde Python difiere conceptualmente de lenguajes como C o C++. En esos lenguajes, un `for` suele ser un `while` disfrazado con un contador numérico (ej. `for(i=0; i<10; i++)`). 
+
+En Python, el `for` es en realidad un bucle **"for-each"** (para cada elemento). Su base no es una condición matemática, sino el consumo sistemático de los elementos de un objeto iterable. Un objeto iterable es cualquier objeto que puede entregar sus elementos de uno en uno en un orden definido y sobre el que se puede usar un bucle `for`.
+
+El ejemplo más inmediato de objeto iterable son los objetos de la clase `range`. Mediante objetos `range` se generan secuencias de enteros que constituyen la forma habitual de controlar el número de repeticiones en un bucle `for`.
+
+El tipo `range()` genera secuencias de enteros de las tres formas siguientes:
 
 | Llamada | Secuencia generada |
 |---|---|
@@ -899,6 +958,18 @@ for i in range(0, 10, 2):
 for i in range(10, 0, -1):
     print(i, end=" ")     # 10 9 8 7 6 5 4 3 2 1
 ```
+
+::: {#imp-range .callout-important title="La anatomía del objeto `range`"}
+Cuando escribes `r = range(0, 10, 2)`, Python no crea ni almacena en memoria una secuencia con los números `0, 2, 4, 6, 8`. Eso sería ineficiente. En su lugar, el objeto `range` solo almacena tres enteros:
+
+- `start` (inicio)
+- `stop` (fin)
+- `step` (salto)
+
+Los enteros se producen uno a uno a medida que el bucle los solicita (lazy evaluation). Gracias a esto, `range(10)` y `range(1000000000)` ocupan exactamente la misma cantidad mínima de memoria.
+:::
+
+Entre los usos fundamentales del bucle `for` se encuentra el **patrón acumulador**, que permite calcular sumas, productos y otras operaciones agregadas de manera eficiente.
 
 ::: {#imp-acumulador .callout-important title="El patrón acumulador"}
 El **patrón acumulador** es la estructura más frecuente en programación numérica: se inicializa una variable antes del bucle con el elemento neutro de la operación y se actualiza en cada iteración.
@@ -925,6 +996,23 @@ print(factorial)                # 3628800
 
 La variable acumuladora (`suma`, `factorial`) **debe inicializarse fuera del bucle** con el valor neutro de la operación: 0 para sumas, 1 para productos.
 :::
+
+Otros usos comunes del bucle `for` incluyen:
+
+- **Recorrer y procesar una secuencia**:
+
+    ```python
+    for x in range(1, 5):
+        print(x ** 3)   # cubo de cada entero
+    ```
+
+- **Búsqueda** — detectar si un entero en un rango cumple una condición:
+
+    ```python
+    for n in range(2, 50):
+        if n % 7 == 0:
+            print(n, "es múltiplo de 7")
+    ```
 
 ### **2.4.4 Ejemplos matemáticos**
 
@@ -955,8 +1043,6 @@ Salida:
 
 La asignación simultánea `a, b = b, a + b` evalúa primero el lado derecho completo y luego asigna, por lo que no se necesita una variable temporal.
 :::
-
-#### **Suma de una serie**
 
 ::: {#nte-sumserie .callout-note title="Cálculo de la suma parcial de una serie"}
 Cálculo de la suma parcial $\displaystyle S_n = \sum_{k=1}^{n} \frac{1}{k^2}$, que converge a $\pi^2/6$ cuando $n \to \infty$ (resultado conocido como problema de Basilea, resuelto por Euler en 1734):
@@ -1034,7 +1120,7 @@ Con bucles anidados es fácil generar costes elevados: un doble bucle sobre $n$ 
 
 ### **2.4.5 Iteración sobre cadenas y `enumerate()`**
 
-El bucle `for` puede recorrer directamente los caracteres de una cadena:
+Una cadena `str` es un iterable cuyos elementos son los caracteres individuales (cada uno a su vez un `str` de longitud 1). El bucle `for` puede entonces recorrer directamente los caracteres de una cadena:
 
 ```python
 palabra = "Python"
@@ -1042,7 +1128,21 @@ for letra in palabra:
     print(letra, end="-")    # P-y-t-h-o-n-
 ```
 
-La función `enumerate()` proporciona a la vez el índice y el valor de cada elemento:
+Si se desea conocer la posición de cada carácter, se puede usar `range()` con `len()`:
+
+```python
+palabra = "Python"
+for i in range(len(palabra)):
+    print(f"posición {i}: {palabra[i]}")
+# posición 0: P
+# posición 1: y
+# posición 2: t
+# posición 3: h
+# posición 4: o
+# posición 5: n
+```
+
+Otra forma de obtener la posición de cada carácter es usar el tipo `enumerate()`. Al igual que `range`, `enumerate` es un tipo built-in de Python. Con `enumerate(iterable)` se produce un objeto iterable de pares `(índice, valor)` generados de forma perezosa. Con `indice` se obtiene la posición del elemento en la secuencia, y con `valor` se obtiene el elemento en sí. Esto permite recorrer una cadena (o cualquier iterable) y conocer simultáneamente el índice de cada elemento:
 
 ```python
 for i, letra in enumerate("abc"):
@@ -1052,9 +1152,12 @@ for i, letra in enumerate("abc"):
 # posición 2: c
 ```
 
+Las cadenas que se inicia con `f` y contienen expresiones entre llaves `{}` se llaman **f-strings** (cadenas formateadas). Se verán en la sección 2.5.2.
 ---
 
 ## 2.5. Entrada y salida básicas: flujos entre teclado y pantalla
+
+La interacción entre el programa y el usuario es fundamental en cualquier aplicación. Python proporciona dos funciones built-in para la entrada y salida básicas de datos: `print()` para mostrar información en la terminal e `input()` para leer texto introducido por el usuario. Aunque simples, estas dos funciones son suficientes para construir programas interactivos completos y constituyen la base sobre la que se asienta cualquier interfaz de texto.
 
 ### **2.5.1 La función `print()`**
 
@@ -1080,10 +1183,10 @@ n = 100
 suma = n * (n + 1) // 2
 print(f"Gauss calculó que la suma de 1 a {n} es {suma}.")
 print(f"El cuadrado de 7 es {7**2}.")
-print(f"π ≈ {3.141592653589793:.4f}")
 ```
 
-Los **especificadores de formato** dentro de `{}` permiten controlar la presentación del valor:
+::: {.callout-note collapse="true" title="Especificadores de formato en f-strings"}
+Los **especificadores de formato** en una f-string se escriben dentro de `{}` y permiten controlar la presentación del valor:
 
 | Especificador | Efecto | Ejemplo | Resultado |
 |:---:|---|---|---|
@@ -1118,6 +1221,7 @@ Salida:
    6      36       216
    7      49       343
 ```
+:::
 
 ### **2.5.3 La función `input()`**
 
@@ -1183,19 +1287,6 @@ else:
 if resultado is not None:
     print(f"{a} {op} {b} = {resultado:.6g}")
 ```
-:::
-
-::: {.callout-note collapse="true" title="El especificador :g"}
-El especificador `:g` elige automáticamente entre notación decimal y científica según la magnitud del número, y elimina los ceros decimales finales innecesarios:
-
-```python
-print(f"{0.000123:.6g}")    # 0.000123
-print(f"{1234567.89:.6g}")  # 1.23457e+06
-print(f"{3.14:.6g}")        # 3.14
-print(f"{100.0:.6g}")       # 100
-```
-
-Es especialmente útil cuando el resultado puede tener órdenes de magnitud muy diferentes.
 :::
 
 ## Bibliografía {.unnumbered}
