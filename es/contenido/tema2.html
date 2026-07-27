@@ -20,7 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -72,10 +127,40 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Tema 2: Componentes del Lenguaje y Control de Flujo – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/variablesCvsPython.jpg">
 <meta property="og:site_name" content="Programación (23200)">
 </head>
 
@@ -522,8 +607,51 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#scripts-de-python-vs.-ejecución-interactiva" id="toc-scripts-de-python-vs.-ejecución-interactiva" class="nav-link active" data-scroll-target="#scripts-de-python-vs.-ejecución-interactiva">2.1. Scripts de Python vs.&nbsp;Ejecución interactiva</a>
+  <ul class="collapse">
+  <li><a href="#la-sesión-interactiva-repl" id="toc-la-sesión-interactiva-repl" class="nav-link" data-scroll-target="#la-sesión-interactiva-repl"><strong>2.1.1 La sesión interactiva (REPL)</strong></a></li>
+  <li><a href="#scripts-.py" id="toc-scripts-.py" class="nav-link" data-scroll-target="#scripts-.py"><strong>2.1.2 Scripts <code>.py</code></strong></a></li>
+  <li><a href="#notebooks-jupyter-y-marimo" id="toc-notebooks-jupyter-y-marimo" class="nav-link" data-scroll-target="#notebooks-jupyter-y-marimo"><strong>2.1.3 Notebooks: Jupyter y Marimo</strong></a></li>
+  </ul></li>
+  <li><a href="#variables-tipos-integrados-built-in-simples-operadores-matemáticos-y-lógicos" id="toc-variables-tipos-integrados-built-in-simples-operadores-matemáticos-y-lógicos" class="nav-link" data-scroll-target="#variables-tipos-integrados-built-in-simples-operadores-matemáticos-y-lógicos">2.2. Variables, tipos integrados (built-in) simples, operadores matemáticos y lógicos</a>
+  <ul class="collapse">
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><strong>2.2.1 Variables</strong></a></li>
+  <li><a href="#tipos-integrados-built-in-simples" id="toc-tipos-integrados-built-in-simples" class="nav-link" data-scroll-target="#tipos-integrados-built-in-simples"><strong>2.2.2 Tipos integrados (built-in) simples</strong></a></li>
+  <li><a href="#operadores-aritméticos" id="toc-operadores-aritméticos" class="nav-link" data-scroll-target="#operadores-aritméticos"><strong>2.2.3 Operadores aritméticos</strong></a></li>
+  <li><a href="#operadores-de-comparación-relacionales" id="toc-operadores-de-comparación-relacionales" class="nav-link" data-scroll-target="#operadores-de-comparación-relacionales"><strong>2.2.4 Operadores de comparación (Relacionales)</strong></a></li>
+  <li><a href="#operadores-lógicos" id="toc-operadores-lógicos" class="nav-link" data-scroll-target="#operadores-lógicos"><strong>2.2.5 Operadores lógicos</strong></a></li>
+  <li><a href="#conversión-de-tipos" id="toc-conversión-de-tipos" class="nav-link" data-scroll-target="#conversión-de-tipos"><strong>2.2.6 Conversión de tipos</strong></a></li>
+  </ul></li>
+  <li><a href="#control-de-flujo-estructuras-o-sentencias-condicionales" id="toc-control-de-flujo-estructuras-o-sentencias-condicionales" class="nav-link" data-scroll-target="#control-de-flujo-estructuras-o-sentencias-condicionales">2.3. Control de Flujo — Estructuras o Sentencias Condicionales</a>
+  <ul class="collapse">
+  <li><a href="#estructura-if" id="toc-estructura-if" class="nav-link" data-scroll-target="#estructura-if"><strong>2.3.1 Estructura <code>if</code></strong></a></li>
+  <li><a href="#estructura-if-else" id="toc-estructura-if-else" class="nav-link" data-scroll-target="#estructura-if-else"><strong>2.3.2 Estructura <code>if</code>-<code>else</code></strong></a></li>
+  <li><a href="#estructura-if-elif-else" id="toc-estructura-if-elif-else" class="nav-link" data-scroll-target="#estructura-if-elif-else"><strong>2.3.3 Estructura <code>if</code>-<code>elif</code>-<code>else</code></strong></a></li>
+  <li><a href="#condicionales-anidados" id="toc-condicionales-anidados" class="nav-link" data-scroll-target="#condicionales-anidados"><strong>2.3.4 Condicionales anidados</strong></a></li>
+  </ul></li>
+  <li><a href="#control-de-flujo-iteraciones" id="toc-control-de-flujo-iteraciones" class="nav-link" data-scroll-target="#control-de-flujo-iteraciones">2.4. Control de Flujo — Iteraciones</a>
+  <ul class="collapse">
+  <li><a href="#el-bucle-while-iteración-indefinida-o-condicional" id="toc-el-bucle-while-iteración-indefinida-o-condicional" class="nav-link" data-scroll-target="#el-bucle-while-iteración-indefinida-o-condicional"><strong>2.4.1 El bucle <code>while</code> (iteración indefinida o condicional)</strong></a></li>
+  <li><a href="#break-y-continue" id="toc-break-y-continue" class="nav-link" data-scroll-target="#break-y-continue"><strong>2.4.2 <code>break</code> y <code>continue</code></strong></a></li>
+  <li><a href="#el-bucle-for-iteración-definida-y-la-función-range" id="toc-el-bucle-for-iteración-definida-y-la-función-range" class="nav-link" data-scroll-target="#el-bucle-for-iteración-definida-y-la-función-range"><strong>2.4.3 El bucle <code>for</code> (iteración definida) y la función <code>range()</code></strong></a></li>
+  <li><a href="#ejemplos-matemáticos" id="toc-ejemplos-matemáticos" class="nav-link" data-scroll-target="#ejemplos-matemáticos"><strong>2.4.4 Ejemplos matemáticos</strong></a></li>
+  <li><a href="#iteración-sobre-cadenas-y-enumerate" id="toc-iteración-sobre-cadenas-y-enumerate" class="nav-link" data-scroll-target="#iteración-sobre-cadenas-y-enumerate"><strong>2.4.5 Iteración sobre cadenas y <code>enumerate()</code></strong></a></li>
+  </ul></li>
+  <li><a href="#las-cadenas-que-se-inicia-con-f-y-contienen-expresiones-entre-llaves-se-llaman-f-strings-cadenas-formateadas.-se-verán-en-la-sección-2.5.2." id="toc-las-cadenas-que-se-inicia-con-f-y-contienen-expresiones-entre-llaves-se-llaman-f-strings-cadenas-formateadas.-se-verán-en-la-sección-2.5.2." class="nav-link" data-scroll-target="#las-cadenas-que-se-inicia-con-f-y-contienen-expresiones-entre-llaves-se-llaman-f-strings-cadenas-formateadas.-se-verán-en-la-sección-2.5.2.">Las cadenas que se inicia con <code>f</code> y contienen expresiones entre llaves <code>{}</code> se llaman <strong>f-strings</strong> (cadenas formateadas). Se verán en la sección 2.5.2.</a></li>
+  <li><a href="#entrada-y-salida-básicas-flujos-entre-teclado-y-pantalla" id="toc-entrada-y-salida-básicas-flujos-entre-teclado-y-pantalla" class="nav-link" data-scroll-target="#entrada-y-salida-básicas-flujos-entre-teclado-y-pantalla">2.5. Entrada y salida básicas: flujos entre teclado y pantalla</a>
+  <ul class="collapse">
+  <li><a href="#la-función-print" id="toc-la-función-print" class="nav-link" data-scroll-target="#la-función-print"><strong>2.5.1 La función <code>print()</code></strong></a></li>
+  <li><a href="#cadenas-formateadas-f-strings" id="toc-cadenas-formateadas-f-strings" class="nav-link" data-scroll-target="#cadenas-formateadas-f-strings"><strong>2.5.2 Cadenas formateadas: f-strings</strong></a></li>
+  <li><a href="#la-función-input" id="toc-la-función-input" class="nav-link" data-scroll-target="#la-función-input"><strong>2.5.3 La función <code>input()</code></strong></a></li>
+  </ul></li>
+  <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía">Bibliografía</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -548,9 +676,1597 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contenido pendiente.)</em></p>
+<section id="scripts-de-python-vs.-ejecución-interactiva" class="level2">
+<h2 class="anchored" data-anchor-id="scripts-de-python-vs.-ejecución-interactiva">2.1. Scripts de Python vs.&nbsp;Ejecución interactiva</h2>
+<p>En el Tema 1 se presentó la <strong>sesión interactiva de Python</strong> (REPL), útil para explorar y probar ideas al vuelo. En la práctica, sin embargo, la mayor parte del trabajo real se realiza mediante <strong>scripts</strong>: archivos de texto con extensión <code>.py</code> que contienen un programa completo, pensado para ejecutarse de principio a fin.</p>
+<section id="la-sesión-interactiva-repl" class="level3">
+<h3 class="anchored" data-anchor-id="la-sesión-interactiva-repl"><strong>2.1.1 La sesión interactiva (REPL)</strong></h3>
+<p>La sesión interactiva permite ejecutar instrucciones una a una y ver el resultado de inmediato:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">*</span> x</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Es ideal para explorar la sintaxis, comprobar el comportamiento de una función o hacer cálculos rápidos. Pero tiene una limitación fundamental: <strong>el código no se guarda</strong>. Al cerrar la sesión, todo el trabajo desaparece.</p>
+</section>
+<section id="scripts-.py" class="level3">
+<h3 class="anchored" data-anchor-id="scripts-.py"><strong>2.1.2 Scripts <code>.py</code></strong></h3>
+<p>Un <strong>script de Python</strong> es un archivo de texto con extensión <code>.py</code> que contiene instrucciones Python que se ejecutan secuencialmente. A diferencia del REPL, un script se guarda en disco, puede reutilizarse en cualquier momento, compartirse con otras personas y ejecutarse en distintos entornos.</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>REPL para explorar, scripts para producir.</strong> Usa la sesión interactiva para comprobar comportamientos o hacer cálculos puntuales. Escribe scripts cuando quieras guardar, reproducir o compartir tu trabajo. En la práctica, ambas herramientas se usan de forma complementaria.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="notebooks-jupyter-y-marimo" class="level3">
+<h3 class="anchored" data-anchor-id="notebooks-jupyter-y-marimo"><strong>2.1.3 Notebooks: Jupyter y Marimo</strong></h3>
+<p>Los <strong>notebooks</strong> son un formato intermedio que combina características del REPL y los scripts. Un notebook se divide en <strong>celdas</strong> que pueden ejecutarse de forma individual y en cualquier orden; el estado (variables, importaciones) persiste entre celdas durante la sesión, y el archivo se guarda con el código <em>y</em> sus salidas. Además, las celdas pueden contener texto enriquecido en Markdown, ecuaciones en LaTeX o gráficos, lo que los convierte en una herramienta natural para comunicar resultados junto al código que los produce.</p>
+<p><strong><a href="https://jupyter.org/" target="_blank" rel="noopener noreferrer">Jupyter Notebook</a></strong> es el formato más extendido en ciencia de datos e investigación. Sus archivos tienen extensión <code>.ipynb</code> y pueden ejecutarse en el navegador, en VS Code o en plataformas como Google Colab. El principal inconveniente de Jupyter es que el orden de ejecución de las celdas es libre, lo que puede generar estados inconsistentes difíciles de depurar.</p>
+<p><strong><a href="https://marimo.io/" target="_blank" rel="noopener noreferrer">Marimo</a></strong> es una alternativa más reciente y reactiva: las celdas declaran sus dependencias explícitamente, de modo que si se modifica una variable todas las celdas que la usan se recalculan automáticamente. Esto elimina los problemas de estado inconsistente y hace que un notebook de Marimo sea siempre reproducible de arriba abajo, como un script.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>En este curso se trabajará principalmente con scripts <code>.py</code> o notebooks Marimo en un Codespace (Temas 1–6). Los notebooks Marimo se emplean para ejemplos simples de código que aparecen en estas notas y de forma natural en el <strong>Tema 7</strong> al introducir NumPy, Pandas y Matplotlib, donde la visualización de resultados integrada en el documento es especialmente útil.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="variables-tipos-integrados-built-in-simples-operadores-matemáticos-y-lógicos" class="level2">
+<h2 class="anchored" data-anchor-id="variables-tipos-integrados-built-in-simples-operadores-matemáticos-y-lógicos">2.2. Variables, tipos integrados (built-in) simples, operadores matemáticos y lógicos</h2>
+<section id="variables" class="level3">
+<h3 class="anchored" data-anchor-id="variables"><strong>2.2.1 Variables</strong></h3>
+<div id="tip-variable" class="callout callout-style-default callout-tip no-icon callout-titled" title="Variable">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fundamento Teórico&nbsp;1: Variable
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En ciencia de la computación, una <strong>variable</strong> es una asociación entre un <strong>nombre simbólico</strong> y una <strong>ubicación en memoria</strong> que almacena un valor que puede cambiar durante la ejecución del programa.</p>
+<p>La definición más precisa distingue tres componentes:</p>
+<ul>
+<li><strong>Nombre</strong> (o <em>identificador</em>): la cadena de caracteres (puede ser solo uno) con el que el programador se refiere a la variable en el código fuente.</li>
+<li><strong>Valor</strong>: el dato almacenado en ese momento.</li>
+<li><strong>Ubicación</strong>: la dirección de memoria donde reside ese dato.</li>
+</ul>
+<p>Esta triple asociación nombre–valor–ubicación es lo que define formalmente una variable. Lo que varía entre lenguajes es cuánto de esto es visible o controlable por el programador.</p>
+<p>En lenguajes como C, la variable <em>es</em> la ubicación: declarar <code>int x</code> reserva una celda de memoria y <code>x</code> es el nombre de esa celda. En Python, en cambio, la variable es solo el nombre: lo que cambia es a qué objeto apunta ese nombre en memoria, no la celda en sí. Para entenderlo fácilmente, se suele usar la metáfora de las “cajas” frente a las “etiquetas”.</p>
+<p><strong>El modelo de C: Variables como “Cajas”</strong></p>
+<p>En C, una variable es un <strong>espacio físico reservado en la memoria</strong> de la computadora.</p>
+<p>Cuando escribes <code>int x = 10;</code>, el compilador hace lo siguiente:</p>
+<ol type="1">
+<li>Toma una caja (una dirección de memoria, por ejemplo, <code>0x7fff...</code>).</li>
+<li>Le pone el nombre <code>x</code> a esa caja.</li>
+<li>Mete el valor <code>10</code> <strong>dentro</strong> de la caja.</li>
+</ol>
+<p>Si después escribes <code>int y = x;</code>, C crea <strong>otra caja completamente nueva</strong> llamada <code>y</code>, y <strong>copia</strong> el valor <code>10</code> dentro de ella. Tienes dos cajas separadas con el mismo contenido. Si cambias el valor de <code>y</code>, <code>x</code> no se entera.</p>
+<p><strong>El modelo de Python: Variables como “Etiquetas”</strong></p>
+<p>En Python, el concepto tradicional de variable no existe. Las variables son en realidad <strong>nombres o referencias</strong> que apuntan a objetos. <strong>Todo en Python es un objeto (incluso los números simples)</strong>.</p>
+<p>Cuando escribes <code>x = 10</code>, Python hace algo muy distinto:</p>
+<ol type="1">
+<li>Crea un <strong>objeto</strong> en la memoria que representa al número entero <code>10</code>.</li>
+<li>Crea el nombre <code>x</code> como si fuera una <strong>etiqueta</strong> (un <em>post-it</em>).</li>
+<li>Pega la etiqueta <code>x</code> sobre el objeto <code>10</code>.</li>
+</ol>
+<p>Si después escribes <code>y = x</code>, Python <strong>no copia el objeto</strong>. Simplemente toma una nueva etiqueta llamada <code>y</code> y la pega en el <strong>mismo objeto</strong> <code>10</code>. Ambas variables apuntan exactamente al mismo lugar en la memoria.</p>
+<div id="fig-cvspython" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cvspython-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/variablesCvsPython.jpg" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cvspython-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Variables en C vs Python
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Diferencia con las variables matemáticas">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Diferencia con las variables matemáticas
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Una <strong>variable en programación</strong> no es lo mismo que una variable matemática. En matemáticas, <span class="math inline">\(x\)</span> en <span class="math inline">\(f(x) = x^2\)</span> es un símbolo que representa un valor arbitrario pero fijo dentro de un contexto. En programación, una variable representa un <strong>estado que evoluciona con el tiempo</strong> durante la ejecución, lo cual no tiene equivalente directo en el lenguaje matemático estándar. El clásico ejemplo se muestra en la ruptura lógica de <span class="math inline">\(x = x + 1\)</span></p>
+<ul>
+<li><strong>En matemáticas:</strong> La expresión <span class="math inline">\(x = x + 1\)</span> es una contradicción. Si intentas resolverla restando <span class="math inline">\(x\)</span> en ambos lados, llegas al absurdo lógico de <span class="math inline">\(0 = 1\)</span>. El símbolo <span class="math inline">\(=\)</span> representa una equivalencia permanente.</li>
+<li><strong>En programación:</strong> La instrucción <code>x = x + 1</code> es una de las operaciones más comunes que existen. El símbolo <code>=</code> (en la mayoría de lenguajes) no significa “equivalencia”, sino <strong>asignación</strong>. La instrucción se lee en el tiempo: “Evalúa el estado actual de <span class="math inline">\(x\)</span>, súmale <span class="math inline">\(1\)</span>, y actualiza el estado guardando el nuevo resultado en <span class="math inline">\(x\)</span>”.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Tenemos entonces que en Python una <strong>variable</strong> es un nombre que referencia un valor de cierto <strong>tipo</strong> almacenado en memoria. En Python las variables no tienen un tipo fijo, pueden referenciar valores de cualquier tipo, y pueden cambiar de tipo a lo largo de la ejecución.</p>
+<div id="tip-tipo" class="callout callout-style-default callout-tip no-icon callout-titled" title="Tipo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fundamento Teórico&nbsp;2: Tipo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>tipo de dato</strong> o simplemente <strong>tipo</strong> es una clasificación que especifica qué valores puede tomar un dato y qué operaciones son válidas sobre él.</p>
+<p>Por ejemplo, el tipo <code>int</code> (entero) admite los valores …−2, −1, 0, 1, 2… y operaciones como suma o división entera; el tipo <code>str</code> (cadena o string en inglés) admite secuencias de caracteres y operaciones como concatenación o indexación. Una operación inválida para el tipo —sumar un entero con una cadena sin conversión explícita— produce un error.</p>
+<p>En Python el tipo no lo declara el programador: lo determina el objeto en sí. Cada objeto lleva consigo su tipo, y <code>type(x)</code> lo devuelve en cualquier momento.</p>
+</div>
+</div>
+<p>La <strong>asignación</strong> de un valor a una variable (en Python, un <em>enlace de nombre</em> o <em>name binding</em> en inglés) se realiza con el operador <code>=</code>. A diferencia de otros lenguajes, <code>=</code> no copia un valor en una celda de memoria: hace que el nombre de la izquierda quede apuntando al objeto producido por la expresión de la derecha. Por ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">42</span>         <span class="co"># x referencia el entero 42</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">3.14</span>       <span class="co"># ahora x referencia el flotante 3.14</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"hola"</span>     <span class="co"># ahora x referencia la cadena "hola"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Python admite asignación múltiple en una sola línea:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> y <span class="op">=</span> <span class="dv">0</span>       <span class="co"># tanto x como y referencian el valor 0</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="nombres-de-variables" class="level4">
+<h4 class="anchored" data-anchor-id="nombres-de-variables"><strong>Nombres de variables</strong></h4>
+<p>Los nombres de variables solo pueden contener letras, dígitos y el guión bajo <code>_</code>, y no pueden comenzar por un dígito ni coincidir con una palabra reservada del lenguaje (<code>if</code>, <code>for</code>, <code>while</code>, <code>True</code>, <code>False</code>, <code>None</code>, etc.).</p>
+<div id="imp-snake-case" class="callout callout-style-default callout-important no-icon callout-titled" title="Convención de nombres: snake_case">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;1: Convención de nombres: snake_case
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Por convenio <span class="citation" data-cites="pep8">(<a href="#ref-pep8" role="doc-biblioref">Rossum, Warsaw, y Coghlan 2001</a>)</span>, los nombres de variables en Python usan <strong>snake_case</strong>: palabras en minúsculas separadas por guiones bajos. Los nombres deben ser <strong>descriptivos</strong> del valor que contienen.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correcto</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>numero_de_iteraciones <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>radio_circulo <span class="op">=</span> <span class="fl">5.0</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>es_primo <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Aceptable para variables de corta vida o con significado matemático obvio</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span>       <span class="co"># contador genérico</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="dv">3</span>, <span class="dv">4</span>  <span class="co"># coordenadas</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>i, j, k <span class="op">=</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>  <span class="co"># índices de bucles</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Evitar: nombres sin significado</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>cosa <span class="op">=</span> <span class="va">True</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+</section>
+<section id="tipos-integrados-built-in-simples" class="level3">
+<h3 class="anchored" data-anchor-id="tipos-integrados-built-in-simples"><strong>2.2.2 Tipos integrados (built-in) simples</strong></h3>
+<p>Los tipos integrados (o built-in types) en Python son los tipos de datos fundamentales que vienen integrados en el lenguaje, sin necesidad de importar ninguna librería externa. Python tiene seis tipos built-in para representar valores simples:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tipo</th>
+<th>Clase Python</th>
+<th>Ejemplos</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Entero</td>
+<td><code>int</code></td>
+<td><code>0</code>, <code>42</code>, <code>-7</code>, <code>10**100</code></td>
+<td>Precisión arbitraria; no hay desbordamiento.</td>
+</tr>
+<tr class="even">
+<td>Flotante</td>
+<td><code>float</code></td>
+<td><code>3.14</code>, <code>-0.5</code>, <code>1.0e-10</code></td>
+<td>IEEE 754 doble precisión (~15 dígitos significativos).</td>
+</tr>
+<tr class="odd">
+<td>Número complejo</td>
+<td><code>complex</code></td>
+<td><code>3 + 2j</code>, <code>1j</code>, <code>complex(2, -1)</code></td>
+<td>La unidad imaginaria se escribe <code>j</code> (no <code>i</code> como en matemáticas).</td>
+</tr>
+<tr class="even">
+<td>Cadena</td>
+<td><code>str</code></td>
+<td><code>"hola"</code>, <code>'mundo'</code></td>
+<td>Secuencia inmutable de caracteres Unicode.</td>
+</tr>
+<tr class="odd">
+<td>Booleano</td>
+<td><code>bool</code></td>
+<td><code>True</code>, <code>False</code></td>
+<td>Subtipo de <code>int</code>; <code>True == 1</code> y <code>False == 0</code>.</td>
+</tr>
+<tr class="even">
+<td>Nulo</td>
+<td><code>NoneType</code></td>
+<td><code>None</code></td>
+<td>Representa la ausencia de valor.</td>
+</tr>
+</tbody>
+</table>
+<div id="imp-type-print" class="callout callout-style-default callout-important no-icon callout-titled" title="Funciones built-in `type()` y `print()`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;2: Funciones built-in <code>type()</code> y <code>print()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La función <code>type()</code> devuelve el tipo de cualquier objeto o variable:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(x))         <span class="co"># &lt;class 'int'&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="dv">42</span>))        <span class="co"># &lt;class 'int'&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="fl">3.14</span>))      <span class="co"># &lt;class 'float'&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="st">"hola"</span>))    <span class="co"># &lt;class 'str'&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="va">True</span>))      <span class="co"># &lt;class 'bool'&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="va">None</span>))      <span class="co"># &lt;class 'NoneType'&gt;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La función <code>print()</code> arriba escribe en la salida estándar (normalmente la terminal) los valores que recibe como argumentos, separados por un espacio y seguidos de un salto de línea:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">42</span>)                     <span class="co"># 42</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"hola"</span>)                 <span class="co"># hola</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"números: "</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)   <span class="co"># números: 1 2 3</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Los parámetros opcionales más útiles de <code>print()</code> son <code>sep</code> (separador entre argumentos, por defecto <code>" "</code>) y <code>end</code> (carácter final, por defecto <code>"\n"</code> para salto de línea):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, sep<span class="op">=</span><span class="st">", "</span>)     <span class="co"># 1, 2, 3</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"hola"</span>, end<span class="op">=</span><span class="st">" "</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"mundo"</span>)                <span class="co"># hola mundo  (en la misma línea)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Las funciones <code>type</code> y <code>print</code> son funciones built-in: vienen integradas en el intérprete y están disponibles en cualquier programa sin necesidad de importar nada.</p>
+</div>
+</div>
+<section id="enteros-int" class="level4">
+<h4 class="anchored" data-anchor-id="enteros-int"><strong>Enteros (<code>int</code>)</strong></h4>
+<p>En Python, los enteros tienen <strong>precisión arbitraria</strong>: pueden ser tan grandes como la memoria disponible lo permita, sin que se produzca desbordamiento (<em>overflow</em>). Esto los distingue de muchos otros lenguajes donde el rango entero está limitado por el número de bits.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">**</span> <span class="dv">100</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1267650600228229401496703205376</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">10</span> <span class="op">**</span> <span class="dv">50</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 100000000000000000000000000000000000000000000000000</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Hay cuatro formas de escribir literales enteros, según la base numérica:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Decimal (base 10) — la notación habitual</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>nn <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>nn <span class="op">=</span> <span class="op">-</span><span class="dv">7</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>nn <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Binario (base 2) — prefijo `0b`</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>nn <span class="op">=</span> <span class="bn">0b1010</span>    <span class="co"># equivale a 10</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>nn <span class="op">=</span> <span class="bn">0b11111111</span>  <span class="co"># equivale a 255</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Octal (base 8) — prefijo `0o`</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>nn <span class="op">=</span> <span class="bn">0o17</span>    <span class="co"># equivale a 15</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>nn <span class="op">=</span> <span class="bn">0o777</span>   <span class="co"># equivale a 511</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Hexadecimal (base 16) — prefijo `0x`</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>nn <span class="op">=</span> <span class="bn">0xFF</span>    <span class="co"># equivale a 255</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>nn <span class="op">=</span> <span class="bn">0x1A3</span>   <span class="co"># equivale a 419</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Además, para mejorar la legibilidad de números grandes se puede usar el guión bajo <code>_</code> como separador visual (equivalente al punto en notación europea):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">1_000_000</span>      <span class="co"># equivale a 1000000</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(m)           <span class="co"># 1000000</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="bn">0b1111_0000</span>    <span class="co"># equivale a 0b11110000</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(m)           <span class="co"># 240</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="bn">0xFF_A3_00</span>     <span class="co"># equivale a 0xFFA300</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(m)           <span class="co"># 16711680</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="flotantes-float" class="level4">
+<h4 class="anchored" data-anchor-id="flotantes-float"><strong>Flotantes (<code>float</code>)</strong></h4>
+<p>Los flotantes siguen el estándar IEEE 754 de doble precisión, que representa números reales con aproximadamente 15-17 dígitos significativos. Esto implica que <strong>no todos</strong> los números decimales se pueden representar exactamente en binario:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span>)         <span class="co"># 0.30000000000000004</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="op">==</span> <span class="fl">0.3</span>)  <span class="co"># False</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cau-flotantes" class="callout callout-style-default callout-caution no-icon callout-titled" title="Comparar flotantes con ==">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Frecuente&nbsp;1: Comparar flotantes con ==
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La representación binaria de los flotantes introduce pequeños errores de redondeo. <strong>Nunca uses <code>==</code> para comparar dos valores flotantes</strong>; en su lugar, comprueba que su diferencia sea suficientemente pequeña:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">0.3</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">abs</span>(a <span class="op">-</span> b) <span class="op">&lt;</span> <span class="fl">1e-10</span>)   <span class="co"># True</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para cálculos numéricos precisos, el módulo <code>math</code> y la librería NumPy (Tema 7) ofrecen herramientas adecuadas.</p>
+</div>
+</div>
+<p>Los literales <code>float</code> admiten varias notaciones:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Decimal estándar — con punto obligatorio</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> <span class="fl">3.14</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>x3 <span class="op">=</span> <span class="fl">1.0</span>      <span class="co"># el .0 es necesario; sin él sería int</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>x4 <span class="op">=</span> <span class="fl">.5</span>       <span class="co"># equivale a 0.5 (el cero inicial es opcional)</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Notación científica — con `e` o `E` como exponente de base 10</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>x5 <span class="op">=</span> <span class="fl">1.5e3</span>         <span class="co"># equivale a 1500.0</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>x6 <span class="op">=</span> <span class="fl">2.1e-4</span>        <span class="co"># equivale a 0.00021</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>x7 <span class="op">=</span> <span class="fl">1e10</span>          <span class="co"># equivale a 10000000000.0</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x5, x6, x7)  <span class="co"># 1500.0 0.00021 10000000000.0</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Al igual que en <code>int</code>, se puede usar <code>_</code> como separador visual:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x8 <span class="op">=</span> <span class="fl">3.141_592_653</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>x9 <span class="op">=</span> <span class="fl">1_000.0</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x9)  <span class="co"># 1000.0</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Un detalle relevante para matemáticos: a diferencia de los enteros, los <code>float</code> tienen <strong>rango finito</strong>. El mayor valor representable es aproximadamente <span class="math inline">\(1.8 \times 10^{308}\)</span>; superarlo produce <code>inf</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">1.8e308</span>)    <span class="co"># inf</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="números-complejos-complex" class="level4">
+<h4 class="anchored" data-anchor-id="números-complejos-complex"><strong>Números complejos (<code>complex</code>)</strong></h4>
+<p>Python incorpora los números complejos como tipo nativo, sin necesidad de importar ninguna librería. La unidad imaginaria se denota con <code>j</code> (no <code>i</code>, para evitar conflicto con el uso de <code>i</code> como índice en código):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>z1 <span class="op">=</span> <span class="dv">3</span> <span class="op">+</span> <span class="ot">2j</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>z2 <span class="op">=</span> <span class="bu">complex</span>(<span class="dv">1</span>, <span class="op">-</span><span class="dv">4</span>)    <span class="co"># equivale a 1 - 4j</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z1 <span class="op">+</span> z2)         <span class="co"># (4-2j)</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z1 <span class="op">*</span> z2)         <span class="co"># (11-10j)</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z1.real)         <span class="co"># 3.0</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z1.imag)         <span class="co"># 2.0</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z1.conjugate())  <span class="co"># (3-2j)</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">abs</span>(z1))         <span class="co"># 3.605...  (módulo: √(3² + 2²))</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Los números complejos ilustran bien un concepto central en Python: los objetos tienen <strong>atributos</strong> y <strong>métodos</strong> a los que se accede con el operador punto <code>.</code>:</p>
+<ul>
+<li>Un <strong>atributo</strong> es un valor asociado al objeto: <code>z.real</code> y <code>z.imag</code> devuelven las partes real e imaginaria del número complejo <code>z</code>.</li>
+<li>Un <strong>método</strong> es una función asociada al objeto que se invoca con paréntesis: <code>z.conjugate()</code> devuelve el conjugado.</li>
+</ul>
+<p>Esta notación <code>objeto.algo</code> aparecerá constantemente en Python. En el Tema 5 se estudiará en detalle qué son los objetos y cómo se definen; por ahora basta con saber que todo valor en Python es un objeto y que el punto <code>.</code> da acceso a lo que ese objeto “sabe hacer”.</p>
+<p>Los atributos <code>.real</code> e <code>.imag</code> devuelven siempre <code>float</code>. Las operaciones aritméticas (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>**</code>) funcionan directamente entre complejos o entre complejos y enteros/flotantes.</p>
+<p>La función built-in <code>abs()</code> devuelve el <strong>módulo</strong> de un número complejo, que es la distancia al origen en el plano complejo. El módulo se calcula como <span class="math inline">\(\sqrt{x^2 + y^2}\)</span> para un complejo <span class="math inline">\(z = x + yi\)</span>. La función <code>abs()</code> también funciona con enteros y flotantes, devolviendo su valor absoluto.</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Para cálculos más avanzados con números complejos (funciones trigonométricas, logaritmos, exponencial compleja) se usa el módulo <code>cmath</code> de la librería estándar.</p>
+</div>
+</div>
+</div>
+<p>Un literal <code>complex</code> se forma combinando con <code>+</code> o <code>-</code> un literal <code>int</code> o <code>float</code> como parte real y un literal <code>int</code> o <code>float</code> seguido de <code>j</code> como parte imaginaria. La parte imaginaria es obligatoria; un literal como <code>3</code> o <code>2.5</code> es un <code>int</code> o <code>float</code>, no un <code>complex</code>.</p>
+</section>
+<section id="cadenas-str" class="level4">
+<h4 class="anchored" data-anchor-id="cadenas-str"><strong>Cadenas (<code>str</code>)</strong></h4>
+<p>Las cadenas son secuencias de caracteres delimitadas por comillas simples o dobles (ambas equivalentes). Para cadenas que ocupan varias líneas se usan triples comillas:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>nombre <span class="op">=</span> <span class="st">"Euler"</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>frase <span class="op">=</span> <span class="st">'La identidad e^(iπ) + 1 = 0'</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>multilinea <span class="op">=</span> <span class="st">"""Esta cadena</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="st">abarca varias</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="st">líneas."""</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nombre, <span class="st">':'</span>, frase)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(multilinea)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Las <strong>secuencias de escape</strong> permiten incluir caracteres especiales dentro de una cadena:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Secuencia</th>
+<th>Carácter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>\n</code></td>
+<td>Salto de línea</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>\t</code></td>
+<td>Tabulador horizontal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>\\</code></td>
+<td>Barra invertida literal</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>\"</code></td>
+<td>Comilla doble literal</td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>multilinea2 <span class="op">=</span> <span class="st">"Esta cadena</span><span class="ch">\n</span><span class="st">abarca varias</span><span class="ch">\n</span><span class="st">líneas."</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(multilinea2)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(multilinea <span class="op">==</span> multilinea2)  <span class="co"># True</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Con la notación <code>objeto.método()</code>, explicada en la sección de números complejos, podemos acceder a diversos métodos útiles de las cadenas. Por ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>texto <span class="op">=</span> <span class="st">"hola mundo"</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(texto.upper())                     <span class="co"># "HOLA MUNDO"</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(texto.count(<span class="st">"o"</span>))                  <span class="co"># 2</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(texto.replace(<span class="st">"mundo"</span>, <span class="st">"Python"</span>))  <span class="co"># "hola Python"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aquí <code>upper</code> es un método de la variable <code>texto</code> (objeto del tipo <code>str</code>). El punto <code>.</code> es el operador de acceso a miembros: indica “busca dentro de este objeto algo llamado <code>upper</code> y llámalo”.</p>
+<p>Los métodos de <code>str</code> más útiles en la práctica:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Método</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.upper()</code></td>
+<td>Convierte a mayúsculas</td>
+<td><code>"hola".upper()</code> → <code>"HOLA"</code></td>
+</tr>
+<tr class="even">
+<td><code>.lower()</code></td>
+<td>Convierte a minúsculas</td>
+<td><code>"HOLA".lower()</code> → <code>"hola"</code></td>
+</tr>
+<tr class="odd">
+<td><code>.strip()</code></td>
+<td>Elimina espacios al inicio y al final</td>
+<td><code>"  hola  ".strip()</code> → <code>"hola"</code></td>
+</tr>
+<tr class="even">
+<td><code>.replace(a, b)</code></td>
+<td>Sustituye todas las ocurrencias de <code>a</code> por <code>b</code></td>
+<td><code>"aabbcc".replace("b", "x")</code> → <code>"aaxxcc"</code></td>
+</tr>
+<tr class="odd">
+<td><code>.split(sep)</code></td>
+<td>Divide la cadena por <code>sep</code> y devuelve una lista</td>
+<td><code>"a,b,c".split(",")</code> → <code>["a", "b", "c"]</code></td>
+</tr>
+<tr class="even">
+<td><code>.startswith(s)</code></td>
+<td><code>True</code> si la cadena empieza por <code>s</code></td>
+<td><code>"hola".startswith("ho")</code> → <code>True</code></td>
+</tr>
+<tr class="odd">
+<td><code>.count(s)</code></td>
+<td>Cuenta las ocurrencias de <code>s</code></td>
+<td><code>"banana".count("a")</code> → <code>3</code></td>
+</tr>
+</tbody>
+</table>
+<p>La función <code>len()</code> no es un método sino una función built-in, pero se aplica habitualmente sobre cadenas:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(texto))           <span class="co"># 10</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(<span class="st">"matemáticas"</span>))   <span class="co"># 11</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Para ver todos los métodos disponibles de cualquier objeto <code>x</code>:</p>
+<ul>
+<li>usa <code>dir(x)</code> en el REPL,
+<ul>
+<li>para obtener ayuda sobre un método concreto, por ejemplo <code>replace</code> si <code>x</code> es una cadena, usa <code>help(x.replace)</code>,</li>
+</ul></li>
+<li>en Visual Studio Code o en un notebook de Marimo, escribe <code>x.</code> y pulsa <strong>Tab</strong> para ver la lista de métodos.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="booleanos-bool" class="level4">
+<h4 class="anchored" data-anchor-id="booleanos-bool"><strong>Booleanos (<code>bool</code>)</strong></h4>
+<p>Los booleanos representan valores de verdad: <code>True</code> o <code>False</code>. Son el resultado natural de los operadores de comparación y lógicos (se verán más adelante):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">&gt;</span> <span class="dv">2</span>)        <span class="co"># True</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="va">True</span>))   <span class="co"># &lt;class 'bool'&gt;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El tipo <code>bool</code> es un subtipo de <code>int</code>: <code>True</code> vale <code>1</code> y <code>False</code> vale <code>0</code>. Esto permite usarlos directamente en expresiones aritméticas, algo que en matemáticas tiene sentido como función indicadora:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="va">True</span> <span class="op">+</span> <span class="va">True</span>)   <span class="co"># 2</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="va">False</span> <span class="op">*</span> <span class="dv">7</span>)     <span class="co"># 0</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">int</span>(<span class="va">True</span>))     <span class="co"># 1</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="nulo-nonetype" class="level4">
+<h4 class="anchored" data-anchor-id="nulo-nonetype"><strong>Nulo (<code>NoneType</code>)</strong></h4>
+<p><code>None</code> es el único valor del tipo <code>NoneType</code> y representa la <strong>ausencia de valor</strong>. Se usa cuando una variable no tiene ningún objeto asignado, o cuando una función no devuelve nada explícitamente:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(resultado)        <span class="co"># None</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(resultado))  <span class="co"># &lt;class 'NoneType'&gt;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para comprobar si una variable es <code>None</code> se usa <code>is</code>, no <code>==</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(resultado <span class="kw">is</span> <span class="va">None</span>)   <span class="co"># True</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><code>is None</code> comprueba identidad (mismo objeto en memoria), que es lo correcto para <code>None</code> ya que existe un único objeto <code>None</code> en todo el intérprete. <code>== None</code> funcionaría en la práctica pero es considerado mal estilo en Python.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="operadores-aritméticos" class="level3">
+<h3 class="anchored" data-anchor-id="operadores-aritméticos"><strong>2.2.3 Operadores aritméticos</strong></h3>
+<p>Python define siete operadores aritméticos que funcionan principalmente con enteros, flotantes y complejos (<code>int</code>, <code>float</code>, <code>complex</code>). La tabla siguiente resume su significado y comportamiento:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Operador</th>
+<th>Operación</th>
+<th>Ejemplo</th>
+<th style="text-align: right;">Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>+</code></td>
+<td>Suma</td>
+<td><code>7 + 3</code></td>
+<td style="text-align: right;"><code>10</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>-</code></td>
+<td>Resta</td>
+<td><code>7 - 3</code></td>
+<td style="text-align: right;"><code>4</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>*</code></td>
+<td>Producto</td>
+<td><code>7 * 3</code></td>
+<td style="text-align: right;"><code>21</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>/</code></td>
+<td>División real</td>
+<td><code>7 / 3</code></td>
+<td style="text-align: right;"><code>2.3333…</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>//</code></td>
+<td>División entera</td>
+<td><code>7 // 3</code></td>
+<td style="text-align: right;"><code>2</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>%</code></td>
+<td>Módulo (resto)</td>
+<td><code>7 % 3</code></td>
+<td style="text-align: right;"><code>1</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>**</code></td>
+<td>Potencia</td>
+<td><code>2 ** 10</code></td>
+<td style="text-align: right;"><code>1024</code></td>
+</tr>
+</tbody>
+</table>
+<p>Algunas excepciones y extensiones de estos operadores según el tipo de dato son:</p>
+<ul>
+<li><code>complex</code> no admite <code>//</code> ni <code>%</code>, ya que la división entera y el módulo no están definidos para números complejos.</li>
+<li><code>bool</code>, al ser subtipo de <code>int</code>, hereda todos los operadores aritméticos.</li>
+<li><code>str</code> admite <code>+</code> como concatenación y <code>*</code> como repetición, pero no el resto.</li>
+</ul>
+<p>Para los tipos numéricos, cuando se combinan operandos de tipos distintos el resultado se <strong>promueve</strong> al tipo más general. Por ejemplo, <code>int + float</code> produce <code>float</code>, y <code>int + complex</code> produce <code>complex</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="dv">3</span> <span class="op">+</span> <span class="fl">2.5</span>))       <span class="co"># &lt;class 'float'&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="dv">3</span> <span class="op">+</span> <span class="dv">2</span>))         <span class="co"># &lt;class 'int'&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="dv">3</span> <span class="op">*</span> <span class="fl">2.5</span>))       <span class="co"># &lt;class 'float'&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="dv">3</span> <span class="op">+</span> <span class="ot">2j</span>))        <span class="co"># &lt;class 'complex'&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="fl">3.0</span> <span class="op">+</span> <span class="ot">2j</span>))      <span class="co"># &lt;class 'complex'&gt;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="dv">3</span> <span class="op">**</span> <span class="dv">2</span>))        <span class="co"># &lt;class 'int'&gt;</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="dv">3</span> <span class="op">**</span> <span class="fl">2.0</span>))      <span class="co"># &lt;class 'float'&gt;</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="fl">3.0</span> <span class="op">**</span> <span class="dv">2</span>))      <span class="co"># &lt;class 'float'&gt;</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">4</span> <span class="op">**</span> (<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>))          <span class="co"># 2.0</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">4</span> <span class="op">**</span> (<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>))         <span class="co"># 0.5</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">4</span> <span class="op">**</span> <span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)           <span class="co"># 0.125</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La potencia <code>**</code> admite exponentes negativos y flotantes, pero el resultado es siempre <code>float</code> o <code>complex</code>. Es además el único operador con asociatividad por la derecha: <code>2 ** 3 ** 2</code> se evalúa como <code>2 ** 9 = 512</code>, igual que en notación matemática estándar.</p>
+<div id="imp-division" class="callout callout-style-default callout-important no-icon callout-titled" title="División entera y módulo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;3: División entera y módulo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En Python 3, el operador <code>/</code> <strong>siempre devuelve un flotante</strong>, incluso cuando el resultado es exacto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">6</span> <span class="op">/</span> <span class="dv">2</span>)    <span class="co"># 3.0   (no 3)</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">7</span> <span class="op">/</span> <span class="dv">2</span>)    <span class="co"># 3.5</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El operador <code>//</code> devuelve el <strong>cociente entero</strong> (<em>floor division</em>) redondeando hacia <span class="math inline">\(-\infty\)</span>, no hacia cero. El operador <code>%</code> devuelve el <strong>resto</strong> de la división entera:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">17</span> <span class="op">//</span> <span class="dv">5</span>)  <span class="co">#  3   (cociente entero)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">17</span> <span class="op">%</span> <span class="dv">5</span>)   <span class="co">#  2   (resto)</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="op">-</span><span class="dv">7</span> <span class="op">//</span> <span class="dv">2</span>)  <span class="co"># -4   (cociente entero, redondea hacia menos infinito)</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="op">-</span><span class="dv">7</span> <span class="op">%</span> <span class="dv">2</span>)   <span class="co">#  1   (resto positivo, porque -7 = (-4)*2 + 1)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Se cumple siempre la identidad: <code>a == (a // b) * b + (a % b)</code>. Aquí <code>==</code> es un operador de comparación (igualdad), no de asignación. Por ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> <span class="dv">17</span>, <span class="dv">5</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">==</span> (a <span class="op">//</span> b) <span class="op">*</span> b <span class="op">+</span> (a <span class="op">%</span> b))  <span class="co"># True</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El operador <code>%</code> es fundamental en teoría de números: la condición <code>n % 2 == 0</code> es la prueba de paridad.</p>
+</div>
+</div>
+<p>Los <strong>operadores de asignación compuesta</strong> combinan una operación aritmética con la asignación, actualizando la variable en el lugar:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">+=</span> <span class="dv">3</span>    <span class="co"># equivale a x = x + 3   → x es 13</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">-=</span> <span class="dv">1</span>    <span class="co"># equivale a x = x - 1   → x es 12</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">*=</span> <span class="dv">2</span>    <span class="co"># equivale a x = x * 2   → x es 24</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">//=</span> <span class="dv">5</span>   <span class="co"># equivale a x = x // 5  → x es 4</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">**=</span> <span class="dv">3</span>   <span class="co"># equivale a x = x ** 3  → x es 64</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)  <span class="co"># 64</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cau-ieee754" class="callout callout-style-default callout-caution no-icon callout-titled" title="Tratar la aritmética con floats como la de números reales">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Frecuente&nbsp;2: Tratar la aritmética con floats como la de números reales
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Como se mostró en <a href="#cau-flotantes" class="quarto-xref">error frecuente&nbsp;1</a> la aritmética con números float introduce errores de redondeo. Esto se debe a que la representación binaria de los flotantes no puede expresar exactamente todos los números reales. En Python se emplea la aritmética de punto flotante de doble precisión (IEEE 754), que tiene una precisión aproximada de 15-17 dígitos decimales significativos.</p>
+<p>IEEE 754 representa los <code>float</code> con 64 bits: 1 de signo, 11 de exponente y 52 de mantisa. Con 52 bits de mantisa solo se pueden representar exactamente <span class="math inline">\(2^{52}\)</span> valores distintos en cada intervalo <span class="math inline">\([2^n, 2^{n+1}]\)</span>; el resto se redondean al valor representable más cercano.</p>
+<p>En IEEE 754 doble precisión cada valor <code>float</code> se representa como:</p>
+<p><span class="math display">\[(-1)^s \times 1.m \times 2^e\]</span></p>
+<p>donde <span class="math inline">\(s\)</span> es el signo, <span class="math inline">\(e\)</span> el exponente y <span class="math inline">\(1.m\)</span> la mantisa con el bit implícito de valor 1. Los 64 bits del <code>float</code> se reparten así:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Campo</th>
+<th>Bits</th>
+<th>Rango</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Signo <span class="math inline">\(s\)</span></td>
+<td>1</td>
+<td>0 = positivo, 1 = negativo</td>
+</tr>
+<tr class="even">
+<td>Exponente <span class="math inline">\(e\)</span></td>
+<td>11</td>
+<td>codificado en sesgo (<em>bias</em>) de 1023</td>
+</tr>
+<tr class="odd">
+<td>Mantisa <span class="math inline">\(m\)</span></td>
+<td>52</td>
+<td>parte fraccionaria tras el bit implícito</td>
+</tr>
+</tbody>
+</table>
+<p>Los tres campos son cadenas de bits. El exponente no se almacena directamente sino con un sesgo de 1023: el valor almacenado es <span class="math inline">\(e + 1023\)</span>, lo que permite representar exponentes negativos sin bit de signo propio (de <span class="math inline">\(-1022\)</span> a <span class="math inline">\(+1023\)</span> en la práctica).</p>
+<p>Se recomienda consultar <span class="citation" data-cites="python3floatingpoint">(<a href="#ref-python3floatingpoint" role="doc-biblioref">Python Software Foundation 2025</a>)</span> para una explicación más detallada de la aritmética con <code>float</code> y sus implicaciones en la práctica.</p>
+</div>
+</div>
+</section>
+<section id="operadores-de-comparación-relacionales" class="level3">
+<h3 class="anchored" data-anchor-id="operadores-de-comparación-relacionales"><strong>2.2.4 Operadores de comparación (Relacionales)</strong></h3>
+<p>Los operadores de comparación o relacionales son fundamentales para el <strong>control de flujo condicional</strong>: sin ellos no hay forma de que un programa tome decisiones. Constituyen la base del mecanismo que dota a un programa de <strong>adaptabilidad</strong>: en lugar de ejecutar siempre la misma secuencia de instrucciones, el programa examina el estado de los datos en tiempo de ejecución y elige el camino a seguir en consecuencia.</p>
+<p>Los operadores de comparación evalúan una relación entre dos valores y devuelven un booleano (<code>True</code> o <code>False</code>):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Operador</th>
+<th>Significado</th>
+<th>Ejemplo</th>
+<th style="text-align: center;">Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>==</code></td>
+<td>Igual a</td>
+<td><code>3 == 3</code></td>
+<td style="text-align: center;"><code>True</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>!=</code></td>
+<td>Distinto de</td>
+<td><code>3 != 4</code></td>
+<td style="text-align: center;"><code>True</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>&lt;</code></td>
+<td>Menor que</td>
+<td><code>2 &lt; 5</code></td>
+<td style="text-align: center;"><code>True</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>&gt;</code></td>
+<td>Mayor que</td>
+<td><code>5 &gt; 2</code></td>
+<td style="text-align: center;"><code>True</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>&lt;=</code></td>
+<td>Menor o igual</td>
+<td><code>3 &lt;= 3</code></td>
+<td style="text-align: center;"><code>True</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>&gt;=</code></td>
+<td>Mayor o igual</td>
+<td><code>4 &gt;= 5</code></td>
+<td style="text-align: center;"><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p>Los operadores de comparación se aplican a todos los tipos simples, con dos excepciones importantes:</p>
+<ul>
+<li><strong><code>complex</code> no admite <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></strong>: los números complejos no tienen orden total, igual que en matemáticas. Solo <code>==</code> y <code>!=</code> están definidos.</li>
+<li><strong><code>str</code> usa orden lexicográfico</strong>: las comparaciones de orden siguen el código Unicode de cada carácter, no el orden alfabético intuitivo. En particular, todas las mayúsculas preceden a todas las minúsculas: <code>"Z" &lt; "a"</code> es <code>True</code>.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># complex: == y != funcionan, orden no está definido</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="dv">3</span> <span class="op">+</span> <span class="ot">2j</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z <span class="op">==</span> <span class="dv">3</span> <span class="op">+</span> <span class="ot">2j</span>)   <span class="co"># True</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z <span class="op">!=</span> <span class="ot">0j</span>)        <span class="co"># True</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># print(z &lt; 1 + 0j)  # TypeError: '&lt;' not supported between 'complex' and 'complex'</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># str: orden lexicográfico por código Unicode</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Z"</span> <span class="op">&lt;</span> <span class="st">"a"</span>)      <span class="co"># True  (ord("Z") = 90, ord("a") = 97)</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"banana"</span> <span class="op">&lt;</span> <span class="st">"manzana"</span>)   <span class="co"># True  (compara carácter a carácter)</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"abc"</span> <span class="op">==</span> <span class="st">"ABC"</span>)  <span class="co"># False</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Comparar valores de tipos distintos con <code>==</code> no produce error sino <code>False</code> directamente (<code>42 == "42"</code> es <code>False</code>). Usar <code>&lt;</code> o <code>&gt;</code> entre tipos incompatibles sí lanza <code>TypeError</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tipos distintos: == devuelve False, orden lanza TypeError</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">42</span> <span class="op">==</span> <span class="st">"42"</span>)     <span class="co"># False</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(42 &lt; "42")    # TypeError: '&lt;' not supported between 'int' and 'str'</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Python permite <strong>encadenar comparaciones</strong> de forma natural, exactamente como en notación matemática:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="op">&lt;=</span> x <span class="op">&lt;=</span> <span class="dv">10</span>)   <span class="co"># True   (equivale a 1 &lt;= x and x &lt;= 10)</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">0</span> <span class="op">&lt;</span> x <span class="op">&lt;</span> <span class="dv">5</span>)      <span class="co"># False</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">==</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">2</span>)    <span class="co"># True</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tip-compara" class="callout callout-style-default callout-tip no-icon callout-titled" title="Operadores de comparación">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fundamento Teórico&nbsp;3: Operadores de comparación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El fundamento teórico de los operadores de comparación se encuentra en la <strong>matemática discreta</strong>, específicamente en la <strong>teoría de las relaciones binarias</strong> (derivada de la teoría de conjuntos). Matemáticamente, una relación binaria <span class="math inline">\(R\)</span> sobre un conjunto <span class="math inline">\(A\)</span> es un subconjunto del producto cartesiano <span class="math inline">\(A \times A\)</span>. En programación, el conjunto <span class="math inline">\(A\)</span> representa el dominio de un tipo de dato específico (por ejemplo, <code>int</code> o <code>float</code>). Cuando un programa evalúa una expresión como <code>x &lt; y</code>, está verificando si el par ordenado <span class="math inline">\((x, y)\)</span> pertenece al conjunto definido por la relación matemática <span class="math inline">\(&lt;\)</span>.</p>
+<p>Estos operadores se dividen en dos familias basadas en sus propiedades teóricas:</p>
+<p><strong>Relación de Equivalencia (<code>==</code>)</strong></p>
+<p>Para que un operador de igualdad tenga sentido lógico, se fundamenta en las tres propiedades de una relación de equivalencia:</p>
+<ul>
+<li><strong>Reflexividad:</strong> <span class="math inline">\(x = x\)</span> (Todo valor es igual a sí mismo).</li>
+<li><strong>Simetría:</strong> Si <span class="math inline">\(x = y\)</span>, entonces <span class="math inline">\(y = x\)</span>.</li>
+<li><strong>Transitividad:</strong> Si <span class="math inline">\(x = y\)</span> e <span class="math inline">\(y = z\)</span>, entonces <span class="math inline">\(x = z\)</span>.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Estas propiedades matemáticas, como se mencionó en <a href="#cau-flotantes" class="quarto-xref">error frecuente&nbsp;1</a> y <a href="#cau-ieee754" class="quarto-xref">error frecuente&nbsp;2</a>, a veces chocan con las representaciones en memoria. Otro ejemplo, en el estándar IEEE 754 para coma flotante, el valor <code>NaN</code> (Not a Number) rompe intencionalmente la reflexividad, ya que <code>NaN == NaN</code> evalúa a falso.</p>
+</blockquote>
+<p>En Python 3, por defecto, <code>!=</code> se comporta automáticamente como la negación lógica de <code>==</code>. Sin embargo, a nivel de arquitectura, son dos operaciones independientes y el lenguaje te permite romper esa regla si lo deseas (esto se verá en el Tema 5, cuando se estudien las clases y la sobrecarga de operadores).</p>
+<p><strong>Relaciones de Orden (<code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>)</strong></p>
+<p>Estos operadores implementan lo que en matemáticas se conoce como una <strong>relación de orden</strong> (generalmente un orden total). Para un operador de orden no estricto como <code>&lt;=</code>, el lenguaje garantiza matemáticamente:</p>
+<ul>
+<li><strong>Reflexividad:</strong> <span class="math inline">\(x \le x\)</span>.</li>
+<li><strong>Antisimetría:</strong> Si <span class="math inline">\(x \le y\)</span> y <span class="math inline">\(y \le x\)</span>, entonces <span class="math inline">\(x = y\)</span>.</li>
+<li><strong>Transitividad:</strong> Si <span class="math inline">\(x \le y\)</span> y <span class="math inline">\(y \le z\)</span>, entonces <span class="math inline">\(x \le z\)</span>.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="operadores-lógicos" class="level3">
+<h3 class="anchored" data-anchor-id="operadores-lógicos"><strong>2.2.5 Operadores lógicos</strong></h3>
+<p>Los operadores lógicos (<code>and</code>, <code>or</code>, <code>not</code>) permiten construir condiciones compuestas combinando expresiones booleanas simples como las que se obtienen utilizando los operadores de comparación. Sin ellos, cada condición estaría limitada a comparar un único par de valores; con ellos es posible expresar restricciones arbitrariamente complejas sobre el estado del programa. En matemáticas son el equivalente directo de los conectivos proposicionales <span class="math inline">\(\wedge\)</span>, <span class="math inline">\(\vee\)</span> y <span class="math inline">\(\neg\)</span> de la lógica matemática.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Operador</th>
+<th>Significado</th>
+<th>Resultado <code>True</code> cuando…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>and</code></td>
+<td>Conjunción</td>
+<td>ambos operandos son <code>True</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>or</code></td>
+<td>Disyunción</td>
+<td>al menos uno es <code>True</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>not</code></td>
+<td>Negación</td>
+<td>el operando es <code>False</code></td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> x <span class="op">&lt;</span> <span class="dv">10</span>)   <span class="co"># True   (x está en el intervalo (0, 10))</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> x <span class="op">&gt;</span> <span class="dv">5</span>)     <span class="co"># True   (x &lt; 0 es False, pero x &gt; 5 es True)</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="kw">not</span> (x <span class="op">==</span> <span class="dv">7</span>))       <span class="co"># False</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">!=</span> <span class="dv">7</span>)             <span class="co"># False</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Evaluación en cortocircuito (short-circuit evaluation)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Evaluación en cortocircuito (short-circuit evaluation)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Los operadores <code>and</code> y <code>or</code> en Python usan <strong>short-circuit evaluation</strong>: si el resultado queda determinado por el primer operando, el segundo no se evalúa.</p>
+<ul>
+<li><code>False and expr</code> → <code>False</code> sin evaluar <code>expr</code>.</li>
+<li><code>True or expr</code> → <code>True</code> sin evaluar <code>expr</code>.</li>
+</ul>
+<p>Esto es importante para evitar errores cuando la evaluación del segundo operando podría provocar una excepción. Por ejemplo, la siguiente expresión es segura porque si <code>b == 0</code> la segunda parte no se evalúa:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> b <span class="op">!=</span> <span class="dv">0</span> <span class="kw">and</span> <span class="dv">10</span> <span class="op">/</span> b <span class="op">&gt;</span> <span class="dv">2</span>:   <span class="co"># no lanza ZeroDivisionError</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"cociente grande"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div id="tip-logico" class="callout callout-style-default callout-tip no-icon callout-titled" title="Operadores lógicos">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fundamento Teórico&nbsp;4: Operadores lógicos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El fundamento de los operadores lógicos (<code>and</code>, <code>or</code>, <code>not</code>) es la <strong>lógica proposicional</strong> y su formalización algebraica, el <strong>álgebra de Boole</strong> (desarrollada por George Boole en 1854).</p>
+<p>Mientras que los operadores relacionales operan sobre tipos de datos arbitrarios y mapean el resultado al dominio de los booleanos, los operadores lógicos <strong>tienen al conjunto booleano tanto en su dominio como en su codominio</strong>. Operan estrictamente sobre los valores lógicos <code>True</code> (<span class="math inline">\(1\)</span>) y <code>False</code> (<span class="math inline">\(0\)</span>).</p>
+<p>Las operaciones fundamentales se definen axiomáticamente mediante tablas de verdad:</p>
+<ul>
+<li><strong>Conjunción Lógica (<code>and</code>):</strong> Representada como <span class="math inline">\(p \land q\)</span>. Se define como el producto lógico. Solo devuelve Verdadero si ambas proposiciones de entrada son verdaderas.</li>
+<li><strong>Disyunción Lógica (<code>or</code>):</strong> Representada como <span class="math inline">\(p \lor q\)</span>. Se define como la suma lógica. Devuelve Verdadero si al menos una de las proposiciones es verdadera.</li>
+<li><strong>Negación Lógica (<code>not</code>):</strong> Representada como <span class="math inline">\(\neg p\)</span>. Es un operador unario que calcula el complemento en el dominio booleano.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="conversión-de-tipos" class="level3">
+<h3 class="anchored" data-anchor-id="conversión-de-tipos"><strong>2.2.6 Conversión de tipos</strong></h3>
+<p>Python no convierte tipos automáticamente en la mayoría de situaciones. Las funciones <code>int()</code>, <code>float()</code>, <code>str()</code> y <code>bool()</code> permiten convertir valores de forma explícita:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">int</span>(<span class="fl">3.9</span>))      <span class="co">#  3    (trunca hacia cero, no redondea)</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">int</span>(<span class="op">-</span><span class="fl">3.9</span>))     <span class="co"># -3    (también trunca hacia cero)</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">float</span>(<span class="dv">5</span>))      <span class="co">#  5.0</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(<span class="dv">42</span>))       <span class="co"># '42'</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">int</span>(<span class="st">"100"</span>))    <span class="co">#  100</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="dv">0</span>))       <span class="co"># False</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="dv">1</span>))       <span class="co"># True</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="st">""</span>))      <span class="co"># False  (cadena vacía → False)</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="st">"hola"</span>))  <span class="co"># True   (cadena no vacía → True)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La conversión de tipos es necesaria porque Python no realiza conversiones implícitas entre tipos incompatibles —a diferencia de otros lenguajes— y porque los datos del mundo real llegan frecuentemente en un tipo distinto al que requiere el cálculo.</p>
+<p>Las situaciones que la justifican son principalmente tres:</p>
+<ul>
+<li><p><strong>Entrada de usuario</strong>: <code>input()</code> devuelve siempre <code>str</code>. Cualquier dato numérico introducido por el usuario debe convertirse explícitamente antes de operar con él: <code>int(input(...))</code> o <code>float(input(...))</code> (se verá en la sección 2.5. abajo).</p></li>
+<li><p><strong>Precisión aritmética</strong>: a veces se necesita forzar el tipo del resultado. <code>int(3.9)</code> trunca a <code>3</code>; <code>float(7)</code> asegura que una división posterior no sea entera.</p></li>
+<li><p><strong>Compatibilidad entre tipos</strong>: <code>str(42)</code> permite concatenar un número con una cadena; sin la conversión, <code>"El resultado es: " + 42</code> lanza <code>TypeError</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="control-de-flujo-estructuras-o-sentencias-condicionales" class="level2">
+<h2 class="anchored" data-anchor-id="control-de-flujo-estructuras-o-sentencias-condicionales">2.3. Control de Flujo — Estructuras o Sentencias Condicionales</h2>
+<p>El <strong>control de flujo</strong> es el mecanismo que determina el orden en el que se evalúan las instrucciones de un programa. Aunque por defecto la ejecución sigue una secuencia estrictamente lineal, las estructuras de control permiten alterar esta trayectoria: bifurcar la ejecución en función de una premisa lógica, o iterar repetidamente sobre un bloque de código. En este marco, las <strong>estructuras condicionales</strong> actúan como la herramienta fundamental para la toma de decisiones.</p>
+<div id="tip-condicional" class="callout callout-style-default callout-tip no-icon callout-titled" title="Condicionales">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fundamento Teórico&nbsp;5: Condicionales
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>estructura condicional o sentencia condicional</strong> es una construcción del lenguaje que permite ejecutar un bloque de instrucciones solo si una expresión de condición se evalúa como verdadera, y opcionalmente ejecutar un bloque alternativo si se evalúa como falsa. Es el mecanismo fundamental mediante el cual un programa adapta su comportamiento al estado de los datos en tiempo de ejecución.</p>
+<p>Independientemente del lenguaje de programación subyacente todo condicional se fundamenta en dos piezas clave:</p>
+<ul>
+<li><strong>El Predicado (La Condición):</strong> Es la expresión que el sistema evalúa y que siempre debe resolverse o mapearse a un estado booleano estricto (Verdadero o Falso). Actúa como la frontera o la “pregunta” que determina el camino a seguir.</li>
+<li><strong>Las Ramas (Los Caminos):</strong> Son los bloques de código asociados a cada posible resultado de la condición. Estas ramas son mutuamente excluyentes: el procesador ejecutará únicamente el conjunto de instrucciones asociado a la rama válida y descartará silenciosamente el resto.</li>
+</ul>
+<p>A nivel del hardware subyacente, un condicional se traduce en una <strong>instrucción de salto</strong> (<em>branching</em>). El procesador evalúa el estado de un registro (por ejemplo, verificando si una resta da cero) y, basándose en ese resultado lógico, altera el <strong>Contador de Programa</strong> para saltar a una dirección de memoria diferente en lugar de leer la instrucción inmediatamente siguiente.</p>
+</div>
+</div>
+<p>La estructura condicional en Python es <code>if</code>, que admite tres formas:</p>
+<ul>
+<li><code>if</code> solo: ejecuta un bloque si la condición es verdadera, y no hace nada si es falsa.</li>
+<li><code>if</code>-<code>else</code>: añade un bloque alternativo para cuando la condición es falsa.</li>
+<li><code>if</code>-<code>elif</code>-<code>else</code>: encadena múltiples condiciones mutuamente excluyentes, evaluadas en orden hasta que una sea verdadera.</li>
+</ul>
+<section id="estructura-if" class="level3">
+<h3 class="anchored" data-anchor-id="estructura-if"><strong>2.3.1 Estructura <code>if</code></strong></h3>
+<p>La forma más simple es el <code>if</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="op">-</span><span class="dv">5</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x es negativo"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El bloque indentado solo se ejecuta si la condición es <code>True</code>. Si la condición es <code>False</code>, el bloque se omite y la ejecución continúa en la siguiente instrucción no indentada.</p>
+<div id="imp-indenta" class="callout callout-style-default callout-important no-icon callout-titled" title="Delimitación de bloques por indentación">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;4: Delimitación de bloques por indentación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En Python la <strong>indentación</strong> no es una convención estilística sino parte de la sintaxis: es el mecanismo que delimita los bloques de código. A diferencia de lenguajes como C o Java, que usan llaves <code>{}</code> para marcar el inicio y el fin de un bloque, Python usa el nivel de sangría. Las instrucciones que pertenecen al bloque de código deben estar indentadas un nivel más adentro de la instrucción cabecera (<code>if</code>, <code>else</code>, <code>elif</code>, <code>while</code>, <code>for</code>, etc.) para que el intérprete sepa qué instrucciones se repiten y cuáles se ejecutan al salir del bloque (las que están al mismo nivel de indentación que la instrucción cabecera). Python usa indentación de 4 espacios por convención <span class="citation" data-cites="pep8">(<a href="#ref-pep8" role="doc-biblioref">Rossum, Warsaw, y Coghlan 2001</a>)</span>.</p>
+</div>
+</div>
+</section>
+<section id="estructura-if-else" class="level3">
+<h3 class="anchored" data-anchor-id="estructura-if-else"><strong>2.3.2 Estructura <code>if</code>-<code>else</code></strong></h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">17</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> es par"</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> es impar"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="estructura-if-elif-else" class="level3">
+<h3 class="anchored" data-anchor-id="estructura-if-elif-else"><strong>2.3.3 Estructura <code>if</code>-<code>elif</code>-<code>else</code></strong></h3>
+<p>Para varias condiciones mutuamente excluyentes se encadenan ramas <code>elif</code> (<em>else if</em>). Solo se ejecuta la primera rama cuya condición sea <code>True</code>; las demás se ignoran:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>nota <span class="op">=</span> <span class="fl">7.5</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> nota <span class="op">&gt;=</span> <span class="dv">9</span>:</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    calificacion <span class="op">=</span> <span class="st">"Sobresaliente"</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> nota <span class="op">&gt;=</span> <span class="dv">7</span>:</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    calificacion <span class="op">=</span> <span class="st">"Notable"</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> nota <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    calificacion <span class="op">=</span> <span class="st">"Aprobado"</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    calificacion <span class="op">=</span> <span class="st">"Suspenso"</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Nota: </span><span class="sc">{</span>nota<span class="sc">}</span><span class="ss"> → </span><span class="sc">{</span>calificacion<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Nota: 7.5 → Notable</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="nte-ecucua" class="callout callout-style-default callout-note no-icon callout-titled" title="Raíces de una ecuación cuadrática">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo&nbsp;1: Raíces de una ecuación cuadrática
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El discriminante <span class="math inline">\(\Delta = b^2 - 4ac\)</span> determina la naturaleza de las raíces de <span class="math inline">\(ax^2 + bx + c = 0\)</span>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> <span class="dv">1</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">2</span>    <span class="co"># ecuación: x^2 - 3x + 2 = 0</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>discriminante <span class="op">=</span> b<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span> <span class="op">*</span> a <span class="op">*</span> c</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> discriminante <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    r1 <span class="op">=</span> (<span class="op">-</span>b <span class="op">+</span> math.sqrt(discriminante)) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> a)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    r2 <span class="op">=</span> (<span class="op">-</span>b <span class="op">-</span> math.sqrt(discriminante)) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> a)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Dos raíces reales: x₁ = </span><span class="sc">{</span>r1<span class="sc">:.4f}</span><span class="ss">, x₂ = </span><span class="sc">{</span>r2<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> discriminante <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> <span class="op">-</span>b <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> a)</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Raíz doble: x = </span><span class="sc">{</span>r<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Sin raíces reales (discriminante negativo)"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>La instrucción <code>import math</code> hace disponibles las funciones matemáticas del módulo estándar <code>math</code>, como <code>math.sqrt()</code> (raíz cuadrada), <code>math.pi</code> (π), <code>math.log()</code> (logaritmo), etc. Los módulos se estudian en profundidad en el Tema 3; por ahora basta con saber que <code>import math</code> debe escribirse antes de usar cualquier función de ese módulo. La notación <code>math.xxxxxx()</code>, por ejemplo <code>math.sqrt()</code>, indica que la función <code>xxxxxx</code> pertenece al módulo <code>math</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="condicionales-anidados" class="level3">
+<h3 class="anchored" data-anchor-id="condicionales-anidados"><strong>2.3.4 Condicionales anidados</strong></h3>
+<p>Un bloque <code>if</code> puede contener otro <code>if</code> en su interior. Los condicionales anidados permiten refinar la lógica paso a paso:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"x es positivo"</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"x es negativo"</span>)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x es cero"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Cuando la lógica se complica, suele ser preferible combinar condiciones con <code>and</code> y <code>or</code>, o usar <code>elif</code>, en lugar de anidar demasiados niveles.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Expresión condicional (operador ternario)">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Expresión condicional (operador ternario)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Python dispone de una <strong>expresión condicional</strong> que asigna un valor según una condición en una sola línea:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>signo <span class="op">=</span> <span class="st">"positivo"</span> <span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">"no positivo"</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(signo)   <span class="co"># positivo</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La sintaxis es <code>valor_si_true if condición else valor_si_false</code>. Es útil para asignaciones simples, pero conviene evitarla cuando la lógica es compleja, ya que puede dificultar la lectura.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="control-de-flujo-iteraciones" class="level2">
+<h2 class="anchored" data-anchor-id="control-de-flujo-iteraciones">2.4. Control de Flujo — Iteraciones</h2>
+<p>La <strong>iteración</strong> es el mecanismo que permite repetir un bloque de instrucciones un número determinado de veces o mientras se cumpla una condición. Sin iteración, un programa solo podría procesar una cantidad fija de datos conocida en tiempo de escritura; con iteración puede operar sobre colecciones de tamaño arbitrario, aproximar resultados mediante sucesiones o series, y ejecutar procesos que convergen a una solución.</p>
+<p>En matemáticas la iteración tiene equivalentes directos en la notación de sumatorio <span class="math inline">\(\sum\)</span>, productorio <span class="math inline">\(\prod\)</span> y en la definición de sucesiones por recurrencia. Python proporciona dos estructuras iterativas fundamentales: <code>while</code>, que repite mientras una condición sea verdadera, y <code>for</code>, que recorre los elementos de una secuencia.</p>
+<section id="el-bucle-while-iteración-indefinida-o-condicional" class="level3">
+<h3 class="anchored" data-anchor-id="el-bucle-while-iteración-indefinida-o-condicional"><strong>2.4.1 El bucle <code>while</code> (iteración indefinida o condicional)</strong></h3>
+<p>El bucle <code>while</code> repite un bloque de instrucciones <strong>mientras</strong> una condición sea verdadera. ERepresenta el concepto clásico de las ciencias de la computación donde la ejecución de un bloque de código depende del estado actual del programa. Se le llama “indefinido” porque el número de repeticiones puede ser desconocido al iniciar el bucle.</p>
+<ul>
+<li><strong>Fundamento:</strong> Se basa exclusivamente en la evaluación de una <strong>expresión booleana</strong> (la condición).</li>
+<li><strong>Mecanismo:</strong> Antes de entrar al ciclo y al inicio de cada repetición posterior, el intérprete evalúa la condición. Si el resultado es <code>True</code>, el bloque de código se ejecuta. Si es <code>False</code>, el flujo salta a la primera instrucción que esté fuera del bucle.</li>
+<li><strong>Teoría del estado:</strong> Para que un bucle <code>while</code> sea teóricamente seguro, el estado del programa debe cambiar dentro del bloque. Si el estado nunca altera la condición de evaluación, se produce un <strong>bucle infinito</strong>.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> condición:</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># bloque que se repite</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="nte-cua100" class="callout callout-style-default callout-note no-icon callout-titled" title="Imprimir los cuadrados perfectos menores que 100">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo&nbsp;2: Imprimir los cuadrados perfectos menores que 100
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Empleando un bucle <code>while</code> se pueden imprimir los cuadrados perfectos menores que 100:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">*</span> n <span class="op">&lt;</span> <span class="dv">100</span>:</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(n <span class="op">*</span> n, end<span class="op">=</span><span class="st">"  "</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    n <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fin del bucle"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Salida:</p>
+<pre class="text"><code>1  4  9  16  25  36  49  64  81
+Fin del bucle</code></pre>
+<p>En cada iteración se evalúa la condición. En cuanto es <code>False</code>, el bucle termina y la ejecución continúa con la instrucción siguiente.</p>
+</div>
+</div>
+<div id="cau-while" class="callout callout-style-default callout-caution no-icon callout-titled" title="Bucle infinito">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Frecuente&nbsp;3: Bucle infinito
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si la condición del <code>while</code> nunca pasa a <code>False</code>, el programa no termina nunca. Este error —el <strong>bucle infinito</strong>— es uno de los más frecuentes al empezar a programar:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PELIGRO: bucle infinito (n siempre crece)</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    n <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para detener un programa bloqueado en un bucle infinito, pulsa <strong>Ctrl+C</strong> en la terminal.</p>
+</div>
+</div>
+<p>Usos típicos del bucle <code>while</code> incluyen:</p>
+<ul>
+<li><p><strong>Repetir hasta que se cumpla una condición</strong> — búsqueda del primer múltiplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">%</span> <span class="dv">13</span> <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(n)   <span class="co"># primer múltiplo de 13</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Aproximación iterativa</strong> — método de bisección (vea <span class="citation" data-cites="wikipedia_biseccion">(<a href="#ref-wikipedia_biseccion" role="doc-biblioref">Wikipedia contributors 2024a</a>)</span>) para encontrar una raíz:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> <span class="fl">1.0</span>, <span class="fl">2.0</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> b <span class="op">-</span> a <span class="op">&gt;</span> <span class="fl">1e-10</span>:</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> (a <span class="op">+</span> b) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> m <span class="op">**</span> <span class="dv">2</span> <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> m</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> m</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(m)   <span class="co"># aproximación a √2</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Convergencia de una sucesión</strong> — iterar el método de Newton (vea <span class="citation" data-cites="wikipedia_newton">(<a href="#ref-wikipedia_newton" role="doc-biblioref">Wikipedia contributors 2024b</a>)</span>) hasta que dos términos consecutivos sean indistinguibles:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    x_nuevo <span class="op">=</span> (x <span class="op">+</span> <span class="dv">2</span> <span class="op">/</span> x) <span class="op">/</span> <span class="dv">2</span>   <span class="co"># método de Newton para √2</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(x_nuevo <span class="op">-</span> x) <span class="op">&lt;</span> <span class="fl">1e-12</span>:</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> x_nuevo</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Validación de entrada</strong> — repetir hasta obtener un valor válido (la función <code>input()</code> se verá en la sección 2.5):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introduce un entero positivo: "</span>))</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Debe ser positivo. Inténtalo de nuevo: "</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Dígitos de un número</strong> — procesar cifra a cifra:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">123456</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(n <span class="op">%</span> <span class="dv">10</span>)   <span class="co"># última cifra</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    n <span class="op">//=</span> <span class="dv">10</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+</section>
+<section id="break-y-continue" class="level3">
+<h3 class="anchored" data-anchor-id="break-y-continue"><strong>2.4.2 <code>break</code> y <code>continue</code></strong></h3>
+<p>Dentro de cualquier bucle, dos instrucciones permiten modificar el flujo de iteración:</p>
+<ul>
+<li><strong><code>break</code></strong>: interrumpe el bucle inmediatamente y salta al código que viene después.</li>
+<li><strong><code>continue</code></strong>: salta al inicio de la siguiente iteración, omitiendo el resto del bloque actual.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># break: encontrar el primer divisor de n mayor que 1</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">77</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> d <span class="op">&lt;</span> n:</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">%</span> d <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"El menor divisor de </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> mayor que 1 es </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>    d <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># continue: imprimir solo los enteros impares del 1 al 10</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;</span> <span class="dv">10</span>:</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span>   <span class="co"># salta al inicio si i es par</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i, end<span class="op">=</span><span class="st">"  "</span>)</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 1  3  5  7  9</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="el-bucle-for-iteración-definida-y-la-función-range" class="level3">
+<h3 class="anchored" data-anchor-id="el-bucle-for-iteración-definida-y-la-función-range"><strong>2.4.3 El bucle <code>for</code> (iteración definida) y la función <code>range()</code></strong></h3>
+<p>El bucle <code>for</code> en Python itera sobre los elementos de una secuencia, por ello se dice que es una iteración definida. Este es un caso donde Python difiere conceptualmente de lenguajes como C o C++. En esos lenguajes, un <code>for</code> suele ser un <code>while</code> disfrazado con un contador numérico (ej. <code>for(i=0; i&lt;10; i++)</code>).</p>
+<p>En Python, el <code>for</code> es en realidad un bucle <strong>“for-each”</strong> (para cada elemento). Su base no es una condición matemática, sino el consumo sistemático de los elementos de un objeto iterable. Un objeto iterable es cualquier objeto que puede entregar sus elementos de uno en uno en un orden definido y sobre el que se puede usar un bucle <code>for</code>.</p>
+<p>El ejemplo más inmediato de objeto iterable son los objetos de la clase <code>range</code>. Mediante objetos <code>range</code> se generan secuencias de enteros que constituyen la forma habitual de controlar el número de repeticiones en un bucle <code>for</code>.</p>
+<p>El tipo <code>range()</code> genera secuencias de enteros de las tres formas siguientes:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Llamada</th>
+<th>Secuencia generada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>range(n)</code></td>
+<td><code>0, 1, 2, …, n−1</code></td>
+</tr>
+<tr class="even">
+<td><code>range(a, b)</code></td>
+<td><code>a, a+1, …, b−1</code></td>
+</tr>
+<tr class="odd">
+<td><code>range(a, b, paso)</code></td>
+<td><code>a, a+paso, a+2·paso, …</code> mientras el valor sea <code>&lt; b</code></td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i, end<span class="op">=</span><span class="st">" "</span>)     <span class="co"># 0 1 2 3 4</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>):</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i, end<span class="op">=</span><span class="st">" "</span>)     <span class="co"># 1 2 3 4 5</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>):</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i, end<span class="op">=</span><span class="st">" "</span>)     <span class="co"># 0 2 4 6 8</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i, end<span class="op">=</span><span class="st">" "</span>)     <span class="co"># 10 9 8 7 6 5 4 3 2 1</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="imp-range" class="callout callout-style-default callout-important no-icon callout-titled" title="La anatomía del objeto `range`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;5: La anatomía del objeto <code>range</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cuando escribes <code>r = range(0, 10, 2)</code>, Python no crea ni almacena en memoria una secuencia con los números <code>0, 2, 4, 6, 8</code>. Eso sería ineficiente. En su lugar, el objeto <code>range</code> solo almacena tres enteros:</p>
+<ul>
+<li><code>start</code> (inicio)</li>
+<li><code>stop</code> (fin)</li>
+<li><code>step</code> (salto)</li>
+</ul>
+<p>Los enteros se producen uno a uno a medida que el bucle los solicita (lazy evaluation). Gracias a esto, <code>range(10)</code> y <code>range(1000000000)</code> ocupan exactamente la misma cantidad mínima de memoria.</p>
+</div>
+</div>
+<p>Entre los usos fundamentales del bucle <code>for</code> se encuentra el <strong>patrón acumulador</strong>, que permite calcular sumas, productos y otras operaciones agregadas de manera eficiente.</p>
+<div id="imp-acumulador" class="callout callout-style-default callout-important no-icon callout-titled" title="El patrón acumulador">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;6: El patrón acumulador
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El <strong>patrón acumulador</strong> es la estructura más frecuente en programación numérica: se inicializa una variable antes del bucle con el elemento neutro de la operación y se actualiza en cada iteración.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suma: S = 1 + 2 + … + n</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>suma <span class="op">=</span> <span class="dv">0</span>                        <span class="co"># neutro de la suma</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    suma <span class="op">+=</span> i</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(suma)                     <span class="co"># 5050  (= n·(n+1)/2)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El mismo esquema sirve para productos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Factorial: n! = 1 × 2 × … × n</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>factorial <span class="op">=</span> <span class="dv">1</span>                   <span class="co"># neutro del producto</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, n <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    factorial <span class="op">*=</span> i</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(factorial)                <span class="co"># 3628800</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La variable acumuladora (<code>suma</code>, <code>factorial</code>) <strong>debe inicializarse fuera del bucle</strong> con el valor neutro de la operación: 0 para sumas, 1 para productos.</p>
+</div>
+</div>
+<p>Otros usos comunes del bucle <code>for</code> incluyen:</p>
+<ul>
+<li><p><strong>Recorrer y procesar una secuencia</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">5</span>):</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x <span class="op">**</span> <span class="dv">3</span>)   <span class="co"># cubo de cada entero</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Búsqueda</strong> — detectar si un entero en un rango cumple una condición:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">50</span>):</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">%</span> <span class="dv">7</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(n, <span class="st">"es múltiplo de 7"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+</section>
+<section id="ejemplos-matemáticos" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplos-matemáticos"><strong>2.4.4 Ejemplos matemáticos</strong></h3>
+<div id="nte-fibonacci" class="callout callout-style-default callout-note no-icon callout-titled" title="Imprimir $n$ términos de la sucesión de Fibonacci">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo&nbsp;3: Imprimir <span class="math inline">\(n\)</span> términos de la sucesión de Fibonacci
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La sucesión de Fibonacci se define por <span class="math display">\[
+F_k = \begin{cases}
+0 &amp; \text{si } k = 0 \\
+1 &amp; \text{si } k = 1 \\
+F_{k-1} + F_{k-2} &amp; \text{si } k \geq 2
+\end{cases}
+\]</span>. El cálculo iterativo utiliza dos variables que se actualizan simultáneamente:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">15</span>   <span class="co"># número de términos a imprimir</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> <span class="dv">0</span>, <span class="dv">1</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(a, end<span class="op">=</span><span class="st">"  "</span>)</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>    a, b <span class="op">=</span> b, a <span class="op">+</span> b</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Salida:</p>
+<pre class="text"><code>0  1  1  2  3  5  8  13  21  34  55  89  144  233  377</code></pre>
+<p>La asignación simultánea <code>a, b = b, a + b</code> evalúa primero el lado derecho completo y luego asigna, por lo que no se necesita una variable temporal.</p>
+</div>
+</div>
+<div id="nte-sumserie" class="callout callout-style-default callout-note no-icon callout-titled" title="Cálculo de la suma parcial de una serie">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo&nbsp;4: Cálculo de la suma parcial de una serie
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cálculo de la suma parcial</p>
+<p><span class="math display">\[
+S_n = \sum_{k=1}^{n} \frac{1}{k^2}
+\]</span>,</p>
+<p>que converge a <span class="math inline">\(\pi^2/6\)</span> cuando <span class="math inline">\(n \to \infty\)</span> (resultado conocido como problema de Basilea, resuelto por Euler en 1735):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>suma <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>    suma <span class="op">+=</span> <span class="dv">1</span> <span class="op">/</span> k<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"S_</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">   = </span><span class="sc">{</span>suma<span class="sc">:.10f}</span><span class="ss">"</span>)</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"π²/6    = </span><span class="sc">{</span>math<span class="sc">.</span>pi<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="dv">6</span><span class="sc">:.10f}</span><span class="ss">"</span>)</span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Error   = </span><span class="sc">{</span><span class="bu">abs</span>(suma <span class="op">-</span> math.pi<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="dv">6</span>)<span class="sc">:.2e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="nte-primos" class="callout callout-style-default callout-note no-icon callout-titled" title="Imprimir números primos">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo&nbsp;5: Imprimir números primos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un número <span class="math inline">\(p \geq 2\)</span> es <strong>primo</strong> si no tiene divisores propios entre 2 y <span class="math inline">\(\lfloor\sqrt{p}\rfloor\)</span>. El siguiente código utiliza una variable booleana de tipo bandera (<em>flag</em>) para registrar si se encontró algún divisor:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Listar todos los primos hasta 50</span></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">51</span>):</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>    es_primo <span class="op">=</span> <span class="va">True</span>                           <span class="co"># hipótesis inicial: n es primo</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> d <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">int</span>(math.sqrt(n)) <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> n <span class="op">%</span> d <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>            es_primo <span class="op">=</span> <span class="va">False</span>                  <span class="co"># se encontró un divisor</span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span>                             <span class="co"># no hace falta seguir buscando</span></span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> es_primo:</span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(n, end<span class="op">=</span><span class="st">"  "</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Salida:</p>
+<pre class="text"><code>2  3  5  7  11  13  17  19  23  29  31  37  41  43  47</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Bucles anidados">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Bucles anidados
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Los bucles se pueden <strong>anidar</strong>, es decir, se puede tener un bucle dentro de otro. Cada vez que el bucle exterior avanza una iteración, el bucle interior se ejecuta completamente. El número total de iteraciones es el producto de los rangos de ambos bucles.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de multiplicar del 1 al 6</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">''</span><span class="sc">:4}</span><span class="ss">"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">7</span>):</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>j<span class="sc">:4}</span><span class="ss">"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">28</span>)</span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">7</span>):</span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">:4}</span><span class="ss">"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">7</span>):</span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="op">*</span>j<span class="sc">:4}</span><span class="ss">"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Salida:</p>
+<pre class="text"><code>       1   2   3   4   5   6
+----------------------------
+   1   1   2   3   4   5   6
+   2   2   4   6   8  10  12
+   3   3   6   9  12  15  18
+   4   4   8  12  16  20  24
+   5   5  10  15  20  25  30
+   6   6  12  18  24  30  36</code></pre>
+<p>Con bucles anidados es fácil generar costes computacionales elevados: un doble bucle sobre <span class="math inline">\(n\)</span> elementos produce <span class="math inline">\(O(n^2)\)</span> operaciones. El análisis de la <strong>complejidad computacional</strong> de los algoritmos (Tema 4) estudia este tipo de costes con detalle.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="iteración-sobre-cadenas-y-enumerate" class="level3">
+<h3 class="anchored" data-anchor-id="iteración-sobre-cadenas-y-enumerate"><strong>2.4.5 Iteración sobre cadenas y <code>enumerate()</code></strong></h3>
+<p>Una cadena <code>str</code> es un iterable cuyos elementos son los caracteres individuales (cada uno a su vez un <code>str</code> de longitud 1). El bucle <code>for</code> puede entonces recorrer directamente los caracteres de una cadena:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>palabra <span class="op">=</span> <span class="st">"Python"</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> letra <span class="kw">in</span> palabra:</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(letra, end<span class="op">=</span><span class="st">"-"</span>)    <span class="co"># P-y-t-h-o-n-</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Si se desea conocer la posición de cada carácter, se puede usar <code>range()</code> con <code>len()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>palabra <span class="op">=</span> <span class="st">"Python"</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(palabra)):</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"posición </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>palabra[i]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co"># posición 0: P</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="co"># posición 1: y</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="co"># posición 2: t</span></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="co"># posición 3: h</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a><span class="co"># posición 4: o</span></span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a><span class="co"># posición 5: n</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Otra forma de obtener la posición de cada carácter es usar el tipo <code>enumerate()</code>. Al igual que <code>range</code>, <code>enumerate</code> es un tipo built-in de Python. Con <code>enumerate(iterable)</code> se produce un objeto iterable de pares <code>(índice, valor)</code> generados de forma perezosa. Con <code>indice</code> se obtiene la posición del elemento en la secuencia, y con <code>valor</code> se obtiene el elemento en sí. Esto permite recorrer una cadena (o cualquier iterable) y conocer simultáneamente el índice de cada elemento:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, letra <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="st">"abc"</span>):</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"posición </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>letra<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co"># posición 0: a</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co"># posición 1: b</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="co"># posición 2: c</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="las-cadenas-que-se-inicia-con-f-y-contienen-expresiones-entre-llaves-se-llaman-f-strings-cadenas-formateadas.-se-verán-en-la-sección-2.5.2." class="level2">
+<h2 class="anchored" data-anchor-id="las-cadenas-que-se-inicia-con-f-y-contienen-expresiones-entre-llaves-se-llaman-f-strings-cadenas-formateadas.-se-verán-en-la-sección-2.5.2.">Las cadenas que se inicia con <code>f</code> y contienen expresiones entre llaves <code>{}</code> se llaman <strong>f-strings</strong> (cadenas formateadas). Se verán en la sección 2.5.2.</h2>
+</section>
+<section id="entrada-y-salida-básicas-flujos-entre-teclado-y-pantalla" class="level2">
+<h2 class="anchored" data-anchor-id="entrada-y-salida-básicas-flujos-entre-teclado-y-pantalla">2.5. Entrada y salida básicas: flujos entre teclado y pantalla</h2>
+<p>La interacción entre el programa y el usuario es fundamental en cualquier aplicación. Python proporciona dos funciones built-in para la entrada y salida básicas de datos: <code>print()</code> para mostrar información en la terminal e <code>input()</code> para leer texto introducido por el usuario. Aunque simples, estas dos funciones son suficientes para construir programas interactivos completos y constituyen la base sobre la que se asienta cualquier interfaz de texto.</p>
+<section id="la-función-print" class="level3">
+<h3 class="anchored" data-anchor-id="la-función-print"><strong>2.5.1 La función <code>print()</code></strong></h3>
+<p>Ya vimos anteriormente que <code>print()</code> escribe en la <strong>salida estándar</strong> (la pantalla en condiciones normales). Acepta cualquier número de argumentos separados por comas:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"El resultado es"</span>, <span class="dv">42</span>)           <span class="co"># El resultado es 42</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)                         <span class="co"># 1 2 3  (separador por defecto: espacio)</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, sep<span class="op">=</span><span class="st">", "</span>)               <span class="co"># 1, 2, 3</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, sep<span class="op">=</span><span class="st">" | "</span>)              <span class="co"># 1 | 2 | 3</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"sin salto"</span>, end<span class="op">=</span><span class="st">""</span>)             <span class="co"># permanece en la misma línea</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">" — continuación"</span>)               <span class="co"># — continuación</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()                                <span class="co"># línea en blanco</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="cadenas-formateadas-f-strings" class="level3">
+<h3 class="anchored" data-anchor-id="cadenas-formateadas-f-strings"><strong>2.5.2 Cadenas formateadas: f-strings</strong></h3>
+<p>Las <strong>f-strings</strong> (cadenas formateadas) son la forma recomendada de insertar valores en texto en Python moderno. Se escriben con el prefijo <code>f</code> y permiten evaluar cualquier expresión Python dentro de <code>{}</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>nombre <span class="op">=</span> <span class="st">"Euler"</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>suma <span class="op">=</span> n <span class="op">*</span> (n <span class="op">+</span> <span class="dv">1</span>) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gauss calculó que la suma de 1 a </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> es </span><span class="sc">{</span>suma<span class="sc">}</span><span class="ss">."</span>)</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El cuadrado de 7 es </span><span class="sc">{</span><span class="dv">7</span><span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Especificadores de formato en f-strings">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Especificadores de formato en f-strings
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Los <strong>especificadores de formato</strong> en una f-string se escriben dentro de <code>{}</code> y permiten controlar la presentación del valor:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Especificador</th>
+<th>Efecto</th>
+<th>Ejemplo</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>:.nf</code></td>
+<td><code>n</code> decimales fijos</td>
+<td><code>f"{3.14159:.2f}"</code></td>
+<td><code>3.14</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>:e</code></td>
+<td>Notación científica</td>
+<td><code>f"{12345.6:.3e}"</code></td>
+<td><code>1.235e+04</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>:g</code></td>
+<td>Decimal o científica según magnitud</td>
+<td><code>f"{0.000123:.3g}"</code></td>
+<td><code>0.000123</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>:d</code></td>
+<td>Entero decimal</td>
+<td><code>f"{42:d}"</code></td>
+<td><code>42</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>:&gt;n</code></td>
+<td>Alineado a la derecha en anchura <code>n</code></td>
+<td><code>f"{7:&gt;6d}"</code></td>
+<td><code>7</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>:&lt;n</code></td>
+<td>Alineado a la izquierda en anchura <code>n</code></td>
+<td><code>f"{'abc':&lt;6}"</code></td>
+<td><code>abc</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>:0n</code></td>
+<td>Relleno con ceros</td>
+<td><code>f"{7:06d}"</code></td>
+<td><code>000007</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>:,</code></td>
+<td>Separador de miles</td>
+<td><code>f"{1000000:,}"</code></td>
+<td><code>1,000,000</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ejemplo: tabla de potencias bien formateada:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'n'</span><span class="sc">:&gt;4}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'n²'</span><span class="sc">:&gt;6}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'n³'</span><span class="sc">:&gt;9}</span><span class="ss">"</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">23</span>)</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">8</span>):</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="sc">:&gt;4}</span><span class="ss">  </span><span class="sc">{</span>n<span class="op">**</span><span class="dv">2</span><span class="sc">:&gt;6}</span><span class="ss">  </span><span class="sc">{</span>n<span class="op">**</span><span class="dv">3</span><span class="sc">:&gt;9}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Salida:</p>
+<pre class="text"><code>   n      n²        n³
+-----------------------
+   1       1         1
+   2       4         8
+   3       9        27
+   4      16        64
+   5      25       125
+   6      36       216
+   7      49       343</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="la-función-input" class="level3">
+<h3 class="anchored" data-anchor-id="la-función-input"><strong>2.5.3 La función <code>input()</code></strong></h3>
+<p><code>input()</code> detiene la ejecución del programa, muestra un mensaje opcional en pantalla y espera a que el usuario escriba algo y pulse Intro. <strong>Siempre devuelve una cadena de texto</strong> (<code>str</code>), independientemente de lo que el usuario haya escrito.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>texto <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escribe algo: "</span>)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Escribiste: </span><span class="sc">{</span>texto<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(texto))              <span class="co"># &lt;class 'str'&gt;</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para trabajar con valores numéricos, hay que convertir la cadena devuelta por <code>input()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introduce un número entero: "</span>))</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El cuadrado de </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> es </span><span class="sc">{</span>n<span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss">."</span>)</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Introduce un número real: "</span>))</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Su raíz cuadrada es </span><span class="sc">{</span>x<span class="op">**</span><span class="fl">0.5</span><span class="sc">:.6f}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cau-input" class="callout callout-style-default callout-caution no-icon callout-titled" title="Olvidar que input() siempre devuelve str">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Frecuente&nbsp;4: Olvidar que input() siempre devuelve str
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uno de los errores más comunes al empezar con Python:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Introduce n: "</span>)</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span>     <span class="co"># TypeError: can only concatenate str (not "int") to str</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La solución es convertir explícitamente el tipo antes de operar:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introduce n: "</span>))</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span>     <span class="co"># correcto</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="nte-calculadora" class="callout callout-style-default callout-note no-icon callout-titled" title="Calculadora interactiva">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo&nbsp;6: Calculadora interactiva
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vamos a implementar una calculadora básica que solicita dos números y una operación al usuario, y luego muestra el resultado:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Calculadora básica ==="</span>)</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Primer número: "</span>))</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Segundo número: "</span>))</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>op <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Operación (+, -, *, /): "</span>)</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> op <span class="op">==</span> <span class="st">"+"</span>:</span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> op <span class="op">==</span> <span class="st">"-"</span>:</span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> a <span class="op">-</span> b</span>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> op <span class="op">==</span> <span class="st">"*"</span>:</span>
+<span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> a <span class="op">*</span> b</span>
+<span id="cb76-12"><a href="#cb76-12" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> op <span class="op">==</span> <span class="st">"/"</span>:</span>
+<span id="cb76-13"><a href="#cb76-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> b <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb76-14"><a href="#cb76-14" aria-hidden="true" tabindex="-1"></a>        resultado <span class="op">=</span> a <span class="op">/</span> b</span>
+<span id="cb76-15"><a href="#cb76-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb76-16"><a href="#cb76-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Error: división por cero."</span>)</span>
+<span id="cb76-17"><a href="#cb76-17" aria-hidden="true" tabindex="-1"></a>        resultado <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb76-18"><a href="#cb76-18" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb76-19"><a href="#cb76-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Operación '</span><span class="sc">{</span>op<span class="sc">}</span><span class="ss">' no reconocida."</span>)</span>
+<span id="cb76-20"><a href="#cb76-20" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb76-21"><a href="#cb76-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-22"><a href="#cb76-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> resultado <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb76-23"><a href="#cb76-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>op<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultado<span class="sc">:.6g}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+</section>
+<section id="bibliografía" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="bibliografía">Bibliografía</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-python3floatingpoint" class="csl-entry" role="listitem">
+Python Software Foundation. 2025. <span>«Floating-Point Arithmetic: Issues and Limitations»</span>. Python 3.12.13 Documentation. <a href="https://docs.python.org/3.12/tutorial/floatingpoint.html">https://docs.python.org/3.12/tutorial/floatingpoint.html</a>.
+</div>
+<div id="ref-pep8" class="csl-entry" role="listitem">
+Rossum, Guido van, Barry Warsaw, y Alyssa Coghlan. 2001. <span>«<span>PEP 8 – Style Guide for Python Code</span>»</span>. Python Enhancement Proposal. <a href="https://peps.python.org/pep-0008/">https://peps.python.org/pep-0008/</a>.
+</div>
+<div id="ref-wikipedia_biseccion" class="csl-entry" role="listitem">
+Wikipedia contributors. 2024a. <span>«Método de bisección»</span>. Wikipedia, la enciclopedia libre. <a href="https://es.wikipedia.org/wiki/M%C3%A9todo_de_bisecci%C3%B3n">https://es.wikipedia.org/wiki/M%C3%A9todo_de_bisecci%C3%B3n</a>.
+</div>
+<div id="ref-wikipedia_newton" class="csl-entry" role="listitem">
+———. 2024b. <span>«Método de Newton»</span>. Wikipedia, la enciclopedia libre. <a href="https://es.wikipedia.org/wiki/M%C3%A9todo_de_Newton">https://es.wikipedia.org/wiki/M%C3%A9todo_de_Newton</a>.
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
