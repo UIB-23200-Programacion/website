@@ -718,7 +718,7 @@ window.Quarto = {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>En este curso se trabajará principalmente con scripts <code>.py</code> o notebooks Marimo en un Codespace (Temas 1–6). Los notebooks Marimo se emplean para ejemplos simples de código que aparecen en estas notas y de forma natural en el <strong>Tema 7</strong> al introducir NumPy, Pandas y Matplotlib, donde la visualización de resultados integrada en el documento es especialmente útil.</p>
+<p>En este curso se trabajará principalmente con scripts <code>.py</code> o notebooks Marimo en un Codespace (Temas 1–6). Los notebooks Marimo se emplean de forma natural en el <strong>Tema 7</strong> al introducir NumPy, Pandas y Matplotlib, donde la visualización de resultados integrada en un documento es especialmente útil.</p>
 </div>
 </div>
 </div>
@@ -808,6 +808,20 @@ Fundamento Teórico&nbsp;2: Tipo
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)       <span class="co"># 3.14</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"hola"</span>     <span class="co"># ahora x referencia la cadena "hola"</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)       <span class="co"># hola</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="imp-comentario" class="callout callout-style-default callout-important no-icon callout-titled" title="Comentarios en código Python">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;1: Comentarios en código Python
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En Python sólo existe una forma de comentario: el símbolo <code>#</code>. Todo lo que va desde ahí hasta el final de la línea lo ignora el intérprete. Un comentario es texto incluido en el código fuente que va dirigido a quien lo lee, no a la máquina que lo ejecuta. El traductor —compilador o intérprete— lo descarta, de modo que su presencia o ausencia no altera en nada el comportamiento del programa.</p>
+<p>Los comentarios pueden aparecer en una línea propia o a continuación del código fuente en la misma línea. Las convenciones de <span class="citation" data-cites="pep8">(<a href="#ref-pep8" role="doc-biblioref">Rossum, Warsaw, y Coghlan 2001</a>)</span> recomiendan un espacio tras el <code>#</code>, y dos espacios antes del <code>#</code> en los comentarios al final de línea.</p>
+</div>
+</div>
 <p>Python admite asignación múltiple en una sola línea:</p>
 <div>
 <div id="pyodide-1" class="exercise-cell">
@@ -827,7 +841,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSwgYiwgYyA9IDEsIDIsIDNc
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Concepto Clave&nbsp;1: Convención de nombres: snake_case
+Concepto Clave&nbsp;2: Convención de nombres: snake_case
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -912,7 +926,7 @@ Concepto Clave&nbsp;1: Convención de nombres: snake_case
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Concepto Clave&nbsp;2: Funciones built-in <code>type()</code> y <code>print()</code>
+Concepto Clave&nbsp;3: Funciones built-in <code>type()</code> y <code>print()</code>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -948,7 +962,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoMSwgMiwgMywgc2Vw
 </div>
 <section id="enteros-int" class="level4">
 <h4 class="anchored" data-anchor-id="enteros-int"><strong>Enteros (<code>int</code>)</strong></h4>
-<p>En Python, los enteros tienen <strong>precisión arbitraria</strong>: pueden ser tan grandes como la memoria disponible lo permita, sin que se produzca desbordamiento (<em>overflow</em>). Esto los distingue de muchos otros lenguajes donde el rango entero está limitado por el número de bits.</p>
+<p>En Python, los enteros tienen <strong>precisión arbitraria</strong>: pueden ser tan grandes como la memoria disponible lo permita, sin que se produzca desbordamiento (<em>overflow</em>). Esto los distingue de muchos otros lenguajes donde los números enteros están limitados a un rango fijo.</p>
 <div>
 <div id="pyodide-5" class="exercise-cell">
 
@@ -1006,7 +1020,6 @@ Error Frecuente&nbsp;1: Comparar flotantes con ==
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSA9IDAuMSArIDAuMlxuYiA9IDAuM1xucHJpbnQoYWJzKGEgLSBiKSA8IDFlLTEwKSAgICMgVHJ1ZSJ9
 </script>
 </div>
-<p>Para cálculos numéricos precisos, el módulo <code>math</code> y la librería NumPy (Tema 7) ofrecen herramientas adecuadas.</p>
 </div>
 </div>
 <p>Los literales <code>float</code> admiten varias notaciones:</p>
@@ -1015,7 +1028,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSA9IDAuMSArIDAuMlxuYiA9
 
 </div>
 <script type="pyodide-10-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBEZWNpbWFsIGVzdMOhbmRhciDigJQgY29uIHB1bnRvIG9ibGlnYXRvcmlvXG54MSA9IDMuMTRcbngyID0gLTAuNVxueDMgPSAxLjAgICAgICAjIGVsIC4wIGVzIG5lY2VzYXJpbzsgc2luIMOpbCBzZXLDrWEgaW50XG54NCA9IC41ICAgICAgICMgZXF1aXZhbGUgYSAwLjUgKGVsIGNlcm8gaW5pY2lhbCBlcyBvcGNpb25hbClcbnByaW50KHgxLCB4MiwgeDMsIHg0LCBzZXA9XCIsIFwiKVxuXG4jIE5vdGFjacOzbiBjaWVudMOtZmljYSDigJQgY29uIGBlYCBvIGBFYCBjb21vIGV4cG9uZW50ZSBkZSBiYXNlIDEwXG54NSA9IDEuNWUzICAgICAgICAgIyBlcXVpdmFsZSBhIDE1MDAuMFxueDYgPSAyLjFlLTQgICAgICAgICMgZXF1aXZhbGUgYSAwLjAwMDIxXG54NyA9IDFlMTAgICAgICAgICAgIyBlcXVpdmFsZSBhIDEwMDAwMDAwMDAwLjBcbnByaW50KHg1LCB4NiwgeDcsIHNlcD1cIiwgXCIpICAjIDE1MDAuMCAwLjAwMDIxIDEwMDAwMDAwMDAwLjAifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBEZWNpbWFsIGVzdMOhbmRhciDigJQgY29uIHB1bnRvIG9ibGlnYXRvcmlvXG54MSA9IDMuMTRcbngyID0gLTAuNVxueDMgPSAxLjAgICAgICAjIGVsIC4wIGVzIG5lY2VzYXJpbzsgc2luIMOpbCBzZXLDrWEgaW50XG54NCA9IC41ICAgICAgICMgZXF1aXZhbGUgYSAwLjUgKGVsIGNlcm8gaW5pY2lhbCBlcyBvcGNpb25hbClcbnByaW50KHgxLCB4MiwgeDMsIHg0LCBzZXA9XCIsIFwiKVxuXG4jIE5vdGFjacOzbiBjaWVudMOtZmljYSDigJQgY29uIGBlYCBvIGBFYCBjb21vIGV4cG9uZW50ZSBkZSBiYXNlIDEwXG54NSA9IDEuNWUzICAgICAgICAgIyBlcXVpdmFsZSBhIDE1MDAuMCA9IDEuNSDDlyAxMMKzXG54NiA9IDIuMWUtNCAgICAgICAgIyBlcXVpdmFsZSBhIDAuMDAwMjEgPSAyLjEgw5cgMTDigbvigbRcbng3ID0gMWUxMCAgICAgICAgICAjIGVxdWl2YWxlIGEgMTAwMDAwMDAwMDAuMCA9IDEgw5cgMTDCueKBsFxucHJpbnQoeDUsIHg2LCB4Nywgc2VwPVwiLCBcIikgICMgMTUwMC4wIDAuMDAwMjEgMTAwMDAwMDAwMDAuMCJ9
 </script>
 </div>
 <p>Al igual que en <code>int</code>, se puede usar <code>_</code> como separador visual:</p>
@@ -1335,7 +1348,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQodHlwZSgzICsgMi41
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Concepto Clave&nbsp;3: División entera y módulo
+Concepto Clave&nbsp;4: División entera y módulo
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1578,7 +1591,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDdcbnByaW50KHggPiAw
 </script>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Evaluación en cortocircuito (short-circuit evaluation)">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1587,7 +1600,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDdcbnByaW50KHggPiAw
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Los operadores <code>and</code> y <code>or</code> en Python usan <strong>short-circuit evaluation</strong>: si el resultado queda determinado por el primer operando, el segundo no se evalúa.</p>
 <ul>
@@ -1694,7 +1707,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IC01XG5pZiB4IDwgMDpc
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Concepto Clave&nbsp;4: Delimitación de bloques por indentación
+Concepto Clave&nbsp;5: Delimitación de bloques por indentación
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1769,7 +1782,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDNcbmlmIHggIT0gMDpc
 </div>
 <p>Cuando la lógica se complica, suele ser preferible combinar condiciones con <code>and</code> y <code>or</code>, o usar <code>elif</code>, en lugar de anidar demasiados niveles.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Expresión condicional (operador ternario)">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1778,7 +1791,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDNcbmlmIHggIT0gMDpc
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Python dispone de una <strong>expresión condicional</strong> que asigna un valor según una condición en una sola línea:</p>
 <div>
@@ -1964,7 +1977,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIGkgaW4gcmFuZ2UoNSk6
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Concepto Clave&nbsp;5: La anatomía del objeto <code>range</code>
+Concepto Clave&nbsp;6: La anatomía del objeto <code>range</code>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1984,7 +1997,7 @@ Concepto Clave&nbsp;5: La anatomía del objeto <code>range</code>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Concepto Clave&nbsp;6: El patrón acumulador
+Concepto Clave&nbsp;7: El patrón acumulador
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -2108,7 +2121,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuIyBM
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Bucles anidados">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -2117,7 +2130,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuIyBM
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Los bucles se pueden <strong>anidar</strong>, es decir, se puede tener un bucle dentro de otro. Cada vez que el bucle exterior avanza una iteración, el bucle interior se ejecuta completamente. El número total de iteraciones es el producto de los rangos de ambos bucles.</p>
 <div>
@@ -2211,7 +2224,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidXN1YXJpb19pZCA9IDQwOTJc
 </script>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Especificadores de formato en f-strings">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -2220,7 +2233,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidXN1YXJpb19pZCA9IDQwOTJc
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Los <strong>especificadores de formato</strong> en una f-string se escriben dentro de <code>{}</code> y permiten controlar la presentación del valor:</p>
 <table class="caption-top table">
