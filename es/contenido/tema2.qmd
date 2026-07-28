@@ -43,7 +43,7 @@ Los **notebooks** son un formato intermedio que combina características del REP
 **[Marimo](https://marimo.io/){target="_blank" rel="noopener noreferrer"}** es una alternativa más reciente y reactiva: las celdas declaran sus dependencias explícitamente, de modo que si se modifica una variable todas las celdas que la usan se recalculan automáticamente. Esto elimina los problemas de estado inconsistente y hace que un notebook de Marimo sea siempre reproducible de arriba abajo, como un script.
 
 ::: {.callout-note appearance="simple"}
-En este curso se trabajará principalmente con scripts `.py` o notebooks Marimo en un Codespace (Temas 1–6). Los notebooks Marimo se emplean para ejemplos simples de código que aparecen en estas notas y de forma natural en el **Tema 7** al introducir NumPy, Pandas y Matplotlib, donde la visualización de resultados integrada en el documento es especialmente útil.
+En este curso se trabajará principalmente con scripts `.py` o notebooks Marimo en un Codespace (Temas 1–6). Los notebooks Marimo se emplean de forma natural en el **Tema 7** al introducir NumPy, Pandas y Matplotlib, donde la visualización de resultados integrada en un documento es especialmente útil.
 :::
 
 ---
@@ -105,6 +105,12 @@ print(x)       # 3.14
 x = "hola"     # ahora x referencia la cadena "hola"
 print(x)       # hola
 ```
+
+::: {#imp-comentario .callout-important title="Comentarios en código Python"}
+En Python sólo existe una forma de comentario: el símbolo `#`. Todo lo que va desde ahí hasta el final de la línea lo ignora el intérprete. Un comentario es texto incluido en el código fuente que va dirigido a quien lo lee, no a la máquina que lo ejecuta. El traductor —compilador o intérprete— lo descarta, de modo que su presencia o ausencia no altera en nada el comportamiento del programa.
+
+Los comentarios pueden aparecer en una línea propia o a continuación del código fuente en la misma línea. Las convenciones de [@pep8] recomiendan un espacio tras el `#`, y dos espacios antes del `#` en los comentarios al final de línea.
+:::
 
 Python admite asignación múltiple en una sola línea:
 
@@ -188,7 +194,7 @@ Las funciones `type` y `print` son funciones built-in: vienen integradas en el i
 
 #### **Enteros (`int`)**
 
-En Python, los enteros tienen **precisión arbitraria**: pueden ser tan grandes como la memoria disponible lo permita, sin que se produzca desbordamiento (*overflow*). Esto los distingue de muchos otros lenguajes donde el rango entero está limitado por el número de bits.
+En Python, los enteros tienen **precisión arbitraria**: pueden ser tan grandes como la memoria disponible lo permita, sin que se produzca desbordamiento (*overflow*). Esto los distingue de muchos otros lenguajes donde los números enteros están limitados a un rango fijo.
 
 ```{pyodide}
 print(2 ** 100)
@@ -253,8 +259,6 @@ a = 0.1 + 0.2
 b = 0.3
 print(abs(a - b) < 1e-10)   # True
 ```
-
-Para cálculos numéricos precisos, el módulo `math` y la librería NumPy (Tema 7) ofrecen herramientas adecuadas.
 :::
 
 Los literales `float` admiten varias notaciones:
@@ -268,9 +272,9 @@ x4 = .5       # equivale a 0.5 (el cero inicial es opcional)
 print(x1, x2, x3, x4, sep=", ")
 
 # Notación científica — con `e` o `E` como exponente de base 10
-x5 = 1.5e3         # equivale a 1500.0
-x6 = 2.1e-4        # equivale a 0.00021
-x7 = 1e10          # equivale a 10000000000.0
+x5 = 1.5e3         # equivale a 1500.0 = 1.5 × 10³
+x6 = 2.1e-4        # equivale a 0.00021 = 2.1 × 10⁻⁴
+x7 = 1e10          # equivale a 10000000000.0 = 1 × 10¹⁰
 print(x5, x6, x7, sep=", ")  # 1500.0 0.00021 10000000000.0
 ```
 
