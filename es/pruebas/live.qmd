@@ -1,6 +1,7 @@
 ---
 title: "Prueba Quarto Live"
 format: live-html
+engine: markdown
 ---
 
 ## 1. ¿Carga el runtime?
