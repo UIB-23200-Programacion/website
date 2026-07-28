@@ -196,8 +196,8 @@ crossref:
 format:
   html:
     theme:
-      light: [cosmo, ../../theme.scss]
-      dark: [cosmo, ../../theme-dark.scss]
+      light: [cosmo, theme.scss]
+      dark: [cosmo, theme-dark.scss]
     css: styles.css
     toc: true
     callout-icon: false
