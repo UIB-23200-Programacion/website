@@ -23,6 +23,8 @@ La sesión interactiva permite ejecutar instrucciones una a una y ver el resulta
 
 Es ideal para explorar la sintaxis, comprobar el comportamiento de una función o hacer cálculos rápidos. Pero tiene una limitación fundamental: **el código no se guarda**. Al cerrar la sesión, todo el trabajo desaparece.
 
+En el entorno de desarrollo integrado (IDE) Visual Studio Code, la sesión interactiva se puede abrir desde la terminal con el comando `python`. Para terminar la sesión se puede usar `exit()`.
+
 ### **2.1.2 Scripts `.py`**
 
 Un **script de Python** es un archivo de texto con extensión `.py` que contiene instrucciones Python que se ejecutan secuencialmente. A diferencia del REPL, un script se guarda en disco, puede reutilizarse en cualquier momento, compartirse con otras personas y ejecutarse en distintos entornos.
@@ -116,7 +118,7 @@ x = "hola"     # ahora x referencia la cadena "hola"
 
 Python admite asignación múltiple en una sola línea:
 
-```python
+```{pyodide}
 a, b, c = 1, 2, 3
 x = y = 0       # tanto x como y referencian el valor 0
 ```
@@ -128,7 +130,7 @@ Los nombres de variables solo pueden contener letras, dígitos y el guión bajo 
 ::: {#imp-snake-case .callout-important title="Convención de nombres: snake_case"}
 Por convenio [@pep8], los nombres de variables en Python usan **snake_case**: palabras en minúsculas separadas por guiones bajos. Los nombres deben ser **descriptivos** del valor que contienen.
 
-```python
+```{pyodide}
 # Correcto
 numero_de_iteraciones = 100
 radio_circulo = 5.0
@@ -161,7 +163,7 @@ Los tipos integrados (o built-in types) en Python son los tipos de datos fundame
 ::: {#imp-type-print .callout-important title="Funciones built-in `type()` y `print()`"}
 La función `type()` devuelve el tipo de cualquier objeto o variable:
 
-```python
+```{pyodide}
 x = 42
 print(type(x))         # <class 'int'>
 print(type(42))        # <class 'int'>
@@ -173,7 +175,7 @@ print(type(None))      # <class 'NoneType'>
 
 La función `print()` arriba escribe en la salida estándar (normalmente la terminal) los valores que recibe como argumentos, separados por un espacio y seguidos de un salto de línea:
 
-```python
+```{pyodide}
 print(42)                     # 42
 print("hola")                 # hola
 print("números: ", 1, 2, 3)   # números: 1 2 3
@@ -181,7 +183,7 @@ print("números: ", 1, 2, 3)   # números: 1 2 3
 
 Los parámetros opcionales más útiles de `print()` son `sep` (separador entre argumentos, por defecto `" "`) y `end` (carácter final, por defecto `"\n"` para salto de línea):
 
-```python
+```{pyodide}
 print(1, 2, 3, sep=", ")     # 1, 2, 3
 print("hola", end=" ")
 print("mundo")                # hola mundo  (en la misma línea)
@@ -194,7 +196,7 @@ Las funciones `type` y `print` son funciones built-in: vienen integradas en el i
 
 En Python, los enteros tienen **precisión arbitraria**: pueden ser tan grandes como la memoria disponible lo permita, sin que se produzca desbordamiento (*overflow*). Esto los distingue de muchos otros lenguajes donde el rango entero está limitado por el número de bits.
 
-```python
+```{pyodide}
 print(2 ** 100)
 # 1267650600228229401496703205376
 
@@ -204,28 +206,34 @@ print(10 ** 50)
 
 Hay cuatro formas de escribir literales enteros, según la base numérica:
 
-```python
+```{pyodide}
 # Decimal (base 10) — la notación habitual
 nn = 42
 nn = -7
 nn = 0
 
 # Binario (base 2) — prefijo `0b`
-nn = 0b1010    # equivale a 10
-nn = 0b11111111  # equivale a 255
+nn = 0b1010      
+print(nn)        # 10
+nn = 0b11111111  
+print(nn)        # 255 
 
 # Octal (base 8) — prefijo `0o`
-nn = 0o17    # equivale a 15
-nn = 0o777   # equivale a 511
+nn = 0o17    
+print(nn)        # 15
+nn = 0o777
+print(nn)        # 511
 
 # Hexadecimal (base 16) — prefijo `0x`
-nn = 0xFF    # equivale a 255
-nn = 0x1A3   # equivale a 419
+nn = 0xFF
+print(nn)        # 255
+nn = 0x1A3
+print(nn)        # 419
 ```
 
 Además, para mejorar la legibilidad de números grandes se puede usar el guión bajo `_` como separador visual (equivalente al punto en notación europea):
 
-```python
+```{pyodide}
 m = 1_000_000      # equivale a 1000000
 print(m)           # 1000000
 m = 0b1111_0000    # equivale a 0b11110000
@@ -238,7 +246,7 @@ print(m)           # 16711680
 
 Los flotantes siguen el estándar IEEE 754 de doble precisión, que representa números reales con aproximadamente 15-17 dígitos significativos. Esto implica que **no todos** los números decimales se pueden representar exactamente en binario:
 
-```python
+```{pyodide}
 print(0.1 + 0.2)         # 0.30000000000000004
 print(0.1 + 0.2 == 0.3)  # False
 ```
@@ -246,7 +254,7 @@ print(0.1 + 0.2 == 0.3)  # False
 ::: {#cau-flotantes .callout-caution title="Comparar flotantes con =="}
 La representación binaria de los flotantes introduce pequeños errores de redondeo. **Nunca uses `==` para comparar dos valores flotantes**; en su lugar, comprueba que su diferencia sea suficientemente pequeña:
 
-```python
+```{pyodide}
 a = 0.1 + 0.2
 b = 0.3
 print(abs(a - b) < 1e-10)   # True
@@ -257,31 +265,32 @@ Para cálculos numéricos precisos, el módulo `math` y la librería NumPy (Tema
 
 Los literales `float` admiten varias notaciones:
 
-```python
+```{pyodide}
 # Decimal estándar — con punto obligatorio
 x1 = 3.14
 x2 = -0.5
 x3 = 1.0      # el .0 es necesario; sin él sería int
 x4 = .5       # equivale a 0.5 (el cero inicial es opcional)
+print(x1, x2, x3, x4, sep=", ")
 
 # Notación científica — con `e` o `E` como exponente de base 10
 x5 = 1.5e3         # equivale a 1500.0
 x6 = 2.1e-4        # equivale a 0.00021
 x7 = 1e10          # equivale a 10000000000.0
-print(x5, x6, x7)  # 1500.0 0.00021 10000000000.0
+print(x5, x6, x7, sep=", ")  # 1500.0 0.00021 10000000000.0
 ```
 
 Al igual que en `int`, se puede usar `_` como separador visual:
 
-```python
+```{pyodide}
 x8 = 3.141_592_653
 x9 = 1_000.0
-print(x9)  # 1000.0
+print(x8, x9, sep=", ")  # 3.141592653, 1000.0
 ```
 
 Un detalle relevante para matemáticos: a diferencia de los enteros, los `float` tienen **rango finito**. El mayor valor representable es aproximadamente $1.8 \times 10^{308}$; superarlo produce `inf`:
 
-```python
+```{pyodide}
 print(1.8e308)    # inf
 ```
 
@@ -289,7 +298,7 @@ print(1.8e308)    # inf
 
 Python incorpora los números complejos como tipo nativo, sin necesidad de importar ninguna librería. La unidad imaginaria se denota con `j` (no `i`, para evitar conflicto con el uso de `i` como índice en código):
 
-```python
+```{pyodide}
 z1 = 3 + 2j
 z2 = complex(1, -4)    # equivale a 1 - 4j
 
@@ -322,7 +331,7 @@ Un literal `complex` se forma combinando con `+` o `-` un literal `int` o `float
 
 Las cadenas son secuencias de caracteres delimitadas por comillas simples o dobles (ambas equivalentes). Para cadenas que ocupan varias líneas se usan triples comillas:
 
-```python
+```{pyodide}
 nombre = "Euler"
 frase = 'La identidad e^(iπ) + 1 = 0'
 multilinea = """Esta cadena
@@ -341,7 +350,7 @@ Las **secuencias de escape** permiten incluir caracteres especiales dentro de un
 | `\\` | Barra invertida literal |
 | `\"` | Comilla doble literal |
 
-```python
+```{pyodide}
 multilinea2 = "Esta cadena\nabarca varias\nlíneas."
 print(multilinea2)
 print(multilinea == multilinea2)  # True
@@ -349,7 +358,7 @@ print(multilinea == multilinea2)  # True
 
 Con la notación `objeto.método()`, explicada en la sección de números complejos, podemos acceder a diversos métodos útiles de las cadenas. Por ejemplo:
 
-```python
+```{pyodide}
 texto = "hola mundo"
 print(texto.upper())                     # "HOLA MUNDO"
 print(texto.count("o"))                  # 2
@@ -372,7 +381,7 @@ Los métodos de `str` más útiles en la práctica:
 
 La función `len()` no es un método sino una función built-in, pero se aplica habitualmente sobre cadenas:
 
-```python
+```{pyodide}
 print(len(texto))           # 10
 print(len("matemáticas"))   # 11
 ```
@@ -389,14 +398,14 @@ Para ver todos los métodos disponibles de cualquier objeto `x`:
 
 Los booleanos representan valores de verdad: `True` o `False`. Son el resultado natural de los operadores de comparación y lógicos (se verán más adelante):
 
-```python
+```{pyodide}
 print(3 > 2)        # True
 print(type(True))   # <class 'bool'>
 ```
 
 El tipo `bool` es un subtipo de `int`: `True` vale `1` y `False` vale `0`. Esto permite usarlos directamente en expresiones aritméticas, algo que en matemáticas tiene sentido como función indicadora:
 
-```python
+```{pyodide}
 print(True + True)   # 2
 print(False * 7)     # 0
 print(int(True))     # 1
@@ -406,7 +415,7 @@ print(int(True))     # 1
 
 `None` es el único valor del tipo `NoneType` y representa la **ausencia de valor**. Se usa cuando una variable no tiene ningún objeto asignado, o cuando una función no devuelve nada explícitamente:
 
-```python
+```{pyodide}
 resultado = None
 print(resultado)        # None
 print(type(resultado))  # <class 'NoneType'>
@@ -414,7 +423,7 @@ print(type(resultado))  # <class 'NoneType'>
 
 Para comprobar si una variable es `None` se usa `is`, no `==`:
 
-```python
+```{pyodide}
 print(resultado is None)   # True
 ```
 
@@ -444,7 +453,7 @@ Algunas excepciones y extensiones de estos operadores según el tipo de dato son
 
 Para los tipos numéricos, cuando se combinan operandos de tipos distintos el resultado se **promueve** al tipo más general. Por ejemplo, `int + float` produce `float`, y `int + complex` produce `complex`. 
 
-```python
+```{pyodide}
 print(type(3 + 2.5))       # <class 'float'>
 print(type(3 + 2))         # <class 'int'>
 print(type(3 * 2.5))       # <class 'float'>
@@ -463,14 +472,14 @@ La potencia `**` admite exponentes negativos y flotantes, pero el resultado es s
 ::: {#imp-division .callout-important title="División entera y módulo"}
 En Python 3, el operador `/` **siempre devuelve un flotante**, incluso cuando el resultado es un entero:
 
-```python
+```{pyodide}
 print(6 / 2)    # 3.0   (no 3)
 print(7 / 2)    # 3.5
 ```
 
 El operador `//` devuelve el **cociente entero** (*floor division*) redondeando hacia $-\infty$, no hacia cero. El operador `%` devuelve el **resto** de la división entera:
 
-```python
+```{pyodide}
 print(17 // 5)  #  3   (cociente entero)
 print(17 % 5)   #  2   (resto)
 print(-7 // 2)  # -4   (cociente entero, redondea hacia menos infinito)
@@ -479,7 +488,7 @@ print(-7 % 2)   #  1   (resto positivo, porque -7 = (-4)*2 + 1)
 
 Se cumple siempre la identidad: `a == (a // b) * b + (a % b)`. Aquí `==` es un operador de comparación (igualdad), no de asignación. Por ejemplo:
 
-```python
+```{pyodide}
 a, b = 17, 5
 print(a == (a // b) * b + (a % b))  # True
 ```
@@ -489,7 +498,7 @@ El operador `%` es fundamental en teoría de números: la condición `n % 2 == 0
 
 Los **operadores de asignación compuesta** combinan una operación aritmética con la asignación, actualizando la variable en el lugar:
 
-```python
+```{pyodide}
 x = 10
 x += 3    # equivale a x = x + 3   → x es 13
 x -= 1    # equivale a x = x - 1   → x es 12
@@ -541,7 +550,7 @@ Los operadores de comparación se aplican a todos los tipos simples, con dos exc
 - **`complex` no admite `<`, `>`, `<=`, `>=`**: los números complejos no tienen orden total, igual que en matemáticas. Solo `==` y `!=` están definidos.
 - **`str` usa orden lexicográfico**: las comparaciones de orden siguen el código Unicode de cada carácter, no el orden alfabético intuitivo. En particular, todas las mayúsculas preceden a todas las minúsculas: `"Z" < "a"` es `True`.
 
-```python
+```{pyodide}
 # complex: == y != funcionan, orden no está definido
 z = 3 + 2j
 print(z == 3 + 2j)   # True
@@ -556,7 +565,7 @@ print("abc" == "ABC")  # False
 
 Comparar valores de tipos distintos con `==` no produce error sino `False` directamente (`42 == "42"` es `False`). Usar `<` o `>` entre tipos incompatibles sí lanza `TypeError`.
 
-```python
+```{pyodide}
 # tipos distintos: == devuelve False, orden lanza TypeError
 print(42 == "42")     # False
 # print(42 < "42")    # TypeError: '<' not supported between 'int' and 'str'
@@ -564,7 +573,7 @@ print(42 == "42")     # False
 
 Python permite **encadenar comparaciones** de forma natural, exactamente como en notación matemática:
 
-```python
+```{pyodide}
 x = 7
 print(1 <= x <= 10)   # True   (equivale a 1 <= x and x <= 10)
 print(0 < x < 5)      # False
@@ -607,7 +616,7 @@ Los operadores lógicos (`and`, `or`, `not`) permiten construir condiciones comp
 | `or` | Disyunción | al menos uno es `True` |
 | `not` | Negación | el operando es `False` |
 
-```python
+```{pyodide}
 x = 7
 print(x > 0 and x < 10)   # True   (x está en el intervalo (0, 10))
 print(x < 0 or x > 5)     # True   (x < 0 es False, pero x > 5 es True)
@@ -623,7 +632,7 @@ Los operadores `and` y `or` en Python usan **short-circuit evaluation**: si el r
 
 Esto es importante para evitar errores cuando la evaluación del segundo operando podría provocar una excepción. Por ejemplo, la siguiente expresión es segura porque si `b == 0` la segunda parte no se evalúa:
 
-```python
+```{pyodide}
 b = 0
 if b != 0 and 10 / b > 2:   # no lanza ZeroDivisionError
     print("cociente grande")
@@ -646,7 +655,7 @@ Las operaciones fundamentales se definen axiomáticamente mediante tablas de ver
 
 Python no convierte tipos automáticamente en la mayoría de situaciones. Las funciones `int()`, `float()`, `str()` y `bool()` permiten convertir valores de forma explícita:
 
-```python
+```{pyodide}
 print(int(3.9))      #  3    (trunca hacia cero, no redondea)
 print(int(-3.9))     # -3    (también trunca hacia cero)
 print(float(5))      #  5.0
@@ -695,7 +704,7 @@ La estructura condicional en Python es `if`, que admite tres formas:
 
 La forma más simple es el `if`:
 
-```python
+```{pyodide}
 x = -5
 if x < 0:
     print("x es negativo")
@@ -709,7 +718,7 @@ En Python la **indentación** no es una convención estilística sino parte de l
 
 ### **2.3.2 Estructura `if`-`else`**
 
-```python
+```{pyodide}
 n = 17
 if n % 2 == 0:
     print(f"{n} es par")
@@ -721,7 +730,7 @@ else:
 
 Para varias condiciones mutuamente excluyentes se encadenan ramas `elif` (*else if*). Solo se ejecuta la primera rama cuya condición sea `True`; las demás se ignoran:
 
-```python
+```{pyodide}
 nota = 7.5
 
 if nota >= 9:
@@ -740,7 +749,7 @@ print(f"Nota: {nota} → {calificacion}")
 :::{#nte-ecucua .callout-note title="Raíces de una ecuación cuadrática"}
 El discriminante $\Delta = b^2 - 4ac$ determina la naturaleza de las raíces de $ax^2 + bx + c = 0$:
 
-```python
+```{pyodide}
 import math
 
 a, b, c = 1, -3, 2    # ecuación: x^2 - 3x + 2 = 0
@@ -767,7 +776,7 @@ La instrucción `import math` hace disponibles las funciones matemáticas del m�
 
 Un bloque `if` puede contener otro `if` en su interior. Los condicionales anidados permiten refinar la lógica paso a paso:
 
-```python
+```{pyodide}
 x = 3
 if x != 0:
     if x > 0:
@@ -783,7 +792,7 @@ Cuando la lógica se complica, suele ser preferible combinar condiciones con `an
 ::: {.callout-note collapse="true" title="Expresión condicional (operador ternario)"}
 Python dispone de una **expresión condicional** que asigna un valor según una condición en una sola línea:
 
-```python
+```{pyodide}
 x = 7
 signo = "positivo" if x > 0 else "no positivo"
 print(signo)   # positivo
@@ -816,22 +825,15 @@ while condición:
 :::{#nte-cua100 .callout-note title="Imprimir los cuadrados perfectos menores que 100"}
 Empleando un bucle `while` se pueden imprimir los cuadrados perfectos menores que 100:
 
-```python
+```{pyodide}
 n = 1
 while n * n < 100:
     print(n * n, end="  ")
     n += 1
-print("Fin del bucle")
+print("\nFin del bucle")
 ```
 
-Salida:
-
-```text
-1  4  9  16  25  36  49  64  81
-Fin del bucle
-```
-
-En cada iteración se evalúa la condición. En cuanto es `False`, el bucle termina y la ejecución continúa con la instrucción siguiente.
+En cada iteración se evalúa la condición. En cuanto es `False` (cuando `n == 100`), el bucle termina y la ejecución continúa con la instrucción siguiente imprimiendo "Fin del bucle" en una nueva línea. Observe que `print("\nFin del bucle")` imprime un salto de línea con `\n` antes del mensaje.
 :::
 
 ::: {#cau-while .callout-caution title="Bucle infinito"}
@@ -851,7 +853,7 @@ Usos típicos del bucle `while` incluyen:
 
 - **Repetir hasta que se cumpla una condición** — búsqueda del primer múltiplo:
 
-    ```python
+    ```{pyodide}
     n = 1
     while n % 13 != 0:
         n += 1
@@ -860,7 +862,7 @@ Usos típicos del bucle `while` incluyen:
 
 - **Aproximación iterativa** — método de bisección (vea [@wikipedia_biseccion]) para encontrar una raíz:
 
-    ```python
+    ```{pyodide}
     a, b = 1.0, 2.0
     while b - a > 1e-10:
         m = (a + b) / 2
@@ -873,7 +875,7 @@ Usos típicos del bucle `while` incluyen:
 
 - **Convergencia de una sucesión** — iterar el método de Newton (vea [@wikipedia_newton]) hasta que dos términos consecutivos sean indistinguibles:
 
-    ```python
+    ```{pyodide}
     x = 1.0
     while True:
         x_nuevo = (x + 2 / x) / 2   # método de Newton para √2
@@ -893,7 +895,7 @@ Usos típicos del bucle `while` incluyen:
 
 - **Dígitos de un número** — procesar cifra a cifra:
 
-    ```python
+    ```{pyodide}
     n = 123456
     while n > 0:
         print(n % 10)   # última cifra
@@ -907,7 +909,7 @@ Dentro de cualquier bucle, dos instrucciones permiten modificar el flujo de iter
 - **`break`**: interrumpe el bucle inmediatamente y salta al código que viene después.
 - **`continue`**: salta al inicio de la siguiente iteración, omitiendo el resto del bloque actual.
 
-```python
+```{pyodide}
 # break: encontrar el primer divisor de n mayor que 1
 n = 77
 d = 2
@@ -918,7 +920,7 @@ while d < n:
     d += 1
 ```
 
-```python
+```{pyodide}
 # continue: imprimir solo los enteros impares del 1 al 10
 i = 0
 while i < 10:
@@ -945,15 +947,18 @@ El tipo `range()` genera secuencias de enteros de las tres formas siguientes:
 | `range(a, b)` | `a, a+1, …, b−1` |
 | `range(a, b, paso)` | `a, a+paso, a+2·paso, …` mientras el valor sea `< b` |
 
-```python
+```{pyodide}
 for i in range(5):
     print(i, end=" ")     # 0 1 2 3 4
+print()  # salto de línea
 
 for i in range(1, 6):
     print(i, end=" ")     # 1 2 3 4 5
+print()  # salto de línea
 
 for i in range(0, 10, 2):
     print(i, end=" ")     # 0 2 4 6 8
+print() # salto de línea
 
 for i in range(10, 0, -1):
     print(i, end=" ")     # 10 9 8 7 6 5 4 3 2 1
@@ -974,7 +979,7 @@ Entre los usos fundamentales del bucle `for` se encuentra el **patrón acumulado
 ::: {#imp-acumulador .callout-important title="El patrón acumulador"}
 El **patrón acumulador** es la estructura más frecuente en programación numérica: se inicializa una variable antes del bucle con el elemento neutro de la operación y se actualiza en cada iteración.
 
-```python
+```{pyodide}
 # Suma: S = 1 + 2 + … + n
 n = 100
 suma = 0                        # neutro de la suma
@@ -985,7 +990,7 @@ print(suma)                     # 5050  (= n·(n+1)/2)
 
 El mismo esquema sirve para productos:
 
-```python
+```{pyodide}
 # Factorial: n! = 1 × 2 × … × n
 n = 10
 factorial = 1                   # neutro del producto
@@ -1001,14 +1006,14 @@ Otros usos comunes del bucle `for` incluyen:
 
 - **Recorrer y procesar una secuencia**:
 
-    ```python
+    ```{pyodide}
     for x in range(1, 5):
         print(x ** 3)   # cubo de cada entero
     ```
 
 - **Búsqueda** — detectar si un entero en un rango cumple una condición:
 
-    ```python
+    ```{pyodide}
     for n in range(2, 50):
         if n % 7 == 0:
             print(n, "es múltiplo de 7")
@@ -1027,18 +1032,12 @@ F_{k-1} + F_{k-2} & \text{si } k \geq 2
 $$.
 El cálculo iterativo utiliza dos variables que se actualizan simultáneamente:
 
-```python
+```{pyodide}
 n = 15   # número de términos a imprimir
 a, b = 0, 1
 for i in range(n):
     print(a, end="  ")
     a, b = b, a + b
-```
-
-Salida:
-
-```text
-0  1  1  2  3  5  8  13  21  34  55  89  144  233  377
 ```
 
 La asignación simultánea `a, b = b, a + b` evalúa primero el lado derecho completo y luego asigna, por lo que no se necesita una variable temporal.
@@ -1053,7 +1052,7 @@ $$,
 
 que converge a $\pi^2/6$ cuando $n \to \infty$ (resultado conocido como problema de Basilea, resuelto por Euler en 1735):
 
-```python
+```{pyodide}
 import math
 
 n = 10000
@@ -1070,7 +1069,7 @@ print(f"Error   = {abs(suma - math.pi**2 / 6):.2e}")
 ::: {#nte-primos .callout-note title="Imprimir números primos"}
 Un número $p \geq 2$ es **primo** si no tiene divisores propios entre 2 y $\lfloor\sqrt{p}\rfloor$. El siguiente código utiliza una variable booleana de tipo bandera (*flag*) para registrar si se encontró algún divisor:
 
-```python
+```{pyodide}
 import math
 
 # Listar todos los primos hasta 50
@@ -1083,18 +1082,12 @@ for n in range(2, 51):
     if es_primo:
         print(n, end="  ")
 ```
-
-Salida:
-
-```text
-2  3  5  7  11  13  17  19  23  29  31  37  41  43  47
-```
 :::
 
 ::: {.callout-note collapse="true" title="Bucles anidados"}
 Los bucles se pueden **anidar**, es decir, se puede tener un bucle dentro de otro. Cada vez que el bucle exterior avanza una iteración, el bucle interior se ejecuta completamente. El número total de iteraciones es el producto de los rangos de ambos bucles.
 
-```python
+```{pyodide}
 # Tabla de multiplicar del 1 al 6
 print(f"{'':4}", end="")
 for j in range(1, 7):
@@ -1108,19 +1101,6 @@ for i in range(1, 7):
     print()
 ```
 
-Salida:
-
-```text
-       1   2   3   4   5   6
-----------------------------
-   1   1   2   3   4   5   6
-   2   2   4   6   8  10  12
-   3   3   6   9  12  15  18
-   4   4   8  12  16  20  24
-   5   5  10  15  20  25  30
-   6   6  12  18  24  30  36
-```
-
 Con bucles anidados es fácil generar costes computacionales elevados: un doble bucle sobre $n$ elementos produce $O(n^2)$ operaciones. El análisis de la **complejidad computacional** de los algoritmos (Tema 4) estudia este tipo de costes con detalle.
 :::
 
@@ -1128,7 +1108,7 @@ Con bucles anidados es fácil generar costes computacionales elevados: un doble 
 
 Una cadena `str` es un iterable cuyos elementos son los caracteres individuales (cada uno a su vez un `str` de longitud 1). El bucle `for` puede entonces recorrer directamente los caracteres de una cadena:
 
-```python
+```{pyodide}
 palabra = "Python"
 for letra in palabra:
     print(letra, end="-")    # P-y-t-h-o-n-
@@ -1136,26 +1116,17 @@ for letra in palabra:
 
 Si se desea conocer la posición de cada carácter, se puede usar `range()` con `len()`:
 
-```python
+```{pyodide}
 palabra = "Python"
 for i in range(len(palabra)):
     print(f"posición {i}: {palabra[i]}")
-# posición 0: P
-# posición 1: y
-# posición 2: t
-# posición 3: h
-# posición 4: o
-# posición 5: n
 ```
 
 Otra forma de obtener la posición de cada carácter es usar el tipo `enumerate()`. Al igual que `range`, `enumerate` es un tipo built-in de Python. Con `enumerate(iterable)` se produce un objeto iterable de pares `(índice, valor)` generados de forma perezosa. Con `indice` se obtiene la posición del elemento en la secuencia, y con `valor` se obtiene el elemento en sí. Esto permite recorrer una cadena (o cualquier iterable) y conocer simultáneamente el índice de cada elemento:
 
-```python
+```{pyodide}
 for i, letra in enumerate("abc"):
     print(f"posición {i}: {letra}")
-# posición 0: a
-# posición 1: b
-# posición 2: c
 ```
 
 Las cadenas que se inician con `f` y contienen expresiones entre llaves `{}` se llaman **f-strings** (cadenas formateadas). Se verán en la sección 2.5.2.
@@ -1170,7 +1141,7 @@ La interacción entre el programa y el usuario es fundamental en cualquier aplic
 
 Ya vimos anteriormente que `print()` escribe en la **salida estándar** (la pantalla en condiciones normales). Acepta cualquier número de argumentos separados por comas:
 
-```python
+```{pyodide}
 print("El resultado es", 42)           # El resultado es 42
 print(1, 2, 3)                         # 1 2 3  (separador por defecto: espacio)
 print(1, 2, 3, sep=", ")               # 1, 2, 3
@@ -1184,7 +1155,7 @@ print()                                # línea en blanco
 
 Las **f-strings** (cadenas formateadas) son la forma más moderna, legible y rápida de insertar variables y expresiones dentro de cadenas de texto en Python. Se escriben con el prefijo `f` (o `F`) justo antes de las comillas (simples o dobles) y emplean llaves `{}` para indicar dónde se debe inyectar el valor de una variable o una expresión.
 
-```python
+```{pyodide}
 n = 100
 suma = n * (n + 1) // 2
 print(f"Gauss calculó que la suma de 1 a {n} es {suma}.")
@@ -1193,7 +1164,7 @@ print(f"El cuadrado de 7 es {7**2}.")
 
 La verdadera ventaja de las f-strings no es solo insertar variables estáticas; permiten ejecutar código Python válido directamente dentro de las llaves. Es posible hacer cálculos matemáticos, llamar a métodos o usar funciones sin necesidad de crear variables temporales previas.
 
-```python
+```{pyodide}
 precio = 50
 impuesto = 0.21
 
@@ -1208,7 +1179,7 @@ print(f"Me encanta programar en {palabra.capitalize()}!") # Me encanta programar
 
 A partir de Python 3.8 se puede añadir un signo igual `=` después del nombre de la variable (o expresión) dentro de las llaves. Esto imprime tanto el nombre de la variable como su valor resultante, lo que ahorra mucho tiempo al hacer *depuración* (debugging) con `print()`.
 
-```python
+```{pyodide}
 usuario_id = 4092
 velocidad_actual = 120
 
