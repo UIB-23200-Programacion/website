@@ -3,6 +3,7 @@ title: "Tema 2: Componentes del Lenguaje y Control de Flujo"
 lang: es
 sidebar: barra-es
 bibliography: tema2.bib
+engine: markdown
 ---
 
 ## 2.1. Scripts de Python vs. Ejecución interactiva
