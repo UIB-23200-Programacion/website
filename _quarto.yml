@@ -201,7 +201,6 @@ format:
     css: styles.css
     toc: true
     callout-icon: false
-    mathrenderer: mathjax
     include-after-body:
       text: |
         <script src="/logo-href.js"></script>
