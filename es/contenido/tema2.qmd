@@ -461,7 +461,7 @@ print(4 ** -1/2)           # 0.125
 La potencia `**` admite exponentes negativos y flotantes, pero el resultado es siempre `float` o `complex`. Es además el único operador con asociatividad por la derecha: `2 ** 3 ** 2` se evalúa como `2 ** 9 = 512`, igual que en notación matemática estándar.
 
 ::: {#imp-division .callout-important title="División entera y módulo"}
-En Python 3, el operador `/` **siempre devuelve un flotante**, incluso cuando el resultado es exacto:
+En Python 3, el operador `/` **siempre devuelve un flotante**, incluso cuando el resultado es un entero:
 
 ```python
 print(6 / 2)    # 3.0   (no 3)
@@ -484,7 +484,7 @@ a, b = 17, 5
 print(a == (a // b) * b + (a % b))  # True
 ```
 
-El operador `%` es fundamental en teoría de números: la condición `n % 2 == 0` es la prueba de paridad.
+El operador `%` es fundamental en teoría de números: la condición `n % 2 == 0` es el test de paridad más efectivo.
 :::
 
 Los **operadores de asignación compuesta** combinan una operación aritmética con la asignación, actualizando la variable en el lugar:
@@ -1158,7 +1158,8 @@ for i, letra in enumerate("abc"):
 # posición 2: c
 ```
 
-Las cadenas que se inicia con `f` y contienen expresiones entre llaves `{}` se llaman **f-strings** (cadenas formateadas). Se verán en la sección 2.5.2.
+Las cadenas que se inician con `f` y contienen expresiones entre llaves `{}` se llaman **f-strings** (cadenas formateadas). Se verán en la sección 2.5.2.
+
 ---
 
 ## 2.5. Entrada y salida básicas: flujos entre teclado y pantalla
@@ -1181,14 +1182,40 @@ print()                                # línea en blanco
 
 ### **2.5.2 Cadenas formateadas: f-strings**
 
-Las **f-strings** (cadenas formateadas) son la forma recomendada de insertar valores en texto en Python moderno. Se escriben con el prefijo `f` y permiten evaluar cualquier expresión Python dentro de `{}`:
+Las **f-strings** (cadenas formateadas) son la forma más moderna, legible y rápida de insertar variables y expresiones dentro de cadenas de texto en Python. Se escriben con el prefijo `f` (o `F`) justo antes de las comillas (simples o dobles) y emplean llaves `{}` para indicar dónde se debe inyectar el valor de una variable o una expresión.
 
 ```python
-nombre = "Euler"
 n = 100
 suma = n * (n + 1) // 2
 print(f"Gauss calculó que la suma de 1 a {n} es {suma}.")
 print(f"El cuadrado de 7 es {7**2}.")
+```
+
+La verdadera ventaja de las f-strings no es solo insertar variables estáticas; permiten ejecutar código Python válido directamente dentro de las llaves. Es posible hacer cálculos matemáticos, llamar a métodos o usar funciones sin necesidad de crear variables temporales previas.
+
+```python
+precio = 50
+impuesto = 0.21
+
+# Operación matemática directa
+print(f"El precio total con IVA es {precio + (precio * impuesto)}") # El precio total con IVA es 60.5
+
+palabra = "python"
+# Llamada a un método de cadena
+print(f"Me encanta programar en {palabra.capitalize()}!") # Me encanta programar en Python!
+
+```
+
+A partir de Python 3.8 se puede añadir un signo igual `=` después del nombre de la variable (o expresión) dentro de las llaves. Esto imprime tanto el nombre de la variable como su valor resultante, lo que ahorra mucho tiempo al hacer *depuración* (debugging) con `print()`.
+
+```python
+usuario_id = 4092
+velocidad_actual = 120
+
+print(f"{usuario_id=}")              # usuario_id=4092
+
+print(f"{velocidad_actual / 2 = }")  # velocidad_actual / 2 = 60.0
+
 ```
 
 ::: {.callout-note collapse="true" title="Especificadores de formato en f-strings"}
@@ -1205,28 +1232,6 @@ Los **especificadores de formato** en una f-string se escriben dentro de `{}` y 
 | `:0n` | Relleno con ceros | `f"{7:06d}"` | `000007` |
 | `:,` | Separador de miles | `f"{1000000:,}"` | `1,000,000` |
 
-Ejemplo: tabla de potencias bien formateada:
-
-```python
-print(f"{'n':>4}  {'n²':>6}  {'n³':>9}")
-print("-" * 23)
-for n in range(1, 8):
-    print(f"{n:>4}  {n**2:>6}  {n**3:>9}")
-```
-
-Salida:
-
-```text
-   n      n²        n³
------------------------
-   1       1         1
-   2       4         8
-   3       9        27
-   4      16        64
-   5      25       125
-   6      36       216
-   7      49       343
-```
 :::
 
 ### **2.5.3 La función `input()`**
