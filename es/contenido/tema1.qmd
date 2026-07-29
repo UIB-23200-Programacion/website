@@ -135,10 +135,12 @@ instrucciones que el procesador comprenda (lenguaje de máquina). Existen dos es
   Fortran, Rust.
 - **Interpretación**: el código se lee y ejecuta *línea a línea* en tiempo de ejecución
   por un programa llamado intérprete. No se genera un ejecutable independiente.
-  Ejemplos: Python, R, Ruby.
+  Ejemplo: Bash.
 - **Modelos híbridos**: algunos lenguajes compilan a un [*bytecode*](https://es.wikipedia.org/wiki/Bytecode){target="_blank" rel="noopener noreferrer"} intermedio que luego
-  ejecuta una máquina virtual. Ejemplos: Java (JVM), Python (CPython).
+  ejecuta una máquina virtual. Ejemplos: Python (CPython), Java (JVM).
 :::
+
+Una comparación resumida de compilación e interpretación se muestra en la siguiente tabla:
 
 | Característica | Compilado | Interpretado |
 | :--- | :--- | :--- |
