@@ -22,9 +22,11 @@ Para hacerlo con rapidez, el procesador utiliza componentes internos como la uni
 
 La descripción anterior del funcionamiento del ordenador se basa principalmente en la arquitectura de von Neumann. En ese modelo, la CPU ejecuta instrucciones almacenadas en memoria siguiendo un ciclo secuencial de búsqueda, decodificación y ejecución, con una misma memoria para datos e instrucciones. En los ordenadores modernos, esa idea sigue siendo la base conceptual, aunque suele aparecer combinada con rasgos de Harvard modificada, como cachés separadas para instrucciones y datos, para mejorar el rendimiento.
 
-### Arquitecturas de ordenadores
+### 1.1.1 Arquitecturas de ordenadores
 
-#### Arquitectura de Von Neumann
+La arquitectura de ordenadores modernos se basa fundamentalmente en la **Arquitectura de Von Neumann**, un modelo conceptual diseñado en la década de 1940 que sigue vigente, aunque altamente optimizado. Su principio clave es el concepto del "programa almacenado", donde tanto los datos que se procesan como las instrucciones que dictan cómo procesarlos residen en la misma memoria.
+
+#### **Arquitectura de Von Neumann**
 
 La mayoría de los ordenadores modernos se basan en el modelo propuesto en 1945 por John
 von Neumann, que establece que **instrucciones y datos comparten el mismo espacio de
@@ -47,13 +49,13 @@ Fetch-Decode-Execute).
 
 En la arquitectura de von Neumann, instrucciones y datos comparten una misma memoria y, por tanto, también suelen compartir el mismo camino de acceso. El funcionamiento se basa en el ciclo de instrucción: la CPU toma una instrucción de memoria, la interpreta, la ejecuta y después pasa a la siguiente. Este modelo es conceptualmente sencillo y sigue siendo la base de muchos sistemas actuales, aunque presenta el llamado **cuello de botella de von Neumann**, ya que el acceso secuencial a una memoria compartida limita el rendimiento cuando la CPU necesita instrucciones y datos al mismo tiempo.
 
-#### Arquitectura Harvard modificada
+#### **Arquitectura Harvard modificada**
 
 La **arquitectura Harvard modificada** es una variante de la arquitectura Harvard que mantiene separadas las memorias o buses de instrucciones y datos, pero permite que el contenido de la memoria de instrucciones pueda leerse también como datos. Esto combina la velocidad del acceso paralelo con una flexibilidad mayor que la Harvard pura, y por eso aparece en muchos procesadores modernos, especialmente en microcontroladores y DSP (Digital Signal Processor).
 
 En los ordenadores actuales, el modelo teórico se complementa con una jerarquía de memoria: registros, caché L1/L2/L3, RAM y almacenamiento secundario. La CPU intenta trabajar primero con la información más cercana y rápida, porque acceder a la RAM o al SSD es mucho más costoso en tiempo. Por eso, aunque el ordenador siga apoyándose en la lógica de von Neumann o Harvard modificada, en la práctica el rendimiento depende de la organización del subsistema de memoria y de la capacidad del procesador para explotar paralelismo interno.
 
-### Tipos de ordenadores
+### 1.1.2 Tipos de ordenadores
 
 Desde una perspectiva clasificatoria, los ordenadores pueden estudiarse según su capacidad de procesamiento, su finalidad o su grado de portabilidad. Esta tipología resulta útil para comprender tanto la evolución histórica de la informática como la especialización actual de los sistemas computacionales.
 
@@ -62,51 +64,35 @@ En el ámbito universitario, conviene distinguir entre sistemas de propósito ge
 | Tipo de ordenador | Definición | Características principales | Usos habituales |
 |---|---|---|---|
 | Supercomputadora | Sistema informático de altísima capacidad de procesamiento, diseñado para ejecutar operaciones complejas en paralelo. | Gran potencia de cálculo, arquitectura masivamente paralela, elevado consumo energético y alto coste. | Simulación científica, meteorología, inteligencia artificial, modelado físico y criptografía. |
-| Mainframe | Ordenador de gran escala orientado al tratamiento masivo de datos y a la gestión simultánea de múltiples usuarios. | Alta fiabilidad, disponibilidad continua, gran capacidad de E/S y fuerte tolerancia a fallos. | Banca, administración pública, seguros, telecomunicaciones y grandes corporaciones. |
 | Servidor | Equipo dedicado a proporcionar servicios, recursos o datos a otros ordenadores dentro de una red. | Estabilidad, escalabilidad, capacidad de almacenamiento y procesamiento sostenido. | Alojamiento web, bases de datos, virtualización, correo electrónico y archivos compartidos. |
-| Estación de trabajo | Ordenador de alto rendimiento destinado a tareas técnicas o científicas que exigen gran capacidad de cómputo y gráficos. | Procesadores potentes, memoria abundante, GPU dedicada y componentes de alta calidad. | Diseño asistido por computadora, modelado 3D, edición audiovisual, simulación e investigación. |
 | Ordenador de sobremesa | Sistema informático fijo, generalmente modular y ampliable, pensado para uso general. | Buen equilibrio entre rendimiento, coste y capacidad de ampliación. | Uso doméstico, ofimática, programación, educación y videojuegos. |
 | Ordenador portátil | Equipo compacto e integrado que combina pantalla, teclado, batería y sistema de procesamiento en un solo dispositivo. | Alta portabilidad, autonomía energética y menor capacidad de ampliación que un sobremesa. | Trabajo móvil, docencia, estudio y uso profesional itinerante. |
 | Mini PC | Ordenador de tamaño reducido con bajo consumo y prestaciones variables según la configuración. | Formato compacto, eficiencia energética y ocupación mínima de espacio. | Entornos de oficina, centros multimedia, laboratorios y aplicaciones embebidas. |
 | Tableta | Dispositivo portátil con interfaz táctil, concebido para la interacción directa con el usuario. | Ligereza, movilidad, simplicidad de uso y dependencia de pantalla táctil. | Lectura, anotación, docencia, navegación web y consumo multimedia. |
-| Smartphone | Dispositivo móvil de propósito general que integra funciones de telefonía, computación y conectividad avanzada. | Gran integración de sensores, conectividad permanente y elevada portabilidad. | Comunicación, aplicaciones móviles, navegación, fotografía y productividad básica. |
-| Wearable | Dispositivo electrónico vestible que se incorpora al cuerpo o a la vestimenta. | Tamaño reducido, sensores integrados y funcionamiento complementario a otros dispositivos. | Monitorización de actividad física, salud, notificaciones y asistencia contextual. |
 
 La clasificación en la tabla anterior muestra que la noción de ordenador abarca desde grandes sistemas de cálculo científico hasta dispositivos personales altamente portátiles. En consecuencia, la elección de un tipo u otro depende de variables como rendimiento, coste, movilidad, fiabilidad y ámbito de aplicación.
 
-### Componentes de un ordenador
+### 1.1.3 Componentes de un ordenador
 
 La siguiente tabla resume los componentes principales de un ordenador moderno incluyendo ejemplos actuales de gama común/alta.
 
 | Componente | Función | Tipos actuales / ejemplos |
 |---|---|---|
 | Procesador (CPU) | Ejecuta instrucciones y coordina el sistema. | Intel Core i9, Intel Core Ultra, AMD Ryzen 9, Apple M-series. |
-| Placa base | Conecta y comunica todos los componentes. | Chipsets con soporte para DDR5, PCIe 4.0/5.0, M.2 NVMe, USB-C/USB4, Wi‑Fi 6E/7. |
 | Memoria RAM | Mantiene datos e instrucciones de uso inmediato. | DDR5, y en algunos equipos todavía DDR4; en portátiles también LPDDR5/LPDDR5X. |
 | Almacenamiento | Guarda sistema, programas y archivos. | SSD NVMe M.2, SSD SATA, HDD para archivos masivos. |
 | Tarjeta gráfica (GPU) | Acelera gráficos y cómputo paralelo. | NVIDIA GeForce RTX, AMD Radeon RX, e iGPU integradas en CPU modernas. |
-| Fuente de alimentación | Suministra energía al equipo. | Fuentes ATX de 80 Plus Bronze/Gold/Platinum, según potencia y eficiencia. |
-| Refrigeración | Disipa calor y mantiene estabilidad. | Disipadores por aire, AIO líquida, ventiladores PWM de alto flujo. |
-| Caja o chasis | Aloja y protege los componentes. | ATX, microATX, Mini-ITX, torres compactas y mini-PC. |
 | Red y conectividad | Permite acceso a Internet y periféricos. | Ethernet Gigabit/2.5G/10G, Wi‑Fi 6/6E/7, Bluetooth, USB-C. |
 
-**Procesador (CPU)**: sus características clave son la frecuencia de reloj (GHz), el número de núcleos y la cantidad de caché.
-
-**Memoria de Acceso Aleatorio (RAM, Random Access Memory en inglés)**: almacenamiento temporal y rápido que contiene el sistema operativo, los programas en ejecución y los datos activos. Al apagar el ordenador, su contenido se pierde.
-
-**Almacenamiento**: las unidades de estado sólido (SSD NVMe, Solid State Drive en inglés) son hoy el estándar. Guardan el sistema operativo, los programas y los archivos de forma permanente. Son entre 10 y 100 veces más rápidos que las unidades de disco duro (HDD, Hard Disk Drive en inglés) tradicionales.
-
-**Tarjeta gráfica (GPU, Graphics Processing Unit en inglés)**: imprescindible para el entrenamiento de modelos de aprendizaje profundo. 
-
-::: {.callout-tip appearance="simple" title="Consejo: ¿Qué ordenador comprar?"}
+::: {.callout-tip appearance="simple" title="Consejo: ¿Qué ordenador utilizar?"}
 **Para este curso, cualquier portátil moderno es más que suficiente, ya que el trabajo
 computacionalmente intensivo se realiza en los servidores de GitHub Codespaces.** 
 
-No obstante, si desea tener un ordenador para trabajar localmente, la siguiente tabla presenta tres configuraciones según presupuesto disponible:
+No obstante, si prefiere tener un ordenador para trabajar localmente, la siguiente tabla presenta tres configuraciones posibles:
 
 | Nivel | CPU | RAM | Almacenamiento | Gráfica | Uso recomendado |
 |---|---|---:|---|---|---|
-| Barata | Intel Core i3 / Ryzen 3 o equivalente, 2 núcleos / 4 hilos | 8 GB | SSD SATA de 256 GB | Integrada | Programación básica en Python, ejercicios, scripts pequeños, VS Code con pocas extensiones. |
+| Mínima | Intel Core i3 / Ryzen 3 o equivalente, 2 núcleos / 4 hilos | 8 GB | SSD SATA de 256 GB | Integrada | Programación básica en Python, ejercicios, scripts pequeños, VS Code con pocas extensiones. |
 | Equilibrada | Intel Core i5 / Ryzen 5 o equivalente, 4 a 6 núcleos | 16 GB | SSD NVMe de 512 GB | Integrada | Estudio cómodo, varios proyectos abiertos, navegador + VS Code + terminal sin demasiada lentitud. |
 | Ideal | Intel Core i7 / Core Ultra 7 / Ryzen 7 o equivalente, 8 núcleos o más | 16 a 32 GB | SSD NVMe de 1 TB | Integrada o dedicada ligera | Trabajo fluido con proyectos grandes, Jupyter, análisis de datos, Docker ligero y multitarea intensa. |
 
@@ -123,7 +109,7 @@ biblioteca de la UIB.
 
 ## 1.2. Lenguajes de programación y Python
 
-### Lenguajes de alto nivel
+### 1.2.1. Lenguajes de alto nivel
 
 Los ordenadores solo comprenden [**lenguaje de máquina**](https://es.wikipedia.org/wiki/Lenguaje_de_m%C3%A1quina){target="_blank" rel="noopener noreferrer"}: secuencias de ceros y unos
 específicas para cada arquitectura. Escribir directamente en código máquina es inviable
@@ -138,7 +124,7 @@ puede contener instrucciones vagas o contradictorias: el ordenador ejecuta exact
 lo que se le indica, ni más ni menos.
 :::
 
-### Compilación vs. interpretación
+### 1.2.2. Compilación vs. interpretación
 
 Para que el código fuente en alto nivel sea ejecutable, debe transformarse en
 instrucciones que el procesador comprenda (lenguaje de máquina). Existen dos estrategias principales:
@@ -161,7 +147,7 @@ instrucciones que el procesador comprenda (lenguaje de máquina). Existen dos es
 | Ciclo de desarrollo | Más lento (compilar → ejecutar) | Más rápido (ejecutar directamente) |
 | Detección de errores | En tiempo de compilación | En tiempo de ejecución |
 
-### El lenguaje Python
+### 1.2.3. El lenguaje Python
 
 Python fue creado por Guido van Rossum y publicado en 1991. Hoy es el lenguaje más
 utilizado en ciencia de datos, inteligencia artificial y computación científica, y uno
@@ -183,7 +169,7 @@ ni puntos y coma), el tipado dinámico (las variables no declaran su tipo), el e
 científico maduro (NumPy, Matplotlib, SymPy, pandas) y la integración nativa con
 herramientas de IA.
 
-#### El intérprete interactivo: Python REPL
+#### **El intérprete interactivo: Python REPL**
 
 Una de las características más útiles de Python es su **intérprete interactivo**, conocido como **REPL** (*Read-Eval-Print Loop*): lee una expresión, la evalúa, imprime el resultado y espera la siguiente. Se accede escribiendo `python` en la terminal.
 
@@ -217,7 +203,7 @@ Vea la documentación oficial de Python en [@python3docs]. Es la referencia más
 
 Un **IDE** (Integrated Development Environment en inglés o Entorno de Desarrollo Integrado en español) es una aplicación que integra en una sola interfaz las herramientas necesarias para escribir, ejecutar y depurar programas.
 
-### Características comunes
+### 1.3.1. Características comunes
 
 Los IDEs modernos comparten un conjunto de funcionalidades esenciales:
 
@@ -239,12 +225,10 @@ exclusivamente de `print`— acelera significativamente la detección y correcci
 errores.
 :::
 
-### Locales vs. la nube
-
 Los entornos de desarrollo pueden ejecutarse **localmente** en el ordenador del
 programador o **en la nube** en servidores remotos accesibles desde el navegador.
 
-#### Visual Studio Code (local)
+#### **Visual Studio Code (local)**
 
 **Visual Studio Code** (VS Code) es un editor de código ligero, extensible y gratuito
 desarrollado por Microsoft, el más utilizado en la actualidad [@vscode_docs]. Cuando se
@@ -261,7 +245,7 @@ La interfaz se organiza en:
 
 La documentación oficial de VS Code se puede consultar en [@vscode_docs].
 
-#### Visual Studio Code en GitHub Codespaces
+#### **Visual Studio Code en GitHub Codespaces**
 
 **GitHub Codespaces** proporciona VS Code completamente configurado y ejecutándose en
 servidores de Microsoft en la nube, accesible desde cualquier navegador sin instalar
@@ -298,7 +282,7 @@ La incorporación de la inteligencia artificial al flujo de trabajo del programa
 uno de los cambios más significativos de los últimos años. Comprender estas herramientas
 —y sus límites— es hoy parte de la formación de cualquier programador.
 
-### Modelos de Lenguaje Grandes (LLMs)
+### 1.4.1. Modelos de Lenguaje Grandes (LLMs)
 
 ::: {#imp-llm .callout-important title="LLM"}
 Un **LLM** (Large Language Model, Modelo de Lenguaje Grande) es un sistema de
@@ -320,7 +304,7 @@ La arquitectura que subyace a los LLMs modernos es el **Transformer**, introduci
 independientemente de su distancia.
 :::
 
-### Asistentes IA de código
+### 1.4.2. Asistentes IA de código
 
 Un **asistente de código** (*coding assistant* o *copilot*) es una herramienta de IA integrada en el entorno de desarrollo que ayuda al programador durante la escritura del código. A diferencia de un buscador o un chatbot genérico, el asistente de código tiene acceso al fichero que se está editando, al contexto del proyecto y al historial reciente de cambios, lo que le permite ofrecer sugerencias precisas y relevantes.
 
@@ -356,7 +340,7 @@ se comprueba sistemáticamente que hace lo que debe.
 
 La documentación oficial de GitHub Copilot se puede consultar en [@copilot_docs].
 
-### Vibe Coding
+### 1.4.3. Vibe Coding
 
 El término **vibe coding** fue acuñado por Andrej Karpathy en febrero de 2025 para
 describir una forma de programar en la que el desarrollador delega casi por completo la
@@ -376,7 +360,7 @@ entre usar una calculadora comprendiendo las matemáticas y usarla sin saber qu�
 operación realizar. La IA amplifica la capacidad del programador competente; no
 reemplaza la competencia que aún no existe.
 
-### Agentes de desarrollo autónomos
+### 1.4.4. Agentes de desarrollo autónomos
 
 Los **agentes de desarrollo autónomos** (*coding agents*) son sistemas de IA capaces de
 descomponer tareas de programación complejas en subtareas, ejecutar código, leer la
@@ -397,14 +381,17 @@ Ejemplos representativos en 2025–2026:
 | [Cursor Agent](https://www.cursor.com/){target="_blank" rel="noopener noreferrer"} | Anysphere | IDE basado en VS Code con agente que puede editar múltiples ficheros, ejecutar código y corregir errores en bucle. |
 | [Claude Code](https://www.anthropic.com/claude-code){target="_blank" rel="noopener noreferrer"} | Anthropic | Agente de línea de comandos que entiende bases de código completas y ejecuta tareas de ingeniería end-to-end. |
 | [Codex CLI](https://openai.com/codex){target="_blank" rel="noopener noreferrer"} | OpenAI | Agente de línea de comandos que ejecuta tareas de programación en un entorno seguro (*sandbox*), con acceso a terminal, ficheros e internet. |
-| [Baidu Comate](https://comate.baidu.com/){target="_blank" rel="noopener noreferrer"} | Baidu | Asistente de código basado en ERNIE; extensión para VS Code y JetBrains con generación, explicación y revisión de código. |
-| [MarsCode](https://www.marscode.com/){target="_blank" rel="noopener noreferrer"} | ByteDance | IDE en la nube (basado en VS Code) con agente integrado basado en los modelos Doubao; orientado al desarrollo colaborativo. |
 | [CodeGeeX](https://codegeex.cn/){target="_blank" rel="noopener noreferrer"} | Zhipu AI / Tsinghua | Modelo de código abierto desarrollado en la Universidad de Tsinghua; extensión para VS Code con completado y chat multilingüe. |
 
-Estos sistemas representan el estado del arte actual, pero presentan limitaciones
-importantes: pueden acumular errores silenciosamente, son difíciles de auditar y
-requieren que el programador humano mantenga el criterio sobre qué construir y cómo
-verificarlo. El orden de aparición de los agentes en la tabla no indica calidad ni rendimiento: cada uno tiene fortalezas y debilidades distintas.
+Estos sistemas representan el estado del arte actual, pero presentan limitaciones importantes: pueden acumular errores silenciosamente, son difíciles de auditar y requieren que el programador humano mantenga el criterio sobre qué construir y cómo verificarlo. El orden de aparición de los agentes en la tabla no indica calidad ni rendimiento: cada uno tiene fortalezas y debilidades distintas.
+
+::: {.callout-tip appearance="simple" title="Consejo Fundamental: ¿Cómo aprender a programar en la era IA?"}
+Aprende a programar **con** la IA, no **a través** de ella. La IA es una herramienta que amplifica lo que ya sabes: cuanto más sólidos sean tus fundamentos, más provecho le sacarás y más críticamente podrás evaluar lo que te sugiere. Un programador que no entiende los conceptos básicos no puede distinguir una buena sugerencia de una mala, no puede depurar el código generado cuando falla, y no puede adaptarlo a su problema concreto.
+
+Esos fundamentos tienen nombre concreto: saber qué es una variable y cómo referencia un objeto en memoria, entender la diferencia entre tipos mutables e inmutables, razonar sobre el flujo de control de un condicional o un bucle, ser capaz de identificar la variante y el invariante de un bucle `while`, distinguir cuándo usar `for` y cuándo `while`, y comprender por qué `0.1 + 0.2 != 0.3`. Son conceptos que una IA puede explicar pero que solo se interiorizan programando, cometiendo los errores que esos conceptos generan y resolviéndolos.
+
+En estas notas esos fundamentos y conceptos se presentan en bloques encabezados con *Fundamento Teórico" o *Concepto Clave*, debes prestarles especial atención. La IA puede ser tu compañera de aprendizaje en ese proceso, pero el trabajo de entender es tuyo.
+:::
 
 ## Bibliografía {.unnumbered}
 
