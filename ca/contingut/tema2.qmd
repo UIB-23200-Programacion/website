@@ -2,6 +2,1367 @@
 title: "Tema 2: Components del Llenguatge i Control de Flux"
 lang: ca
 sidebar: barra-ca
+bibliography: tema2.bib
+engine: markdown
 ---
 
-*(Contenido pendiente.)*
+## 2.1. Scripts de Python vs. Execució interactiva
+
+En el Tema 1 es va presentar la **sessió interactiva de Python** (REPL), útil per explorar i provar idees al moment. En la pràctica, però, la major part del treball real es realitza mitjançant **scripts**: fitxers de text amb extensió `.py` que contenen un programa complet, pensat per executar-se de principi a fi.
+
+### **2.1.1 La sessió interactiva (REPL)**
+
+La sessió interactiva permet executar instruccions una a una i veure el resultat de manera immediata:
+
+```python
+>>> 2 + 3
+5
+>>> x = 10
+>>> x * x
+100
+```
+
+És ideal per explorar la sintaxi, comprovar el comportament d'una funció o fer càlculs ràpids. Però té una limitació fonamental: **el codi no es desa**. En tancar la sessió, tot el treball desapareix.
+
+En l'entorn de desenvolupament integrat (IDE) Visual Studio Code, la sessió interactiva es pot obrir des del terminal amb la comanda `python`. Per acabar la sessió es pot usar `exit()`.
+
+### **2.1.2 Scripts `.py`**
+
+Un **script de Python** és un fitxer de text amb extensió `.py` que conté instruccions Python que s'executen seqüencialment. A diferència del REPL, un script es desa en disc, es pot reutilitzar en qualsevol moment, compartir amb altres persones i executar en entorns diferents.
+
+::: {.callout-tip appearance="simple"}
+**REPL per explorar, scripts per produir.** Usa la sessió interactiva per comprovar comportaments o fer càlculs puntuals. Escriu scripts quan vulguis desar, reproduir o compartir la teva feina. En la pràctica, les dues eines s'usen de manera complementària.
+:::
+
+### **2.1.3 Notebooks: Jupyter i Marimo**
+
+Els **notebooks** són un format intermedi que combina característiques del REPL i els scripts. Un notebook es divideix en **cel·les** que es poden executar de forma individual i en qualsevol ordre; l'estat (variables, importacions) persisteix entre cel·les durant la sessió, i el fitxer es desa amb el codi *i* les seves sortides. A més, les cel·les poden contenir text enriquit en Markdown, equacions en LaTeX o gràfics, la qual cosa els converteix en una eina natural per comunicar resultats juntament amb el codi que els produeix.
+
+**[Jupyter Notebook](https://jupyter.org/){target="_blank" rel="noopener noreferrer"}** és el format més estès en ciència de dades i recerca. Els seus fitxers tenen extensió `.ipynb` i es poden executar al navegador, a VS Code o en plataformes com Google Colab. El principal inconvenient de Jupyter és que l'ordre d'execució de les cel·les és lliure, la qual cosa pot generar estats inconsistents difícils de depurar.
+
+**[Marimo](https://marimo.io/){target="_blank" rel="noopener noreferrer"}** és una alternativa més recent i reactiva: les cel·les declaren les seves dependències explícitament, de manera que si es modifica una variable totes les cel·les que l'usen es recalculen automàticament. Això elimina els problemes d'estat inconsistent i fa que un notebook de Marimo sigui sempre reproduïble de dalt a baix, com un script.
+
+::: {.callout-note appearance="simple"}
+En aquest curs es treballarà principalment amb scripts `.py` o notebooks Marimo en un Codespace (Temes 1–6). Els notebooks Marimo s'empren de forma natural en el **Tema 7** en introduir NumPy, Pandas i Matplotlib, on la visualització de resultats integrada en un document és especialment útil.
+:::
+
+---
+
+## 2.2. Variables i els seus tipus
+
+### **2.2.1 Variables**
+
+::: {#tip-variable .callout-tip title="Variable"}
+En ciència de la computació, una **variable** és una associació entre un **nom simbòlic** i una **ubicació en memòria** que emmagatzema un valor que pot canviar durant l'execució del programa.
+
+La definició més precisa distingeix tres components:
+
+- **Nom** (o *identificador*): la cadena de caràcters (pot ser només un) amb la qual el programador es refereix a la variable en el codi font.
+- **Valor**: el dato emmagatzemat en aquell moment.
+- **Ubicació**: l'adreça de memòria on resideix aquell dato.
+
+Aquesta triple associació nom–valor–ubicació és el que defineix formalment una variable. El que varia entre llenguatges és quant d'això és visible o controlable pel programador.
+
+En llenguatges com C, la variable *és* la ubicació: declarar `int x` reserva una cel·la de memòria i `x` és el nom d'aquella cel·la. En Python, en canvi, la variable és només el nom: el que canvia és a quin objecte apunta aquell nom en memòria, no la cel·la en si. Per entendre-ho fàcilment, s'acostuma a usar la metàfora de les "caixes" davant de les "etiquetes".
+
+En Python les variables són en realitat **noms o referències** que apunten a objectes. **Tot en Python és un objecte (fins i tot els nombres simples)**.
+
+Quan escrius `x = 10`, Python:
+
+1. Crea un **objecte** en la memòria que representa el nombre enter `10`.
+2. Crea el nom `x` com si fos una **etiqueta** (un *post-it*).
+3. Enganxa l'etiqueta `x` sobre l'objecte `10`.
+
+Si després escrius `y = x`, Python **no copia l'objecte**. Simplement pren una nova etiqueta anomenada `y` i l'enganxa en el **mateix objecte** `10`. Les dues variables apunten exactament al mateix lloc en la memòria.
+
+![Variables en C vs Python](../../images/variablesCvsPython.jpg){#fig-cvspython width=90%}
+
+::: {.callout-note title="Diferència amb les variables matemàtiques"}
+Una **variable en programació** no és el mateix que una variable matemàtica. L'exemple clàssic es mostra en la ruptura lògica de $x = x + 1$
+
+- **En matemàtiques:** L'expressió $x = x + 1$ és una contradicció. Si intentes resoldre-la restant $x$ als dos costats, arribes a l'absurd lògic de $0 = 1$. El símbol $=$ representa una equivalència permanent.
+- **En programació:** La instrucció `x = x + 1` és una de les operacions més comunes que existeixen. El símbol `=` (en la majoria de llenguatges) no significa "equivalència", sinó **assignació**. La instrucció es llegeix en el temps: "Avalua l'estat actual de $x$, suma-li $1$, i actualitza l'estat desant el nou resultat a $x$".
+:::
+:::
+
+Tenim doncs que en Python una **variable** és un nom que referencia un valor d'un cert **tipus** emmagatzemat en memòria. En Python les variables no tenen un tipus fix, poden referenciar valors de qualsevol tipus, i poden canviar de tipus al llarg de l'execució.
+
+::: {#tip-tipo .callout-tip title="Tipus"}
+Un **tipus de dada** o simplement **tipus** és una classificació que especifica quins valors pot prendre una dada i quines operacions són vàlides sobre ella.
+
+Per exemple, el tipus `int` (enter) admet els valors …−2, −1, 0, 1, 2… i operacions com suma o divisió entera; el tipus `str` (cadena o *string* en anglès) admet seqüències de caràcters i operacions com concatenació o indexació. Una operació invàlida per al tipus —sumar un enter amb una cadena sense conversió explícita— produeix un error.
+
+En Python el tipus no el declara el programador: el determina el propi objecte. Cada objecte porta consigo el seu tipus, i `type(x)` el retorna en qualsevol moment.
+:::
+
+L'**assignació** d'un valor a una variable (en Python, un *enllaç de nom* o *name binding* en anglès) es realitza amb l'operador `=`. A diferència d'altres llenguatges, `=` no copia un valor en una cel·la de memòria: fa que el nom de l'esquerra quedi apuntant a l'objecte produït per l'expressió de la dreta. Per exemple:
+
+```python
+x = 42         # x referencia l'enter 42
+print(x)       # 42
+x = 3.14       # ara x referencia el flotant 3.14
+print(x)       # 3.14
+x = "hola"     # ara x referencia la cadena "hola"
+print(x)       # hola
+```
+
+::: {#imp-comentario .callout-important title="Comentaris en codi Python"}
+En Python només existeix una forma de comentari: el símbol `#`. Tot el que va des d'allà fins al final de la línia ho ignora l'intèrpret. Un comentari és text inclòs en el codi font que va dirigit a qui el llegeix, no a la màquina que l'executa. El traductor —compilador o intèrpret— el descarta, de manera que la seva presència o absència no altera en res el comportament del programa.
+
+Els comentaris poden aparèixer en una línia pròpia o a continuació del codi font en la mateixa línia. Les convencions de [@pep8] recomanen un espai després del `#`, i dos espais abans del `#` en els comentaris al final de línia.
+:::
+
+Python admet assignació múltiple en una sola línia:
+
+```{pyodide}
+a, b, c = 1, 2, 3
+print(a, b, c)  # 1 2 3
+x = y = 0       # tant x com y referencien el valor 0
+print(x, y)     # 0 0
+```
+
+La funció `print()` pot rebre diverses variables com a arguments, separades per comes, i les imprimeix a la sortida estàndard (normalment el terminal). Més endavant es veurà que `print()` té paràmetres opcionals per controlar el format de sortida.
+
+### **2.2.2 Noms de variables**
+
+Els noms de variables només poden contenir lletres, dígits i el guió baix `_`, i no poden començar per un dígit ni coincidir amb una paraula reservada del llenguatge (`if`, `for`, `while`, `True`, `False`, `None`, etc.).
+
+::: {#imp-snake-case .callout-important title="Convenció de noms: snake_case"}
+Per convenció [@pep8], els noms de variables en Python usen **snake_case**: paraules en minúscules separades per guions baixos. Els noms han de ser **descriptius** del valor que contenen.
+
+```python
+# Correcte
+nombre_diteracions = 100
+radi_cercle = 5.0
+es_primer = True
+
+# Acceptable per a variables de curta vida o amb significat matemàtic obvi
+n = 100       # comptador genèric
+x, y = 3, 4  # coordenades
+i, j, k = 0, 0, 0  # índexs de bucles
+
+# Evitar: noms sense significat
+a1 = 100
+cosa = True
+```
+:::
+
+## 2.3 Tipus integrats (built-in) simples
+
+Els tipus integrats (o *built-in types*) en Python són els tipus de dades fonamentals que vénen integrats en el llenguatge, sense necessitat d'importar cap biblioteca externa. Python té sis tipus built-in per representar valors simples:
+
+| Tipus | Classe Python | Exemples | Descripció |
+|---|---|---|-----|
+| Enter | `int` | `0`, `42`, `-7`, `10**100` | Precisió arbitrària; no hi ha desbordament. |
+| Flotant | `float` | `3.14`, `-0.5`, `1.0e-10` | IEEE 754 doble precisió (~15 dígits significatius). |
+| Nombre complex | `complex` | `3 + 2j`, `1j`, `complex(2, -1)` | La unitat imaginària s'escriu `j` (no `i` com en matemàtiques). |
+| Cadena | `str` | `"hola"`, `'món'` | Seqüència immutable de caràcters Unicode. |
+| Booleà | `bool` | `True`, `False` | Subtipus de `int`; `True == 1` i `False == 0`. |
+| Nul | `NoneType` | `None` | Representa l'absència de valor. |
+
+Per esbrinar el tipus de qualsevol objecte o variable s'usa la funció built-in `type()`. Per mostrar valors a la sortida estàndard s'usa la funció built-in `print()`.
+
+::: {#imp-type-print .callout-important title="Funcions built-in `type()` i `print()`"}
+La funció `type()` retorna el tipus de qualsevol objecte o variable:
+
+```{pyodide}
+x = 42
+print(type(x))         # <class 'int'>
+print(type(42))        # <class 'int'>
+print(type(3.14))      # <class 'float'>
+print(type("hola"))    # <class 'str'>
+print(type(True))      # <class 'bool'>
+print(type(None))      # <class 'NoneType'>
+```
+
+La funció `print()` escriu a la sortida estàndard (normalment el terminal) els valors que rep com a arguments, separats per un espai i seguits d'un salt de línia:
+
+```{pyodide}
+print(42)                     # 42
+print("hola")                 # hola
+print("nombres: ", 1, 2, 3)   # nombres: 1 2 3
+```
+
+Els paràmetres opcionals més útils de `print()` són `sep` (separador entre arguments, per defecte `" "`) i `end` (caràcter final, per defecte `"\n"` per salt de línia):
+
+```{pyodide}
+print(1, 2, 3, sep=", ")     # 1, 2, 3
+print("hola", end=" ")
+print("món")                  # hola món  (en la mateixa línia)
+```
+
+Les funcions `type` i `print` vénen integrades en l'intèrpret i estan disponibles en qualsevol programa sense necessitat d'importar res.
+:::
+
+### **2.3.1 Enters (`int`)**
+
+En Python, els enters tenen **precisió arbitrària**: poden ser tan grans com la memòria disponible ho permeti, sense que es produeixi desbordament (*overflow*). Això els distingeix de molts altres llenguatges on els nombres enters estan limitats a un rang fix.
+
+```{pyodide}
+print(2 ** 100)
+# 1267650600228229401496703205376
+
+print(10 ** 50)
+# 100000000000000000000000000000000000000000000000000
+```
+
+Hi ha quatre formes d'escriure literals enters, segons la base numèrica:
+
+```{pyodide}
+# Decimal (base 10) — la notació habitual
+nn = 42
+nn = -7
+nn = 0
+
+# Binari (base 2) — prefix `0b`
+nn = 0b1010
+print(nn)        # 10
+nn = 0b11111111
+print(nn)        # 255
+
+# Octal (base 8) — prefix `0o`
+nn = 0o17
+print(nn)        # 15
+nn = 0o777
+print(nn)        # 511
+
+# Hexadecimal (base 16) — prefix `0x`
+nn = 0xFF
+print(nn)        # 255
+nn = 0x1A3
+print(nn)        # 419
+```
+
+A més, per millorar la llegibilitat de nombres grans es pot usar el guió baix `_` com a separador visual (equivalent al punt en notació europea):
+
+```{pyodide}
+m = 1_000_000      # equivalent a 1000000
+print(m)           # 1000000
+m = 0b1111_0000    # equivalent a 0b11110000
+print(m)           # 240
+m = 0xFF_A3_00     # equivalent a 0xFFA300
+print(m)           # 16711680
+```
+
+### **2.3.2 Flotants (`float`)**
+
+Els flotants segueixen l'estàndard IEEE 754 de doble precisió, que representa nombres reals amb aproximadament 15-17 dígits significatius. Això implica que **no tots** els nombres decimals es poden representar exactament en binari:
+
+```{pyodide}
+print(0.1 + 0.2)         # 0.30000000000000004
+print(0.1 + 0.2 == 0.3)  # False
+```
+
+::: {#cau-flotantes .callout-caution title="Comparar flotants amb =="}
+La representació binària dels flotants introdueix petits errors d'arrodoniment. **Mai usis `==` per comparar dos valors flotants**; en el seu lloc, comprova que la seva diferència sigui prou petita:
+
+```{pyodide}
+a = 0.1 + 0.2
+b = 0.3
+print(abs(a - b) < 1e-10)   # True
+```
+:::
+
+Els literals `float` admeten diverses notacions:
+
+```{pyodide}
+# Decimal estàndard — amb punt obligatori
+x1 = 3.14
+x2 = -0.5
+x3 = 1.0      # el .0 és necessari; sense ell seria int
+x4 = .5       # equivalent a 0.5 (el zero inicial és opcional)
+print(x1, x2, x3, x4, sep=", ")
+
+# Notació científica — amb `e` o `E` com a exponent de base 10
+x5 = 1.5e3         # equivalent a 1500.0 = 1.5 × 10³
+x6 = 2.1e-4        # equivalent a 0.00021 = 2.1 × 10⁻⁴
+x7 = 1e10          # equivalent a 10000000000.0 = 1 × 10¹⁰
+print(x5, x6, x7, sep=", ")  # 1500.0 0.00021 10000000000.0
+```
+
+Igual que en `int`, es pot usar `_` com a separador visual:
+
+```{pyodide}
+x8 = 3.141_592_653
+x9 = 1_000.0
+print(x8, x9, sep=", ")  # 3.141592653, 1000.0
+```
+
+Un detall rellevant per als matemàtics: a diferència dels enters, els `float` tenen **rang finit**. El valor màxim representable és aproximadament $1.8 \times 10^{308}$; superar-lo produeix `inf`:
+
+```{pyodide}
+print(1.8e308)    # inf
+```
+
+### **2.3.3 Nombres complexos (`complex`)**
+
+Python incorpora els nombres complexos com a tipus natiu, sense necessitat d'importar cap biblioteca. La unitat imaginària es denota amb `j` (no `i`, per evitar conflicte amb l'ús de `i` com a índex en codi):
+
+```{pyodide}
+z1 = 3 + 2j
+z2 = complex(1, -4)    # equivalent a 1 - 4j
+
+print(z1 + z2)         # (4-2j)
+print(z1 * z2)         # (11-10j)
+print(z1.real)         # 3.0
+print(z1.imag)         # 2.0
+print(z1.conjugate())  # (3-2j)
+print(abs(z1))         # 3.605...  (mòdul: √(3² + 2²))
+```
+
+Els nombres complexos il·lustren bé un concepte central en Python: els objectes tenen **atributs** i **mètodes** als quals s'accedeix amb l'operador punt `.`:
+
+- Un **atribut** és un valor associat a l'objecte: `z.real` i `z.imag` retornen les parts real i imaginària del nombre complex `z`.
+- Un **mètode** és una funció associada a l'objecte que s'invoca amb parèntesis: `z.conjugate()` retorna el conjugat.
+
+Aquesta notació `objecte.algo` apareixerà constantment en Python. En el Tema 5 s'estudiarà en detall què són els objectes i com es defineixen; per ara n'hi ha prou amb saber que tot valor en Python és un objecte i que el punt `.` dóna accés al que aquell objecte "sap fer".
+
+Els atributs `.real` i `.imag` retornen sempre `float`. Les operacions aritmètiques (`+`, `-`, `*`, `/`, `**`) funcionen directament entre complexos o entre complexos i enters/flotants.
+
+La funció built-in `abs()` retorna el **mòdul** d'un nombre complex, que és la distància a l'origen en el pla complex. El mòdul es calcula com $\sqrt{x^2 + y^2}$ per a un complex $z = x + yi$. La funció `abs()` també funciona amb enters i flotants, retornant el seu valor absolut.
+
+::: {.callout-tip appearance="simple"}
+Per a càlculs més avançats amb nombres complexos (funcions trigonomètriques, logaritmes, exponencial complexa) s'usa el mòdul `cmath` de la biblioteca estàndard.
+:::
+
+Un literal `complex` es forma combinant amb `+` o `-` un literal `int` o `float` com a part real i un literal `int` o `float` seguit de `j` com a part imaginària. La part imaginària és obligatòria; un literal com `3` o `2.5` és un `int` o `float`, no un `complex`.
+
+### **2.3.4 Cadenes (`str`)**
+
+Les cadenes (o cadenes de caràcters) són seqüències de caràcters delimitades per cometes simples o dobles (totes dues equivalents). Per a cadenes que ocupen diverses línies s'usen triples cometes:
+
+```{pyodide}
+nom = "Euler"
+frase = 'La identitat e^(iπ) + 1 = 0'
+multilinia = """Aquesta cadena
+abasta diverses
+línies."""
+print(nom, ':', frase)
+print(multilinia)
+```
+
+Les **seqüències d'escapament** permeten incloure caràcters especials dins d'una cadena:
+
+| Seqüència | Caràcter |
+|:---:|---|
+| `\n` | Salt de línia |
+| `\t` | Tabulador horitzontal |
+| `\\` | Barra invertida literal |
+| `\"` | Cometes dobles literal |
+
+```{pyodide}
+multilinia2 = "Aquesta cadena\nabasta diverses\nlínies."
+print(multilinia2)
+print(multilinia == multilinia2)  # True
+```
+
+Amb la notació `objecte.mètode()`, explicada a la secció de nombres complexos, podem accedir a diversos mètodes útils de les cadenes. Per exemple:
+
+```{pyodide}
+text = "hola món"
+print(text.upper())                    # "HOLA MÓN"
+print(text.count("o"))                 # 2
+print(text.replace("món", "Python"))   # "hola Python"
+```
+
+Aquí `upper` és un mètode de la variable `text` (objecte del tipus `str`). El punt `.` és l'operador d'accés a membres: indica "busca dins d'aquest objecte alguna cosa anomenada `upper` i crida-la".
+
+Els mètodes de `str` més útils en la pràctica:
+
+| Mètode | Descripció | Exemple |
+|---|---|---|
+| `.upper()` | Converteix a majúscules | `"hola".upper()` → `"HOLA"` |
+| `.lower()` | Converteix a minúscules | `"HOLA".lower()` → `"hola"` |
+| `.strip()` | Elimina espais a l'inici i al final | `"  hola  ".strip()` → `"hola"` |
+| `.replace(a, b)` | Substitueix totes les ocurrències de `a` per `b` | `"aabbcc".replace("b", "x")` → `"aaxxcc"` |
+| `.split(sep)` | Divideix la cadena per `sep` i retorna una llista | `"a,b,c".split(",")` → `["a", "b", "c"]` |
+| `.startswith(s)` | `True` si la cadena comença per `s` | `"hola".startswith("ho")` → `True` |
+| `.count(s)` | Compta les ocurrències de `s` | `"banana".count("a")` → `3` |
+
+La funció `len()` no és un mètode sinó una funció built-in, però s'aplica habitualment sobre cadenes:
+
+```{pyodide}
+print(len(text))             # 8
+print(len("matemàtiques"))   # 12
+```
+
+::: {.callout-tip appearance="simple"}
+Per veure tots els mètodes disponibles de qualsevol objecte `x`:
+
+- usa `dir(x)` en el REPL,
+    - per obtenir ajuda sobre un mètode concret, per exemple `replace` si `x` és una cadena, usa `help(x.replace)`,
+- a Visual Studio Code o en un notebook de Marimo, escriu `x.` i prem **Tab** per veure la llista de mètodes.
+:::
+
+### **2.3.5 Booleans (`bool`)**
+
+Els booleans representen valors de veritat: `True` o `False`. Són el resultat natural dels operadors de comparació i lògics (es veuran més endavant):
+
+```{pyodide}
+print(3 > 2)        # True
+print(type(True))   # <class 'bool'>
+```
+
+El tipus `bool` és un subtipus de `int`: `True` val `1` i `False` val `0`. Això permet usar-los directament en expressions aritmètiques, cosa que en matemàtiques té sentit com a funció indicadora:
+
+```{pyodide}
+print(True + True)   # 2
+print(False * 7)     # 0
+print(int(True))     # 1
+```
+
+### **2.3.6 Nul (`NoneType`)**
+
+`None` és l'únic valor del tipus `NoneType` i representa l'**absència de valor**. S'usa quan una variable no té cap objecte assignat, o quan una funció no retorna res explícitament:
+
+```{pyodide}
+resultat = None
+print(resultat)        # None
+print(type(resultat))  # <class 'NoneType'>
+```
+
+Per comprovar si una variable és `None` s'usa `is`, no `==`:
+
+```{pyodide}
+print(resultat is None)   # True
+```
+
+::: {.callout-tip appearance="simple"}
+`is None` comprova identitat (mateix objecte en memòria), que és el correcte per a `None` ja que existeix un únic objecte `None` en tot l'intèrpret. `== None` funcionaria en la pràctica però és considerat mal estil en Python.
+:::
+
+---
+
+## 2.4 Operadors aritmètics, de comparació (relacionals) i lògics
+
+Python defineix set operadors aritmètics que funcionen principalment amb enters, flotants i complexos (`int`, `float`, `complex`). La taula següent resumeix el seu significat i comportament:
+
+| Operador | Operació | Exemple | Resultat |
+|:---:|---|---|---:|
+| `+` | Suma | `7 + 3` | `10` |
+| `-` | Resta | `7 - 3` | `4` |
+| `*` | Producte | `7 * 3` | `21` |
+| `/` | Divisió real | `7 / 3` | `2.3333…` |
+| `//` | Divisió entera | `7 // 3` | `2` |
+| `%` | Mòdul (resta) | `7 % 3` | `1` |
+| `**` | Potència | `2 ** 10` | `1024` |
+
+Algunes excepcions i extensions d'aquests operadors segons el tipus de dada:
+
+- `complex` no admet `//` ni `%`, ja que la divisió entera i el mòdul no estan definits per a nombres complexos.
+- `bool`, en ser subtipus de `int`, hereta tots els operadors aritmètics.
+- `str` admet `+` com a concatenació i `*` com a repetició, però no la resta.
+
+Per als tipus numèrics, quan es combinen operands de tipus diferents el resultat es **promou** al tipus més general. Per exemple, `int + float` produeix `float`, i `int + complex` produeix `complex`.
+
+```{pyodide}
+print(type(3 + 2.5))       # <class 'float'>
+print(type(3 + 2))         # <class 'int'>
+print(type(3 * 2.5))       # <class 'float'>
+print(type(3 + 2j))        # <class 'complex'>
+print(type(3.0 + 2j))      # <class 'complex'>
+print(type(3 ** 2))        # <class 'int'>
+print(type(3 ** 2.0))      # <class 'float'>
+print(type(3.0 ** 2))      # <class 'float'>
+print(4 ** (1/2))          # 2.0
+print(4 ** (-1/2))         # 0.5
+print(4 ** -1/2)           # 0.125
+```
+
+La potència `**` admet exponents negatius i flotants, però el resultat és sempre `float` o `complex`. És a més l'únic operador amb associativitat per la dreta: `2 ** 3 ** 2` s'avalua com `2 ** 9 = 512`.
+
+::: {#imp-precedencia .callout-important title="Precedència d'operadors aritmètics"}
+Python segueix les mateixes regles de precedència que la notació matemàtica estàndard. De major a menor prioritat:
+
+1. Parèntesis `()`
+2. Potència `**`
+3. Signe unari `+x`, `-x`
+4. Producte `*`, divisions `/`, `//`, `%`
+5. Suma i resta `+`, `-`
+
+Quan dos operadors tenen la mateixa precedència s'avaluen d'esquerra a dreta, excepte `**` que és associatiu per la dreta. Els parèntesis permeten alterar qualsevol ordre d'avaluació.
+
+```{pyodide}
+# precedència estàndard
+print(2 + 3 * 4)       # 14  (no 20: * abans que +)
+print(10 - 6 / 2)      # 7.0 (no 2.0: / abans que -)
+print(2 ** 3 + 1)      # 9   (no 16: ** abans que +)
+print(10 % 3 + 1)      # 2   (no 1:  % abans que +)
+
+# els parèntesis alteren l'ordre
+print((2 + 3) * 4)     # 20
+print((10 - 6) / 2)    # 2.0
+
+# ** és associatiu per la dreta
+print(2 ** 3 ** 2)     # 512  (= 2 ** 9, no 8 ** 2 = 64)
+print((2 ** 3) ** 2)   # 64
+
+# signe unari
+print(-2 ** 2)         # -4   (** abans que signe: -(2**2))
+print((-2) ** 2)       # 4
+```
+:::
+
+Per a la divisió tenim dos operadors diferents: `/` i `//`. El primer retorna un flotant, mentre que el segon retorna el quocient enter (*floor division*). L'operador `%` retorna la resta (el mòdul) de la divisió entera.
+
+::: {#imp-division .callout-important title="Divisió entera i mòdul"}
+En Python 3, l'operador `/` **sempre retorna un flotant**, fins i tot quan el resultat és un enter:
+
+```{pyodide}
+print(6 / 2)    # 3.0   (no 3)
+print(7 / 2)    # 3.5
+```
+
+L'operador `//` retorna el **quocient enter** (*floor division*) arrodonint cap a $-\infty$, no cap a zero. L'operador `%` retorna la **resta** de la divisió entera:
+
+```{pyodide}
+print(17 // 5)  #  3   (quocient enter)
+print(17 % 5)   #  2   (resta)
+print(-7 // 2)  # -4   (quocient enter, arrodoneix cap a menys infinit)
+print(-7 % 2)   #  1   (resta positiva, perquè -7 = (-4)*2 + 1)
+```
+
+Es compleix sempre la identitat: `a == (a // b) * b + (a % b)`. Aquí `==` és un operador de comparació (igualtat), no d'assignació. Per exemple:
+
+```{pyodide}
+a, b = 17, 5
+print(a == (a // b) * b + (a % b))  # True
+```
+
+L'operador `%` és fonamental en teoria de nombres: la condició `n % 2 == 0` és el test de paritat més efectiu.
+:::
+
+### **2.4.1 Operadors d'assignació composta**
+
+Els **operadors d'assignació composta** combinen una operació aritmètica amb l'assignació, actualitzant la variable in situ:
+
+```{pyodide}
+x = 10
+x += 3    # equivalent a x = x + 3   → x és 13
+x -= 1    # equivalent a x = x - 1   → x és 12
+x *= 2    # equivalent a x = x * 2   → x és 24
+x //= 5   # equivalent a x = x // 5  → x és 4
+x **= 3   # equivalent a x = x ** 3  → x és 64
+print(x)  # 64
+```
+
+::: {#cau-ieee754 .callout-caution title="Tractar l'aritmètica amb floats com la dels nombres reals"}
+Com es va mostrar en [@cau-flotantes] l'aritmètica amb nombres float introdueix errors d'arrodoniment. Això es deu al fet que la representació binària dels flotants no pot expressar exactament tots els nombres reals. En Python s'empra l'aritmètica de punt flotant de doble precisió (IEEE 754), que té una precisió aproximada de 15-17 dígits decimals significatius.
+
+En IEEE 754 doble precisió cada valor `float` es representa com:
+
+$$
+(-1)^s \times 1.m \times 2^e
+$$
+
+on $s$ és el signe, $e$ l'exponent i $1.m$ la mantissa amb el bit implícit de valor 1. Els 64 bits del `float` es reparteixen així:
+
+| Camp | Bits | Rang |
+|---|---|---|
+| Signe $s$ | 1 | 0 = positiu, 1 = negatiu |
+| Exponent $e$ | 11 | codificat en biaix (*bias*) de 1023 |
+| Mantissa $m$ | 52 | part fraccionària després del bit implícit |
+
+Es recomana consultar [@python3floatingpoint] per a una explicació més detallada de l'aritmètica amb `float` i les seves implicacions en la pràctica.
+:::
+
+### **2.4.2 Operadors de comparació (relacionals)**
+
+Els operadors de comparació o relacionals són fonamentals per al **control de flux condicional**: sense ells no hi ha manera que un programa prengui decisions. Constitueixen la base del mecanisme que dota a un programa d'**adaptabilitat**: en lloc d'executar sempre la mateixa seqüència d'instruccions, el programa examina l'estat de les dades en temps d'execució i tria el camí a seguir en conseqüència.
+
+Els operadors de comparació avaluen una relació entre dos valors i retornen un booleà (`True` o `False`):
+
+| Operador | Significat | Exemple | Resultat |
+|:---:|---|---|:---:|
+| `==` | Igual a | `3 == 3` | `True` |
+| `!=` | Diferent de | `3 != 4` | `True` |
+| `<` | Menor que | `2 < 5` | `True` |
+| `>` | Major que | `5 > 2` | `True` |
+| `<=` | Menor o igual | `3 <= 3` | `True` |
+| `>=` | Major o igual | `4 >= 5` | `False` |
+
+Els operadors de comparació s'apliquen a tots els tipus simples, amb dues excepcions importants:
+
+- **`complex` no admet `<`, `>`, `<=`, `>=`**: els nombres complexos no tenen ordre total, igual que en matemàtiques. Només `==` i `!=` estan definits.
+- **`str` usa ordre lexicogràfic**: les comparacions d'ordre segueixen el codi Unicode de cada caràcter, no l'ordre alfabètic intuïtiu. En particular, totes les majúscules precedeixen totes les minúscules: `"Z" < "a"` és `True`.
+
+```{pyodide}
+# complex: == i != funcionen, ordre no està definit
+z = 3 + 2j
+print(z == 3 + 2j)   # True
+print(z != 0j)        # True
+# print(z < 1 + 0j)  # TypeError: '<' not supported between 'complex' and 'complex'
+
+# str: ordre lexicogràfic per codi Unicode
+print("Z" < "a")      # True  (ord("Z") = 90, ord("a") = 97)
+print("banana" < "mango")     # True  (compara caràcter a caràcter)
+print("abc" == "ABC")  # False
+```
+
+::: {#cau-comptip .callout-caution title="Comparar tipus diferents"}
+Comparar valors de tipus diferents amb `==` no produeix error sinó `False` directament (`42 == "42"` és `False`). Usar `<` o `>` entre tipus incompatibles sí llança `TypeError`.
+
+```{pyodide}
+# tipus diferents: == retorna False, ordre llança TypeError
+print(42 == "42")     # False
+# print(42 < "42")    # TypeError: '<' not supported between 'int' and 'str'
+```
+:::
+
+Python permet **encadenar comparacions** de forma natural, exactament com en notació matemàtica:
+
+```{pyodide}
+x = 7
+print(1 <= x <= 10)   # True   (equivalent a 1 <= x and x <= 10)
+print(0 < x < 5)      # False
+print(2 == 2 == 2)    # True
+```
+
+::: {#tip-compara .callout-tip title="Operadors de comparació"}
+El fonament teòric dels operadors de comparació es troba en la **matemàtica discreta**, específicament en la **teoria de les relacions binàries** (derivada de la teoria de conjunts). Matemàticament, una relació binària $R$ sobre un conjunt $A$ és un subconjunt del producte cartesià $A \times A$. En programació, el conjunt $A$ representa el domini d'un tipus de dada específic (per exemple, `int` o `float`). Quan un programa avalua una expressió com `x < y`, està verificant si el parell ordenat $(x, y)$ pertany al conjunt definit per la relació matemàtica $<$.
+
+Aquests operadors es divideixen en dues famílies basades en les seves propietats teòriques:
+
+**Relació d'Equivalència (`==`)**
+
+Perquè un operador d'igualtat tingui sentit lògic, es fonamenta en les tres propietats d'una relació d'equivalència:
+
+* **Reflexivitat:** $x = x$ (Tot valor és igual a si mateix).
+* **Simetria:** Si $x = y$, llavors $y = x$.
+* **Transitivitat:** Si $x = y$ i $y = z$, llavors $x = z$.
+
+> Aquestes propietats matemàtiques, com es va mencionar en [@cau-flotantes] i [@cau-ieee754], de vegades xoquen amb les representacions en memòria. Un altre exemple: en l'estàndard IEEE 754 per a coma flotant, el valor `NaN` (*Not a Number*) trenca intencionalment la reflexivitat, ja que `NaN == NaN` avalua a fals.
+
+En Python 3, per defecte, `!=` es comporta automàticament com la negació lògica de `==`. No obstant això, a nivell d'arquitectura, són dues operacions independents i el llenguatge et permet trencar aquesta regla si ho desitges (això es veurà en el Tema 5, quan s'estudiïn les classes i la sobrecàrrega d'operadors).
+
+**Relacions d'Ordre (`<`, `>`, `<=`, `>=`)**
+
+Aquests operadors implementen el que en matemàtiques es coneix com una **relació d'ordre** (generalment un ordre total). Per a un operador d'ordre no estricte com `<=`, el llenguatge garanteix matemàticament:
+
+* **Reflexivitat:** $x \le x$.
+* **Antisimetria:** Si $x \le y$ i $y \le x$, llavors $x = y$.
+* **Transitivitat:** Si $x \le y$ i $y \le z$, llavors $x \le z$.
+:::
+
+### **2.4.3 Operadors lògics**
+
+Els operadors lògics (`and`, `or`, `not`) permeten construir condicions compostes (expressions lògiques) combinant expressions booleanes simples com les que s'obtenen usant els operadors de comparació. Sense ells, cada condició estaria limitada a comparar un únic parell de valors; amb ells és possible expressar restriccions arbitràriament complexes sobre l'estat del programa. En matemàtiques són l'equivalent directe dels connectius proposicionals $\wedge$, $\vee$ i $\neg$ de la lògica matemàtica.
+
+| Operador | Significat | Resultat `True` quan… |
+|:---:|---|---|
+| `and` | Conjunció | tots dos operands són `True` |
+| `or` | Disjunció | almenys un és `True` |
+| `not` | Negació | l'operand és `False` |
+
+```{pyodide}
+x = 7
+print(x > 0 and x < 10)   # True   (x està en l'interval (0, 10))
+print(x < 0 or x > 5)     # True   (x < 0 és False, però x > 5 és True)
+print(not (x == 7))       # False
+print(x != 7)             # False
+```
+
+::: {.callout-note title="Avaluació en curtcircuit (short-circuit evaluation)"}
+Els operadors `and` i `or` en Python usen **avaluació en curtcircuit** (*short-circuit evaluation*): si el resultat queda determinat pel primer operand, el segon no s'avalua.
+
+- `False and expr` → `False` sense avaluar `expr`.
+- `True or expr` → `True` sense avaluar `expr`.
+
+Això és important per evitar errors quan l'avaluació del segon operand podria provocar una excepció. Per exemple, la següent expressió és segura perquè si `b == 0` la segona part no s'avalua:
+
+```{pyodide}
+b = 0
+if b != 0 and 10 / b > 2:   # no llança ZeroDivisionError
+    print("quocient gran")
+```
+:::
+
+::: {#tip-logico .callout-tip title="Operadors lògics"}
+El fonament dels operadors lògics (`and`, `or`, `not`) és la **lògica proposicional** i la seva formalització algebraica, l'**àlgebra de Boole** (desenvolupada per George Boole el 1854).
+
+Mentre que els operadors relacionals operen sobre tipus de dades arbitraris i mapegen el resultat al domini dels booleans, els operadors lògics **tenen el conjunt booleà tant en el seu domini com en el seu codomini**. Operen estrictament sobre els valors lògics `True` ($1$) i `False` ($0$).
+
+Les operacions fonamentals es defineixen axiomàticament mitjançant taules de veritat:
+
+| `p` | `q` | `p and q` | `p or q` | `not p` |
+|:---:|:---:|:---:|:---:|:---:|
+| `True` | `True` | `True` | `True` | `False` |
+| `True` | `False` | `False` | `True` | `False` |
+| `False` | `True` | `False` | `True` | `True` |
+| `False` | `False` | `False` | `False` | `True` |
+:::
+
+::: {#tip-explogica .callout-tip title="Expressions lògiques"}
+Una **expressió lògica** és una expressió que s'avalua com `True` o `False`. En Python es construeixen combinant valors booleans, operadors de comparació i operadors lògics (`and`, `or`, `not`). Són el component fonamental de les condicions en estructures `if` i `while`: el programa avalua l'expressió i decideix quines instruccions executar en funció del resultat.
+
+Per a tota expressió lògica composta, es pot construir una **taula de veritat** que enumeri totes les combinacions possibles de valors de veritat dels seus components i el resultat final. Això permet analitzar i verificar el comportament de l'expressió en tots els casos possibles. Per exemple, per a l'expressió `p and (q or not p)` tenim la taula de veritat següent:
+
+| `p` | `q` | `not p` | `q or not p` | `p and (q or not p)` |
+|:---:|:---:|:---:|:---:|:---:|
+| `True` | `True` | `False` | `True` | `True` |
+| `True` | `False` | `False` | `False` | `False` |
+| `False` | `True` | `True` | `True` | `False` |
+| `False` | `False` | `True` | `True` | `False` |
+:::
+
+### **2.4.4 Conversió de tipus**
+
+Python no converteix tipus automàticament en la majoria de situacions. Les funcions `int()`, `float()`, `str()` i `bool()` permeten convertir valors de forma explícita:
+
+```{pyodide}
+print(int(3.9))      #  3    (trunca cap a zero, no arrodoneix)
+print(int(-3.9))     # -3    (també trunca cap a zero)
+print(float(5))      #  5.0
+print(str(42))       # '42'
+print(int("100"))    #  100
+print(bool(0))       # False
+print(bool(1))       # True
+print(bool(""))      # False  (cadena buida → False)
+print(bool("hola"))  # True   (cadena no buida → True)
+```
+
+La conversió de tipus és necessària perquè Python no realitza conversions implícites entre tipus incompatibles —a diferència d'altres llenguatges— i perquè les dades del món real arriben freqüentment en un tipus diferent del que requereix el càlcul.
+
+Les situacions que la justifiquen són principalment tres:
+
+- **Entrada d'usuari**: `input()` retorna sempre `str`. Qualsevol dada numèrica introduïda per l'usuari ha de convertir-se explícitament abans d'operar amb ella: `int(input(...))` o `float(input(...))` (es veurà a la secció 2.7 més avall).
+
+- **Precisió aritmètica**: de vegades cal forçar el tipus del resultat. `int(3.9)` trunca a `3`; `float(7)` assegura que una divisió posterior no sigui entera.
+
+- **Compatibilitat entre tipus**: `str(42)` permet concatenar un nombre amb una cadena; sense la conversió, `"El resultat és: " + 42` llança `TypeError`.
+
+---
+
+## 2.5. Control de Flux — Estructures o Sentències Condicionals
+
+El **control de flux** és el mecanisme que determina l'ordre en què s'avaluen les instruccions d'un programa. Tot i que per defecte l'execució segueix una seqüència estrictament lineal, les estructures de control permeten alterar aquesta trajectòria: bifurcar l'execució en funció d'una premissa lògica, o iterar repetidament sobre un bloc de codi. En aquest marc, les **estructures condicionals** actuen com l'eina fonamental per a la presa de decisions.
+
+::: {#tip-condicional .callout-tip title="Condicionals"}
+Una **estructura condicional o sentència condicional** és una construcció del llenguatge que permet executar un bloc d'instruccions només si una expressió de condició s'avalua com a verdadera, i opcionalment executar un bloc alternatiu si s'avalua com a falsa. És el mecanisme fonamental mitjançant el qual un programa adapta el seu comportament a l'estat de les dades en temps d'execució.
+
+Independentment del llenguatge de programació subjacent, tot condicional es fonamenta en dues peces clau:
+
+* **El Predicat (La Condició):** És l'expressió que el sistema avalua i que sempre s'ha de resoldre o mapejar a un estat booleà estricte (Vertader o Fals). Actua com la frontera o la "pregunta" que determina el camí a seguir.
+* **Les Branques (Els Camins):** Són els blocs de codi associats a cada possible resultat de la condició. Aquestes branques són mútuament excloents: el processador executarà únicament el conjunt d'instruccions associat a la branca vàlida i descartar silenciosament la resta.
+
+A nivell del maquinari subjacent, un condicional es tradueix en una **instrucció de salt** (*branching*). El processador avalua l'estat d'un registre (per exemple, verificant si una resta dóna zero) i, basant-se en aquell resultat lògic, altera el **Comptador de Programa** per saltar a una adreça de memòria diferent en lloc de llegir la instrucció immediatament següent.
+:::
+
+L'estructura condicional en Python és `if`, que admet tres formes:
+
+- `if` sol: executa un bloc si la condició és verdadera, i no fa res si és falsa.
+- `if`-`else`: afegeix un bloc alternatiu per quan la condició és falsa.
+- `if`-`elif`-`else`: encadena múltiples condicions mútuament excloents, avaluades en ordre fins que una sigui verdadera.
+
+### **2.5.1 Estructura `if`**
+
+La forma més simple és el `if`:
+
+```{pyodide}
+x = -5
+if x < 0:
+    print("x és negatiu")
+```
+
+El bloc indentat només s'executa si la condició és `True`. Si la condició és `False`, el bloc s'omet i l'execució continua en la instrucció següent no indentada.
+
+::: {#imp-indenta .callout-important title="Delimitació de blocs per indentació"}
+En Python la **indentació** no és una convenció estilística sinó part de la sintaxi: és el mecanisme que delimita els blocs de codi. A diferència de llenguatges com C o Java, que usen claus `{}` per marcar l'inici i el final d'un bloc, Python usa el nivell de sagnat. Les instruccions que pertanyen al bloc de codi han d'estar indentades un nivell més endins de la instrucció capçalera (`if`, `else`, `elif`, `while`, `for`, etc.) perquè l'intèrpret sàpiga quines instruccions es repeteixen i quines s'executen en sortir del bloc (les que estan al mateix nivell d'indentació que la instrucció capçalera). Python usa indentació de 4 espais per convenció [@pep8].
+:::
+
+### **2.5.2 Estructura `if`-`else`**
+
+```{pyodide}
+n = 17
+if n % 2 == 0:
+    print(f"{n} és parell")
+else:
+    print(f"{n} és senar")
+```
+
+### **2.5.3 Estructura `if`-`elif`-`else`**
+
+Per a diverses condicions mútuament excloents s'encadenen branques `elif` (*else if*). Només s'executa la primera branca la condició de la qual sigui `True`; les altres s'ignoren:
+
+```{pyodide}
+nota = 7.5
+
+if nota >= 9:
+    qualificacio = "Excel·lent"
+elif nota >= 7:
+    qualificacio = "Notable"
+elif nota >= 5:
+    qualificacio = "Aprovat"
+else:
+    qualificacio = "Suspès"
+
+print(f"Nota: {nota} → {qualificacio}")
+# Nota: 7.5 → Notable
+```
+
+:::{#nte-ecucua .callout-note title="Arrels d'una equació quadràtica"}
+El discriminant $\Delta = b^2 - 4ac$ determina la naturalesa de les arrels de $ax^2 + bx + c = 0$:
+
+```{pyodide}
+import math
+
+a, b, c = 1, -3, 2    # equació: x^2 - 3x + 2 = 0
+discriminant = b**2 - 4 * a * c
+
+if discriminant > 0:
+    r1 = (-b + math.sqrt(discriminant)) / (2 * a)
+    r2 = (-b - math.sqrt(discriminant)) / (2 * a)
+    print(f"Dues arrels reals: x₁ = {r1:.4f}, x₂ = {r2:.4f}")
+elif discriminant == 0:
+    r = -b / (2 * a)
+    print(f"Arrel doble: x = {r:.4f}")
+else:
+    print("Sense arrels reals (discriminant negatiu)")
+```
+
+La instrucció `import math` fa disponibles les funcions matemàtiques del mòdul estàndard `math`, com `math.sqrt()` (arrel quadrada), `math.pi` (π), `math.log()` (logaritme), etc. Els mòduls s'estudien en profunditat en el Tema 3; per ara n'hi ha prou amb saber que `import math` s'ha d'escriure abans d'usar qualsevol funció d'aquell mòdul. La notació `math.xxxxxx()`, per exemple `math.sqrt()`, indica que la funció `xxxxxx` pertany al mòdul `math`.
+:::
+
+### **2.5.4 Condicionals aniuats i expressió condicional**
+
+Un bloc `if` pot contenir un altre `if` al seu interior. Els condicionals aniuats permeten refinar la lògica pas a pas:
+
+```{pyodide}
+x = 3
+if x != 0:
+    if x > 0:
+        print("x és positiu")
+    else:
+        print("x és negatiu")
+else:
+    print("x és zero")
+```
+
+Quan la lògica es complica, sol ser preferible combinar condicions amb `and` i `or`, o usar `elif`, en lloc d'aniuar massa nivells.
+
+::: {.callout-note title="Expressió condicional (operador ternari)"}
+Python disposa d'una **expressió condicional** que assigna un valor segons una condició en una sola línia:
+
+```{pyodide}
+x = 7
+signe = "positiu" if x > 0 else "no positiu"
+print(signe)   # positiu
+```
+
+La sintaxi és `valor_si_true if condició else valor_si_false`. És útil per a assignacions simples, però convé evitar-la quan la lògica és complexa, ja que pot dificultar la lectura.
+:::
+
+---
+
+## 2.6. Control de Flux — Iteracions
+
+La **iteració** és el mecanisme que permet repetir un bloc d'instruccions un nombre determinat de vegades o mentre es compleixi una condició. Sense iteració, un programa només podria processar una quantitat fixa de dades coneguda en temps d'escriptura; amb iteració pot operar sobre col·leccions de mida arbitrària, aproximar resultats mitjançant successions o sèries, i executar processos que convergeixen a una solució.
+
+En matemàtiques la iteració té equivalents directes en la notació de sumatori $\sum$, productori $\prod$ i en la definició de successions per recurrència. Python proporciona dues estructures iteratives fonamentals: `while`, que repeteix mentre una condició sigui verdadera, i `for`, que recorre els elements d'una seqüència.
+
+### **2.6.1 El bucle `while` (iteració indefinida o condicional)**
+
+El bucle `while` repeteix un bloc d'instruccions **mentre** una condició sigui verdadera. Representa el concepte clàssic de les ciències de la computació on l'execució d'un bloc de codi depèn de l'estat actual del programa. S'anomena "indefinit" perquè el nombre de repeticions pot ser desconegut en iniciar el bucle.
+
+- **Fonament:** Es basa exclusivament en l'avaluació d'una **expressió booleana** (la condició).
+- **Mecanisme:** Abans d'entrar al cicle i a l'inici de cada repetició posterior, l'intèrpret avalua la condició. Si el resultat és `True`, el bloc de codi s'executa. Si és `False`, el flux salta a la primera instrucció que estigui fora del bucle.
+- **Teoria de l'estat:** Perquè un bucle `while` sigui teòricament segur, l'estat del programa ha de canviar dins del bloc. Si l'estat no altera mai la condició d'avaluació, es produeix un **bucle infinit**.
+
+```python
+while condició:
+    # bloc que es repeteix
+```
+
+:::{#nte-cua100 .callout-note title="Imprimir els quadrats perfectes menors que 100"}
+Emprant un bucle `while` es poden imprimir els quadrats perfectes menors que 100:
+
+```{pyodide}
+n = 1
+while n * n < 100:
+    print(n * n, end="  ")
+    n += 1
+print("\nFi del bucle")
+```
+
+En cada iteració s'avalua la condició. Tan aviat com és `False` (quan `n == 100`), el bucle acaba i l'execució continua amb la instrucció següent imprimint "Fi del bucle" en una nova línia. Observeu que `print("\nFi del bucle")` imprimeix un salt de línia amb `\n` abans del missatge.
+:::
+
+::: {#cau-while .callout-caution title="Bucle infinit"}
+Si la condició del `while` mai passa a `False`, el programa no acaba mai. Aquest error —el **bucle infinit**— és un dels més freqüents en començar a programar:
+
+```python
+# PERILL: bucle infinit (n sempre creix)
+n = 1
+while n > 0:
+    n += 1
+```
+
+Per aturar un programa bloquejat en un bucle infinit, prem **Ctrl+C** al terminal.
+:::
+
+#### **Usos típics del bucle `while`**
+
+Usos típics del bucle `while` inclouen:
+
+- **Repetir fins que es compleixi una condició** — cerca del primer múltiple:
+
+    ```{pyodide}
+    n = 1
+    while n % 13 != 0:
+        n += 1
+    print(n)   # primer múltiple de 13
+    ```
+
+- **Aproximació iterativa** — mètode de bisecció (vegeu [@wikipedia_biseccion]) per trobar una arrel:
+
+    ```{pyodide}
+    a, b = 1.0, 2.0
+    while b - a > 1e-10:
+        m = (a + b) / 2
+        if m ** 2 < 2:
+            a = m
+        else:
+            b = m
+    print(m)   # aproximació a √2
+    ```
+
+- **Convergència d'una successió** — iterar el mètode de Newton (vegeu [@wikipedia_newton]) fins que dos termes consecutius siguin indistingibles:
+
+    ```{pyodide}
+    x = 1.0
+    while True:
+        x_nou = (x + 2 / x) / 2   # mètode de Newton per a √2
+        if abs(x_nou - x) < 1e-12:
+            break
+        x = x_nou
+    print(x)
+    ```
+
+- **Validació d'entrada** — repetir fins a obtenir un valor vàlid (la funció `input()` es veurà a la secció 2.7):
+
+    ```python
+    n = int(input("Introdueix un enter positiu: "))
+    while n <= 0:
+        n = int(input("Ha de ser positiu. Torna-ho a intentar: "))
+    ```
+
+- **Dígits d'un nombre** — processar xifra a xifra:
+
+    ```{pyodide}
+    n = 123456
+    while n > 0:
+        print(n % 10)   # última xifra
+        n //= 10
+    ```
+
+#### **Instruccions `break` i `continue`**
+
+Dins de qualsevol bucle, dues instruccions permeten modificar el flux d'iteració:
+
+- **`break`**: interromp el bucle immediatament i salta al codi que ve després.
+- **`continue`**: salta a l'inici de la següent iteració, ometent la resta del bloc actual.
+
+```{pyodide}
+# break: trobar el primer divisor de n major que 1
+n = 77
+d = 2
+while d < n:
+    if n % d == 0:
+        print(f"El menor divisor de {n} major que 1 és {d}")
+        break
+    d += 1
+```
+
+```{pyodide}
+# continue: imprimir només els enters senars de l'1 al 10
+i = 0
+while i < 10:
+    i += 1
+    if i % 2 == 0:
+        continue   # salta a l'inici si i és parell
+    print(i, end="  ")
+# 1  3  5  7  9
+```
+
+#### **Disseny correcte d'un bucle `while`**
+
+Perquè un bucle `while` funcioni de forma correcta i predictible cal atendre cinc aspectes:
+
+1. **Inicialització**: totes les variables de la condició han d'estar definides abans de la primera avaluació.
+2. **Variant de bucle**: una expressió entera que decreix estrictament en cada iteració i està acotada inferiorment, garantint que el bucle acaba. La seva existència prova que l'algoritme no és infinit.
+3. **Invariant de bucle**: una propietat lògica que és verdadera abans de la primera iteració i es manté verdadera al final de cada una. La seva preservació garanteix que el bucle calcula el que es pretén calcular.
+4. **Casos límit**: la condició ha de gestionar de forma segura valors extrems o nuls per evitar errors en temps d'execució.
+5. **`break` i `continue` amb moderació**: el seu abús trenca el flux d'entrada i sortida única, dificultant la lectura i el raonament sobre el codi.
+
+::: {#tip-variantebucle .callout-tip title="Variant de bucle"}
+Una **variant de bucle** (*loop variant*) és una expressió de valor enter no negatiu associada a un bucle que satisfà dues condicions:
+
+1. **Decreix estrictament** en cada iteració: el seu valor després d'executar el cos del bucle és estrictament menor que el seu valor abans.
+2. **Està acotada inferiorment** per zero: no pot prendre valors negatius.
+
+Aquestes dues condicions juntes garanteixen que el bucle acaba en un nombre finit d'iteracions, ja que una successió d'enters no negatius que decreix estrictament no pot ser infinita.
+
+En la pràctica, la variant sol ser un comptador, la distància entre dos valors que convergeixen, o el nombre d'elements que queden per processar. Per exemple, en un bucle que recorre els dígits d'un enter `n` dividint-lo per 10 en cada iteració, la variant és el propi valor de `n`: decreix estrictament i arriba a 0 en un nombre finit de passos. L'existència d'una variant de bucle és l'eina formal per demostrar que un bucle **acaba**.
+:::
+
+::: {#tip-invarti .callout-tip title="Invariant de bucle"}
+Un **invariant de bucle** (*loop invariant*) és una propietat lògica sobre l'estat del programa que és verdadera abans de la primera iteració i es manté verdadera al final de cada iteració. Com a conseqüència, també és verdadera quan el bucle acaba, moment en què —combinada amb la negació de la condició del `while`— permet deduir que el resultat calculat és correcte.
+
+L'invariant captura formalment *què fa el bucle*: no com ho fa pas a pas, sinó quina propietat acumula o preserva en cada iteració. Per exemple, en un bucle que calcula la suma $\sum_{k=1}^{n} k$, l'invariant és que al final de la iteració $i$ la variable `suma` conté el valor $\sum_{k=1}^{i} k$.
+
+L'existència d'un invariant de bucle vàlid és l'eina formal per demostrar que un bucle calcula el que es pretén calcular, és a dir, la seva **correcció parcial**.
+:::
+
+La variant i l'invariant de bucle són les eines teòriques fonamentals del **raonament formal sobre bucles**. La variant garanteix que el bucle acaba; l'invariant garanteix que calcula el correcte. Si es pot exhibir una variant i un invariant vàlids, s'ha provat rigorosament que el bucle acaba i que el seu resultat és l'esperat.
+
+### **2.6.2 El bucle `for` (iteració definida) i l'objecte `range()`**
+
+El bucle `for` en Python itera sobre els elements d'una seqüència, per això es diu que és una iteració definida. Aquest és un cas on Python difereix conceptualment de llenguatges com C o C++. En aquells llenguatges, un `for` sol ser un `while` disfressat amb un comptador numèric (ex. `for(i=0; i<10; i++)`).
+
+En Python, el `for` és en realitat un bucle **"for-each"** (per a cada element). La seva base no és una condició matemàtica, sinó el consum sistemàtic dels elements d'un **objecte iterable**. Un objecte iterable és qualsevol objecte que pot lliurar els seus elements d'un en un en un ordre definit i sobre el qual es pot usar un bucle `for`.
+
+L'exemple més immediat d'objecte iterable són els objectes de la classe `range`. Mitjançant objectes `range` es generen seqüències d'enters que constitueixen la forma habitual de controlar el nombre de repeticions en un bucle `for`.
+
+El tipus `range()` genera seqüències d'enters de les tres formes següents:
+
+| Crida | Seqüència generada |
+|---|---|
+| `range(n)` | `0, 1, 2, …, n−1` |
+| `range(a, b)` | `a, a+1, …, b−1` |
+| `range(a, b, pas)` | `a, a+pas, a+2·pas, …` mentre el valor sigui `< b` |
+
+```{pyodide}
+for i in range(5):
+    print(i, end=" ")     # 0 1 2 3 4
+print()  # salt de línia
+
+for i in range(1, 6):
+    print(i, end=" ")     # 1 2 3 4 5
+print()  # salt de línia
+
+for i in range(0, 10, 2):
+    print(i, end=" ")     # 0 2 4 6 8
+print() # salt de línia
+
+for i in range(10, 0, -1):
+    print(i, end=" ")     # 10 9 8 7 6 5 4 3 2 1
+```
+
+::: {#imp-range .callout-important title="L'anatomia de l'objecte `range`"}
+Quan escrius `r = range(0, 10, 2)`, Python no crea ni emmagatzema en memòria una seqüència amb els nombres `0, 2, 4, 6, 8`. Això seria ineficient. En el seu lloc, l'objecte `range` només emmagatzema tres enters:
+
+- `start` (inici)
+- `stop` (fi)
+- `step` (salt)
+
+Els enters es produeixen d'un en un a mesura que el bucle els sol·licita (*lazy evaluation*). Gràcies a això, `range(10)` i `range(1000000000)` ocupen exactament la mateixa quantitat mínima de memòria.
+:::
+
+Entre els usos fonamentals del bucle `for` es troba el **patró acumulador**, que permet calcular sumes, productes i altres operacions agregades de manera eficient.
+
+::: {#imp-acumulador .callout-important title="El patró acumulador"}
+El **patró acumulador** és l'estructura més freqüent en programació numèrica: s'inicialitza una variable abans del bucle amb l'element neutre de l'operació i s'actualitza en cada iteració.
+
+```{pyodide}
+# Suma: S = 1 + 2 + … + n
+n = 100
+suma = 0                        # neutre de la suma
+for i in range(1, n + 1):
+    suma += i
+print(suma)                     # 5050  (= n·(n+1)/2)
+```
+
+El mateix esquema serveix per a productes:
+
+```{pyodide}
+# Factorial: n! = 1 × 2 × … × n
+n = 10
+factorial = 1                   # neutre del producte
+for i in range(2, n + 1):
+    factorial *= i
+print(factorial)                # 3628800
+```
+
+La variable acumuladora (`suma`, `factorial`) **s'ha d'inicialitzar fora del bucle** amb el valor neutre de l'operació: 0 per a sumes, 1 per a productes.
+:::
+
+Altres usos comuns del bucle `for` inclouen:
+
+- **Recórrer i processar una seqüència**:
+
+    ```{pyodide}
+    for x in range(1, 5):
+        print(x ** 3)   # cub de cada enter
+    ```
+
+- **Cerca** — detectar si un enter en un rang compleix una condició:
+
+    ```{pyodide}
+    for n in range(2, 50):
+        if n % 7 == 0:
+            print(n, "és múltiple de 7")
+    ```
+
+#### Exemples matemàtics d'ús del bucle `for`
+
+::: {#nte-fibonacci .callout-note title="Imprimir $n$ termes de la successió de Fibonacci"}
+La successió de Fibonacci es defineix per
+$$
+F_k = \begin{cases}
+0 & \text{si } k = 0 \\
+1 & \text{si } k = 1 \\
+F_{k-1} + F_{k-2} & \text{si } k \geq 2
+\end{cases}
+$$.
+El càlcul iteratiu utilitza dues variables que s'actualitzen simultàniament:
+
+```{pyodide}
+n = 15   # nombre de termes a imprimir
+a, b = 0, 1
+for i in range(n):
+    print(a, end="  ")
+    a, b = b, a + b
+```
+
+L'assignació simultània `a, b = b, a + b` avalua primer el costat dret complet i després assigna, de manera que no cal cap variable temporal.
+:::
+
+::: {#nte-sumserie .callout-note title="Càlcul de la suma parcial d'una sèrie"}
+Càlcul de la suma parcial
+
+$$
+S_n = \sum_{k=1}^{n} \frac{1}{k^2}
+$$,
+
+que convergeix a $\pi^2/6$ quan $n \to \infty$ (resultat conegut com a problema de Basilea, resolt per Euler el 1735):
+
+```{pyodide}
+import math
+
+n = 10000
+suma = 0.0
+for k in range(1, n + 1):
+    suma += 1 / k**2
+
+print(f"S_{n}   = {suma:.10f}")
+print(f"π²/6    = {math.pi**2 / 6:.10f}")
+print(f"Error   = {abs(suma - math.pi**2 / 6):.2e}")
+```
+:::
+
+::: {#nte-primos .callout-note title="Imprimir nombres primers"}
+Un nombre $p \geq 2$ és **primer** si no té divisors propis entre 2 i $\lfloor\sqrt{p}\rfloor$. El codi següent utilitza una variable booleana de tipus bandera (*flag*) per registrar si s'ha trobat algun divisor:
+
+```{pyodide}
+import math
+
+# Llistar tots els primers fins a 50
+for n in range(2, 51):
+    es_primer = True                          # hipòtesi inicial: n és primer
+    for d in range(2, int(math.sqrt(n)) + 1):
+        if n % d == 0:
+            es_primer = False                 # s'ha trobat un divisor
+            break                             # no cal continuar buscant
+    if es_primer:
+        print(n, end="  ")
+```
+:::
+
+::: {.callout-note title="Bucles aniuats"}
+Els bucles es poden **aniuar**, és a dir, es pot tenir un bucle dins d'un altre. Això ocorre principalment amb bucles `for`. Aniuar `while` és possible però poc freqüent. Hi ha ocasions on el bucle exterior és `for` i l'interior és `while`.
+
+Cada vegada que el bucle exterior avança una iteració, el bucle interior s'executa completament. El nombre total d'iteracions és el producte dels rangs dels dos bucles.
+
+```{pyodide}
+# Taula de multiplicar de l'1 al 6
+print(f"{'':4}", end="")
+for j in range(1, 7):
+    print(f"{j:4}", end="")
+print()
+print("-" * 28)
+for i in range(1, 7):
+    print(f"{i:4}", end="")
+    for j in range(1, 7):
+        print(f"{i*j:4}", end="")
+    print()
+```
+
+Amb bucles aniuats és fàcil generar costos computacionals elevats: un doble bucle sobre $n$ elements produeix $O(n^2)$ operacions. L'anàlisi de la **complexitat computacional** dels algoritmes (Tema 4) estudia aquest tipus de costos amb detall.
+:::
+
+### **2.6.3 Iteració sobre cadenes i `enumerate()`**
+
+Una cadena `str` és un iterable els elements del qual són els caràcters individuals (cada un al seu torn un `str` de longitud 1). El bucle `for` pot recórrer directament els caràcters d'una cadena:
+
+```{pyodide}
+paraula = "Python"
+for lletra in paraula:
+    print(lletra, end="-")    # P-y-t-h-o-n-
+```
+
+Si es vol conèixer la posició de cada caràcter, es pot usar `range()` amb `len()`:
+
+```{pyodide}
+paraula = "Python"
+for i in range(len(paraula)):
+    print(f"posició {i}: {paraula[i]}")
+```
+
+Una altra forma d'obtenir la posició de cada caràcter és usar el tipus `enumerate()`. Igual que `range`, `enumerate` és un tipus built-in de Python. Amb `enumerate(iterable)` es produeix un objecte iterable de parells `(índex, valor)` generats de forma mandrosa. Amb `index` s'obté la posició de l'element en la seqüència, i amb `valor` s'obté l'element en si. Això permet recórrer una cadena (o qualsevol iterable) i conèixer simultàniament l'índex de cada element:
+
+```{pyodide}
+for i, lletra in enumerate("abc"):
+    print(f"posició {i}: {lletra}")
+```
+
+Les cadenes que comencen amb `f` i contenen expressions entre claus `{}` s'anomenen **f-strings** (cadenes formatades). Es veuran a la secció 2.7.2.
+
+---
+
+## 2.7. Entrada i sortida bàsiques: fluxos entre teclat i pantalla
+
+La interacció entre el programa i l'usuari és fonamental en qualsevol aplicació. Python proporciona dues funcions built-in per a l'entrada i sortida bàsiques de dades: `print()` per mostrar informació al terminal i `input()` per llegir text introduït per l'usuari. Tot i que simples, aquestes dues funcions són suficients per construir programes interactius complets i constitueixen la base sobre la qual s'assenta qualsevol interfície de text.
+
+### **2.7.1 La funció `print()`**
+
+Ja vam veure anteriorment que `print()` escriu a la **sortida estàndard** (la pantalla en condicions normals). Accepta qualsevol nombre d'arguments separats per comes:
+
+```{pyodide}
+print("El resultat és", 42)           # El resultat és 42
+print(1, 2, 3)                         # 1 2 3  (separador per defecte: espai)
+print(1, 2, 3, sep=", ")               # 1, 2, 3
+print(1, 2, 3, sep=" | ")              # 1 | 2 | 3
+print("sense salt", end="")            # roman a la mateixa línia
+print(" — continuació")                # — continuació
+print()                                # línia en blanc
+```
+
+### **2.7.2 Cadenes formatades: f-strings**
+
+Les **f-strings** (cadenes formatades) són la forma més moderna, llegible i ràpida d'inserir variables i expressions dins de cadenes de text en Python. S'escriuen amb el prefix `f` (o `F`) just abans de les cometes (simples o dobles) i empren claus `{}` per indicar on s'ha d'injectar el valor d'una variable o una expressió.
+
+```{pyodide}
+n = 100
+suma = n * (n + 1) // 2
+print(f"Gauss va calcular que la suma de 1 a {n} és {suma}.")
+print(f"El quadrat de 7 és {7**2}.")
+```
+
+El veritable avantatge de les f-strings no és només inserir variables estàtiques; permeten executar codi Python vàlid directament dins de les claus. És possible fer càlculs matemàtics, cridar mètodes o usar funcions sense necessitat de crear variables temporals prèvies.
+
+```{pyodide}
+preu = 50
+impost = 0.21
+
+# Operació matemàtica directa
+print(f"El preu total amb IVA és {preu + (preu * impost)}")
+
+paraula = "python"
+# Crida a un mètode de cadena
+print(f"M'encanta programar en {paraula.capitalize()}!")
+```
+
+A partir de Python 3.8 es pot afegir un signe igual `=` després del nom de la variable (o expressió) dins de les claus. Això imprimeix tant el nom de la variable com el seu valor resultant, la qual cosa estalvia molt de temps en fer *depuració* (*debugging*) amb `print()`.
+
+```{pyodide}
+usuari_id = 4092
+velocitat_actual = 120
+
+print(f"{usuari_id=}")                # usuari_id=4092
+
+print(f"{velocitat_actual / 2 = }")   # velocitat_actual / 2 = 60.0
+```
+
+::: {.callout-note title="Especificadors de format en f-strings"}
+Els **especificadors de format** en una f-string s'escriuen dins de `{}` i permeten controlar la presentació del valor:
+
+| Especificador | Efecte | Exemple | Resultat |
+|:---:|---|---|---|
+| `:.nf` | `n` decimals fixos | `f"{3.14159:.2f}"` | `3.14` |
+| `:e` | Notació científica | `f"{12345.6:.3e}"` | `1.235e+04` |
+| `:g` | Decimal o científica segons magnitud | `f"{0.000123:.3g}"` | `0.000123` |
+| `:d` | Enter decimal | `f"{42:d}"` | `42` |
+| `:>n` | Alineat a la dreta en amplada `n` | `f"{7:>6d}"` | `     7` |
+| `:<n` | Alineat a l'esquerra en amplada `n` | `f"{'abc':<6}"` | `abc   ` |
+| `:0n` | Farcit amb zeros | `f"{7:06d}"` | `000007` |
+| `:,` | Separador de milers | `f"{1000000:,}"` | `1,000,000` |
+
+:::
+
+### **2.7.3 La funció `input()`**
+
+`input()` atura l'execució del programa, mostra un missatge opcional en pantalla i espera que l'usuari escrigui alguna cosa i premi Retorn. **Sempre retorna una cadena de text** (`str`), independentment del que l'usuari hagi escrit.
+
+```python
+text = input("Escriu alguna cosa: ")
+print(f"Has escrit: {text}")
+print(type(text))              # <class 'str'>
+```
+
+Per treballar amb valors numèrics, cal convertir la cadena retornada per `input()`:
+
+```python
+n = int(input("Introdueix un nombre enter: "))
+print(f"El quadrat de {n} és {n**2}.")
+
+x = float(input("Introdueix un nombre real: "))
+print(f"La seva arrel quadrada és {x**0.5:.6f}.")
+```
+
+::: {#cau-input .callout-caution title="Oblidar que input() sempre retorna str"}
+Un dels errors més comuns en començar amb Python:
+
+```python
+n = input("Introdueix n: ")
+resultat = n + 1     # TypeError: can only concatenate str (not "int") to str
+```
+
+La solució és convertir explícitament el tipus abans d'operar:
+
+```python
+n = int(input("Introdueix n: "))
+resultat = n + 1     # correcte
+```
+:::
+
+::: {#nte-calculadora .callout-note title="Calculadora interactiva"}
+Implementem una calculadora bàsica que sol·licita dos nombres i una operació a l'usuari, i després mostra el resultat:
+
+```python
+print("=== Calculadora bàsica ===")
+a = float(input("Primer nombre: "))
+b = float(input("Segon nombre: "))
+op = input("Operació (+, -, *, /): ")
+
+if op == "+":
+    resultat = a + b
+elif op == "-":
+    resultat = a - b
+elif op == "*":
+    resultat = a * b
+elif op == "/":
+    if b != 0:
+        resultat = a / b
+    else:
+        print("Error: divisió per zero.")
+        resultat = None
+else:
+    print(f"Operació '{op}' no reconeguda.")
+    resultat = None
+
+if resultat is not None:
+    print(f"{a} {op} {b} = {resultat:.6g}")
+```
+:::
+
+Per provar els exemples d'ús de la funció `input()`, cal executar el codi en un entorn que suporti l'entrada interactiva, com un IDE (Visual Studio Code local o en un Codespace de GitHub) que permeti la interacció amb l'usuari. En entorns d'execució no interactius, com alguns notebooks o plataformes en línia, la funció `input()` pot no funcionar correctament.
+
+Per això per als exemples anteriors amb `input()`:
+- genereu un fitxer de Python `test_input.py`,
+- copieu el codi dels exemples i enganxeu-lo en aquell fitxer,
+- executeu-lo per veure la interacció al terminal.
+
+## Bibliografia {.unnumbered}
+
+::: {#refs}
+:::

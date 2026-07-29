@@ -160,6 +160,8 @@ Los tipos integrados (o built-in types) en Python son los tipos de datos fundame
 | Booleano | `bool` | `True`, `False` | Subtipo de `int`; `True == 1` y `False == 0`. |
 | Nulo | `NoneType` | `None` | Representa la ausencia de valor. |
 
+Para averiguar el tipo de cualquier objeto o variable se usa la función built-in `type()`. Para mostrar valores en la salida estándar se usa la función built-in `print()`.
+
 ::: {#imp-type-print .callout-important title="Funciones built-in `type()` y `print()`"}
 La función `type()` devuelve el tipo de cualquier objeto o variable:
 
@@ -189,7 +191,7 @@ print("hola", end=" ")
 print("mundo")                # hola mundo  (en la misma línea)
 ```
 
-Las funciones `type` y `print` son funciones built-in: vienen integradas en el intérprete y están disponibles en cualquier programa sin necesidad de importar nada.
+Las funciones `type` y `print` vienen integradas en el intérprete y están disponibles en cualquier programa sin necesidad de importar nada.
 :::
 
 ### **2.3.1 Enteros (`int`)**
@@ -500,6 +502,8 @@ print(-2 ** 2)         # -4   (** antes que signo: -(2**2))
 print((-2) ** 2)       # 4
 ```
 :::
+
+Para la división tenemos dos operadores distintos: `/` y `//`. El primero devuelve un flotante, mientras que el segundo devuelve el cociente entero (*floor division*). El operador `%` devuelve el resto (el módulo) de la división entera.
 
 ::: {#imp-division .callout-important title="División entera y módulo"}
 En Python 3, el operador `/` **siempre devuelve un flotante**, incluso cuando el resultado es un entero:
@@ -816,13 +820,10 @@ else:
     print("Sin raíces reales (discriminante negativo)")
 ```
 
-:::
-
-::: {.callout-note appearance="simple"}
 La instrucción `import math` hace disponibles las funciones matemáticas del módulo estándar `math`, como `math.sqrt()` (raíz cuadrada), `math.pi` (π), `math.log()` (logaritmo), etc. Los módulos se estudian en profundidad en el Tema 3; por ahora basta con saber que `import math` debe escribirse antes de usar cualquier función de ese módulo. La notación `math.xxxxxx()`, por ejemplo `math.sqrt()`, indica que la función `xxxxxx` pertenece al módulo `math`.
 :::
 
-### **2.5.4 Condicionales anidados**
+### **2.5.4 Condicionales anidados y expresión condicional**
 
 Un bloque `if` puede contener otro `if` en su interior. Los condicionales anidados permiten refinar la lógica paso a paso:
 
@@ -954,7 +955,7 @@ Usos típicos del bucle `while` incluyen:
         n //= 10
     ```
 
-#### **`break` y `continue`**
+#### **Instrucciones `break` y `continue`**
 
 Dentro de cualquier bucle, dos instrucciones permiten modificar el flujo de iteración:
 
@@ -1254,11 +1255,11 @@ precio = 50
 impuesto = 0.21
 
 # Operación matemática directa
-print(f"El precio total con IVA es {precio + (precio * impuesto)}") # El precio total con IVA es 60.5
+print(f"El precio total con IVA es {precio + (precio * impuesto)}") 
 
 palabra = "python"
 # Llamada a un método de cadena
-print(f"Me encanta programar en {palabra.capitalize()}!") # Me encanta programar en Python!
+print(f"Me encanta programar en {palabra.capitalize()}!") 
 
 ```
 
@@ -1355,6 +1356,13 @@ if resultado is not None:
     print(f"{a} {op} {b} = {resultado:.6g}")
 ```
 :::
+
+Para probar los ejemplos de uso de la función `input()`, es necesario ejecutar el código en un entorno que soporte la entrada interactiva, como un IDE (Visual Studio Code local o en un Codespace de GitHub) que permita la interacción con el usuario. En entornos de ejecución no interactivos, como algunos notebooks o plataformas en línea, la función `input()` puede no funcionar correctamente.
+
+Por ello para los ejemplos anteriores con `input()`:
+- genere un fichero de Python `test_input.py`,
+- copie el código en los ejemplos y peguelo en ese fichero,
+- ejecútelo para ver la interacción en la terminal.
 
 ## Bibliografía {.unnumbered}
 
