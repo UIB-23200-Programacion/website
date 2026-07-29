@@ -22,9 +22,11 @@ Per fer-ho amb rapidesa, el processador utilitza components interns com la unita
 
 La descripció anterior del funcionament de l'ordinador es basa principalment en l'arquitectura de von Neumann. En aquest model, la CPU executa instruccions emmagatzemades en memòria seguint un cicle seqüencial de cerca, descodificació i execució, amb una mateixa memòria per a dades i instruccions. En els ordinadors moderns, aquesta idea continua sent la base conceptual, tot i que sol aparèixer combinada amb trets de Harvard modificada, com ara cachés separades per a instruccions i dades, per millorar el rendiment.
 
-### Arquitectures d'ordinadors
+### 1.1.1 Arquitectures d'ordinadors
 
-#### Arquitectura de Von Neumann
+L'arquitectura dels ordinadors moderns es basa fonamentalment en l'**Arquitectura de Von Neumann**, un model conceptual dissenyat a la dècada de 1940 que continua vigent, tot i que altament optimitzat. El seu principi clau és el concepte del "programa emmagatzemat", on tant les dades que es processen com les instruccions que dicten com processar-les resideixen en la mateixa memòria.
+
+#### **Arquitectura de Von Neumann**
 
 La majoria dels ordinadors moderns es basen en el model proposat el 1945 per John
 von Neumann, que estableix que **instruccions i dades comparteixen el mateix espai de
@@ -47,13 +49,13 @@ Fetch-Decode-Execute).
 
 En l'arquitectura de von Neumann, instruccions i dades comparteixen una mateixa memòria i, per tant, també solen compartir el mateix camí d'accés. El funcionament es basa en el cicle d'instrucció: la CPU pren una instrucció de memòria, la interpreta, l'executa i després passa a la següent. Aquest model és conceptualment senzill i continua sent la base de molts sistemes actuals, tot i que presenta l'anomenat **coll d'ampolla de von Neumann**, ja que l'accés seqüencial a una memòria compartida limita el rendiment quan la CPU necessita instruccions i dades al mateix temps.
 
-#### Arquitectura Harvard modificada
+#### **Arquitectura Harvard modificada**
 
 L'**arquitectura Harvard modificada** és una variant de l'arquitectura Harvard que manté separades les memòries o busos d'instruccions i dades, però permet que el contingut de la memòria d'instruccions pugui llegir-se també com a dades. Això combina la velocitat de l'accés paral·lel amb una flexibilitat més gran que la Harvard pura, i per això apareix en molts processadors moderns, especialment en microcontroladors i DSP (*Digital Signal Processor*).
 
 En els ordinadors actuals, el model teòric es complementa amb una jerarquia de memòria: registres, caché L1/L2/L3, RAM i emmagatzematge secundari. La CPU intenta treballar primer amb la informació més propera i ràpida, perquè accedir a la RAM o al SSD és molt més costós en temps. Per això, tot i que l'ordinador continuï recolzant-se en la lògica de von Neumann o Harvard modificada, en la pràctica el rendiment depèn de l'organització del subsistema de memòria i de la capacitat del processador per explotar el paral·lelisme intern.
 
-### Tipus d'ordinadors
+### 1.1.2 Tipus d'ordinadors
 
 Des d'una perspectiva classificatòria, els ordinadors poden estudiar-se segons la seva capacitat de processament, la seva finalitat o el seu grau de portabilitat. Aquesta tipologia resulta útil per comprendre tant l'evolució històrica de la informàtica com l'especialització actual dels sistemes computacionals.
 
@@ -62,54 +64,39 @@ En l'àmbit universitari, convé distingir entre sistemes de propòsit general, 
 | Tipus d'ordinador | Definició | Característiques principals | Usos habituals |
 |---|---|---|---|
 | Superordinador | Sistema informàtic d'altíssima capacitat de processament, dissenyat per executar operacions complexes en paral·lel. | Gran potència de càlcul, arquitectura massivament paral·lela, elevat consum energètic i alt cost. | Simulació científica, meteorologia, intel·ligència artificial, modelatge físic i criptografia. |
-| Mainframe | Ordinador de gran escala orientat al tractament massiu de dades i a la gestió simultània de múltiples usuaris. | Alta fiabilitat, disponibilitat contínua, gran capacitat d'E/S i forta tolerància a fallades. | Banca, administració pública, assegurances, telecomunicacions i grans corporacions. |
 | Servidor | Equip dedicat a proporcionar serveis, recursos o dades a altres ordinadors dins d'una xarxa. | Estabilitat, escalabilitat, capacitat d'emmagatzematge i processament sostingut. | Allotjament web, bases de dades, virtualització, correu electrònic i arxius compartits. |
-| Estació de treball | Ordinador d'alt rendiment destinat a tasques tècniques o científiques que exigeixen gran capacitat de còmput i gràfics. | Processadors potents, memòria abundant, GPU dedicada i components d'alta qualitat. | Disseny assistit per ordinador, modelatge 3D, edició audiovisual, simulació i recerca. |
 | Ordinador de sobretaula | Sistema informàtic fix, generalment modular i ampliable, pensat per a ús general. | Bon equilibri entre rendiment, cost i capacitat d'ampliació. | Ús domèstic, ofimàtica, programació, educació i videojocs. |
 | Ordinador portàtil | Equip compacte i integrat que combina pantalla, teclat, bateria i sistema de processament en un sol dispositiu. | Alta portabilitat, autonomia energètica i menor capacitat d'ampliació que un sobretaula. | Treball mòbil, docència, estudi i ús professional itinerant. |
 | Mini PC | Ordinador de mida reduïda amb baix consum i prestacions variables segons la configuració. | Format compacte, eficiència energètica i ocupació mínima d'espai. | Entorns d'oficina, centres multimèdia, laboratoris i aplicacions embegudes. |
 | Tauleta | Dispositiu portàtil amb interfície tàctil, concebut per a la interacció directa amb l'usuari. | Lleugeresa, mobilitat, simplicitat d'ús i dependència de pantalla tàctil. | Lectura, anotació, docència, navegació web i consum multimèdia. |
-| Smartphone | Dispositiu mòbil de propòsit general que integra funcions de telefonia, computació i connectivitat avançada. | Gran integració de sensors, connectivitat permanent i elevada portabilitat. | Comunicació, aplicacions mòbils, navegació, fotografia i productivitat bàsica. |
-| Wearable | Dispositiu electrònic vestible que s'incorpora al cos o a la vestimenta. | Mida reduïda, sensors integrats i funcionament complementari a altres dispositius. | Monitoratge d'activitat física, salut, notificacions i assistència contextual. |
 
 La classificació de la taula anterior mostra que la noció d'ordinador abasta des de grans sistemes de càlcul científic fins a dispositius personals altament portàtils. En conseqüència, l'elecció d'un tipus o un altre depèn de variables com rendiment, cost, mobilitat, fiabilitat i àmbit d'aplicació.
 
-### Components d'un ordinador
+### 1.1.3 Components d'un ordinador
 
 La taula següent resumeix els components principals d'un ordinador modern incloent-hi exemples actuals de gamma comuna/alta.
 
 | Component | Funció | Tipus actuals / exemples |
 |---|---|---|
 | Processador (CPU) | Executa instruccions i coordina el sistema. | Intel Core i9, Intel Core Ultra, AMD Ryzen 9, Apple M-series. |
-| Placa base | Connecta i comunica tots els components. | Chipsets amb suport per a DDR5, PCIe 4.0/5.0, M.2 NVMe, USB-C/USB4, Wi‑Fi 6E/7. |
 | Memòria RAM | Manté dades i instruccions d'ús immediat. | DDR5, i en alguns equips encara DDR4; en portàtils també LPDDR5/LPDDR5X. |
 | Emmagatzematge | Desa sistema, programes i arxius. | SSD NVMe M.2, SSD SATA, HDD per a arxius massius. |
 | Targeta gràfica (GPU) | Accelera gràfics i còmput paral·lel. | NVIDIA GeForce RTX, AMD Radeon RX, i iGPU integrades en CPU modernes. |
-| Font d'alimentació | Subministra energia a l'equip. | Fonts ATX de 80 Plus Bronze/Gold/Platinum, segons potència i eficiència. |
-| Refrigeració | Dissipa calor i manté estabilitat. | Dissipadors per aire, AIO líquida, ventiladors PWM d'alt flux. |
-| Caixa o xassís | Allotja i protegeix els components. | ATX, microATX, Mini-ITX, torres compactes i mini-PC. |
 | Xarxa i connectivitat | Permet accés a Internet i perifèrics. | Ethernet Gigabit/2.5G/10G, Wi‑Fi 6/6E/7, Bluetooth, USB-C. |
 
-**Processador (CPU)**: les seves característiques clau són la freqüència de rellotge (GHz), el nombre de nuclis i la quantitat de caché.
-
-**Memòria d'Accés Aleatori (RAM, *Random Access Memory* en anglès)**: emmagatzematge temporal i ràpid que conté el sistema operatiu, els programes en execució i les dades actives. En apagar l'ordinador, el seu contingut es perd.
-
-**Emmagatzematge**: les unitats d'estat sòlid (SSD NVMe, *Solid State Drive* en anglès) són avui l'estàndard. Desen el sistema operatiu, els programes i els arxius de manera permanent. Són entre 10 i 100 vegades més ràpides que les unitats de disc dur (HDD, *Hard Disk Drive* en anglès) tradicionals.
-
-**Targeta gràfica (GPU, *Graphics Processing Unit* en anglès)**: imprescindible per a l'entrenament de models d'aprenentatge profund.
-
-::: {.callout-tip appearance="simple" title="Consell: Quin ordinador comprar?"}
+::: {.callout-tip appearance="simple" title="Consell: Quin ordinador fer servir?"}
 **Per a aquest curs, qualsevol portàtil modern és més que suficient, ja que el treball
 computacionalment intensiu es realitza als servidors de GitHub Codespaces.**
 
 No obstant això, si voleu tenir un ordinador per treballar localment, la taula següent
-presenta tres configuracions segons el pressupost disponible:
+presenta tres configuracions possibles:
 
 | Nivell | CPU | RAM | Emmagatzematge | Gràfica | Ús recomanat |
 |---|---|---:|---|---|---|
-| Barat | Intel Core i3 / Ryzen 3 o equivalent, 2 nuclis / 4 fils | 8 GB | SSD SATA de 256 GB | Integrada | Programació bàsica en Python, exercicis, scripts petits, VS Code amb poques extensions. |
-| Equilibrat | Intel Core i5 / Ryzen 5 o equivalent, 4 a 6 nuclis | 16 GB | SSD NVMe de 512 GB | Integrada | Estudi còmode, diversos projectes oberts, navegador + VS Code + terminal sense massa lentitud. |
+| Mínima | Intel Core i3 / Ryzen 3 o equivalent, 2 nuclis / 4 fils | 8 GB | SSD SATA de 256 GB | Integrada | Programació bàsica en Python, exercicis, scripts petits, VS Code amb poques extensions. |
+| Equilibrada | Intel Core i5 / Ryzen 5 o equivalent, 4 a 6 nuclis | 16 GB | SSD NVMe de 512 GB | Integrada | Estudi còmode, diversos projectes oberts, navegador + VS Code + terminal sense massa lentitud. |
 | Ideal | Intel Core i7 / Core Ultra 7 / Ryzen 7 o equivalent, 8 nuclis o més | 16 a 32 GB | SSD NVMe d'1 TB | Integrada o dedicada lleugera | Treball fluid amb projectes grans, Jupyter, anàlisi de dades, Docker lleuger i multitasca intensa. |
+
 
 **Sistema operatiu**: Windows 10/11, macOS 12 o posterior, o qualsevol distribució
 Linux moderna. Els tres són completament compatibles amb les eines del curs.
@@ -123,7 +110,7 @@ biblioteca de la UIB.
 
 ## 1.2. Llenguatges de programació i Python
 
-### Llenguatges d'alt nivell
+### 1.2.1. Llenguatges d'alt nivell
 
 Els ordinadors només comprenen el [**llenguatge de màquina**](https://ca.wikipedia.org/wiki/Llenguatge_de_m%C3%A0quina){target="_blank" rel="noopener noreferrer"}: seqüències de zeros i uns
 específiques per a cada arquitectura. Escriure directament en codi màquina és inviable
@@ -138,7 +125,7 @@ pot contenir instruccions vagues o contradictòries: l'ordinador executa exactam
 el que se li indica, ni més ni menys.
 :::
 
-### Compilació vs. interpretació
+### 1.2.2. Compilació vs. interpretació
 
 Perquè el codi font en alt nivell sigui executable, s'ha de transformar en
 instruccions que el processador comprengui (llenguatge de màquina). Hi ha dues estratègies principals:
@@ -148,10 +135,12 @@ instruccions que el processador comprengui (llenguatge de màquina). Hi ha dues 
   El resultat és un fitxer executable independent. Exemples: C, C++, Fortran, Rust.
 - **Interpretació**: el codi es llegeix i s'executa *línia a línia* en temps d'execució
   per un programa anomenat intèrpret. No es genera cap executable independent.
-  Exemples: Python, R, Ruby.
+  Exemple: Bash.
 - **Models híbrids**: alguns llenguatges compilen a un [*bytecode*](https://ca.wikipedia.org/wiki/Bytecode){target="_blank" rel="noopener noreferrer"} intermedi que després
-  executa una màquina virtual. Exemples: Java (JVM), Python (CPython).
+  executa una màquina virtual. Exemples: Python (CPython), Java (JVM).
 :::
+
+Una comparació resumida de compilació i interpretació es mostra a la taula següent:
 
 | Característica | Compilat | Interpretat |
 | :--- | :--- | :--- |
@@ -160,7 +149,7 @@ instruccions que el processador comprengui (llenguatge de màquina). Hi ha dues 
 | Cicle de desenvolupament | Més lent (compilar → executar) | Més ràpid (executar directament) |
 | Detecció d'errors | En temps de compilació | En temps d'execució |
 
-### El llenguatge Python
+### 1.2.3. El llenguatge Python
 
 Python va ser creat per Guido van Rossum i publicat el 1991. Avui és el llenguatge més
 utilitzat en ciència de dades, intel·ligència artificial i computació científica, i un
@@ -182,7 +171,7 @@ claus ni punt i coma), el tipatge dinàmic (les variables no declaren el seu tip
 científic madur (NumPy, Matplotlib, SymPy, pandas) i la integració nativa amb
 eines d'IA.
 
-#### L'intèrpret interactiu: Python REPL
+#### **L'intèrpret interactiu: Python REPL**
 
 Una de les característiques més útils de Python és el seu **intèrpret interactiu**, conegut com a **REPL** (*Read-Eval-Print Loop*): llegeix una expressió, l'avalua, n'imprimeix el resultat i espera la següent. S'hi accedeix escrivint `python` al terminal.
 
@@ -216,7 +205,7 @@ s'actualitza amb cada versió del llenguatge.
 
 Un **IDE** (*Integrated Development Environment* en anglès o Entorn de Desenvolupament Integrat en català) és una aplicació que integra en una sola interfície les eines necessàries per escriure, executar i depurar programes.
 
-### Característiques comunes
+### 1.3.1. Característiques comunes
 
 Els IDEs moderns comparteixen un conjunt de funcionalitats essencials:
 
@@ -236,12 +225,10 @@ principiants. Aprendre a fer-lo servir des del principi —en lloc de dependre e
 de `print`— accelera significativament la detecció i correcció d'errors.
 :::
 
-### Locals vs. el núvol
-
 Els entorns de desenvolupament poden executar-se **localment** a l'ordinador del
 programador o **al núvol** en servidors remots accessibles des del navegador.
 
-#### Visual Studio Code (local)
+#### **Visual Studio Code (local)**
 
 **Visual Studio Code** (VS Code) és un editor de codi lleuger, extensible i gratuït
 desenvolupat per Microsoft, el més utilitzat en l'actualitat [@vscode_docs]. Quan s'instal·la
@@ -257,7 +244,7 @@ La interfície s'organitza en:
 
 La documentació oficial de VS Code es pot consultar a [@vscode_docs].
 
-#### Visual Studio Code a GitHub Codespaces
+#### **Visual Studio Code a GitHub Codespaces**
 
 **GitHub Codespaces** proporciona VS Code completament configurat i executant-se en
 servidors de Microsoft al núvol, accessible des de qualsevol navegador sense instal·lar
@@ -293,7 +280,7 @@ La incorporació de la intel·ligència artificial al flux de treball del progra
 un dels canvis més significatius dels últims anys. Comprendre aquestes eines
 —i els seus límits— és avui part de la formació de qualsevol programador.
 
-### Models de Llenguatge Grans (LLMs)
+### 1.4.1. Models de Llenguatge Grans (LLMs)
 
 ::: {#imp-llm .callout-important title="LLM"}
 Un **LLM** (*Large Language Model*, Model de Llenguatge Gran) és un sistema d'intel·ligència
@@ -314,7 +301,7 @@ permet al model relacionar qualsevol parell de paraules en una seqüència
 independentment de la seva distància.
 :::
 
-### Assistents d'IA de codi
+### 1.4.2. Assistents d'IA de codi
 
 Un **assistent de codi** (*coding assistant* o *copilot*) és una eina d'IA integrada en l'entorn de
 desenvolupament que ajuda el programador durant l'escriptura del codi. A diferència d'un cercador
@@ -357,7 +344,7 @@ es comprova sistemàticament que fa el que ha de fer.
 
 La documentació oficial de GitHub Copilot es pot consultar a [@copilot_docs].
 
-### Vibe Coding
+### 1.4.3. Vibe Coding
 
 El terme **vibe coding** va ser encunyat per Andrej Karpathy el febrer de 2025 per
 descriure una forma de programar en la qual el desenvolupador delega gairebé per complet
@@ -377,7 +364,7 @@ entre usar una calculadora comprenent les matemàtiques i usar-la sense saber qu
 operació realitzar. La IA amplifica la capacitat del programador competent; no
 reemplaça la competència que encara no existeix.
 
-### Agents de desenvolupament autònoms
+### 1.4.4. Agents de desenvolupament autònoms
 
 Els **agents de desenvolupament autònoms** (*coding agents*) són sistemes d'IA capaços de
 descompondre tasques de programació complexes en subtasques, executar codi, llegir la
@@ -398,14 +385,20 @@ Exemples representatius el 2025–2026:
 | [Cursor Agent](https://www.cursor.com/){target="_blank" rel="noopener noreferrer"} | Anysphere | IDE basat en VS Code amb agent que pot editar múltiples fitxers, executar codi i corregir errors en bucle. |
 | [Claude Code](https://www.anthropic.com/claude-code){target="_blank" rel="noopener noreferrer"} | Anthropic | Agent de línia d'ordres que entén bases de codi completes i executa tasques d'enginyeria end-to-end. |
 | [Codex CLI](https://openai.com/codex){target="_blank" rel="noopener noreferrer"} | OpenAI | Agent de línia d'ordres que executa tasques de programació en un entorn segur (*sandbox*), amb accés a terminal, fitxers i internet. |
-| [Baidu Comate](https://comate.baidu.com/){target="_blank" rel="noopener noreferrer"} | Baidu | Assistent de codi basat en ERNIE; extensió per a VS Code i JetBrains amb generació, explicació i revisió de codi. |
-| [MarsCode](https://www.marscode.com/){target="_blank" rel="noopener noreferrer"} | ByteDance | IDE al núvol (basat en VS Code) amb agent integrat basat en els models Doubao; orientat al desenvolupament col·laboratiu. |
 | [CodeGeeX](https://codegeex.cn/){target="_blank" rel="noopener noreferrer"} | Zhipu AI / Tsinghua | Model de codi obert desenvolupat a la Universitat de Tsinghua; extensió per a VS Code amb completat i xat multilingüe. |
 
 Aquests sistemes representen l'estat de l'art actual, però presenten limitacions
 importants: poden acumular errors silenciosament, són difícils d'auditar i
 requereixen que el programador humà mantingui el criteri sobre què construir i com
 verificar-ho. L'ordre d'aparició dels agents a la taula no indica qualitat ni rendiment: cada un té fortaleses i debilitats diferents.
+
+::: {.callout-tip appearance="simple" title="Consell Fonamental: Com aprendre a programar en l'era de la IA?"}
+Aprèn a programar **amb** la IA, no **a través** d'ella. La IA és una eina que amplifica el que ja saps: com més sòlids siguin els teus fonaments, més profit en trauràs i més críticament podràs avaluar el que et suggereix. Un programador que no entén els conceptes bàsics no pot distingir un bon suggeriment d'un de dolent, no pot depurar el codi generat quan falla, i no pot adaptar-lo al seu problema concret.
+
+Aquests fonaments tenen nom concret: saber què és una variable i com referencia un objecte en memòria, entendre la diferència entre tipus mutables i immutables, raonar sobre el flux de control d'un condicional o un bucle, ser capaç d'identificar la variant i l'invariant d'un bucle `while`, distingir quan usar `for` i quan `while`, i comprendre per què `0.1 + 0.2 != 0.3`. Són conceptes que una IA pot explicar però que només s'interioritzen programant, cometent els errors que aquests conceptes generen i resolent-los.
+
+En aquestes notes aquests fonaments i conceptes es presenten en blocs encapçalats amb *Fonament Teòric* o *Concepte Clau*, has de prestar-los especial atenció. La IA pot ser la teva companya d'aprenentatge en aquest procés, però la feina d'entendre és teva.
+:::
 
 ## Bibliografia {.unnumbered}
 
