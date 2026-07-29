@@ -204,7 +204,6 @@ format:
     include-after-body:
       text: |
         <script src="/logo-href.js"></script>
-        <script src="/callout-tooltips.js"></script>
 
 freeze: auto
 editor: source
