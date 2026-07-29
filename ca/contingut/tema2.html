@@ -20,7 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -72,10 +127,40 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Tema 2: Components del Llenguatge i Control de Flux – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/variablesCvsPython.jpg">
 <meta property="og:site_name" content="Programación (23200)">
 </head>
 
@@ -522,8 +607,60 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En aquesta pàgina</h2>
+   
+  <ul>
+  <li><a href="#scripts-de-python-vs.-execució-interactiva" id="toc-scripts-de-python-vs.-execució-interactiva" class="nav-link active" data-scroll-target="#scripts-de-python-vs.-execució-interactiva">2.1. Scripts de Python vs.&nbsp;Execució interactiva</a>
+  <ul class="collapse">
+  <li><a href="#la-sessió-interactiva-repl" id="toc-la-sessió-interactiva-repl" class="nav-link" data-scroll-target="#la-sessió-interactiva-repl"><strong>2.1.1 La sessió interactiva (REPL)</strong></a></li>
+  <li><a href="#scripts-.py" id="toc-scripts-.py" class="nav-link" data-scroll-target="#scripts-.py"><strong>2.1.2 Scripts <code>.py</code></strong></a></li>
+  <li><a href="#notebooks-jupyter-i-marimo" id="toc-notebooks-jupyter-i-marimo" class="nav-link" data-scroll-target="#notebooks-jupyter-i-marimo"><strong>2.1.3 Notebooks: Jupyter i Marimo</strong></a></li>
+  </ul></li>
+  <li><a href="#variables-i-els-seus-tipus" id="toc-variables-i-els-seus-tipus" class="nav-link" data-scroll-target="#variables-i-els-seus-tipus">2.2. Variables i els seus tipus</a>
+  <ul class="collapse">
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><strong>2.2.1 Variables</strong></a></li>
+  <li><a href="#noms-de-variables" id="toc-noms-de-variables" class="nav-link" data-scroll-target="#noms-de-variables"><strong>2.2.2 Noms de variables</strong></a></li>
+  </ul></li>
+  <li><a href="#tipus-integrats-built-in-simples" id="toc-tipus-integrats-built-in-simples" class="nav-link" data-scroll-target="#tipus-integrats-built-in-simples">2.3 Tipus integrats (built-in) simples</a>
+  <ul class="collapse">
+  <li><a href="#enters-int" id="toc-enters-int" class="nav-link" data-scroll-target="#enters-int"><strong>2.3.1 Enters (<code>int</code>)</strong></a></li>
+  <li><a href="#flotants-float" id="toc-flotants-float" class="nav-link" data-scroll-target="#flotants-float"><strong>2.3.2 Flotants (<code>float</code>)</strong></a></li>
+  <li><a href="#nombres-complexos-complex" id="toc-nombres-complexos-complex" class="nav-link" data-scroll-target="#nombres-complexos-complex"><strong>2.3.3 Nombres complexos (<code>complex</code>)</strong></a></li>
+  <li><a href="#cadenes-str" id="toc-cadenes-str" class="nav-link" data-scroll-target="#cadenes-str"><strong>2.3.4 Cadenes (<code>str</code>)</strong></a></li>
+  <li><a href="#booleans-bool" id="toc-booleans-bool" class="nav-link" data-scroll-target="#booleans-bool"><strong>2.3.5 Booleans (<code>bool</code>)</strong></a></li>
+  <li><a href="#nul-nonetype" id="toc-nul-nonetype" class="nav-link" data-scroll-target="#nul-nonetype"><strong>2.3.6 Nul (<code>NoneType</code>)</strong></a></li>
+  </ul></li>
+  <li><a href="#operadors-aritmètics-de-comparació-relacionals-i-lògics" id="toc-operadors-aritmètics-de-comparació-relacionals-i-lògics" class="nav-link" data-scroll-target="#operadors-aritmètics-de-comparació-relacionals-i-lògics">2.4 Operadors aritmètics, de comparació (relacionals) i lògics</a>
+  <ul class="collapse">
+  <li><a href="#operadors-dassignació-composta" id="toc-operadors-dassignació-composta" class="nav-link" data-scroll-target="#operadors-dassignació-composta"><strong>2.4.1 Operadors d’assignació composta</strong></a></li>
+  <li><a href="#operadors-de-comparació-relacionals" id="toc-operadors-de-comparació-relacionals" class="nav-link" data-scroll-target="#operadors-de-comparació-relacionals"><strong>2.4.2 Operadors de comparació (relacionals)</strong></a></li>
+  <li><a href="#operadors-lògics" id="toc-operadors-lògics" class="nav-link" data-scroll-target="#operadors-lògics"><strong>2.4.3 Operadors lògics</strong></a></li>
+  <li><a href="#conversió-de-tipus" id="toc-conversió-de-tipus" class="nav-link" data-scroll-target="#conversió-de-tipus"><strong>2.4.4 Conversió de tipus</strong></a></li>
+  </ul></li>
+  <li><a href="#control-de-flux-estructures-o-sentències-condicionals" id="toc-control-de-flux-estructures-o-sentències-condicionals" class="nav-link" data-scroll-target="#control-de-flux-estructures-o-sentències-condicionals">2.5. Control de Flux — Estructures o Sentències Condicionals</a>
+  <ul class="collapse">
+  <li><a href="#estructura-if" id="toc-estructura-if" class="nav-link" data-scroll-target="#estructura-if"><strong>2.5.1 Estructura <code>if</code></strong></a></li>
+  <li><a href="#estructura-if-else" id="toc-estructura-if-else" class="nav-link" data-scroll-target="#estructura-if-else"><strong>2.5.2 Estructura <code>if</code>-<code>else</code></strong></a></li>
+  <li><a href="#estructura-if-elif-else" id="toc-estructura-if-elif-else" class="nav-link" data-scroll-target="#estructura-if-elif-else"><strong>2.5.3 Estructura <code>if</code>-<code>elif</code>-<code>else</code></strong></a></li>
+  <li><a href="#condicionals-aniuats-i-expressió-condicional" id="toc-condicionals-aniuats-i-expressió-condicional" class="nav-link" data-scroll-target="#condicionals-aniuats-i-expressió-condicional"><strong>2.5.4 Condicionals aniuats i expressió condicional</strong></a></li>
+  </ul></li>
+  <li><a href="#control-de-flux-iteracions" id="toc-control-de-flux-iteracions" class="nav-link" data-scroll-target="#control-de-flux-iteracions">2.6. Control de Flux — Iteracions</a>
+  <ul class="collapse">
+  <li><a href="#el-bucle-while-iteració-indefinida-o-condicional" id="toc-el-bucle-while-iteració-indefinida-o-condicional" class="nav-link" data-scroll-target="#el-bucle-while-iteració-indefinida-o-condicional"><strong>2.6.1 El bucle <code>while</code> (iteració indefinida o condicional)</strong></a></li>
+  <li><a href="#el-bucle-for-iteració-definida-i-lobjecte-range" id="toc-el-bucle-for-iteració-definida-i-lobjecte-range" class="nav-link" data-scroll-target="#el-bucle-for-iteració-definida-i-lobjecte-range"><strong>2.6.2 El bucle <code>for</code> (iteració definida) i l’objecte <code>range()</code></strong></a></li>
+  <li><a href="#iteració-sobre-cadenes-i-enumerate" id="toc-iteració-sobre-cadenes-i-enumerate" class="nav-link" data-scroll-target="#iteració-sobre-cadenes-i-enumerate"><strong>2.6.3 Iteració sobre cadenes i <code>enumerate()</code></strong></a></li>
+  </ul></li>
+  <li><a href="#entrada-i-sortida-bàsiques-fluxos-entre-teclat-i-pantalla" id="toc-entrada-i-sortida-bàsiques-fluxos-entre-teclat-i-pantalla" class="nav-link" data-scroll-target="#entrada-i-sortida-bàsiques-fluxos-entre-teclat-i-pantalla">2.7. Entrada i sortida bàsiques: fluxos entre teclat i pantalla</a>
+  <ul class="collapse">
+  <li><a href="#la-funció-print" id="toc-la-funció-print" class="nav-link" data-scroll-target="#la-funció-print"><strong>2.7.1 La funció <code>print()</code></strong></a></li>
+  <li><a href="#cadenes-formatades-f-strings" id="toc-cadenes-formatades-f-strings" class="nav-link" data-scroll-target="#cadenes-formatades-f-strings"><strong>2.7.2 Cadenes formatades: f-strings</strong></a></li>
+  <li><a href="#la-funció-input" id="toc-la-funció-input" class="nav-link" data-scroll-target="#la-funció-input"><strong>2.7.3 La funció <code>input()</code></strong></a></li>
+  </ul></li>
+  <li><a href="#bibliografia" id="toc-bibliografia" class="nav-link" data-scroll-target="#bibliografia">Bibliografia</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -548,9 +685,1767 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contenido pendiente.)</em></p>
+<section id="scripts-de-python-vs.-execució-interactiva" class="level2">
+<h2 class="anchored" data-anchor-id="scripts-de-python-vs.-execució-interactiva">2.1. Scripts de Python vs.&nbsp;Execució interactiva</h2>
+<p>En el Tema 1 es va presentar la <strong>sessió interactiva de Python</strong> (REPL), útil per explorar i provar idees al moment. En la pràctica, però, la major part del treball real es realitza mitjançant <strong>scripts</strong>: fitxers de text amb extensió <code>.py</code> que contenen un programa complet, pensat per executar-se de principi a fi.</p>
+<section id="la-sessió-interactiva-repl" class="level3">
+<h3 class="anchored" data-anchor-id="la-sessió-interactiva-repl"><strong>2.1.1 La sessió interactiva (REPL)</strong></h3>
+<p>La sessió interactiva permet executar instruccions una a una i veure el resultat de manera immediata:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">*</span> x</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>És ideal per explorar la sintaxi, comprovar el comportament d’una funció o fer càlculs ràpids. Però té una limitació fonamental: <strong>el codi no es desa</strong>. En tancar la sessió, tot el treball desapareix.</p>
+<p>En l’entorn de desenvolupament integrat (IDE) Visual Studio Code, la sessió interactiva es pot obrir des del terminal amb la comanda <code>python</code>. Per acabar la sessió es pot usar <code>exit()</code>.</p>
+</section>
+<section id="scripts-.py" class="level3">
+<h3 class="anchored" data-anchor-id="scripts-.py"><strong>2.1.2 Scripts <code>.py</code></strong></h3>
+<p>Un <strong>script de Python</strong> és un fitxer de text amb extensió <code>.py</code> que conté instruccions Python que s’executen seqüencialment. A diferència del REPL, un script es desa en disc, es pot reutilitzar en qualsevol moment, compartir amb altres persones i executar en entorns diferents.</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>REPL per explorar, scripts per produir.</strong> Usa la sessió interactiva per comprovar comportaments o fer càlculs puntuals. Escriu scripts quan vulguis desar, reproduir o compartir la teva feina. En la pràctica, les dues eines s’usen de manera complementària.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="notebooks-jupyter-i-marimo" class="level3">
+<h3 class="anchored" data-anchor-id="notebooks-jupyter-i-marimo"><strong>2.1.3 Notebooks: Jupyter i Marimo</strong></h3>
+<p>Els <strong>notebooks</strong> són un format intermedi que combina característiques del REPL i els scripts. Un notebook es divideix en <strong>cel·les</strong> que es poden executar de forma individual i en qualsevol ordre; l’estat (variables, importacions) persisteix entre cel·les durant la sessió, i el fitxer es desa amb el codi <em>i</em> les seves sortides. A més, les cel·les poden contenir text enriquit en Markdown, equacions en LaTeX o gràfics, la qual cosa els converteix en una eina natural per comunicar resultats juntament amb el codi que els produeix.</p>
+<p><strong><a href="https://jupyter.org/" target="_blank" rel="noopener noreferrer">Jupyter Notebook</a></strong> és el format més estès en ciència de dades i recerca. Els seus fitxers tenen extensió <code>.ipynb</code> i es poden executar al navegador, a VS Code o en plataformes com Google Colab. El principal inconvenient de Jupyter és que l’ordre d’execució de les cel·les és lliure, la qual cosa pot generar estats inconsistents difícils de depurar.</p>
+<p><strong><a href="https://marimo.io/" target="_blank" rel="noopener noreferrer">Marimo</a></strong> és una alternativa més recent i reactiva: les cel·les declaren les seves dependències explícitament, de manera que si es modifica una variable totes les cel·les que l’usen es recalculen automàticament. Això elimina els problemes d’estat inconsistent i fa que un notebook de Marimo sigui sempre reproduïble de dalt a baix, com un script.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>En aquest curs es treballarà principalment amb scripts <code>.py</code> o notebooks Marimo en un Codespace (Temes 1–6). Els notebooks Marimo s’empren de forma natural en el <strong>Tema 7</strong> en introduir NumPy, Pandas i Matplotlib, on la visualització de resultats integrada en un document és especialment útil.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="variables-i-els-seus-tipus" class="level2">
+<h2 class="anchored" data-anchor-id="variables-i-els-seus-tipus">2.2. Variables i els seus tipus</h2>
+<section id="variables" class="level3">
+<h3 class="anchored" data-anchor-id="variables"><strong>2.2.1 Variables</strong></h3>
+<div id="tip-variable" class="callout callout-style-default callout-tip no-icon callout-titled" title="Variable">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;1: Variable
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En ciència de la computació, una <strong>variable</strong> és una associació entre un <strong>nom simbòlic</strong> i una <strong>ubicació en memòria</strong> que emmagatzema un valor que pot canviar durant l’execució del programa.</p>
+<p>La definició més precisa distingeix tres components:</p>
+<ul>
+<li><strong>Nom</strong> (o <em>identificador</em>): la cadena de caràcters (pot ser només un) amb la qual el programador es refereix a la variable en el codi font.</li>
+<li><strong>Valor</strong>: el dato emmagatzemat en aquell moment.</li>
+<li><strong>Ubicació</strong>: l’adreça de memòria on resideix aquell dato.</li>
+</ul>
+<p>Aquesta triple associació nom–valor–ubicació és el que defineix formalment una variable. El que varia entre llenguatges és quant d’això és visible o controlable pel programador.</p>
+<p>En llenguatges com C, la variable <em>és</em> la ubicació: declarar <code>int x</code> reserva una cel·la de memòria i <code>x</code> és el nom d’aquella cel·la. En Python, en canvi, la variable és només el nom: el que canvia és a quin objecte apunta aquell nom en memòria, no la cel·la en si. Per entendre-ho fàcilment, s’acostuma a usar la metàfora de les “caixes” davant de les “etiquetes”.</p>
+<p>En Python les variables són en realitat <strong>noms o referències</strong> que apunten a objectes. <strong>Tot en Python és un objecte (fins i tot els nombres simples)</strong>.</p>
+<p>Quan escrius <code>x = 10</code>, Python:</p>
+<ol type="1">
+<li>Crea un <strong>objecte</strong> en la memòria que representa el nombre enter <code>10</code>.</li>
+<li>Crea el nom <code>x</code> com si fos una <strong>etiqueta</strong> (un <em>post-it</em>).</li>
+<li>Enganxa l’etiqueta <code>x</code> sobre l’objecte <code>10</code>.</li>
+</ol>
+<p>Si després escrius <code>y = x</code>, Python <strong>no copia l’objecte</strong>. Simplement pren una nova etiqueta anomenada <code>y</code> i l’enganxa en el <strong>mateix objecte</strong> <code>10</code>. Les dues variables apunten exactament al mateix lloc en la memòria.</p>
+<div id="fig-cvspython" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cvspython-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/variablesCvsPython.jpg" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cvspython-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Variables en C vs Python
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Diferència amb les variables matemàtiques">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Diferència amb les variables matemàtiques
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>variable en programació</strong> no és el mateix que una variable matemàtica. L’exemple clàssic es mostra en la ruptura lògica de <span class="math inline">\(x = x + 1\)</span></p>
+<ul>
+<li><strong>En matemàtiques:</strong> L’expressió <span class="math inline">\(x = x + 1\)</span> és una contradicció. Si intentes resoldre-la restant <span class="math inline">\(x\)</span> als dos costats, arribes a l’absurd lògic de <span class="math inline">\(0 = 1\)</span>. El símbol <span class="math inline">\(=\)</span> representa una equivalència permanent.</li>
+<li><strong>En programació:</strong> La instrucció <code>x = x + 1</code> és una de les operacions més comunes que existeixen. El símbol <code>=</code> (en la majoria de llenguatges) no significa “equivalència”, sinó <strong>assignació</strong>. La instrucció es llegeix en el temps: “Avalua l’estat actual de <span class="math inline">\(x\)</span>, suma-li <span class="math inline">\(1\)</span>, i actualitza l’estat desant el nou resultat a <span class="math inline">\(x\)</span>”.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>Tenim doncs que en Python una <strong>variable</strong> és un nom que referencia un valor d’un cert <strong>tipus</strong> emmagatzemat en memòria. En Python les variables no tenen un tipus fix, poden referenciar valors de qualsevol tipus, i poden canviar de tipus al llarg de l’execució.</p>
+<div id="tip-tipo" class="callout callout-style-default callout-tip no-icon callout-titled" title="Tipus">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;2: Tipus
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>tipus de dada</strong> o simplement <strong>tipus</strong> és una classificació que especifica quins valors pot prendre una dada i quines operacions són vàlides sobre ella.</p>
+<p>Per exemple, el tipus <code>int</code> (enter) admet els valors …−2, −1, 0, 1, 2… i operacions com suma o divisió entera; el tipus <code>str</code> (cadena o <em>string</em> en anglès) admet seqüències de caràcters i operacions com concatenació o indexació. Una operació invàlida per al tipus —sumar un enter amb una cadena sense conversió explícita— produeix un error.</p>
+<p>En Python el tipus no el declara el programador: el determina el propi objecte. Cada objecte porta consigo el seu tipus, i <code>type(x)</code> el retorna en qualsevol moment.</p>
+</div>
+</div>
+<p>L’<strong>assignació</strong> d’un valor a una variable (en Python, un <em>enllaç de nom</em> o <em>name binding</em> en anglès) es realitza amb l’operador <code>=</code>. A diferència d’altres llenguatges, <code>=</code> no copia un valor en una cel·la de memòria: fa que el nom de l’esquerra quedi apuntant a l’objecte produït per l’expressió de la dreta. Per exemple:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">42</span>         <span class="co"># x referencia l'enter 42</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)       <span class="co"># 42</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">3.14</span>       <span class="co"># ara x referencia el flotant 3.14</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)       <span class="co"># 3.14</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"hola"</span>     <span class="co"># ara x referencia la cadena "hola"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)       <span class="co"># hola</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="imp-comentario" class="callout callout-style-default callout-important no-icon callout-titled" title="Comentaris en codi Python">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;1: Comentaris en codi Python
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En Python només existeix una forma de comentari: el símbol <code>#</code>. Tot el que va des d’allà fins al final de la línia ho ignora l’intèrpret. Un comentari és text inclòs en el codi font que va dirigit a qui el llegeix, no a la màquina que l’executa. El traductor —compilador o intèrpret— el descarta, de manera que la seva presència o absència no altera en res el comportament del programa.</p>
+<p>Els comentaris poden aparèixer en una línia pròpia o a continuació del codi font en la mateixa línia. Les convencions de <span class="citation" data-cites="pep8">(<a href="#ref-pep8" role="doc-biblioref">Rossum, Warsaw, i Coghlan 2001</a>)</span> recomanen un espai després del <code>#</code>, i dos espais abans del <code>#</code> en els comentaris al final de línia.</p>
+</div>
+</div>
+<p>Python admet assignació múltiple en una sola línia:</p>
+<pre class="{pyodide}"><code>a, b, c = 1, 2, 3
+print(a, b, c)  # 1 2 3
+x = y = 0       # tant x com y referencien el valor 0
+print(x, y)     # 0 0</code></pre>
+<p>La funció <code>print()</code> pot rebre diverses variables com a arguments, separades per comes, i les imprimeix a la sortida estàndard (normalment el terminal). Més endavant es veurà que <code>print()</code> té paràmetres opcionals per controlar el format de sortida.</p>
+</section>
+<section id="noms-de-variables" class="level3">
+<h3 class="anchored" data-anchor-id="noms-de-variables"><strong>2.2.2 Noms de variables</strong></h3>
+<p>Els noms de variables només poden contenir lletres, dígits i el guió baix <code>_</code>, i no poden començar per un dígit ni coincidir amb una paraula reservada del llenguatge (<code>if</code>, <code>for</code>, <code>while</code>, <code>True</code>, <code>False</code>, <code>None</code>, etc.).</p>
+<div id="imp-snake-case" class="callout callout-style-default callout-important no-icon callout-titled" title="Convenció de noms: snake_case">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;2: Convenció de noms: snake_case
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Per convenció <span class="citation" data-cites="pep8">(<a href="#ref-pep8" role="doc-biblioref">Rossum, Warsaw, i Coghlan 2001</a>)</span>, els noms de variables en Python usen <strong>snake_case</strong>: paraules en minúscules separades per guions baixos. Els noms han de ser <strong>descriptius</strong> del valor que contenen.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correcte</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nombre_diteracions <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>radi_cercle <span class="op">=</span> <span class="fl">5.0</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>es_primer <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Acceptable per a variables de curta vida o amb significat matemàtic obvi</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span>       <span class="co"># comptador genèric</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="dv">3</span>, <span class="dv">4</span>  <span class="co"># coordenades</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>i, j, k <span class="op">=</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>  <span class="co"># índexs de bucles</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Evitar: noms sense significat</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>cosa <span class="op">=</span> <span class="va">True</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+</section>
+<section id="tipus-integrats-built-in-simples" class="level2">
+<h2 class="anchored" data-anchor-id="tipus-integrats-built-in-simples">2.3 Tipus integrats (built-in) simples</h2>
+<p>Els tipus integrats (o <em>built-in types</em>) en Python són els tipus de dades fonamentals que vénen integrats en el llenguatge, sense necessitat d’importar cap biblioteca externa. Python té sis tipus built-in per representar valors simples:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tipus</th>
+<th>Classe Python</th>
+<th>Exemples</th>
+<th>Descripció</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Enter</td>
+<td><code>int</code></td>
+<td><code>0</code>, <code>42</code>, <code>-7</code>, <code>10**100</code></td>
+<td>Precisió arbitrària; no hi ha desbordament.</td>
+</tr>
+<tr class="even">
+<td>Flotant</td>
+<td><code>float</code></td>
+<td><code>3.14</code>, <code>-0.5</code>, <code>1.0e-10</code></td>
+<td>IEEE 754 doble precisió (~15 dígits significatius).</td>
+</tr>
+<tr class="odd">
+<td>Nombre complex</td>
+<td><code>complex</code></td>
+<td><code>3 + 2j</code>, <code>1j</code>, <code>complex(2, -1)</code></td>
+<td>La unitat imaginària s’escriu <code>j</code> (no <code>i</code> com en matemàtiques).</td>
+</tr>
+<tr class="even">
+<td>Cadena</td>
+<td><code>str</code></td>
+<td><code>"hola"</code>, <code>'món'</code></td>
+<td>Seqüència immutable de caràcters Unicode.</td>
+</tr>
+<tr class="odd">
+<td>Booleà</td>
+<td><code>bool</code></td>
+<td><code>True</code>, <code>False</code></td>
+<td>Subtipus de <code>int</code>; <code>True == 1</code> i <code>False == 0</code>.</td>
+</tr>
+<tr class="even">
+<td>Nul</td>
+<td><code>NoneType</code></td>
+<td><code>None</code></td>
+<td>Representa l’absència de valor.</td>
+</tr>
+</tbody>
+</table>
+<p>Per esbrinar el tipus de qualsevol objecte o variable s’usa la funció built-in <code>type()</code>. Per mostrar valors a la sortida estàndard s’usa la funció built-in <code>print()</code>.</p>
+<div id="imp-type-print" class="callout callout-style-default callout-important no-icon callout-titled" title="Funcions built-in `type()` i `print()`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;3: Funcions built-in <code>type()</code> i <code>print()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La funció <code>type()</code> retorna el tipus de qualsevol objecte o variable:</p>
+<pre class="{pyodide}"><code>x = 42
+print(type(x))         # &lt;class 'int'&gt;
+print(type(42))        # &lt;class 'int'&gt;
+print(type(3.14))      # &lt;class 'float'&gt;
+print(type("hola"))    # &lt;class 'str'&gt;
+print(type(True))      # &lt;class 'bool'&gt;
+print(type(None))      # &lt;class 'NoneType'&gt;</code></pre>
+<p>La funció <code>print()</code> escriu a la sortida estàndard (normalment el terminal) els valors que rep com a arguments, separats per un espai i seguits d’un salt de línia:</p>
+<pre class="{pyodide}"><code>print(42)                     # 42
+print("hola")                 # hola
+print("nombres: ", 1, 2, 3)   # nombres: 1 2 3</code></pre>
+<p>Els paràmetres opcionals més útils de <code>print()</code> són <code>sep</code> (separador entre arguments, per defecte <code>" "</code>) i <code>end</code> (caràcter final, per defecte <code>"\n"</code> per salt de línia):</p>
+<pre class="{pyodide}"><code>print(1, 2, 3, sep=", ")     # 1, 2, 3
+print("hola", end=" ")
+print("món")                  # hola món  (en la mateixa línia)</code></pre>
+<p>Les funcions <code>type</code> i <code>print</code> vénen integrades en l’intèrpret i estan disponibles en qualsevol programa sense necessitat d’importar res.</p>
+</div>
+</div>
+<section id="enters-int" class="level3">
+<h3 class="anchored" data-anchor-id="enters-int"><strong>2.3.1 Enters (<code>int</code>)</strong></h3>
+<p>En Python, els enters tenen <strong>precisió arbitrària</strong>: poden ser tan grans com la memòria disponible ho permeti, sense que es produeixi desbordament (<em>overflow</em>). Això els distingeix de molts altres llenguatges on els nombres enters estan limitats a un rang fix.</p>
+<pre class="{pyodide}"><code>print(2 ** 100)
+# 1267650600228229401496703205376
+
+print(10 ** 50)
+# 100000000000000000000000000000000000000000000000000</code></pre>
+<p>Hi ha quatre formes d’escriure literals enters, segons la base numèrica:</p>
+<pre class="{pyodide}"><code># Decimal (base 10) — la notació habitual
+nn = 42
+nn = -7
+nn = 0
+
+# Binari (base 2) — prefix `0b`
+nn = 0b1010
+print(nn)        # 10
+nn = 0b11111111
+print(nn)        # 255
+
+# Octal (base 8) — prefix `0o`
+nn = 0o17
+print(nn)        # 15
+nn = 0o777
+print(nn)        # 511
+
+# Hexadecimal (base 16) — prefix `0x`
+nn = 0xFF
+print(nn)        # 255
+nn = 0x1A3
+print(nn)        # 419</code></pre>
+<p>A més, per millorar la llegibilitat de nombres grans es pot usar el guió baix <code>_</code> com a separador visual (equivalent al punt en notació europea):</p>
+<pre class="{pyodide}"><code>m = 1_000_000      # equivalent a 1000000
+print(m)           # 1000000
+m = 0b1111_0000    # equivalent a 0b11110000
+print(m)           # 240
+m = 0xFF_A3_00     # equivalent a 0xFFA300
+print(m)           # 16711680</code></pre>
+</section>
+<section id="flotants-float" class="level3">
+<h3 class="anchored" data-anchor-id="flotants-float"><strong>2.3.2 Flotants (<code>float</code>)</strong></h3>
+<p>Els flotants segueixen l’estàndard IEEE 754 de doble precisió, que representa nombres reals amb aproximadament 15-17 dígits significatius. Això implica que <strong>no tots</strong> els nombres decimals es poden representar exactament en binari:</p>
+<pre class="{pyodide}"><code>print(0.1 + 0.2)         # 0.30000000000000004
+print(0.1 + 0.2 == 0.3)  # False</code></pre>
+<div id="cau-flotantes" class="callout callout-style-default callout-caution no-icon callout-titled" title="Comparar flotants amb ==">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;1: Comparar flotants amb ==
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La representació binària dels flotants introdueix petits errors d’arrodoniment. <strong>Mai usis <code>==</code> per comparar dos valors flotants</strong>; en el seu lloc, comprova que la seva diferència sigui prou petita:</p>
+<pre class="{pyodide}"><code>a = 0.1 + 0.2
+b = 0.3
+print(abs(a - b) &lt; 1e-10)   # True</code></pre>
+</div>
+</div>
+<p>Els literals <code>float</code> admeten diverses notacions:</p>
+<pre class="{pyodide}"><code># Decimal estàndard — amb punt obligatori
+x1 = 3.14
+x2 = -0.5
+x3 = 1.0      # el .0 és necessari; sense ell seria int
+x4 = .5       # equivalent a 0.5 (el zero inicial és opcional)
+print(x1, x2, x3, x4, sep=", ")
+
+# Notació científica — amb `e` o `E` com a exponent de base 10
+x5 = 1.5e3         # equivalent a 1500.0 = 1.5 × 10³
+x6 = 2.1e-4        # equivalent a 0.00021 = 2.1 × 10⁻⁴
+x7 = 1e10          # equivalent a 10000000000.0 = 1 × 10¹⁰
+print(x5, x6, x7, sep=", ")  # 1500.0 0.00021 10000000000.0</code></pre>
+<p>Igual que en <code>int</code>, es pot usar <code>_</code> com a separador visual:</p>
+<pre class="{pyodide}"><code>x8 = 3.141_592_653
+x9 = 1_000.0
+print(x8, x9, sep=", ")  # 3.141592653, 1000.0</code></pre>
+<p>Un detall rellevant per als matemàtics: a diferència dels enters, els <code>float</code> tenen <strong>rang finit</strong>. El valor màxim representable és aproximadament <span class="math inline">\(1.8 \times 10^{308}\)</span>; superar-lo produeix <code>inf</code>:</p>
+<pre class="{pyodide}"><code>print(1.8e308)    # inf</code></pre>
+</section>
+<section id="nombres-complexos-complex" class="level3">
+<h3 class="anchored" data-anchor-id="nombres-complexos-complex"><strong>2.3.3 Nombres complexos (<code>complex</code>)</strong></h3>
+<p>Python incorpora els nombres complexos com a tipus natiu, sense necessitat d’importar cap biblioteca. La unitat imaginària es denota amb <code>j</code> (no <code>i</code>, per evitar conflicte amb l’ús de <code>i</code> com a índex en codi):</p>
+<pre class="{pyodide}"><code>z1 = 3 + 2j
+z2 = complex(1, -4)    # equivalent a 1 - 4j
+
+print(z1 + z2)         # (4-2j)
+print(z1 * z2)         # (11-10j)
+print(z1.real)         # 3.0
+print(z1.imag)         # 2.0
+print(z1.conjugate())  # (3-2j)
+print(abs(z1))         # 3.605...  (mòdul: √(3² + 2²))</code></pre>
+<p>Els nombres complexos il·lustren bé un concepte central en Python: els objectes tenen <strong>atributs</strong> i <strong>mètodes</strong> als quals s’accedeix amb l’operador punt <code>.</code>:</p>
+<ul>
+<li>Un <strong>atribut</strong> és un valor associat a l’objecte: <code>z.real</code> i <code>z.imag</code> retornen les parts real i imaginària del nombre complex <code>z</code>.</li>
+<li>Un <strong>mètode</strong> és una funció associada a l’objecte que s’invoca amb parèntesis: <code>z.conjugate()</code> retorna el conjugat.</li>
+</ul>
+<p>Aquesta notació <code>objecte.algo</code> apareixerà constantment en Python. En el Tema 5 s’estudiarà en detall què són els objectes i com es defineixen; per ara n’hi ha prou amb saber que tot valor en Python és un objecte i que el punt <code>.</code> dóna accés al que aquell objecte “sap fer”.</p>
+<p>Els atributs <code>.real</code> i <code>.imag</code> retornen sempre <code>float</code>. Les operacions aritmètiques (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>**</code>) funcionen directament entre complexos o entre complexos i enters/flotants.</p>
+<p>La funció built-in <code>abs()</code> retorna el <strong>mòdul</strong> d’un nombre complex, que és la distància a l’origen en el pla complex. El mòdul es calcula com <span class="math inline">\(\sqrt{x^2 + y^2}\)</span> per a un complex <span class="math inline">\(z = x + yi\)</span>. La funció <code>abs()</code> també funciona amb enters i flotants, retornant el seu valor absolut.</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Per a càlculs més avançats amb nombres complexos (funcions trigonomètriques, logaritmes, exponencial complexa) s’usa el mòdul <code>cmath</code> de la biblioteca estàndard.</p>
+</div>
+</div>
+</div>
+<p>Un literal <code>complex</code> es forma combinant amb <code>+</code> o <code>-</code> un literal <code>int</code> o <code>float</code> com a part real i un literal <code>int</code> o <code>float</code> seguit de <code>j</code> com a part imaginària. La part imaginària és obligatòria; un literal com <code>3</code> o <code>2.5</code> és un <code>int</code> o <code>float</code>, no un <code>complex</code>.</p>
+</section>
+<section id="cadenes-str" class="level3">
+<h3 class="anchored" data-anchor-id="cadenes-str"><strong>2.3.4 Cadenes (<code>str</code>)</strong></h3>
+<p>Les cadenes (o cadenes de caràcters) són seqüències de caràcters delimitades per cometes simples o dobles (totes dues equivalents). Per a cadenes que ocupen diverses línies s’usen triples cometes:</p>
+<pre class="{pyodide}"><code>nom = "Euler"
+frase = 'La identitat e^(iπ) + 1 = 0'
+multilinia = """Aquesta cadena
+abasta diverses
+línies."""
+print(nom, ':', frase)
+print(multilinia)</code></pre>
+<p>Les <strong>seqüències d’escapament</strong> permeten incloure caràcters especials dins d’una cadena:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Seqüència</th>
+<th>Caràcter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>\n</code></td>
+<td>Salt de línia</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>\t</code></td>
+<td>Tabulador horitzontal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>\\</code></td>
+<td>Barra invertida literal</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>\"</code></td>
+<td>Cometes dobles literal</td>
+</tr>
+</tbody>
+</table>
+<pre class="{pyodide}"><code>multilinia2 = "Aquesta cadena\nabasta diverses\nlínies."
+print(multilinia2)
+print(multilinia == multilinia2)  # True</code></pre>
+<p>Amb la notació <code>objecte.mètode()</code>, explicada a la secció de nombres complexos, podem accedir a diversos mètodes útils de les cadenes. Per exemple:</p>
+<pre class="{pyodide}"><code>text = "hola món"
+print(text.upper())                    # "HOLA MÓN"
+print(text.count("o"))                 # 2
+print(text.replace("món", "Python"))   # "hola Python"</code></pre>
+<p>Aquí <code>upper</code> és un mètode de la variable <code>text</code> (objecte del tipus <code>str</code>). El punt <code>.</code> és l’operador d’accés a membres: indica “busca dins d’aquest objecte alguna cosa anomenada <code>upper</code> i crida-la”.</p>
+<p>Els mètodes de <code>str</code> més útils en la pràctica:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mètode</th>
+<th>Descripció</th>
+<th>Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.upper()</code></td>
+<td>Converteix a majúscules</td>
+<td><code>"hola".upper()</code> → <code>"HOLA"</code></td>
+</tr>
+<tr class="even">
+<td><code>.lower()</code></td>
+<td>Converteix a minúscules</td>
+<td><code>"HOLA".lower()</code> → <code>"hola"</code></td>
+</tr>
+<tr class="odd">
+<td><code>.strip()</code></td>
+<td>Elimina espais a l’inici i al final</td>
+<td><code>"  hola  ".strip()</code> → <code>"hola"</code></td>
+</tr>
+<tr class="even">
+<td><code>.replace(a, b)</code></td>
+<td>Substitueix totes les ocurrències de <code>a</code> per <code>b</code></td>
+<td><code>"aabbcc".replace("b", "x")</code> → <code>"aaxxcc"</code></td>
+</tr>
+<tr class="odd">
+<td><code>.split(sep)</code></td>
+<td>Divideix la cadena per <code>sep</code> i retorna una llista</td>
+<td><code>"a,b,c".split(",")</code> → <code>["a", "b", "c"]</code></td>
+</tr>
+<tr class="even">
+<td><code>.startswith(s)</code></td>
+<td><code>True</code> si la cadena comença per <code>s</code></td>
+<td><code>"hola".startswith("ho")</code> → <code>True</code></td>
+</tr>
+<tr class="odd">
+<td><code>.count(s)</code></td>
+<td>Compta les ocurrències de <code>s</code></td>
+<td><code>"banana".count("a")</code> → <code>3</code></td>
+</tr>
+</tbody>
+</table>
+<p>La funció <code>len()</code> no és un mètode sinó una funció built-in, però s’aplica habitualment sobre cadenes:</p>
+<pre class="{pyodide}"><code>print(len(text))             # 8
+print(len("matemàtiques"))   # 12</code></pre>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Per veure tots els mètodes disponibles de qualsevol objecte <code>x</code>:</p>
+<ul>
+<li>usa <code>dir(x)</code> en el REPL,
+<ul>
+<li>per obtenir ajuda sobre un mètode concret, per exemple <code>replace</code> si <code>x</code> és una cadena, usa <code>help(x.replace)</code>,</li>
+</ul></li>
+<li>a Visual Studio Code o en un notebook de Marimo, escriu <code>x.</code> i prem <strong>Tab</strong> per veure la llista de mètodes.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="booleans-bool" class="level3">
+<h3 class="anchored" data-anchor-id="booleans-bool"><strong>2.3.5 Booleans (<code>bool</code>)</strong></h3>
+<p>Els booleans representen valors de veritat: <code>True</code> o <code>False</code>. Són el resultat natural dels operadors de comparació i lògics (es veuran més endavant):</p>
+<pre class="{pyodide}"><code>print(3 &gt; 2)        # True
+print(type(True))   # &lt;class 'bool'&gt;</code></pre>
+<p>El tipus <code>bool</code> és un subtipus de <code>int</code>: <code>True</code> val <code>1</code> i <code>False</code> val <code>0</code>. Això permet usar-los directament en expressions aritmètiques, cosa que en matemàtiques té sentit com a funció indicadora:</p>
+<pre class="{pyodide}"><code>print(True + True)   # 2
+print(False * 7)     # 0
+print(int(True))     # 1</code></pre>
+</section>
+<section id="nul-nonetype" class="level3">
+<h3 class="anchored" data-anchor-id="nul-nonetype"><strong>2.3.6 Nul (<code>NoneType</code>)</strong></h3>
+<p><code>None</code> és l’únic valor del tipus <code>NoneType</code> i representa l’<strong>absència de valor</strong>. S’usa quan una variable no té cap objecte assignat, o quan una funció no retorna res explícitament:</p>
+<pre class="{pyodide}"><code>resultat = None
+print(resultat)        # None
+print(type(resultat))  # &lt;class 'NoneType'&gt;</code></pre>
+<p>Per comprovar si una variable és <code>None</code> s’usa <code>is</code>, no <code>==</code>:</p>
+<pre class="{pyodide}"><code>print(resultat is None)   # True</code></pre>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><code>is None</code> comprova identitat (mateix objecte en memòria), que és el correcte per a <code>None</code> ja que existeix un únic objecte <code>None</code> en tot l’intèrpret. <code>== None</code> funcionaria en la pràctica però és considerat mal estil en Python.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="operadors-aritmètics-de-comparació-relacionals-i-lògics" class="level2">
+<h2 class="anchored" data-anchor-id="operadors-aritmètics-de-comparació-relacionals-i-lògics">2.4 Operadors aritmètics, de comparació (relacionals) i lògics</h2>
+<p>Python defineix set operadors aritmètics que funcionen principalment amb enters, flotants i complexos (<code>int</code>, <code>float</code>, <code>complex</code>). La taula següent resumeix el seu significat i comportament:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Operador</th>
+<th>Operació</th>
+<th>Exemple</th>
+<th style="text-align: right;">Resultat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>+</code></td>
+<td>Suma</td>
+<td><code>7 + 3</code></td>
+<td style="text-align: right;"><code>10</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>-</code></td>
+<td>Resta</td>
+<td><code>7 - 3</code></td>
+<td style="text-align: right;"><code>4</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>*</code></td>
+<td>Producte</td>
+<td><code>7 * 3</code></td>
+<td style="text-align: right;"><code>21</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>/</code></td>
+<td>Divisió real</td>
+<td><code>7 / 3</code></td>
+<td style="text-align: right;"><code>2.3333…</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>//</code></td>
+<td>Divisió entera</td>
+<td><code>7 // 3</code></td>
+<td style="text-align: right;"><code>2</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>%</code></td>
+<td>Mòdul (resta)</td>
+<td><code>7 % 3</code></td>
+<td style="text-align: right;"><code>1</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>**</code></td>
+<td>Potència</td>
+<td><code>2 ** 10</code></td>
+<td style="text-align: right;"><code>1024</code></td>
+</tr>
+</tbody>
+</table>
+<p>Algunes excepcions i extensions d’aquests operadors segons el tipus de dada:</p>
+<ul>
+<li><code>complex</code> no admet <code>//</code> ni <code>%</code>, ja que la divisió entera i el mòdul no estan definits per a nombres complexos.</li>
+<li><code>bool</code>, en ser subtipus de <code>int</code>, hereta tots els operadors aritmètics.</li>
+<li><code>str</code> admet <code>+</code> com a concatenació i <code>*</code> com a repetició, però no la resta.</li>
+</ul>
+<p>Per als tipus numèrics, quan es combinen operands de tipus diferents el resultat es <strong>promou</strong> al tipus més general. Per exemple, <code>int + float</code> produeix <code>float</code>, i <code>int + complex</code> produeix <code>complex</code>.</p>
+<pre class="{pyodide}"><code>print(type(3 + 2.5))       # &lt;class 'float'&gt;
+print(type(3 + 2))         # &lt;class 'int'&gt;
+print(type(3 * 2.5))       # &lt;class 'float'&gt;
+print(type(3 + 2j))        # &lt;class 'complex'&gt;
+print(type(3.0 + 2j))      # &lt;class 'complex'&gt;
+print(type(3 ** 2))        # &lt;class 'int'&gt;
+print(type(3 ** 2.0))      # &lt;class 'float'&gt;
+print(type(3.0 ** 2))      # &lt;class 'float'&gt;
+print(4 ** (1/2))          # 2.0
+print(4 ** (-1/2))         # 0.5
+print(4 ** -1/2)           # 0.125</code></pre>
+<p>La potència <code>**</code> admet exponents negatius i flotants, però el resultat és sempre <code>float</code> o <code>complex</code>. És a més l’únic operador amb associativitat per la dreta: <code>2 ** 3 ** 2</code> s’avalua com <code>2 ** 9 = 512</code>.</p>
+<div id="imp-precedencia" class="callout callout-style-default callout-important no-icon callout-titled" title="Precedència d'operadors aritmètics">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;4: Precedència d’operadors aritmètics
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Python segueix les mateixes regles de precedència que la notació matemàtica estàndard. De major a menor prioritat:</p>
+<ol type="1">
+<li>Parèntesis <code>()</code></li>
+<li>Potència <code>**</code></li>
+<li>Signe unari <code>+x</code>, <code>-x</code></li>
+<li>Producte <code>*</code>, divisions <code>/</code>, <code>//</code>, <code>%</code></li>
+<li>Suma i resta <code>+</code>, <code>-</code></li>
+</ol>
+<p>Quan dos operadors tenen la mateixa precedència s’avaluen d’esquerra a dreta, excepte <code>**</code> que és associatiu per la dreta. Els parèntesis permeten alterar qualsevol ordre d’avaluació.</p>
+<pre class="{pyodide}"><code># precedència estàndard
+print(2 + 3 * 4)       # 14  (no 20: * abans que +)
+print(10 - 6 / 2)      # 7.0 (no 2.0: / abans que -)
+print(2 ** 3 + 1)      # 9   (no 16: ** abans que +)
+print(10 % 3 + 1)      # 2   (no 1:  % abans que +)
+
+# els parèntesis alteren l'ordre
+print((2 + 3) * 4)     # 20
+print((10 - 6) / 2)    # 2.0
+
+# ** és associatiu per la dreta
+print(2 ** 3 ** 2)     # 512  (= 2 ** 9, no 8 ** 2 = 64)
+print((2 ** 3) ** 2)   # 64
+
+# signe unari
+print(-2 ** 2)         # -4   (** abans que signe: -(2**2))
+print((-2) ** 2)       # 4</code></pre>
+</div>
+</div>
+<p>Per a la divisió tenim dos operadors diferents: <code>/</code> i <code>//</code>. El primer retorna un flotant, mentre que el segon retorna el quocient enter (<em>floor division</em>). L’operador <code>%</code> retorna la resta (el mòdul) de la divisió entera.</p>
+<div id="imp-division" class="callout callout-style-default callout-important no-icon callout-titled" title="Divisió entera i mòdul">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;5: Divisió entera i mòdul
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En Python 3, l’operador <code>/</code> <strong>sempre retorna un flotant</strong>, fins i tot quan el resultat és un enter:</p>
+<pre class="{pyodide}"><code>print(6 / 2)    # 3.0   (no 3)
+print(7 / 2)    # 3.5</code></pre>
+<p>L’operador <code>//</code> retorna el <strong>quocient enter</strong> (<em>floor division</em>) arrodonint cap a <span class="math inline">\(-\infty\)</span>, no cap a zero. L’operador <code>%</code> retorna la <strong>resta</strong> de la divisió entera:</p>
+<pre class="{pyodide}"><code>print(17 // 5)  #  3   (quocient enter)
+print(17 % 5)   #  2   (resta)
+print(-7 // 2)  # -4   (quocient enter, arrodoneix cap a menys infinit)
+print(-7 % 2)   #  1   (resta positiva, perquè -7 = (-4)*2 + 1)</code></pre>
+<p>Es compleix sempre la identitat: <code>a == (a // b) * b + (a % b)</code>. Aquí <code>==</code> és un operador de comparació (igualtat), no d’assignació. Per exemple:</p>
+<pre class="{pyodide}"><code>a, b = 17, 5
+print(a == (a // b) * b + (a % b))  # True</code></pre>
+<p>L’operador <code>%</code> és fonamental en teoria de nombres: la condició <code>n % 2 == 0</code> és el test de paritat més efectiu.</p>
+</div>
+</div>
+<section id="operadors-dassignació-composta" class="level3">
+<h3 class="anchored" data-anchor-id="operadors-dassignació-composta"><strong>2.4.1 Operadors d’assignació composta</strong></h3>
+<p>Els <strong>operadors d’assignació composta</strong> combinen una operació aritmètica amb l’assignació, actualitzant la variable in situ:</p>
+<pre class="{pyodide}"><code>x = 10
+x += 3    # equivalent a x = x + 3   → x és 13
+x -= 1    # equivalent a x = x - 1   → x és 12
+x *= 2    # equivalent a x = x * 2   → x és 24
+x //= 5   # equivalent a x = x // 5  → x és 4
+x **= 3   # equivalent a x = x ** 3  → x és 64
+print(x)  # 64</code></pre>
+<div id="cau-ieee754" class="callout callout-style-default callout-caution no-icon callout-titled" title="Tractar l'aritmètica amb floats com la dels nombres reals">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;2: Tractar l’aritmètica amb floats com la dels nombres reals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Com es va mostrar en <a href="#cau-flotantes" class="quarto-xref">error freqüent&nbsp;1</a> l’aritmètica amb nombres float introdueix errors d’arrodoniment. Això es deu al fet que la representació binària dels flotants no pot expressar exactament tots els nombres reals. En Python s’empra l’aritmètica de punt flotant de doble precisió (IEEE 754), que té una precisió aproximada de 15-17 dígits decimals significatius.</p>
+<p>En IEEE 754 doble precisió cada valor <code>float</code> es representa com:</p>
+<p><span class="math display">\[
+(-1)^s \times 1.m \times 2^e
+\]</span></p>
+<p>on <span class="math inline">\(s\)</span> és el signe, <span class="math inline">\(e\)</span> l’exponent i <span class="math inline">\(1.m\)</span> la mantissa amb el bit implícit de valor 1. Els 64 bits del <code>float</code> es reparteixen així:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Camp</th>
+<th>Bits</th>
+<th>Rang</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Signe <span class="math inline">\(s\)</span></td>
+<td>1</td>
+<td>0 = positiu, 1 = negatiu</td>
+</tr>
+<tr class="even">
+<td>Exponent <span class="math inline">\(e\)</span></td>
+<td>11</td>
+<td>codificat en biaix (<em>bias</em>) de 1023</td>
+</tr>
+<tr class="odd">
+<td>Mantissa <span class="math inline">\(m\)</span></td>
+<td>52</td>
+<td>part fraccionària després del bit implícit</td>
+</tr>
+</tbody>
+</table>
+<p>Es recomana consultar <span class="citation" data-cites="python3floatingpoint">(<a href="#ref-python3floatingpoint" role="doc-biblioref">Python Software Foundation 2025</a>)</span> per a una explicació més detallada de l’aritmètica amb <code>float</code> i les seves implicacions en la pràctica.</p>
+</div>
+</div>
+</section>
+<section id="operadors-de-comparació-relacionals" class="level3">
+<h3 class="anchored" data-anchor-id="operadors-de-comparació-relacionals"><strong>2.4.2 Operadors de comparació (relacionals)</strong></h3>
+<p>Els operadors de comparació o relacionals són fonamentals per al <strong>control de flux condicional</strong>: sense ells no hi ha manera que un programa prengui decisions. Constitueixen la base del mecanisme que dota a un programa d’<strong>adaptabilitat</strong>: en lloc d’executar sempre la mateixa seqüència d’instruccions, el programa examina l’estat de les dades en temps d’execució i tria el camí a seguir en conseqüència.</p>
+<p>Els operadors de comparació avaluen una relació entre dos valors i retornen un booleà (<code>True</code> o <code>False</code>):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Operador</th>
+<th>Significat</th>
+<th>Exemple</th>
+<th style="text-align: center;">Resultat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>==</code></td>
+<td>Igual a</td>
+<td><code>3 == 3</code></td>
+<td style="text-align: center;"><code>True</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>!=</code></td>
+<td>Diferent de</td>
+<td><code>3 != 4</code></td>
+<td style="text-align: center;"><code>True</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>&lt;</code></td>
+<td>Menor que</td>
+<td><code>2 &lt; 5</code></td>
+<td style="text-align: center;"><code>True</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>&gt;</code></td>
+<td>Major que</td>
+<td><code>5 &gt; 2</code></td>
+<td style="text-align: center;"><code>True</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>&lt;=</code></td>
+<td>Menor o igual</td>
+<td><code>3 &lt;= 3</code></td>
+<td style="text-align: center;"><code>True</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>&gt;=</code></td>
+<td>Major o igual</td>
+<td><code>4 &gt;= 5</code></td>
+<td style="text-align: center;"><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p>Els operadors de comparació s’apliquen a tots els tipus simples, amb dues excepcions importants:</p>
+<ul>
+<li><strong><code>complex</code> no admet <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></strong>: els nombres complexos no tenen ordre total, igual que en matemàtiques. Només <code>==</code> i <code>!=</code> estan definits.</li>
+<li><strong><code>str</code> usa ordre lexicogràfic</strong>: les comparacions d’ordre segueixen el codi Unicode de cada caràcter, no l’ordre alfabètic intuïtiu. En particular, totes les majúscules precedeixen totes les minúscules: <code>"Z" &lt; "a"</code> és <code>True</code>.</li>
+</ul>
+<pre class="{pyodide}"><code># complex: == i != funcionen, ordre no està definit
+z = 3 + 2j
+print(z == 3 + 2j)   # True
+print(z != 0j)        # True
+# print(z &lt; 1 + 0j)  # TypeError: '&lt;' not supported between 'complex' and 'complex'
+
+# str: ordre lexicogràfic per codi Unicode
+print("Z" &lt; "a")      # True  (ord("Z") = 90, ord("a") = 97)
+print("banana" &lt; "mango")     # True  (compara caràcter a caràcter)
+print("abc" == "ABC")  # False</code></pre>
+<div id="cau-comptip" class="callout callout-style-default callout-caution no-icon callout-titled" title="Comparar tipus diferents">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;3: Comparar tipus diferents
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Comparar valors de tipus diferents amb <code>==</code> no produeix error sinó <code>False</code> directament (<code>42 == "42"</code> és <code>False</code>). Usar <code>&lt;</code> o <code>&gt;</code> entre tipus incompatibles sí llança <code>TypeError</code>.</p>
+<pre class="{pyodide}"><code># tipus diferents: == retorna False, ordre llança TypeError
+print(42 == "42")     # False
+# print(42 &lt; "42")    # TypeError: '&lt;' not supported between 'int' and 'str'</code></pre>
+</div>
+</div>
+<p>Python permet <strong>encadenar comparacions</strong> de forma natural, exactament com en notació matemàtica:</p>
+<pre class="{pyodide}"><code>x = 7
+print(1 &lt;= x &lt;= 10)   # True   (equivalent a 1 &lt;= x and x &lt;= 10)
+print(0 &lt; x &lt; 5)      # False
+print(2 == 2 == 2)    # True</code></pre>
+<div id="tip-compara" class="callout callout-style-default callout-tip no-icon callout-titled" title="Operadors de comparació">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;3: Operadors de comparació
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El fonament teòric dels operadors de comparació es troba en la <strong>matemàtica discreta</strong>, específicament en la <strong>teoria de les relacions binàries</strong> (derivada de la teoria de conjunts). Matemàticament, una relació binària <span class="math inline">\(R\)</span> sobre un conjunt <span class="math inline">\(A\)</span> és un subconjunt del producte cartesià <span class="math inline">\(A \times A\)</span>. En programació, el conjunt <span class="math inline">\(A\)</span> representa el domini d’un tipus de dada específic (per exemple, <code>int</code> o <code>float</code>). Quan un programa avalua una expressió com <code>x &lt; y</code>, està verificant si el parell ordenat <span class="math inline">\((x, y)\)</span> pertany al conjunt definit per la relació matemàtica <span class="math inline">\(&lt;\)</span>.</p>
+<p>Aquests operadors es divideixen en dues famílies basades en les seves propietats teòriques:</p>
+<p><strong>Relació d’Equivalència (<code>==</code>)</strong></p>
+<p>Perquè un operador d’igualtat tingui sentit lògic, es fonamenta en les tres propietats d’una relació d’equivalència:</p>
+<ul>
+<li><strong>Reflexivitat:</strong> <span class="math inline">\(x = x\)</span> (Tot valor és igual a si mateix).</li>
+<li><strong>Simetria:</strong> Si <span class="math inline">\(x = y\)</span>, llavors <span class="math inline">\(y = x\)</span>.</li>
+<li><strong>Transitivitat:</strong> Si <span class="math inline">\(x = y\)</span> i <span class="math inline">\(y = z\)</span>, llavors <span class="math inline">\(x = z\)</span>.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Aquestes propietats matemàtiques, com es va mencionar en <a href="#cau-flotantes" class="quarto-xref">error freqüent&nbsp;1</a> i <a href="#cau-ieee754" class="quarto-xref">error freqüent&nbsp;2</a>, de vegades xoquen amb les representacions en memòria. Un altre exemple: en l’estàndard IEEE 754 per a coma flotant, el valor <code>NaN</code> (<em>Not a Number</em>) trenca intencionalment la reflexivitat, ja que <code>NaN == NaN</code> avalua a fals.</p>
+</blockquote>
+<p>En Python 3, per defecte, <code>!=</code> es comporta automàticament com la negació lògica de <code>==</code>. No obstant això, a nivell d’arquitectura, són dues operacions independents i el llenguatge et permet trencar aquesta regla si ho desitges (això es veurà en el Tema 5, quan s’estudiïn les classes i la sobrecàrrega d’operadors).</p>
+<p><strong>Relacions d’Ordre (<code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>)</strong></p>
+<p>Aquests operadors implementen el que en matemàtiques es coneix com una <strong>relació d’ordre</strong> (generalment un ordre total). Per a un operador d’ordre no estricte com <code>&lt;=</code>, el llenguatge garanteix matemàticament:</p>
+<ul>
+<li><strong>Reflexivitat:</strong> <span class="math inline">\(x \le x\)</span>.</li>
+<li><strong>Antisimetria:</strong> Si <span class="math inline">\(x \le y\)</span> i <span class="math inline">\(y \le x\)</span>, llavors <span class="math inline">\(x = y\)</span>.</li>
+<li><strong>Transitivitat:</strong> Si <span class="math inline">\(x \le y\)</span> i <span class="math inline">\(y \le z\)</span>, llavors <span class="math inline">\(x \le z\)</span>.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="operadors-lògics" class="level3">
+<h3 class="anchored" data-anchor-id="operadors-lògics"><strong>2.4.3 Operadors lògics</strong></h3>
+<p>Els operadors lògics (<code>and</code>, <code>or</code>, <code>not</code>) permeten construir condicions compostes (expressions lògiques) combinant expressions booleanes simples com les que s’obtenen usant els operadors de comparació. Sense ells, cada condició estaria limitada a comparar un únic parell de valors; amb ells és possible expressar restriccions arbitràriament complexes sobre l’estat del programa. En matemàtiques són l’equivalent directe dels connectius proposicionals <span class="math inline">\(\wedge\)</span>, <span class="math inline">\(\vee\)</span> i <span class="math inline">\(\neg\)</span> de la lògica matemàtica.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Operador</th>
+<th>Significat</th>
+<th>Resultat <code>True</code> quan…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>and</code></td>
+<td>Conjunció</td>
+<td>tots dos operands són <code>True</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>or</code></td>
+<td>Disjunció</td>
+<td>almenys un és <code>True</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>not</code></td>
+<td>Negació</td>
+<td>l’operand és <code>False</code></td>
+</tr>
+</tbody>
+</table>
+<pre class="{pyodide}"><code>x = 7
+print(x &gt; 0 and x &lt; 10)   # True   (x està en l'interval (0, 10))
+print(x &lt; 0 or x &gt; 5)     # True   (x &lt; 0 és False, però x &gt; 5 és True)
+print(not (x == 7))       # False
+print(x != 7)             # False</code></pre>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Avaluació en curtcircuit (short-circuit evaluation)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Avaluació en curtcircuit (short-circuit evaluation)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Els operadors <code>and</code> i <code>or</code> en Python usen <strong>avaluació en curtcircuit</strong> (<em>short-circuit evaluation</em>): si el resultat queda determinat pel primer operand, el segon no s’avalua.</p>
+<ul>
+<li><code>False and expr</code> → <code>False</code> sense avaluar <code>expr</code>.</li>
+<li><code>True or expr</code> → <code>True</code> sense avaluar <code>expr</code>.</li>
+</ul>
+<p>Això és important per evitar errors quan l’avaluació del segon operand podria provocar una excepció. Per exemple, la següent expressió és segura perquè si <code>b == 0</code> la segona part no s’avalua:</p>
+<pre class="{pyodide}"><code>b = 0
+if b != 0 and 10 / b &gt; 2:   # no llança ZeroDivisionError
+    print("quocient gran")</code></pre>
+</div>
+</div>
+<div id="tip-logico" class="callout callout-style-default callout-tip no-icon callout-titled" title="Operadors lògics">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;4: Operadors lògics
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El fonament dels operadors lògics (<code>and</code>, <code>or</code>, <code>not</code>) és la <strong>lògica proposicional</strong> i la seva formalització algebraica, l’<strong>àlgebra de Boole</strong> (desenvolupada per George Boole el 1854).</p>
+<p>Mentre que els operadors relacionals operen sobre tipus de dades arbitraris i mapegen el resultat al domini dels booleans, els operadors lògics <strong>tenen el conjunt booleà tant en el seu domini com en el seu codomini</strong>. Operen estrictament sobre els valors lògics <code>True</code> (<span class="math inline">\(1\)</span>) i <code>False</code> (<span class="math inline">\(0\)</span>).</p>
+<p>Les operacions fonamentals es defineixen axiomàticament mitjançant taules de veritat:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><code>p</code></th>
+<th style="text-align: center;"><code>q</code></th>
+<th style="text-align: center;"><code>p and q</code></th>
+<th style="text-align: center;"><code>p or q</code></th>
+<th style="text-align: center;"><code>not p</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>False</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>False</code></td>
+<td style="text-align: center;"><code>False</code></td>
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>False</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>False</code></td>
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>False</code></td>
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>True</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>False</code></td>
+<td style="text-align: center;"><code>False</code></td>
+<td style="text-align: center;"><code>False</code></td>
+<td style="text-align: center;"><code>False</code></td>
+<td style="text-align: center;"><code>True</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="tip-explogica" class="callout callout-style-default callout-tip no-icon callout-titled" title="Expressions lògiques">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;5: Expressions lògiques
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>expressió lògica</strong> és una expressió que s’avalua com <code>True</code> o <code>False</code>. En Python es construeixen combinant valors booleans, operadors de comparació i operadors lògics (<code>and</code>, <code>or</code>, <code>not</code>). Són el component fonamental de les condicions en estructures <code>if</code> i <code>while</code>: el programa avalua l’expressió i decideix quines instruccions executar en funció del resultat.</p>
+<p>Per a tota expressió lògica composta, es pot construir una <strong>taula de veritat</strong> que enumeri totes les combinacions possibles de valors de veritat dels seus components i el resultat final. Això permet analitzar i verificar el comportament de l’expressió en tots els casos possibles. Per exemple, per a l’expressió <code>p and (q or not p)</code> tenim la taula de veritat següent:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><code>p</code></th>
+<th style="text-align: center;"><code>q</code></th>
+<th style="text-align: center;"><code>not p</code></th>
+<th style="text-align: center;"><code>q or not p</code></th>
+<th style="text-align: center;"><code>p and (q or not p)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>False</code></td>
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>True</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>False</code></td>
+<td style="text-align: center;"><code>False</code></td>
+<td style="text-align: center;"><code>False</code></td>
+<td style="text-align: center;"><code>False</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>False</code></td>
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>False</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>False</code></td>
+<td style="text-align: center;"><code>False</code></td>
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>True</code></td>
+<td style="text-align: center;"><code>False</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="conversió-de-tipus" class="level3">
+<h3 class="anchored" data-anchor-id="conversió-de-tipus"><strong>2.4.4 Conversió de tipus</strong></h3>
+<p>Python no converteix tipus automàticament en la majoria de situacions. Les funcions <code>int()</code>, <code>float()</code>, <code>str()</code> i <code>bool()</code> permeten convertir valors de forma explícita:</p>
+<pre class="{pyodide}"><code>print(int(3.9))      #  3    (trunca cap a zero, no arrodoneix)
+print(int(-3.9))     # -3    (també trunca cap a zero)
+print(float(5))      #  5.0
+print(str(42))       # '42'
+print(int("100"))    #  100
+print(bool(0))       # False
+print(bool(1))       # True
+print(bool(""))      # False  (cadena buida → False)
+print(bool("hola"))  # True   (cadena no buida → True)</code></pre>
+<p>La conversió de tipus és necessària perquè Python no realitza conversions implícites entre tipus incompatibles —a diferència d’altres llenguatges— i perquè les dades del món real arriben freqüentment en un tipus diferent del que requereix el càlcul.</p>
+<p>Les situacions que la justifiquen són principalment tres:</p>
+<ul>
+<li><p><strong>Entrada d’usuari</strong>: <code>input()</code> retorna sempre <code>str</code>. Qualsevol dada numèrica introduïda per l’usuari ha de convertir-se explícitament abans d’operar amb ella: <code>int(input(...))</code> o <code>float(input(...))</code> (es veurà a la secció 2.7 més avall).</p></li>
+<li><p><strong>Precisió aritmètica</strong>: de vegades cal forçar el tipus del resultat. <code>int(3.9)</code> trunca a <code>3</code>; <code>float(7)</code> assegura que una divisió posterior no sigui entera.</p></li>
+<li><p><strong>Compatibilitat entre tipus</strong>: <code>str(42)</code> permet concatenar un nombre amb una cadena; sense la conversió, <code>"El resultat és: " + 42</code> llança <code>TypeError</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="control-de-flux-estructures-o-sentències-condicionals" class="level2">
+<h2 class="anchored" data-anchor-id="control-de-flux-estructures-o-sentències-condicionals">2.5. Control de Flux — Estructures o Sentències Condicionals</h2>
+<p>El <strong>control de flux</strong> és el mecanisme que determina l’ordre en què s’avaluen les instruccions d’un programa. Tot i que per defecte l’execució segueix una seqüència estrictament lineal, les estructures de control permeten alterar aquesta trajectòria: bifurcar l’execució en funció d’una premissa lògica, o iterar repetidament sobre un bloc de codi. En aquest marc, les <strong>estructures condicionals</strong> actuen com l’eina fonamental per a la presa de decisions.</p>
+<div id="tip-condicional" class="callout callout-style-default callout-tip no-icon callout-titled" title="Condicionals">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;6: Condicionals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>estructura condicional o sentència condicional</strong> és una construcció del llenguatge que permet executar un bloc d’instruccions només si una expressió de condició s’avalua com a verdadera, i opcionalment executar un bloc alternatiu si s’avalua com a falsa. És el mecanisme fonamental mitjançant el qual un programa adapta el seu comportament a l’estat de les dades en temps d’execució.</p>
+<p>Independentment del llenguatge de programació subjacent, tot condicional es fonamenta en dues peces clau:</p>
+<ul>
+<li><strong>El Predicat (La Condició):</strong> És l’expressió que el sistema avalua i que sempre s’ha de resoldre o mapejar a un estat booleà estricte (Vertader o Fals). Actua com la frontera o la “pregunta” que determina el camí a seguir.</li>
+<li><strong>Les Branques (Els Camins):</strong> Són els blocs de codi associats a cada possible resultat de la condició. Aquestes branques són mútuament excloents: el processador executarà únicament el conjunt d’instruccions associat a la branca vàlida i descartar silenciosament la resta.</li>
+</ul>
+<p>A nivell del maquinari subjacent, un condicional es tradueix en una <strong>instrucció de salt</strong> (<em>branching</em>). El processador avalua l’estat d’un registre (per exemple, verificant si una resta dóna zero) i, basant-se en aquell resultat lògic, altera el <strong>Comptador de Programa</strong> per saltar a una adreça de memòria diferent en lloc de llegir la instrucció immediatament següent.</p>
+</div>
+</div>
+<p>L’estructura condicional en Python és <code>if</code>, que admet tres formes:</p>
+<ul>
+<li><code>if</code> sol: executa un bloc si la condició és verdadera, i no fa res si és falsa.</li>
+<li><code>if</code>-<code>else</code>: afegeix un bloc alternatiu per quan la condició és falsa.</li>
+<li><code>if</code>-<code>elif</code>-<code>else</code>: encadena múltiples condicions mútuament excloents, avaluades en ordre fins que una sigui verdadera.</li>
+</ul>
+<section id="estructura-if" class="level3">
+<h3 class="anchored" data-anchor-id="estructura-if"><strong>2.5.1 Estructura <code>if</code></strong></h3>
+<p>La forma més simple és el <code>if</code>:</p>
+<pre class="{pyodide}"><code>x = -5
+if x &lt; 0:
+    print("x és negatiu")</code></pre>
+<p>El bloc indentat només s’executa si la condició és <code>True</code>. Si la condició és <code>False</code>, el bloc s’omet i l’execució continua en la instrucció següent no indentada.</p>
+<div id="imp-indenta" class="callout callout-style-default callout-important no-icon callout-titled" title="Delimitació de blocs per indentació">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;6: Delimitació de blocs per indentació
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En Python la <strong>indentació</strong> no és una convenció estilística sinó part de la sintaxi: és el mecanisme que delimita els blocs de codi. A diferència de llenguatges com C o Java, que usen claus <code>{}</code> per marcar l’inici i el final d’un bloc, Python usa el nivell de sagnat. Les instruccions que pertanyen al bloc de codi han d’estar indentades un nivell més endins de la instrucció capçalera (<code>if</code>, <code>else</code>, <code>elif</code>, <code>while</code>, <code>for</code>, etc.) perquè l’intèrpret sàpiga quines instruccions es repeteixen i quines s’executen en sortir del bloc (les que estan al mateix nivell d’indentació que la instrucció capçalera). Python usa indentació de 4 espais per convenció <span class="citation" data-cites="pep8">(<a href="#ref-pep8" role="doc-biblioref">Rossum, Warsaw, i Coghlan 2001</a>)</span>.</p>
+</div>
+</div>
+</section>
+<section id="estructura-if-else" class="level3">
+<h3 class="anchored" data-anchor-id="estructura-if-else"><strong>2.5.2 Estructura <code>if</code>-<code>else</code></strong></h3>
+<pre class="{pyodide}"><code>n = 17
+if n % 2 == 0:
+    print(f"{n} és parell")
+else:
+    print(f"{n} és senar")</code></pre>
+</section>
+<section id="estructura-if-elif-else" class="level3">
+<h3 class="anchored" data-anchor-id="estructura-if-elif-else"><strong>2.5.3 Estructura <code>if</code>-<code>elif</code>-<code>else</code></strong></h3>
+<p>Per a diverses condicions mútuament excloents s’encadenen branques <code>elif</code> (<em>else if</em>). Només s’executa la primera branca la condició de la qual sigui <code>True</code>; les altres s’ignoren:</p>
+<pre class="{pyodide}"><code>nota = 7.5
+
+if nota &gt;= 9:
+    qualificacio = "Excel·lent"
+elif nota &gt;= 7:
+    qualificacio = "Notable"
+elif nota &gt;= 5:
+    qualificacio = "Aprovat"
+else:
+    qualificacio = "Suspès"
+
+print(f"Nota: {nota} → {qualificacio}")
+# Nota: 7.5 → Notable</code></pre>
+<div id="nte-ecucua" class="callout callout-style-default callout-note no-icon callout-titled" title="Arrels d'una equació quadràtica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;1: Arrels d’una equació quadràtica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El discriminant <span class="math inline">\(\Delta = b^2 - 4ac\)</span> determina la naturalesa de les arrels de <span class="math inline">\(ax^2 + bx + c = 0\)</span>:</p>
+<pre class="{pyodide}"><code>import math
+
+a, b, c = 1, -3, 2    # equació: x^2 - 3x + 2 = 0
+discriminant = b**2 - 4 * a * c
+
+if discriminant &gt; 0:
+    r1 = (-b + math.sqrt(discriminant)) / (2 * a)
+    r2 = (-b - math.sqrt(discriminant)) / (2 * a)
+    print(f"Dues arrels reals: x₁ = {r1:.4f}, x₂ = {r2:.4f}")
+elif discriminant == 0:
+    r = -b / (2 * a)
+    print(f"Arrel doble: x = {r:.4f}")
+else:
+    print("Sense arrels reals (discriminant negatiu)")</code></pre>
+<p>La instrucció <code>import math</code> fa disponibles les funcions matemàtiques del mòdul estàndard <code>math</code>, com <code>math.sqrt()</code> (arrel quadrada), <code>math.pi</code> (π), <code>math.log()</code> (logaritme), etc. Els mòduls s’estudien en profunditat en el Tema 3; per ara n’hi ha prou amb saber que <code>import math</code> s’ha d’escriure abans d’usar qualsevol funció d’aquell mòdul. La notació <code>math.xxxxxx()</code>, per exemple <code>math.sqrt()</code>, indica que la funció <code>xxxxxx</code> pertany al mòdul <code>math</code>.</p>
+</div>
+</div>
+</section>
+<section id="condicionals-aniuats-i-expressió-condicional" class="level3">
+<h3 class="anchored" data-anchor-id="condicionals-aniuats-i-expressió-condicional"><strong>2.5.4 Condicionals aniuats i expressió condicional</strong></h3>
+<p>Un bloc <code>if</code> pot contenir un altre <code>if</code> al seu interior. Els condicionals aniuats permeten refinar la lògica pas a pas:</p>
+<pre class="{pyodide}"><code>x = 3
+if x != 0:
+    if x &gt; 0:
+        print("x és positiu")
+    else:
+        print("x és negatiu")
+else:
+    print("x és zero")</code></pre>
+<p>Quan la lògica es complica, sol ser preferible combinar condicions amb <code>and</code> i <code>or</code>, o usar <code>elif</code>, en lloc d’aniuar massa nivells.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Expressió condicional (operador ternari)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Expressió condicional (operador ternari)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Python disposa d’una <strong>expressió condicional</strong> que assigna un valor segons una condició en una sola línia:</p>
+<pre class="{pyodide}"><code>x = 7
+signe = "positiu" if x &gt; 0 else "no positiu"
+print(signe)   # positiu</code></pre>
+<p>La sintaxi és <code>valor_si_true if condició else valor_si_false</code>. És útil per a assignacions simples, però convé evitar-la quan la lògica és complexa, ja que pot dificultar la lectura.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="control-de-flux-iteracions" class="level2">
+<h2 class="anchored" data-anchor-id="control-de-flux-iteracions">2.6. Control de Flux — Iteracions</h2>
+<p>La <strong>iteració</strong> és el mecanisme que permet repetir un bloc d’instruccions un nombre determinat de vegades o mentre es compleixi una condició. Sense iteració, un programa només podria processar una quantitat fixa de dades coneguda en temps d’escriptura; amb iteració pot operar sobre col·leccions de mida arbitrària, aproximar resultats mitjançant successions o sèries, i executar processos que convergeixen a una solució.</p>
+<p>En matemàtiques la iteració té equivalents directes en la notació de sumatori <span class="math inline">\(\sum\)</span>, productori <span class="math inline">\(\prod\)</span> i en la definició de successions per recurrència. Python proporciona dues estructures iteratives fonamentals: <code>while</code>, que repeteix mentre una condició sigui verdadera, i <code>for</code>, que recorre els elements d’una seqüència.</p>
+<section id="el-bucle-while-iteració-indefinida-o-condicional" class="level3">
+<h3 class="anchored" data-anchor-id="el-bucle-while-iteració-indefinida-o-condicional"><strong>2.6.1 El bucle <code>while</code> (iteració indefinida o condicional)</strong></h3>
+<p>El bucle <code>while</code> repeteix un bloc d’instruccions <strong>mentre</strong> una condició sigui verdadera. Representa el concepte clàssic de les ciències de la computació on l’execució d’un bloc de codi depèn de l’estat actual del programa. S’anomena “indefinit” perquè el nombre de repeticions pot ser desconegut en iniciar el bucle.</p>
+<ul>
+<li><strong>Fonament:</strong> Es basa exclusivament en l’avaluació d’una <strong>expressió booleana</strong> (la condició).</li>
+<li><strong>Mecanisme:</strong> Abans d’entrar al cicle i a l’inici de cada repetició posterior, l’intèrpret avalua la condició. Si el resultat és <code>True</code>, el bloc de codi s’executa. Si és <code>False</code>, el flux salta a la primera instrucció que estigui fora del bucle.</li>
+<li><strong>Teoria de l’estat:</strong> Perquè un bucle <code>while</code> sigui teòricament segur, l’estat del programa ha de canviar dins del bloc. Si l’estat no altera mai la condició d’avaluació, es produeix un <strong>bucle infinit</strong>.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> condició:</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># bloc que es repeteix</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="nte-cua100" class="callout callout-style-default callout-note no-icon callout-titled" title="Imprimir els quadrats perfectes menors que 100">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;2: Imprimir els quadrats perfectes menors que 100
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emprant un bucle <code>while</code> es poden imprimir els quadrats perfectes menors que 100:</p>
+<pre class="{pyodide}"><code>n = 1
+while n * n &lt; 100:
+    print(n * n, end="  ")
+    n += 1
+print("\nFi del bucle")</code></pre>
+<p>En cada iteració s’avalua la condició. Tan aviat com és <code>False</code> (quan <code>n == 100</code>), el bucle acaba i l’execució continua amb la instrucció següent imprimint “Fi del bucle” en una nova línia. Observeu que <code>print("\nFi del bucle")</code> imprimeix un salt de línia amb <code>\n</code> abans del missatge.</p>
+</div>
+</div>
+<div id="cau-while" class="callout callout-style-default callout-caution no-icon callout-titled" title="Bucle infinit">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;4: Bucle infinit
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si la condició del <code>while</code> mai passa a <code>False</code>, el programa no acaba mai. Aquest error —el <strong>bucle infinit</strong>— és un dels més freqüents en començar a programar:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PERILL: bucle infinit (n sempre creix)</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    n <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Per aturar un programa bloquejat en un bucle infinit, prem <strong>Ctrl+C</strong> al terminal.</p>
+</div>
+</div>
+<section id="usos-típics-del-bucle-while" class="level4">
+<h4 class="anchored" data-anchor-id="usos-típics-del-bucle-while"><strong>Usos típics del bucle <code>while</code></strong></h4>
+<p>Usos típics del bucle <code>while</code> inclouen:</p>
+<ul>
+<li><p><strong>Repetir fins que es compleixi una condició</strong> — cerca del primer múltiple:</p>
+<pre class="{pyodide}"><code>n = 1
+while n % 13 != 0:
+    n += 1
+print(n)   # primer múltiple de 13</code></pre></li>
+<li><p><strong>Aproximació iterativa</strong> — mètode de bisecció (vegeu <span class="citation" data-cites="wikipedia_biseccion">(<a href="#ref-wikipedia_biseccion" role="doc-biblioref">Contribuïdors de Viquipèdia 2024a</a>)</span>) per trobar una arrel:</p>
+<pre class="{pyodide}"><code>a, b = 1.0, 2.0
+while b - a &gt; 1e-10:
+    m = (a + b) / 2
+    if m ** 2 &lt; 2:
+        a = m
+    else:
+        b = m
+print(m)   # aproximació a √2</code></pre></li>
+<li><p><strong>Convergència d’una successió</strong> — iterar el mètode de Newton (vegeu <span class="citation" data-cites="wikipedia_newton">(<a href="#ref-wikipedia_newton" role="doc-biblioref">Contribuïdors de Viquipèdia 2024b</a>)</span>) fins que dos termes consecutius siguin indistingibles:</p>
+<pre class="{pyodide}"><code>x = 1.0
+while True:
+    x_nou = (x + 2 / x) / 2   # mètode de Newton per a √2
+    if abs(x_nou - x) &lt; 1e-12:
+        break
+    x = x_nou
+print(x)</code></pre></li>
+<li><p><strong>Validació d’entrada</strong> — repetir fins a obtenir un valor vàlid (la funció <code>input()</code> es veurà a la secció 2.7):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introdueix un enter positiu: "</span>))</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ha de ser positiu. Torna-ho a intentar: "</span>))</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Dígits d’un nombre</strong> — processar xifra a xifra:</p>
+<pre class="{pyodide}"><code>n = 123456
+while n &gt; 0:
+    print(n % 10)   # última xifra
+    n //= 10</code></pre></li>
+</ul>
+</section>
+<section id="instruccions-break-i-continue" class="level4">
+<h4 class="anchored" data-anchor-id="instruccions-break-i-continue"><strong>Instruccions <code>break</code> i <code>continue</code></strong></h4>
+<p>Dins de qualsevol bucle, dues instruccions permeten modificar el flux d’iteració:</p>
+<ul>
+<li><strong><code>break</code></strong>: interromp el bucle immediatament i salta al codi que ve després.</li>
+<li><strong><code>continue</code></strong>: salta a l’inici de la següent iteració, ometent la resta del bloc actual.</li>
+</ul>
+<pre class="{pyodide}"><code># break: trobar el primer divisor de n major que 1
+n = 77
+d = 2
+while d &lt; n:
+    if n % d == 0:
+        print(f"El menor divisor de {n} major que 1 és {d}")
+        break
+    d += 1</code></pre>
+<pre class="{pyodide}"><code># continue: imprimir només els enters senars de l'1 al 10
+i = 0
+while i &lt; 10:
+    i += 1
+    if i % 2 == 0:
+        continue   # salta a l'inici si i és parell
+    print(i, end="  ")
+# 1  3  5  7  9</code></pre>
+</section>
+<section id="disseny-correcte-dun-bucle-while" class="level4">
+<h4 class="anchored" data-anchor-id="disseny-correcte-dun-bucle-while"><strong>Disseny correcte d’un bucle <code>while</code></strong></h4>
+<p>Perquè un bucle <code>while</code> funcioni de forma correcta i predictible cal atendre cinc aspectes:</p>
+<ol type="1">
+<li><strong>Inicialització</strong>: totes les variables de la condició han d’estar definides abans de la primera avaluació.</li>
+<li><strong>Variant de bucle</strong>: una expressió entera que decreix estrictament en cada iteració i està acotada inferiorment, garantint que el bucle acaba. La seva existència prova que l’algoritme no és infinit.</li>
+<li><strong>Invariant de bucle</strong>: una propietat lògica que és verdadera abans de la primera iteració i es manté verdadera al final de cada una. La seva preservació garanteix que el bucle calcula el que es pretén calcular.</li>
+<li><strong>Casos límit</strong>: la condició ha de gestionar de forma segura valors extrems o nuls per evitar errors en temps d’execució.</li>
+<li><strong><code>break</code> i <code>continue</code> amb moderació</strong>: el seu abús trenca el flux d’entrada i sortida única, dificultant la lectura i el raonament sobre el codi.</li>
+</ol>
+<div id="tip-variantebucle" class="callout callout-style-default callout-tip no-icon callout-titled" title="Variant de bucle">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;7: Variant de bucle
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>variant de bucle</strong> (<em>loop variant</em>) és una expressió de valor enter no negatiu associada a un bucle que satisfà dues condicions:</p>
+<ol type="1">
+<li><strong>Decreix estrictament</strong> en cada iteració: el seu valor després d’executar el cos del bucle és estrictament menor que el seu valor abans.</li>
+<li><strong>Està acotada inferiorment</strong> per zero: no pot prendre valors negatius.</li>
+</ol>
+<p>Aquestes dues condicions juntes garanteixen que el bucle acaba en un nombre finit d’iteracions, ja que una successió d’enters no negatius que decreix estrictament no pot ser infinita.</p>
+<p>En la pràctica, la variant sol ser un comptador, la distància entre dos valors que convergeixen, o el nombre d’elements que queden per processar. Per exemple, en un bucle que recorre els dígits d’un enter <code>n</code> dividint-lo per 10 en cada iteració, la variant és el propi valor de <code>n</code>: decreix estrictament i arriba a 0 en un nombre finit de passos. L’existència d’una variant de bucle és l’eina formal per demostrar que un bucle <strong>acaba</strong>.</p>
+</div>
+</div>
+<div id="tip-invarti" class="callout callout-style-default callout-tip no-icon callout-titled" title="Invariant de bucle">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;8: Invariant de bucle
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>invariant de bucle</strong> (<em>loop invariant</em>) és una propietat lògica sobre l’estat del programa que és verdadera abans de la primera iteració i es manté verdadera al final de cada iteració. Com a conseqüència, també és verdadera quan el bucle acaba, moment en què —combinada amb la negació de la condició del <code>while</code>— permet deduir que el resultat calculat és correcte.</p>
+<p>L’invariant captura formalment <em>què fa el bucle</em>: no com ho fa pas a pas, sinó quina propietat acumula o preserva en cada iteració. Per exemple, en un bucle que calcula la suma <span class="math inline">\(\sum_{k=1}^{n} k\)</span>, l’invariant és que al final de la iteració <span class="math inline">\(i\)</span> la variable <code>suma</code> conté el valor <span class="math inline">\(\sum_{k=1}^{i} k\)</span>.</p>
+<p>L’existència d’un invariant de bucle vàlid és l’eina formal per demostrar que un bucle calcula el que es pretén calcular, és a dir, la seva <strong>correcció parcial</strong>.</p>
+</div>
+</div>
+<p>La variant i l’invariant de bucle són les eines teòriques fonamentals del <strong>raonament formal sobre bucles</strong>. La variant garanteix que el bucle acaba; l’invariant garanteix que calcula el correcte. Si es pot exhibir una variant i un invariant vàlids, s’ha provat rigorosament que el bucle acaba i que el seu resultat és l’esperat.</p>
+</section>
+</section>
+<section id="el-bucle-for-iteració-definida-i-lobjecte-range" class="level3">
+<h3 class="anchored" data-anchor-id="el-bucle-for-iteració-definida-i-lobjecte-range"><strong>2.6.2 El bucle <code>for</code> (iteració definida) i l’objecte <code>range()</code></strong></h3>
+<p>El bucle <code>for</code> en Python itera sobre els elements d’una seqüència, per això es diu que és una iteració definida. Aquest és un cas on Python difereix conceptualment de llenguatges com C o C++. En aquells llenguatges, un <code>for</code> sol ser un <code>while</code> disfressat amb un comptador numèric (ex. <code>for(i=0; i&lt;10; i++)</code>).</p>
+<p>En Python, el <code>for</code> és en realitat un bucle <strong>“for-each”</strong> (per a cada element). La seva base no és una condició matemàtica, sinó el consum sistemàtic dels elements d’un <strong>objecte iterable</strong>. Un objecte iterable és qualsevol objecte que pot lliurar els seus elements d’un en un en un ordre definit i sobre el qual es pot usar un bucle <code>for</code>.</p>
+<p>L’exemple més immediat d’objecte iterable són els objectes de la classe <code>range</code>. Mitjançant objectes <code>range</code> es generen seqüències d’enters que constitueixen la forma habitual de controlar el nombre de repeticions en un bucle <code>for</code>.</p>
+<p>El tipus <code>range()</code> genera seqüències d’enters de les tres formes següents:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Crida</th>
+<th>Seqüència generada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>range(n)</code></td>
+<td><code>0, 1, 2, …, n−1</code></td>
+</tr>
+<tr class="even">
+<td><code>range(a, b)</code></td>
+<td><code>a, a+1, …, b−1</code></td>
+</tr>
+<tr class="odd">
+<td><code>range(a, b, pas)</code></td>
+<td><code>a, a+pas, a+2·pas, …</code> mentre el valor sigui <code>&lt; b</code></td>
+</tr>
+</tbody>
+</table>
+<pre class="{pyodide}"><code>for i in range(5):
+    print(i, end=" ")     # 0 1 2 3 4
+print()  # salt de línia
+
+for i in range(1, 6):
+    print(i, end=" ")     # 1 2 3 4 5
+print()  # salt de línia
+
+for i in range(0, 10, 2):
+    print(i, end=" ")     # 0 2 4 6 8
+print() # salt de línia
+
+for i in range(10, 0, -1):
+    print(i, end=" ")     # 10 9 8 7 6 5 4 3 2 1</code></pre>
+<div id="imp-range" class="callout callout-style-default callout-important no-icon callout-titled" title="L'anatomia de l'objecte `range`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;7: L’anatomia de l’objecte <code>range</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quan escrius <code>r = range(0, 10, 2)</code>, Python no crea ni emmagatzema en memòria una seqüència amb els nombres <code>0, 2, 4, 6, 8</code>. Això seria ineficient. En el seu lloc, l’objecte <code>range</code> només emmagatzema tres enters:</p>
+<ul>
+<li><code>start</code> (inici)</li>
+<li><code>stop</code> (fi)</li>
+<li><code>step</code> (salt)</li>
+</ul>
+<p>Els enters es produeixen d’un en un a mesura que el bucle els sol·licita (<em>lazy evaluation</em>). Gràcies a això, <code>range(10)</code> i <code>range(1000000000)</code> ocupen exactament la mateixa quantitat mínima de memòria.</p>
+</div>
+</div>
+<p>Entre els usos fonamentals del bucle <code>for</code> es troba el <strong>patró acumulador</strong>, que permet calcular sumes, productes i altres operacions agregades de manera eficient.</p>
+<div id="imp-acumulador" class="callout callout-style-default callout-important no-icon callout-titled" title="El patró acumulador">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;8: El patró acumulador
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El <strong>patró acumulador</strong> és l’estructura més freqüent en programació numèrica: s’inicialitza una variable abans del bucle amb l’element neutre de l’operació i s’actualitza en cada iteració.</p>
+<pre class="{pyodide}"><code># Suma: S = 1 + 2 + … + n
+n = 100
+suma = 0                        # neutre de la suma
+for i in range(1, n + 1):
+    suma += i
+print(suma)                     # 5050  (= n·(n+1)/2)</code></pre>
+<p>El mateix esquema serveix per a productes:</p>
+<pre class="{pyodide}"><code># Factorial: n! = 1 × 2 × … × n
+n = 10
+factorial = 1                   # neutre del producte
+for i in range(2, n + 1):
+    factorial *= i
+print(factorial)                # 3628800</code></pre>
+<p>La variable acumuladora (<code>suma</code>, <code>factorial</code>) <strong>s’ha d’inicialitzar fora del bucle</strong> amb el valor neutre de l’operació: 0 per a sumes, 1 per a productes.</p>
+</div>
+</div>
+<p>Altres usos comuns del bucle <code>for</code> inclouen:</p>
+<ul>
+<li><p><strong>Recórrer i processar una seqüència</strong>:</p>
+<pre class="{pyodide}"><code>for x in range(1, 5):
+    print(x ** 3)   # cub de cada enter</code></pre></li>
+<li><p><strong>Cerca</strong> — detectar si un enter en un rang compleix una condició:</p>
+<pre class="{pyodide}"><code>for n in range(2, 50):
+    if n % 7 == 0:
+        print(n, "és múltiple de 7")</code></pre></li>
+</ul>
+<section id="exemples-matemàtics-dús-del-bucle-for" class="level4">
+<h4 class="anchored" data-anchor-id="exemples-matemàtics-dús-del-bucle-for">Exemples matemàtics d’ús del bucle <code>for</code></h4>
+<div id="nte-fibonacci" class="callout callout-style-default callout-note no-icon callout-titled" title="Imprimir $n$ termes de la successió de Fibonacci">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;3: Imprimir <span class="math inline">\(n\)</span> termes de la successió de Fibonacci
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La successió de Fibonacci es defineix per <span class="math display">\[
+F_k = \begin{cases}
+0 &amp; \text{si } k = 0 \\
+1 &amp; \text{si } k = 1 \\
+F_{k-1} + F_{k-2} &amp; \text{si } k \geq 2
+\end{cases}
+\]</span>. El càlcul iteratiu utilitza dues variables que s’actualitzen simultàniament:</p>
+<pre class="{pyodide}"><code>n = 15   # nombre de termes a imprimir
+a, b = 0, 1
+for i in range(n):
+    print(a, end="  ")
+    a, b = b, a + b</code></pre>
+<p>L’assignació simultània <code>a, b = b, a + b</code> avalua primer el costat dret complet i després assigna, de manera que no cal cap variable temporal.</p>
+</div>
+</div>
+<div id="nte-sumserie" class="callout callout-style-default callout-note no-icon callout-titled" title="Càlcul de la suma parcial d'una sèrie">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;4: Càlcul de la suma parcial d’una sèrie
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Càlcul de la suma parcial</p>
+<p><span class="math display">\[
+S_n = \sum_{k=1}^{n} \frac{1}{k^2}
+\]</span>,</p>
+<p>que convergeix a <span class="math inline">\(\pi^2/6\)</span> quan <span class="math inline">\(n \to \infty\)</span> (resultat conegut com a problema de Basilea, resolt per Euler el 1735):</p>
+<pre class="{pyodide}"><code>import math
+
+n = 10000
+suma = 0.0
+for k in range(1, n + 1):
+    suma += 1 / k**2
+
+print(f"S_{n}   = {suma:.10f}")
+print(f"π²/6    = {math.pi**2 / 6:.10f}")
+print(f"Error   = {abs(suma - math.pi**2 / 6):.2e}")</code></pre>
+</div>
+</div>
+<div id="nte-primos" class="callout callout-style-default callout-note no-icon callout-titled" title="Imprimir nombres primers">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;5: Imprimir nombres primers
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un nombre <span class="math inline">\(p \geq 2\)</span> és <strong>primer</strong> si no té divisors propis entre 2 i <span class="math inline">\(\lfloor\sqrt{p}\rfloor\)</span>. El codi següent utilitza una variable booleana de tipus bandera (<em>flag</em>) per registrar si s’ha trobat algun divisor:</p>
+<pre class="{pyodide}"><code>import math
+
+# Llistar tots els primers fins a 50
+for n in range(2, 51):
+    es_primer = True                          # hipòtesi inicial: n és primer
+    for d in range(2, int(math.sqrt(n)) + 1):
+        if n % d == 0:
+            es_primer = False                 # s'ha trobat un divisor
+            break                             # no cal continuar buscant
+    if es_primer:
+        print(n, end="  ")</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Bucles aniuats">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Bucles aniuats
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Els bucles es poden <strong>aniuar</strong>, és a dir, es pot tenir un bucle dins d’un altre. Això ocorre principalment amb bucles <code>for</code>. Aniuar <code>while</code> és possible però poc freqüent. Hi ha ocasions on el bucle exterior és <code>for</code> i l’interior és <code>while</code>.</p>
+<p>Cada vegada que el bucle exterior avança una iteració, el bucle interior s’executa completament. El nombre total d’iteracions és el producte dels rangs dels dos bucles.</p>
+<pre class="{pyodide}"><code># Taula de multiplicar de l'1 al 6
+print(f"{'':4}", end="")
+for j in range(1, 7):
+    print(f"{j:4}", end="")
+print()
+print("-" * 28)
+for i in range(1, 7):
+    print(f"{i:4}", end="")
+    for j in range(1, 7):
+        print(f"{i*j:4}", end="")
+    print()</code></pre>
+<p>Amb bucles aniuats és fàcil generar costos computacionals elevats: un doble bucle sobre <span class="math inline">\(n\)</span> elements produeix <span class="math inline">\(O(n^2)\)</span> operacions. L’anàlisi de la <strong>complexitat computacional</strong> dels algoritmes (Tema 4) estudia aquest tipus de costos amb detall.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="iteració-sobre-cadenes-i-enumerate" class="level3">
+<h3 class="anchored" data-anchor-id="iteració-sobre-cadenes-i-enumerate"><strong>2.6.3 Iteració sobre cadenes i <code>enumerate()</code></strong></h3>
+<p>Una cadena <code>str</code> és un iterable els elements del qual són els caràcters individuals (cada un al seu torn un <code>str</code> de longitud 1). El bucle <code>for</code> pot recórrer directament els caràcters d’una cadena:</p>
+<pre class="{pyodide}"><code>paraula = "Python"
+for lletra in paraula:
+    print(lletra, end="-")    # P-y-t-h-o-n-</code></pre>
+<p>Si es vol conèixer la posició de cada caràcter, es pot usar <code>range()</code> amb <code>len()</code>:</p>
+<pre class="{pyodide}"><code>paraula = "Python"
+for i in range(len(paraula)):
+    print(f"posició {i}: {paraula[i]}")</code></pre>
+<p>Una altra forma d’obtenir la posició de cada caràcter és usar el tipus <code>enumerate()</code>. Igual que <code>range</code>, <code>enumerate</code> és un tipus built-in de Python. Amb <code>enumerate(iterable)</code> es produeix un objecte iterable de parells <code>(índex, valor)</code> generats de forma mandrosa. Amb <code>index</code> s’obté la posició de l’element en la seqüència, i amb <code>valor</code> s’obté l’element en si. Això permet recórrer una cadena (o qualsevol iterable) i conèixer simultàniament l’índex de cada element:</p>
+<pre class="{pyodide}"><code>for i, lletra in enumerate("abc"):
+    print(f"posició {i}: {lletra}")</code></pre>
+<p>Les cadenes que comencen amb <code>f</code> i contenen expressions entre claus <code>{}</code> s’anomenen <strong>f-strings</strong> (cadenes formatades). Es veuran a la secció 2.7.2.</p>
+<hr>
+</section>
+</section>
+<section id="entrada-i-sortida-bàsiques-fluxos-entre-teclat-i-pantalla" class="level2">
+<h2 class="anchored" data-anchor-id="entrada-i-sortida-bàsiques-fluxos-entre-teclat-i-pantalla">2.7. Entrada i sortida bàsiques: fluxos entre teclat i pantalla</h2>
+<p>La interacció entre el programa i l’usuari és fonamental en qualsevol aplicació. Python proporciona dues funcions built-in per a l’entrada i sortida bàsiques de dades: <code>print()</code> per mostrar informació al terminal i <code>input()</code> per llegir text introduït per l’usuari. Tot i que simples, aquestes dues funcions són suficients per construir programes interactius complets i constitueixen la base sobre la qual s’assenta qualsevol interfície de text.</p>
+<section id="la-funció-print" class="level3">
+<h3 class="anchored" data-anchor-id="la-funció-print"><strong>2.7.1 La funció <code>print()</code></strong></h3>
+<p>Ja vam veure anteriorment que <code>print()</code> escriu a la <strong>sortida estàndard</strong> (la pantalla en condicions normals). Accepta qualsevol nombre d’arguments separats per comes:</p>
+<pre class="{pyodide}"><code>print("El resultat és", 42)           # El resultat és 42
+print(1, 2, 3)                         # 1 2 3  (separador per defecte: espai)
+print(1, 2, 3, sep=", ")               # 1, 2, 3
+print(1, 2, 3, sep=" | ")              # 1 | 2 | 3
+print("sense salt", end="")            # roman a la mateixa línia
+print(" — continuació")                # — continuació
+print()                                # línia en blanc</code></pre>
+</section>
+<section id="cadenes-formatades-f-strings" class="level3">
+<h3 class="anchored" data-anchor-id="cadenes-formatades-f-strings"><strong>2.7.2 Cadenes formatades: f-strings</strong></h3>
+<p>Les <strong>f-strings</strong> (cadenes formatades) són la forma més moderna, llegible i ràpida d’inserir variables i expressions dins de cadenes de text en Python. S’escriuen amb el prefix <code>f</code> (o <code>F</code>) just abans de les cometes (simples o dobles) i empren claus <code>{}</code> per indicar on s’ha d’injectar el valor d’una variable o una expressió.</p>
+<pre class="{pyodide}"><code>n = 100
+suma = n * (n + 1) // 2
+print(f"Gauss va calcular que la suma de 1 a {n} és {suma}.")
+print(f"El quadrat de 7 és {7**2}.")</code></pre>
+<p>El veritable avantatge de les f-strings no és només inserir variables estàtiques; permeten executar codi Python vàlid directament dins de les claus. És possible fer càlculs matemàtics, cridar mètodes o usar funcions sense necessitat de crear variables temporals prèvies.</p>
+<pre class="{pyodide}"><code>preu = 50
+impost = 0.21
+
+# Operació matemàtica directa
+print(f"El preu total amb IVA és {preu + (preu * impost)}")
+
+paraula = "python"
+# Crida a un mètode de cadena
+print(f"M'encanta programar en {paraula.capitalize()}!")</code></pre>
+<p>A partir de Python 3.8 es pot afegir un signe igual <code>=</code> després del nom de la variable (o expressió) dins de les claus. Això imprimeix tant el nom de la variable com el seu valor resultant, la qual cosa estalvia molt de temps en fer <em>depuració</em> (<em>debugging</em>) amb <code>print()</code>.</p>
+<pre class="{pyodide}"><code>usuari_id = 4092
+velocitat_actual = 120
+
+print(f"{usuari_id=}")                # usuari_id=4092
+
+print(f"{velocitat_actual / 2 = }")   # velocitat_actual / 2 = 60.0</code></pre>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Especificadors de format en f-strings">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Especificadors de format en f-strings
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Els <strong>especificadors de format</strong> en una f-string s’escriuen dins de <code>{}</code> i permeten controlar la presentació del valor:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Especificador</th>
+<th>Efecte</th>
+<th>Exemple</th>
+<th>Resultat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>:.nf</code></td>
+<td><code>n</code> decimals fixos</td>
+<td><code>f"{3.14159:.2f}"</code></td>
+<td><code>3.14</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>:e</code></td>
+<td>Notació científica</td>
+<td><code>f"{12345.6:.3e}"</code></td>
+<td><code>1.235e+04</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>:g</code></td>
+<td>Decimal o científica segons magnitud</td>
+<td><code>f"{0.000123:.3g}"</code></td>
+<td><code>0.000123</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>:d</code></td>
+<td>Enter decimal</td>
+<td><code>f"{42:d}"</code></td>
+<td><code>42</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>:&gt;n</code></td>
+<td>Alineat a la dreta en amplada <code>n</code></td>
+<td><code>f"{7:&gt;6d}"</code></td>
+<td><code>7</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>:&lt;n</code></td>
+<td>Alineat a l’esquerra en amplada <code>n</code></td>
+<td><code>f"{'abc':&lt;6}"</code></td>
+<td><code>abc</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>:0n</code></td>
+<td>Farcit amb zeros</td>
+<td><code>f"{7:06d}"</code></td>
+<td><code>000007</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>:,</code></td>
+<td>Separador de milers</td>
+<td><code>f"{1000000:,}"</code></td>
+<td><code>1,000,000</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="la-funció-input" class="level3">
+<h3 class="anchored" data-anchor-id="la-funció-input"><strong>2.7.3 La funció <code>input()</code></strong></h3>
+<p><code>input()</code> atura l’execució del programa, mostra un missatge opcional en pantalla i espera que l’usuari escrigui alguna cosa i premi Retorn. <strong>Sempre retorna una cadena de text</strong> (<code>str</code>), independentment del que l’usuari hagi escrit.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escriu alguna cosa: "</span>)</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Has escrit: </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(text))              <span class="co"># &lt;class 'str'&gt;</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Per treballar amb valors numèrics, cal convertir la cadena retornada per <code>input()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introdueix un nombre enter: "</span>))</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El quadrat de </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> és </span><span class="sc">{</span>n<span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss">."</span>)</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Introdueix un nombre real: "</span>))</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La seva arrel quadrada és </span><span class="sc">{</span>x<span class="op">**</span><span class="fl">0.5</span><span class="sc">:.6f}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cau-input" class="callout callout-style-default callout-caution no-icon callout-titled" title="Oblidar que input() sempre retorna str">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;5: Oblidar que input() sempre retorna str
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un dels errors més comuns en començar amb Python:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Introdueix n: "</span>)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>resultat <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span>     <span class="co"># TypeError: can only concatenate str (not "int") to str</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La solució és convertir explícitament el tipus abans d’operar:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introdueix n: "</span>))</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>resultat <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span>     <span class="co"># correcte</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="nte-calculadora" class="callout callout-style-default callout-note no-icon callout-titled" title="Calculadora interactiva">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;6: Calculadora interactiva
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Implementem una calculadora bàsica que sol·licita dos nombres i una operació a l’usuari, i després mostra el resultat:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Calculadora bàsica ==="</span>)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Primer nombre: "</span>))</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Segon nombre: "</span>))</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>op <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Operació (+, -, *, /): "</span>)</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> op <span class="op">==</span> <span class="st">"+"</span>:</span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>    resultat <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> op <span class="op">==</span> <span class="st">"-"</span>:</span>
+<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>    resultat <span class="op">=</span> a <span class="op">-</span> b</span>
+<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> op <span class="op">==</span> <span class="st">"*"</span>:</span>
+<span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a>    resultat <span class="op">=</span> a <span class="op">*</span> b</span>
+<span id="cb73-12"><a href="#cb73-12" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> op <span class="op">==</span> <span class="st">"/"</span>:</span>
+<span id="cb73-13"><a href="#cb73-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> b <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb73-14"><a href="#cb73-14" aria-hidden="true" tabindex="-1"></a>        resultat <span class="op">=</span> a <span class="op">/</span> b</span>
+<span id="cb73-15"><a href="#cb73-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb73-16"><a href="#cb73-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Error: divisió per zero."</span>)</span>
+<span id="cb73-17"><a href="#cb73-17" aria-hidden="true" tabindex="-1"></a>        resultat <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb73-18"><a href="#cb73-18" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb73-19"><a href="#cb73-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Operació '</span><span class="sc">{</span>op<span class="sc">}</span><span class="ss">' no reconeguda."</span>)</span>
+<span id="cb73-20"><a href="#cb73-20" aria-hidden="true" tabindex="-1"></a>    resultat <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb73-21"><a href="#cb73-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-22"><a href="#cb73-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> resultat <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb73-23"><a href="#cb73-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>op<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultat<span class="sc">:.6g}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Per provar els exemples d’ús de la funció <code>input()</code>, cal executar el codi en un entorn que suporti l’entrada interactiva, com un IDE (Visual Studio Code local o en un Codespace de GitHub) que permeti la interacció amb l’usuari. En entorns d’execució no interactius, com alguns notebooks o plataformes en línia, la funció <code>input()</code> pot no funcionar correctament.</p>
+<p>Per això per als exemples anteriors amb <code>input()</code>: - genereu un fitxer de Python <code>test_input.py</code>, - copieu el codi dels exemples i enganxeu-lo en aquell fitxer, - executeu-lo per veure la interacció al terminal.</p>
+</section>
+</section>
+<section id="bibliografia" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="bibliografia">Bibliografia</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-wikipedia_biseccion" class="csl-entry" role="listitem">
+Contribuïdors de Viquipèdia. 2024a. <span>«Mètode de bisecció»</span>. Viquipèdia, l’enciclopèdia lliure. <a href="https://ca.wikipedia.org/wiki/M%C3%A8tode_de_bisecci%C3%B3">https://ca.wikipedia.org/wiki/M%C3%A8tode_de_bisecci%C3%B3</a>.
+</div>
+<div id="ref-wikipedia_newton" class="csl-entry" role="listitem">
+———. 2024b. <span>«Mètode de Newton»</span>. Viquipèdia, l’enciclopèdia lliure. <a href="https://ca.wikipedia.org/wiki/M%C3%A8tode_de_Newton">https://ca.wikipedia.org/wiki/M%C3%A8tode_de_Newton</a>.
+</div>
+<div id="ref-python3floatingpoint" class="csl-entry" role="listitem">
+Python Software Foundation. 2025. <span>«Floating-Point Arithmetic: Issues and Limitations»</span>. Python 3.12.13 Documentation. <a href="https://docs.python.org/3.12/tutorial/floatingpoint.html">https://docs.python.org/3.12/tutorial/floatingpoint.html</a>.
+</div>
+<div id="ref-pep8" class="csl-entry" role="listitem">
+Rossum, Guido van, Barry Warsaw, i Alyssa Coghlan. 2001. <span>«<span>PEP 8 – Style Guide for Python Code</span>»</span>. Python Enhancement Proposal. <a href="https://peps.python.org/pep-0008/">https://peps.python.org/pep-0008/</a>.
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

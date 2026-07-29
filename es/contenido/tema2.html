@@ -648,7 +648,7 @@ window.Quarto = {
   <li><a href="#estructura-if" id="toc-estructura-if" class="nav-link" data-scroll-target="#estructura-if"><strong>2.5.1 Estructura <code>if</code></strong></a></li>
   <li><a href="#estructura-if-else" id="toc-estructura-if-else" class="nav-link" data-scroll-target="#estructura-if-else"><strong>2.5.2 Estructura <code>if</code>-<code>else</code></strong></a></li>
   <li><a href="#estructura-if-elif-else" id="toc-estructura-if-elif-else" class="nav-link" data-scroll-target="#estructura-if-elif-else"><strong>2.5.3 Estructura <code>if</code>-<code>elif</code>-<code>else</code></strong></a></li>
-  <li><a href="#condicionales-anidados" id="toc-condicionales-anidados" class="nav-link" data-scroll-target="#condicionales-anidados"><strong>2.5.4 Condicionales anidados</strong></a></li>
+  <li><a href="#condicionales-anidados-y-expresión-condicional" id="toc-condicionales-anidados-y-expresión-condicional" class="nav-link" data-scroll-target="#condicionales-anidados-y-expresión-condicional"><strong>2.5.4 Condicionales anidados y expresión condicional</strong></a></li>
   </ul></li>
   <li><a href="#control-de-flujo-iteraciones" id="toc-control-de-flujo-iteraciones" class="nav-link" data-scroll-target="#control-de-flujo-iteraciones">2.6. Control de Flujo — Iteraciones</a>
   <ul class="collapse">
@@ -931,6 +931,7 @@ Concepto Clave&nbsp;2: Convención de nombres: snake_case
 </tr>
 </tbody>
 </table>
+<p>Para averiguar el tipo de cualquier objeto o variable se usa la función built-in <code>type()</code>. Para mostrar valores en la salida estándar se usa la función built-in <code>print()</code>.</p>
 <div id="imp-type-print" class="callout callout-style-default callout-important no-icon callout-titled" title="Funciones built-in `type()` y `print()`">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -968,7 +969,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoNDIpICAgICAgICAg
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoMSwgMiwgMywgc2VwPVwiLCBcIikgICAgICMgMSwgMiwgM1xucHJpbnQoXCJob2xhXCIsIGVuZD1cIiBcIilcbnByaW50KFwibXVuZG9cIikgICAgICAgICAgICAgICAgIyBob2xhIG11bmRvICAoZW4gbGEgbWlzbWEgbMOtbmVhKSJ9
 </script>
 </div>
-<p>Las funciones <code>type</code> y <code>print</code> son funciones built-in: vienen integradas en el intérprete y están disponibles en cualquier programa sin necesidad de importar nada.</p>
+<p>Las funciones <code>type</code> y <code>print</code> vienen integradas en el intérprete y están disponibles en cualquier programa sin necesidad de importar nada.</p>
 </div>
 </div>
 <section id="enteros-int" class="level3">
@@ -1383,6 +1384,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBwcmVjZWRlbmNpYSBlc3TD
 </div>
 </div>
 </div>
+<p>Para la división tenemos dos operadores distintos: <code>/</code> y <code>//</code>. El primero devuelve un flotante, mientras que el segundo devuelve el cociente entero (<em>floor division</em>). El operador <code>%</code> devuelve el resto (el módulo) de la división entera.</p>
 <div id="imp-division" class="callout callout-style-default callout-important no-icon callout-titled" title="División entera y módulo">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1899,21 +1901,12 @@ Ejemplo&nbsp;1: Raíces de una ecuación cuadrática
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuYSwgYiwgYyA9IDEsIC0zLCAyICAgICMgZWN1YWNpw7NuOiB4XjIgLSAzeCArIDIgPSAwXG5kaXNjcmltaW5hbnRlID0gYioqMiAtIDQgKiBhICogY1xuXG5pZiBkaXNjcmltaW5hbnRlID4gMDpcbiAgICByMSA9ICgtYiArIG1hdGguc3FydChkaXNjcmltaW5hbnRlKSkgLyAoMiAqIGEpXG4gICAgcjIgPSAoLWIgLSBtYXRoLnNxcnQoZGlzY3JpbWluYW50ZSkpIC8gKDIgKiBhKVxuICAgIHByaW50KGZcIkRvcyByYcOtY2VzIHJlYWxlczogeOKCgSA9IHtyMTouNGZ9LCB44oKCID0ge3IyOi40Zn1cIilcbmVsaWYgZGlzY3JpbWluYW50ZSA9PSAwOlxuICAgIHIgPSAtYiAvICgyICogYSlcbiAgICBwcmludChmXCJSYcOteiBkb2JsZTogeCA9IHtyOi40Zn1cIilcbmVsc2U6XG4gICAgcHJpbnQoXCJTaW4gcmHDrWNlcyByZWFsZXMgKGRpc2NyaW1pbmFudGUgbmVnYXRpdm8pXCIpIn0=
 </script>
 </div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
 <p>La instrucción <code>import math</code> hace disponibles las funciones matemáticas del módulo estándar <code>math</code>, como <code>math.sqrt()</code> (raíz cuadrada), <code>math.pi</code> (π), <code>math.log()</code> (logaritmo), etc. Los módulos se estudian en profundidad en el Tema 3; por ahora basta con saber que <code>import math</code> debe escribirse antes de usar cualquier función de ese módulo. La notación <code>math.xxxxxx()</code>, por ejemplo <code>math.sqrt()</code>, indica que la función <code>xxxxxx</code> pertenece al módulo <code>math</code>.</p>
 </div>
 </div>
-</div>
 </section>
-<section id="condicionales-anidados" class="level3">
-<h3 class="anchored" data-anchor-id="condicionales-anidados"><strong>2.5.4 Condicionales anidados</strong></h3>
+<section id="condicionales-anidados-y-expresión-condicional" class="level3">
+<h3 class="anchored" data-anchor-id="condicionales-anidados-y-expresión-condicional"><strong>2.5.4 Condicionales anidados y expresión condicional</strong></h3>
 <p>Un bloque <code>if</code> puede contener otro <code>if</code> en su interior. Los condicionales anidados permiten refinar la lógica paso a paso:</p>
 <div>
 <div id="pyodide-38" class="exercise-cell">
@@ -2049,8 +2042,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDEyMzQ1Nlxud2hpbGUg
 </div></li>
 </ul>
 </section>
-<section id="break-y-continue" class="level4">
-<h4 class="anchored" data-anchor-id="break-y-continue"><strong><code>break</code> y <code>continue</code></strong></h4>
+<section id="instrucciones-break-y-continue" class="level4">
+<h4 class="anchored" data-anchor-id="instrucciones-break-y-continue"><strong>Instrucciones <code>break</code> y <code>continue</code></strong></h4>
 <p>Dentro de cualquier bucle, dos instrucciones permiten modificar el flujo de iteración:</p>
 <ul>
 <li><strong><code>break</code></strong>: interrumpe el bucle inmediatamente y salta al código que viene después.</li>
@@ -2398,7 +2391,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDEwMFxuc3VtYSA9IG4g
 
 </div>
 <script type="pyodide-61-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJlY2lvID0gNTBcbmltcHVlc3RvID0gMC4yMVxuXG4jIE9wZXJhY2nDs24gbWF0ZW3DoXRpY2EgZGlyZWN0YVxucHJpbnQoZlwiRWwgcHJlY2lvIHRvdGFsIGNvbiBJVkEgZXMge3ByZWNpbyArIChwcmVjaW8gKiBpbXB1ZXN0byl9XCIpICMgRWwgcHJlY2lvIHRvdGFsIGNvbiBJVkEgZXMgNjAuNVxuXG5wYWxhYnJhID0gXCJweXRob25cIlxuIyBMbGFtYWRhIGEgdW4gbcOpdG9kbyBkZSBjYWRlbmFcbnByaW50KGZcIk1lIGVuY2FudGEgcHJvZ3JhbWFyIGVuIHtwYWxhYnJhLmNhcGl0YWxpemUoKX0hXCIpICMgTWUgZW5jYW50YSBwcm9ncmFtYXIgZW4gUHl0aG9uISJ9
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJlY2lvID0gNTBcbmltcHVlc3RvID0gMC4yMVxuXG4jIE9wZXJhY2nDs24gbWF0ZW3DoXRpY2EgZGlyZWN0YVxucHJpbnQoZlwiRWwgcHJlY2lvIHRvdGFsIGNvbiBJVkEgZXMge3ByZWNpbyArIChwcmVjaW8gKiBpbXB1ZXN0byl9XCIpIFxuXG5wYWxhYnJhID0gXCJweXRob25cIlxuIyBMbGFtYWRhIGEgdW4gbcOpdG9kbyBkZSBjYWRlbmFcbnByaW50KGZcIk1lIGVuY2FudGEgcHJvZ3JhbWFyIGVuIHtwYWxhYnJhLmNhcGl0YWxpemUoKX0hXCIpICJ9
 </script>
 </div>
 <p>A partir de Python 3.8 se puede añadir un signo igual <code>=</code> después del nombre de la variable (o expresión) dentro de las llaves. Esto imprime tanto el nombre de la variable como su valor resultante, lo que ahorra mucho tiempo al hacer <em>depuración</em> (debugging) con <code>print()</code>.</p>
@@ -2556,6 +2549,8 @@ Ejemplo&nbsp;6: Calculadora interactiva
 <span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>op<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultado<span class="sc">:.6g}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+<p>Para probar los ejemplos de uso de la función <code>input()</code>, es necesario ejecutar el código en un entorno que soporte la entrada interactiva, como un IDE (Visual Studio Code local o en un Codespace de GitHub) que permita la interacción con el usuario. En entornos de ejecución no interactivos, como algunos notebooks o plataformas en línea, la función <code>input()</code> puede no funcionar correctamente.</p>
+<p>Por ello para los ejemplos anteriores con <code>input()</code>: - genere un fichero de Python <code>test_input.py</code>, - copie el código en los ejemplos y peguelo en ese fichero, - ejecútelo para ver la interacción en la terminal.</p>
 </section>
 </section>
 <section id="bibliografía" class="level2 unnumbered">
