@@ -1363,6 +1363,18 @@ Per això per als exemples anteriors amb `input()`:
 - copieu el codi dels exemples i enganxeu-lo en aquell fitxer,
 - executeu-lo per veure la interacció al terminal.
 
+Per fer aquest procés més còmode ja hi ha disponible un repositori plantilla amb el fitxer `test_input.py` integrat. Aquí teniu l'enllaç:
+
+[https://github.com/UIB-23200-Programacion/ejercicios-tema-2/generate](https://github.com/UIB-23200-Programacion/ejercicios-tema-2/generate)
+
+Un cop allà:
+
+1. A **Repository Name** doneu un nom al repositori que inclogui el vostre nom (per exemple: ejercicios-tema-2-NomCognom).
+2. Opcionalment, afegiu una descripció a **Description** (per exemple: Exercicis del tema 2).
+3. Baixeu fins a veure el botó verd **Create repository** i feu-hi clic. Això crearà un repositori nou al vostre compte de GitHub amb el contingut del repositori plantilla.
+4. Un cop creat, feu clic a **<> Code**, després a **Codespaces** i seleccioneu **Create codespace on main**.
+5. Espereu que es configuri l'entorn de desenvolupament, obriu el fitxer `test_input.py` i executeu el codi per provar la interacció amb `input()`.
+
 ## Bibliografia {.unnumbered}
 
 ::: {#refs}

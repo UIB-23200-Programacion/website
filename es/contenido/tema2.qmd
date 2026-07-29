@@ -1365,6 +1365,18 @@ Por ello para los ejemplos anteriores con `input()`:
 - copie el código en los ejemplos y peguelo en ese fichero,
 - ejecútelo para ver la interacción en la terminal.
 
+Para hacer este proceso más cómodo ya está disponible un repositorio plantilla con el fichero `test_input.py` integrado. Aquí tenéis el enlace: 
+
+[https://github.com/UIB-23200-Programacion/ejercicios-tema-2/generate](https://github.com/UIB-23200-Programacion/ejercicios-tema-2/generate)
+
+Una vez allí:
+
+1. En **Repository Name** dé un nombre al repositorio que incluya vuestro nombre (por ejemplo: ejercicios-tema-2-NombreApellido).
+2. Opcionalmente, agregue una descripción en **Description** (por ejemplo: Ejercicios del tema 2).
+3. Baje hasta ver el botón verde **Create repository** y haga clic en él. Esto creará un repositorio nuevo en su cuenta de GitHub con el contenido del repositorio plantilla.
+4. Una vez creado, haced clic en **<> Code**, después en **Codespaces** y seleccionad **Create codespace on main**
+5. Espere a que se configure el entorno de desarrollo, abra el fichero `test_input.py` y ejecute el código para probar la interacción con `input()`.
+
 ## Bibliografía {.unnumbered}
 
 ::: {#refs}
