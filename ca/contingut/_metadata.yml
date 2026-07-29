@@ -1,0 +1,11 @@
+format:
+  live-html:
+    theme:
+      light: [cosmo, ../../theme.scss]
+      dark: [cosmo, ../../theme-dark.scss]
+    css: /styles.css
+    toc: true
+    callout-icon: false
+    include-after-body:
+      text: |
+        <script src="/logo-href.js"></script>
