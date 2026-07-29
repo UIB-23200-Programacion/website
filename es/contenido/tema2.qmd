@@ -1360,6 +1360,7 @@ if resultado is not None:
 Para probar los ejemplos de uso de la función `input()`, es necesario ejecutar el código en un entorno que soporte la entrada interactiva, como un IDE (Visual Studio Code local o en un Codespace de GitHub) que permita la interacción con el usuario. En entornos de ejecución no interactivos, como algunos notebooks o plataformas en línea, la función `input()` puede no funcionar correctamente.
 
 Por ello para los ejemplos anteriores con `input()`:
+
 - genere un fichero de Python `test_input.py`,
 - copie el código en los ejemplos y peguelo en ese fichero,
 - ejecútelo para ver la interacción en la terminal.
