@@ -839,7 +839,7 @@ else:
 
 Cuando la lógica se complica, suele ser preferible combinar condiciones con `and` y `or`, o usar `elif`, en lugar de anidar demasiados niveles.
 
-::: {.callout-note collapse="true" title="Expresión condicional (operador ternario)"}
+::: {.callout-note title="Expresión condicional (operador ternario)"}
 Python dispone de una **expresión condicional** que asigna un valor según una condición en una sola línea:
 
 ```{pyodide}
@@ -1274,7 +1274,7 @@ print(f"{velocidad_actual / 2 = }")  # velocidad_actual / 2 = 60.0
 
 ```
 
-::: {.callout-note collapse="true" title="Especificadores de formato en f-strings"}
+::: {.callout-note title="Especificadores de formato en f-strings"}
 Los **especificadores de formato** en una f-string se escriben dentro de `{}` y permiten controlar la presentación del valor:
 
 | Especificador | Efecto | Ejemplo | Resultado |
