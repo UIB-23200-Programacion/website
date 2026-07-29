@@ -1,0 +1,1 @@
+document.querySelectorAll('.callout').forEach(el => el.removeAttribute('title'));
