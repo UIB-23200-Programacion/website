@@ -99,6 +99,8 @@ div.csl-indent {
 <link href="../../site_libs/bootstrap/bootstrap-fe839f7715ebcdbad7a07c709ae06b28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark-bac4d22b2bca5ca58db192775c64c60d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/bootstrap/bootstrap-fe839f7715ebcdbad7a07c709ae06b28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -126,6 +128,8 @@ div.csl-indent {
     "search-label": "Cerca"
   }
 }</script>
+<script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -829,10 +833,14 @@ Concepte Clau&nbsp;1: Comentaris en codi Python
 </div>
 </div>
 <p>Python admet assignació múltiple en una sola línia:</p>
-<pre class="{pyodide}"><code>a, b, c = 1, 2, 3
-print(a, b, c)  # 1 2 3
-x = y = 0       # tant x com y referencien el valor 0
-print(x, y)     # 0 0</code></pre>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSwgYiwgYyA9IDEsIDIsIDNcbnByaW50KGEsIGIsIGMpICAjIDEgMiAzXG54ID0geSA9IDAgICAgICAgIyB0YW50IHggY29tIHkgcmVmZXJlbmNpZW4gZWwgdmFsb3IgMFxucHJpbnQoeCwgeSkgICAgICMgMCAwIn0=
+</script>
+</div>
 <p>La funció <code>print()</code> pot rebre diverses variables com a arguments, separades per comes, i les imprimeix a la sortida estàndard (normalment el terminal). Més endavant es veurà que <code>print()</code> té paràmetres opcionals per controlar el format de sortida.</p>
 </section>
 <section id="noms-de-variables" class="level3">
@@ -849,19 +857,19 @@ Concepte Clau&nbsp;2: Convenció de noms: snake_case
 </div>
 <div class="callout-body-container callout-body">
 <p>Per convenció <span class="citation" data-cites="pep8">(<a href="#ref-pep8" role="doc-biblioref">Rossum, Warsaw, i Coghlan 2001</a>)</span>, els noms de variables en Python usen <strong>snake_case</strong>: paraules en minúscules separades per guions baixos. Els noms han de ser <strong>descriptius</strong> del valor que contenen.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correcte</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nombre_diteracions <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>radi_cercle <span class="op">=</span> <span class="fl">5.0</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>es_primer <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Acceptable per a variables de curta vida o amb significat matemàtic obvi</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span>       <span class="co"># comptador genèric</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="dv">3</span>, <span class="dv">4</span>  <span class="co"># coordenades</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>i, j, k <span class="op">=</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>  <span class="co"># índexs de bucles</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Evitar: noms sense significat</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>cosa <span class="op">=</span> <span class="va">True</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correcte</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>nombre_diteracions <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>radi_cercle <span class="op">=</span> <span class="fl">5.0</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>es_primer <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Acceptable per a variables de curta vida o amb significat matemàtic obvi</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span>       <span class="co"># comptador genèric</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="dv">3</span>, <span class="dv">4</span>  <span class="co"># coordenades</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>i, j, k <span class="op">=</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>  <span class="co"># índexs de bucles</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Evitar: noms sense significat</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>cosa <span class="op">=</span> <span class="va">True</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -935,68 +943,76 @@ Concepte Clau&nbsp;3: Funcions built-in <code>type()</code> i <code>print()</cod
 </div>
 <div class="callout-body-container callout-body">
 <p>La funció <code>type()</code> retorna el tipus de qualsevol objecte o variable:</p>
-<pre class="{pyodide}"><code>x = 42
-print(type(x))         # &lt;class 'int'&gt;
-print(type(42))        # &lt;class 'int'&gt;
-print(type(3.14))      # &lt;class 'float'&gt;
-print(type("hola"))    # &lt;class 'str'&gt;
-print(type(True))      # &lt;class 'bool'&gt;
-print(type(None))      # &lt;class 'NoneType'&gt;</code></pre>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDQyXG5wcmludCh0eXBlKHgpKSAgICAgICAgICMgPGNsYXNzICdpbnQnPlxucHJpbnQodHlwZSg0MikpICAgICAgICAjIDxjbGFzcyAnaW50Jz5cbnByaW50KHR5cGUoMy4xNCkpICAgICAgIyA8Y2xhc3MgJ2Zsb2F0Jz5cbnByaW50KHR5cGUoXCJob2xhXCIpKSAgICAjIDxjbGFzcyAnc3RyJz5cbnByaW50KHR5cGUoVHJ1ZSkpICAgICAgIyA8Y2xhc3MgJ2Jvb2wnPlxucHJpbnQodHlwZShOb25lKSkgICAgICAjIDxjbGFzcyAnTm9uZVR5cGUnPiJ9
+</script>
+</div>
 <p>La funció <code>print()</code> escriu a la sortida estàndard (normalment el terminal) els valors que rep com a arguments, separats per un espai i seguits d’un salt de línia:</p>
-<pre class="{pyodide}"><code>print(42)                     # 42
-print("hola")                 # hola
-print("nombres: ", 1, 2, 3)   # nombres: 1 2 3</code></pre>
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoNDIpICAgICAgICAgICAgICAgICAgICAgIyA0MlxucHJpbnQoXCJob2xhXCIpICAgICAgICAgICAgICAgICAjIGhvbGFcbnByaW50KFwibm9tYnJlczogXCIsIDEsIDIsIDMpICAgIyBub21icmVzOiAxIDIgMyJ9
+</script>
+</div>
 <p>Els paràmetres opcionals més útils de <code>print()</code> són <code>sep</code> (separador entre arguments, per defecte <code>" "</code>) i <code>end</code> (caràcter final, per defecte <code>"\n"</code> per salt de línia):</p>
-<pre class="{pyodide}"><code>print(1, 2, 3, sep=", ")     # 1, 2, 3
-print("hola", end=" ")
-print("món")                  # hola món  (en la mateixa línia)</code></pre>
+<div>
+<div id="pyodide-4" class="exercise-cell">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoMSwgMiwgMywgc2VwPVwiLCBcIikgICAgICMgMSwgMiwgM1xucHJpbnQoXCJob2xhXCIsIGVuZD1cIiBcIilcbnByaW50KFwibcOzblwiKSAgICAgICAgICAgICAgICAgICMgaG9sYSBtw7NuICAoZW4gbGEgbWF0ZWl4YSBsw61uaWEpIn0=
+</script>
+</div>
 <p>Les funcions <code>type</code> i <code>print</code> vénen integrades en l’intèrpret i estan disponibles en qualsevol programa sense necessitat d’importar res.</p>
 </div>
 </div>
 <section id="enters-int" class="level3">
 <h3 class="anchored" data-anchor-id="enters-int"><strong>2.3.1 Enters (<code>int</code>)</strong></h3>
 <p>En Python, els enters tenen <strong>precisió arbitrària</strong>: poden ser tan grans com la memòria disponible ho permeti, sense que es produeixi desbordament (<em>overflow</em>). Això els distingeix de molts altres llenguatges on els nombres enters estan limitats a un rang fix.</p>
-<pre class="{pyodide}"><code>print(2 ** 100)
-# 1267650600228229401496703205376
+<div>
+<div id="pyodide-5" class="exercise-cell">
 
-print(10 ** 50)
-# 100000000000000000000000000000000000000000000000000</code></pre>
+</div>
+<script type="pyodide-5-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoMiAqKiAxMDApXG4jIDEyNjc2NTA2MDAyMjgyMjk0MDE0OTY3MDMyMDUzNzZcblxucHJpbnQoMTAgKiogNTApXG4jIDEwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCJ9
+</script>
+</div>
 <p>Hi ha quatre formes d’escriure literals enters, segons la base numèrica:</p>
-<pre class="{pyodide}"><code># Decimal (base 10) — la notació habitual
-nn = 42
-nn = -7
-nn = 0
+<div>
+<div id="pyodide-6" class="exercise-cell">
 
-# Binari (base 2) — prefix `0b`
-nn = 0b1010
-print(nn)        # 10
-nn = 0b11111111
-print(nn)        # 255
-
-# Octal (base 8) — prefix `0o`
-nn = 0o17
-print(nn)        # 15
-nn = 0o777
-print(nn)        # 511
-
-# Hexadecimal (base 16) — prefix `0x`
-nn = 0xFF
-print(nn)        # 255
-nn = 0x1A3
-print(nn)        # 419</code></pre>
+</div>
+<script type="pyodide-6-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBEZWNpbWFsIChiYXNlIDEwKSDigJQgbGEgbm90YWNpw7MgaGFiaXR1YWxcbm5uID0gNDJcbm5uID0gLTdcbm5uID0gMFxuXG4jIEJpbmFyaSAoYmFzZSAyKSDigJQgcHJlZml4IGAwYmBcbm5uID0gMGIxMDEwXG5wcmludChubikgICAgICAgICMgMTBcbm5uID0gMGIxMTExMTExMVxucHJpbnQobm4pICAgICAgICAjIDI1NVxuXG4jIE9jdGFsIChiYXNlIDgpIOKAlCBwcmVmaXggYDBvYFxubm4gPSAwbzE3XG5wcmludChubikgICAgICAgICMgMTVcbm5uID0gMG83NzdcbnByaW50KG5uKSAgICAgICAgIyA1MTFcblxuIyBIZXhhZGVjaW1hbCAoYmFzZSAxNikg4oCUIHByZWZpeCBgMHhgXG5ubiA9IDB4RkZcbnByaW50KG5uKSAgICAgICAgIyAyNTVcbm5uID0gMHgxQTNcbnByaW50KG5uKSAgICAgICAgIyA0MTkifQ==
+</script>
+</div>
 <p>A més, per millorar la llegibilitat de nombres grans es pot usar el guió baix <code>_</code> com a separador visual (equivalent al punt en notació europea):</p>
-<pre class="{pyodide}"><code>m = 1_000_000      # equivalent a 1000000
-print(m)           # 1000000
-m = 0b1111_0000    # equivalent a 0b11110000
-print(m)           # 240
-m = 0xFF_A3_00     # equivalent a 0xFFA300
-print(m)           # 16711680</code></pre>
+<div>
+<div id="pyodide-7" class="exercise-cell">
+
+</div>
+<script type="pyodide-7-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibSA9IDFfMDAwXzAwMCAgICAgICMgZXF1aXZhbGVudCBhIDEwMDAwMDBcbnByaW50KG0pICAgICAgICAgICAjIDEwMDAwMDBcbm0gPSAwYjExMTFfMDAwMCAgICAjIGVxdWl2YWxlbnQgYSAwYjExMTEwMDAwXG5wcmludChtKSAgICAgICAgICAgIyAyNDBcbm0gPSAweEZGX0EzXzAwICAgICAjIGVxdWl2YWxlbnQgYSAweEZGQTMwMFxucHJpbnQobSkgICAgICAgICAgICMgMTY3MTE2ODAifQ==
+</script>
+</div>
 </section>
 <section id="flotants-float" class="level3">
 <h3 class="anchored" data-anchor-id="flotants-float"><strong>2.3.2 Flotants (<code>float</code>)</strong></h3>
 <p>Els flotants segueixen l’estàndard IEEE 754 de doble precisió, que representa nombres reals amb aproximadament 15-17 dígits significatius. Això implica que <strong>no tots</strong> els nombres decimals es poden representar exactament en binari:</p>
-<pre class="{pyodide}"><code>print(0.1 + 0.2)         # 0.30000000000000004
-print(0.1 + 0.2 == 0.3)  # False</code></pre>
+<div>
+<div id="pyodide-8" class="exercise-cell">
+
+</div>
+<script type="pyodide-8-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoMC4xICsgMC4yKSAgICAgICAgICMgMC4zMDAwMDAwMDAwMDAwMDAwNFxucHJpbnQoMC4xICsgMC4yID09IDAuMykgICMgRmFsc2UifQ==
+</script>
+</div>
 <div id="cau-flotantes" class="callout callout-style-default callout-caution no-icon callout-titled" title="Comparar flotants amb ==">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1008,43 +1024,55 @@ Error Freqüent&nbsp;1: Comparar flotants amb ==
 </div>
 <div class="callout-body-container callout-body">
 <p>La representació binària dels flotants introdueix petits errors d’arrodoniment. <strong>Mai usis <code>==</code> per comparar dos valors flotants</strong>; en el seu lloc, comprova que la seva diferència sigui prou petita:</p>
-<pre class="{pyodide}"><code>a = 0.1 + 0.2
-b = 0.3
-print(abs(a - b) &lt; 1e-10)   # True</code></pre>
+<div>
+<div id="pyodide-9" class="exercise-cell">
+
+</div>
+<script type="pyodide-9-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSA9IDAuMSArIDAuMlxuYiA9IDAuM1xucHJpbnQoYWJzKGEgLSBiKSA8IDFlLTEwKSAgICMgVHJ1ZSJ9
+</script>
+</div>
 </div>
 </div>
 <p>Els literals <code>float</code> admeten diverses notacions:</p>
-<pre class="{pyodide}"><code># Decimal estàndard — amb punt obligatori
-x1 = 3.14
-x2 = -0.5
-x3 = 1.0      # el .0 és necessari; sense ell seria int
-x4 = .5       # equivalent a 0.5 (el zero inicial és opcional)
-print(x1, x2, x3, x4, sep=", ")
+<div>
+<div id="pyodide-10" class="exercise-cell">
 
-# Notació científica — amb `e` o `E` com a exponent de base 10
-x5 = 1.5e3         # equivalent a 1500.0 = 1.5 × 10³
-x6 = 2.1e-4        # equivalent a 0.00021 = 2.1 × 10⁻⁴
-x7 = 1e10          # equivalent a 10000000000.0 = 1 × 10¹⁰
-print(x5, x6, x7, sep=", ")  # 1500.0 0.00021 10000000000.0</code></pre>
+</div>
+<script type="pyodide-10-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBEZWNpbWFsIGVzdMOgbmRhcmQg4oCUIGFtYiBwdW50IG9ibGlnYXRvcmlcbngxID0gMy4xNFxueDIgPSAtMC41XG54MyA9IDEuMCAgICAgICMgZWwgLjAgw6lzIG5lY2Vzc2FyaTsgc2Vuc2UgZWxsIHNlcmlhIGludFxueDQgPSAuNSAgICAgICAjIGVxdWl2YWxlbnQgYSAwLjUgKGVsIHplcm8gaW5pY2lhbCDDqXMgb3BjaW9uYWwpXG5wcmludCh4MSwgeDIsIHgzLCB4NCwgc2VwPVwiLCBcIilcblxuIyBOb3RhY2nDsyBjaWVudMOtZmljYSDigJQgYW1iIGBlYCBvIGBFYCBjb20gYSBleHBvbmVudCBkZSBiYXNlIDEwXG54NSA9IDEuNWUzICAgICAgICAgIyBlcXVpdmFsZW50IGEgMTUwMC4wID0gMS41IMOXIDEwwrNcbng2ID0gMi4xZS00ICAgICAgICAjIGVxdWl2YWxlbnQgYSAwLjAwMDIxID0gMi4xIMOXIDEw4oG74oG0XG54NyA9IDFlMTAgICAgICAgICAgIyBlcXVpdmFsZW50IGEgMTAwMDAwMDAwMDAuMCA9IDEgw5cgMTDCueKBsFxucHJpbnQoeDUsIHg2LCB4Nywgc2VwPVwiLCBcIikgICMgMTUwMC4wIDAuMDAwMjEgMTAwMDAwMDAwMDAuMCJ9
+</script>
+</div>
 <p>Igual que en <code>int</code>, es pot usar <code>_</code> com a separador visual:</p>
-<pre class="{pyodide}"><code>x8 = 3.141_592_653
-x9 = 1_000.0
-print(x8, x9, sep=", ")  # 3.141592653, 1000.0</code></pre>
+<div>
+<div id="pyodide-11" class="exercise-cell">
+
+</div>
+<script type="pyodide-11-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieDggPSAzLjE0MV81OTJfNjUzXG54OSA9IDFfMDAwLjBcbnByaW50KHg4LCB4OSwgc2VwPVwiLCBcIikgICMgMy4xNDE1OTI2NTMsIDEwMDAuMCJ9
+</script>
+</div>
 <p>Un detall rellevant per als matemàtics: a diferència dels enters, els <code>float</code> tenen <strong>rang finit</strong>. El valor màxim representable és aproximadament <span class="math inline">\(1.8 \times 10^{308}\)</span>; superar-lo produeix <code>inf</code>:</p>
-<pre class="{pyodide}"><code>print(1.8e308)    # inf</code></pre>
+<div>
+<div id="pyodide-12" class="exercise-cell">
+
+</div>
+<script type="pyodide-12-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoMS44ZTMwOCkgICAgIyBpbmYifQ==
+</script>
+</div>
 </section>
 <section id="nombres-complexos-complex" class="level3">
 <h3 class="anchored" data-anchor-id="nombres-complexos-complex"><strong>2.3.3 Nombres complexos (<code>complex</code>)</strong></h3>
 <p>Python incorpora els nombres complexos com a tipus natiu, sense necessitat d’importar cap biblioteca. La unitat imaginària es denota amb <code>j</code> (no <code>i</code>, per evitar conflicte amb l’ús de <code>i</code> com a índex en codi):</p>
-<pre class="{pyodide}"><code>z1 = 3 + 2j
-z2 = complex(1, -4)    # equivalent a 1 - 4j
+<div>
+<div id="pyodide-13" class="exercise-cell">
 
-print(z1 + z2)         # (4-2j)
-print(z1 * z2)         # (11-10j)
-print(z1.real)         # 3.0
-print(z1.imag)         # 2.0
-print(z1.conjugate())  # (3-2j)
-print(abs(z1))         # 3.605...  (mòdul: √(3² + 2²))</code></pre>
+</div>
+<script type="pyodide-13-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiejEgPSAzICsgMmpcbnoyID0gY29tcGxleCgxLCAtNCkgICAgIyBlcXVpdmFsZW50IGEgMSAtIDRqXG5cbnByaW50KHoxICsgejIpICAgICAgICAgIyAoNC0yailcbnByaW50KHoxICogejIpICAgICAgICAgIyAoMTEtMTBqKVxucHJpbnQoejEucmVhbCkgICAgICAgICAjIDMuMFxucHJpbnQoejEuaW1hZykgICAgICAgICAjIDIuMFxucHJpbnQoejEuY29uanVnYXRlKCkpICAjICgzLTJqKVxucHJpbnQoYWJzKHoxKSkgICAgICAgICAjIDMuNjA1Li4uICAobcOyZHVsOiDiiJooM8KyICsgMsKyKSkifQ==
+</script>
+</div>
 <p>Els nombres complexos il·lustren bé un concepte central en Python: els objectes tenen <strong>atributs</strong> i <strong>mètodes</strong> als quals s’accedeix amb l’operador punt <code>.</code>:</p>
 <ul>
 <li>Un <strong>atribut</strong> és un valor associat a l’objecte: <code>z.real</code> i <code>z.imag</code> retornen les parts real i imaginària del nombre complex <code>z</code>.</li>
@@ -1068,13 +1096,14 @@ print(abs(z1))         # 3.605...  (mòdul: √(3² + 2²))</code></pre>
 <section id="cadenes-str" class="level3">
 <h3 class="anchored" data-anchor-id="cadenes-str"><strong>2.3.4 Cadenes (<code>str</code>)</strong></h3>
 <p>Les cadenes (o cadenes de caràcters) són seqüències de caràcters delimitades per cometes simples o dobles (totes dues equivalents). Per a cadenes que ocupen diverses línies s’usen triples cometes:</p>
-<pre class="{pyodide}"><code>nom = "Euler"
-frase = 'La identitat e^(iπ) + 1 = 0'
-multilinia = """Aquesta cadena
-abasta diverses
-línies."""
-print(nom, ':', frase)
-print(multilinia)</code></pre>
+<div>
+<div id="pyodide-14" class="exercise-cell">
+
+</div>
+<script type="pyodide-14-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibm9tID0gXCJFdWxlclwiXG5mcmFzZSA9ICdMYSBpZGVudGl0YXQgZV4oac+AKSArIDEgPSAwJ1xubXVsdGlsaW5pYSA9IFwiXCJcIkFxdWVzdGEgY2FkZW5hXG5hYmFzdGEgZGl2ZXJzZXNcbmzDrW5pZXMuXCJcIlwiXG5wcmludChub20sICc6JywgZnJhc2UpXG5wcmludChtdWx0aWxpbmlhKSJ9
+</script>
+</div>
 <p>Les <strong>seqüències d’escapament</strong> permeten incloure caràcters especials dins d’una cadena:</p>
 <table class="caption-top table">
 <thead>
@@ -1102,14 +1131,23 @@ print(multilinia)</code></pre>
 </tr>
 </tbody>
 </table>
-<pre class="{pyodide}"><code>multilinia2 = "Aquesta cadena\nabasta diverses\nlínies."
-print(multilinia2)
-print(multilinia == multilinia2)  # True</code></pre>
+<div>
+<div id="pyodide-15" class="exercise-cell">
+
+</div>
+<script type="pyodide-15-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibXVsdGlsaW5pYTIgPSBcIkFxdWVzdGEgY2FkZW5hXFxuYWJhc3RhIGRpdmVyc2VzXFxubMOtbmllcy5cIlxucHJpbnQobXVsdGlsaW5pYTIpXG5wcmludChtdWx0aWxpbmlhID09IG11bHRpbGluaWEyKSAgIyBUcnVlIn0=
+</script>
+</div>
 <p>Amb la notació <code>objecte.mètode()</code>, explicada a la secció de nombres complexos, podem accedir a diversos mètodes útils de les cadenes. Per exemple:</p>
-<pre class="{pyodide}"><code>text = "hola món"
-print(text.upper())                    # "HOLA MÓN"
-print(text.count("o"))                 # 2
-print(text.replace("món", "Python"))   # "hola Python"</code></pre>
+<div>
+<div id="pyodide-16" class="exercise-cell">
+
+</div>
+<script type="pyodide-16-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidGV4dCA9IFwiaG9sYSBtw7NuXCJcbnByaW50KHRleHQudXBwZXIoKSkgICAgICAgICAgICAgICAgICAgICMgXCJIT0xBIE3Dk05cIlxucHJpbnQodGV4dC5jb3VudChcIm9cIikpICAgICAgICAgICAgICAgICAjIDJcbnByaW50KHRleHQucmVwbGFjZShcIm3Ds25cIiwgXCJQeXRob25cIikpICAgIyBcImhvbGEgUHl0aG9uXCIifQ==
+</script>
+</div>
 <p>Aquí <code>upper</code> és un mètode de la variable <code>text</code> (objecte del tipus <code>str</code>). El punt <code>.</code> és l’operador d’accés a membres: indica “busca dins d’aquest objecte alguna cosa anomenada <code>upper</code> i crida-la”.</p>
 <p>Els mètodes de <code>str</code> més útils en la pràctica:</p>
 <table class="caption-top table">
@@ -1164,8 +1202,14 @@ print(text.replace("món", "Python"))   # "hola Python"</code></pre>
 </tbody>
 </table>
 <p>La funció <code>len()</code> no és un mètode sinó una funció built-in, però s’aplica habitualment sobre cadenes:</p>
-<pre class="{pyodide}"><code>print(len(text))             # 8
-print(len("matemàtiques"))   # 12</code></pre>
+<div>
+<div id="pyodide-17" class="exercise-cell">
+
+</div>
+<script type="pyodide-17-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQobGVuKHRleHQpKSAgICAgICAgICAgICAjIDhcbnByaW50KGxlbihcIm1hdGVtw6B0aXF1ZXNcIikpICAgIyAxMiJ9
+</script>
+</div>
 <div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1187,21 +1231,44 @@ print(len("matemàtiques"))   # 12</code></pre>
 <section id="booleans-bool" class="level3">
 <h3 class="anchored" data-anchor-id="booleans-bool"><strong>2.3.5 Booleans (<code>bool</code>)</strong></h3>
 <p>Els booleans representen valors de veritat: <code>True</code> o <code>False</code>. Són el resultat natural dels operadors de comparació i lògics (es veuran més endavant):</p>
-<pre class="{pyodide}"><code>print(3 &gt; 2)        # True
-print(type(True))   # &lt;class 'bool'&gt;</code></pre>
+<div>
+<div id="pyodide-18" class="exercise-cell">
+
+</div>
+<script type="pyodide-18-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoMyA+IDIpICAgICAgICAjIFRydWVcbnByaW50KHR5cGUoVHJ1ZSkpICAgIyA8Y2xhc3MgJ2Jvb2wnPiJ9
+</script>
+</div>
 <p>El tipus <code>bool</code> és un subtipus de <code>int</code>: <code>True</code> val <code>1</code> i <code>False</code> val <code>0</code>. Això permet usar-los directament en expressions aritmètiques, cosa que en matemàtiques té sentit com a funció indicadora:</p>
-<pre class="{pyodide}"><code>print(True + True)   # 2
-print(False * 7)     # 0
-print(int(True))     # 1</code></pre>
+<div>
+<div id="pyodide-19" class="exercise-cell">
+
+</div>
+<script type="pyodide-19-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoVHJ1ZSArIFRydWUpICAgIyAyXG5wcmludChGYWxzZSAqIDcpICAgICAjIDBcbnByaW50KGludChUcnVlKSkgICAgICMgMSJ9
+</script>
+</div>
 </section>
 <section id="nul-nonetype" class="level3">
 <h3 class="anchored" data-anchor-id="nul-nonetype"><strong>2.3.6 Nul (<code>NoneType</code>)</strong></h3>
 <p><code>None</code> és l’únic valor del tipus <code>NoneType</code> i representa l’<strong>absència de valor</strong>. S’usa quan una variable no té cap objecte assignat, o quan una funció no retorna res explícitament:</p>
-<pre class="{pyodide}"><code>resultat = None
-print(resultat)        # None
-print(type(resultat))  # &lt;class 'NoneType'&gt;</code></pre>
+<div>
+<div id="pyodide-20" class="exercise-cell">
+
+</div>
+<script type="pyodide-20-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicmVzdWx0YXQgPSBOb25lXG5wcmludChyZXN1bHRhdCkgICAgICAgICMgTm9uZVxucHJpbnQodHlwZShyZXN1bHRhdCkpICAjIDxjbGFzcyAnTm9uZVR5cGUnPiJ9
+</script>
+</div>
 <p>Per comprovar si una variable és <code>None</code> s’usa <code>is</code>, no <code>==</code>:</p>
-<pre class="{pyodide}"><code>print(resultat is None)   # True</code></pre>
+<div>
+<div id="pyodide-21" class="exercise-cell">
+
+</div>
+<script type="pyodide-21-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQocmVzdWx0YXQgaXMgTm9uZSkgICAjIFRydWUifQ==
+</script>
+</div>
 <div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1279,17 +1346,14 @@ print(type(resultat))  # &lt;class 'NoneType'&gt;</code></pre>
 <li><code>str</code> admet <code>+</code> com a concatenació i <code>*</code> com a repetició, però no la resta.</li>
 </ul>
 <p>Per als tipus numèrics, quan es combinen operands de tipus diferents el resultat es <strong>promou</strong> al tipus més general. Per exemple, <code>int + float</code> produeix <code>float</code>, i <code>int + complex</code> produeix <code>complex</code>.</p>
-<pre class="{pyodide}"><code>print(type(3 + 2.5))       # &lt;class 'float'&gt;
-print(type(3 + 2))         # &lt;class 'int'&gt;
-print(type(3 * 2.5))       # &lt;class 'float'&gt;
-print(type(3 + 2j))        # &lt;class 'complex'&gt;
-print(type(3.0 + 2j))      # &lt;class 'complex'&gt;
-print(type(3 ** 2))        # &lt;class 'int'&gt;
-print(type(3 ** 2.0))      # &lt;class 'float'&gt;
-print(type(3.0 ** 2))      # &lt;class 'float'&gt;
-print(4 ** (1/2))          # 2.0
-print(4 ** (-1/2))         # 0.5
-print(4 ** -1/2)           # 0.125</code></pre>
+<div>
+<div id="pyodide-22" class="exercise-cell">
+
+</div>
+<script type="pyodide-22-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQodHlwZSgzICsgMi41KSkgICAgICAgIyA8Y2xhc3MgJ2Zsb2F0Jz5cbnByaW50KHR5cGUoMyArIDIpKSAgICAgICAgICMgPGNsYXNzICdpbnQnPlxucHJpbnQodHlwZSgzICogMi41KSkgICAgICAgIyA8Y2xhc3MgJ2Zsb2F0Jz5cbnByaW50KHR5cGUoMyArIDJqKSkgICAgICAgICMgPGNsYXNzICdjb21wbGV4Jz5cbnByaW50KHR5cGUoMy4wICsgMmopKSAgICAgICMgPGNsYXNzICdjb21wbGV4Jz5cbnByaW50KHR5cGUoMyAqKiAyKSkgICAgICAgICMgPGNsYXNzICdpbnQnPlxucHJpbnQodHlwZSgzICoqIDIuMCkpICAgICAgIyA8Y2xhc3MgJ2Zsb2F0Jz5cbnByaW50KHR5cGUoMy4wICoqIDIpKSAgICAgICMgPGNsYXNzICdmbG9hdCc+XG5wcmludCg0ICoqICgxLzIpKSAgICAgICAgICAjIDIuMFxucHJpbnQoNCAqKiAoLTEvMikpICAgICAgICAgIyAwLjVcbnByaW50KDQgKiogLTEvMikgICAgICAgICAgICMgMC4xMjUifQ==
+</script>
+</div>
 <p>La potència <code>**</code> admet exponents negatius i flotants, però el resultat és sempre <code>float</code> o <code>complex</code>. És a més l’únic operador amb associativitat per la dreta: <code>2 ** 3 ** 2</code> s’avalua com <code>2 ** 9 = 512</code>.</p>
 <div id="imp-precedencia" class="callout callout-style-default callout-important no-icon callout-titled" title="Precedència d'operadors aritmètics">
 <div class="callout-header d-flex align-content-center">
@@ -1310,23 +1374,14 @@ Concepte Clau&nbsp;4: Precedència d’operadors aritmètics
 <li>Suma i resta <code>+</code>, <code>-</code></li>
 </ol>
 <p>Quan dos operadors tenen la mateixa precedència s’avaluen d’esquerra a dreta, excepte <code>**</code> que és associatiu per la dreta. Els parèntesis permeten alterar qualsevol ordre d’avaluació.</p>
-<pre class="{pyodide}"><code># precedència estàndard
-print(2 + 3 * 4)       # 14  (no 20: * abans que +)
-print(10 - 6 / 2)      # 7.0 (no 2.0: / abans que -)
-print(2 ** 3 + 1)      # 9   (no 16: ** abans que +)
-print(10 % 3 + 1)      # 2   (no 1:  % abans que +)
+<div>
+<div id="pyodide-23" class="exercise-cell">
 
-# els parèntesis alteren l'ordre
-print((2 + 3) * 4)     # 20
-print((10 - 6) / 2)    # 2.0
-
-# ** és associatiu per la dreta
-print(2 ** 3 ** 2)     # 512  (= 2 ** 9, no 8 ** 2 = 64)
-print((2 ** 3) ** 2)   # 64
-
-# signe unari
-print(-2 ** 2)         # -4   (** abans que signe: -(2**2))
-print((-2) ** 2)       # 4</code></pre>
+</div>
+<script type="pyodide-23-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBwcmVjZWTDqG5jaWEgZXN0w6BuZGFyZFxucHJpbnQoMiArIDMgKiA0KSAgICAgICAjIDE0ICAobm8gMjA6ICogYWJhbnMgcXVlICspXG5wcmludCgxMCAtIDYgLyAyKSAgICAgICMgNy4wIChubyAyLjA6IC8gYWJhbnMgcXVlIC0pXG5wcmludCgyICoqIDMgKyAxKSAgICAgICMgOSAgIChubyAxNjogKiogYWJhbnMgcXVlICspXG5wcmludCgxMCAlIDMgKyAxKSAgICAgICMgMiAgIChubyAxOiAgJSBhYmFucyBxdWUgKylcblxuIyBlbHMgcGFyw6hudGVzaXMgYWx0ZXJlbiBsJ29yZHJlXG5wcmludCgoMiArIDMpICogNCkgICAgICMgMjBcbnByaW50KCgxMCAtIDYpIC8gMikgICAgIyAyLjBcblxuIyAqKiDDqXMgYXNzb2NpYXRpdSBwZXIgbGEgZHJldGFcbnByaW50KDIgKiogMyAqKiAyKSAgICAgIyA1MTIgICg9IDIgKiogOSwgbm8gOCAqKiAyID0gNjQpXG5wcmludCgoMiAqKiAzKSAqKiAyKSAgICMgNjRcblxuIyBzaWduZSB1bmFyaVxucHJpbnQoLTIgKiogMikgICAgICAgICAjIC00ICAgKCoqIGFiYW5zIHF1ZSBzaWduZTogLSgyKioyKSlcbnByaW50KCgtMikgKiogMikgICAgICAgIyA0In0=
+</script>
+</div>
 </div>
 </div>
 <p>Per a la divisió tenim dos operadors diferents: <code>/</code> i <code>//</code>. El primer retorna un flotant, mentre que el segon retorna el quocient enter (<em>floor division</em>). L’operador <code>%</code> retorna la resta (el mòdul) de la divisió entera.</p>
@@ -1341,29 +1396,46 @@ Concepte Clau&nbsp;5: Divisió entera i mòdul
 </div>
 <div class="callout-body-container callout-body">
 <p>En Python 3, l’operador <code>/</code> <strong>sempre retorna un flotant</strong>, fins i tot quan el resultat és un enter:</p>
-<pre class="{pyodide}"><code>print(6 / 2)    # 3.0   (no 3)
-print(7 / 2)    # 3.5</code></pre>
+<div>
+<div id="pyodide-24" class="exercise-cell">
+
+</div>
+<script type="pyodide-24-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoNiAvIDIpICAgICMgMy4wICAgKG5vIDMpXG5wcmludCg3IC8gMikgICAgIyAzLjUifQ==
+</script>
+</div>
 <p>L’operador <code>//</code> retorna el <strong>quocient enter</strong> (<em>floor division</em>) arrodonint cap a <span class="math inline">\(-\infty\)</span>, no cap a zero. L’operador <code>%</code> retorna la <strong>resta</strong> de la divisió entera:</p>
-<pre class="{pyodide}"><code>print(17 // 5)  #  3   (quocient enter)
-print(17 % 5)   #  2   (resta)
-print(-7 // 2)  # -4   (quocient enter, arrodoneix cap a menys infinit)
-print(-7 % 2)   #  1   (resta positiva, perquè -7 = (-4)*2 + 1)</code></pre>
+<div>
+<div id="pyodide-25" class="exercise-cell">
+
+</div>
+<script type="pyodide-25-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoMTcgLy8gNSkgICMgIDMgICAocXVvY2llbnQgZW50ZXIpXG5wcmludCgxNyAlIDUpICAgIyAgMiAgIChyZXN0YSlcbnByaW50KC03IC8vIDIpICAjIC00ICAgKHF1b2NpZW50IGVudGVyLCBhcnJvZG9uZWl4IGNhcCBhIG1lbnlzIGluZmluaXQpXG5wcmludCgtNyAlIDIpICAgIyAgMSAgIChyZXN0YSBwb3NpdGl2YSwgcGVycXXDqCAtNyA9ICgtNCkqMiArIDEpIn0=
+</script>
+</div>
 <p>Es compleix sempre la identitat: <code>a == (a // b) * b + (a % b)</code>. Aquí <code>==</code> és un operador de comparació (igualtat), no d’assignació. Per exemple:</p>
-<pre class="{pyodide}"><code>a, b = 17, 5
-print(a == (a // b) * b + (a % b))  # True</code></pre>
+<div>
+<div id="pyodide-26" class="exercise-cell">
+
+</div>
+<script type="pyodide-26-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSwgYiA9IDE3LCA1XG5wcmludChhID09IChhIC8vIGIpICogYiArIChhICUgYikpICAjIFRydWUifQ==
+</script>
+</div>
 <p>L’operador <code>%</code> és fonamental en teoria de nombres: la condició <code>n % 2 == 0</code> és el test de paritat més efectiu.</p>
 </div>
 </div>
 <section id="operadors-dassignació-composta" class="level3">
 <h3 class="anchored" data-anchor-id="operadors-dassignació-composta"><strong>2.4.1 Operadors d’assignació composta</strong></h3>
 <p>Els <strong>operadors d’assignació composta</strong> combinen una operació aritmètica amb l’assignació, actualitzant la variable in situ:</p>
-<pre class="{pyodide}"><code>x = 10
-x += 3    # equivalent a x = x + 3   → x és 13
-x -= 1    # equivalent a x = x - 1   → x és 12
-x *= 2    # equivalent a x = x * 2   → x és 24
-x //= 5   # equivalent a x = x // 5  → x és 4
-x **= 3   # equivalent a x = x ** 3  → x és 64
-print(x)  # 64</code></pre>
+<div>
+<div id="pyodide-27" class="exercise-cell">
+
+</div>
+<script type="pyodide-27-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDEwXG54ICs9IDMgICAgIyBlcXVpdmFsZW50IGEgeCA9IHggKyAzICAg4oaSIHggw6lzIDEzXG54IC09IDEgICAgIyBlcXVpdmFsZW50IGEgeCA9IHggLSAxICAg4oaSIHggw6lzIDEyXG54ICo9IDIgICAgIyBlcXVpdmFsZW50IGEgeCA9IHggKiAyICAg4oaSIHggw6lzIDI0XG54IC8vPSA1ICAgIyBlcXVpdmFsZW50IGEgeCA9IHggLy8gNSAg4oaSIHggw6lzIDRcbnggKio9IDMgICAjIGVxdWl2YWxlbnQgYSB4ID0geCAqKiAzICDihpIgeCDDqXMgNjRcbnByaW50KHgpICAjIDY0In0=
+</script>
+</div>
 <div id="cau-ieee754" class="callout callout-style-default callout-caution no-icon callout-titled" title="Tractar l'aritmètica amb floats com la dels nombres reals">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1467,16 +1539,14 @@ Error Freqüent&nbsp;2: Tractar l’aritmètica amb floats com la dels nombres r
 <li><strong><code>complex</code> no admet <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></strong>: els nombres complexos no tenen ordre total, igual que en matemàtiques. Només <code>==</code> i <code>!=</code> estan definits.</li>
 <li><strong><code>str</code> usa ordre lexicogràfic</strong>: les comparacions d’ordre segueixen el codi Unicode de cada caràcter, no l’ordre alfabètic intuïtiu. En particular, totes les majúscules precedeixen totes les minúscules: <code>"Z" &lt; "a"</code> és <code>True</code>.</li>
 </ul>
-<pre class="{pyodide}"><code># complex: == i != funcionen, ordre no està definit
-z = 3 + 2j
-print(z == 3 + 2j)   # True
-print(z != 0j)        # True
-# print(z &lt; 1 + 0j)  # TypeError: '&lt;' not supported between 'complex' and 'complex'
+<div>
+<div id="pyodide-28" class="exercise-cell">
 
-# str: ordre lexicogràfic per codi Unicode
-print("Z" &lt; "a")      # True  (ord("Z") = 90, ord("a") = 97)
-print("banana" &lt; "mango")     # True  (compara caràcter a caràcter)
-print("abc" == "ABC")  # False</code></pre>
+</div>
+<script type="pyodide-28-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBjb21wbGV4OiA9PSBpICE9IGZ1bmNpb25lbiwgb3JkcmUgbm8gZXN0w6AgZGVmaW5pdFxueiA9IDMgKyAyalxucHJpbnQoeiA9PSAzICsgMmopICAgIyBUcnVlXG5wcmludCh6ICE9IDBqKSAgICAgICAgIyBUcnVlXG4jIHByaW50KHogPCAxICsgMGopICAjIFR5cGVFcnJvcjogJzwnIG5vdCBzdXBwb3J0ZWQgYmV0d2VlbiAnY29tcGxleCcgYW5kICdjb21wbGV4J1xuXG4jIHN0cjogb3JkcmUgbGV4aWNvZ3LDoGZpYyBwZXIgY29kaSBVbmljb2RlXG5wcmludChcIlpcIiA8IFwiYVwiKSAgICAgICMgVHJ1ZSAgKG9yZChcIlpcIikgPSA5MCwgb3JkKFwiYVwiKSA9IDk3KVxucHJpbnQoXCJiYW5hbmFcIiA8IFwibWFuZ29cIikgICAgICMgVHJ1ZSAgKGNvbXBhcmEgY2Fyw6BjdGVyIGEgY2Fyw6BjdGVyKVxucHJpbnQoXCJhYmNcIiA9PSBcIkFCQ1wiKSAgIyBGYWxzZSJ9
+</script>
+</div>
 <div id="cau-comptip" class="callout callout-style-default callout-caution no-icon callout-titled" title="Comparar tipus diferents">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1488,16 +1558,25 @@ Error Freqüent&nbsp;3: Comparar tipus diferents
 </div>
 <div class="callout-body-container callout-body">
 <p>Comparar valors de tipus diferents amb <code>==</code> no produeix error sinó <code>False</code> directament (<code>42 == "42"</code> és <code>False</code>). Usar <code>&lt;</code> o <code>&gt;</code> entre tipus incompatibles sí llança <code>TypeError</code>.</p>
-<pre class="{pyodide}"><code># tipus diferents: == retorna False, ordre llança TypeError
-print(42 == "42")     # False
-# print(42 &lt; "42")    # TypeError: '&lt;' not supported between 'int' and 'str'</code></pre>
+<div>
+<div id="pyodide-29" class="exercise-cell">
+
+</div>
+<script type="pyodide-29-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyB0aXB1cyBkaWZlcmVudHM6ID09IHJldG9ybmEgRmFsc2UsIG9yZHJlIGxsYW7Dp2EgVHlwZUVycm9yXG5wcmludCg0MiA9PSBcIjQyXCIpICAgICAjIEZhbHNlXG4jIHByaW50KDQyIDwgXCI0MlwiKSAgICAjIFR5cGVFcnJvcjogJzwnIG5vdCBzdXBwb3J0ZWQgYmV0d2VlbiAnaW50JyBhbmQgJ3N0cicifQ==
+</script>
+</div>
 </div>
 </div>
 <p>Python permet <strong>encadenar comparacions</strong> de forma natural, exactament com en notació matemàtica:</p>
-<pre class="{pyodide}"><code>x = 7
-print(1 &lt;= x &lt;= 10)   # True   (equivalent a 1 &lt;= x and x &lt;= 10)
-print(0 &lt; x &lt; 5)      # False
-print(2 == 2 == 2)    # True</code></pre>
+<div>
+<div id="pyodide-30" class="exercise-cell">
+
+</div>
+<script type="pyodide-30-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDdcbnByaW50KDEgPD0geCA8PSAxMCkgICAjIFRydWUgICAoZXF1aXZhbGVudCBhIDEgPD0geCBhbmQgeCA8PSAxMClcbnByaW50KDAgPCB4IDwgNSkgICAgICAjIEZhbHNlXG5wcmludCgyID09IDIgPT0gMikgICAgIyBUcnVlIn0=
+</script>
+</div>
 <div id="tip-compara" class="callout callout-style-default callout-tip no-icon callout-titled" title="Operadors de comparació">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1560,11 +1639,14 @@ Fonament Teòric&nbsp;3: Operadors de comparació
 </tr>
 </tbody>
 </table>
-<pre class="{pyodide}"><code>x = 7
-print(x &gt; 0 and x &lt; 10)   # True   (x està en l'interval (0, 10))
-print(x &lt; 0 or x &gt; 5)     # True   (x &lt; 0 és False, però x &gt; 5 és True)
-print(not (x == 7))       # False
-print(x != 7)             # False</code></pre>
+<div>
+<div id="pyodide-31" class="exercise-cell">
+
+</div>
+<script type="pyodide-31-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDdcbnByaW50KHggPiAwIGFuZCB4IDwgMTApICAgIyBUcnVlICAgKHggZXN0w6AgZW4gbCdpbnRlcnZhbCAoMCwgMTApKVxucHJpbnQoeCA8IDAgb3IgeCA+IDUpICAgICAjIFRydWUgICAoeCA8IDAgw6lzIEZhbHNlLCBwZXLDsiB4ID4gNSDDqXMgVHJ1ZSlcbnByaW50KG5vdCAoeCA9PSA3KSkgICAgICAgIyBGYWxzZVxucHJpbnQoeCAhPSA3KSAgICAgICAgICAgICAjIEZhbHNlIn0=
+</script>
+</div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Avaluació en curtcircuit (short-circuit evaluation)">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1581,9 +1663,14 @@ print(x != 7)             # False</code></pre>
 <li><code>True or expr</code> → <code>True</code> sense avaluar <code>expr</code>.</li>
 </ul>
 <p>Això és important per evitar errors quan l’avaluació del segon operand podria provocar una excepció. Per exemple, la següent expressió és segura perquè si <code>b == 0</code> la segona part no s’avalua:</p>
-<pre class="{pyodide}"><code>b = 0
-if b != 0 and 10 / b &gt; 2:   # no llança ZeroDivisionError
-    print("quocient gran")</code></pre>
+<div>
+<div id="pyodide-32" class="exercise-cell">
+
+</div>
+<script type="pyodide-32-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYiA9IDBcbmlmIGIgIT0gMCBhbmQgMTAgLyBiID4gMjogICAjIG5vIGxsYW7Dp2EgWmVyb0RpdmlzaW9uRXJyb3JcbiAgICBwcmludChcInF1b2NpZW50IGdyYW5cIikifQ==
+</script>
+</div>
 </div>
 </div>
 <div id="tip-logico" class="callout callout-style-default callout-tip no-icon callout-titled" title="Operadors lògics">
@@ -1701,15 +1788,14 @@ Fonament Teòric&nbsp;5: Expressions lògiques
 <section id="conversió-de-tipus" class="level3">
 <h3 class="anchored" data-anchor-id="conversió-de-tipus"><strong>2.4.4 Conversió de tipus</strong></h3>
 <p>Python no converteix tipus automàticament en la majoria de situacions. Les funcions <code>int()</code>, <code>float()</code>, <code>str()</code> i <code>bool()</code> permeten convertir valors de forma explícita:</p>
-<pre class="{pyodide}"><code>print(int(3.9))      #  3    (trunca cap a zero, no arrodoneix)
-print(int(-3.9))     # -3    (també trunca cap a zero)
-print(float(5))      #  5.0
-print(str(42))       # '42'
-print(int("100"))    #  100
-print(bool(0))       # False
-print(bool(1))       # True
-print(bool(""))      # False  (cadena buida → False)
-print(bool("hola"))  # True   (cadena no buida → True)</code></pre>
+<div>
+<div id="pyodide-33" class="exercise-cell">
+
+</div>
+<script type="pyodide-33-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoaW50KDMuOSkpICAgICAgIyAgMyAgICAodHJ1bmNhIGNhcCBhIHplcm8sIG5vIGFycm9kb25laXgpXG5wcmludChpbnQoLTMuOSkpICAgICAjIC0zICAgICh0YW1iw6kgdHJ1bmNhIGNhcCBhIHplcm8pXG5wcmludChmbG9hdCg1KSkgICAgICAjICA1LjBcbnByaW50KHN0cig0MikpICAgICAgICMgJzQyJ1xucHJpbnQoaW50KFwiMTAwXCIpKSAgICAjICAxMDBcbnByaW50KGJvb2woMCkpICAgICAgICMgRmFsc2VcbnByaW50KGJvb2woMSkpICAgICAgICMgVHJ1ZVxucHJpbnQoYm9vbChcIlwiKSkgICAgICAjIEZhbHNlICAoY2FkZW5hIGJ1aWRhIOKGkiBGYWxzZSlcbnByaW50KGJvb2woXCJob2xhXCIpKSAgIyBUcnVlICAgKGNhZGVuYSBubyBidWlkYSDihpIgVHJ1ZSkifQ==
+</script>
+</div>
 <p>La conversió de tipus és necessària perquè Python no realitza conversions implícites entre tipus incompatibles —a diferència d’altres llenguatges— i perquè les dades del món real arriben freqüentment en un tipus diferent del que requereix el càlcul.</p>
 <p>Les situacions que la justifiquen són principalment tres:</p>
 <ul>
@@ -1751,9 +1837,14 @@ Fonament Teòric&nbsp;6: Condicionals
 <section id="estructura-if" class="level3">
 <h3 class="anchored" data-anchor-id="estructura-if"><strong>2.5.1 Estructura <code>if</code></strong></h3>
 <p>La forma més simple és el <code>if</code>:</p>
-<pre class="{pyodide}"><code>x = -5
-if x &lt; 0:
-    print("x és negatiu")</code></pre>
+<div>
+<div id="pyodide-34" class="exercise-cell">
+
+</div>
+<script type="pyodide-34-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IC01XG5pZiB4IDwgMDpcbiAgICBwcmludChcInggw6lzIG5lZ2F0aXVcIikifQ==
+</script>
+</div>
 <p>El bloc indentat només s’executa si la condició és <code>True</code>. Si la condició és <code>False</code>, el bloc s’omet i l’execució continua en la instrucció següent no indentada.</p>
 <div id="imp-indenta" class="callout callout-style-default callout-important no-icon callout-titled" title="Delimitació de blocs per indentació">
 <div class="callout-header d-flex align-content-center">
@@ -1771,28 +1862,26 @@ Concepte Clau&nbsp;6: Delimitació de blocs per indentació
 </section>
 <section id="estructura-if-else" class="level3">
 <h3 class="anchored" data-anchor-id="estructura-if-else"><strong>2.5.2 Estructura <code>if</code>-<code>else</code></strong></h3>
-<pre class="{pyodide}"><code>n = 17
-if n % 2 == 0:
-    print(f"{n} és parell")
-else:
-    print(f"{n} és senar")</code></pre>
+<div>
+<div id="pyodide-35" class="exercise-cell">
+
+</div>
+<script type="pyodide-35-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDE3XG5pZiBuICUgMiA9PSAwOlxuICAgIHByaW50KGZcIntufSDDqXMgcGFyZWxsXCIpXG5lbHNlOlxuICAgIHByaW50KGZcIntufSDDqXMgc2VuYXJcIikifQ==
+</script>
+</div>
 </section>
 <section id="estructura-if-elif-else" class="level3">
 <h3 class="anchored" data-anchor-id="estructura-if-elif-else"><strong>2.5.3 Estructura <code>if</code>-<code>elif</code>-<code>else</code></strong></h3>
 <p>Per a diverses condicions mútuament excloents s’encadenen branques <code>elif</code> (<em>else if</em>). Només s’executa la primera branca la condició de la qual sigui <code>True</code>; les altres s’ignoren:</p>
-<pre class="{pyodide}"><code>nota = 7.5
+<div>
+<div id="pyodide-36" class="exercise-cell">
 
-if nota &gt;= 9:
-    qualificacio = "Excel·lent"
-elif nota &gt;= 7:
-    qualificacio = "Notable"
-elif nota &gt;= 5:
-    qualificacio = "Aprovat"
-else:
-    qualificacio = "Suspès"
-
-print(f"Nota: {nota} → {qualificacio}")
-# Nota: 7.5 → Notable</code></pre>
+</div>
+<script type="pyodide-36-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibm90YSA9IDcuNVxuXG5pZiBub3RhID49IDk6XG4gICAgcXVhbGlmaWNhY2lvID0gXCJFeGNlbMK3bGVudFwiXG5lbGlmIG5vdGEgPj0gNzpcbiAgICBxdWFsaWZpY2FjaW8gPSBcIk5vdGFibGVcIlxuZWxpZiBub3RhID49IDU6XG4gICAgcXVhbGlmaWNhY2lvID0gXCJBcHJvdmF0XCJcbmVsc2U6XG4gICAgcXVhbGlmaWNhY2lvID0gXCJTdXNww6hzXCJcblxucHJpbnQoZlwiTm90YToge25vdGF9IOKGkiB7cXVhbGlmaWNhY2lvfVwiKVxuIyBOb3RhOiA3LjUg4oaSIE5vdGFibGUifQ==
+</script>
+</div>
 <div id="nte-ecucua" class="callout callout-style-default callout-note no-icon callout-titled" title="Arrels d'una equació quadràtica">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1804,20 +1893,14 @@ Exemple&nbsp;1: Arrels d’una equació quadràtica
 </div>
 <div class="callout-body-container callout-body">
 <p>El discriminant <span class="math inline">\(\Delta = b^2 - 4ac\)</span> determina la naturalesa de les arrels de <span class="math inline">\(ax^2 + bx + c = 0\)</span>:</p>
-<pre class="{pyodide}"><code>import math
+<div>
+<div id="pyodide-37" class="exercise-cell">
 
-a, b, c = 1, -3, 2    # equació: x^2 - 3x + 2 = 0
-discriminant = b**2 - 4 * a * c
-
-if discriminant &gt; 0:
-    r1 = (-b + math.sqrt(discriminant)) / (2 * a)
-    r2 = (-b - math.sqrt(discriminant)) / (2 * a)
-    print(f"Dues arrels reals: x₁ = {r1:.4f}, x₂ = {r2:.4f}")
-elif discriminant == 0:
-    r = -b / (2 * a)
-    print(f"Arrel doble: x = {r:.4f}")
-else:
-    print("Sense arrels reals (discriminant negatiu)")</code></pre>
+</div>
+<script type="pyodide-37-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuYSwgYiwgYyA9IDEsIC0zLCAyICAgICMgZXF1YWNpw7M6IHheMiAtIDN4ICsgMiA9IDBcbmRpc2NyaW1pbmFudCA9IGIqKjIgLSA0ICogYSAqIGNcblxuaWYgZGlzY3JpbWluYW50ID4gMDpcbiAgICByMSA9ICgtYiArIG1hdGguc3FydChkaXNjcmltaW5hbnQpKSAvICgyICogYSlcbiAgICByMiA9ICgtYiAtIG1hdGguc3FydChkaXNjcmltaW5hbnQpKSAvICgyICogYSlcbiAgICBwcmludChmXCJEdWVzIGFycmVscyByZWFsczogeOKCgSA9IHtyMTouNGZ9LCB44oKCID0ge3IyOi40Zn1cIilcbmVsaWYgZGlzY3JpbWluYW50ID09IDA6XG4gICAgciA9IC1iIC8gKDIgKiBhKVxuICAgIHByaW50KGZcIkFycmVsIGRvYmxlOiB4ID0ge3I6LjRmfVwiKVxuZWxzZTpcbiAgICBwcmludChcIlNlbnNlIGFycmVscyByZWFscyAoZGlzY3JpbWluYW50IG5lZ2F0aXUpXCIpIn0=
+</script>
+</div>
 <p>La instrucció <code>import math</code> fa disponibles les funcions matemàtiques del mòdul estàndard <code>math</code>, com <code>math.sqrt()</code> (arrel quadrada), <code>math.pi</code> (π), <code>math.log()</code> (logaritme), etc. Els mòduls s’estudien en profunditat en el Tema 3; per ara n’hi ha prou amb saber que <code>import math</code> s’ha d’escriure abans d’usar qualsevol funció d’aquell mòdul. La notació <code>math.xxxxxx()</code>, per exemple <code>math.sqrt()</code>, indica que la funció <code>xxxxxx</code> pertany al mòdul <code>math</code>.</p>
 </div>
 </div>
@@ -1825,14 +1908,14 @@ else:
 <section id="condicionals-aniuats-i-expressió-condicional" class="level3">
 <h3 class="anchored" data-anchor-id="condicionals-aniuats-i-expressió-condicional"><strong>2.5.4 Condicionals aniuats i expressió condicional</strong></h3>
 <p>Un bloc <code>if</code> pot contenir un altre <code>if</code> al seu interior. Els condicionals aniuats permeten refinar la lògica pas a pas:</p>
-<pre class="{pyodide}"><code>x = 3
-if x != 0:
-    if x &gt; 0:
-        print("x és positiu")
-    else:
-        print("x és negatiu")
-else:
-    print("x és zero")</code></pre>
+<div>
+<div id="pyodide-38" class="exercise-cell">
+
+</div>
+<script type="pyodide-38-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDNcbmlmIHggIT0gMDpcbiAgICBpZiB4ID4gMDpcbiAgICAgICAgcHJpbnQoXCJ4IMOpcyBwb3NpdGl1XCIpXG4gICAgZWxzZTpcbiAgICAgICAgcHJpbnQoXCJ4IMOpcyBuZWdhdGl1XCIpXG5lbHNlOlxuICAgIHByaW50KFwieCDDqXMgemVyb1wiKSJ9
+</script>
+</div>
 <p>Quan la lògica es complica, sol ser preferible combinar condicions amb <code>and</code> i <code>or</code>, o usar <code>elif</code>, en lloc d’aniuar massa nivells.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Expressió condicional (operador ternari)">
 <div class="callout-header d-flex align-content-center">
@@ -1845,9 +1928,14 @@ else:
 </div>
 <div class="callout-body-container callout-body">
 <p>Python disposa d’una <strong>expressió condicional</strong> que assigna un valor segons una condició en una sola línia:</p>
-<pre class="{pyodide}"><code>x = 7
-signe = "positiu" if x &gt; 0 else "no positiu"
-print(signe)   # positiu</code></pre>
+<div>
+<div id="pyodide-39" class="exercise-cell">
+
+</div>
+<script type="pyodide-39-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDdcbnNpZ25lID0gXCJwb3NpdGl1XCIgaWYgeCA+IDAgZWxzZSBcIm5vIHBvc2l0aXVcIlxucHJpbnQoc2lnbmUpICAgIyBwb3NpdGl1In0=
+</script>
+</div>
 <p>La sintaxi és <code>valor_si_true if condició else valor_si_false</code>. És útil per a assignacions simples, però convé evitar-la quan la lògica és complexa, ja que pot dificultar la lectura.</p>
 </div>
 </div>
@@ -1866,8 +1954,8 @@ print(signe)   # positiu</code></pre>
 <li><strong>Mecanisme:</strong> Abans d’entrar al cicle i a l’inici de cada repetició posterior, l’intèrpret avalua la condició. Si el resultat és <code>True</code>, el bloc de codi s’executa. Si és <code>False</code>, el flux salta a la primera instrucció que estigui fora del bucle.</li>
 <li><strong>Teoria de l’estat:</strong> Perquè un bucle <code>while</code> sigui teòricament segur, l’estat del programa ha de canviar dins del bloc. Si l’estat no altera mai la condició d’avaluació, es produeix un <strong>bucle infinit</strong>.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> condició:</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># bloc que es repeteix</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> condició:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># bloc que es repeteix</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="nte-cua100" class="callout callout-style-default callout-note no-icon callout-titled" title="Imprimir els quadrats perfectes menors que 100">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1879,11 +1967,14 @@ Exemple&nbsp;2: Imprimir els quadrats perfectes menors que 100
 </div>
 <div class="callout-body-container callout-body">
 <p>Emprant un bucle <code>while</code> es poden imprimir els quadrats perfectes menors que 100:</p>
-<pre class="{pyodide}"><code>n = 1
-while n * n &lt; 100:
-    print(n * n, end="  ")
-    n += 1
-print("\nFi del bucle")</code></pre>
+<div>
+<div id="pyodide-40" class="exercise-cell">
+
+</div>
+<script type="pyodide-40-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDFcbndoaWxlIG4gKiBuIDwgMTAwOlxuICAgIHByaW50KG4gKiBuLCBlbmQ9XCIgIFwiKVxuICAgIG4gKz0gMVxucHJpbnQoXCJcXG5GaSBkZWwgYnVjbGVcIikifQ==
+</script>
+</div>
 <p>En cada iteració s’avalua la condició. Tan aviat com és <code>False</code> (quan <code>n == 100</code>), el bucle acaba i l’execució continua amb la instrucció següent imprimint “Fi del bucle” en una nova línia. Observeu que <code>print("\nFi del bucle")</code> imprimeix un salt de línia amb <code>\n</code> abans del missatge.</p>
 </div>
 </div>
@@ -1898,10 +1989,10 @@ Error Freqüent&nbsp;4: Bucle infinit
 </div>
 <div class="callout-body-container callout-body">
 <p>Si la condició del <code>while</code> mai passa a <code>False</code>, el programa no acaba mai. Aquest error —el <strong>bucle infinit</strong>— és un dels més freqüents en començar a programar:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PERILL: bucle infinit (n sempre creix)</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    n <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PERILL: bucle infinit (n sempre creix)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    n <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Per aturar un programa bloquejat en un bucle infinit, prem <strong>Ctrl+C</strong> al terminal.</p>
 </div>
 </div>
@@ -1910,36 +2001,45 @@ Error Freqüent&nbsp;4: Bucle infinit
 <p>Usos típics del bucle <code>while</code> inclouen:</p>
 <ul>
 <li><p><strong>Repetir fins que es compleixi una condició</strong> — cerca del primer múltiple:</p>
-<pre class="{pyodide}"><code>n = 1
-while n % 13 != 0:
-    n += 1
-print(n)   # primer múltiple de 13</code></pre></li>
+<div>
+<div id="pyodide-41" class="exercise-cell">
+
+</div>
+<script type="pyodide-41-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDFcbndoaWxlIG4gJSAxMyAhPSAwOlxuICAgIG4gKz0gMVxucHJpbnQobikgICAjIHByaW1lciBtw7psdGlwbGUgZGUgMTMifQ==
+</script>
+</div></li>
 <li><p><strong>Aproximació iterativa</strong> — mètode de bisecció (vegeu <span class="citation" data-cites="wikipedia_biseccion">(<a href="#ref-wikipedia_biseccion" role="doc-biblioref">Contribuïdors de Viquipèdia 2024a</a>)</span>) per trobar una arrel:</p>
-<pre class="{pyodide}"><code>a, b = 1.0, 2.0
-while b - a &gt; 1e-10:
-    m = (a + b) / 2
-    if m ** 2 &lt; 2:
-        a = m
-    else:
-        b = m
-print(m)   # aproximació a √2</code></pre></li>
+<div>
+<div id="pyodide-42" class="exercise-cell">
+
+</div>
+<script type="pyodide-42-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSwgYiA9IDEuMCwgMi4wXG53aGlsZSBiIC0gYSA+IDFlLTEwOlxuICAgIG0gPSAoYSArIGIpIC8gMlxuICAgIGlmIG0gKiogMiA8IDI6XG4gICAgICAgIGEgPSBtXG4gICAgZWxzZTpcbiAgICAgICAgYiA9IG1cbnByaW50KG0pICAgIyBhcHJveGltYWNpw7MgYSDiiJoyIn0=
+</script>
+</div></li>
 <li><p><strong>Convergència d’una successió</strong> — iterar el mètode de Newton (vegeu <span class="citation" data-cites="wikipedia_newton">(<a href="#ref-wikipedia_newton" role="doc-biblioref">Contribuïdors de Viquipèdia 2024b</a>)</span>) fins que dos termes consecutius siguin indistingibles:</p>
-<pre class="{pyodide}"><code>x = 1.0
-while True:
-    x_nou = (x + 2 / x) / 2   # mètode de Newton per a √2
-    if abs(x_nou - x) &lt; 1e-12:
-        break
-    x = x_nou
-print(x)</code></pre></li>
+<div>
+<div id="pyodide-43" class="exercise-cell">
+
+</div>
+<script type="pyodide-43-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDEuMFxud2hpbGUgVHJ1ZTpcbiAgICB4X25vdSA9ICh4ICsgMiAvIHgpIC8gMiAgICMgbcOodG9kZSBkZSBOZXd0b24gcGVyIGEg4oiaMlxuICAgIGlmIGFicyh4X25vdSAtIHgpIDwgMWUtMTI6XG4gICAgICAgIGJyZWFrXG4gICAgeCA9IHhfbm91XG5wcmludCh4KSJ9
+</script>
+</div></li>
 <li><p><strong>Validació d’entrada</strong> — repetir fins a obtenir un valor vàlid (la funció <code>input()</code> es veurà a la secció 2.7):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introdueix un enter positiu: "</span>))</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ha de ser positiu. Torna-ho a intentar: "</span>))</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introdueix un enter positiu: "</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ha de ser positiu. Torna-ho a intentar: "</span>))</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>Dígits d’un nombre</strong> — processar xifra a xifra:</p>
-<pre class="{pyodide}"><code>n = 123456
-while n &gt; 0:
-    print(n % 10)   # última xifra
-    n //= 10</code></pre></li>
+<div>
+<div id="pyodide-44" class="exercise-cell">
+
+</div>
+<script type="pyodide-44-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDEyMzQ1Nlxud2hpbGUgbiA+IDA6XG4gICAgcHJpbnQobiAlIDEwKSAgICMgw7psdGltYSB4aWZyYVxuICAgIG4gLy89IDEwIn0=
+</script>
+</div></li>
 </ul>
 </section>
 <section id="instruccions-break-i-continue" class="level4">
@@ -1949,22 +2049,22 @@ while n &gt; 0:
 <li><strong><code>break</code></strong>: interromp el bucle immediatament i salta al codi que ve després.</li>
 <li><strong><code>continue</code></strong>: salta a l’inici de la següent iteració, ometent la resta del bloc actual.</li>
 </ul>
-<pre class="{pyodide}"><code># break: trobar el primer divisor de n major que 1
-n = 77
-d = 2
-while d &lt; n:
-    if n % d == 0:
-        print(f"El menor divisor de {n} major que 1 és {d}")
-        break
-    d += 1</code></pre>
-<pre class="{pyodide}"><code># continue: imprimir només els enters senars de l'1 al 10
-i = 0
-while i &lt; 10:
-    i += 1
-    if i % 2 == 0:
-        continue   # salta a l'inici si i és parell
-    print(i, end="  ")
-# 1  3  5  7  9</code></pre>
+<div>
+<div id="pyodide-45" class="exercise-cell">
+
+</div>
+<script type="pyodide-45-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBicmVhazogdHJvYmFyIGVsIHByaW1lciBkaXZpc29yIGRlIG4gbWFqb3IgcXVlIDFcbm4gPSA3N1xuZCA9IDJcbndoaWxlIGQgPCBuOlxuICAgIGlmIG4gJSBkID09IDA6XG4gICAgICAgIHByaW50KGZcIkVsIG1lbm9yIGRpdmlzb3IgZGUge259IG1ham9yIHF1ZSAxIMOpcyB7ZH1cIilcbiAgICAgICAgYnJlYWtcbiAgICBkICs9IDEifQ==
+</script>
+</div>
+<div>
+<div id="pyodide-46" class="exercise-cell">
+
+</div>
+<script type="pyodide-46-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBjb250aW51ZTogaW1wcmltaXIgbm9tw6lzIGVscyBlbnRlcnMgc2VuYXJzIGRlIGwnMSBhbCAxMFxuaSA9IDBcbndoaWxlIGkgPCAxMDpcbiAgICBpICs9IDFcbiAgICBpZiBpICUgMiA9PSAwOlxuICAgICAgICBjb250aW51ZSAgICMgc2FsdGEgYSBsJ2luaWNpIHNpIGkgw6lzIHBhcmVsbFxuICAgIHByaW50KGksIGVuZD1cIiAgXCIpXG4jIDEgIDMgIDUgIDcgIDkifQ==
+</script>
+</div>
 </section>
 <section id="disseny-correcte-dun-bucle-while" class="level4">
 <h4 class="anchored" data-anchor-id="disseny-correcte-dun-bucle-while"><strong>Disseny correcte d’un bucle <code>while</code></strong></h4>
@@ -2045,20 +2145,14 @@ Fonament Teòric&nbsp;8: Invariant de bucle
 </tr>
 </tbody>
 </table>
-<pre class="{pyodide}"><code>for i in range(5):
-    print(i, end=" ")     # 0 1 2 3 4
-print()  # salt de línia
+<div>
+<div id="pyodide-47" class="exercise-cell">
 
-for i in range(1, 6):
-    print(i, end=" ")     # 1 2 3 4 5
-print()  # salt de línia
-
-for i in range(0, 10, 2):
-    print(i, end=" ")     # 0 2 4 6 8
-print() # salt de línia
-
-for i in range(10, 0, -1):
-    print(i, end=" ")     # 10 9 8 7 6 5 4 3 2 1</code></pre>
+</div>
+<script type="pyodide-47-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIGkgaW4gcmFuZ2UoNSk6XG4gICAgcHJpbnQoaSwgZW5kPVwiIFwiKSAgICAgIyAwIDEgMiAzIDRcbnByaW50KCkgICMgc2FsdCBkZSBsw61uaWFcblxuZm9yIGkgaW4gcmFuZ2UoMSwgNik6XG4gICAgcHJpbnQoaSwgZW5kPVwiIFwiKSAgICAgIyAxIDIgMyA0IDVcbnByaW50KCkgICMgc2FsdCBkZSBsw61uaWFcblxuZm9yIGkgaW4gcmFuZ2UoMCwgMTAsIDIpOlxuICAgIHByaW50KGksIGVuZD1cIiBcIikgICAgICMgMCAyIDQgNiA4XG5wcmludCgpICMgc2FsdCBkZSBsw61uaWFcblxuZm9yIGkgaW4gcmFuZ2UoMTAsIDAsIC0xKTpcbiAgICBwcmludChpLCBlbmQ9XCIgXCIpICAgICAjIDEwIDkgOCA3IDYgNSA0IDMgMiAxIn0=
+</script>
+</div>
 <div id="imp-range" class="callout callout-style-default callout-important no-icon callout-titled" title="L'anatomia de l'objecte `range`">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2090,31 +2184,46 @@ Concepte Clau&nbsp;8: El patró acumulador
 </div>
 <div class="callout-body-container callout-body">
 <p>El <strong>patró acumulador</strong> és l’estructura més freqüent en programació numèrica: s’inicialitza una variable abans del bucle amb l’element neutre de l’operació i s’actualitza en cada iteració.</p>
-<pre class="{pyodide}"><code># Suma: S = 1 + 2 + … + n
-n = 100
-suma = 0                        # neutre de la suma
-for i in range(1, n + 1):
-    suma += i
-print(suma)                     # 5050  (= n·(n+1)/2)</code></pre>
+<div>
+<div id="pyodide-48" class="exercise-cell">
+
+</div>
+<script type="pyodide-48-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBTdW1hOiBTID0gMSArIDIgKyDigKYgKyBuXG5uID0gMTAwXG5zdW1hID0gMCAgICAgICAgICAgICAgICAgICAgICAgICMgbmV1dHJlIGRlIGxhIHN1bWFcbmZvciBpIGluIHJhbmdlKDEsIG4gKyAxKTpcbiAgICBzdW1hICs9IGlcbnByaW50KHN1bWEpICAgICAgICAgICAgICAgICAgICAgIyA1MDUwICAoPSBuwrcobisxKS8yKSJ9
+</script>
+</div>
 <p>El mateix esquema serveix per a productes:</p>
-<pre class="{pyodide}"><code># Factorial: n! = 1 × 2 × … × n
-n = 10
-factorial = 1                   # neutre del producte
-for i in range(2, n + 1):
-    factorial *= i
-print(factorial)                # 3628800</code></pre>
+<div>
+<div id="pyodide-49" class="exercise-cell">
+
+</div>
+<script type="pyodide-49-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBGYWN0b3JpYWw6IG4hID0gMSDDlyAyIMOXIOKApiDDlyBuXG5uID0gMTBcbmZhY3RvcmlhbCA9IDEgICAgICAgICAgICAgICAgICAgIyBuZXV0cmUgZGVsIHByb2R1Y3RlXG5mb3IgaSBpbiByYW5nZSgyLCBuICsgMSk6XG4gICAgZmFjdG9yaWFsICo9IGlcbnByaW50KGZhY3RvcmlhbCkgICAgICAgICAgICAgICAgIyAzNjI4ODAwIn0=
+</script>
+</div>
 <p>La variable acumuladora (<code>suma</code>, <code>factorial</code>) <strong>s’ha d’inicialitzar fora del bucle</strong> amb el valor neutre de l’operació: 0 per a sumes, 1 per a productes.</p>
 </div>
 </div>
 <p>Altres usos comuns del bucle <code>for</code> inclouen:</p>
 <ul>
 <li><p><strong>Recórrer i processar una seqüència</strong>:</p>
-<pre class="{pyodide}"><code>for x in range(1, 5):
-    print(x ** 3)   # cub de cada enter</code></pre></li>
+<div>
+<div id="pyodide-50" class="exercise-cell">
+
+</div>
+<script type="pyodide-50-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIHggaW4gcmFuZ2UoMSwgNSk6XG4gICAgcHJpbnQoeCAqKiAzKSAgICMgY3ViIGRlIGNhZGEgZW50ZXIifQ==
+</script>
+</div></li>
 <li><p><strong>Cerca</strong> — detectar si un enter en un rang compleix una condició:</p>
-<pre class="{pyodide}"><code>for n in range(2, 50):
-    if n % 7 == 0:
-        print(n, "és múltiple de 7")</code></pre></li>
+<div>
+<div id="pyodide-51" class="exercise-cell">
+
+</div>
+<script type="pyodide-51-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIG4gaW4gcmFuZ2UoMiwgNTApOlxuICAgIGlmIG4gJSA3ID09IDA6XG4gICAgICAgIHByaW50KG4sIFwiw6lzIG3Dumx0aXBsZSBkZSA3XCIpIn0=
+</script>
+</div></li>
 </ul>
 <section id="exemples-matemàtics-dús-del-bucle-for" class="level4">
 <h4 class="anchored" data-anchor-id="exemples-matemàtics-dús-del-bucle-for">Exemples matemàtics d’ús del bucle <code>for</code></h4>
@@ -2135,11 +2244,14 @@ F_k = \begin{cases}
 F_{k-1} + F_{k-2} &amp; \text{si } k \geq 2
 \end{cases}
 \]</span>. El càlcul iteratiu utilitza dues variables que s’actualitzen simultàniament:</p>
-<pre class="{pyodide}"><code>n = 15   # nombre de termes a imprimir
-a, b = 0, 1
-for i in range(n):
-    print(a, end="  ")
-    a, b = b, a + b</code></pre>
+<div>
+<div id="pyodide-52" class="exercise-cell">
+
+</div>
+<script type="pyodide-52-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDE1ICAgIyBub21icmUgZGUgdGVybWVzIGEgaW1wcmltaXJcbmEsIGIgPSAwLCAxXG5mb3IgaSBpbiByYW5nZShuKTpcbiAgICBwcmludChhLCBlbmQ9XCIgIFwiKVxuICAgIGEsIGIgPSBiLCBhICsgYiJ9
+</script>
+</div>
 <p>L’assignació simultània <code>a, b = b, a + b</code> avalua primer el costat dret complet i després assigna, de manera que no cal cap variable temporal.</p>
 </div>
 </div>
@@ -2158,16 +2270,14 @@ Exemple&nbsp;4: Càlcul de la suma parcial d’una sèrie
 S_n = \sum_{k=1}^{n} \frac{1}{k^2}
 \]</span>,</p>
 <p>que convergeix a <span class="math inline">\(\pi^2/6\)</span> quan <span class="math inline">\(n \to \infty\)</span> (resultat conegut com a problema de Basilea, resolt per Euler el 1735):</p>
-<pre class="{pyodide}"><code>import math
+<div>
+<div id="pyodide-53" class="exercise-cell">
 
-n = 10000
-suma = 0.0
-for k in range(1, n + 1):
-    suma += 1 / k**2
-
-print(f"S_{n}   = {suma:.10f}")
-print(f"π²/6    = {math.pi**2 / 6:.10f}")
-print(f"Error   = {abs(suma - math.pi**2 / 6):.2e}")</code></pre>
+</div>
+<script type="pyodide-53-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxubiA9IDEwMDAwXG5zdW1hID0gMC4wXG5mb3IgayBpbiByYW5nZSgxLCBuICsgMSk6XG4gICAgc3VtYSArPSAxIC8gayoqMlxuXG5wcmludChmXCJTX3tufSAgID0ge3N1bWE6LjEwZn1cIilcbnByaW50KGZcIs+AwrIvNiAgICA9IHttYXRoLnBpKioyIC8gNjouMTBmfVwiKVxucHJpbnQoZlwiRXJyb3IgICA9IHthYnMoc3VtYSAtIG1hdGgucGkqKjIgLyA2KTouMmV9XCIpIn0=
+</script>
+</div>
 </div>
 </div>
 <div id="nte-primos" class="callout callout-style-default callout-note no-icon callout-titled" title="Imprimir nombres primers">
@@ -2181,17 +2291,14 @@ Exemple&nbsp;5: Imprimir nombres primers
 </div>
 <div class="callout-body-container callout-body">
 <p>Un nombre <span class="math inline">\(p \geq 2\)</span> és <strong>primer</strong> si no té divisors propis entre 2 i <span class="math inline">\(\lfloor\sqrt{p}\rfloor\)</span>. El codi següent utilitza una variable booleana de tipus bandera (<em>flag</em>) per registrar si s’ha trobat algun divisor:</p>
-<pre class="{pyodide}"><code>import math
+<div>
+<div id="pyodide-54" class="exercise-cell">
 
-# Llistar tots els primers fins a 50
-for n in range(2, 51):
-    es_primer = True                          # hipòtesi inicial: n és primer
-    for d in range(2, int(math.sqrt(n)) + 1):
-        if n % d == 0:
-            es_primer = False                 # s'ha trobat un divisor
-            break                             # no cal continuar buscant
-    if es_primer:
-        print(n, end="  ")</code></pre>
+</div>
+<script type="pyodide-54-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuIyBMbGlzdGFyIHRvdHMgZWxzIHByaW1lcnMgZmlucyBhIDUwXG5mb3IgbiBpbiByYW5nZSgyLCA1MSk6XG4gICAgZXNfcHJpbWVyID0gVHJ1ZSAgICAgICAgICAgICAgICAgICAgICAgICAgIyBoaXDDsnRlc2kgaW5pY2lhbDogbiDDqXMgcHJpbWVyXG4gICAgZm9yIGQgaW4gcmFuZ2UoMiwgaW50KG1hdGguc3FydChuKSkgKyAxKTpcbiAgICAgICAgaWYgbiAlIGQgPT0gMDpcbiAgICAgICAgICAgIGVzX3ByaW1lciA9IEZhbHNlICAgICAgICAgICAgICAgICAjIHMnaGEgdHJvYmF0IHVuIGRpdmlzb3JcbiAgICAgICAgICAgIGJyZWFrICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjIG5vIGNhbCBjb250aW51YXIgYnVzY2FudFxuICAgIGlmIGVzX3ByaW1lcjpcbiAgICAgICAgcHJpbnQobiwgZW5kPVwiICBcIikifQ==
+</script>
+</div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Bucles aniuats">
@@ -2206,17 +2313,14 @@ for n in range(2, 51):
 <div class="callout-body-container callout-body">
 <p>Els bucles es poden <strong>aniuar</strong>, és a dir, es pot tenir un bucle dins d’un altre. Això ocorre principalment amb bucles <code>for</code>. Aniuar <code>while</code> és possible però poc freqüent. Hi ha ocasions on el bucle exterior és <code>for</code> i l’interior és <code>while</code>.</p>
 <p>Cada vegada que el bucle exterior avança una iteració, el bucle interior s’executa completament. El nombre total d’iteracions és el producte dels rangs dels dos bucles.</p>
-<pre class="{pyodide}"><code># Taula de multiplicar de l'1 al 6
-print(f"{'':4}", end="")
-for j in range(1, 7):
-    print(f"{j:4}", end="")
-print()
-print("-" * 28)
-for i in range(1, 7):
-    print(f"{i:4}", end="")
-    for j in range(1, 7):
-        print(f"{i*j:4}", end="")
-    print()</code></pre>
+<div>
+<div id="pyodide-55" class="exercise-cell">
+
+</div>
+<script type="pyodide-55-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBUYXVsYSBkZSBtdWx0aXBsaWNhciBkZSBsJzEgYWwgNlxucHJpbnQoZlwieycnOjR9XCIsIGVuZD1cIlwiKVxuZm9yIGogaW4gcmFuZ2UoMSwgNyk6XG4gICAgcHJpbnQoZlwie2o6NH1cIiwgZW5kPVwiXCIpXG5wcmludCgpXG5wcmludChcIi1cIiAqIDI4KVxuZm9yIGkgaW4gcmFuZ2UoMSwgNyk6XG4gICAgcHJpbnQoZlwie2k6NH1cIiwgZW5kPVwiXCIpXG4gICAgZm9yIGogaW4gcmFuZ2UoMSwgNyk6XG4gICAgICAgIHByaW50KGZcIntpKmo6NH1cIiwgZW5kPVwiXCIpXG4gICAgcHJpbnQoKSJ9
+</script>
+</div>
 <p>Amb bucles aniuats és fàcil generar costos computacionals elevats: un doble bucle sobre <span class="math inline">\(n\)</span> elements produeix <span class="math inline">\(O(n^2)\)</span> operacions. L’anàlisi de la <strong>complexitat computacional</strong> dels algoritmes (Tema 4) estudia aquest tipus de costos amb detall.</p>
 </div>
 </div>
@@ -2225,16 +2329,32 @@ for i in range(1, 7):
 <section id="iteració-sobre-cadenes-i-enumerate" class="level3">
 <h3 class="anchored" data-anchor-id="iteració-sobre-cadenes-i-enumerate"><strong>2.6.3 Iteració sobre cadenes i <code>enumerate()</code></strong></h3>
 <p>Una cadena <code>str</code> és un iterable els elements del qual són els caràcters individuals (cada un al seu torn un <code>str</code> de longitud 1). El bucle <code>for</code> pot recórrer directament els caràcters d’una cadena:</p>
-<pre class="{pyodide}"><code>paraula = "Python"
-for lletra in paraula:
-    print(lletra, end="-")    # P-y-t-h-o-n-</code></pre>
+<div>
+<div id="pyodide-56" class="exercise-cell">
+
+</div>
+<script type="pyodide-56-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicGFyYXVsYSA9IFwiUHl0aG9uXCJcbmZvciBsbGV0cmEgaW4gcGFyYXVsYTpcbiAgICBwcmludChsbGV0cmEsIGVuZD1cIi1cIikgICAgIyBQLXktdC1oLW8tbi0ifQ==
+</script>
+</div>
 <p>Si es vol conèixer la posició de cada caràcter, es pot usar <code>range()</code> amb <code>len()</code>:</p>
-<pre class="{pyodide}"><code>paraula = "Python"
-for i in range(len(paraula)):
-    print(f"posició {i}: {paraula[i]}")</code></pre>
+<div>
+<div id="pyodide-57" class="exercise-cell">
+
+</div>
+<script type="pyodide-57-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicGFyYXVsYSA9IFwiUHl0aG9uXCJcbmZvciBpIGluIHJhbmdlKGxlbihwYXJhdWxhKSk6XG4gICAgcHJpbnQoZlwicG9zaWNpw7Mge2l9OiB7cGFyYXVsYVtpXX1cIikifQ==
+</script>
+</div>
 <p>Una altra forma d’obtenir la posició de cada caràcter és usar el tipus <code>enumerate()</code>. Igual que <code>range</code>, <code>enumerate</code> és un tipus built-in de Python. Amb <code>enumerate(iterable)</code> es produeix un objecte iterable de parells <code>(índex, valor)</code> generats de forma mandrosa. Amb <code>index</code> s’obté la posició de l’element en la seqüència, i amb <code>valor</code> s’obté l’element en si. Això permet recórrer una cadena (o qualsevol iterable) i conèixer simultàniament l’índex de cada element:</p>
-<pre class="{pyodide}"><code>for i, lletra in enumerate("abc"):
-    print(f"posició {i}: {lletra}")</code></pre>
+<div>
+<div id="pyodide-58" class="exercise-cell">
+
+</div>
+<script type="pyodide-58-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIGksIGxsZXRyYSBpbiBlbnVtZXJhdGUoXCJhYmNcIik6XG4gICAgcHJpbnQoZlwicG9zaWNpw7Mge2l9OiB7bGxldHJhfVwiKSJ9
+</script>
+</div>
 <p>Les cadenes que comencen amb <code>f</code> i contenen expressions entre claus <code>{}</code> s’anomenen <strong>f-strings</strong> (cadenes formatades). Es veuran a la secció 2.7.2.</p>
 <hr>
 </section>
@@ -2245,38 +2365,44 @@ for i in range(len(paraula)):
 <section id="la-funció-print" class="level3">
 <h3 class="anchored" data-anchor-id="la-funció-print"><strong>2.7.1 La funció <code>print()</code></strong></h3>
 <p>Ja vam veure anteriorment que <code>print()</code> escriu a la <strong>sortida estàndard</strong> (la pantalla en condicions normals). Accepta qualsevol nombre d’arguments separats per comes:</p>
-<pre class="{pyodide}"><code>print("El resultat és", 42)           # El resultat és 42
-print(1, 2, 3)                         # 1 2 3  (separador per defecte: espai)
-print(1, 2, 3, sep=", ")               # 1, 2, 3
-print(1, 2, 3, sep=" | ")              # 1 | 2 | 3
-print("sense salt", end="")            # roman a la mateixa línia
-print(" — continuació")                # — continuació
-print()                                # línia en blanc</code></pre>
+<div>
+<div id="pyodide-59" class="exercise-cell">
+
+</div>
+<script type="pyodide-59-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoXCJFbCByZXN1bHRhdCDDqXNcIiwgNDIpICAgICAgICAgICAjIEVsIHJlc3VsdGF0IMOpcyA0MlxucHJpbnQoMSwgMiwgMykgICAgICAgICAgICAgICAgICAgICAgICAgIyAxIDIgMyAgKHNlcGFyYWRvciBwZXIgZGVmZWN0ZTogZXNwYWkpXG5wcmludCgxLCAyLCAzLCBzZXA9XCIsIFwiKSAgICAgICAgICAgICAgICMgMSwgMiwgM1xucHJpbnQoMSwgMiwgMywgc2VwPVwiIHwgXCIpICAgICAgICAgICAgICAjIDEgfCAyIHwgM1xucHJpbnQoXCJzZW5zZSBzYWx0XCIsIGVuZD1cIlwiKSAgICAgICAgICAgICMgcm9tYW4gYSBsYSBtYXRlaXhhIGzDrW5pYVxucHJpbnQoXCIg4oCUIGNvbnRpbnVhY2nDs1wiKSAgICAgICAgICAgICAgICAjIOKAlCBjb250aW51YWNpw7NcbnByaW50KCkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICMgbMOtbmlhIGVuIGJsYW5jIn0=
+</script>
+</div>
 </section>
 <section id="cadenes-formatades-f-strings" class="level3">
 <h3 class="anchored" data-anchor-id="cadenes-formatades-f-strings"><strong>2.7.2 Cadenes formatades: f-strings</strong></h3>
 <p>Les <strong>f-strings</strong> (cadenes formatades) són la forma més moderna, llegible i ràpida d’inserir variables i expressions dins de cadenes de text en Python. S’escriuen amb el prefix <code>f</code> (o <code>F</code>) just abans de les cometes (simples o dobles) i empren claus <code>{}</code> per indicar on s’ha d’injectar el valor d’una variable o una expressió.</p>
-<pre class="{pyodide}"><code>n = 100
-suma = n * (n + 1) // 2
-print(f"Gauss va calcular que la suma de 1 a {n} és {suma}.")
-print(f"El quadrat de 7 és {7**2}.")</code></pre>
+<div>
+<div id="pyodide-60" class="exercise-cell">
+
+</div>
+<script type="pyodide-60-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDEwMFxuc3VtYSA9IG4gKiAobiArIDEpIC8vIDJcbnByaW50KGZcIkdhdXNzIHZhIGNhbGN1bGFyIHF1ZSBsYSBzdW1hIGRlIDEgYSB7bn0gw6lzIHtzdW1hfS5cIilcbnByaW50KGZcIkVsIHF1YWRyYXQgZGUgNyDDqXMgezcqKjJ9LlwiKSJ9
+</script>
+</div>
 <p>El veritable avantatge de les f-strings no és només inserir variables estàtiques; permeten executar codi Python vàlid directament dins de les claus. És possible fer càlculs matemàtics, cridar mètodes o usar funcions sense necessitat de crear variables temporals prèvies.</p>
-<pre class="{pyodide}"><code>preu = 50
-impost = 0.21
+<div>
+<div id="pyodide-61" class="exercise-cell">
 
-# Operació matemàtica directa
-print(f"El preu total amb IVA és {preu + (preu * impost)}")
-
-paraula = "python"
-# Crida a un mètode de cadena
-print(f"M'encanta programar en {paraula.capitalize()}!")</code></pre>
+</div>
+<script type="pyodide-61-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJldSA9IDUwXG5pbXBvc3QgPSAwLjIxXG5cbiMgT3BlcmFjacOzIG1hdGVtw6B0aWNhIGRpcmVjdGFcbnByaW50KGZcIkVsIHByZXUgdG90YWwgYW1iIElWQSDDqXMge3ByZXUgKyAocHJldSAqIGltcG9zdCl9XCIpXG5cbnBhcmF1bGEgPSBcInB5dGhvblwiXG4jIENyaWRhIGEgdW4gbcOodG9kZSBkZSBjYWRlbmFcbnByaW50KGZcIk0nZW5jYW50YSBwcm9ncmFtYXIgZW4ge3BhcmF1bGEuY2FwaXRhbGl6ZSgpfSFcIikifQ==
+</script>
+</div>
 <p>A partir de Python 3.8 es pot afegir un signe igual <code>=</code> després del nom de la variable (o expressió) dins de les claus. Això imprimeix tant el nom de la variable com el seu valor resultant, la qual cosa estalvia molt de temps en fer <em>depuració</em> (<em>debugging</em>) amb <code>print()</code>.</p>
-<pre class="{pyodide}"><code>usuari_id = 4092
-velocitat_actual = 120
+<div>
+<div id="pyodide-62" class="exercise-cell">
 
-print(f"{usuari_id=}")                # usuari_id=4092
-
-print(f"{velocitat_actual / 2 = }")   # velocitat_actual / 2 = 60.0</code></pre>
+</div>
+<script type="pyodide-62-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidXN1YXJpX2lkID0gNDA5MlxudmVsb2NpdGF0X2FjdHVhbCA9IDEyMFxuXG5wcmludChmXCJ7dXN1YXJpX2lkPX1cIikgICAgICAgICAgICAgICAgIyB1c3VhcmlfaWQ9NDA5MlxuXG5wcmludChmXCJ7dmVsb2NpdGF0X2FjdHVhbCAvIDIgPSB9XCIpICAgIyB2ZWxvY2l0YXRfYWN0dWFsIC8gMiA9IDYwLjAifQ==
+</script>
+</div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Especificadors de format en f-strings">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2360,15 +2486,15 @@ print(f"{velocitat_actual / 2 = }")   # velocitat_actual / 2 = 60.0</code></pre>
 <section id="la-funció-input" class="level3">
 <h3 class="anchored" data-anchor-id="la-funció-input"><strong>2.7.3 La funció <code>input()</code></strong></h3>
 <p><code>input()</code> atura l’execució del programa, mostra un missatge opcional en pantalla i espera que l’usuari escrigui alguna cosa i premi Retorn. <strong>Sempre retorna una cadena de text</strong> (<code>str</code>), independentment del que l’usuari hagi escrit.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escriu alguna cosa: "</span>)</span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Has escrit: </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(text))              <span class="co"># &lt;class 'str'&gt;</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escriu alguna cosa: "</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Has escrit: </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(text))              <span class="co"># &lt;class 'str'&gt;</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Per treballar amb valors numèrics, cal convertir la cadena retornada per <code>input()</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introdueix un nombre enter: "</span>))</span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El quadrat de </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> és </span><span class="sc">{</span>n<span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss">."</span>)</span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Introdueix un nombre real: "</span>))</span>
-<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La seva arrel quadrada és </span><span class="sc">{</span>x<span class="op">**</span><span class="fl">0.5</span><span class="sc">:.6f}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introdueix un nombre enter: "</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El quadrat de </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> és </span><span class="sc">{</span>n<span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss">."</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Introdueix un nombre real: "</span>))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La seva arrel quadrada és </span><span class="sc">{</span>x<span class="op">**</span><span class="fl">0.5</span><span class="sc">:.6f}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="cau-input" class="callout callout-style-default callout-caution no-icon callout-titled" title="Oblidar que input() sempre retorna str">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2380,11 +2506,11 @@ Error Freqüent&nbsp;5: Oblidar que input() sempre retorna str
 </div>
 <div class="callout-body-container callout-body">
 <p>Un dels errors més comuns en començar amb Python:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Introdueix n: "</span>)</span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>resultat <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span>     <span class="co"># TypeError: can only concatenate str (not "int") to str</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Introdueix n: "</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>resultat <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span>     <span class="co"># TypeError: can only concatenate str (not "int") to str</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>La solució és convertir explícitament el tipus abans d’operar:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introdueix n: "</span>))</span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>resultat <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span>     <span class="co"># correcte</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introdueix n: "</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>resultat <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span>     <span class="co"># correcte</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div id="nte-calculadora" class="callout callout-style-default callout-note no-icon callout-titled" title="Calculadora interactiva">
@@ -2398,29 +2524,29 @@ Exemple&nbsp;6: Calculadora interactiva
 </div>
 <div class="callout-body-container callout-body">
 <p>Implementem una calculadora bàsica que sol·licita dos nombres i una operació a l’usuari, i després mostra el resultat:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Calculadora bàsica ==="</span>)</span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Primer nombre: "</span>))</span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Segon nombre: "</span>))</span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>op <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Operació (+, -, *, /): "</span>)</span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> op <span class="op">==</span> <span class="st">"+"</span>:</span>
-<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>    resultat <span class="op">=</span> a <span class="op">+</span> b</span>
-<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> op <span class="op">==</span> <span class="st">"-"</span>:</span>
-<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>    resultat <span class="op">=</span> a <span class="op">-</span> b</span>
-<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> op <span class="op">==</span> <span class="st">"*"</span>:</span>
-<span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a>    resultat <span class="op">=</span> a <span class="op">*</span> b</span>
-<span id="cb73-12"><a href="#cb73-12" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> op <span class="op">==</span> <span class="st">"/"</span>:</span>
-<span id="cb73-13"><a href="#cb73-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> b <span class="op">!=</span> <span class="dv">0</span>:</span>
-<span id="cb73-14"><a href="#cb73-14" aria-hidden="true" tabindex="-1"></a>        resultat <span class="op">=</span> a <span class="op">/</span> b</span>
-<span id="cb73-15"><a href="#cb73-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb73-16"><a href="#cb73-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Error: divisió per zero."</span>)</span>
-<span id="cb73-17"><a href="#cb73-17" aria-hidden="true" tabindex="-1"></a>        resultat <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb73-18"><a href="#cb73-18" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb73-19"><a href="#cb73-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Operació '</span><span class="sc">{</span>op<span class="sc">}</span><span class="ss">' no reconeguda."</span>)</span>
-<span id="cb73-20"><a href="#cb73-20" aria-hidden="true" tabindex="-1"></a>    resultat <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb73-21"><a href="#cb73-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-22"><a href="#cb73-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> resultat <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb73-23"><a href="#cb73-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>op<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultat<span class="sc">:.6g}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Calculadora bàsica ==="</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Primer nombre: "</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Segon nombre: "</span>))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>op <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Operació (+, -, *, /): "</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> op <span class="op">==</span> <span class="st">"+"</span>:</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    resultat <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> op <span class="op">==</span> <span class="st">"-"</span>:</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    resultat <span class="op">=</span> a <span class="op">-</span> b</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> op <span class="op">==</span> <span class="st">"*"</span>:</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    resultat <span class="op">=</span> a <span class="op">*</span> b</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> op <span class="op">==</span> <span class="st">"/"</span>:</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> b <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        resultat <span class="op">=</span> a <span class="op">/</span> b</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Error: divisió per zero."</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        resultat <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Operació '</span><span class="sc">{</span>op<span class="sc">}</span><span class="ss">' no reconeguda."</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    resultat <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> resultat <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>op<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultat<span class="sc">:.6g}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <p>Per provar els exemples d’ús de la funció <code>input()</code>, cal executar el codi en un entorn que suporti l’entrada interactiva, com un IDE (Visual Studio Code local o en un Codespace de GitHub) que permeti la interacció amb l’usuari. En entorns d’execució no interactius, com alguns notebooks o plataformes en línia, la funció <code>input()</code> pot no funcionar correctament.</p>
@@ -2445,9 +2571,37 @@ Rossum, Guido van, Barry Warsaw, i Alyssa Coghlan. 2001. <span>«<span>PEP 8 –
 </div>
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIl19fQ==
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTYyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNjIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTYyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNjItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV82MiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNjIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTYxIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNjEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTYxLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNjEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV82MSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNjEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTYwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNjAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTYwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNjAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV82MCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNjAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTU5IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNTkgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTU5LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNTktY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV81OSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNTksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTU4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNTggPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTU4LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNTgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV81OCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNTgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTU3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNTcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTU3LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNTctY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV81NyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNTcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTU2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNTYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTU2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNTYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV81NiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNTYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTU1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNTUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTU1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNTUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV81NSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNTUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTU0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNTQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTU0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNTQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV81NCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNTQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNTMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTUzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNTMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV81MyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNTMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNTIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTUyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNTItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV81MiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNTIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUxIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNTEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTUxLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNTEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV81MSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNTEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNTAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTUwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNTAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV81MCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNTAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQ5IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDkgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQ5LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDktY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80OSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQ4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDggPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQ4LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80OCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQ3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQ3LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDctY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80NyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQ2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQ2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80NiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQ1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQ1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80NSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQ0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQ0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80NCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80MyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80MiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQxIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQxLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80MSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80MCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTM5IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzkgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTM5LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzktY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zOSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTM4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzggPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTM4LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zOCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTM3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTM3LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzctY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zNyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTM2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTM2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zNiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTM1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTM1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zNSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTM0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTM0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTMzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTMyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMxIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTMxLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTMwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTI5IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjkgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI5LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjktY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yOSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTI4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjggPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI4LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yOCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTI3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI3LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjctY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yNyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTI2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yNiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTI1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yNSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTI0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIxIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIxLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE5IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTkgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE5LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTktY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTggPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE4LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE3LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTctY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTExIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTExLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTkiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl85ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS05LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzkgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl84ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS04LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzggPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl83ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS03LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzcgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTYiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl82ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS02LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzYgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS01LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzUgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
 </section>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../ca/contingut";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
