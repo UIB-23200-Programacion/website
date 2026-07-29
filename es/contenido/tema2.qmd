@@ -48,7 +48,7 @@ En este curso se trabajará principalmente con scripts `.py` o notebooks Marimo 
 
 ---
 
-## 2.2. Variables, tipos integrados (built-in) simples, operadores matemáticos y lógicos
+## 2.2. Variables y sus tipos
 
 ### **2.2.1 Variables**
 
@@ -123,7 +123,7 @@ print(x, y)     # 0 0
 
 La función `print()` puede recibir varias variables como argumentos, separadas por comas, y las imprime en la salida estándar (normalmente la terminal). Más adelante se verá que `print()` tiene parámetros opcionales para controlar el formato de salida.
 
-#### **Nombres de variables**
+### **2.2.2 Nombres de variables**
 
 Los nombres de variables solo pueden contener letras, dígitos y el guión bajo `_`, y no pueden comenzar por un dígito ni coincidir con una palabra reservada del lenguaje (`if`, `for`, `while`, `True`, `False`, `None`, etc.).
 
@@ -147,7 +147,7 @@ cosa = True
 ```
 :::
 
-### **2.2.2 Tipos integrados (built-in) simples**
+## 2.3 Tipos integrados (built-in) simples
 
 Los tipos integrados (o built-in types) en Python son los tipos de datos fundamentales que vienen integrados en el lenguaje, sin necesidad de importar ninguna librería externa. Python tiene seis tipos built-in para representar valores simples:
 
@@ -192,7 +192,7 @@ print("mundo")                # hola mundo  (en la misma línea)
 Las funciones `type` y `print` son funciones built-in: vienen integradas en el intérprete y están disponibles en cualquier programa sin necesidad de importar nada.
 :::
 
-#### **Enteros (`int`)**
+### **2.3.1 Enteros (`int`)**
 
 En Python, los enteros tienen **precisión arbitraria**: pueden ser tan grandes como la memoria disponible lo permita, sin que se produzca desbordamiento (*overflow*). Esto los distingue de muchos otros lenguajes donde los números enteros están limitados a un rango fijo.
 
@@ -242,7 +242,7 @@ m = 0xFF_A3_00     # equivale a 0xFFA300
 print(m)           # 16711680
 ```
 
-#### **Flotantes (`float`)**
+### **2.3.2 Flotantes (`float`)**
 
 Los flotantes siguen el estándar IEEE 754 de doble precisión, que representa números reales con aproximadamente 15-17 dígitos significativos. Esto implica que **no todos** los números decimales se pueden representar exactamente en binario:
 
@@ -292,7 +292,7 @@ Un detalle relevante para matemáticos: a diferencia de los enteros, los `float`
 print(1.8e308)    # inf
 ```
 
-#### **Números complejos (`complex`)**
+### **2.3.3 Números complejos (`complex`)**
 
 Python incorpora los números complejos como tipo nativo, sin necesidad de importar ninguna librería. La unidad imaginaria se denota con `j` (no `i`, para evitar conflicto con el uso de `i` como índice en código):
 
@@ -325,9 +325,9 @@ Para cálculos más avanzados con números complejos (funciones trigonométricas
 
 Un literal `complex` se forma combinando con `+` o `-` un literal `int` o `float` como parte real y un literal `int` o `float` seguido de `j` como parte imaginaria. La parte imaginaria es obligatoria; un literal como `3` o `2.5` es un `int` o `float`, no un `complex`.
 
-#### **Cadenas (`str`)**
+### **2.3.4 Cadenas (`str`)**
 
-Las cadenas son secuencias de caracteres delimitadas por comillas simples o dobles (ambas equivalentes). Para cadenas que ocupan varias líneas se usan triples comillas:
+Las cadenas (o cadenas de caracteres) son secuencias de caracteres delimitadas por comillas simples o dobles (ambas equivalentes). Para cadenas que ocupan varias líneas se usan triples comillas:
 
 ```{pyodide}
 nombre = "Euler"
@@ -392,7 +392,7 @@ Para ver todos los métodos disponibles de cualquier objeto `x`:
 - en Visual Studio Code o en un notebook de Marimo, escribe `x.` y pulsa **Tab** para ver la lista de métodos.
 :::
 
-#### **Booleanos (`bool`)**
+### **2.3.5 Booleanos (`bool`)**
 
 Los booleanos representan valores de verdad: `True` o `False`. Son el resultado natural de los operadores de comparación y lógicos (se verán más adelante):
 
@@ -409,7 +409,7 @@ print(False * 7)     # 0
 print(int(True))     # 1
 ```
 
-#### **Nulo (`NoneType`)**
+### **2.3.6 Nulo (`NoneType`)**
 
 `None` es el único valor del tipo `NoneType` y representa la **ausencia de valor**. Se usa cuando una variable no tiene ningún objeto asignado, o cuando una función no devuelve nada explícitamente:
 
@@ -429,7 +429,9 @@ print(resultado is None)   # True
 `is None` comprueba identidad (mismo objeto en memoria), que es lo correcto para `None` ya que existe un único objeto `None` en todo el intérprete. `== None` funcionaría en la práctica pero es considerado mal estilo en Python.
 :::
 
-### **2.2.3 Operadores aritméticos**
+---
+
+## 2.4 Operadores aritméticos, de comparación (relacionales) y lógicos
 
 Python define siete operadores aritméticos que funcionan principalmente con enteros, flotantes y complejos (`int`, `float`, `complex`). La tabla siguiente resume su significado y comportamiento:
 
@@ -465,7 +467,39 @@ print(4 ** (-1/2))         # 0.5
 print(4 ** -1/2)           # 0.125
 ```
 
-La potencia `**` admite exponentes negativos y flotantes, pero el resultado es siempre `float` o `complex`. Es además el único operador con asociatividad por la derecha: `2 ** 3 ** 2` se evalúa como `2 ** 9 = 512`, igual que en notación matemática estándar.
+La potencia `**` admite exponentes negativos y flotantes, pero el resultado es siempre `float` o `complex`. Es además el único operador con asociatividad por la derecha: `2 ** 3 ** 2` se evalúa como `2 ** 9 = 512`.
+
+::: {#imp-precedencia .callout-important title="Precedencia de operadores aritméticos"}
+Python sigue las mismas reglas de precedencia que la notación matemática estándar. De mayor a menor prioridad:
+
+1. Paréntesis `()`
+2. Potencia `**`
+3. Signo unario `+x`, `-x`
+4. Producto `*`, divisiones `/`, `//`, `%`
+5. Suma y resta `+`, `-`
+
+Cuando dos operadores tienen la misma precedencia se evalúan de izquierda a derecha, excepto `**` que es asociativo por la derecha. Los paréntesis permiten alterar cualquier orden de evaluación.
+
+```{pyodide}
+# precedencia estándar
+print(2 + 3 * 4)       # 14  (no 20: * antes que +)
+print(10 - 6 / 2)      # 7.0 (no 2.0: / antes que -)
+print(2 ** 3 + 1)      # 9   (no 16: ** antes que +)
+print(10 % 3 + 1)      # 2   (no 1:  % antes que +)
+
+# paréntesis alteran el orden
+print((2 + 3) * 4)     # 20
+print((10 - 6) / 2)    # 2.0
+
+# ** es asociativo por la derecha
+print(2 ** 3 ** 2)     # 512  (= 2 ** 9, no 8 ** 2 = 64)
+print((2 ** 3) ** 2)   # 64
+
+# signo unario
+print(-2 ** 2)         # -4   (** antes que signo: -(2**2))
+print((-2) ** 2)       # 4
+```
+:::
 
 ::: {#imp-division .callout-important title="División entera y módulo"}
 En Python 3, el operador `/` **siempre devuelve un flotante**, incluso cuando el resultado es un entero:
@@ -494,6 +528,8 @@ print(a == (a // b) * b + (a % b))  # True
 El operador `%` es fundamental en teoría de números: la condición `n % 2 == 0` es el test de paridad más efectivo.
 :::
 
+### **2.4.1 Operadores de asignación compuesta**
+
 Los **operadores de asignación compuesta** combinan una operación aritmética con la asignación, actualizando la variable en el lugar:
 
 ```{pyodide}
@@ -509,11 +545,11 @@ print(x)  # 64
 ::: {#cau-ieee754 .callout-caution title="Tratar la aritmética con floats como la de números reales"}
 Como se mostró en [@cau-flotantes] la aritmética con números float introduce errores de redondeo. Esto se debe a que la representación binaria de los flotantes no puede expresar exactamente todos los números reales. En Python se emplea la aritmética de punto flotante de doble precisión (IEEE 754), que tiene una precisión aproximada de 15-17 dígitos decimales significativos. 
 
-IEEE 754 representa los `float` con 64 bits: 1 de signo, 11 de exponente y 52 de mantisa. Con 52 bits de mantisa solo se pueden representar exactamente $2^{52}$ valores distintos en cada intervalo $[2^n, 2^{n+1}]$; el resto se redondean al valor representable más cercano.
-
 En IEEE 754 doble precisión cada valor `float` se representa como:
 
-$$(-1)^s \times 1.m \times 2^e$$
+$$
+(-1)^s \times 1.m \times 2^e
+$$
 
 donde $s$ es el signo, $e$ el exponente y $1.m$ la mantisa con el bit implícito de valor 1. Los 64 bits del `float` se reparten así:
 
@@ -523,12 +559,10 @@ donde $s$ es el signo, $e$ el exponente y $1.m$ la mantisa con el bit implícito
 | Exponente $e$ | 11 | codificado en sesgo (*bias*) de 1023 |
 | Mantisa $m$ | 52 | parte fraccionaria tras el bit implícito |
 
-Los tres campos son cadenas de bits. El exponente no se almacena directamente sino con un sesgo de 1023: el valor almacenado es $e + 1023$, lo que permite representar exponentes negativos sin bit de signo propio (de $-1022$ a $+1023$ en la práctica).
-
 Se recomienda consultar [@python3floatingpoint] para una explicación más detallada de la aritmética con `float` y sus implicaciones en la práctica.
 :::
 
-### **2.2.4 Operadores de comparación (Relacionales)**
+### **2.4.2 Operadores de comparación (relacionales)**
 
 Los operadores de comparación o relacionales son fundamentales para el **control de flujo condicional**: sin ellos no hay forma de que un programa tome decisiones. Constituyen la base del mecanismo que dota a un programa de **adaptabilidad**: en lugar de ejecutar siempre la misma secuencia de instrucciones, el programa examina el estado de los datos en tiempo de ejecución y elige el camino a seguir en consecuencia.
 
@@ -561,6 +595,7 @@ print("banana" < "manzana")   # True  (compara carácter a carácter)
 print("abc" == "ABC")  # False
 ```
 
+::: {#cau-comptip .callout-caution title="Comparar tipos distintos"}
 Comparar valores de tipos distintos con `==` no produce error sino `False` directamente (`42 == "42"` es `False`). Usar `<` o `>` entre tipos incompatibles sí lanza `TypeError`.
 
 ```{pyodide}
@@ -568,6 +603,7 @@ Comparar valores de tipos distintos con `==` no produce error sino `False` direc
 print(42 == "42")     # False
 # print(42 < "42")    # TypeError: '<' not supported between 'int' and 'str'
 ```
+:::
 
 Python permite **encadenar comparaciones** de forma natural, exactamente como en notación matemática:
 
@@ -604,9 +640,9 @@ Estos operadores implementan lo que en matemáticas se conoce como una **relaci�
 * **Transitividad:** Si $x \le y$ y $y \le z$, entonces $x \le z$.
 :::
 
-### **2.2.5 Operadores lógicos**
+### **2.4.3 Operadores lógicos**
 
-Los operadores lógicos (`and`, `or`, `not`) permiten construir condiciones compuestas combinando expresiones booleanas simples como las que se obtienen utilizando los operadores de comparación. Sin ellos, cada condición estaría limitada a comparar un único par de valores; con ellos es posible expresar restricciones arbitrariamente complejas sobre el estado del programa. En matemáticas son el equivalente directo de los conectivos proposicionales $\wedge$, $\vee$ y $\neg$ de la lógica matemática.
+Los operadores lógicos (`and`, `or`, `not`) permiten construir condiciones compuestas (expresiones lógicas) combinando expresiones booleanas simples como las que se obtienen utilizando los operadores de comparación. Sin ellos, cada condición estaría limitada a comparar un único par de valores; con ellos es posible expresar restricciones arbitrariamente complejas sobre el estado del programa. En matemáticas son el equivalente directo de los conectivos proposicionales $\wedge$, $\vee$ y $\neg$ de la lógica matemática.
 
 | Operador | Significado | Resultado `True` cuando… |
 |:---:|---|---|
@@ -622,7 +658,7 @@ print(not (x == 7))       # False
 print(x != 7)             # False
 ```
 
-::: {.callout-note collapse="true" title="Evaluación en cortocircuito (short-circuit evaluation)"}
+::: {.callout-note title="Evaluación en cortocircuito (short-circuit evaluation)"}
 Los operadores `and` y `or` en Python usan **short-circuit evaluation**: si el resultado queda determinado por el primer operando, el segundo no se evalúa.
 
 - `False and expr` → `False` sin evaluar `expr`.
@@ -644,12 +680,28 @@ Mientras que los operadores relacionales operan sobre tipos de datos arbitrarios
 
 Las operaciones fundamentales se definen axiomáticamente mediante tablas de verdad:
 
-* **Conjunción Lógica (`and`):** Representada como $p \land q$. Se define como el producto lógico. Solo devuelve Verdadero si ambas proposiciones de entrada son verdaderas.
-* **Disyunción Lógica (`or`):** Representada como $p \lor q$. Se define como la suma lógica. Devuelve Verdadero si al menos una de las proposiciones es verdadera.
-* **Negación Lógica (`not`):** Representada como $\neg p$. Es un operador unario que calcula el complemento en el dominio booleano.
+| `p` | `q` | `p and q` | `p or q` | `not p` |
+|:---:|:---:|:---:|:---:|:---:|
+| `True` | `True` | `True` | `True` | `False` |
+| `True` | `False` | `False` | `True` | `False` |
+| `False` | `True` | `False` | `True` | `True` |
+| `False` | `False` | `False` | `False` | `True` |
 :::
 
-### **2.2.6 Conversión de tipos**
+::: {#tip-explogica .callout-tip title="Expresiones lógicas"}
+Una **expresión lógica** es una expresión que se evalúa como `True` o `False`. En Python se construyen combinando valores booleanos, operadores de comparación y operadores lógicos (`and`, `or`, `not`). Son el componente fundamental de las condiciones en estructuras `if` y `while`: el programa evalúa la expresión y decide qué instrucciones ejecutar en función del resultado.
+
+Para toda expresión lógica compuesta, se puede construir una **tabla de verdad** que enumere todas las combinaciones posibles de valores de verdad de sus componentes y el resultado final. Esto permite analizar y verificar el comportamiento de la expresión en todos los casos posibles. Por ejemplo, para la expresión `p and (q or not p)` tenemos la siguiente tabla de verdad:
+
+| `p` | `q` | `not p` | `q or not p` | `p and (q or not p)` |
+|:---:|:---:|:---:|:---:|:---:|
+| `True` | `True` | `False` | `True` | `True` |
+| `True` | `False` | `False` | `False` | `False` |
+| `False` | `True` | `True` | `True` | `False` |
+| `False` | `False` | `True` | `True` | `False` |
+:::
+
+### **2.4.4 Conversión de tipos**
 
 Python no convierte tipos automáticamente en la mayoría de situaciones. Las funciones `int()`, `float()`, `str()` y `bool()` permiten convertir valores de forma explícita:
 
@@ -677,7 +729,7 @@ Las situaciones que la justifican son principalmente tres:
 
 ---
 
-## 2.3. Control de Flujo — Estructuras o Sentencias Condicionales
+## 2.5. Control de Flujo — Estructuras o Sentencias Condicionales
 
 El **control de flujo** es el mecanismo que determina el orden en el que se evalúan las instrucciones de un programa. Aunque por defecto la ejecución sigue una secuencia estrictamente lineal, las estructuras de control permiten alterar esta trayectoria: bifurcar la ejecución en función de una premisa lógica, o iterar repetidamente sobre un bloque de código. En este marco, las **estructuras condicionales** actúan como la herramienta fundamental para la toma de decisiones.
 
@@ -698,7 +750,7 @@ La estructura condicional en Python es `if`, que admite tres formas:
 - `if`-`else`: añade un bloque alternativo para cuando la condición es falsa.
 - `if`-`elif`-`else`: encadena múltiples condiciones mutuamente excluyentes, evaluadas en orden hasta que una sea verdadera.
 
-### **2.3.1 Estructura `if`**
+### **2.5.1 Estructura `if`**
 
 La forma más simple es el `if`:
 
@@ -714,7 +766,7 @@ El bloque indentado solo se ejecuta si la condición es `True`. Si la condición
 En Python la **indentación** no es una convención estilística sino parte de la sintaxis: es el mecanismo que delimita los bloques de código. A diferencia de lenguajes como C o Java, que usan llaves `{}` para marcar el inicio y el fin de un bloque, Python usa el nivel de sangría. Las instrucciones que pertenecen al bloque de código deben estar indentadas un nivel más adentro de la instrucción cabecera (`if`, `else`, `elif`, `while`, `for`, etc.) para que el intérprete sepa qué instrucciones se repiten y cuáles se ejecutan al salir del bloque (las que están al mismo nivel de indentación que la instrucción cabecera). Python usa indentación de 4 espacios por convención [@pep8]. 
 :::
 
-### **2.3.2 Estructura `if`-`else`**
+### **2.5.2 Estructura `if`-`else`**
 
 ```{pyodide}
 n = 17
@@ -724,7 +776,7 @@ else:
     print(f"{n} es impar")
 ```
 
-### **2.3.3 Estructura `if`-`elif`-`else`**
+### **2.5.3 Estructura `if`-`elif`-`else`**
 
 Para varias condiciones mutuamente excluyentes se encadenan ramas `elif` (*else if*). Solo se ejecuta la primera rama cuya condición sea `True`; las demás se ignoran:
 
@@ -770,7 +822,7 @@ else:
 La instrucción `import math` hace disponibles las funciones matemáticas del módulo estándar `math`, como `math.sqrt()` (raíz cuadrada), `math.pi` (π), `math.log()` (logaritmo), etc. Los módulos se estudian en profundidad en el Tema 3; por ahora basta con saber que `import math` debe escribirse antes de usar cualquier función de ese módulo. La notación `math.xxxxxx()`, por ejemplo `math.sqrt()`, indica que la función `xxxxxx` pertenece al módulo `math`.
 :::
 
-### **2.3.4 Condicionales anidados**
+### **2.5.4 Condicionales anidados**
 
 Un bloque `if` puede contener otro `if` en su interior. Los condicionales anidados permiten refinar la lógica paso a paso:
 
@@ -801,13 +853,13 @@ La sintaxis es `valor_si_true if condición else valor_si_false`. Es útil para 
 
 ---
 
-## 2.4. Control de Flujo — Iteraciones
+## 2.6. Control de Flujo — Iteraciones
 
 La **iteración** es el mecanismo que permite repetir un bloque de instrucciones un número determinado de veces o mientras se cumpla una condición. Sin iteración, un programa solo podría procesar una cantidad fija de datos conocida en tiempo de escritura; con iteración puede operar sobre colecciones de tamaño arbitrario, aproximar resultados mediante sucesiones o series, y ejecutar procesos que convergen a una solución.
 
 En matemáticas la iteración tiene equivalentes directos en la notación de sumatorio $\sum$, productorio $\prod$ y en la definición de sucesiones por recurrencia. Python proporciona dos estructuras iterativas fundamentales: `while`, que repite mientras una condición sea verdadera, y `for`, que recorre los elementos de una secuencia.
 
-### **2.4.1 El bucle `while` (iteración indefinida o condicional)**
+### **2.6.1 El bucle `while` (iteración indefinida o condicional)**
 
 El bucle `while` repite un bloque de instrucciones **mientras** una condición sea verdadera. ERepresenta el concepto clásico de las ciencias de la computación donde la ejecución de un bloque de código depende del estado actual del programa. Se le llama "indefinido" porque el número de repeticiones puede ser desconocido al iniciar el bucle.
 
@@ -846,6 +898,8 @@ while n > 0:
 
 Para detener un programa bloqueado en un bucle infinito, pulsa **Ctrl+C** en la terminal.
 :::
+
+#### **Usos típicos del bucle `while`**
 
 Usos típicos del bucle `while` incluyen:
 
@@ -900,7 +954,7 @@ Usos típicos del bucle `while` incluyen:
         n //= 10
     ```
 
-### **2.4.2 `break` y `continue`**
+#### **`break` y `continue`**
 
 Dentro de cualquier bucle, dos instrucciones permiten modificar el flujo de iteración:
 
@@ -929,11 +983,42 @@ while i < 10:
 # 1  3  5  7  9
 ```
 
-### **2.4.3 El bucle `for` (iteración definida) y la función `range()`**
+#### **Diseño correcto de un bucle `while`**
+
+Para que un bucle `while` funcione de forma correcta y predecible hay que atender cinco aspectos:
+
+1. **Inicialización**: todas las variables de la condición deben estar definidas antes de la primera evaluación.
+2. **Variante de bucle**: una expresión entera que decrece estrictamente en cada iteración y está acotada inferiormente, garantizando que el bucle termina. Su existencia prueba que el algoritmo no es infinito.
+3. **Invariante de bucle**: una propiedad lógica que es verdadera antes de la primera iteración y se mantiene verdadera al final de cada una. Su preservación garantiza que el bucle calcula lo que se pretende calcular.
+4. **Casos límite**: la condición debe manejar de forma segura valores extremos o nulos para evitar errores en tiempo de ejecución.
+5. **`break` y `continue` con moderación**: su abuso rompe el flujo de entrada y salida única, dificultando la lectura y el razonamiento sobre el código.
+
+::: {#tip-variantebucle .callout-tip title="Variante de bucle"}
+Una **variante de bucle** (*loop variant*) es una expresión de valor entero no negativo asociada a un bucle que satisface dos condiciones:
+
+1. **Decrece estrictamente** en cada iteración: su valor después de ejecutar el cuerpo del bucle es estrictamente menor que su valor antes.
+2. **Está acotada inferiormente** por cero: no puede tomar valores negativos.
+
+Estas dos condiciones juntas garantizan que el bucle termina en un número finito de iteraciones, ya que una sucesión de enteros no negativos que decrece estrictamente no puede ser infinita.
+
+En la práctica, la variante suele ser un contador, la distancia entre dos valores que convergen, o el número de elementos que quedan por procesar. Por ejemplo, en un bucle que recorre los dígitos de un entero `n` dividiéndolo por 10 en cada iteración, la variante es el propio valor de `n`: decrece estrictamente y llega a 0 en un número finito de pasos. La existencia de una variante de bucle es la herramienta formal para demostrar que un bucle **termina**.
+:::
+
+::: {#tip-invarti .callout-tip title="Invariante de bucle"}
+Un **invariante de bucle** (*loop invariant*) es una propiedad lógica sobre el estado del programa que es verdadera antes de la primera iteración y se mantiene verdadera al final de cada iteración. Como consecuencia, también es verdadera cuando el bucle termina, momento en que —combinada con la negación de la condición del `while`— permite deducir que el resultado calculado es correcto.
+
+El invariante captura formalmente *qué está haciendo el bucle*: no cómo lo hace paso a paso, sino qué propiedad acumula o preserva en cada iteración. Por ejemplo, en un bucle que calcula la suma $\sum_{k=1}^{n} k$, el invariante es que al final de la iteración $i$ la variable `suma` contiene el valor $\sum_{k=1}^{i} k$.
+
+La existencia de un invariante de bucle válido es la herramienta formal para demostrar que un bucle calcula lo que se pretende calcular, es decir, su **corrección parcial**.
+:::
+
+La variante y el invariante de bucle son las herramientas teóricas fundamentales del **razonamiento formal sobre bucles**. La variante garantiza que el bucle termina; el invariante garantiza que calcula lo correcto.Si se puede exhibir una variante y un invariante válidos, se ha probado rigurosamente que el bucle termina y que su resultado es el esperado.
+
+### **2.6.2 El bucle `for` (iteración definida) y el objeto `range()`**
 
 El bucle `for` en Python itera sobre los elementos de una secuencia, por ello se dice que es una iteración definida. Este es un caso donde Python difiere conceptualmente de lenguajes como C o C++. En esos lenguajes, un `for` suele ser un `while` disfrazado con un contador numérico (ej. `for(i=0; i<10; i++)`). 
 
-En Python, el `for` es en realidad un bucle **"for-each"** (para cada elemento). Su base no es una condición matemática, sino el consumo sistemático de los elementos de un objeto iterable. Un objeto iterable es cualquier objeto que puede entregar sus elementos de uno en uno en un orden definido y sobre el que se puede usar un bucle `for`.
+En Python, el `for` es en realidad un bucle **"for-each"** (para cada elemento). Su base no es una condición matemática, sino el consumo sistemático de los elementos de un **objeto iterable**. Un objeto iterable es cualquier objeto que puede entregar sus elementos de uno en uno en un orden definido y sobre el que se puede usar un bucle `for`.
 
 El ejemplo más inmediato de objeto iterable son los objetos de la clase `range`. Mediante objetos `range` se generan secuencias de enteros que constituyen la forma habitual de controlar el número de repeticiones en un bucle `for`.
 
@@ -1017,7 +1102,7 @@ Otros usos comunes del bucle `for` incluyen:
             print(n, "es múltiplo de 7")
     ```
 
-### **2.4.4 Ejemplos matemáticos**
+#### Ejemplos matemáticos de uso del bucle `for`
 
 ::: {#nte-fibonacci .callout-note title="Imprimir $n$ términos de la sucesión de Fibonacci"}
 La sucesión de Fibonacci se define por 
@@ -1082,8 +1167,10 @@ for n in range(2, 51):
 ```
 :::
 
-::: {.callout-note collapse="true" title="Bucles anidados"}
-Los bucles se pueden **anidar**, es decir, se puede tener un bucle dentro de otro. Cada vez que el bucle exterior avanza una iteración, el bucle interior se ejecuta completamente. El número total de iteraciones es el producto de los rangos de ambos bucles.
+::: {.callout-note title="Bucles anidados"}
+Los bucles se pueden **anidar**, es decir, se puede tener un bucle dentro de otro. Esto ocurre principalmente con bucles `for`. Anidar `while` es posible pero infrecuente. Existen ocasiones donde el bucle exterior es `for` y el interior es `while`
+
+Cada vez que el bucle exterior avanza una iteración, el bucle interior se ejecuta completamente. El número total de iteraciones es el producto de los rangos de ambos bucles.
 
 ```{pyodide}
 # Tabla de multiplicar del 1 al 6
@@ -1102,7 +1189,7 @@ for i in range(1, 7):
 Con bucles anidados es fácil generar costes computacionales elevados: un doble bucle sobre $n$ elementos produce $O(n^2)$ operaciones. El análisis de la **complejidad computacional** de los algoritmos (Tema 4) estudia este tipo de costes con detalle.
 :::
 
-### **2.4.5 Iteración sobre cadenas y `enumerate()`**
+### **2.6.3 Iteración sobre cadenas y `enumerate()`**
 
 Una cadena `str` es un iterable cuyos elementos son los caracteres individuales (cada uno a su vez un `str` de longitud 1). El bucle `for` puede entonces recorrer directamente los caracteres de una cadena:
 
@@ -1131,11 +1218,11 @@ Las cadenas que se inician con `f` y contienen expresiones entre llaves `{}` se 
 
 ---
 
-## 2.5. Entrada y salida básicas: flujos entre teclado y pantalla
+## 2.7. Entrada y salida básicas: flujos entre teclado y pantalla
 
 La interacción entre el programa y el usuario es fundamental en cualquier aplicación. Python proporciona dos funciones built-in para la entrada y salida básicas de datos: `print()` para mostrar información en la terminal e `input()` para leer texto introducido por el usuario. Aunque simples, estas dos funciones son suficientes para construir programas interactivos completos y constituyen la base sobre la que se asienta cualquier interfaz de texto.
 
-### **2.5.1 La función `print()`**
+### **2.7.1 La función `print()`**
 
 Ya vimos anteriormente que `print()` escribe en la **salida estándar** (la pantalla en condiciones normales). Acepta cualquier número de argumentos separados por comas:
 
@@ -1149,7 +1236,7 @@ print(" — continuación")               # — continuación
 print()                                # línea en blanco
 ```
 
-### **2.5.2 Cadenas formateadas: f-strings**
+### **2.7.2 Cadenas formateadas: f-strings**
 
 Las **f-strings** (cadenas formateadas) son la forma más moderna, legible y rápida de insertar variables y expresiones dentro de cadenas de texto en Python. Se escriben con el prefijo `f` (o `F`) justo antes de las comillas (simples o dobles) y emplean llaves `{}` para indicar dónde se debe inyectar el valor de una variable o una expresión.
 
@@ -1203,7 +1290,7 @@ Los **especificadores de formato** en una f-string se escriben dentro de `{}` y 
 
 :::
 
-### **2.5.3 La función `input()`**
+### **2.7.3 La función `input()`**
 
 `input()` detiene la ejecución del programa, muestra un mensaje opcional en pantalla y espera a que el usuario escriba algo y pulse Intro. **Siempre devuelve una cadena de texto** (`str`), independientemente de lo que el usuario haya escrito.
 
