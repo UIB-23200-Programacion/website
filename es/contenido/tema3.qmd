@@ -8,7 +8,7 @@ engine: markdown
 
 ## 3.1. Definición de funciones, paso de parámetros y retorno de valores
 
-En matemáticas, una función es una regla que asocia a cada elemento de un conjunto de entrada exactamente un elemento de un conjunto de salida: $f: A \to B$. En programación, el concepto es análogo pero más amplio: una función es un bloque de código con nombre que recibe entradas, realiza un cálculo o acción, y devuelve un resultado.
+En matemáticas, una función es una regla que asocia a cada elemento de un conjunto de entrada exactamente un elemento de un conjunto de salida: $f: A \to B$. En programación, el concepto es análogo pero más amplio: **una función es un bloque de código con nombre que recibe entradas, realiza un cálculo o acción, y devuelve un resultado**.
 
 La razón fundamental para definir funciones es evitar la repetición de código. Si el mismo cálculo aparece en varios lugares del programa, basta con escribirlo una vez como función y llamarla cuantas veces sea necesario. Esto hace el código más corto, más legible y más fácil de mantener: un error se corrige en un único sitio.
 
@@ -167,7 +167,17 @@ print(factorial(5))    # 120
 print(factorial(10))   # 3628800
 ```
 
-Cada llamada a `factorial(n)` genera una llamada a `factorial(n-1)`, y así sucesivamente hasta llegar a `factorial(0)`, que devuelve `1` directamente. El resultado final se construye al deshacer la pila de llamadas: $5! = 5 \cdot 4! = 5 \cdot 4 \cdot 3! = \ldots = 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 \cdot 1$.
+Cada llamada a `factorial(n)` genera una llamada a `factorial(n-1)`, y así sucesivamente hasta llegar a `factorial(0)`, que devuelve `1` directamente. El resultado final se construye al deshacer la pila de llamadas: 
+
+```text
+factorial(5) = 5 * factorial(4)
+             = 5 * (4 * factorial(3))
+             = 5 * (4 * (3 * factorial(2)))
+             = 5 * (4 * (3 * (2 * factorial(1))))
+             = 5 * (4 * (3 * (2 * (1 * factorial(0)))))
+             = 5 * (4 * (3 * (2 * (1 * 1))))
+             = 120
+```
 
 :::{#nte-mcd .callout-note title="Algoritmo de Euclides para el MCD"}
 El **máximo común divisor** de dos enteros $a$ y $b$ (con $b \neq 0$) se define de forma recursiva por el algoritmo de Euclides, basado en la identidad $\text{mcd}(a, b) = \text{mcd}(b,\, a \bmod b)$:
@@ -189,7 +199,19 @@ print(mcd(100, 75))   # 25
 print(mcd(17, 5))     # 1  (coprimos)
 ```
 
-El número de llamadas recursivas es $O(\log \min(a, b))$, lo que hace al algoritmo extremadamente eficiente. A partir del MCD se obtiene el mínimo común múltiplo: $\text{mcm}(a, b) = |a \cdot b| \,/\, \text{mcd}(a, b)$.
+El número de llamadas recursivas es $O(\log \min(a, b))$, lo que hace al algoritmo extremadamente eficiente. 
+
+```text
+mcd(48, 18) = mcd(18, 48 mod 18) = mcd(18, 12)
+            = mcd(12, 18 mod 12) = mcd(12, 6)
+            = mcd(6, 12 mod 6)   = mcd(6, 0)
+            = 6
+```
+
+A partir del MCD se obtiene el mínimo común múltiplo: 
+$$
+\text{mcm}(a, b) = |a \cdot b| \,/\, \text{mcd}(a, b).
+$$
 :::
 
 La sucesión de Fibonacci también tiene una definición recursiva, pero su implementación directa es muy ineficiente:
@@ -205,6 +227,12 @@ print(fibonacci(10))   # 55
 
 ::: {.callout-caution appearance="simple"}
 `fibonacci(n)` con la implementación anterior tiene coste exponencial $O(2^n)$: para calcular `fibonacci(40)` se realizan más de mil millones de llamadas, porque cada valor se recalcula repetidamente desde cero. La versión iterativa del Tema 2 es infinitamente más eficiente. La recursión es una herramienta potente pero no siempre eficiente; elegir entre recursión e iteración exige considerar el coste computacional.
+
+![Árbol de llamadas recursivas de `fibonacci(5)`. Las líneas punteadas indican la suma pendiente entre los dos subproblemas de cada nodo.](../../images/fibonacci5.png){#fig-fibonacci-tree width=100%}
+
+La ineficiencia de la implementación anterior tiene una causa concreta como se observa en el árbol de llamadas mostrado en la figura @fig-fibonacci-tree: `fibonacci(3)` se calcula dos veces, `fibonacci(2)` tres veces, y así sucesivamente. 
+
+La solución general a este problema se llama **memorización** (*memoization* en inglés): guardar el resultado de cada llamada la primera vez que se computa y devolverlo directamente en llamadas posteriores, sin repetir el trabajo. En temas posteriores se verá cómo Python implementa memorización de forma transparente reduciendo el coste de esta implementación de $O(2^n)$ a $O(n)$.
 :::
 
 ::: {#cau-recursion-base .callout-caution title="Olvidar el caso base → `RecursionError`"}
@@ -217,7 +245,9 @@ def factorial_roto(n):
 factorial_roto(5)   # RecursionError: maximum recursion depth exceeded
 ```
 
-Antes de escribir el caso recursivo, escribe y prueba siempre el caso base por separado.
+- **Antes de escribir el caso recursivo, escribe y prueba siempre el caso base por separado**. 
+- **Asegúrate de que la llamada recursiva se hace con un argumento que se acerca al caso base**. 
+- **Si el argumento no cambia o se aleja del caso base, la recursión será infinita**.
 :::
 
 ---
@@ -268,7 +298,7 @@ print(cuadrado(3), cubo(3))   # 9 27
 
 ### **3.2.2 Ámbito global**
 
-Las variables definidas fuera de cualquier función tienen **ámbito global** y son visibles desde cualquier punto del módulo, incluido el cuerpo de las funciones.
+Las variables definidas fuera de cualquier función tienen **ámbito global** y son visibles desde cualquier punto del módulo, incluido el cuerpo de las funciones. En Python, un **módulo** es simplemente un fichero `.py`. Cuando escribes código en `programa.py` y lo ejecutas, ese fichero es tu módulo. Los módulos se tratan en detalle en la sección 3.4.
 
 ```{pyodide}
 PI = 3.141592653589793    # constante global (convención: mayúsculas)
@@ -674,7 +704,7 @@ Un módulo debe hacer **una cosa bien**. Si un módulo empieza a agrupar funcion
 
 ### **3.5.2 Ejemplo de proyecto organizado**
 
-El siguiente proyecto organiza tres módulos con responsabilidades distintas:
+El proyecto organiza, además de `numeros.py`, otros tres módulos con responsabilidades distintas:
 
 **`geometria.py`**:
 
