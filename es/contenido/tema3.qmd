@@ -2,6 +2,812 @@
 title: "Tema 3: Funciones, Módulos y Organización del Código"
 lang: es
 sidebar: barra-es
+bibliography: tema3.bib
+engine: markdown
 ---
 
-*(Contenido pendiente.)*
+## 3.1. Definición de funciones, paso de parámetros y retorno de valores
+
+En matemáticas, una función es una regla que asocia a cada elemento de un conjunto de entrada exactamente un elemento de un conjunto de salida: $f: A \to B$. En programación, el concepto es análogo pero más amplio: una función es un bloque de código con nombre que recibe entradas, realiza un cálculo o acción, y devuelve un resultado.
+
+La razón fundamental para definir funciones es evitar la repetición de código. Si el mismo cálculo aparece en varios lugares del programa, basta con escribirlo una vez como función y llamarla cuantas veces sea necesario. Esto hace el código más corto, más legible y más fácil de mantener: un error se corrige en un único sitio.
+
+::: {#tip-funcion .callout-tip title="Función"}
+En programación, una **función** es una unidad de código con nombre que encapsula una secuencia de instrucciones, acepta cero o más valores de entrada (**parámetros**) y devuelve un valor de salida (**valor de retorno**).
+
+Las funciones cumplen tres propósitos fundamentales:
+
+- **Abstracción**: ocultan los detalles de implementación detrás de un nombre. El usuario de la función solo necesita saber qué hace, no cómo lo hace.
+- **Reutilización**: permiten ejecutar el mismo código desde cualquier punto del programa sin reescribirlo.
+- **Composición**: las funciones pueden llamarse unas a otras, construyendo operaciones complejas a partir de piezas simples.
+
+En Python, las funciones son **objetos de primera clase**: pueden asignarse a variables y pasarse como argumentos a otras funciones, igual que cualquier otro valor. Este comportamiento se explorará en temas posteriores.
+:::
+
+### **3.1.1 Sintaxis básica**
+
+La palabra clave `def` introduce la definición de una función:
+
+```python
+def nombre(parámetro1, parámetro2, ...):
+    """Docstring opcional."""
+    # cuerpo de la función
+    return valor
+```
+
+El cuerpo es un bloque indentado, igual que los bloques `if`, `while` y `for` del Tema 2. La instrucción `return` especifica el valor que la función devuelve al código que la llamó. Una vez definida, la función se **llama** escribiendo su nombre seguido de paréntesis con los argumentos:
+
+```{pyodide}
+def cuadrado(x):
+    return x ** 2
+
+print(cuadrado(5))    # 25
+print(cuadrado(-3))   # 9
+print(cuadrado(2.5))  # 6.25
+```
+
+```{pyodide}
+def es_par(n):
+    return n % 2 == 0
+
+print(es_par(4))    # True
+print(es_par(7))    # False
+print(es_par(0))    # True
+```
+
+::: {#imp-def .callout-important title="Anatomía de una función"}
+Toda función en Python tiene cuatro partes:
+
+1. **Cabecera**: `def nombre(parámetros):` — define el nombre y los parámetros de entrada.
+2. **Docstring** (opcional pero recomendado): cadena de texto que documenta qué hace la función. Se trata en la sección 3.3.
+3. **Cuerpo**: el bloque indentado con las instrucciones.
+4. **Retorno**: `return expresión` devuelve el resultado. Si se omite `return`, la función devuelve `None`.
+
+El nombre de la función sigue las mismas convenciones que los nombres de variable: `snake_case`, descriptivo y en minúsculas.
+:::
+
+### **3.1.2 Parámetros, argumentos y valores por defecto**
+
+En una función de Python, los **parámetros** son los nombres que aparecen en la definición de la función, mientras que los **argumentos** son los valores concretos que se le pasan al invocarla (llamarla). En esencia, los parámetros actúan como marcadores de posición (*placeholders*); son **variables temporales que deben aparecer en el cuerpo de la función** y le indican al intérprete: *"aquí habrá un valor disponible en cuanto alguien invoque la función"*. Los argumentos, por su parte, representan los datos reales que ocuparán ese lugar.
+
+```{pyodide}
+def potencia(base, exponente):      # base y exponente son parámetros
+    return base ** exponente
+
+print(potencia(2, 10))              # 2 y 10 son argumentos → 1024
+print(potencia(3, 3))               # 27
+```
+
+Los **parámetros con valor por defecto** permiten omitir algunos argumentos en la llamada cuando el valor habitual es conocido de antemano:
+
+```{pyodide}
+def potencia(base, exponente=2):    # exponente tiene valor por defecto 2
+    return base ** exponente
+
+print(potencia(5))        # 25    (exponente toma su valor por defecto)
+print(potencia(5, 3))     # 125   (se sobreescribe el valor por defecto)
+print(potencia(2, 10))    # 1024
+```
+
+::: {#imp-default .callout-important title="Regla de orden en los parámetros con valor por defecto"}
+Los parámetros con valor por defecto deben colocarse siempre **después** de los parámetros sin valor por defecto. Invertir el orden produce un `SyntaxError`:
+
+```python
+# Correcto
+def f(x, y=0, z=1):
+    ...
+
+# SyntaxError: parámetros sin defecto no pueden ir después de los que lo tienen
+def f(x=0, y):
+    ...
+```
+
+La razón es que Python asigna los argumentos posicionalmente de izquierda a derecha: si un parámetro con valor por defecto precediera a uno sin él, sería ambiguo qué argumento corresponde a qué parámetro.
+:::
+
+::: {#cau-return-none .callout-caution title="Usar el resultado de una función que devuelve `None`"}
+Si una función no tiene `return`, o tiene un `return` sin expresión, devuelve `None`. Usar ese resultado en un cálculo posterior produce un `TypeError` difícil de diagnosticar:
+
+```{pyodide}
+def duplicar(x):
+    y = x * 2       # calcula pero no devuelve
+
+resultado = duplicar(5)
+print(resultado)    # None  (no 10)
+```
+
+El error más frecuente es confundir *imprimir* con *devolver*: `print(x * 2)` muestra el valor en pantalla, pero la función sigue devolviendo `None`. **Toda función que produzca un valor debe tener un `return` explícito**.
+:::
+
+Un ejemplo matemático que ilustra bien los parámetros con valor por defecto es el **método de Newton-Raphson** para aproximar $\sqrt{x}$, que acepta el valor $x$ y una tolerancia opcional:
+
+```{pyodide}
+def raiz_cuadrada(x, tol=1e-10):
+    if x < 0:
+        return None
+    if x == 0:
+        return 0.0
+    aprox = x / 2.0
+    while True:
+        nueva = (aprox + x / aprox) / 2
+        if abs(nueva - aprox) < tol:
+            return nueva
+        aprox = nueva
+
+print(raiz_cuadrada(2))              # 1.4142135623730951
+print(raiz_cuadrada(9))              # 3.0
+print(raiz_cuadrada(2, tol=1e-4))    # 1.4142156862...  (menos preciso)
+```
+
+### **3.1.3 Recursión**
+
+Una función puede llamarse a sí misma dentro de su propio cuerpo. Esta técnica se llama **recursión** y es especialmente natural para cálculos que se expresan matemáticamente en términos de sí mismos.
+
+::: {#tip-recursion .callout-tip title="Recursión"}
+Una función es **recursiva** cuando su cuerpo contiene una llamada a sí misma. Para que la recursión termine y no produzca un bucle infinito, toda función recursiva debe tener:
+
+1. **Caso base**: una o varias condiciones bajo las cuales la función devuelve un resultado directamente, sin llamarse de nuevo.
+2. **Caso recursivo**: la llamada a sí misma con un argumento *estrictamente más cercano* al caso base.
+
+La recursión es la traducción directa a código de las definiciones matemáticas por recurrencia.
+:::
+
+El ejemplo canónico es el factorial, cuya definición matemática es recursiva:
+
+$$n! = \begin{cases} 1 & \text{si } n = 0 \\ n \cdot (n-1)! & \text{si } n \geq 1 \end{cases}$$
+
+```{pyodide}
+def factorial(n):
+    if n == 0:                    # caso base
+        return 1
+    return n * factorial(n - 1)  # caso recursivo
+
+print(factorial(0))    # 1
+print(factorial(5))    # 120
+print(factorial(10))   # 3628800
+```
+
+Cada llamada a `factorial(n)` genera una llamada a `factorial(n-1)`, y así sucesivamente hasta llegar a `factorial(0)`, que devuelve `1` directamente. El resultado final se construye al deshacer la pila de llamadas: $5! = 5 \cdot 4! = 5 \cdot 4 \cdot 3! = \ldots = 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 \cdot 1$.
+
+:::{#nte-mcd .callout-note title="Algoritmo de Euclides para el MCD"}
+El **máximo común divisor** de dos enteros $a$ y $b$ (con $b \neq 0$) se define de forma recursiva por el algoritmo de Euclides, basado en la identidad $\text{mcd}(a, b) = \text{mcd}(b,\, a \bmod b)$:
+
+$$
+\text{mcd}(a, b) = \begin{cases} a & \text{si } b = 0 \\ \text{mcd}(b,\; a \bmod b) & \text{si } b \neq 0 \end{cases}
+$$
+
+La traducción a Python es inmediata:
+
+```{pyodide}
+def mcd(a, b):
+    if b == 0:
+        return a
+    return mcd(b, a % b)
+
+print(mcd(48, 18))    # 6
+print(mcd(100, 75))   # 25
+print(mcd(17, 5))     # 1  (coprimos)
+```
+
+El número de llamadas recursivas es $O(\log \min(a, b))$, lo que hace al algoritmo extremadamente eficiente. A partir del MCD se obtiene el mínimo común múltiplo: $\text{mcm}(a, b) = |a \cdot b| \,/\, \text{mcd}(a, b)$.
+:::
+
+La sucesión de Fibonacci también tiene una definición recursiva, pero su implementación directa es muy ineficiente:
+
+```{pyodide}
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(10))   # 55
+```
+
+::: {.callout-caution appearance="simple"}
+`fibonacci(n)` con la implementación anterior tiene coste exponencial $O(2^n)$: para calcular `fibonacci(40)` se realizan más de mil millones de llamadas, porque cada valor se recalcula repetidamente desde cero. La versión iterativa del Tema 2 es infinitamente más eficiente. La recursión es una herramienta potente pero no siempre eficiente; elegir entre recursión e iteración exige considerar el coste computacional.
+:::
+
+::: {#cau-recursion-base .callout-caution title="Olvidar el caso base → `RecursionError`"}
+Si la función recursiva no tiene caso base, o la condición de parada nunca se alcanza, Python agota la pila de llamadas y lanza un `RecursionError`:
+
+```python
+def factorial_roto(n):
+    return n * factorial_roto(n - 1)   # sin caso base
+
+factorial_roto(5)   # RecursionError: maximum recursion depth exceeded
+```
+
+Antes de escribir el caso recursivo, escribe y prueba siempre el caso base por separado.
+:::
+
+---
+
+## 3.2. Visibilidad de variables (Scope)
+
+Cuando Python encuentra un nombre de variable dentro de una función, necesita saber a qué objeto se refiere. El **ámbito** o *scope* de una variable determina desde qué partes del código ese nombre es visible.
+
+::: {#tip-scope .callout-tip title="Ámbito (Scope) y espacio de nombres (Namespace)"}
+El **ámbito** (*scope*) de una variable es la región del código en la que el nombre de esa variable es reconocido y puede usarse. El **espacio de nombres** (*namespace*) es la estructura interna de Python que implementa el ámbito: un diccionario que mapea nombres a objetos.
+
+Python busca los nombres siguiendo la regla **LEGB**, en este orden:
+
+1. **L**ocal — el cuerpo de la función actual.
+2. **E**nclosing — funciones que envuelven a la actual (funciones anidadas, temas posteriores).
+3. **G**lobal — el módulo (el fichero `.py`) en el que está el código.
+4. **B**uilt-in — los nombres predefinidos de Python: `print`, `len`, `int`, `range`…
+
+Si el nombre no se encuentra en ninguno de estos ámbitos, Python lanza un `NameError`.
+:::
+
+### **3.2.1 Ámbito local**
+
+Toda variable que se asigna dentro de una función es **local** a esa función: existe solo durante la ejecución de la llamada y desaparece al retornar.
+
+```{pyodide}
+def calcular():
+    resultado = 42       # variable local
+    return resultado
+
+print(calcular())        # 42
+# print(resultado)       # NameError: resultado no está definida fuera de la función
+```
+
+El ámbito local garantiza el **aislamiento**: dos funciones pueden usar el mismo nombre de variable sin interferir entre sí.
+
+```{pyodide}
+def cuadrado(x):
+    y = x ** 2     # y es local a cuadrado
+    return y
+
+def cubo(x):
+    y = x ** 3     # y es local a cubo, independiente de la anterior
+    return y
+
+print(cuadrado(3), cubo(3))   # 9 27
+```
+
+### **3.2.2 Ámbito global**
+
+Las variables definidas fuera de cualquier función tienen **ámbito global** y son visibles desde cualquier punto del módulo, incluido el cuerpo de las funciones.
+
+```{pyodide}
+PI = 3.141592653589793    # constante global (convención: mayúsculas)
+
+def area_circulo(r):
+    return PI * r ** 2    # lee PI del ámbito global
+
+print(area_circulo(1))    # 3.141592653589793
+print(area_circulo(5))    # 78.53981633974483
+```
+
+Leer una variable global desde una función es aceptable, especialmente para constantes matemáticas o de configuración. Modificarla desde dentro de una función es una práctica que conviene evitar.
+
+::: {#cau-scope-global .callout-caution title="Modificar variables globales con `global`"}
+Python permite modificar una variable global desde dentro de una función usando la declaración `global`, pero es una práctica que dificulta la comprensión y el mantenimiento del código:
+
+```python
+contador = 0
+
+def incrementar():
+    global contador       # sin esta línea, Python crearía una variable local
+    contador += 1
+
+incrementar()
+incrementar()
+print(contador)   # 2
+```
+
+El problema es que `incrementar()` tiene un **efecto lateral** (*side effect*) oculto: modifica un estado externo sin que eso sea visible en su firma. Si la función se llama desde varios puntos del programa, rastrear el valor de `contador` se vuelve muy difícil.
+
+La alternativa correcta es pasar el valor como parámetro y devolver el nuevo valor:
+
+```{pyodide}
+def incrementar(contador):
+    return contador + 1
+
+c = 0
+c = incrementar(c)
+c = incrementar(c)
+print(c)   # 2
+```
+
+Esta versión es transparente: su comportamiento queda completamente determinado por sus argumentos y no produce ningún efecto lateral.
+:::
+
+---
+
+## 3.3. Docstrings, anotaciones de tipo y contratos
+
+Una función bien escrita no solo calcula correctamente: también comunica claramente qué hace, qué espera recibir y qué garantiza devolver. Esta información forma el **contrato** de la función, y Python proporciona dos mecanismos complementarios para expresarlo: los *docstrings* y las anotaciones de tipo.
+
+### **3.3.1 Docstrings**
+
+::: {#tip-docstring .callout-tip title="Docstring"}
+Un **docstring** es una cadena de texto que aparece como primera instrucción en el cuerpo de una función (o módulo, o clase) y describe su propósito, parámetros y valor de retorno. Python la almacena en el atributo `__doc__` del objeto y la hace accesible en tiempo de ejecución mediante la función `help()`.
+
+Los docstrings no son comentarios: los comentarios con `#` van dirigidos al lector del código fuente; los docstrings van dirigidos al usuario de la función y son consultables sin leer la implementación.
+:::
+
+La convención [@pep257] distingue dos formas:
+
+**Docstring de una línea**: para funciones cuyo propósito es evidente.
+
+```{pyodide}
+def cuadrado(x):
+    """Devuelve el cuadrado de x."""
+    return x ** 2
+
+help(cuadrado)
+```
+
+**Docstring multilínea**: para funciones más complejas. La primera línea es el resumen; tras una línea en blanco, se detallan los parámetros y el valor de retorno.
+
+```{pyodide}
+import math
+
+def es_primo(n):
+    """
+    Comprueba si n es un número primo.
+
+    Parámetros
+    ----------
+    n : int
+        El entero a comprobar. Debe ser mayor o igual que 2.
+
+    Retorna
+    -------
+    bool
+        True si n es primo, False en caso contrario.
+    """
+    if n < 2:
+        return False
+    for d in range(2, int(math.sqrt(n)) + 1):
+        if n % d == 0:
+            return False
+    return True
+
+help(es_primo)
+```
+
+### **3.3.2 Anotaciones de tipo (type hints)**
+
+Las **anotaciones de tipo** permiten declarar el tipo esperado de cada parámetro y del valor de retorno directamente en la cabecera de la función [@pep484]:
+
+```{pyodide}
+def potencia(base: float, exponente: int = 2) -> float:
+    """Calcula base elevado a exponente."""
+    return base ** exponente
+
+print(potencia(3.0))        # 9.0
+print(potencia(2.0, 10))    # 1024.0
+```
+
+::: {#imp-typehints .callout-important title="Sintaxis de las anotaciones de tipo"}
+La sintaxis es:
+
+```python
+def nombre(param: tipo, param2: tipo = defecto) -> tipo_retorno:
+```
+
+Los tipos básicos disponibles sin importar nada son `int`, `float`, `str`, `bool` y `None` (para funciones que no devuelven valor). Para indicar que una función no devuelve nada se anota `-> None`.
+
+Las anotaciones de tipo **no se comprueban en tiempo de ejecución**: Python las ignora al ejecutar el código. Su valor es doble: sirven de documentación legible para el programador y son usadas por herramientas de análisis estático como `mypy` y el propio VS Code para detectar errores y ofrecer autocompletado.
+:::
+
+::: {.callout-caution appearance="simple"}
+Dado que Python no comprueba los tipos en tiempo de ejecución, una función anotada puede llamarse con argumentos del tipo equivocado sin que se produzca error inmediato. Las anotaciones de tipo documentan la intención pero no sustituyen a la validación explícita de argumentos cuando esta sea necesaria.
+:::
+
+### **3.3.3 Precondiciones, postcondiciones y el contrato de una función**
+
+::: {#tip-contrato .callout-tip title="Contrato de una función"}
+El **contrato** de una función especifica formalmente:
+
+- **Precondición**: lo que debe ser cierto sobre los argumentos *antes* de llamar a la función. Si el llamador no satisface la precondición, el comportamiento de la función es indefinido.
+- **Postcondición**: lo que la función garantiza sobre su resultado *cuando* la precondición se cumple.
+
+Este concepto procede del **diseño por contrato** (*Design by Contract*, Bertrand Meyer) y es el equivalente programático del par hipótesis–tesis de un teorema matemático: si se cumplen las hipótesis (precondición), se garantiza la conclusión (postcondición).
+:::
+
+Las precondiciones y postcondiciones se expresan en Python de dos formas complementarias:
+
+**Vía docstring**: especificación en texto natural, visible con `help()` y legible sin ejecutar el código. Es la forma preferida para documentar el contrato de cara al usuario de la función.
+
+**Vía `assert`**: comprobación activa en tiempo de ejecución. Lanza un `AssertionError` con un mensaje descriptivo si la condición falla, lo que facilita detectar usos incorrectos de la función durante el desarrollo.
+
+El siguiente ejemplo muestra las dos vías aplicadas a la misma función:
+
+```{pyodide}
+import math
+
+def raiz_cuadrada(x: float, tol: float = 1e-10) -> float:
+    """
+    Aproxima √x mediante el método de Newton-Raphson.
+
+    Precondición:  x >= 0  y  tol > 0
+    Postcondición: |resultado² - x| < tol * 100
+
+    Parámetros
+    ----------
+    x   : float  — El radicando. Debe ser no negativo.
+    tol : float  — Tolerancia del error. Debe ser positiva.
+
+    Retorna
+    -------
+    float — Aproximación de √x con error inferior a tol.
+    """
+    assert x >= 0,   f"raiz_cuadrada: x debe ser ≥ 0, recibido {x}"
+    assert tol > 0,  f"raiz_cuadrada: tol debe ser > 0, recibido {tol}"
+
+    if x == 0:
+        return 0.0
+    aprox = x / 2.0
+    while True:
+        nueva = (aprox + x / aprox) / 2
+        if abs(nueva - aprox) < tol:
+            return nueva
+        aprox = nueva
+
+print(raiz_cuadrada(2))         # 1.4142135623730951
+print(raiz_cuadrada(0))         # 0.0
+# raiz_cuadrada(-1)             # AssertionError: x debe ser ≥ 0, recibido -1
+```
+
+::: {#cau-assert .callout-caution title="`assert` puede desactivarse"}
+Las instrucciones `assert` se eliminan cuando Python se ejecuta con la opción `-O` (*optimize*). Por ello, **`assert` es adecuado para verificar condiciones durante el desarrollo** —detectar errores de programación en las pruebas— **pero no para validar entradas del usuario en producción**. Para gestionar entradas incorrectas del mundo exterior se usa `raise`:
+
+```python
+if x < 0:
+    raise ValueError(f"x debe ser no negativo, recibido {x}")
+```
+
+Los `assert` comprueban que el programador usa la función correctamente; los `raise` gestionan entradas incorrectas externas. El mecanismo `raise`/`except` se estudia en el Tema 4.
+:::
+
+---
+
+## 3.4. Concepto de módulo. Importación y creación de módulos propios
+
+A medida que un programa crece, concentrar todo el código en un único fichero se vuelve inmanejable. Los **módulos** son la solución de Python para organizar el código en unidades reutilizables e independientes.
+
+::: {#tip-modulo .callout-tip title="Módulo"}
+Un **módulo** en Python es un fichero `.py` que contiene definiciones de funciones, variables y otros objetos. Su nombre es el nombre del fichero sin la extensión `.py`. Los módulos permiten:
+
+- **Separar** el código en unidades con una responsabilidad clara.
+- **Reutilizar** funciones en distintos programas sin copiarlas.
+- **Ocultar** detalles de implementación: el usuario importa y llama funciones sin necesidad de conocer cómo están escritas internamente.
+
+Desde el Tema 2 se usa `import math`: `math` es un módulo de la biblioteca estándar de Python. Sus funciones (`sqrt`, `log`, `sin`, etc.) están definidas con el mismo mecanismo que cualquier módulo propio.
+:::
+
+### **3.4.1 Importación de módulos**
+
+Python ofrece tres formas de importar un módulo o sus contenidos:
+
+::: {#imp-import .callout-important title="Formas de importación"}
+**Forma 1 — `import módulo`**: importa el módulo completo; los nombres se acceden con la notación punto.
+
+```{pyodide}
+import math
+print(math.sqrt(2))          # 1.4142135623730951
+print(math.pi)               # 3.141592653589793
+print(math.factorial(10))    # 3628800
+```
+
+**Forma 2 — `import módulo as alias`**: igual que la anterior, con un nombre más corto.
+
+```{pyodide}
+import math as m
+print(m.sqrt(2))
+print(m.pi)
+```
+
+**Forma 3 — `from módulo import nombre`**: importa solo los nombres especificados, directamente al espacio de nombres local.
+
+```{pyodide}
+from math import sqrt, pi, factorial
+print(sqrt(2))        # sin prefijo math.
+print(pi)
+print(factorial(10))
+```
+
+La **Forma 1** es la más recomendable en general porque hace explícito el origen de cada nombre (`math.sqrt` deja claro que `sqrt` viene de `math`). La **Forma 3** es conveniente para nombres muy usados, pero puede causar conflictos si dos módulos definen el mismo nombre.
+:::
+
+Algunos módulos de la biblioteca estándar especialmente útiles en matemáticas:
+
+| Módulo | Contenido principal |
+|---|---|
+| `math` | Funciones reales: `sqrt`, `log`, `sin`, `cos`, `exp`; constantes `pi`, `e`, `inf` |
+| `cmath` | Versiones complejas de las funciones de `math` |
+| `random` | Generación de números pseudoaleatorios |
+| `statistics` | Media, mediana, varianza y desviación típica |
+| `fractions` | Aritmética exacta con fracciones racionales |
+| `decimal` | Aritmética decimal de precisión arbitraria |
+
+### **3.4.2 Creación de módulos propios**
+
+Cualquier fichero `.py` es automáticamente un módulo importable desde otro fichero del mismo directorio. Para crear un módulo propio basta con escribir las funciones en un fichero con un nombre descriptivo.
+
+El fichero `numeros.py` agrupa las funciones de teoría de números construidas a lo largo del Tema 2 y el Tema 3:
+
+```python
+# numeros.py
+"""Módulo con funciones básicas de teoría de números."""
+
+import math
+
+
+def es_primo(n: int) -> bool:
+    """Devuelve True si n es primo (n debe ser >= 2)."""
+    if n < 2:
+        return False
+    for d in range(2, int(math.sqrt(n)) + 1):
+        if n % d == 0:
+            return False
+    return True
+
+
+def mcd(a: int, b: int) -> int:
+    """Máximo común divisor de a y b (algoritmo de Euclides)."""
+    if b == 0:
+        return a
+    return mcd(b, a % b)
+
+
+def mcm(a: int, b: int) -> int:
+    """Mínimo común múltiplo de a y b."""
+    return abs(a * b) // mcd(a, b)
+
+
+def factorial(n: int) -> int:
+    """Factorial de n. Precondición: n >= 0."""
+    assert n >= 0, f"factorial no está definido para negativos, recibido {n}"
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)
+```
+
+Desde otro fichero del mismo directorio se importa como cualquier módulo de la biblioteca estándar:
+
+```python
+# main.py
+import numeros
+
+print(numeros.es_primo(17))       # True
+print(numeros.mcd(48, 18))        # 6
+print(numeros.mcm(4, 6))          # 12
+print(numeros.factorial(10))      # 3628800
+```
+
+### **3.4.3 El bloque `if __name__ == "__main__"`**
+
+Cuando Python carga un módulo mediante `import`, ejecuta todo su código de nivel superior. Esto plantea un problema si el módulo contiene pruebas o demostraciones que no queremos ejecutar al importarlo.
+
+::: {#imp-main .callout-important title="El bloque `if __name__ == \"__main__\"`"}
+Python asigna automáticamente a cada módulo una variable especial `__name__`:
+
+- Cuando el fichero se **ejecuta directamente** (`python numeros.py`), `__name__` toma el valor `"__main__"`.
+- Cuando el fichero se **importa** desde otro módulo, `__name__` toma el nombre del módulo (`"numeros"`).
+
+El bloque `if __name__ == "__main__":` permite incluir en el mismo fichero tanto la librería (importable) como un pequeño programa de prueba (ejecutable directamente):
+
+```python
+# numeros.py
+"""Módulo con funciones básicas de teoría de números."""
+
+import math
+
+
+def es_primo(n: int) -> bool:
+    """Devuelve True si n es primo (n >= 2)."""
+    if n < 2:
+        return False
+    for d in range(2, int(math.sqrt(n)) + 1):
+        if n % d == 0:
+            return False
+    return True
+
+
+def mcd(a: int, b: int) -> int:
+    """Máximo común divisor de a y b (algoritmo de Euclides)."""
+    if b == 0:
+        return a
+    return mcd(b, a % b)
+
+
+def mcm(a: int, b: int) -> int:
+    """Mínimo común múltiplo de a y b."""
+    return abs(a * b) // mcd(a, b)
+
+
+def factorial(n: int) -> int:
+    """Factorial de n. Precondición: n >= 0."""
+    assert n >= 0, f"factorial no está definido para negativos, recibido {n}"
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)
+
+
+if __name__ == "__main__":
+    # Solo se ejecuta al lanzar: python numeros.py
+    print("=== Pruebas del módulo numeros ===")
+    print(f"es_primo(17)  = {es_primo(17)}")      # True
+    print(f"es_primo(18)  = {es_primo(18)}")      # False
+    print(f"mcd(48, 18)   = {mcd(48, 18)}")       # 6
+    print(f"mcm(4, 6)     = {mcm(4, 6)}")         # 12
+    print(f"factorial(10) = {factorial(10)}")     # 3628800
+```
+
+Este patrón es la práctica estándar en Python: el mismo fichero puede actuar como librería (importado por otros módulos) o como programa (ejecutado directamente), y el bloque `if __name__ == "__main__":` separa limpiamente ambos roles.
+:::
+
+---
+
+## 3.5. Organización de proyectos
+
+A medida que un proyecto crece, dividir el código en módulos con responsabilidades bien definidas facilita el mantenimiento, la detección de errores y la colaboración.
+
+### **3.5.1 Estructura de ficheros**
+
+La organización básica de un proyecto Python sigue esta estructura:
+
+```
+proyecto/
+│
+├── main.py              # punto de entrada del programa
+│
+├── numeros.py           # funciones de teoría de números
+├── geometria.py         # funciones de geometría
+├── conversor.py         # funciones de conversión de unidades
+│
+└── README.md            # descripción del proyecto
+```
+
+Cada módulo agrupa funciones relacionadas por temática o responsabilidad. `main.py` actúa como punto de entrada: importa los módulos que necesita y orquesta la lógica principal del programa.
+
+Python busca los módulos en el mismo directorio que el fichero que los importa, sin necesidad de configuración adicional. Esta estructura funciona directamente en un entorno local y en un Codespace.
+
+::: {.callout-tip appearance="simple"}
+Un módulo debe hacer **una cosa bien**. Si un módulo empieza a agrupar funciones de geometría y también de estadística, es señal de que debería dividirse en dos. La pregunta de diseño es siempre: *¿qué tienen en común las funciones de este módulo?*
+:::
+
+### **3.5.2 Ejemplo de proyecto organizado**
+
+El siguiente proyecto organiza tres módulos con responsabilidades distintas:
+
+**`geometria.py`**:
+
+```python
+"""Módulo de funciones geométricas básicas."""
+
+import math
+
+
+def area_circulo(r: float) -> float:
+    """Área de un círculo de radio r. Precondición: r >= 0."""
+    assert r >= 0, f"El radio debe ser no negativo, recibido {r}"
+    return math.pi * r ** 2
+
+
+def hipotenusa(a: float, b: float) -> float:
+    """Longitud de la hipotenusa dado los catetos a y b."""
+    assert a > 0 and b > 0, "Los catetos deben ser positivos"
+    return math.sqrt(a ** 2 + b ** 2)
+
+
+def es_triangulo_valido(a: float, b: float, c: float) -> bool:
+    """True si a, b, c satisfacen la desigualdad triangular."""
+    return a > 0 and b > 0 and c > 0 and a + b > c and a + c > b and b + c > a
+
+
+if __name__ == "__main__":
+    print(f"Área círculo r=1:    {area_circulo(1):.6f}")
+    print(f"Hipotenusa 3, 4:     {hipotenusa(3, 4):.6f}")
+    print(f"Triángulo 3, 4, 5:   {es_triangulo_valido(3, 4, 5)}")
+    print(f"Triángulo 1, 2, 10:  {es_triangulo_valido(1, 2, 10)}")
+```
+
+**`conversor.py`**:
+
+```python
+"""Módulo de conversión de unidades."""
+
+
+def celsius_a_fahrenheit(c: float) -> float:
+    """Convierte grados Celsius a Fahrenheit."""
+    return 9 / 5 * c + 32
+
+
+def fahrenheit_a_celsius(f: float) -> float:
+    """Convierte grados Fahrenheit a Celsius."""
+    return 5 / 9 * (f - 32)
+
+
+def celsius_a_kelvin(c: float) -> float:
+    """Convierte grados Celsius a Kelvin. Precondición: c >= -273.15."""
+    assert c >= -273.15, f"Temperatura por debajo del cero absoluto: {c}"
+    return c + 273.15
+
+
+def radianes_a_grados(r: float) -> float:
+    """Convierte radianes a grados."""
+    import math
+    return r * 180 / math.pi
+
+
+def grados_a_radianes(g: float) -> float:
+    """Convierte grados a radianes."""
+    import math
+    return g * math.pi / 180
+
+
+if __name__ == "__main__":
+    print(f"100 °C en °F:  {celsius_a_fahrenheit(100):.2f}")
+    print(f"212 °F en °C:  {fahrenheit_a_celsius(212):.2f}")
+    print(f"0 °C en K:     {celsius_a_kelvin(0):.2f}")
+    print(f"π rad en °:    {radianes_a_grados(3.141592653589793):.4f}")
+```
+
+**`main.py`** — punto de entrada que coordina los módulos:
+
+```python
+"""Herramienta matemática interactiva."""
+
+import numeros
+import geometria
+import conversor
+
+
+def mostrar_menu() -> None:
+    print("\n=== Herramienta matemática ===")
+    print("  1. Test de primalidad")
+    print("  2. MCD de dos enteros")
+    print("  3. Área de un círculo")
+    print("  4. Conversión de temperatura (°C → °F)")
+    print("  0. Salir")
+    print("------------------------------")
+
+
+def ejecutar() -> None:
+    while True:
+        mostrar_menu()
+        opcion = input("Elige una opción: ")
+
+        if opcion == "1":
+            n = int(input("n: "))
+            print(f"{n} es primo: {numeros.es_primo(n)}")
+
+        elif opcion == "2":
+            a = int(input("a: "))
+            b = int(input("b: "))
+            print(f"mcd({a}, {b}) = {numeros.mcd(a, b)}")
+
+        elif opcion == "3":
+            r = float(input("Radio: "))
+            print(f"Área = {geometria.area_circulo(r):.6f}")
+
+        elif opcion == "4":
+            c = float(input("Temperatura en °C: "))
+            print(f"{c} °C = {conversor.celsius_a_fahrenheit(c):.2f} °F")
+
+        elif opcion == "0":
+            print("Hasta luego.")
+            break
+
+        else:
+            print("Opción no válida.")
+
+
+if __name__ == "__main__":
+    ejecutar()
+```
+
+::: {.callout-note appearance="simple"}
+`main.py` no contiene ningún cálculo propio: se limita a importar los módulos y coordinar la interacción con el usuario. Esta separación entre **lógica de negocio** (los módulos) y **punto de entrada** (`main.py`) es una práctica de diseño fundamental que escala bien a proyectos de cualquier tamaño.
+:::
+
+## Bibliografía {.unnumbered}
+
+::: {#refs}
+:::
