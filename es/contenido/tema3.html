@@ -164,7 +164,10 @@ window.Quarto = {
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Tema 3: Funciones, Módulos y Organización del Código – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/fibonacci5.png">
 <meta property="og:site_name" content="Programación (23200)">
+<meta property="og:image:height" content="700">
+<meta property="og:image:width" content="1977">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -672,7 +675,7 @@ window.Quarto = {
 
 <section id="definición-de-funciones-paso-de-parámetros-y-retorno-de-valores" class="level2">
 <h2 class="anchored" data-anchor-id="definición-de-funciones-paso-de-parámetros-y-retorno-de-valores">3.1. Definición de funciones, paso de parámetros y retorno de valores</h2>
-<p>En matemáticas, una función es una regla que asocia a cada elemento de un conjunto de entrada exactamente un elemento de un conjunto de salida: <span class="math inline">\(f: A \to B\)</span>. En programación, el concepto es análogo pero más amplio: una función es un bloque de código con nombre que recibe entradas, realiza un cálculo o acción, y devuelve un resultado.</p>
+<p>En matemáticas, una función es una regla que asocia a cada elemento de un conjunto de entrada exactamente un elemento de un conjunto de salida: <span class="math inline">\(f: A \to B\)</span>. En programación, el concepto es análogo pero más amplio: <strong>una función es un bloque de código con nombre que recibe entradas, realiza un cálculo o acción, y devuelve un resultado</strong>.</p>
 <p>La razón fundamental para definir funciones es evitar la repetición de código. Si el mismo cálculo aparece en varios lugares del programa, basta con escribirlo una vez como función y llamarla cuantas veces sea necesario. Esto hace el código más corto, más legible y más fácil de mantener: un error se corrige en un único sitio.</p>
 <div id="tip-funcion" class="callout callout-style-default callout-tip no-icon callout-titled" title="Función">
 <div class="callout-header d-flex align-content-center">
@@ -843,7 +846,14 @@ Fundamento Teórico&nbsp;2: Recursión
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGZhY3RvcmlhbChuKTpcbiAgICBpZiBuID09IDA6ICAgICAgICAgICAgICAgICAgICAjIGNhc28gYmFzZVxuICAgICAgICByZXR1cm4gMVxuICAgIHJldHVybiBuICogZmFjdG9yaWFsKG4gLSAxKSAgIyBjYXNvIHJlY3Vyc2l2b1xuXG5wcmludChmYWN0b3JpYWwoMCkpICAgICMgMVxucHJpbnQoZmFjdG9yaWFsKDUpKSAgICAjIDEyMFxucHJpbnQoZmFjdG9yaWFsKDEwKSkgICAjIDM2Mjg4MDAifQ==
 </script>
 </div>
-<p>Cada llamada a <code>factorial(n)</code> genera una llamada a <code>factorial(n-1)</code>, y así sucesivamente hasta llegar a <code>factorial(0)</code>, que devuelve <code>1</code> directamente. El resultado final se construye al deshacer la pila de llamadas: <span class="math inline">\(5! = 5 \cdot 4! = 5 \cdot 4 \cdot 3! = \ldots = 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 \cdot 1\)</span>.</p>
+<p>Cada llamada a <code>factorial(n)</code> genera una llamada a <code>factorial(n-1)</code>, y así sucesivamente hasta llegar a <code>factorial(0)</code>, que devuelve <code>1</code> directamente. El resultado final se construye al deshacer la pila de llamadas:</p>
+<pre class="text"><code>factorial(5) = 5 * factorial(4)
+             = 5 * (4 * factorial(3))
+             = 5 * (4 * (3 * factorial(2)))
+             = 5 * (4 * (3 * (2 * factorial(1))))
+             = 5 * (4 * (3 * (2 * (1 * factorial(0)))))
+             = 5 * (4 * (3 * (2 * (1 * 1))))
+             = 120</code></pre>
 <div id="nte-mcd" class="callout callout-style-default callout-note no-icon callout-titled" title="Algoritmo de Euclides para el MCD">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -867,7 +877,14 @@ Ejemplo&nbsp;1: Algoritmo de Euclides para el MCD
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIG1jZChhLCBiKTpcbiAgICBpZiBiID09IDA6XG4gICAgICAgIHJldHVybiBhXG4gICAgcmV0dXJuIG1jZChiLCBhICUgYilcblxucHJpbnQobWNkKDQ4LCAxOCkpICAgICMgNlxucHJpbnQobWNkKDEwMCwgNzUpKSAgICMgMjVcbnByaW50KG1jZCgxNywgNSkpICAgICAjIDEgIChjb3ByaW1vcykifQ==
 </script>
 </div>
-<p>El número de llamadas recursivas es <span class="math inline">\(O(\log \min(a, b))\)</span>, lo que hace al algoritmo extremadamente eficiente. A partir del MCD se obtiene el mínimo común múltiplo: <span class="math inline">\(\text{mcm}(a, b) = |a \cdot b| \,/\, \text{mcd}(a, b)\)</span>.</p>
+<p>El número de llamadas recursivas es <span class="math inline">\(O(\log \min(a, b))\)</span>, lo que hace al algoritmo extremadamente eficiente.</p>
+<pre class="text"><code>mcd(48, 18) = mcd(18, 48 mod 18) = mcd(18, 12)
+            = mcd(12, 18 mod 12) = mcd(12, 6)
+            = mcd(6, 12 mod 6)   = mcd(6, 0)
+            = 6</code></pre>
+<p>A partir del MCD se obtiene el mínimo común múltiplo: <span class="math display">\[
+\text{mcm}(a, b) = |a \cdot b| \,/\, \text{mcd}(a, b).
+\]</span></p>
 </div>
 </div>
 <p>La sucesión de Fibonacci también tiene una definición recursiva, pero su implementación directa es muy ineficiente:</p>
@@ -886,6 +903,18 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGZpYm9uYWNjaShuKTpc
 </div>
 <div class="callout-body-container">
 <p><code>fibonacci(n)</code> con la implementación anterior tiene coste exponencial <span class="math inline">\(O(2^n)\)</span>: para calcular <code>fibonacci(40)</code> se realizan más de mil millones de llamadas, porque cada valor se recalcula repetidamente desde cero. La versión iterativa del Tema 2 es infinitamente más eficiente. La recursión es una herramienta potente pero no siempre eficiente; elegir entre recursión e iteración exige considerar el coste computacional.</p>
+<div id="fig-fibonacci-tree" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fibonacci-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/fibonacci5.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fibonacci-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Árbol de llamadas recursivas de <code>fibonacci(5)</code>. Las líneas punteadas indican la suma pendiente entre los dos subproblemas de cada nodo.
+</figcaption>
+</figure>
+</div>
+<p>La ineficiencia de la implementación anterior tiene una causa concreta como se observa en el árbol de llamadas mostrado en la figura <a href="#fig-fibonacci-tree" class="quarto-xref">Figura&nbsp;1</a>: <code>fibonacci(3)</code> se calcula dos veces, <code>fibonacci(2)</code> tres veces, y así sucesivamente.</p>
+<p>La solución general a este problema se llama <strong>memorización</strong> (<em>memoization</em> en inglés): guardar el resultado de cada llamada la primera vez que se computa y devolverlo directamente en llamadas posteriores, sin repetir el trabajo. En temas posteriores se verá cómo Python implementa memorización de forma transparente reduciendo el coste de esta implementación de <span class="math inline">\(O(2^n)\)</span> a <span class="math inline">\(O(n)\)</span>.</p>
 </div>
 </div>
 </div>
@@ -900,11 +929,15 @@ Error Frecuente&nbsp;2: Olvidar el caso base → <code>RecursionError</code>
 </div>
 <div class="callout-body-container callout-body">
 <p>Si la función recursiva no tiene caso base, o la condición de parada nunca se alcanza, Python agota la pila de llamadas y lanza un <code>RecursionError</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> factorial_roto(n):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> factorial_roto(n <span class="op">-</span> <span class="dv">1</span>)   <span class="co"># sin caso base</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>factorial_roto(<span class="dv">5</span>)   <span class="co"># RecursionError: maximum recursion depth exceeded</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Antes de escribir el caso recursivo, escribe y prueba siempre el caso base por separado.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> factorial_roto(n):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> factorial_roto(n <span class="op">-</span> <span class="dv">1</span>)   <span class="co"># sin caso base</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>factorial_roto(<span class="dv">5</span>)   <span class="co"># RecursionError: maximum recursion depth exceeded</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><strong>Antes de escribir el caso recursivo, escribe y prueba siempre el caso base por separado</strong>.</li>
+<li><strong>Asegúrate de que la llamada recursiva se hace con un argumento que se acerca al caso base</strong>.</li>
+<li><strong>Si el argumento no cambia o se aleja del caso base, la recursión será infinita</strong>.</li>
+</ul>
 </div>
 </div>
 <hr>
@@ -957,7 +990,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGN1YWRyYWRvKHgpOlxu
 </section>
 <section id="ámbito-global" class="level3">
 <h3 class="anchored" data-anchor-id="ámbito-global"><strong>3.2.2 Ámbito global</strong></h3>
-<p>Las variables definidas fuera de cualquier función tienen <strong>ámbito global</strong> y son visibles desde cualquier punto del módulo, incluido el cuerpo de las funciones.</p>
+<p>Las variables definidas fuera de cualquier función tienen <strong>ámbito global</strong> y son visibles desde cualquier punto del módulo, incluido el cuerpo de las funciones. En Python, un <strong>módulo</strong> es simplemente un fichero <code>.py</code>. Cuando escribes código en <code>programa.py</code> y lo ejecutas, ese fichero es tu módulo. Los módulos se tratan en detalle en la sección 3.4.</p>
 <div>
 <div id="pyodide-12" class="exercise-cell">
 
@@ -978,15 +1011,15 @@ Error Frecuente&nbsp;3: Modificar variables globales con <code>global</code>
 </div>
 <div class="callout-body-container callout-body">
 <p>Python permite modificar una variable global desde dentro de una función usando la declaración <code>global</code>, pero es una práctica que dificulta la comprensión y el mantenimiento del código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>contador <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> incrementar():</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> contador       <span class="co"># sin esta línea, Python crearía una variable local</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    contador <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>incrementar()</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>incrementar()</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(contador)   <span class="co"># 2</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>contador <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> incrementar():</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> contador       <span class="co"># sin esta línea, Python crearía una variable local</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    contador <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>incrementar()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>incrementar()</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(contador)   <span class="co"># 2</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>El problema es que <code>incrementar()</code> tiene un <strong>efecto lateral</strong> (<em>side effect</em>) oculto: modifica un estado externo sin que eso sea visible en su firma. Si la función se llama desde varios puntos del programa, rastrear el valor de <code>contador</code> se vuelve muy difícil.</p>
 <p>La alternativa correcta es pasar el valor como parámetro y devolver el nuevo valor:</p>
 <div>
@@ -1064,7 +1097,7 @@ Concepto Clave&nbsp;3: Sintaxis de las anotaciones de tipo
 </div>
 <div class="callout-body-container callout-body">
 <p>La sintaxis es:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> nombre(param: tipo, param2: tipo <span class="op">=</span> defecto) <span class="op">-&gt;</span> tipo_retorno:</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> nombre(param: tipo, param2: tipo <span class="op">=</span> defecto) <span class="op">-&gt;</span> tipo_retorno:</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Los tipos básicos disponibles sin importar nada son <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code> y <code>None</code> (para funciones que no devuelven valor). Para indicar que una función no devuelve nada se anota <code>-&gt; None</code>.</p>
 <p>Las anotaciones de tipo <strong>no se comprueban en tiempo de ejecución</strong>: Python las ignora al ejecutar el código. Su valor es doble: sirven de documentación legible para el programador y son usadas por herramientas de análisis estático como <code>mypy</code> y el propio VS Code para detectar errores y ofrecer autocompletado.</p>
 </div>
@@ -1123,8 +1156,8 @@ Error Frecuente&nbsp;4: <code>assert</code> puede desactivarse
 </div>
 <div class="callout-body-container callout-body">
 <p>Las instrucciones <code>assert</code> se eliminan cuando Python se ejecuta con la opción <code>-O</code> (<em>optimize</em>). Por ello, <strong><code>assert</code> es adecuado para verificar condiciones durante el desarrollo</strong> —detectar errores de programación en las pruebas— <strong>pero no para validar entradas del usuario en producción</strong>. Para gestionar entradas incorrectas del mundo exterior se usa <code>raise</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">0</span>:</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"x debe ser no negativo, recibido </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"x debe ser no negativo, recibido </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Los <code>assert</code> comprueban que el programador usa la función correctamente; los <code>raise</code> gestionan entradas incorrectas externas. El mecanismo <code>raise</code>/<code>except</code> se estudia en el Tema 4.</p>
 </div>
 </div>
@@ -1240,68 +1273,6 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZnJvbSBtYXRoIGltcG9ydCBz
 <h3 class="anchored" data-anchor-id="creación-de-módulos-propios"><strong>3.4.2 Creación de módulos propios</strong></h3>
 <p>Cualquier fichero <code>.py</code> es automáticamente un módulo importable desde otro fichero del mismo directorio. Para crear un módulo propio basta con escribir las funciones en un fichero con un nombre descriptivo.</p>
 <p>El fichero <code>numeros.py</code> agrupa las funciones de teoría de números construidas a lo largo del Tema 2 y el Tema 3:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numeros.py</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""Módulo con funciones básicas de teoría de números."""</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> es_primo(n: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Devuelve True si n es primo (n debe ser &gt;= 2)."""</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;</span> <span class="dv">2</span>:</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> d <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">int</span>(math.sqrt(n)) <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> n <span class="op">%</span> d <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mcd(a: <span class="bu">int</span>, b: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Máximo común divisor de a y b (algoritmo de Euclides)."""</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> b <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mcd(b, a <span class="op">%</span> b)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mcm(a: <span class="bu">int</span>, b: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Mínimo común múltiplo de a y b."""</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">abs</span>(a <span class="op">*</span> b) <span class="op">//</span> mcd(a, b)</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> factorial(n: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Factorial de n. Precondición: n &gt;= 0."""</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> n <span class="op">&gt;=</span> <span class="dv">0</span>, <span class="ss">f"factorial no está definido para negativos, recibido </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> factorial(n <span class="op">-</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Desde otro fichero del mismo directorio se importa como cualquier módulo de la biblioteca estándar:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># main.py</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numeros</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(numeros.es_primo(<span class="dv">17</span>))       <span class="co"># True</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(numeros.mcd(<span class="dv">48</span>, <span class="dv">18</span>))        <span class="co"># 6</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(numeros.mcm(<span class="dv">4</span>, <span class="dv">6</span>))          <span class="co"># 12</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(numeros.factorial(<span class="dv">10</span>))      <span class="co"># 3628800</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="el-bloque-if-__name__-__main__" class="level3">
-<h3 class="anchored" data-anchor-id="el-bloque-if-__name__-__main__"><strong>3.4.3 El bloque <code>if __name__ == "__main__"</code></strong></h3>
-<p>Cuando Python carga un módulo mediante <code>import</code>, ejecuta todo su código de nivel superior. Esto plantea un problema si el módulo contiene pruebas o demostraciones que no queremos ejecutar al importarlo.</p>
-<div id="imp-main" class="callout callout-style-default callout-important no-icon callout-titled" title="El bloque `if __name__ == &quot;__main__&quot;`">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Concepto Clave&nbsp;5: El bloque <code>if __name__ == "__main__"</code>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Python asigna automáticamente a cada módulo una variable especial <code>__name__</code>:</p>
-<ul>
-<li>Cuando el fichero se <strong>ejecuta directamente</strong> (<code>python numeros.py</code>), <code>__name__</code> toma el valor <code>"__main__"</code>.</li>
-<li>Cuando el fichero se <strong>importa</strong> desde otro módulo, <code>__name__</code> toma el nombre del módulo (<code>"numeros"</code>).</li>
-</ul>
-<p>El bloque <code>if __name__ == "__main__":</code> permite incluir en el mismo fichero tanto la librería (importable) como un pequeño programa de prueba (ejecutable directamente):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numeros.py</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""Módulo con funciones básicas de teoría de números."""</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1309,7 +1280,7 @@ Concepto Clave&nbsp;5: El bloque <code>if __name__ == "__main__"</code>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> es_primo(n: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Devuelve True si n es primo (n &gt;= 2)."""</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Devuelve True si n es primo (n debe ser &gt;= 2)."""</span></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;</span> <span class="dv">2</span>:</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> d <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">int</span>(math.sqrt(n)) <span class="op">+</span> <span class="dv">1</span>):</span>
@@ -1335,17 +1306,79 @@ Concepto Clave&nbsp;5: El bloque <code>if __name__ == "__main__"</code>
 <span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> n <span class="op">&gt;=</span> <span class="dv">0</span>, <span class="ss">f"factorial no está definido para negativos, recibido </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">"</span></span>
 <span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> factorial(n <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Solo se ejecuta al lanzar: python numeros.py</span></span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"=== Pruebas del módulo numeros ==="</span>)</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"es_primo(17)  = </span><span class="sc">{</span>es_primo(<span class="dv">17</span>)<span class="sc">}</span><span class="ss">"</span>)      <span class="co"># True</span></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"es_primo(18)  = </span><span class="sc">{</span>es_primo(<span class="dv">18</span>)<span class="sc">}</span><span class="ss">"</span>)      <span class="co"># False</span></span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"mcd(48, 18)   = </span><span class="sc">{</span>mcd(<span class="dv">48</span>, <span class="dv">18</span>)<span class="sc">}</span><span class="ss">"</span>)       <span class="co"># 6</span></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"mcm(4, 6)     = </span><span class="sc">{</span>mcm(<span class="dv">4</span>, <span class="dv">6</span>)<span class="sc">}</span><span class="ss">"</span>)         <span class="co"># 12</span></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"factorial(10) = </span><span class="sc">{</span>factorial(<span class="dv">10</span>)<span class="sc">}</span><span class="ss">"</span>)     <span class="co"># 3628800</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> factorial(n <span class="op">-</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Desde otro fichero del mismo directorio se importa como cualquier módulo de la biblioteca estándar:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># main.py</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numeros</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(numeros.es_primo(<span class="dv">17</span>))       <span class="co"># True</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(numeros.mcd(<span class="dv">48</span>, <span class="dv">18</span>))        <span class="co"># 6</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(numeros.mcm(<span class="dv">4</span>, <span class="dv">6</span>))          <span class="co"># 12</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(numeros.factorial(<span class="dv">10</span>))      <span class="co"># 3628800</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="el-bloque-if-__name__-__main__" class="level3">
+<h3 class="anchored" data-anchor-id="el-bloque-if-__name__-__main__"><strong>3.4.3 El bloque <code>if __name__ == "__main__"</code></strong></h3>
+<p>Cuando Python carga un módulo mediante <code>import</code>, ejecuta todo su código de nivel superior. Esto plantea un problema si el módulo contiene pruebas o demostraciones que no queremos ejecutar al importarlo.</p>
+<div id="imp-main" class="callout callout-style-default callout-important no-icon callout-titled" title="El bloque `if __name__ == &quot;__main__&quot;`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;5: El bloque <code>if __name__ == "__main__"</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Python asigna automáticamente a cada módulo una variable especial <code>__name__</code>:</p>
+<ul>
+<li>Cuando el fichero se <strong>ejecuta directamente</strong> (<code>python numeros.py</code>), <code>__name__</code> toma el valor <code>"__main__"</code>.</li>
+<li>Cuando el fichero se <strong>importa</strong> desde otro módulo, <code>__name__</code> toma el nombre del módulo (<code>"numeros"</code>).</li>
+</ul>
+<p>El bloque <code>if __name__ == "__main__":</code> permite incluir en el mismo fichero tanto la librería (importable) como un pequeño programa de prueba (ejecutable directamente):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numeros.py</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""Módulo con funciones básicas de teoría de números."""</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> es_primo(n: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Devuelve True si n es primo (n &gt;= 2)."""</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> d <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">int</span>(math.sqrt(n)) <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> n <span class="op">%</span> d <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mcd(a: <span class="bu">int</span>, b: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Máximo común divisor de a y b (algoritmo de Euclides)."""</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> b <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mcd(b, a <span class="op">%</span> b)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mcm(a: <span class="bu">int</span>, b: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Mínimo común múltiplo de a y b."""</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">abs</span>(a <span class="op">*</span> b) <span class="op">//</span> mcd(a, b)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> factorial(n: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Factorial de n. Precondición: n &gt;= 0."""</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> n <span class="op">&gt;=</span> <span class="dv">0</span>, <span class="ss">f"factorial no está definido para negativos, recibido </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> factorial(n <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Solo se ejecuta al lanzar: python numeros.py</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"=== Pruebas del módulo numeros ==="</span>)</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"es_primo(17)  = </span><span class="sc">{</span>es_primo(<span class="dv">17</span>)<span class="sc">}</span><span class="ss">"</span>)      <span class="co"># True</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"es_primo(18)  = </span><span class="sc">{</span>es_primo(<span class="dv">18</span>)<span class="sc">}</span><span class="ss">"</span>)      <span class="co"># False</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"mcd(48, 18)   = </span><span class="sc">{</span>mcd(<span class="dv">48</span>, <span class="dv">18</span>)<span class="sc">}</span><span class="ss">"</span>)       <span class="co"># 6</span></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"mcm(4, 6)     = </span><span class="sc">{</span>mcm(<span class="dv">4</span>, <span class="dv">6</span>)<span class="sc">}</span><span class="ss">"</span>)         <span class="co"># 12</span></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"factorial(10) = </span><span class="sc">{</span>factorial(<span class="dv">10</span>)<span class="sc">}</span><span class="ss">"</span>)     <span class="co"># 3628800</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Este patrón es la práctica estándar en Python: el mismo fichero puede actuar como librería (importado por otros módulos) o como programa (ejecutado directamente), y el bloque <code>if __name__ == "__main__":</code> separa limpiamente ambos roles.</p>
 </div>
 </div>
@@ -1382,122 +1415,122 @@ Concepto Clave&nbsp;5: El bloque <code>if __name__ == "__main__"</code>
 </section>
 <section id="ejemplo-de-proyecto-organizado" class="level3">
 <h3 class="anchored" data-anchor-id="ejemplo-de-proyecto-organizado"><strong>3.5.2 Ejemplo de proyecto organizado</strong></h3>
-<p>El siguiente proyecto organiza tres módulos con responsabilidades distintas:</p>
+<p>El proyecto organiza, además de <code>numeros.py</code>, otros tres módulos con responsabilidades distintas:</p>
 <p><strong><code>geometria.py</code></strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""Módulo de funciones geométricas básicas."""</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> area_circulo(r: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Área de un círculo de radio r. Precondición: r &gt;= 0."""</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> r <span class="op">&gt;=</span> <span class="dv">0</span>, <span class="ss">f"El radio debe ser no negativo, recibido </span><span class="sc">{</span>r<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> math.pi <span class="op">*</span> r <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hipotenusa(a: <span class="bu">float</span>, b: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Longitud de la hipotenusa dado los catetos a y b."""</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> a <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> b <span class="op">&gt;</span> <span class="dv">0</span>, <span class="st">"Los catetos deben ser positivos"</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> math.sqrt(a <span class="op">**</span> <span class="dv">2</span> <span class="op">+</span> b <span class="op">**</span> <span class="dv">2</span>)</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> es_triangulo_valido(a: <span class="bu">float</span>, b: <span class="bu">float</span>, c: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""True si a, b, c satisfacen la desigualdad triangular."""</span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> b <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> c <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> a <span class="op">+</span> b <span class="op">&gt;</span> c <span class="kw">and</span> a <span class="op">+</span> c <span class="op">&gt;</span> b <span class="kw">and</span> b <span class="op">+</span> c <span class="op">&gt;</span> a</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Área círculo r=1:    </span><span class="sc">{</span>area_circulo(<span class="dv">1</span>)<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hipotenusa 3, 4:     </span><span class="sc">{</span>hipotenusa(<span class="dv">3</span>, <span class="dv">4</span>)<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Triángulo 3, 4, 5:   </span><span class="sc">{</span>es_triangulo_valido(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Triángulo 1, 2, 10:  </span><span class="sc">{</span>es_triangulo_valido(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">10</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong><code>conversor.py</code></strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""Módulo de conversión de unidades."""</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> celsius_a_fahrenheit(c: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convierte grados Celsius a Fahrenheit."""</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">9</span> <span class="op">/</span> <span class="dv">5</span> <span class="op">*</span> c <span class="op">+</span> <span class="dv">32</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fahrenheit_a_celsius(f: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convierte grados Fahrenheit a Celsius."""</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">5</span> <span class="op">/</span> <span class="dv">9</span> <span class="op">*</span> (f <span class="op">-</span> <span class="dv">32</span>)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> celsius_a_kelvin(c: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convierte grados Celsius a Kelvin. Precondición: c &gt;= -273.15."""</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> c <span class="op">&gt;=</span> <span class="op">-</span><span class="fl">273.15</span>, <span class="ss">f"Temperatura por debajo del cero absoluto: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c <span class="op">+</span> <span class="fl">273.15</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> radianes_a_grados(r: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convierte radianes a grados."""</span></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> math</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r <span class="op">*</span> <span class="dv">180</span> <span class="op">/</span> math.pi</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> grados_a_radianes(g: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convierte grados a radianes."""</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> math</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> g <span class="op">*</span> math.pi <span class="op">/</span> <span class="dv">180</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"100 °C en °F:  </span><span class="sc">{</span>celsius_a_fahrenheit(<span class="dv">100</span>)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"212 °F en °C:  </span><span class="sc">{</span>fahrenheit_a_celsius(<span class="dv">212</span>)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"0 °C en K:     </span><span class="sc">{</span>celsius_a_kelvin(<span class="dv">0</span>)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"π rad en °:    </span><span class="sc">{</span>radianes_a_grados(<span class="fl">3.141592653589793</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong><code>main.py</code></strong> — punto de entrada que coordina los módulos:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""Herramienta matemática interactiva."""</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""Módulo de funciones geométricas básicas."""</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numeros</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geometria</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> conversor</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mostrar_menu() <span class="op">-&gt;</span> <span class="va">None</span>:</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Herramienta matemática ==="</span>)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  1. Test de primalidad"</span>)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  2. MCD de dos enteros"</span>)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  3. Área de un círculo"</span>)</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  4. Conversión de temperatura (°C → °F)"</span>)</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  0. Salir"</span>)</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"------------------------------"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> area_circulo(r: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Área de un círculo de radio r. Precondición: r &gt;= 0."""</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> r <span class="op">&gt;=</span> <span class="dv">0</span>, <span class="ss">f"El radio debe ser no negativo, recibido </span><span class="sc">{</span>r<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> math.pi <span class="op">*</span> r <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hipotenusa(a: <span class="bu">float</span>, b: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Longitud de la hipotenusa dado los catetos a y b."""</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> a <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> b <span class="op">&gt;</span> <span class="dv">0</span>, <span class="st">"Los catetos deben ser positivos"</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> math.sqrt(a <span class="op">**</span> <span class="dv">2</span> <span class="op">+</span> b <span class="op">**</span> <span class="dv">2</span>)</span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ejecutar() <span class="op">-&gt;</span> <span class="va">None</span>:</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>        mostrar_menu()</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>        opcion <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Elige una opción: "</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> es_triangulo_valido(a: <span class="bu">float</span>, b: <span class="bu">float</span>, c: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""True si a, b, c satisfacen la desigualdad triangular."""</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> b <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> c <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> a <span class="op">+</span> b <span class="op">&gt;</span> c <span class="kw">and</span> a <span class="op">+</span> c <span class="op">&gt;</span> b <span class="kw">and</span> b <span class="op">+</span> c <span class="op">&gt;</span> a</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> opcion <span class="op">==</span> <span class="st">"1"</span>:</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>            n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"n: "</span>))</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> es primo: </span><span class="sc">{</span>numeros<span class="sc">.</span>es_primo(n)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> opcion <span class="op">==</span> <span class="st">"2"</span>:</span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>            a <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"a: "</span>))</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>            b <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"b: "</span>))</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"mcd(</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">) = </span><span class="sc">{</span>numeros<span class="sc">.</span>mcd(a, b)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> opcion <span class="op">==</span> <span class="st">"3"</span>:</span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>            r <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Radio: "</span>))</span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Área = </span><span class="sc">{</span>geometria<span class="sc">.</span>area_circulo(r)<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> opcion <span class="op">==</span> <span class="st">"4"</span>:</span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>            c <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Temperatura en °C: "</span>))</span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>c<span class="sc">}</span><span class="ss"> °C = </span><span class="sc">{</span>conversor<span class="sc">.</span>celsius_a_fahrenheit(c)<span class="sc">:.2f}</span><span class="ss"> °F"</span>)</span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> opcion <span class="op">==</span> <span class="st">"0"</span>:</span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Hasta luego."</span>)</span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Opción no válida."</span>)</span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>    ejecutar()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Área círculo r=1:    </span><span class="sc">{</span>area_circulo(<span class="dv">1</span>)<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hipotenusa 3, 4:     </span><span class="sc">{</span>hipotenusa(<span class="dv">3</span>, <span class="dv">4</span>)<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Triángulo 3, 4, 5:   </span><span class="sc">{</span>es_triangulo_valido(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Triángulo 1, 2, 10:  </span><span class="sc">{</span>es_triangulo_valido(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">10</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong><code>conversor.py</code></strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""Módulo de conversión de unidades."""</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> celsius_a_fahrenheit(c: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convierte grados Celsius a Fahrenheit."""</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">9</span> <span class="op">/</span> <span class="dv">5</span> <span class="op">*</span> c <span class="op">+</span> <span class="dv">32</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fahrenheit_a_celsius(f: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convierte grados Fahrenheit a Celsius."""</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">5</span> <span class="op">/</span> <span class="dv">9</span> <span class="op">*</span> (f <span class="op">-</span> <span class="dv">32</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> celsius_a_kelvin(c: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convierte grados Celsius a Kelvin. Precondición: c &gt;= -273.15."""</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> c <span class="op">&gt;=</span> <span class="op">-</span><span class="fl">273.15</span>, <span class="ss">f"Temperatura por debajo del cero absoluto: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c <span class="op">+</span> <span class="fl">273.15</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> radianes_a_grados(r: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convierte radianes a grados."""</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> math</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r <span class="op">*</span> <span class="dv">180</span> <span class="op">/</span> math.pi</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> grados_a_radianes(g: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convierte grados a radianes."""</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> math</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> g <span class="op">*</span> math.pi <span class="op">/</span> <span class="dv">180</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"100 °C en °F:  </span><span class="sc">{</span>celsius_a_fahrenheit(<span class="dv">100</span>)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"212 °F en °C:  </span><span class="sc">{</span>fahrenheit_a_celsius(<span class="dv">212</span>)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"0 °C en K:     </span><span class="sc">{</span>celsius_a_kelvin(<span class="dv">0</span>)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"π rad en °:    </span><span class="sc">{</span>radianes_a_grados(<span class="fl">3.141592653589793</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong><code>main.py</code></strong> — punto de entrada que coordina los módulos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""Herramienta matemática interactiva."""</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numeros</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geometria</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> conversor</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mostrar_menu() <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Herramienta matemática ==="</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  1. Test de primalidad"</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  2. MCD de dos enteros"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  3. Área de un círculo"</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  4. Conversión de temperatura (°C → °F)"</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  0. Salir"</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"------------------------------"</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ejecutar() <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>        mostrar_menu()</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>        opcion <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Elige una opción: "</span>)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> opcion <span class="op">==</span> <span class="st">"1"</span>:</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>            n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"n: "</span>))</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> es primo: </span><span class="sc">{</span>numeros<span class="sc">.</span>es_primo(n)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> opcion <span class="op">==</span> <span class="st">"2"</span>:</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>            a <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"a: "</span>))</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>            b <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"b: "</span>))</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"mcd(</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">) = </span><span class="sc">{</span>numeros<span class="sc">.</span>mcd(a, b)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> opcion <span class="op">==</span> <span class="st">"3"</span>:</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>            r <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Radio: "</span>))</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Área = </span><span class="sc">{</span>geometria<span class="sc">.</span>area_circulo(r)<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> opcion <span class="op">==</span> <span class="st">"4"</span>:</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>            c <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Temperatura en °C: "</span>))</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>c<span class="sc">}</span><span class="ss"> °C = </span><span class="sc">{</span>conversor<span class="sc">.</span>celsius_a_fahrenheit(c)<span class="sc">:.2f}</span><span class="ss"> °F"</span>)</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> opcion <span class="op">==</span> <span class="st">"0"</span>:</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Hasta luego."</span>)</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Opción no válida."</span>)</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>    ejecutar()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
