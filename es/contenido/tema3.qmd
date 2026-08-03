@@ -230,7 +230,7 @@ print(fibonacci(10))   # 55
 
 ![Árbol de llamadas recursivas de `fibonacci(5)`. Las líneas punteadas indican la suma pendiente entre los dos subproblemas de cada nodo.](../../images/fibonacci5.png){#fig-fibonacci-tree width=100%}
 
-La ineficiencia de la implementación anterior tiene una causa concreta como se observa en el árbol de llamadas mostrado en la figura @fig-fibonacci-tree: `fibonacci(3)` se calcula dos veces, `fibonacci(2)` tres veces, y así sucesivamente. 
+La ineficiencia de la implementación anterior tiene una causa concreta como se observa en el árbol de llamadas mostrado en la @fig-fibonacci-tree: `fibonacci(3)` se calcula dos veces, `fibonacci(2)` tres veces, y así sucesivamente. 
 
 La solución general a este problema se llama **memorización** (*memoization* en inglés): guardar el resultado de cada llamada la primera vez que se computa y devolverlo directamente en llamadas posteriores, sin repetir el trabajo. En temas posteriores se verá cómo Python implementa memorización de forma transparente reduciendo el coste de esta implementación de $O(2^n)$ a $O(n)$.
 :::
@@ -343,6 +343,31 @@ print(c)   # 2
 
 Esta versión es transparente: su comportamiento queda completamente determinado por sus argumentos y no produce ningún efecto lateral.
 :::
+
+### **3.2.3 Ámbito enclosing**
+
+El ámbito **enclosing** aparece cuando una función se define **dentro de otra función**. La función interna puede leer las variables de la función que la contiene, aunque esas variables no sean locales ni globales:
+
+```{pyodide}
+def funcion_exterior():
+    y = 20
+
+    def funcion_interior():
+        z = 30       
+        print(f"Local z: {z}") 
+        print(f"Enclosing y: {y}") 
+
+    funcion_interior()
+    print(f"Local y: {y}")
+
+funcion_exterior()
+```
+
+La variable `y` no es local de `funcion_interior` (no se define ahí) ni es global (está dentro de `funcion_externa`): vive en el ámbito *enclosing*. Python lo encuentra siguiendo la cadena **L → E → G → B**. 
+
+![Ámbitos con respecto a `funcion_interior`.](../../images/legb.png){#fig-legb width=100%}
+
+En la figura @fig-legb se muestra la jerarquía de ámbitos cuando Python se encuentra en el interior de `funcion_interior`. Se observa que en este caso el ámbito local de `funcion_exterior` es el ámbito enclosing de `funcion_interior`. La variable `x` es visible desde `funcion_interior` ya que se encuentra en el ámbito global. También el uso de la función `len()` es posible porque está definida en el ámbito built-in.
 
 ---
 
