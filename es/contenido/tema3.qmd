@@ -367,7 +367,7 @@ La variable `y` no es local de `funcion_interior` (no se define ahí) ni es glob
 
 ![Ámbitos con respecto a `funcion_interior`.](../../images/legb.png){#fig-legb width=100%}
 
-En la figura @fig-legb se muestra la jerarquía de ámbitos cuando Python se encuentra en el interior de `funcion_interior`. Se observa que en este caso el ámbito local de `funcion_exterior` es el ámbito enclosing de `funcion_interior`. La variable `x` es visible desde `funcion_interior` ya que se encuentra en el ámbito global. También el uso de la función `len()` es posible porque está definida en el ámbito built-in.
+En la figura @fig-legb se muestra la jerarquía de ámbitos cuando el intérprete de Python se encuentra en el interior de `funcion_interior`. Se observa que en este caso el ámbito local de `funcion_exterior` es el ámbito enclosing de `funcion_interior`. La variable `x` es visible desde `funcion_interior` ya que se encuentra en el ámbito global. También el uso de la función `len()` es posible porque está definida en el ámbito built-in.
 
 ---
 
@@ -584,7 +584,7 @@ Algunos módulos de la biblioteca estándar especialmente útiles en matemática
 
 Cualquier fichero `.py` es automáticamente un módulo importable desde otro fichero del mismo directorio. Para crear un módulo propio basta con escribir las funciones en un fichero con un nombre descriptivo.
 
-El fichero `numeros.py` agrupa las funciones de teoría de números construidas a lo largo del Tema 2 y el Tema 3:
+El fichero `numeros.py` agrupa algunas de las funciones de teoría de números construidas a lo largo del Tema 2 y el Tema 3:
 
 ```python
 # numeros.py
@@ -595,67 +595,6 @@ import math
 
 def es_primo(n: int) -> bool:
     """Devuelve True si n es primo (n debe ser >= 2)."""
-    if n < 2:
-        return False
-    for d in range(2, int(math.sqrt(n)) + 1):
-        if n % d == 0:
-            return False
-    return True
-
-
-def mcd(a: int, b: int) -> int:
-    """Máximo común divisor de a y b (algoritmo de Euclides)."""
-    if b == 0:
-        return a
-    return mcd(b, a % b)
-
-
-def mcm(a: int, b: int) -> int:
-    """Mínimo común múltiplo de a y b."""
-    return abs(a * b) // mcd(a, b)
-
-
-def factorial(n: int) -> int:
-    """Factorial de n. Precondición: n >= 0."""
-    assert n >= 0, f"factorial no está definido para negativos, recibido {n}"
-    if n == 0:
-        return 1
-    return n * factorial(n - 1)
-```
-
-Desde otro fichero del mismo directorio se importa como cualquier módulo de la biblioteca estándar:
-
-```python
-# main.py
-import numeros
-
-print(numeros.es_primo(17))       # True
-print(numeros.mcd(48, 18))        # 6
-print(numeros.mcm(4, 6))          # 12
-print(numeros.factorial(10))      # 3628800
-```
-
-### **3.4.3 El bloque `if __name__ == "__main__"`**
-
-Cuando Python carga un módulo mediante `import`, ejecuta todo su código de nivel superior. Esto plantea un problema si el módulo contiene pruebas o demostraciones que no queremos ejecutar al importarlo.
-
-::: {#imp-main .callout-important title="El bloque `if __name__ == \"__main__\"`"}
-Python asigna automáticamente a cada módulo una variable especial `__name__`:
-
-- Cuando el fichero se **ejecuta directamente** (`python numeros.py`), `__name__` toma el valor `"__main__"`.
-- Cuando el fichero se **importa** desde otro módulo, `__name__` toma el nombre del módulo (`"numeros"`).
-
-El bloque `if __name__ == "__main__":` permite incluir en el mismo fichero tanto la librería (importable) como un pequeño programa de prueba (ejecutable directamente):
-
-```python
-# numeros.py
-"""Módulo con funciones básicas de teoría de números."""
-
-import math
-
-
-def es_primo(n: int) -> bool:
-    """Devuelve True si n es primo (n >= 2)."""
     if n < 2:
         return False
     for d in range(2, int(math.sqrt(n)) + 1):
@@ -694,6 +633,30 @@ if __name__ == "__main__":
     print(f"factorial(10) = {factorial(10)}")     # 3628800
 ```
 
+Desde otro fichero del mismo directorio se importa como cualquier módulo de la biblioteca estándar:
+
+```python
+# main.py
+import numeros
+
+print(numeros.es_primo(17))       # True
+print(numeros.mcd(48, 18))        # 6
+print(numeros.mcm(4, 6))          # 12
+print(numeros.factorial(10))      # 3628800
+```
+
+### **3.4.3 El bloque `if __name__ == "__main__"`**
+
+Cuando Python carga un módulo mediante `import`, ejecuta todo su código de nivel superior. Esto plantea un problema si el módulo contiene pruebas o demostraciones que no queremos ejecutar al importarlo.
+
+::: {#imp-main .callout-important title="El bloque `if __name__ == \"__main__\"`"}
+Python asigna automáticamente a cada módulo una variable especial `__name__`:
+
+- Cuando el fichero se **ejecuta directamente** (`python numeros.py`), `__name__` toma el valor `"__main__"`.
+- Cuando el fichero se **importa** desde otro módulo, `__name__` toma el nombre del módulo (`"numeros"`).
+
+El bloque `if __name__ == "__main__":` permite incluir en el mismo fichero tanto la librería (importable) como un pequeño programa de prueba ejecutable directamente con un `python numeros.py`. El código dentro de este bloque solo se ejecuta cuando el módulo se lanza como programa, y no cuando se importa.
+
 Este patrón es la práctica estándar en Python: el mismo fichero puede actuar como librería (importado por otros módulos) o como programa (ejecutado directamente), y el bloque `if __name__ == "__main__":` separa limpiamente ambos roles.
 :::
 
@@ -701,35 +664,52 @@ Este patrón es la práctica estándar en Python: el mismo fichero puede actuar 
 
 ## 3.5. Organización de proyectos
 
-A medida que un proyecto crece, dividir el código en módulos con responsabilidades bien definidas facilita el mantenimiento, la detección de errores y la colaboración.
+A medida que un proyecto crece, dividir el código en módulos con responsabilidades bien definidas facilita el mantenimiento, la detección de errores y la colaboración. Organizar un proyecto en Python correctamente desde el principio es fundamental para asegurar que el código sea escalable, reproducible y fácil de mantener. Actualmente, la comunidad de Python ha convergido en un conjunto de estándares muy claros, alejándose de los scripts sueltos y adoptando herramientas modernas.
 
 ### **3.5.1 Estructura de ficheros**
 
-La organización básica de un proyecto Python sigue esta estructura:
+La estructura más recomendada por la [Python Packaging Authority (PyPA)](https://packaging.python.org/en/latest/){target="_blank"} utiliza una carpeta `src/` para contener el código fuente, separando así el código de los tests y de la documentación. La organización de un ejemplo de proyecto, titulado `t3_ejemplo`, sería:
+
+```text
+t3_ejemplo/
+├── .gitignore             # Archivos que Git no debe rastrear
+├── pyproject.toml         # Configuración central del proyecto y dependencias
+├── README.md              # Documentación principal
+├── src/                   # Contenedor del código fuente
+│   └── t3_paquete/        # Tu paquete de Python real
+│       ├── __init__.py    # Convierte la carpeta en paquete (puede estar vacío)
+│       ├── main.py        # Punto de entrada del programa
+│       ├── numeros.py     # Funciones de teoría de números
+│       ├── geometria.py   # Funciones de geometría
+│       └── conversor.py   # Funciones de conversión de unidades
+├── tests/                 # Pruebas automatizadas (separadas del código fuente)
+│   ├── conftest.py        # Configuración y "fixtures" para pytest
+│   └── test_numeros.py    # Pruebas específicas para numeros.py (se verán en el Tema 5)
+└── docs/                  # Archivos de documentación
 
 ```
-proyecto/
-│
-├── main.py              # punto de entrada del programa
-│
-├── numeros.py           # funciones de teoría de números
-├── geometria.py         # funciones de geometría
-├── conversor.py         # funciones de conversión de unidades
-│
-└── README.md            # descripción del proyecto
-```
 
-Cada módulo agrupa funciones relacionadas por temática o responsabilidad. `main.py` actúa como punto de entrada: importa los módulos que necesita y orquesta la lógica principal del programa.
+Cada módulo (fichero `.py` bajo `src/mi_paquete/`) agrupa funciones relacionadas por temática o responsabilidad. `main.py` actúa como punto de entrada: importa los módulos que necesita y orquesta la lógica principal del programa.
 
 Python busca los módulos en el mismo directorio que el fichero que los importa, sin necesidad de configuración adicional. Esta estructura funciona directamente en un entorno local y en un Codespace.
 
 ::: {.callout-tip appearance="simple"}
 Un módulo debe hacer **una cosa bien**. Si un módulo empieza a agrupar funciones de geometría y también de estadística, es señal de que debería dividirse en dos. La pregunta de diseño es siempre: *¿qué tienen en común las funciones de este módulo?*
+
+**Mantén los módulos pequeños**
+
+Una guía práctica:
+
+- menos de 500 líneas: ideal
+- entre 500 y 1000: revisar si conviene dividir
+- más de 1000: normalmente merece una refactorización
+
+No es una regla estricta, pero ayuda a mantener el código manejable.
 :::
 
-### **3.5.2 Ejemplo de proyecto organizado**
+### **3.5.2 Ejemplo de módulos del proyecto `t3_ejemplo`**
 
-El proyecto organiza, además de `numeros.py`, otros tres módulos con responsabilidades distintas:
+El proyecto `t3_ejemplo`, con la estructura presentada anteriormente, incluye además de `numeros.py`, otros tres módulos `geometria.py`, `conversor.py` y `main.py` con responsabilidades distintas que se presentan a continuación.
 
 **`geometria.py`**:
 
@@ -809,9 +789,7 @@ if __name__ == "__main__":
 ```python
 """Herramienta matemática interactiva."""
 
-import numeros
-import geometria
-import conversor
+from t3_paquete import numeros, geometria, conversor
 
 
 def mostrar_menu() -> None:
