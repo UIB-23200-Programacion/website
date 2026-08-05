@@ -849,6 +849,8 @@ if __name__ == "__main__":
 
 ::: {.callout-note appearance="simple"}
 `main.py` no contiene ningún cálculo propio: se limita a importar los módulos y coordinar la interacción con el usuario. Esta separación entre **lógica de negocio** (los módulos) y **punto de entrada** (`main.py`) es una práctica de diseño fundamental que escala bien a proyectos de cualquier tamaño.
+
+El proyecto completo `t03_ejemplo` está disponible en el repositorio del curso: [https://github.com/UIB-23200-Programacion/t03_ejemplo](https://github.com/UIB-23200-Programacion/t03_ejemplo){target="_blank"}. No es necesario que se concentre en memorizar todos los detalles de la estructura ya que el proyecto ejemplo tiene implementadas las mejores prácticas de diseño en Python y lo podrás reutilizar en tus propios repositorios. Lo importante es comprender el patrón general y la filosofía de diseño que subyace. **Lo verdaderamente fundamental es entender el código en los módulos `numeros.py`, `geometria.py`, `conversor.py` y en el script `main.py` que se han presentado anteriormente**.
 :::
 
 ## Bibliografía {.unnumbered}
