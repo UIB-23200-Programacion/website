@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ca" xml:lang="ca"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Ejercicios — Tema 6 – Programación (23200)</title>
+<title>Tema 9: Disseny Algorítmic i Resolució de Problemes – Programación (23200)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -44,6 +44,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/bootstrap/bootstrap-fe839f7715ebcdbad7a07c709ae06b28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark-bac4d22b2bca5ca58db192775c64c60d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/bootstrap/bootstrap-fe839f7715ebcdbad7a07c709ae06b28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -58,23 +60,25 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No se han encontrado resultados",
-    "search-matching-documents-text": "documentos encontrados",
-    "search-copy-link-title": "Copiar el enlace en la búsqueda",
-    "search-hide-matches-text": "Ocultar resultados adicionales",
-    "search-more-match-text": "resultado adicional en este documento",
-    "search-more-matches-text": "resultados adicionales en este documento",
-    "search-clear-button-title": "Borrar",
+    "search-no-results-text": "Cap resultat",
+    "search-matching-documents-text": "documents que coincideixen",
+    "search-copy-link-title": "Copia l'enllaç a la cerca",
+    "search-hide-matches-text": "Amaga les coincidències addicionals",
+    "search-more-match-text": "altra coincidència en aquest document",
+    "search-more-matches-text": "altres coincidències en aquest document",
+    "search-clear-button-title": "Neteja",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Enviar",
-    "search-label": "Buscar"
+    "search-detached-cancel-button-title": "Cancel·la",
+    "search-submit-button-title": "Envia",
+    "search-label": "Cerca"
   }
 }</script>
+<script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Ejercicios — Tema 6 – Programación (23200)">
+<meta property="og:title" content="Tema 9: Disseny Algorítmic i Resolució de Problemes – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
 <meta property="og:site_name" content="Programación (23200)">
 </head>
@@ -247,13 +251,13 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../es/ejercicios/tema1.html">Ejercicios</a></li><li class="breadcrumb-item"><a href="../../es/ejercicios/tema6.html">Ejercicios — Tema 6</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ca/contingut/tema1.html">Temes</a></li><li class="breadcrumb-item"><a href="../../ca/contingut/tema9.html">9. Disseny Algorítmic i Resolució de Problemes</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Cerca" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -285,171 +289,171 @@ ul.task-list li input[type="checkbox"] {
           </li>
       </ul>
     </div>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Commuta el mode fosc"><i class="bi"></i></a>
 </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Buscar"></div>
+        <div id="quarto-search" class="" title="Cerca"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Inicio</span></a>
+  <a href="../../ca/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inici</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Informaciones</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+ <span class="menu-text">Informacions</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/informaciones/guia-docente.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Guía docente</span></a>
+  <a href="../../ca/informacions/guia-docent.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Guia docent</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/informaciones/horarios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Horarios</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Temas</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar sección">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../es/contenido/tema1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1. Fundamentos, Entornos y Asistentes IA</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../es/contenido/tema2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2. Componentes y Control de Flujo</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../es/contenido/tema3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3. Funciones, Módulos y Organización</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../es/contenido/tema4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4. Estructuras de Datos de Python</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../es/contenido/tema5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5. Algoritmos Básicos y Testing</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../es/contenido/tema6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6. Programación Orientada a Objetos</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../es/contenido/tema7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7. Gestión de Datos y Ficheros</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../es/contenido/tema8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8. Ecosistema Científico de Python</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../es/contenido/tema9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">9. Diseño Algorítmico y Resolución de Problemas</span></a>
+  <a href="../../ca/informacions/horaris.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Horaris</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Ejercicios</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Temes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/ejercicios/tema1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ejercicios — Tema 1</span></a>
+  <a href="../../ca/contingut/tema1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Fonaments, Entorns i Assistents IA</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/ejercicios/tema2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ejercicios — Tema 2</span></a>
+  <a href="../../ca/contingut/tema2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Components i Control de Flux</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/ejercicios/tema3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ejercicios — Tema 3</span></a>
+  <a href="../../ca/contingut/tema3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Funcions, Mòduls i Organització</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/ejercicios/tema4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ejercicios — Tema 4</span></a>
+  <a href="../../ca/contingut/tema4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Estructures de Dades de Python</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/ejercicios/tema5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ejercicios — Tema 5</span></a>
+  <a href="../../ca/contingut/tema5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Algorismes Bàsics i Testing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/ejercicios/tema6.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Ejercicios — Tema 6</span></a>
+  <a href="../../ca/contingut/tema6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Programació Orientada a Objectes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/ejercicios/tema7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ejercicios — Tema 7</span></a>
+  <a href="../../ca/contingut/tema7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Gestió de Dades i Fitxers</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/ejercicios/tema8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ejercicios — Tema 8</span></a>
+  <a href="../../ca/contingut/tema8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Ecosistema Científic de Python</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/ejercicios/tema9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ejercicios — Tema 9</span></a>
+  <a href="../../ca/contingut/tema9.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">9. Disseny Algorítmic i Resolució de Problemes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Exercicis</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 9</span></a>
   </div>
 </li>
       </ul>
@@ -457,16 +461,16 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Práctica</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+ <span class="menu-text">Pràctica</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/practica/practica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Práctica del Curso</span></a>
+  <a href="../../ca/practica/practica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pràctica del Curs</span></a>
   </div>
 </li>
       </ul>
@@ -475,33 +479,33 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Recursos</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/recursos/examenes-anteriores.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exámenes anteriores</span></a>
+  <a href="../../ca/recursos/examens-anteriors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exàmens anteriors</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/recursos/tutoriales.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutoriales</span></a>
+  <a href="../../ca/recursos/tutorials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorials</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/recursos/manuales-guias.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Manuales y guías</span></a>
+  <a href="../../ca/recursos/manuals-guies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manuals i guies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/recursos/herramientas-software.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Herramientas de software</span></a>
+  <a href="../../ca/recursos/eines-programari.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Eines de programari</span></a>
   </div>
 </li>
       </ul>
@@ -509,22 +513,22 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
- <span class="menu-text">Bibliografía</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+ <span class="menu-text">Bibliografia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/bibliografia/principal.html" class="sidebar-item-text sidebar-link">
+  <a href="../../ca/bibliografia/principal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Principal</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/bibliografia/complementaria.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Complementaria</span></a>
+  <a href="../../ca/bibliografia/complementaria.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementària</span></a>
   </div>
 </li>
       </ul>
@@ -541,9 +545,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../es/ejercicios/tema1.html">Ejercicios</a></li><li class="breadcrumb-item"><a href="../../es/ejercicios/tema6.html">Ejercicios — Tema 6</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ca/contingut/tema1.html">Temes</a></li><li class="breadcrumb-item"><a href="../../ca/contingut/tema9.html">9. Disseny Algorítmic i Resolució de Problemes</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Ejercicios — Tema 6</h1>
+<h1 class="title">Tema 9: Disseny Algorítmic i Resolució de Problemes</h1>
 </div>
 
 
@@ -560,11 +564,36 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contenido pendiente.)</em></p>
+<p><em>(Contingut pendent.)</em></p>
 
 
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../ca/contingut";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -603,12 +632,12 @@ ul.task-list li input[type="checkbox"] {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copiado");
+      button.setAttribute("title", "Copiat!");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copiado");
+        button.setAttribute("data-bs-title", "Copiat!");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",

@@ -64,97 +64,86 @@
     "href": "es/index.html#qué-encontrarás-en-este-sitio",
     "title": "Inicio",
     "section": "Qué encontrarás en este sitio",
-    "text": "Qué encontrarás en este sitio\nInformaciones Documentos administrativos del curso: un resumen de la guía docente oficial, el calendario y los horarios de clase.\nTemas El contenido teórico-práctico del curso, organizado en 8 temas que van desde los fundamentos del lenguaje hasta el diseño algorítmico y el ecosistema científico de Python.\nEjercicios Colección de ejercicios propuestos para cada tema, pensados para consolidar los conceptos trabajados en clase.\nPráctica del Curso Elemento de evaluación continua: enunciado, plazo y entrega de la práctica del curso.\nRecursos Material de apoyo complementario: exámenes de convocatorias anteriores, tutoriales, manuales, guías de referencia, y herramientas de software recomendadas.\nBibliografía Referencias bibliográficas del curso, divididas en bibliografía principal (lecturas esenciales) y complementaria (lecturas de ampliación).\n\n\n\n\n\n\n\nImportanteMUY IMPORTANTE\n\n\n\nEste sitio es un complemento del Aula Digital de la asignatura.\nEl Aula Digital es la plataforma oficial de teleeducación y aprendizaje en línea de la UIB. Basada en el software Moodle, funciona como el espacio virtual de apoyo para la gran mayoría de asignaturas presenciales y semipresenciales.\nEs el entorno centralizado donde los estudiantes pueden:\n\nAcceder a los materiales y apuntes de cada asignatura.\nConsultar el calendario académico y las fechas de exámenes.\nEntregar trabajos, realizar cuestionarios y participar en foros.\nRevisar las calificaciones y notas finales.\n\nEl acceso a esa plataforma se gestiona a través del Portal del Alumnado, y también cuenta con soporte para dispositivos móviles.",
+    "text": "Qué encontrarás en este sitio\nInformaciones: Documentos administrativos del curso: un resumen de la guía docente oficial, el calendario y los horarios de clase.\nTemas: El contenido teórico-práctico del curso, organizado en 8 temas que van desde los fundamentos del lenguaje hasta el diseño algorítmico y el ecosistema científico de Python.\nEjercicios: Colección de ejercicios propuestos para cada tema, pensados para consolidar los conceptos trabajados en clase.\nPráctica del Curso: Elemento de evaluación continua: enunciado, plazo y entrega de la práctica del curso.\nRecursos: Material de apoyo complementario: exámenes de convocatorias anteriores, tutoriales, manuales, guías de referencia, y herramientas de software recomendadas.\nBibliografía: Referencias bibliográficas del curso, divididas en bibliografía principal (lecturas esenciales) y complementaria (lecturas de ampliación).\n\n\n\n\n\n\n\nImportanteMUY IMPORTANTE\n\n\n\nEste sitio es un complemento del Aula Digital de la asignatura.\nEl Aula Digital es la plataforma oficial de teleeducación y aprendizaje en línea de la UIB. Basada en el software Moodle, funciona como el espacio virtual de apoyo para la gran mayoría de asignaturas presenciales y semipresenciales.\nEs el entorno centralizado donde los estudiantes pueden:\n\nAcceder a los materiales y apuntes de cada asignatura.\nConsultar el calendario académico y las fechas de exámenes.\nEntregar trabajos, realizar cuestionarios y participar en foros.\nRevisar las calificaciones y notas finales.\n\nEl acceso a esa plataforma se gestiona a través del Portal del Alumnado, y también cuenta con soporte para dispositivos móviles.",
     "crumbs": [
       "Inicio"
     ]
   },
   {
-    "objectID": "es/ejercicios/tema7.html",
-    "href": "es/ejercicios/tema7.html",
-    "title": "Ejercicios — Tema 7",
+    "objectID": "es/ejercicios/tema8.html",
+    "href": "es/ejercicios/tema8.html",
+    "title": "Ejercicios — Tema 8",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Ejercicios",
-      "Ejercicios — Tema 7"
+      "Ejercicios — Tema 8"
     ]
   },
   {
-    "objectID": "es/ejercicios/tema5.html",
-    "href": "es/ejercicios/tema5.html",
-    "title": "Ejercicios — Tema 5",
+    "objectID": "es/ejercicios/tema6.html",
+    "href": "es/ejercicios/tema6.html",
+    "title": "Ejercicios — Tema 6",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Ejercicios",
-      "Ejercicios — Tema 5"
+      "Ejercicios — Tema 6"
     ]
   },
   {
-    "objectID": "es/ejercicios/tema3.html",
-    "href": "es/ejercicios/tema3.html",
-    "title": "Ejercicios — Tema 3",
+    "objectID": "es/ejercicios/tema4.html",
+    "href": "es/ejercicios/tema4.html",
+    "title": "Ejercicios — Tema 4",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Ejercicios",
-      "Ejercicios — Tema 3"
+      "Ejercicios — Tema 4"
     ]
   },
   {
-    "objectID": "es/ejercicios/tema1.html",
-    "href": "es/ejercicios/tema1.html",
-    "title": "Ejercicios — Tema 1",
+    "objectID": "es/ejercicios/tema2.html",
+    "href": "es/ejercicios/tema2.html",
+    "title": "Ejercicios — Tema 2",
     "section": "",
-    "text": "El objetivo de este ejercicio es que el estudiante cree su propia cuenta en GitHub y complete el proceso de solicitud del GitHub Student Developer Pack. El GitHub Student Developer Pack ofrece acceso gratuito a herramientas profesionales de desarrollo: dominios, servidores, IDEs, créditos en la nube, herramientas de diseño, bases de datos y mucho más.\nA continuación las instrucciones, paso a paso, que debes seguir para completar este ejercicio.\n\n\n\nPaso 1: Entra en: https://github.com/\nPaso 2: Iniciar el registro. Haz clic en Sign up (arriba a la derecha).\nPaso 3: Introducir tus datos. GitHub te pedirá:\n\nCorreo electrónico (usa tu correo universitario de la UIB).\nContraseña segura.\nNombre de usuario (será tu identidad pública en GitHub).\n\nPaso 4: Verificar tu correo. GitHub enviará un mensaje a tu email de la UIB. Abre el correo y pulsa Verify email address.\n\n\n\n\nUna vez creada la cuenta, completa tu perfil de usuario siguiendo estos pasos:\n\nPaso 1: Accede a tu perfil. Haz clic en tu foto o avatar (arriba a la derecha) y selecciona Your profile.\nPaso 2: Haz clic en Edit profile y completa la información solicitada:\n\nName → Tu nombre real.\nBio → Una breve descripción (por ejemplo: Estudiante del Grado en Matemáticas (UIB)).\nCompany → Aquí es donde se indica la Universidad. Ejemplo: Universitat de les Illes Balears\n\nPaso 3: Guardar los cambios haciendo clic en Save al final del formulario.\n\nTras completar estos pasos, tendrás un perfil académico básico y correcto, adecuado para solicitar el GitHub Student Developer Pack\n\n\n\n\nPaso 1: Accede a la configuración de tu cuenta. Haz clic en tu foto o avatar (arriba a la derecha) y selecciona Settings.\nPaso 2: En el menú lateral izquierdo, abrir la sección Password and authentication.\nPaso 3: Dentro de Password and authentication, localizar el apartado Two-factor authentication → Enable two-factor authentication\nPaso 4: Elegir el método de autenticación.\n\nSe recomienda emplear una aplicación de autenticación (Authenticator app).\nDado que la UIB requiere la aplicación Microsoft Authenticator se sugiere utilizar esta.\nDebes:\n\n\nAbrir la aplicación Microsoft Authenticator en tu móvil.\nEscanear el código QR que aparece en pantalla.\nTocar el ícono de GitHub en la app (en tu móvil) para ver el código temporal de 6 dígitos que se genera cada 30 segundos.\nIntroducir el código temporal anterior en la página de GitHub.\n\n\n\n\n\n\n\n\n\nPaso 1: Ve a https://education.github.com/pack. Haz clic en Sign up for Student Developer Pack.\nPaso 2: Iniciar sesión con tu cuenta de GitHub. Si no lo has hecho ya, GitHub te pedirá iniciar sesión.\nPaso 3: Verificación de identidad académica. GitHub te pedirá demostrar que eres estudiante. Puedes hacerlo de dos formas pero se recomienda la opción de correo institucional (el que es xxxxx@estudiant.uib.cat)\nPaso 4: Completar el formulario. GitHub te preguntará:\n\nTu nivel educativo (Undergraduate)\nTu universidad\nTu motivo para solicitar el Pack (puedes escribir algo sencillo como: “I want to use professional development tools for my university degree programming projects.”)\n\nPaso 5: Enviar la solicitud. Clic en Submit.\n\nGitHub suele tardar entre 1 y 5 días en revisar la solicitud. Recibirás un correo indicando si ha sido aprobada. Una vez aceptado, tendrás acceso a todas las herramientas del Pack desde tu cuenta de GitHub.",
+    "text": "(Contenido pendiente.)",
     "crumbs": [
       "Ejercicios",
-      "Ejercicios — Tema 1"
+      "Ejercicios — Tema 2"
     ]
   },
   {
-    "objectID": "es/ejercicios/tema1.html#ejercicio-1.1",
-    "href": "es/ejercicios/tema1.html#ejercicio-1.1",
-    "title": "Ejercicios — Tema 1",
+    "objectID": "es/contenido/tema9.html",
+    "href": "es/contenido/tema9.html",
+    "title": "Tema 9: Diseño Algorítmico y Resolución de Problemas",
     "section": "",
-    "text": "El objetivo de este ejercicio es que el estudiante cree su propia cuenta en GitHub y complete el proceso de solicitud del GitHub Student Developer Pack. El GitHub Student Developer Pack ofrece acceso gratuito a herramientas profesionales de desarrollo: dominios, servidores, IDEs, créditos en la nube, herramientas de diseño, bases de datos y mucho más.\nA continuación las instrucciones, paso a paso, que debes seguir para completar este ejercicio.\n\n\n\nPaso 1: Entra en: https://github.com/\nPaso 2: Iniciar el registro. Haz clic en Sign up (arriba a la derecha).\nPaso 3: Introducir tus datos. GitHub te pedirá:\n\nCorreo electrónico (usa tu correo universitario de la UIB).\nContraseña segura.\nNombre de usuario (será tu identidad pública en GitHub).\n\nPaso 4: Verificar tu correo. GitHub enviará un mensaje a tu email de la UIB. Abre el correo y pulsa Verify email address.\n\n\n\n\nUna vez creada la cuenta, completa tu perfil de usuario siguiendo estos pasos:\n\nPaso 1: Accede a tu perfil. Haz clic en tu foto o avatar (arriba a la derecha) y selecciona Your profile.\nPaso 2: Haz clic en Edit profile y completa la información solicitada:\n\nName → Tu nombre real.\nBio → Una breve descripción (por ejemplo: Estudiante del Grado en Matemáticas (UIB)).\nCompany → Aquí es donde se indica la Universidad. Ejemplo: Universitat de les Illes Balears\n\nPaso 3: Guardar los cambios haciendo clic en Save al final del formulario.\n\nTras completar estos pasos, tendrás un perfil académico básico y correcto, adecuado para solicitar el GitHub Student Developer Pack\n\n\n\n\nPaso 1: Accede a la configuración de tu cuenta. Haz clic en tu foto o avatar (arriba a la derecha) y selecciona Settings.\nPaso 2: En el menú lateral izquierdo, abrir la sección Password and authentication.\nPaso 3: Dentro de Password and authentication, localizar el apartado Two-factor authentication → Enable two-factor authentication\nPaso 4: Elegir el método de autenticación.\n\nSe recomienda emplear una aplicación de autenticación (Authenticator app).\nDado que la UIB requiere la aplicación Microsoft Authenticator se sugiere utilizar esta.\nDebes:\n\n\nAbrir la aplicación Microsoft Authenticator en tu móvil.\nEscanear el código QR que aparece en pantalla.\nTocar el ícono de GitHub en la app (en tu móvil) para ver el código temporal de 6 dígitos que se genera cada 30 segundos.\nIntroducir el código temporal anterior en la página de GitHub.\n\n\n\n\n\n\n\n\n\nPaso 1: Ve a https://education.github.com/pack. Haz clic en Sign up for Student Developer Pack.\nPaso 2: Iniciar sesión con tu cuenta de GitHub. Si no lo has hecho ya, GitHub te pedirá iniciar sesión.\nPaso 3: Verificación de identidad académica. GitHub te pedirá demostrar que eres estudiante. Puedes hacerlo de dos formas pero se recomienda la opción de correo institucional (el que es xxxxx@estudiant.uib.cat)\nPaso 4: Completar el formulario. GitHub te preguntará:\n\nTu nivel educativo (Undergraduate)\nTu universidad\nTu motivo para solicitar el Pack (puedes escribir algo sencillo como: “I want to use professional development tools for my university degree programming projects.”)\n\nPaso 5: Enviar la solicitud. Clic en Submit.\n\nGitHub suele tardar entre 1 y 5 días en revisar la solicitud. Recibirás un correo indicando si ha sido aprobada. Una vez aceptado, tendrás acceso a todas las herramientas del Pack desde tu cuenta de GitHub.",
+    "text": "(Contenido pendiente.)",
     "crumbs": [
-      "Ejercicios",
-      "Ejercicios — Tema 1"
-    ]
-  },
-  {
-    "objectID": "es/ejercicios/tema1.html#ejercicio-1.2",
-    "href": "es/ejercicios/tema1.html#ejercicio-1.2",
-    "title": "Ejercicios — Tema 1",
-    "section": "Ejercicio 1.2",
-    "text": "Ejercicio 1.2\nEste ejercicio tiene como objetivo que aprendas a:\n\nCrear un repositorio en GitHub.\n\nConfigurarlo mínimamente.\n\nLevantar un Codespace asociado a ese repositorio.\n\n\n\n\n\n\n\nConcepto Clave 1: Repositorio y Codespace\n\n\n\nUn repositorio de GitHub es un espacio donde se guarda un proyecto: contiene el código, archivos del proyecto y el historial de revisiones (commits) que permiten seguir y recuperar cambios a lo largo del tiempo.\nLos repositorios pueden ser públicos o privados, soportan ramas y colaboraciones (pull requests, issues) para coordinar trabajo en equipo, y actúan como la unidad básica de trabajo dentro de GitHub.\nUn GitHub Codespace es un entorno de desarrollo en la nube, listo para usar, que te permite programar directamente desde GitHub sin configurar tu máquina local. Suele venir con herramientas y dependencias preconfiguradas para un repositorio concreto, lo que facilita empezar a trabajar rápido.\n\n\n\n1. Acceder a tu cuenta de GitHub (si no lo has hecho ya)\n\nAbrir el navegador.\n\nIr a: https://github.com/\n\nPulsar Sign in.\n\nIntroducir usuario y contraseña.\n\n\n\n2. Crear el repositorio “test-de-codespaces–tema-1”\n\nPaso 1: En la parte superior izquierda, hacer clic en + ().\nPaso 2: Seleccionar New repository.\nPaso 3: Aparecerá un formulario con varios campos para configurar el repositorio:\n\nRepository name → test-de-codespaces–tema-1\nDescription → Repositorio de prueba para Codespaces\nVisibility → Private (privado)\nInitialize this repository with a README → marcar esta opción a On.\n\nPaso 4: Hacer clic en el botón Create repository.\nPaso 5: Verificar que el repositorio se ha creado. Debes ver una página con:\n\nEl nombre del repositorio que has dado arriba.\n\nUn archivo README.md ya creado.\n\nUn menú con pestañas como Code, Issues, Pull requests, etc.\n\n\n\n\n3. Crear un Codespace preconfigurado para Python\n\nPaso 1: Crear la carpeta .devcontainer y el fichero devcontainer.json\n\nEn el repositorio creado (test-de-codespaces–tema-1), hacer clic en el botón Add file → Create new file.\nEn el campo Name your file escribir:\n.devcontainer/devcontainer.json\nDentro del archivo, pega este contenido:\n{\n    \"name\": \"Curso Programación 23200, Python 3.12\",\n    \"image\": \"mcr.microsoft.com/devcontainers/python:3.12\",\n\n    \"customizations\": {\n        \"vscode\": {\n            \"extensions\": [\n                \"ms-python.python\",\n                \"ms-python.vscode-pylance\",\n                \"charliermarsh.ruff\",\n                \"ms-python.black-formatter\",\n                \"oderwat.indent-rainbow\"\n            ],\n            \"settings\": {\n                \"editor.formatOnSave\": true,\n                \"editor.defaultFormatter\": \"ms-python.black-formatter\",\n                \"python.analysis.typeCheckingMode\": \"basic\",\n                \"ruff.enable\": true\n            }\n        }\n    },\n\n    \"postCreateCommand\": \"pip install --upgrade pip && pip install -r requirements.txt || true\",\n    \"postStartCommand\": \"echo 'Entorno listo para Programación 23200'\",\n\n    \"forwardPorts\": [8000, 8080]\n}\nGuardar el archivo: Has clic en Commit changes….\nAcepta el mensaje por defecto sobre los cambios y haz clic en Commit changes.\n\nPaso 2: Crear el fichero requirements.txt en el directorio raíz del repositorio\n\nDado el paso anterior puede ocurrir que te encuentres en el directorio .devcontainer, debes ir al directorio raíz del repositorio, no permanecer dentro de .devcontainer. Para ello haz clic en .. (arriba a la izquierda) para volver al directorio raíz.\nEn el directorio raíz del repositorio (test-de-codespaces–tema-1), hacer clic en el botón Add file → Create new file.\nEn el campo Name your file escribir:\nrequirements.txt\nDentro del archivo, pega este contenido:\nruff\nblack\nGuardar el archivo: Has clic en Commit changes….\nAcepta el mensaje por defecto sobre los cambios y haz clic en Commit changes.\n\n\n\n\n4. Arrancar el Codespace\n\nPaso 1: Has clic en Code → Codespaces.\nPaso 2: Has clic en Create codespace on main.\nGitHub detectará el .devcontainer y:\n\ndescargará la imagen de Python,\n\ninstalará las extensiones,\n\nconfigurará el entorno,\n\nabrirá VS Code con soporte completo para Python.\n\nPaso 3: Espera a que el Codespace esté listo. Esto puede tardar unos minutos. Verás mensajes como:\n\nSetting up remote connection: [Building codespace…]”\n\nInstalling dependencies…\n\nUna vez listo, verás un mensaje en la parte inferior derecha de VS Code indicando que el entorno está listo.\n\n\n\n5. Reconocer la interfaz del Codespace\nEl entorno tendrá:\n\nBarra lateral izquierda con:\n\nExplorador, muestra los archivos del proyecto.\nBuscar, permite buscar texto en los archivos.\nControl de código fuente, permite ver los cambios y hacer commits.\nEjecución y depuración, permite ejecutar y depurar el código.\nExtensiones, permite gestionar las extensiones de VS Code.\n\nEditor de código en el centro arriba (aparece abierto el README.md).\n\nTerminal integrada en el centro abajo.\n\nBarra lateral derecha para el CHAT con Copilot.\n\n\n\n6. Verificar que Python está configurado\nEn la TERMINAL del Codespace escribe el siguiente comando para comprobar la versión de Python instalada (si copias y pegas el comando, probablemente debas dar permiso en la ventana emergente del navegador para poder pegar texto en la terminal):\npython --version\nDebe aparecer:\nPython 3.12.x\n\n\n7. Crear un archivo de prueba y ejecutarlo\n\nEn el explorador, pulsar New File o Nuevo archivo.\nNombrarlo:\nprueba.py\nEscribir dentro:\nprint(\"Mi primer Codespace funciona correctamente\")\nGuardar (Ctrl + S).\nEjecutar el archivo.\n\nVariante 1: Escribir en la terminal:\n\npython prueba.py\n\nVariante 2: Hacer clic en Ejecutar archivo de Python (triángulo de play arriba a la derecha del editor de código).\n\n\n\n\n8. Cerrar el Codespace\nEste es un paso sumamente importante. Cuando termines de trabajar en el Codespace, debes cerrarlo para liberar recursos y evitar que se acumulen cargos en tu cuenta de GitHub. Principalmente ya que el número de horas de Codespaces gratuitas es limitado.\n\nSin salir del Codespace:\n\nPresiona Ctrl + Shift + P (o Cmd + Shift + P en Mac) para abrir la paleta de comandos.\nEscribe Codespaces: Close Codespace y selecciona la opción que aparece.\n\nAlternativamente, puedes cerrar el Codespace desde tu sitio de GitHub:\n\nVe a tu repositorio en GitHub.\nHaz clic en Code → Codespaces.\nLocaliza el Codespace que quieres cerrar y haz clic en … → Stop Codespace.",
-    "crumbs": [
-      "Ejercicios",
-      "Ejercicios — Tema 1"
+      "Temas",
+      "9. Diseño Algorítmico y Resolución de Problemas"
     ]
   },
   {
     "objectID": "es/contenido/tema7.html",
     "href": "es/contenido/tema7.html",
-    "title": "Tema 7: Ecosistema Científico de Python",
+    "title": "Tema 7: Gestión de Datos y Ficheros",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Temas",
-      "7. Ecosistema Científico de Python"
+      "7. Gestión de Datos y Ficheros"
     ]
   },
   {
     "objectID": "es/contenido/tema5.html",
     "href": "es/contenido/tema5.html",
-    "title": "Tema 5: Estructuras de Datos y Programación Orientada a Objetos",
+    "title": "Tema 5: Algoritmos Básicos y Verificación (Testing)",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Temas",
-      "5. Estructuras de Datos y POO"
+      "5. Algoritmos Básicos y Testing"
     ]
   },
   {
@@ -184,7 +173,7 @@
     "href": "es/contenido/tema3.html#visibilidad-de-variables-scope",
     "title": "Tema 3: Funciones, Módulos y Organización del Código",
     "section": "3.2. Visibilidad de variables (Scope)",
-    "text": "3.2. Visibilidad de variables (Scope)\nCuando Python encuentra un nombre de variable dentro de una función, necesita saber a qué objeto se refiere. El ámbito o scope de una variable determina desde qué partes del código ese nombre es visible.\n\n\n\n\n\n\nFundamento Teórico 3: Ámbito (Scope) y espacio de nombres (Namespace)\n\n\n\nEl ámbito (scope) de una variable es la región del código en la que el nombre de esa variable es reconocido y puede usarse. El espacio de nombres (namespace) es la estructura interna de Python que implementa el ámbito: un diccionario que mapea nombres a objetos.\nPython busca los nombres siguiendo la regla LEGB, en este orden:\n\nLocal — el cuerpo de la función actual.\nEnclosing — funciones que envuelven a la actual (funciones anidadas, temas posteriores).\nGlobal — el módulo (el fichero .py) en el que está el código.\nBuilt-in — los nombres predefinidos de Python: print, len, int, range…\n\nSi el nombre no se encuentra en ninguno de estos ámbitos, Python lanza un NameError.\n\n\n\n3.2.1 Ámbito local\nToda variable que se asigna dentro de una función es local a esa función: existe solo durante la ejecución de la llamada y desaparece al retornar.\n\n\n\n\n\n\nEl ámbito local garantiza el aislamiento: dos funciones pueden usar el mismo nombre de variable sin interferir entre sí.\n\n\n\n\n\n\n\n\n3.2.2 Ámbito global\nLas variables definidas fuera de cualquier función tienen ámbito global y son visibles desde cualquier punto del módulo, incluido el cuerpo de las funciones. En Python, un módulo es simplemente un fichero .py. Cuando escribes código en programa.py y lo ejecutas, ese fichero es tu módulo. Los módulos se tratan en detalle en la sección 3.4.\n\n\n\n\n\n\nLeer una variable global desde una función es aceptable, especialmente para constantes matemáticas o de configuración. Modificarla desde dentro de una función es una práctica que conviene evitar.\n\n\n\n\n\n\nError Frecuente 3: Modificar variables globales con global\n\n\n\nPython permite modificar una variable global desde dentro de una función usando la declaración global, pero es una práctica que dificulta la comprensión y el mantenimiento del código:\ncontador = 0\n\ndef incrementar():\n    global contador       # sin esta línea, Python crearía una variable local\n    contador += 1\n\nincrementar()\nincrementar()\nprint(contador)   # 2\nEl problema es que incrementar() tiene un efecto lateral (side effect) oculto: modifica un estado externo sin que eso sea visible en su firma. Si la función se llama desde varios puntos del programa, rastrear el valor de contador se vuelve muy difícil.\nLa alternativa correcta es pasar el valor como parámetro y devolver el nuevo valor:\n\n\n\n\n\n\nEsta versión es transparente: su comportamiento queda completamente determinado por sus argumentos y no produce ningún efecto lateral.\n\n\n\n\n3.2.3 Ámbito enclosing\nEl ámbito enclosing aparece cuando una función se define dentro de otra función. La función interna puede leer las variables de la función que la contiene, aunque esas variables no sean locales ni globales:\n\n\n\n\n\n\nLa variable y no es local de funcion_interior (no se define ahí) ni es global (está dentro de funcion_externa): vive en el ámbito enclosing. Python lo encuentra siguiendo la cadena L → E → G → B.\n\n\n\n\n\n\nFigura 2: Ámbitos con respecto a funcion_interior.\n\n\n\nEn la figura Figura 2 se muestra la jerarquía de ámbitos cuando Python se encuentra en el interior de funcion_interior. Se observa que en este caso el ámbito local de funcion_exterior es el ámbito enclosing de funcion_interior. La variable x es visible desde funcion_interior ya que se encuentra en el ámbito global. También el uso de la función len() es posible porque está definida en el ámbito built-in.",
+    "text": "3.2. Visibilidad de variables (Scope)\nCuando Python encuentra un nombre de variable dentro de una función, necesita saber a qué objeto se refiere. El ámbito o scope de una variable determina desde qué partes del código ese nombre es visible.\n\n\n\n\n\n\nFundamento Teórico 3: Ámbito (Scope) y espacio de nombres (Namespace)\n\n\n\nEl ámbito (scope) de una variable es la región del código en la que el nombre de esa variable es reconocido y puede usarse. El espacio de nombres (namespace) es la estructura interna de Python que implementa el ámbito: un diccionario que mapea nombres a objetos.\nPython busca los nombres siguiendo la regla LEGB, en este orden:\n\nLocal — el cuerpo de la función actual.\nEnclosing — funciones que envuelven a la actual (funciones anidadas, temas posteriores).\nGlobal — el módulo (el fichero .py) en el que está el código.\nBuilt-in — los nombres predefinidos de Python: print, len, int, range…\n\nSi el nombre no se encuentra en ninguno de estos ámbitos, Python lanza un NameError.\n\n\n\n3.2.1 Ámbito local\nToda variable que se asigna dentro de una función es local a esa función: existe solo durante la ejecución de la llamada y desaparece al retornar.\n\n\n\n\n\n\nEl ámbito local garantiza el aislamiento: dos funciones pueden usar el mismo nombre de variable sin interferir entre sí.\n\n\n\n\n\n\n\n\n3.2.2 Ámbito global\nLas variables definidas fuera de cualquier función tienen ámbito global y son visibles desde cualquier punto del módulo, incluido el cuerpo de las funciones. En Python, un módulo es simplemente un fichero .py. Cuando escribes código en programa.py y lo ejecutas, ese fichero es tu módulo. Los módulos se tratan en detalle en la sección 3.4.\n\n\n\n\n\n\nLeer una variable global desde una función es aceptable, especialmente para constantes matemáticas o de configuración. Modificarla desde dentro de una función es una práctica que conviene evitar.\n\n\n\n\n\n\nError Frecuente 3: Modificar variables globales con global\n\n\n\nPython permite modificar una variable global desde dentro de una función usando la declaración global, pero es una práctica que dificulta la comprensión y el mantenimiento del código:\ncontador = 0\n\ndef incrementar():\n    global contador       # sin esta línea, Python crearía una variable local\n    contador += 1\n\nincrementar()\nincrementar()\nprint(contador)   # 2\nEl problema es que incrementar() tiene un efecto lateral (side effect) oculto: modifica un estado externo sin que eso sea visible en su firma. Si la función se llama desde varios puntos del programa, rastrear el valor de contador se vuelve muy difícil.\nLa alternativa correcta es pasar el valor como parámetro y devolver el nuevo valor:\n\n\n\n\n\n\nEsta versión es transparente: su comportamiento queda completamente determinado por sus argumentos y no produce ningún efecto lateral.\n\n\n\n\n3.2.3 Ámbito enclosing\nEl ámbito enclosing aparece cuando una función se define dentro de otra función. La función interna puede leer las variables de la función que la contiene, aunque esas variables no sean locales ni globales:\n\n\n\n\n\n\nLa variable y no es local de funcion_interior (no se define ahí) ni es global (está dentro de funcion_externa): vive en el ámbito enclosing. Python lo encuentra siguiendo la cadena L → E → G → B.\n\n\n\n\n\n\nFigura 2: Ámbitos con respecto a funcion_interior.\n\n\n\nEn la figura Figura 2 se muestra la jerarquía de ámbitos cuando el intérprete de Python se encuentra en el interior de funcion_interior. Se observa que en este caso el ámbito local de funcion_exterior es el ámbito enclosing de funcion_interior. La variable x es visible desde funcion_interior ya que se encuentra en el ámbito global. También el uso de la función len() es posible porque está definida en el ámbito built-in.",
     "crumbs": [
       "Temas",
       "3. Funciones, Módulos y Organización"
@@ -206,7 +195,7 @@
     "href": "es/contenido/tema3.html#concepto-de-módulo.-importación-y-creación-de-módulos-propios",
     "title": "Tema 3: Funciones, Módulos y Organización del Código",
     "section": "3.4. Concepto de módulo. Importación y creación de módulos propios",
-    "text": "3.4. Concepto de módulo. Importación y creación de módulos propios\nA medida que un programa crece, concentrar todo el código en un único fichero se vuelve inmanejable. Los módulos son la solución de Python para organizar el código en unidades reutilizables e independientes.\n\n\n\n\n\n\nFundamento Teórico 6: Módulo\n\n\n\nUn módulo en Python es un fichero .py que contiene definiciones de funciones, variables y otros objetos. Su nombre es el nombre del fichero sin la extensión .py. Los módulos permiten:\n\nSeparar el código en unidades con una responsabilidad clara.\nReutilizar funciones en distintos programas sin copiarlas.\nOcultar detalles de implementación: el usuario importa y llama funciones sin necesidad de conocer cómo están escritas internamente.\n\nDesde el Tema 2 se usa import math: math es un módulo de la biblioteca estándar de Python. Sus funciones (sqrt, log, sin, etc.) están definidas con el mismo mecanismo que cualquier módulo propio.\n\n\n\n3.4.1 Importación de módulos\nPython ofrece tres formas de importar un módulo o sus contenidos:\n\n\n\n\n\n\nConcepto Clave 4: Formas de importación\n\n\n\nForma 1 — import módulo: importa el módulo completo; los nombres se acceden con la notación punto.\n\n\n\n\n\n\nForma 2 — import módulo as alias: igual que la anterior, con un nombre más corto.\n\n\n\n\n\n\nForma 3 — from módulo import nombre: importa solo los nombres especificados, directamente al espacio de nombres local.\n\n\n\n\n\n\nLa Forma 1 es la más recomendable en general porque hace explícito el origen de cada nombre (math.sqrt deja claro que sqrt viene de math). La Forma 3 es conveniente para nombres muy usados, pero puede causar conflictos si dos módulos definen el mismo nombre.\n\n\nAlgunos módulos de la biblioteca estándar especialmente útiles en matemáticas:\n\n\n\n\n\n\n\nMódulo\nContenido principal\n\n\n\n\nmath\nFunciones reales: sqrt, log, sin, cos, exp; constantes pi, e, inf\n\n\ncmath\nVersiones complejas de las funciones de math\n\n\nrandom\nGeneración de números pseudoaleatorios\n\n\nstatistics\nMedia, mediana, varianza y desviación típica\n\n\nfractions\nAritmética exacta con fracciones racionales\n\n\ndecimal\nAritmética decimal de precisión arbitraria\n\n\n\n\n\n3.4.2 Creación de módulos propios\nCualquier fichero .py es automáticamente un módulo importable desde otro fichero del mismo directorio. Para crear un módulo propio basta con escribir las funciones en un fichero con un nombre descriptivo.\nEl fichero numeros.py agrupa las funciones de teoría de números construidas a lo largo del Tema 2 y el Tema 3:\n# numeros.py\n\"\"\"Módulo con funciones básicas de teoría de números.\"\"\"\n\nimport math\n\n\ndef es_primo(n: int) -&gt; bool:\n    \"\"\"Devuelve True si n es primo (n debe ser &gt;= 2).\"\"\"\n    if n &lt; 2:\n        return False\n    for d in range(2, int(math.sqrt(n)) + 1):\n        if n % d == 0:\n            return False\n    return True\n\n\ndef mcd(a: int, b: int) -&gt; int:\n    \"\"\"Máximo común divisor de a y b (algoritmo de Euclides).\"\"\"\n    if b == 0:\n        return a\n    return mcd(b, a % b)\n\n\ndef mcm(a: int, b: int) -&gt; int:\n    \"\"\"Mínimo común múltiplo de a y b.\"\"\"\n    return abs(a * b) // mcd(a, b)\n\n\ndef factorial(n: int) -&gt; int:\n    \"\"\"Factorial de n. Precondición: n &gt;= 0.\"\"\"\n    assert n &gt;= 0, f\"factorial no está definido para negativos, recibido {n}\"\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\nDesde otro fichero del mismo directorio se importa como cualquier módulo de la biblioteca estándar:\n# main.py\nimport numeros\n\nprint(numeros.es_primo(17))       # True\nprint(numeros.mcd(48, 18))        # 6\nprint(numeros.mcm(4, 6))          # 12\nprint(numeros.factorial(10))      # 3628800\n\n\n3.4.3 El bloque if __name__ == \"__main__\"\nCuando Python carga un módulo mediante import, ejecuta todo su código de nivel superior. Esto plantea un problema si el módulo contiene pruebas o demostraciones que no queremos ejecutar al importarlo.\n\n\n\n\n\n\nConcepto Clave 5: El bloque if __name__ == \"__main__\"\n\n\n\nPython asigna automáticamente a cada módulo una variable especial __name__:\n\nCuando el fichero se ejecuta directamente (python numeros.py), __name__ toma el valor \"__main__\".\nCuando el fichero se importa desde otro módulo, __name__ toma el nombre del módulo (\"numeros\").\n\nEl bloque if __name__ == \"__main__\": permite incluir en el mismo fichero tanto la librería (importable) como un pequeño programa de prueba (ejecutable directamente):\n# numeros.py\n\"\"\"Módulo con funciones básicas de teoría de números.\"\"\"\n\nimport math\n\n\ndef es_primo(n: int) -&gt; bool:\n    \"\"\"Devuelve True si n es primo (n &gt;= 2).\"\"\"\n    if n &lt; 2:\n        return False\n    for d in range(2, int(math.sqrt(n)) + 1):\n        if n % d == 0:\n            return False\n    return True\n\n\ndef mcd(a: int, b: int) -&gt; int:\n    \"\"\"Máximo común divisor de a y b (algoritmo de Euclides).\"\"\"\n    if b == 0:\n        return a\n    return mcd(b, a % b)\n\n\ndef mcm(a: int, b: int) -&gt; int:\n    \"\"\"Mínimo común múltiplo de a y b.\"\"\"\n    return abs(a * b) // mcd(a, b)\n\n\ndef factorial(n: int) -&gt; int:\n    \"\"\"Factorial de n. Precondición: n &gt;= 0.\"\"\"\n    assert n &gt;= 0, f\"factorial no está definido para negativos, recibido {n}\"\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\n\n\nif __name__ == \"__main__\":\n    # Solo se ejecuta al lanzar: python numeros.py\n    print(\"=== Pruebas del módulo numeros ===\")\n    print(f\"es_primo(17)  = {es_primo(17)}\")      # True\n    print(f\"es_primo(18)  = {es_primo(18)}\")      # False\n    print(f\"mcd(48, 18)   = {mcd(48, 18)}\")       # 6\n    print(f\"mcm(4, 6)     = {mcm(4, 6)}\")         # 12\n    print(f\"factorial(10) = {factorial(10)}\")     # 3628800\nEste patrón es la práctica estándar en Python: el mismo fichero puede actuar como librería (importado por otros módulos) o como programa (ejecutado directamente), y el bloque if __name__ == \"__main__\": separa limpiamente ambos roles.",
+    "text": "3.4. Concepto de módulo. Importación y creación de módulos propios\nA medida que un programa crece, concentrar todo el código en un único fichero se vuelve inmanejable. Los módulos son la solución de Python para organizar el código en unidades reutilizables e independientes.\n\n\n\n\n\n\nFundamento Teórico 6: Módulo\n\n\n\nUn módulo en Python es un fichero .py que contiene definiciones de funciones, variables y otros objetos. Su nombre es el nombre del fichero sin la extensión .py. Los módulos permiten:\n\nSeparar el código en unidades con una responsabilidad clara.\nReutilizar funciones en distintos programas sin copiarlas.\nOcultar detalles de implementación: el usuario importa y llama funciones sin necesidad de conocer cómo están escritas internamente.\n\nDesde el Tema 2 se usa import math: math es un módulo de la biblioteca estándar de Python. Sus funciones (sqrt, log, sin, etc.) están definidas con el mismo mecanismo que cualquier módulo propio.\n\n\n\n3.4.1 Importación de módulos\nPython ofrece tres formas de importar un módulo o sus contenidos:\n\n\n\n\n\n\nConcepto Clave 4: Formas de importación\n\n\n\nForma 1 — import módulo: importa el módulo completo; los nombres se acceden con la notación punto.\n\n\n\n\n\n\nForma 2 — import módulo as alias: igual que la anterior, con un nombre más corto.\n\n\n\n\n\n\nForma 3 — from módulo import nombre: importa solo los nombres especificados, directamente al espacio de nombres local.\n\n\n\n\n\n\nLa Forma 1 es la más recomendable en general porque hace explícito el origen de cada nombre (math.sqrt deja claro que sqrt viene de math). La Forma 3 es conveniente para nombres muy usados, pero puede causar conflictos si dos módulos definen el mismo nombre.\n\n\nAlgunos módulos de la biblioteca estándar especialmente útiles en matemáticas:\n\n\n\n\n\n\n\nMódulo\nContenido principal\n\n\n\n\nmath\nFunciones reales: sqrt, log, sin, cos, exp; constantes pi, e, inf\n\n\ncmath\nVersiones complejas de las funciones de math\n\n\nrandom\nGeneración de números pseudoaleatorios\n\n\nstatistics\nMedia, mediana, varianza y desviación típica\n\n\nfractions\nAritmética exacta con fracciones racionales\n\n\ndecimal\nAritmética decimal de precisión arbitraria\n\n\n\n\n\n3.4.2 Creación de módulos propios\nCualquier fichero .py es automáticamente un módulo importable desde otro fichero del mismo directorio. Para crear un módulo propio basta con escribir las funciones en un fichero con un nombre descriptivo.\nEl fichero numeros.py agrupa algunas de las funciones de teoría de números construidas a lo largo del Tema 2 y el Tema 3:\n# numeros.py\n\"\"\"Módulo con funciones básicas de teoría de números.\"\"\"\n\nimport math\n\n\ndef es_primo(n: int) -&gt; bool:\n    \"\"\"Devuelve True si n es primo (n debe ser &gt;= 2).\"\"\"\n    if n &lt; 2:\n        return False\n    for d in range(2, int(math.sqrt(n)) + 1):\n        if n % d == 0:\n            return False\n    return True\n\n\ndef mcd(a: int, b: int) -&gt; int:\n    \"\"\"Máximo común divisor de a y b (algoritmo de Euclides).\"\"\"\n    if b == 0:\n        return a\n    return mcd(b, a % b)\n\n\ndef mcm(a: int, b: int) -&gt; int:\n    \"\"\"Mínimo común múltiplo de a y b.\"\"\"\n    return abs(a * b) // mcd(a, b)\n\n\ndef factorial(n: int) -&gt; int:\n    \"\"\"Factorial de n. Precondición: n &gt;= 0.\"\"\"\n    assert n &gt;= 0, f\"factorial no está definido para negativos, recibido {n}\"\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\n\n\nif __name__ == \"__main__\":\n    # Solo se ejecuta al lanzar: python numeros.py\n    print(\"=== Pruebas del módulo numeros ===\")\n    print(f\"es_primo(17)  = {es_primo(17)}\")      # True\n    print(f\"es_primo(18)  = {es_primo(18)}\")      # False\n    print(f\"mcd(48, 18)   = {mcd(48, 18)}\")       # 6\n    print(f\"mcm(4, 6)     = {mcm(4, 6)}\")         # 12\n    print(f\"factorial(10) = {factorial(10)}\")     # 3628800\nDesde otro fichero del mismo directorio se importa como cualquier módulo de la biblioteca estándar:\n# main.py\nimport numeros\n\nprint(numeros.es_primo(17))       # True\nprint(numeros.mcd(48, 18))        # 6\nprint(numeros.mcm(4, 6))          # 12\nprint(numeros.factorial(10))      # 3628800\n\n\n3.4.3 El bloque if __name__ == \"__main__\"\nCuando Python carga un módulo mediante import, ejecuta todo su código de nivel superior. Esto plantea un problema si el módulo contiene pruebas o demostraciones que no queremos ejecutar al importarlo.\n\n\n\n\n\n\nConcepto Clave 5: El bloque if __name__ == \"__main__\"\n\n\n\nPython asigna automáticamente a cada módulo una variable especial __name__:\n\nCuando el fichero se ejecuta directamente (python numeros.py), __name__ toma el valor \"__main__\".\nCuando el fichero se importa desde otro módulo, __name__ toma el nombre del módulo (\"numeros\").\n\nEl bloque if __name__ == \"__main__\": permite incluir en el mismo fichero tanto la librería (importable) como un pequeño programa de prueba ejecutable directamente con un python numeros.py. El código dentro de este bloque solo se ejecuta cuando el módulo se lanza como programa, y no cuando se importa.\nEste patrón es la práctica estándar en Python: el mismo fichero puede actuar como librería (importado por otros módulos) o como programa (ejecutado directamente), y el bloque if __name__ == \"__main__\": separa limpiamente ambos roles.",
     "crumbs": [
       "Temas",
       "3. Funciones, Módulos y Organización"
@@ -217,7 +206,7 @@
     "href": "es/contenido/tema3.html#organización-de-proyectos",
     "title": "Tema 3: Funciones, Módulos y Organización del Código",
     "section": "3.5. Organización de proyectos",
-    "text": "3.5. Organización de proyectos\nA medida que un proyecto crece, dividir el código en módulos con responsabilidades bien definidas facilita el mantenimiento, la detección de errores y la colaboración.\n\n3.5.1 Estructura de ficheros\nLa organización básica de un proyecto Python sigue esta estructura:\nproyecto/\n│\n├── main.py              # punto de entrada del programa\n│\n├── numeros.py           # funciones de teoría de números\n├── geometria.py         # funciones de geometría\n├── conversor.py         # funciones de conversión de unidades\n│\n└── README.md            # descripción del proyecto\nCada módulo agrupa funciones relacionadas por temática o responsabilidad. main.py actúa como punto de entrada: importa los módulos que necesita y orquesta la lógica principal del programa.\nPython busca los módulos en el mismo directorio que el fichero que los importa, sin necesidad de configuración adicional. Esta estructura funciona directamente en un entorno local y en un Codespace.\n\n\n\n\n\n\nUn módulo debe hacer una cosa bien. Si un módulo empieza a agrupar funciones de geometría y también de estadística, es señal de que debería dividirse en dos. La pregunta de diseño es siempre: ¿qué tienen en común las funciones de este módulo?\n\n\n\n\n\n3.5.2 Ejemplo de proyecto organizado\nEl proyecto organiza, además de numeros.py, otros tres módulos con responsabilidades distintas:\ngeometria.py:\n\"\"\"Módulo de funciones geométricas básicas.\"\"\"\n\nimport math\n\n\ndef area_circulo(r: float) -&gt; float:\n    \"\"\"Área de un círculo de radio r. Precondición: r &gt;= 0.\"\"\"\n    assert r &gt;= 0, f\"El radio debe ser no negativo, recibido {r}\"\n    return math.pi * r ** 2\n\n\ndef hipotenusa(a: float, b: float) -&gt; float:\n    \"\"\"Longitud de la hipotenusa dado los catetos a y b.\"\"\"\n    assert a &gt; 0 and b &gt; 0, \"Los catetos deben ser positivos\"\n    return math.sqrt(a ** 2 + b ** 2)\n\n\ndef es_triangulo_valido(a: float, b: float, c: float) -&gt; bool:\n    \"\"\"True si a, b, c satisfacen la desigualdad triangular.\"\"\"\n    return a &gt; 0 and b &gt; 0 and c &gt; 0 and a + b &gt; c and a + c &gt; b and b + c &gt; a\n\n\nif __name__ == \"__main__\":\n    print(f\"Área círculo r=1:    {area_circulo(1):.6f}\")\n    print(f\"Hipotenusa 3, 4:     {hipotenusa(3, 4):.6f}\")\n    print(f\"Triángulo 3, 4, 5:   {es_triangulo_valido(3, 4, 5)}\")\n    print(f\"Triángulo 1, 2, 10:  {es_triangulo_valido(1, 2, 10)}\")\nconversor.py:\n\"\"\"Módulo de conversión de unidades.\"\"\"\n\n\ndef celsius_a_fahrenheit(c: float) -&gt; float:\n    \"\"\"Convierte grados Celsius a Fahrenheit.\"\"\"\n    return 9 / 5 * c + 32\n\n\ndef fahrenheit_a_celsius(f: float) -&gt; float:\n    \"\"\"Convierte grados Fahrenheit a Celsius.\"\"\"\n    return 5 / 9 * (f - 32)\n\n\ndef celsius_a_kelvin(c: float) -&gt; float:\n    \"\"\"Convierte grados Celsius a Kelvin. Precondición: c &gt;= -273.15.\"\"\"\n    assert c &gt;= -273.15, f\"Temperatura por debajo del cero absoluto: {c}\"\n    return c + 273.15\n\n\ndef radianes_a_grados(r: float) -&gt; float:\n    \"\"\"Convierte radianes a grados.\"\"\"\n    import math\n    return r * 180 / math.pi\n\n\ndef grados_a_radianes(g: float) -&gt; float:\n    \"\"\"Convierte grados a radianes.\"\"\"\n    import math\n    return g * math.pi / 180\n\n\nif __name__ == \"__main__\":\n    print(f\"100 °C en °F:  {celsius_a_fahrenheit(100):.2f}\")\n    print(f\"212 °F en °C:  {fahrenheit_a_celsius(212):.2f}\")\n    print(f\"0 °C en K:     {celsius_a_kelvin(0):.2f}\")\n    print(f\"π rad en °:    {radianes_a_grados(3.141592653589793):.4f}\")\nmain.py — punto de entrada que coordina los módulos:\n\"\"\"Herramienta matemática interactiva.\"\"\"\n\nimport numeros\nimport geometria\nimport conversor\n\n\ndef mostrar_menu() -&gt; None:\n    print(\"\\n=== Herramienta matemática ===\")\n    print(\"  1. Test de primalidad\")\n    print(\"  2. MCD de dos enteros\")\n    print(\"  3. Área de un círculo\")\n    print(\"  4. Conversión de temperatura (°C → °F)\")\n    print(\"  0. Salir\")\n    print(\"------------------------------\")\n\n\ndef ejecutar() -&gt; None:\n    while True:\n        mostrar_menu()\n        opcion = input(\"Elige una opción: \")\n\n        if opcion == \"1\":\n            n = int(input(\"n: \"))\n            print(f\"{n} es primo: {numeros.es_primo(n)}\")\n\n        elif opcion == \"2\":\n            a = int(input(\"a: \"))\n            b = int(input(\"b: \"))\n            print(f\"mcd({a}, {b}) = {numeros.mcd(a, b)}\")\n\n        elif opcion == \"3\":\n            r = float(input(\"Radio: \"))\n            print(f\"Área = {geometria.area_circulo(r):.6f}\")\n\n        elif opcion == \"4\":\n            c = float(input(\"Temperatura en °C: \"))\n            print(f\"{c} °C = {conversor.celsius_a_fahrenheit(c):.2f} °F\")\n\n        elif opcion == \"0\":\n            print(\"Hasta luego.\")\n            break\n\n        else:\n            print(\"Opción no válida.\")\n\n\nif __name__ == \"__main__\":\n    ejecutar()\n\n\n\n\n\n\nmain.py no contiene ningún cálculo propio: se limita a importar los módulos y coordinar la interacción con el usuario. Esta separación entre lógica de negocio (los módulos) y punto de entrada (main.py) es una práctica de diseño fundamental que escala bien a proyectos de cualquier tamaño.",
+    "text": "3.5. Organización de proyectos\nA medida que un proyecto crece, dividir el código en módulos con responsabilidades bien definidas facilita el mantenimiento, la detección de errores y la colaboración. Organizar un proyecto en Python correctamente desde el principio es fundamental para asegurar que el código sea escalable, reproducible y fácil de mantener. Actualmente, la comunidad de Python ha convergido en un conjunto de estándares muy claros, alejándose de los scripts sueltos y adoptando herramientas modernas.\n\n3.5.1 Estructura de ficheros\nLa estructura más recomendada por la Python Packaging Authority (PyPA) utiliza una carpeta src/ para contener el código fuente, separando así el código de los tests y de la documentación. La organización de un ejemplo de proyecto, titulado t3_ejemplo, sería:\nt3_ejemplo/\n├── .gitignore             # Archivos que Git no debe rastrear\n├── pyproject.toml         # Configuración central del proyecto y dependencias\n├── README.md              # Documentación principal\n├── src/                   # Contenedor del código fuente\n│   └── t3_paquete/        # Tu paquete de Python real\n│       ├── __init__.py    # Convierte la carpeta en paquete (puede estar vacío)\n│       ├── main.py        # Punto de entrada del programa\n│       ├── numeros.py     # Funciones de teoría de números\n│       ├── geometria.py   # Funciones de geometría\n│       └── conversor.py   # Funciones de conversión de unidades\n├── tests/                 # Pruebas automatizadas (separadas del código fuente)\n│   ├── conftest.py        # Configuración y \"fixtures\" para pytest\n│   └── test_numeros.py    # Pruebas específicas para numeros.py (se verán en el Tema 5)\n└── docs/                  # Archivos de documentación\n\nCada módulo (fichero .py bajo src/mi_paquete/) agrupa funciones relacionadas por temática o responsabilidad. main.py actúa como punto de entrada: importa los módulos que necesita y orquesta la lógica principal del programa.\nPython busca los módulos en el mismo directorio que el fichero que los importa, sin necesidad de configuración adicional. Esta estructura funciona directamente en un entorno local y en un Codespace.\n\n\n\n\n\n\nUn módulo debe hacer una cosa bien. Si un módulo empieza a agrupar funciones de geometría y también de estadística, es señal de que debería dividirse en dos. La pregunta de diseño es siempre: ¿qué tienen en común las funciones de este módulo?\nMantén los módulos pequeños\nUna guía práctica:\n\nmenos de 500 líneas: ideal\nentre 500 y 1000: revisar si conviene dividir\nmás de 1000: normalmente merece una refactorización\n\nNo es una regla estricta, pero ayuda a mantener el código manejable.\n\n\n\n\n\n3.5.2 Ejemplo de módulos del proyecto t3_ejemplo\nEl proyecto t3_ejemplo, con la estructura presentada anteriormente, incluye además de numeros.py, otros tres módulos geometria.py, conversor.py y main.py con responsabilidades distintas que se presentan a continuación.\ngeometria.py:\n\"\"\"Módulo de funciones geométricas básicas.\"\"\"\n\nimport math\n\n\ndef area_circulo(r: float) -&gt; float:\n    \"\"\"Área de un círculo de radio r. Precondición: r &gt;= 0.\"\"\"\n    assert r &gt;= 0, f\"El radio debe ser no negativo, recibido {r}\"\n    return math.pi * r ** 2\n\n\ndef hipotenusa(a: float, b: float) -&gt; float:\n    \"\"\"Longitud de la hipotenusa dado los catetos a y b.\"\"\"\n    assert a &gt; 0 and b &gt; 0, \"Los catetos deben ser positivos\"\n    return math.sqrt(a ** 2 + b ** 2)\n\n\ndef es_triangulo_valido(a: float, b: float, c: float) -&gt; bool:\n    \"\"\"True si a, b, c satisfacen la desigualdad triangular.\"\"\"\n    return a &gt; 0 and b &gt; 0 and c &gt; 0 and a + b &gt; c and a + c &gt; b and b + c &gt; a\n\n\nif __name__ == \"__main__\":\n    print(f\"Área círculo r=1:    {area_circulo(1):.6f}\")\n    print(f\"Hipotenusa 3, 4:     {hipotenusa(3, 4):.6f}\")\n    print(f\"Triángulo 3, 4, 5:   {es_triangulo_valido(3, 4, 5)}\")\n    print(f\"Triángulo 1, 2, 10:  {es_triangulo_valido(1, 2, 10)}\")\nconversor.py:\n\"\"\"Módulo de conversión de unidades.\"\"\"\n\n\ndef celsius_a_fahrenheit(c: float) -&gt; float:\n    \"\"\"Convierte grados Celsius a Fahrenheit.\"\"\"\n    return 9 / 5 * c + 32\n\n\ndef fahrenheit_a_celsius(f: float) -&gt; float:\n    \"\"\"Convierte grados Fahrenheit a Celsius.\"\"\"\n    return 5 / 9 * (f - 32)\n\n\ndef celsius_a_kelvin(c: float) -&gt; float:\n    \"\"\"Convierte grados Celsius a Kelvin. Precondición: c &gt;= -273.15.\"\"\"\n    assert c &gt;= -273.15, f\"Temperatura por debajo del cero absoluto: {c}\"\n    return c + 273.15\n\n\ndef radianes_a_grados(r: float) -&gt; float:\n    \"\"\"Convierte radianes a grados.\"\"\"\n    import math\n    return r * 180 / math.pi\n\n\ndef grados_a_radianes(g: float) -&gt; float:\n    \"\"\"Convierte grados a radianes.\"\"\"\n    import math\n    return g * math.pi / 180\n\n\nif __name__ == \"__main__\":\n    print(f\"100 °C en °F:  {celsius_a_fahrenheit(100):.2f}\")\n    print(f\"212 °F en °C:  {fahrenheit_a_celsius(212):.2f}\")\n    print(f\"0 °C en K:     {celsius_a_kelvin(0):.2f}\")\n    print(f\"π rad en °:    {radianes_a_grados(3.141592653589793):.4f}\")\nmain.py — punto de entrada que coordina los módulos:\n\"\"\"Herramienta matemática interactiva.\"\"\"\n\nfrom t3_paquete import numeros, geometria, conversor\n\n\ndef mostrar_menu() -&gt; None:\n    print(\"\\n=== Herramienta matemática ===\")\n    print(\"  1. Test de primalidad\")\n    print(\"  2. MCD de dos enteros\")\n    print(\"  3. Área de un círculo\")\n    print(\"  4. Conversión de temperatura (°C → °F)\")\n    print(\"  0. Salir\")\n    print(\"------------------------------\")\n\n\ndef ejecutar() -&gt; None:\n    while True:\n        mostrar_menu()\n        opcion = input(\"Elige una opción: \")\n\n        if opcion == \"1\":\n            n = int(input(\"n: \"))\n            print(f\"{n} es primo: {numeros.es_primo(n)}\")\n\n        elif opcion == \"2\":\n            a = int(input(\"a: \"))\n            b = int(input(\"b: \"))\n            print(f\"mcd({a}, {b}) = {numeros.mcd(a, b)}\")\n\n        elif opcion == \"3\":\n            r = float(input(\"Radio: \"))\n            print(f\"Área = {geometria.area_circulo(r):.6f}\")\n\n        elif opcion == \"4\":\n            c = float(input(\"Temperatura en °C: \"))\n            print(f\"{c} °C = {conversor.celsius_a_fahrenheit(c):.2f} °F\")\n\n        elif opcion == \"0\":\n            print(\"Hasta luego.\")\n            break\n\n        else:\n            print(\"Opción no válida.\")\n\n\nif __name__ == \"__main__\":\n    ejecutar()\n\n\n\n\n\n\nmain.py no contiene ningún cálculo propio: se limita a importar los módulos y coordinar la interacción con el usuario. Esta separación entre lógica de negocio (los módulos) y punto de entrada (main.py) es una práctica de diseño fundamental que escala bien a proyectos de cualquier tamaño.",
     "crumbs": [
       "Temas",
       "3. Funciones, Módulos y Organización"
@@ -369,97 +358,86 @@
     "href": "ca/index.html#què-trobaràs-en-aquest-lloc",
     "title": "Inici",
     "section": "Què trobaràs en aquest lloc",
-    "text": "Què trobaràs en aquest lloc\nInformacions Documents administratius del curs: un resum de la guia docent oficial, el calendari i els horaris de classe.\nTemes El contingut teòric-pràctic del curs, organitzat en 8 temes que van des dels fonaments del llenguatge fins al disseny algorítmic i l’ecosistema científic de Python.\nExercicis Col·lecció d’exercicis proposats per a cada tema, pensats per consolidar els conceptes treballats a classe.\nPràctica del Curs Element d’avaluació contínua: enunciat, termini i lliurament de la pràctica del curs.\nRecursos Material de suport complementari: exàmens de convocatòries anteriors, tutorials, manuals, guies de referència, i eines de programari recomanades.\nBibliografia Referències bibliogràfiques del curs, dividides en bibliografia principal (lectures essencials) i complementària (lectures d’ampliació).\n\n\n\n\n\n\n\nImportantMOLT IMPORTANT\n\n\n\nAquest lloc web és un complement de l’Aula Digital de l’assignatura.\nL´Aula Digital és la plataforma oficial de teleeducació i aprenentatge en línia de la UIB. Basada en el programari Moodle, funciona com a espai virtual de suport per a la gran majoria d’assignatures presencials i semipresencials.\nÉs l’entorn centralitzat on els estudiants poden:\n\nAccedir als materials i apunts de cada assignatura.\nConsulteu el calendari acadèmic i les dates d’exàmens.\nLliurar treballs, fer qüestionaris i participar en fòrums.\nRevisar les qualificacions i les notes finals.\n\nL’accés a aquesta plataforma es gestiona mitjançant el Portal de l’Alumnat, i també compta amb suport per a dispositius mòbils.",
+    "text": "Què trobaràs en aquest lloc\nInformacions: Documents administratius del curs: un resum de la guia docent oficial, el calendari i els horaris de classe.\nTemes: El contingut teòric-pràctic del curs, organitzat en 8 temes que van des dels fonaments del llenguatge fins al disseny algorítmic i l’ecosistema científic de Python.\nExercicis: Col·lecció d’exercicis proposats per a cada tema, pensats per consolidar els conceptes treballats a classe.\nPràctica del Curs: Element d’avaluació contínua: enunciat, termini i lliurament de la pràctica del curs.\nRecursos: Material de suport complementari: exàmens de convocatòries anteriors, tutorials, manuals, guies de referència, i eines de programari recomanades.\nBibliografia: Referències bibliogràfiques del curs, dividides en bibliografia principal (lectures essencials) i complementària (lectures d’ampliació).\n\n\n\n\n\n\n\nImportantMOLT IMPORTANT\n\n\n\nAquest lloc web és un complement de l’Aula Digital de l’assignatura.\nL´Aula Digital és la plataforma oficial de teleeducació i aprenentatge en línia de la UIB. Basada en el programari Moodle, funciona com a espai virtual de suport per a la gran majoria d’assignatures presencials i semipresencials.\nÉs l’entorn centralitzat on els estudiants poden:\n\nAccedir als materials i apunts de cada assignatura.\nConsulteu el calendari acadèmic i les dates d’exàmens.\nLliurar treballs, fer qüestionaris i participar en fòrums.\nRevisar les qualificacions i les notes finals.\n\nL’accés a aquesta plataforma es gestiona mitjançant el Portal de l’Alumnat, i també compta amb suport per a dispositius mòbils.",
     "crumbs": [
       "Inici"
     ]
   },
   {
-    "objectID": "ca/exercicis/tema7.html",
-    "href": "ca/exercicis/tema7.html",
-    "title": "Exercicis — Tema 7",
+    "objectID": "ca/exercicis/tema8.html",
+    "href": "ca/exercicis/tema8.html",
+    "title": "Exercicis — Tema 8",
+    "section": "",
+    "text": "(Contingut pendent.)",
+    "crumbs": [
+      "Exercicis",
+      "Exercicis — Tema 8"
+    ]
+  },
+  {
+    "objectID": "ca/exercicis/tema6.html",
+    "href": "ca/exercicis/tema6.html",
+    "title": "Exercicis — Tema 6",
+    "section": "",
+    "text": "(Contingut pendent.)",
+    "crumbs": [
+      "Exercicis",
+      "Exercicis — Tema 6"
+    ]
+  },
+  {
+    "objectID": "ca/exercicis/tema4.html",
+    "href": "ca/exercicis/tema4.html",
+    "title": "Exercicis — Tema 4",
+    "section": "",
+    "text": "(Contingut pendent.)",
+    "crumbs": [
+      "Exercicis",
+      "Exercicis — Tema 4"
+    ]
+  },
+  {
+    "objectID": "ca/exercicis/tema2.html",
+    "href": "ca/exercicis/tema2.html",
+    "title": "Exercicis — Tema 2",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Exercicis",
-      "Exercicis — Tema 7"
+      "Exercicis — Tema 2"
     ]
   },
   {
-    "objectID": "ca/exercicis/tema5.html",
-    "href": "ca/exercicis/tema5.html",
-    "title": "Exercicis — Tema 5",
+    "objectID": "ca/contingut/tema9.html",
+    "href": "ca/contingut/tema9.html",
+    "title": "Tema 9: Disseny Algorítmic i Resolució de Problemes",
     "section": "",
-    "text": "(Contenido pendiente.)",
+    "text": "(Contingut pendent.)",
     "crumbs": [
-      "Exercicis",
-      "Exercicis — Tema 5"
-    ]
-  },
-  {
-    "objectID": "ca/exercicis/tema3.html",
-    "href": "ca/exercicis/tema3.html",
-    "title": "Exercicis — Tema 3",
-    "section": "",
-    "text": "(Contenido pendiente.)",
-    "crumbs": [
-      "Exercicis",
-      "Exercicis — Tema 3"
-    ]
-  },
-  {
-    "objectID": "ca/exercicis/tema1.html",
-    "href": "ca/exercicis/tema1.html",
-    "title": "Exercicis — Tema 1",
-    "section": "",
-    "text": "L’objectiu d’aquest exercici és que l’estudiant creï el seu propi compte a GitHub i completi el procés de sol·licitud del GitHub Student Developer Pack. El GitHub Student Developer Pack ofereix accés gratuït a eines professionals de desenvolupament: dominis, servidors, IDEs, crèdits al núvol, eines de disseny, bases de dades i molt més.\nA continuació les instruccions, pas a pas, que heu de seguir per completar aquest exercici.\n\n\n\nPas 1: Entreu a: https://github.com/\nPas 2: Iniciar el registre. Feu clic a Sign up (a dalt a la dreta).\nPas 3: Introduir les vostres dades. GitHub us demanarà:\n\nCorreu electrònic (feu servir el vostre correu universitari de la UIB).\nContrasenya segura.\nNom d’usuari (serà la vostra identitat pública a GitHub).\n\nPas 4: Verificar el vostre correu. GitHub enviarà un missatge al vostre email de la UIB. Obriu el correu i premeu Verify email address.\n\n\n\n\nUn cop creat el compte, completeu el vostre perfil d’usuari seguint aquests passos:\n\nPas 1: Accediu al vostre perfil. Feu clic a la vostra foto o avatar (a dalt a la dreta) i seleccioneu Your profile.\nPas 2: Feu clic a Edit profile i completeu la informació sol·licitada:\n\nName → El vostre nom real.\nBio → Una breu descripció (per exemple: Estudiant del Grau en Matemàtiques (UIB)).\nCompany → Aquí és on s’indica la Universitat. Exemple: Universitat de les Illes Balears\n\nPas 3: Desar els canvis fent clic a Save al final del formulari.\n\nDesprés de completar aquests passos, tindreu un perfil acadèmic bàsic i correcte, adequat per sol·licitar el GitHub Student Developer Pack.\n\n\n\n\nPas 1: Accediu a la configuració del vostre compte. Feu clic a la vostra foto o avatar (a dalt a la dreta) i seleccioneu Settings.\nPas 2: Al menú lateral esquerre, obriu la secció Password and authentication.\nPas 3: Dins de Password and authentication, localitzeu l’apartat Two-factor authentication → Enable two-factor authentication.\nPas 4: Triar el mètode d’autenticació.\n\nEs recomana fer servir una aplicació d’autenticació (Authenticator app).\nAtès que la UIB requereix l’aplicació Microsoft Authenticator es suggereix utilitzar aquesta.\nHeu de:\n\n\nObrir l’aplicació Microsoft Authenticator al vostre mòbil.\nEscanejar el codi QR que apareix a la pantalla.\nTocar la icona de GitHub a l’app (al vostre mòbil) per veure el codi temporal de 6 dígits que es genera cada 30 segons.\nIntroduir el codi temporal anterior a la pàgina de GitHub.\n\n\n\n\n\n\n\n\n\nPas 1: Aneu a https://education.github.com/pack. Feu clic a Sign up for Student Developer Pack.\nPas 2: Iniciar sessió amb el vostre compte de GitHub. Si no ho heu fet ja, GitHub us demanarà iniciar sessió.\nPas 3: Verificació d’identitat acadèmica. GitHub us demanarà demostrar que sou estudiant. Podeu fer-ho de dues formes però es recomana l’opció de correu institucional (el que és xxxxx@estudiant.uib.cat).\nPas 4: Completar el formulari. GitHub us preguntarà:\n\nEl vostre nivell educatiu (Undergraduate)\nLa vostra universitat\nEl vostre motiu per sol·licitar el Pack (podeu escriure quelcom senzill com: “I want to use professional development tools for my university degree programming projects.”)\n\nPas 5: Enviar la sol·licitud. Clic a Submit.\n\nGitHub sol tardar entre 1 i 5 dies a revisar la sol·licitud. Rebreu un correu indicant si ha estat aprovada. Un cop acceptat, tindreu accés a totes les eines del Pack des del vostre compte de GitHub.",
-    "crumbs": [
-      "Exercicis",
-      "Exercicis — Tema 1"
-    ]
-  },
-  {
-    "objectID": "ca/exercicis/tema1.html#exercici-1.1",
-    "href": "ca/exercicis/tema1.html#exercici-1.1",
-    "title": "Exercicis — Tema 1",
-    "section": "",
-    "text": "L’objectiu d’aquest exercici és que l’estudiant creï el seu propi compte a GitHub i completi el procés de sol·licitud del GitHub Student Developer Pack. El GitHub Student Developer Pack ofereix accés gratuït a eines professionals de desenvolupament: dominis, servidors, IDEs, crèdits al núvol, eines de disseny, bases de dades i molt més.\nA continuació les instruccions, pas a pas, que heu de seguir per completar aquest exercici.\n\n\n\nPas 1: Entreu a: https://github.com/\nPas 2: Iniciar el registre. Feu clic a Sign up (a dalt a la dreta).\nPas 3: Introduir les vostres dades. GitHub us demanarà:\n\nCorreu electrònic (feu servir el vostre correu universitari de la UIB).\nContrasenya segura.\nNom d’usuari (serà la vostra identitat pública a GitHub).\n\nPas 4: Verificar el vostre correu. GitHub enviarà un missatge al vostre email de la UIB. Obriu el correu i premeu Verify email address.\n\n\n\n\nUn cop creat el compte, completeu el vostre perfil d’usuari seguint aquests passos:\n\nPas 1: Accediu al vostre perfil. Feu clic a la vostra foto o avatar (a dalt a la dreta) i seleccioneu Your profile.\nPas 2: Feu clic a Edit profile i completeu la informació sol·licitada:\n\nName → El vostre nom real.\nBio → Una breu descripció (per exemple: Estudiant del Grau en Matemàtiques (UIB)).\nCompany → Aquí és on s’indica la Universitat. Exemple: Universitat de les Illes Balears\n\nPas 3: Desar els canvis fent clic a Save al final del formulari.\n\nDesprés de completar aquests passos, tindreu un perfil acadèmic bàsic i correcte, adequat per sol·licitar el GitHub Student Developer Pack.\n\n\n\n\nPas 1: Accediu a la configuració del vostre compte. Feu clic a la vostra foto o avatar (a dalt a la dreta) i seleccioneu Settings.\nPas 2: Al menú lateral esquerre, obriu la secció Password and authentication.\nPas 3: Dins de Password and authentication, localitzeu l’apartat Two-factor authentication → Enable two-factor authentication.\nPas 4: Triar el mètode d’autenticació.\n\nEs recomana fer servir una aplicació d’autenticació (Authenticator app).\nAtès que la UIB requereix l’aplicació Microsoft Authenticator es suggereix utilitzar aquesta.\nHeu de:\n\n\nObrir l’aplicació Microsoft Authenticator al vostre mòbil.\nEscanejar el codi QR que apareix a la pantalla.\nTocar la icona de GitHub a l’app (al vostre mòbil) per veure el codi temporal de 6 dígits que es genera cada 30 segons.\nIntroduir el codi temporal anterior a la pàgina de GitHub.\n\n\n\n\n\n\n\n\n\nPas 1: Aneu a https://education.github.com/pack. Feu clic a Sign up for Student Developer Pack.\nPas 2: Iniciar sessió amb el vostre compte de GitHub. Si no ho heu fet ja, GitHub us demanarà iniciar sessió.\nPas 3: Verificació d’identitat acadèmica. GitHub us demanarà demostrar que sou estudiant. Podeu fer-ho de dues formes però es recomana l’opció de correu institucional (el que és xxxxx@estudiant.uib.cat).\nPas 4: Completar el formulari. GitHub us preguntarà:\n\nEl vostre nivell educatiu (Undergraduate)\nLa vostra universitat\nEl vostre motiu per sol·licitar el Pack (podeu escriure quelcom senzill com: “I want to use professional development tools for my university degree programming projects.”)\n\nPas 5: Enviar la sol·licitud. Clic a Submit.\n\nGitHub sol tardar entre 1 i 5 dies a revisar la sol·licitud. Rebreu un correu indicant si ha estat aprovada. Un cop acceptat, tindreu accés a totes les eines del Pack des del vostre compte de GitHub.",
-    "crumbs": [
-      "Exercicis",
-      "Exercicis — Tema 1"
-    ]
-  },
-  {
-    "objectID": "ca/exercicis/tema1.html#exercici-1.2",
-    "href": "ca/exercicis/tema1.html#exercici-1.2",
-    "title": "Exercicis — Tema 1",
-    "section": "Exercici 1.2",
-    "text": "Exercici 1.2\nAquest exercici té com a objectiu que aprengueu a:\n\nCrear un repositori a GitHub.\nConfigurar-lo mínimament.\nAixecar un Codespace associat a aquest repositori.\n\n\n\n\n\n\n\nConcepte Clau 1: Repositori i Codespace\n\n\n\nUn repositori de GitHub és un espai on es desa un projecte: conté el codi, arxius del projecte i l’historial de revisions (commits) que permeten seguir i recuperar canvis al llarg del temps.\nEls repositoris poden ser públics o privats, suporten branques i col·laboracions (pull requests, issues) per coordinar el treball en equip, i actuen com la unitat bàsica de treball dins de GitHub.\nUn GitHub Codespace és un entorn de desenvolupament al núvol, llest per usar, que us permet programar directament des de GitHub sense configurar la vostra màquina local. Sol venir amb eines i dependències preconfigurades per a un repositori concret, la qual cosa facilita començar a treballar ràpidament.\n\n\n\n1. Accedir al vostre compte de GitHub (si no ho heu fet ja)\n\nObrir el navegador.\nAnar a: https://github.com/\nPrémer Sign in.\nIntroduir usuari i contrasenya.\n\n\n\n2. Crear el repositori “test-de-codespaces–tema-1”\n\nPas 1: A la part superior esquerra, fer clic a + ().\nPas 2: Seleccionar New repository.\nPas 3: Apareixerà un formulari amb diversos camps per configurar el repositori:\n\nRepository name → test-de-codespaces–tema-1\nDescription → Repositori de prova per a Codespaces\nVisibility → Private (privat)\nInitialize this repository with a README → marcar aquesta opció a On.\n\nPas 4: Fer clic al botó Create repository.\nPas 5: Verificar que el repositori s’ha creat. Heu de veure una pàgina amb:\n\nEl nom del repositori que heu donat abans.\nUn arxiu README.md ja creat.\nUn menú amb pestanyes com Code, Issues, Pull requests, etc.\n\n\n\n\n3. Crear un Codespace preconfigurado per a Python\n\nPas 1: Crear la carpeta .devcontainer i el fitxer devcontainer.json\n\nAl repositori creat (test-de-codespaces–tema-1), fer clic al botó Add file → Create new file.\nAl camp Name your file escriure:\n.devcontainer/devcontainer.json\nDins de l’arxiu, enganxeu aquest contingut:\n{\n    \"name\": \"Curso Programación 23200, Python 3.12\",\n    \"image\": \"mcr.microsoft.com/devcontainers/python:3.12\",\n\n    \"customizations\": {\n        \"vscode\": {\n            \"extensions\": [\n                \"ms-python.python\",\n                \"ms-python.vscode-pylance\",\n                \"charliermarsh.ruff\",\n                \"ms-python.black-formatter\",\n                \"oderwat.indent-rainbow\"\n            ],\n            \"settings\": {\n                \"editor.formatOnSave\": true,\n                \"editor.defaultFormatter\": \"ms-python.black-formatter\",\n                \"python.analysis.typeCheckingMode\": \"basic\",\n                \"ruff.enable\": true\n            }\n        }\n    },\n\n    \"postCreateCommand\": \"pip install --upgrade pip && pip install -r requirements.txt || true\",\n    \"postStartCommand\": \"echo 'Entorno listo para Programación 23200'\",\n\n    \"forwardPorts\": [8000, 8080]\n}\nDesar l’arxiu: Feu clic a Commit changes….\nAccepteu el missatge per defecte sobre els canvis i feu clic a Commit changes.\n\nPas 2: Crear el fitxer requirements.txt al directori arrel del repositori\n\nDonat el pas anterior pot ocórrer que us trobeu al directori .devcontainer, heu d’anar al directori arrel del repositori, no romandre dins de .devcontainer. Per fer-ho feu clic a .. (a dalt a l’esquerra) per tornar al directori arrel.\nAl directori arrel del repositori (test-de-codespaces–tema-1), fer clic al botó Add file → Create new file.\nAl camp Name your file escriure:\nrequirements.txt\nDins de l’arxiu, enganxeu aquest contingut:\nruff\nblack\nDesar l’arxiu: Feu clic a Commit changes….\nAccepteu el missatge per defecte sobre els canvis i feu clic a Commit changes.\n\n\n\n\n4. Arrancar el Codespace\n\nPas 1: Feu clic a Code → Codespaces.\nPas 2: Feu clic a Create codespace on main.\nGitHub detectarà el .devcontainer i:\n\ndescarregarà la imatge de Python,\ninstal·larà les extensions,\nconfigurarà l’entorn,\nobrirà VS Code amb suport complet per a Python.\n\nPas 3: Espereu que el Codespace estigui llest. Això pot trigar uns minuts. Veureu missatges com:\n\nSetting up remote connection: [Building codespace…]\nInstalling dependencies…\n\nUn cop llest, veureu un missatge a la part inferior dreta de VS Code indicant que l’entorn està llest.\n\n\n\n5. Reconèixer la interfície del Codespace\nL’entorn tindrà:\n\nBarra lateral esquerra amb:\n\nExplorador, mostra els arxius del projecte.\nCercar, permet cercar text als arxius.\nControl de codi font, permet veure els canvis i fer commits.\nExecució i depuració, permet executar i depurar el codi.\nExtensions, permet gestionar les extensions de VS Code.\n\nEditor de codi al centre a dalt (apareix obert el README.md).\nTerminal integrada al centre a baix.\nBarra lateral dreta per al XATS amb Copilot.\n\n\n\n6. Verificar que Python està configurat\nA la TERMINAL del Codespace escriviu l’ordre següent per comprovar la versió de Python instal·lada (si copieu i enganxeu l’ordre, probablement haureu de donar permís a la finestra emergent del navegador per poder enganxar text al terminal):\npython --version\nHa d’aparèixer:\nPython 3.12.x\n\n\n7. Crear un arxiu de prova i executar-lo\n\nA l’explorador, prémer New File o Nou arxiu.\nAnomenar-lo:\nprova.py\nEscriure a dins:\nprint(\"El meu primer Codespace funciona correctament\")\nDesar (Ctrl + S).\nExecutar l’arxiu.\n\nVariant 1: Escriure al terminal:\n\npython prova.py\n\nVariant 2: Fer clic a Executar arxiu de Python (triangle de play a dalt a la dreta de l’editor de codi).\n\n\n\n\n8. Tancar el Codespace\nAquest és un pas summament important. Quan acabeu de treballar al Codespace, l’heu de tancar per alliberar recursos i evitar que s’acumulin càrrecs al vostre compte de GitHub. Principalment perquè el nombre d’hores de Codespaces gratuïtes és limitat.\n\nSense sortir del Codespace:\n\nPremeu Ctrl + Shift + P (o Cmd + Shift + P a Mac) per obrir la paleta d’ordres.\nEscriviu Codespaces: Close Codespace i seleccioneu l’opció que apareix.\n\nAlternativament, podeu tancar el Codespace des del vostre lloc de GitHub:\n\nAneu al vostre repositori a GitHub.\nFeu clic a Code → Codespaces.\nLocalitzeu el Codespace que voleu tancar i feu clic a … → Stop Codespace.",
-    "crumbs": [
-      "Exercicis",
-      "Exercicis — Tema 1"
+      "Temes",
+      "9. Disseny Algorítmic i Resolució de Problemes"
     ]
   },
   {
     "objectID": "ca/contingut/tema7.html",
     "href": "ca/contingut/tema7.html",
-    "title": "Tema 7: Ecosistema Científic de Python",
+    "title": "Tema 7: Gestió de Dades i Fitxers",
     "section": "",
-    "text": "(Contenido pendiente.)",
+    "text": "(Contingut pendent.)",
     "crumbs": [
       "Temes",
-      "7. Ecosistema Científic de Python"
+      "7. Gestió de Dades i Fitxers"
     ]
   },
   {
     "objectID": "ca/contingut/tema5.html",
     "href": "ca/contingut/tema5.html",
-    "title": "Tema 5: Estructures de Dades i Programació Orientada a Objectes",
+    "title": "Tema 5: Algorismes Bàsics i Verificació (Testing)",
     "section": "",
-    "text": "(Contenido pendiente.)",
+    "text": "(Contingut pendent.)",
     "crumbs": [
       "Temes",
-      "5. Estructures de Dades i POO"
+      "5. Algorismes Bàsics i Testing"
     ]
   },
   {
@@ -663,78 +641,111 @@
   {
     "objectID": "ca/contingut/tema4.html",
     "href": "ca/contingut/tema4.html",
-    "title": "Tema 4: Algorismes Bàsics i Verificació",
+    "title": "Tema 4: Estructures de Dades natives fonamentals de Python",
     "section": "",
-    "text": "(Contenido pendiente.)",
+    "text": "(Contingut pendent.)",
     "crumbs": [
       "Temes",
-      "4. Algorismes Bàsics i Verificació"
+      "4. Estructures de Dades de Python"
     ]
   },
   {
     "objectID": "ca/contingut/tema6.html",
     "href": "ca/contingut/tema6.html",
-    "title": "Tema 6: Gestió de Dades i Fitxers",
+    "title": "Tema 6: Programació Orientada a Objectes",
     "section": "",
-    "text": "(Contenido pendiente.)",
+    "text": "(Contingut pendent.)",
     "crumbs": [
       "Temes",
-      "6. Gestió de Dades i Fitxers"
+      "6. Programació Orientada a Objectes"
     ]
   },
   {
     "objectID": "ca/contingut/tema8.html",
     "href": "ca/contingut/tema8.html",
-    "title": "Tema 8: Disseny Algorítmic i Resolució de Problemes",
+    "title": "Tema 8: Ecosistema Científic de Python",
     "section": "",
-    "text": "(Contenido pendiente.)",
+    "text": "(Contingut pendent.)",
     "crumbs": [
       "Temes",
-      "8. Disseny Algorítmic i Resolució de Problemes"
+      "8. Ecosistema Científic de Python"
     ]
   },
   {
-    "objectID": "ca/exercicis/tema2.html",
-    "href": "ca/exercicis/tema2.html",
-    "title": "Exercicis — Tema 2",
+    "objectID": "ca/exercicis/tema1.html",
+    "href": "ca/exercicis/tema1.html",
+    "title": "Exercicis — Tema 1",
+    "section": "",
+    "text": "L’objectiu d’aquest exercici és que l’estudiant creï el seu propi compte a GitHub i completi el procés de sol·licitud del GitHub Student Developer Pack. El GitHub Student Developer Pack ofereix accés gratuït a eines professionals de desenvolupament: dominis, servidors, IDEs, crèdits al núvol, eines de disseny, bases de dades i molt més.\nA continuació les instruccions, pas a pas, que heu de seguir per completar aquest exercici.\n\n\n\nPas 1: Entreu a: https://github.com/\nPas 2: Iniciar el registre. Feu clic a Sign up (a dalt a la dreta).\nPas 3: Introduir les vostres dades. GitHub us demanarà:\n\nCorreu electrònic (feu servir el vostre correu universitari de la UIB).\nContrasenya segura.\nNom d’usuari (serà la vostra identitat pública a GitHub).\n\nPas 4: Verificar el vostre correu. GitHub enviarà un missatge al vostre email de la UIB. Obriu el correu i premeu Verify email address.\n\n\n\n\nUn cop creat el compte, completeu el vostre perfil d’usuari seguint aquests passos:\n\nPas 1: Accediu al vostre perfil. Feu clic a la vostra foto o avatar (a dalt a la dreta) i seleccioneu Your profile.\nPas 2: Feu clic a Edit profile i completeu la informació sol·licitada:\n\nName → El vostre nom real.\nBio → Una breu descripció (per exemple: Estudiant del Grau en Matemàtiques (UIB)).\nCompany → Aquí és on s’indica la Universitat. Exemple: Universitat de les Illes Balears\n\nPas 3: Desar els canvis fent clic a Save al final del formulari.\n\nDesprés de completar aquests passos, tindreu un perfil acadèmic bàsic i correcte, adequat per sol·licitar el GitHub Student Developer Pack.\n\n\n\n\nPas 1: Accediu a la configuració del vostre compte. Feu clic a la vostra foto o avatar (a dalt a la dreta) i seleccioneu Settings.\nPas 2: Al menú lateral esquerre, obriu la secció Password and authentication.\nPas 3: Dins de Password and authentication, localitzeu l’apartat Two-factor authentication → Enable two-factor authentication.\nPas 4: Triar el mètode d’autenticació.\n\nEs recomana fer servir una aplicació d’autenticació (Authenticator app).\nAtès que la UIB requereix l’aplicació Microsoft Authenticator es suggereix utilitzar aquesta.\nHeu de:\n\n\nObrir l’aplicació Microsoft Authenticator al vostre mòbil.\nEscanejar el codi QR que apareix a la pantalla.\nTocar la icona de GitHub a l’app (al vostre mòbil) per veure el codi temporal de 6 dígits que es genera cada 30 segons.\nIntroduir el codi temporal anterior a la pàgina de GitHub.\n\n\n\n\n\n\n\n\n\nPas 1: Aneu a https://education.github.com/pack. Feu clic a Sign up for Student Developer Pack.\nPas 2: Iniciar sessió amb el vostre compte de GitHub. Si no ho heu fet ja, GitHub us demanarà iniciar sessió.\nPas 3: Verificació d’identitat acadèmica. GitHub us demanarà demostrar que sou estudiant. Podeu fer-ho de dues formes però es recomana l’opció de correu institucional (el que és xxxxx@estudiant.uib.cat).\nPas 4: Completar el formulari. GitHub us preguntarà:\n\nEl vostre nivell educatiu (Undergraduate)\nLa vostra universitat\nEl vostre motiu per sol·licitar el Pack (podeu escriure quelcom senzill com: “I want to use professional development tools for my university degree programming projects.”)\n\nPas 5: Enviar la sol·licitud. Clic a Submit.\n\nGitHub sol tardar entre 1 i 5 dies a revisar la sol·licitud. Rebreu un correu indicant si ha estat aprovada. Un cop acceptat, tindreu accés a totes les eines del Pack des del vostre compte de GitHub.",
+    "crumbs": [
+      "Exercicis",
+      "Exercicis — Tema 1"
+    ]
+  },
+  {
+    "objectID": "ca/exercicis/tema1.html#exercici-1.1",
+    "href": "ca/exercicis/tema1.html#exercici-1.1",
+    "title": "Exercicis — Tema 1",
+    "section": "",
+    "text": "L’objectiu d’aquest exercici és que l’estudiant creï el seu propi compte a GitHub i completi el procés de sol·licitud del GitHub Student Developer Pack. El GitHub Student Developer Pack ofereix accés gratuït a eines professionals de desenvolupament: dominis, servidors, IDEs, crèdits al núvol, eines de disseny, bases de dades i molt més.\nA continuació les instruccions, pas a pas, que heu de seguir per completar aquest exercici.\n\n\n\nPas 1: Entreu a: https://github.com/\nPas 2: Iniciar el registre. Feu clic a Sign up (a dalt a la dreta).\nPas 3: Introduir les vostres dades. GitHub us demanarà:\n\nCorreu electrònic (feu servir el vostre correu universitari de la UIB).\nContrasenya segura.\nNom d’usuari (serà la vostra identitat pública a GitHub).\n\nPas 4: Verificar el vostre correu. GitHub enviarà un missatge al vostre email de la UIB. Obriu el correu i premeu Verify email address.\n\n\n\n\nUn cop creat el compte, completeu el vostre perfil d’usuari seguint aquests passos:\n\nPas 1: Accediu al vostre perfil. Feu clic a la vostra foto o avatar (a dalt a la dreta) i seleccioneu Your profile.\nPas 2: Feu clic a Edit profile i completeu la informació sol·licitada:\n\nName → El vostre nom real.\nBio → Una breu descripció (per exemple: Estudiant del Grau en Matemàtiques (UIB)).\nCompany → Aquí és on s’indica la Universitat. Exemple: Universitat de les Illes Balears\n\nPas 3: Desar els canvis fent clic a Save al final del formulari.\n\nDesprés de completar aquests passos, tindreu un perfil acadèmic bàsic i correcte, adequat per sol·licitar el GitHub Student Developer Pack.\n\n\n\n\nPas 1: Accediu a la configuració del vostre compte. Feu clic a la vostra foto o avatar (a dalt a la dreta) i seleccioneu Settings.\nPas 2: Al menú lateral esquerre, obriu la secció Password and authentication.\nPas 3: Dins de Password and authentication, localitzeu l’apartat Two-factor authentication → Enable two-factor authentication.\nPas 4: Triar el mètode d’autenticació.\n\nEs recomana fer servir una aplicació d’autenticació (Authenticator app).\nAtès que la UIB requereix l’aplicació Microsoft Authenticator es suggereix utilitzar aquesta.\nHeu de:\n\n\nObrir l’aplicació Microsoft Authenticator al vostre mòbil.\nEscanejar el codi QR que apareix a la pantalla.\nTocar la icona de GitHub a l’app (al vostre mòbil) per veure el codi temporal de 6 dígits que es genera cada 30 segons.\nIntroduir el codi temporal anterior a la pàgina de GitHub.\n\n\n\n\n\n\n\n\n\nPas 1: Aneu a https://education.github.com/pack. Feu clic a Sign up for Student Developer Pack.\nPas 2: Iniciar sessió amb el vostre compte de GitHub. Si no ho heu fet ja, GitHub us demanarà iniciar sessió.\nPas 3: Verificació d’identitat acadèmica. GitHub us demanarà demostrar que sou estudiant. Podeu fer-ho de dues formes però es recomana l’opció de correu institucional (el que és xxxxx@estudiant.uib.cat).\nPas 4: Completar el formulari. GitHub us preguntarà:\n\nEl vostre nivell educatiu (Undergraduate)\nLa vostra universitat\nEl vostre motiu per sol·licitar el Pack (podeu escriure quelcom senzill com: “I want to use professional development tools for my university degree programming projects.”)\n\nPas 5: Enviar la sol·licitud. Clic a Submit.\n\nGitHub sol tardar entre 1 i 5 dies a revisar la sol·licitud. Rebreu un correu indicant si ha estat aprovada. Un cop acceptat, tindreu accés a totes les eines del Pack des del vostre compte de GitHub.",
+    "crumbs": [
+      "Exercicis",
+      "Exercicis — Tema 1"
+    ]
+  },
+  {
+    "objectID": "ca/exercicis/tema1.html#exercici-1.2",
+    "href": "ca/exercicis/tema1.html#exercici-1.2",
+    "title": "Exercicis — Tema 1",
+    "section": "Exercici 1.2",
+    "text": "Exercici 1.2\nAquest exercici té com a objectiu que aprengueu a:\n\nCrear un repositori a GitHub.\nConfigurar-lo mínimament.\nAixecar un Codespace associat a aquest repositori.\n\n\n\n\n\n\n\nConcepte Clau 1: Repositori i Codespace\n\n\n\nUn repositori de GitHub és un espai on es desa un projecte: conté el codi, arxius del projecte i l’historial de revisions (commits) que permeten seguir i recuperar canvis al llarg del temps.\nEls repositoris poden ser públics o privats, suporten branques i col·laboracions (pull requests, issues) per coordinar el treball en equip, i actuen com la unitat bàsica de treball dins de GitHub.\nUn GitHub Codespace és un entorn de desenvolupament al núvol, llest per usar, que us permet programar directament des de GitHub sense configurar la vostra màquina local. Sol venir amb eines i dependències preconfigurades per a un repositori concret, la qual cosa facilita començar a treballar ràpidament.\n\n\n\n1. Accedir al vostre compte de GitHub (si no ho heu fet ja)\n\nObrir el navegador.\nAnar a: https://github.com/\nPrémer Sign in.\nIntroduir usuari i contrasenya.\n\n\n\n2. Crear el repositori “test-de-codespaces–tema-1”\n\nPas 1: A la part superior esquerra, fer clic a + ().\nPas 2: Seleccionar New repository.\nPas 3: Apareixerà un formulari amb diversos camps per configurar el repositori:\n\nRepository name → test-de-codespaces–tema-1\nDescription → Repositori de prova per a Codespaces\nVisibility → Private (privat)\nInitialize this repository with a README → marcar aquesta opció a On.\n\nPas 4: Fer clic al botó Create repository.\nPas 5: Verificar que el repositori s’ha creat. Heu de veure una pàgina amb:\n\nEl nom del repositori que heu donat abans.\nUn arxiu README.md ja creat.\nUn menú amb pestanyes com Code, Issues, Pull requests, etc.\n\n\n\n\n3. Crear un Codespace preconfigurado per a Python\n\nPas 1: Crear la carpeta .devcontainer i el fitxer devcontainer.json\n\nAl repositori creat (test-de-codespaces–tema-1), fer clic al botó Add file → Create new file.\nAl camp Name your file escriure:\n.devcontainer/devcontainer.json\nDins de l’arxiu, enganxeu aquest contingut:\n{\n    \"name\": \"Curso Programación 23200, Python 3.12\",\n    \"image\": \"mcr.microsoft.com/devcontainers/python:3.12\",\n\n    \"customizations\": {\n        \"vscode\": {\n            \"extensions\": [\n                \"ms-python.python\",\n                \"ms-python.vscode-pylance\",\n                \"charliermarsh.ruff\",\n                \"ms-python.black-formatter\",\n                \"oderwat.indent-rainbow\"\n            ],\n            \"settings\": {\n                \"editor.formatOnSave\": true,\n                \"editor.defaultFormatter\": \"ms-python.black-formatter\",\n                \"python.analysis.typeCheckingMode\": \"basic\",\n                \"ruff.enable\": true\n            }\n        }\n    },\n\n    \"postCreateCommand\": \"pip install --upgrade pip && pip install -r requirements.txt || true\",\n    \"postStartCommand\": \"echo 'Entorno listo para Programación 23200'\",\n\n    \"forwardPorts\": [8000, 8080]\n}\nDesar l’arxiu: Feu clic a Commit changes….\nAccepteu el missatge per defecte sobre els canvis i feu clic a Commit changes.\n\nPas 2: Crear el fitxer requirements.txt al directori arrel del repositori\n\nDonat el pas anterior pot ocórrer que us trobeu al directori .devcontainer, heu d’anar al directori arrel del repositori, no romandre dins de .devcontainer. Per fer-ho feu clic a .. (a dalt a l’esquerra) per tornar al directori arrel.\nAl directori arrel del repositori (test-de-codespaces–tema-1), fer clic al botó Add file → Create new file.\nAl camp Name your file escriure:\nrequirements.txt\nDins de l’arxiu, enganxeu aquest contingut:\nruff\nblack\nDesar l’arxiu: Feu clic a Commit changes….\nAccepteu el missatge per defecte sobre els canvis i feu clic a Commit changes.\n\n\n\n\n4. Arrancar el Codespace\n\nPas 1: Feu clic a Code → Codespaces.\nPas 2: Feu clic a Create codespace on main.\nGitHub detectarà el .devcontainer i:\n\ndescarregarà la imatge de Python,\ninstal·larà les extensions,\nconfigurarà l’entorn,\nobrirà VS Code amb suport complet per a Python.\n\nPas 3: Espereu que el Codespace estigui llest. Això pot trigar uns minuts. Veureu missatges com:\n\nSetting up remote connection: [Building codespace…]\nInstalling dependencies…\n\nUn cop llest, veureu un missatge a la part inferior dreta de VS Code indicant que l’entorn està llest.\n\n\n\n5. Reconèixer la interfície del Codespace\nL’entorn tindrà:\n\nBarra lateral esquerra amb:\n\nExplorador, mostra els arxius del projecte.\nCercar, permet cercar text als arxius.\nControl de codi font, permet veure els canvis i fer commits.\nExecució i depuració, permet executar i depurar el codi.\nExtensions, permet gestionar les extensions de VS Code.\n\nEditor de codi al centre a dalt (apareix obert el README.md).\nTerminal integrada al centre a baix.\nBarra lateral dreta per al XATS amb Copilot.\n\n\n\n6. Verificar que Python està configurat\nA la TERMINAL del Codespace escriviu l’ordre següent per comprovar la versió de Python instal·lada (si copieu i enganxeu l’ordre, probablement haureu de donar permís a la finestra emergent del navegador per poder enganxar text al terminal):\npython --version\nHa d’aparèixer:\nPython 3.12.x\n\n\n7. Crear un arxiu de prova i executar-lo\n\nA l’explorador, prémer New File o Nou arxiu.\nAnomenar-lo:\nprova.py\nEscriure a dins:\nprint(\"El meu primer Codespace funciona correctament\")\nDesar (Ctrl + S).\nExecutar l’arxiu.\n\nVariant 1: Escriure al terminal:\n\npython prova.py\n\nVariant 2: Fer clic a Executar arxiu de Python (triangle de play a dalt a la dreta de l’editor de codi).\n\n\n\n\n8. Tancar el Codespace\nAquest és un pas summament important. Quan acabeu de treballar al Codespace, l’heu de tancar per alliberar recursos i evitar que s’acumulin càrrecs al vostre compte de GitHub. Principalment perquè el nombre d’hores de Codespaces gratuïtes és limitat.\n\nSense sortir del Codespace:\n\nPremeu Ctrl + Shift + P (o Cmd + Shift + P a Mac) per obrir la paleta d’ordres.\nEscriviu Codespaces: Close Codespace i seleccioneu l’opció que apareix.\n\nAlternativament, podeu tancar el Codespace des del vostre lloc de GitHub:\n\nAneu al vostre repositori a GitHub.\nFeu clic a Code → Codespaces.\nLocalitzeu el Codespace que voleu tancar i feu clic a … → Stop Codespace.",
+    "crumbs": [
+      "Exercicis",
+      "Exercicis — Tema 1"
+    ]
+  },
+  {
+    "objectID": "ca/exercicis/tema3.html",
+    "href": "ca/exercicis/tema3.html",
+    "title": "Exercicis — Tema 3",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Exercicis",
-      "Exercicis — Tema 2"
+      "Exercicis — Tema 3"
     ]
   },
   {
-    "objectID": "ca/exercicis/tema4.html",
-    "href": "ca/exercicis/tema4.html",
-    "title": "Exercicis — Tema 4",
+    "objectID": "ca/exercicis/tema5.html",
+    "href": "ca/exercicis/tema5.html",
+    "title": "Exercicis — Tema 5",
     "section": "",
-    "text": "(Contenido pendiente.)",
+    "text": "(Contingut pendent.)",
     "crumbs": [
       "Exercicis",
-      "Exercicis — Tema 4"
+      "Exercicis — Tema 5"
     ]
   },
   {
-    "objectID": "ca/exercicis/tema6.html",
-    "href": "ca/exercicis/tema6.html",
-    "title": "Exercicis — Tema 6",
+    "objectID": "ca/exercicis/tema7.html",
+    "href": "ca/exercicis/tema7.html",
+    "title": "Exercicis — Tema 7",
     "section": "",
-    "text": "(Contenido pendiente.)",
+    "text": "(Contingut pendent.)",
     "crumbs": [
       "Exercicis",
-      "Exercicis — Tema 6"
+      "Exercicis — Tema 7"
     ]
   },
   {
-    "objectID": "ca/exercicis/tema8.html",
-    "href": "ca/exercicis/tema8.html",
-    "title": "Exercicis — Tema 8",
+    "objectID": "ca/exercicis/tema9.html",
+    "href": "ca/exercicis/tema9.html",
+    "title": "Exercicis — Tema 9",
     "section": "",
-    "text": "(Contenido pendiente.)",
+    "text": "(Contingut pendent.)",
     "crumbs": [
       "Exercicis",
-      "Exercicis — Tema 8"
+      "Exercicis — Tema 9"
     ]
   },
   {
@@ -982,78 +993,111 @@
   {
     "objectID": "es/contenido/tema4.html",
     "href": "es/contenido/tema4.html",
-    "title": "Tema 4: Algoritmos Básicos y Verificación",
+    "title": "Tema 4: Estructuras de Datos nativas fundamentales de Python",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Temas",
-      "4. Algoritmos Básicos y Verificación"
+      "4. Estructuras de Datos de Python"
     ]
   },
   {
     "objectID": "es/contenido/tema6.html",
     "href": "es/contenido/tema6.html",
-    "title": "Tema 6: Gestión de Datos y Ficheros",
+    "title": "Tema 6: Programación Orientada a Objetos",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Temas",
-      "6. Gestión de Datos y Ficheros"
+      "6. Programación Orientada a Objetos"
     ]
   },
   {
     "objectID": "es/contenido/tema8.html",
     "href": "es/contenido/tema8.html",
-    "title": "Tema 8: Diseño Algorítmico y Resolución de Problemas",
+    "title": "Tema 8: Ecosistema Científico de Python",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Temas",
-      "8. Diseño Algorítmico y Resolución de Problemas"
+      "8. Ecosistema Científico de Python"
     ]
   },
   {
-    "objectID": "es/ejercicios/tema2.html",
-    "href": "es/ejercicios/tema2.html",
-    "title": "Ejercicios — Tema 2",
+    "objectID": "es/ejercicios/tema1.html",
+    "href": "es/ejercicios/tema1.html",
+    "title": "Ejercicios — Tema 1",
+    "section": "",
+    "text": "El objetivo de este ejercicio es que el estudiante cree su propia cuenta en GitHub y complete el proceso de solicitud del GitHub Student Developer Pack. El GitHub Student Developer Pack ofrece acceso gratuito a herramientas profesionales de desarrollo: dominios, servidores, IDEs, créditos en la nube, herramientas de diseño, bases de datos y mucho más.\nA continuación las instrucciones, paso a paso, que debes seguir para completar este ejercicio.\n\n\n\nPaso 1: Entra en: https://github.com/\nPaso 2: Iniciar el registro. Haz clic en Sign up (arriba a la derecha).\nPaso 3: Introducir tus datos. GitHub te pedirá:\n\nCorreo electrónico (usa tu correo universitario de la UIB).\nContraseña segura.\nNombre de usuario (será tu identidad pública en GitHub).\n\nPaso 4: Verificar tu correo. GitHub enviará un mensaje a tu email de la UIB. Abre el correo y pulsa Verify email address.\n\n\n\n\nUna vez creada la cuenta, completa tu perfil de usuario siguiendo estos pasos:\n\nPaso 1: Accede a tu perfil. Haz clic en tu foto o avatar (arriba a la derecha) y selecciona Your profile.\nPaso 2: Haz clic en Edit profile y completa la información solicitada:\n\nName → Tu nombre real.\nBio → Una breve descripción (por ejemplo: Estudiante del Grado en Matemáticas (UIB)).\nCompany → Aquí es donde se indica la Universidad. Ejemplo: Universitat de les Illes Balears\n\nPaso 3: Guardar los cambios haciendo clic en Save al final del formulario.\n\nTras completar estos pasos, tendrás un perfil académico básico y correcto, adecuado para solicitar el GitHub Student Developer Pack\n\n\n\n\nPaso 1: Accede a la configuración de tu cuenta. Haz clic en tu foto o avatar (arriba a la derecha) y selecciona Settings.\nPaso 2: En el menú lateral izquierdo, abrir la sección Password and authentication.\nPaso 3: Dentro de Password and authentication, localizar el apartado Two-factor authentication → Enable two-factor authentication\nPaso 4: Elegir el método de autenticación.\n\nSe recomienda emplear una aplicación de autenticación (Authenticator app).\nDado que la UIB requiere la aplicación Microsoft Authenticator se sugiere utilizar esta.\nDebes:\n\n\nAbrir la aplicación Microsoft Authenticator en tu móvil.\nEscanear el código QR que aparece en pantalla.\nTocar el ícono de GitHub en la app (en tu móvil) para ver el código temporal de 6 dígitos que se genera cada 30 segundos.\nIntroducir el código temporal anterior en la página de GitHub.\n\n\n\n\n\n\n\n\n\nPaso 1: Ve a https://education.github.com/pack. Haz clic en Sign up for Student Developer Pack.\nPaso 2: Iniciar sesión con tu cuenta de GitHub. Si no lo has hecho ya, GitHub te pedirá iniciar sesión.\nPaso 3: Verificación de identidad académica. GitHub te pedirá demostrar que eres estudiante. Puedes hacerlo de dos formas pero se recomienda la opción de correo institucional (el que es xxxxx@estudiant.uib.cat)\nPaso 4: Completar el formulario. GitHub te preguntará:\n\nTu nivel educativo (Undergraduate)\nTu universidad\nTu motivo para solicitar el Pack (puedes escribir algo sencillo como: “I want to use professional development tools for my university degree programming projects.”)\n\nPaso 5: Enviar la solicitud. Clic en Submit.\n\nGitHub suele tardar entre 1 y 5 días en revisar la solicitud. Recibirás un correo indicando si ha sido aprobada. Una vez aceptado, tendrás acceso a todas las herramientas del Pack desde tu cuenta de GitHub.",
+    "crumbs": [
+      "Ejercicios",
+      "Ejercicios — Tema 1"
+    ]
+  },
+  {
+    "objectID": "es/ejercicios/tema1.html#ejercicio-1.1",
+    "href": "es/ejercicios/tema1.html#ejercicio-1.1",
+    "title": "Ejercicios — Tema 1",
+    "section": "",
+    "text": "El objetivo de este ejercicio es que el estudiante cree su propia cuenta en GitHub y complete el proceso de solicitud del GitHub Student Developer Pack. El GitHub Student Developer Pack ofrece acceso gratuito a herramientas profesionales de desarrollo: dominios, servidores, IDEs, créditos en la nube, herramientas de diseño, bases de datos y mucho más.\nA continuación las instrucciones, paso a paso, que debes seguir para completar este ejercicio.\n\n\n\nPaso 1: Entra en: https://github.com/\nPaso 2: Iniciar el registro. Haz clic en Sign up (arriba a la derecha).\nPaso 3: Introducir tus datos. GitHub te pedirá:\n\nCorreo electrónico (usa tu correo universitario de la UIB).\nContraseña segura.\nNombre de usuario (será tu identidad pública en GitHub).\n\nPaso 4: Verificar tu correo. GitHub enviará un mensaje a tu email de la UIB. Abre el correo y pulsa Verify email address.\n\n\n\n\nUna vez creada la cuenta, completa tu perfil de usuario siguiendo estos pasos:\n\nPaso 1: Accede a tu perfil. Haz clic en tu foto o avatar (arriba a la derecha) y selecciona Your profile.\nPaso 2: Haz clic en Edit profile y completa la información solicitada:\n\nName → Tu nombre real.\nBio → Una breve descripción (por ejemplo: Estudiante del Grado en Matemáticas (UIB)).\nCompany → Aquí es donde se indica la Universidad. Ejemplo: Universitat de les Illes Balears\n\nPaso 3: Guardar los cambios haciendo clic en Save al final del formulario.\n\nTras completar estos pasos, tendrás un perfil académico básico y correcto, adecuado para solicitar el GitHub Student Developer Pack\n\n\n\n\nPaso 1: Accede a la configuración de tu cuenta. Haz clic en tu foto o avatar (arriba a la derecha) y selecciona Settings.\nPaso 2: En el menú lateral izquierdo, abrir la sección Password and authentication.\nPaso 3: Dentro de Password and authentication, localizar el apartado Two-factor authentication → Enable two-factor authentication\nPaso 4: Elegir el método de autenticación.\n\nSe recomienda emplear una aplicación de autenticación (Authenticator app).\nDado que la UIB requiere la aplicación Microsoft Authenticator se sugiere utilizar esta.\nDebes:\n\n\nAbrir la aplicación Microsoft Authenticator en tu móvil.\nEscanear el código QR que aparece en pantalla.\nTocar el ícono de GitHub en la app (en tu móvil) para ver el código temporal de 6 dígitos que se genera cada 30 segundos.\nIntroducir el código temporal anterior en la página de GitHub.\n\n\n\n\n\n\n\n\n\nPaso 1: Ve a https://education.github.com/pack. Haz clic en Sign up for Student Developer Pack.\nPaso 2: Iniciar sesión con tu cuenta de GitHub. Si no lo has hecho ya, GitHub te pedirá iniciar sesión.\nPaso 3: Verificación de identidad académica. GitHub te pedirá demostrar que eres estudiante. Puedes hacerlo de dos formas pero se recomienda la opción de correo institucional (el que es xxxxx@estudiant.uib.cat)\nPaso 4: Completar el formulario. GitHub te preguntará:\n\nTu nivel educativo (Undergraduate)\nTu universidad\nTu motivo para solicitar el Pack (puedes escribir algo sencillo como: “I want to use professional development tools for my university degree programming projects.”)\n\nPaso 5: Enviar la solicitud. Clic en Submit.\n\nGitHub suele tardar entre 1 y 5 días en revisar la solicitud. Recibirás un correo indicando si ha sido aprobada. Una vez aceptado, tendrás acceso a todas las herramientas del Pack desde tu cuenta de GitHub.",
+    "crumbs": [
+      "Ejercicios",
+      "Ejercicios — Tema 1"
+    ]
+  },
+  {
+    "objectID": "es/ejercicios/tema1.html#ejercicio-1.2",
+    "href": "es/ejercicios/tema1.html#ejercicio-1.2",
+    "title": "Ejercicios — Tema 1",
+    "section": "Ejercicio 1.2",
+    "text": "Ejercicio 1.2\nEste ejercicio tiene como objetivo que aprendas a:\n\nCrear un repositorio en GitHub.\n\nConfigurarlo mínimamente.\n\nLevantar un Codespace asociado a ese repositorio.\n\n\n\n\n\n\n\nConcepto Clave 1: Repositorio y Codespace\n\n\n\nUn repositorio de GitHub es un espacio donde se guarda un proyecto: contiene el código, archivos del proyecto y el historial de revisiones (commits) que permiten seguir y recuperar cambios a lo largo del tiempo.\nLos repositorios pueden ser públicos o privados, soportan ramas y colaboraciones (pull requests, issues) para coordinar trabajo en equipo, y actúan como la unidad básica de trabajo dentro de GitHub.\nUn GitHub Codespace es un entorno de desarrollo en la nube, listo para usar, que te permite programar directamente desde GitHub sin configurar tu máquina local. Suele venir con herramientas y dependencias preconfiguradas para un repositorio concreto, lo que facilita empezar a trabajar rápido.\n\n\n\n1. Acceder a tu cuenta de GitHub (si no lo has hecho ya)\n\nAbrir el navegador.\n\nIr a: https://github.com/\n\nPulsar Sign in.\n\nIntroducir usuario y contraseña.\n\n\n\n2. Crear el repositorio “test-de-codespaces–tema-1”\n\nPaso 1: En la parte superior izquierda, hacer clic en + ().\nPaso 2: Seleccionar New repository.\nPaso 3: Aparecerá un formulario con varios campos para configurar el repositorio:\n\nRepository name → test-de-codespaces–tema-1\nDescription → Repositorio de prueba para Codespaces\nVisibility → Private (privado)\nInitialize this repository with a README → marcar esta opción a On.\n\nPaso 4: Hacer clic en el botón Create repository.\nPaso 5: Verificar que el repositorio se ha creado. Debes ver una página con:\n\nEl nombre del repositorio que has dado arriba.\n\nUn archivo README.md ya creado.\n\nUn menú con pestañas como Code, Issues, Pull requests, etc.\n\n\n\n\n3. Crear un Codespace preconfigurado para Python\n\nPaso 1: Crear la carpeta .devcontainer y el fichero devcontainer.json\n\nEn el repositorio creado (test-de-codespaces–tema-1), hacer clic en el botón Add file → Create new file.\nEn el campo Name your file escribir:\n.devcontainer/devcontainer.json\nDentro del archivo, pega este contenido:\n{\n    \"name\": \"Curso Programación 23200, Python 3.12\",\n    \"image\": \"mcr.microsoft.com/devcontainers/python:3.12\",\n\n    \"customizations\": {\n        \"vscode\": {\n            \"extensions\": [\n                \"ms-python.python\",\n                \"ms-python.vscode-pylance\",\n                \"charliermarsh.ruff\",\n                \"ms-python.black-formatter\",\n                \"oderwat.indent-rainbow\"\n            ],\n            \"settings\": {\n                \"editor.formatOnSave\": true,\n                \"editor.defaultFormatter\": \"ms-python.black-formatter\",\n                \"python.analysis.typeCheckingMode\": \"basic\",\n                \"ruff.enable\": true\n            }\n        }\n    },\n\n    \"postCreateCommand\": \"pip install --upgrade pip && pip install -r requirements.txt || true\",\n    \"postStartCommand\": \"echo 'Entorno listo para Programación 23200'\",\n\n    \"forwardPorts\": [8000, 8080]\n}\nGuardar el archivo: Has clic en Commit changes….\nAcepta el mensaje por defecto sobre los cambios y haz clic en Commit changes.\n\nPaso 2: Crear el fichero requirements.txt en el directorio raíz del repositorio\n\nDado el paso anterior puede ocurrir que te encuentres en el directorio .devcontainer, debes ir al directorio raíz del repositorio, no permanecer dentro de .devcontainer. Para ello haz clic en .. (arriba a la izquierda) para volver al directorio raíz.\nEn el directorio raíz del repositorio (test-de-codespaces–tema-1), hacer clic en el botón Add file → Create new file.\nEn el campo Name your file escribir:\nrequirements.txt\nDentro del archivo, pega este contenido:\nruff\nblack\nGuardar el archivo: Has clic en Commit changes….\nAcepta el mensaje por defecto sobre los cambios y haz clic en Commit changes.\n\n\n\n\n4. Arrancar el Codespace\n\nPaso 1: Has clic en Code → Codespaces.\nPaso 2: Has clic en Create codespace on main.\nGitHub detectará el .devcontainer y:\n\ndescargará la imagen de Python,\n\ninstalará las extensiones,\n\nconfigurará el entorno,\n\nabrirá VS Code con soporte completo para Python.\n\nPaso 3: Espera a que el Codespace esté listo. Esto puede tardar unos minutos. Verás mensajes como:\n\nSetting up remote connection: [Building codespace…]”\n\nInstalling dependencies…\n\nUna vez listo, verás un mensaje en la parte inferior derecha de VS Code indicando que el entorno está listo.\n\n\n\n5. Reconocer la interfaz del Codespace\nEl entorno tendrá:\n\nBarra lateral izquierda con:\n\nExplorador, muestra los archivos del proyecto.\nBuscar, permite buscar texto en los archivos.\nControl de código fuente, permite ver los cambios y hacer commits.\nEjecución y depuración, permite ejecutar y depurar el código.\nExtensiones, permite gestionar las extensiones de VS Code.\n\nEditor de código en el centro arriba (aparece abierto el README.md).\n\nTerminal integrada en el centro abajo.\n\nBarra lateral derecha para el CHAT con Copilot.\n\n\n\n6. Verificar que Python está configurado\nEn la TERMINAL del Codespace escribe el siguiente comando para comprobar la versión de Python instalada (si copias y pegas el comando, probablemente debas dar permiso en la ventana emergente del navegador para poder pegar texto en la terminal):\npython --version\nDebe aparecer:\nPython 3.12.x\n\n\n7. Crear un archivo de prueba y ejecutarlo\n\nEn el explorador, pulsar New File o Nuevo archivo.\nNombrarlo:\nprueba.py\nEscribir dentro:\nprint(\"Mi primer Codespace funciona correctamente\")\nGuardar (Ctrl + S).\nEjecutar el archivo.\n\nVariante 1: Escribir en la terminal:\n\npython prueba.py\n\nVariante 2: Hacer clic en Ejecutar archivo de Python (triángulo de play arriba a la derecha del editor de código).\n\n\n\n\n8. Cerrar el Codespace\nEste es un paso sumamente importante. Cuando termines de trabajar en el Codespace, debes cerrarlo para liberar recursos y evitar que se acumulen cargos en tu cuenta de GitHub. Principalmente ya que el número de horas de Codespaces gratuitas es limitado.\n\nSin salir del Codespace:\n\nPresiona Ctrl + Shift + P (o Cmd + Shift + P en Mac) para abrir la paleta de comandos.\nEscribe Codespaces: Close Codespace y selecciona la opción que aparece.\n\nAlternativamente, puedes cerrar el Codespace desde tu sitio de GitHub:\n\nVe a tu repositorio en GitHub.\nHaz clic en Code → Codespaces.\nLocaliza el Codespace que quieres cerrar y haz clic en … → Stop Codespace.",
+    "crumbs": [
+      "Ejercicios",
+      "Ejercicios — Tema 1"
+    ]
+  },
+  {
+    "objectID": "es/ejercicios/tema3.html",
+    "href": "es/ejercicios/tema3.html",
+    "title": "Ejercicios — Tema 3",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Ejercicios",
-      "Ejercicios — Tema 2"
+      "Ejercicios — Tema 3"
     ]
   },
   {
-    "objectID": "es/ejercicios/tema4.html",
-    "href": "es/ejercicios/tema4.html",
-    "title": "Ejercicios — Tema 4",
+    "objectID": "es/ejercicios/tema5.html",
+    "href": "es/ejercicios/tema5.html",
+    "title": "Ejercicios — Tema 5",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Ejercicios",
-      "Ejercicios — Tema 4"
+      "Ejercicios — Tema 5"
     ]
   },
   {
-    "objectID": "es/ejercicios/tema6.html",
-    "href": "es/ejercicios/tema6.html",
-    "title": "Ejercicios — Tema 6",
+    "objectID": "es/ejercicios/tema7.html",
+    "href": "es/ejercicios/tema7.html",
+    "title": "Ejercicios — Tema 7",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Ejercicios",
-      "Ejercicios — Tema 6"
+      "Ejercicios — Tema 7"
     ]
   },
   {
-    "objectID": "es/ejercicios/tema8.html",
-    "href": "es/ejercicios/tema8.html",
-    "title": "Ejercicios — Tema 8",
+    "objectID": "es/ejercicios/tema9.html",
+    "href": "es/ejercicios/tema9.html",
+    "title": "Ejercicios — Tema 9",
     "section": "",
     "text": "(Contenido pendiente.)",
     "crumbs": [
       "Ejercicios",
-      "Ejercicios — Tema 8"
+      "Ejercicios — Tema 9"
     ]
   },
   {
