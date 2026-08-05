@@ -1,0 +1,7 @@
+---
+title: "Tema 9: Diseño Algorítmico y Resolución de Problemas"
+lang: es
+sidebar: barra-es
+---
+
+*(Contenido pendiente.)*

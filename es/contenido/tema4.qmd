@@ -1,5 +1,5 @@
 ---
-title: "Tema 4: Algoritmos Básicos y Verificación"
+title: "Tema 4: Estructuras de Datos nativas fundamentales de Python"
 lang: es
 sidebar: barra-es
 ---

@@ -4,4 +4,4 @@ lang: ca
 sidebar: barra-ca
 ---
 
-*(Contenido pendiente.)*
+*(Contingut pendent.)*

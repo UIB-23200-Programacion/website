@@ -1,5 +1,5 @@
 ---
-title: "Tema 5: Estructuras de Datos y Programación Orientada a Objetos"
+title: "Tema 5: Algoritmos Básicos y Verificación (Testing)"
 lang: es
 sidebar: barra-es
 ---

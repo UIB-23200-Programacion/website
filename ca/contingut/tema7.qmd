@@ -1,7 +1,7 @@
 ---
-title: "Tema 7: Ecosistema Científic de Python"
+title: "Tema 7: Gestió de Dades i Fitxers"
 lang: ca
 sidebar: barra-ca
 ---
 
-*(Contenido pendiente.)*
+*(Contingut pendent.)*

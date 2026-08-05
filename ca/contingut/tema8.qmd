@@ -1,7 +1,7 @@
 ---
-title: "Tema 8: Disseny Algorítmic i Resolució de Problemes"
+title: "Tema 8: Ecosistema Científic de Python"
 lang: ca
 sidebar: barra-ca
 ---
 
-*(Contenido pendiente.)*
+*(Contingut pendent.)*

@@ -1,5 +1,5 @@
 ---
-title: "Tema 8: Ecosistema Científico de Python"
+title: "Ejercicios — Tema 9"
 lang: es
 sidebar: barra-es
 ---

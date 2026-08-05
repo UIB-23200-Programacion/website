@@ -1,5 +1,5 @@
 ---
-title: "Tema 6: Gestión de Datos y Ficheros"
+title: "Tema 6: Programación Orientada a Objetos"
 lang: es
 sidebar: barra-es
 ---

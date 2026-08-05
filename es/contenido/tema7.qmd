@@ -1,5 +1,5 @@
 ---
-title: "Tema 7: Ecosistema Científico de Python"
+title: "Tema 7: Gestión de Datos y Ficheros"
 lang: es
 sidebar: barra-es
 ---

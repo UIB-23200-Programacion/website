@@ -1,7 +1,7 @@
 ---
-title: "Tema 5: Estructures de Dades i Programació Orientada a Objectes"
+title: "Tema 5: Algorismes Bàsics i Verificació (Testing)"
 lang: ca
 sidebar: barra-ca
 ---
 
-*(Contenido pendiente.)*
+*(Contingut pendent.)*

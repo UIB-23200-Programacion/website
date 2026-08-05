@@ -53,15 +53,17 @@ website:
             - href: es/contenido/tema3.qmd
               text: "3. Funciones, Módulos y Organización"
             - href: es/contenido/tema4.qmd
-              text: "4. Algoritmos Básicos y Verificación"
+              text: "4. Estructuras de Datos de Python"
             - href: es/contenido/tema5.qmd
-              text: "5. Estructuras de Datos y POO"
+              text: "5. Algoritmos Básicos y Testing"
             - href: es/contenido/tema6.qmd
-              text: "6. Gestión de Datos y Ficheros"
+              text: "6. Programación Orientada a Objetos"
             - href: es/contenido/tema7.qmd
-              text: "7. Ecosistema Científico de Python"
+              text: "7. Gestión de Datos y Ficheros"
             - href: es/contenido/tema8.qmd
-              text: "8. Diseño Algorítmico y Resolución de Problemas"
+              text: "8. Ecosistema Científico de Python"
+            - href: es/contenido/tema9.qmd
+              text: "9. Diseño Algorítmico y Resolución de Problemas"
 
         - section: "Ejercicios"
           contents:
@@ -81,6 +83,8 @@ website:
               text: "Ejercicios — Tema 7"
             - href: es/ejercicios/tema8.qmd
               text: "Ejercicios — Tema 8"
+            - href: es/ejercicios/tema9.qmd
+              text: "Ejercicios — Tema 9"
 
         - section: "Práctica"
           contents:
@@ -125,15 +129,17 @@ website:
             - href: ca/contingut/tema3.qmd
               text: "3. Funcions, Mòduls i Organització"
             - href: ca/contingut/tema4.qmd
-              text: "4. Algorismes Bàsics i Verificació"
+              text: "4. Estructures de Dades de Python"
             - href: ca/contingut/tema5.qmd
-              text: "5. Estructures de Dades i POO"
+              text: "5. Algorismes Bàsics i Testing"
             - href: ca/contingut/tema6.qmd
-              text: "6. Gestió de Dades i Fitxers"
+              text: "6. Programació Orientada a Objectes"
             - href: ca/contingut/tema7.qmd
-              text: "7. Ecosistema Científic de Python"
+              text: "7. Gestió de Dades i Fitxers"
             - href: ca/contingut/tema8.qmd
-              text: "8. Disseny Algorítmic i Resolució de Problemes"
+              text: "8. Ecosistema Científic de Python"
+            - href: ca/contingut/tema9.qmd
+              text: "9. Disseny Algorítmic i Resolució de Problemes"
 
         - section: "Exercicis"
           contents:
@@ -153,6 +159,8 @@ website:
               text: "Exercicis — Tema 7"
             - href: ca/exercicis/tema8.qmd
               text: "Exercicis — Tema 8"
+            - href: ca/exercicis/tema9.qmd
+              text: "Exercicis — Tema 9"
 
         - section: "Pràctica"
           contents:

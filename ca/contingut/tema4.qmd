@@ -1,7 +1,7 @@
 ---
-title: "Tema 4: Algorismes Bàsics i Verificació"
+title: "Tema 4: Estructures de Dades natives fonamentals de Python"
 lang: ca
 sidebar: barra-ca
 ---
 
-*(Contenido pendiente.)*
+*(Contingut pendent.)*
