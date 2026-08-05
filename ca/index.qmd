@@ -13,17 +13,29 @@ Aquest lloc recull el material docent de l'assignatura [**Programació (23200) d
 
 ## Què trobaràs en aquest lloc
 
-**Informacions:** Documents administratius del curs: un resum de la guia docent oficial, el calendari i els horaris de classe.
+**Informacions:** 
 
-**Temes:** El contingut teòric-pràctic del curs, organitzat en 8 temes que van des dels fonaments del llenguatge fins al disseny algorítmic i l'ecosistema científic de Python.
+Documents administratius del curs: un resum de la guia docent oficial, el calendari i els horaris de classe.
 
-**Exercicis:** Col·lecció d'exercicis proposats per a cada tema, pensats per consolidar els conceptes treballats a classe.
+**Temes:** 
 
-**Pràctica del Curs:** Element d'avaluació contínua: enunciat, termini i lliurament de la pràctica del curs.
+El contingut teòric-pràctic del curs, organitzat en 9 temes que van des dels fonaments del llenguatge fins al disseny algorítmic i l'ecosistema científic de Python.
 
-**Recursos:** Material de suport complementari: exàmens de convocatòries anteriors, tutorials, manuals, guies de referència, i eines de programari recomanades.
+**Exercicis:** 
 
-**Bibliografia:** Referències bibliogràfiques del curs, dividides en bibliografia principal (lectures essencials) i complementària (lectures d'ampliació).
+Col·lecció d'exercicis proposats per a cada tema, pensats per consolidar els conceptes treballats a classe.
+
+**Pràctica del Curs:** 
+
+Element d'avaluació contínua: enunciat, termini i lliurament de la pràctica del curs.
+
+**Recursos:** 
+
+Material de suport complementari: exàmens de convocatòries anteriors, tutorials, manuals, guies de referència, i eines de programari recomanades.
+
+**Bibliografia:** 
+
+Referències bibliogràfiques del curs, dividides en bibliografia principal (lectures essencials) i complementària (lectures d'ampliació).
 
 ---
 

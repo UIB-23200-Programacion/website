@@ -310,7 +310,7 @@ print(area_circulo(1))    # 3.141592653589793
 print(area_circulo(5))    # 78.53981633974483
 ```
 
-Leer una variable global desde una función es aceptable, especialmente para constantes matemáticas o de configuración. Modificarla desde dentro de una función es una práctica que conviene evitar.
+**Leer una variable global desde una función es aceptable, especialmente para constantes matemáticas o de configuración. Modificarla desde dentro de una función es una práctica que conviene evitar.**
 
 ::: {#cau-scope-global .callout-caution title="Modificar variables globales con `global`"}
 Python permite modificar una variable global desde dentro de una función usando la declaración `global`, pero es una práctica que dificulta la comprensión y el mantenimiento del código:
@@ -343,6 +343,17 @@ print(c)   # 2
 
 Esta versión es transparente: su comportamiento queda completamente determinado por sus argumentos y no produce ningún efecto lateral.
 :::
+
+En Python las variables declaradas en un ciclo `for` pertenecen al **mismo ámbito** en que está el ciclo. Si el `for` está en el cuerpo de una función, la variable es local a esa función; si está a nivel de módulo, es global:
+
+```{pyodide}
+for i in range(5):
+    pass
+
+print(i)  # 4  — i sigue existiendo después del ciclo
+```
+
+Esto contrasta con lenguajes como C o Java, donde la variable del `for` queda confinada al bloque del bucle. En Python no hay ámbito de bloque: solo función (local), módulo (global) y built-in.
 
 ### **3.2.3 Ámbito enclosing**
 
@@ -668,15 +679,15 @@ A medida que un proyecto crece, dividir el código en módulos con responsabilid
 
 ### **3.5.1 Estructura de ficheros**
 
-La estructura más recomendada por la [Python Packaging Authority (PyPA)](https://packaging.python.org/en/latest/){target="_blank"} utiliza una carpeta `src/` para contener el código fuente, separando así el código de los tests y de la documentación. La organización de un ejemplo de proyecto, titulado `t3_ejemplo`, sería:
+La estructura más recomendada por la [Python Packaging Authority (PyPA)](https://packaging.python.org/en/latest/){target="_blank"} utiliza una carpeta `src/` para contener el código fuente, separando así el código de los tests y de la documentación. La organización de un ejemplo de proyecto, titulado `t03_ejemplo`, sería:
 
 ```text
-t3_ejemplo/
+t03_ejemplo/
 ├── .gitignore             # Archivos que Git no debe rastrear
 ├── pyproject.toml         # Configuración central del proyecto y dependencias
 ├── README.md              # Documentación principal
 ├── src/                   # Contenedor del código fuente
-│   └── t3_paquete/        # Tu paquete de Python real
+│   └── t03_paquete/       # Tu paquete de Python real
 │       ├── __init__.py    # Convierte la carpeta en paquete (puede estar vacío)
 │       ├── main.py        # Punto de entrada del programa
 │       ├── numeros.py     # Funciones de teoría de números
@@ -693,7 +704,7 @@ Cada módulo (fichero `.py` bajo `src/mi_paquete/`) agrupa funciones relacionada
 
 Python busca los módulos en el mismo directorio que el fichero que los importa, sin necesidad de configuración adicional. Esta estructura funciona directamente en un entorno local y en un Codespace.
 
-::: {.callout-tip appearance="simple"}
+::: {#imp-modulobien .callout-important title="Módulos con una sola responsabilidad"}
 Un módulo debe hacer **una cosa bien**. Si un módulo empieza a agrupar funciones de geometría y también de estadística, es señal de que debería dividirse en dos. La pregunta de diseño es siempre: *¿qué tienen en común las funciones de este módulo?*
 
 **Mantén los módulos pequeños**
@@ -707,9 +718,9 @@ Una guía práctica:
 No es una regla estricta, pero ayuda a mantener el código manejable.
 :::
 
-### **3.5.2 Ejemplo de módulos del proyecto `t3_ejemplo`**
+### **3.5.2 Ejemplo de módulos del proyecto `t03_ejemplo`**
 
-El proyecto `t3_ejemplo`, con la estructura presentada anteriormente, incluye además de `numeros.py`, otros tres módulos `geometria.py`, `conversor.py` y `main.py` con responsabilidades distintas que se presentan a continuación.
+El proyecto `t03_ejemplo`, con la estructura presentada anteriormente, incluye además de `numeros.py`, otros tres módulos `geometria.py`, `conversor.py` y `main.py` con responsabilidades distintas que se presentan a continuación.
 
 **`geometria.py`**:
 
@@ -789,7 +800,7 @@ if __name__ == "__main__":
 ```python
 """Herramienta matemática interactiva."""
 
-from t3_paquete import numeros, geometria, conversor
+from t03_paquete import numeros, geometria, conversor
 
 
 def mostrar_menu() -> None:
