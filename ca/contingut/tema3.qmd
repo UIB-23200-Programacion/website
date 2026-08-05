@@ -2,6 +2,858 @@
 title: "Tema 3: Funcions, Mòduls i Organització del Codi"
 lang: ca
 sidebar: barra-ca
+bibliography: tema3.bib
+engine: markdown
 ---
 
-*(Contenido pendiente.)*
+## 3.1. Definició de funcions, pas de paràmetres i retorn de valors
+
+En matemàtiques, una funció és una regla que associa a cada element d'un conjunt d'entrada exactament un element d'un conjunt de sortida: $f: A \to B$. En programació, el concepte és anàleg però més ampli: **una funció és un bloc de codi amb nom que rep entrades, realitza un càlcul o acció, i retorna un resultat**.
+
+La raó fonamental per definir funcions és evitar la repetició de codi. Si el mateix càlcul apareix en diversos llocs del programa, n'hi ha prou amb escriure'l una vegada com a funció i cridar-la tantes vegades com calgui. Això fa el codi més curt, més llegible i més fàcil de mantenir: un error es corregeix en un únic lloc.
+
+::: {#tip-funcion .callout-tip title="Funció"}
+En programació, una **funció** és una unitat de codi amb nom que encapsula una seqüència d'instruccions, accepta zero o més valors d'entrada (**paràmetres**) i retorna un valor de sortida (**valor de retorn**).
+
+Les funcions compleixen tres propòsits fonamentals:
+
+- **Abstracció**: oculten els detalls d'implementació darrere d'un nom. L'usuari de la funció només necessita saber què fa, no com ho fa.
+- **Reutilització**: permeten executar el mateix codi des de qualsevol punt del programa sense reescriure'l.
+- **Composició**: les funcions es poden cridar les unes a les altres, construint operacions complexes a partir de peces simples.
+
+En Python, les funcions són **objectes de primera classe**: es poden assignar a variables i passar com a arguments a altres funcions, igual que qualsevol altre valor. Aquest comportament s'explorarà en temes posteriors.
+:::
+
+### **3.1.1 Sintaxi bàsica**
+
+La paraula clau `def` introdueix la definició d'una funció:
+
+```python
+def nombre(parámetro1, parámetro2, ...):
+    """Docstring opcional."""
+    # cos de la funció
+    return valor
+```
+
+El cos és un bloc indentat, igual que els blocs `if`, `while` i `for` del Tema 2. La instrucció `return` especifica el valor que la funció retorna al codi que l'ha cridada. Un cop definida, la funció es **crida** escrivint el seu nom seguit de parèntesis amb els arguments:
+
+```{pyodide}
+def cuadrado(x):
+    return x ** 2
+
+print(cuadrado(5))    # 25
+print(cuadrado(-3))   # 9
+print(cuadrado(2.5))  # 6.25
+```
+
+```{pyodide}
+def es_par(n):
+    return n % 2 == 0
+
+print(es_par(4))    # True
+print(es_par(7))    # False
+print(es_par(0))    # True
+```
+
+::: {#imp-def .callout-important title="Anatomia d'una funció"}
+Tota funció en Python té quatre parts:
+
+1. **Capçalera**: `def nombre(parámetros):` — defineix el nom i els paràmetres d'entrada.
+2. **Docstring** (opcional però recomanat): cadena de text que documenta què fa la funció. Es tracta a la secció 3.3.
+3. **Cos**: el bloc indentat amb les instruccions.
+4. **Retorn**: `return expresión` retorna el resultat. Si s'omet `return`, la funció retorna `None`.
+
+El nom de la funció segueix les mateixes convencions que els noms de variable: `snake_case`, descriptiu i en minúscules.
+:::
+
+### **3.1.2 Paràmetres, arguments i valors per defecte**
+
+En una funció de Python, els **paràmetres** són els noms que apareixen en la definició de la funció, mentre que els **arguments** són els valors concrets que se li passen en invocar-la (cridar-la). En essència, els paràmetres actuen com a marcadors de posició (*placeholders*); són **variables temporals que han d'aparèixer en el cos de la funció** i li indiquen a l'intèrpret: *"aquí hi haurà un valor disponible quan algú invoqui la funció"*. Els arguments, per la seva banda, representen les dades reals que ocuparan aquell lloc.
+
+```{pyodide}
+def potencia(base, exponente):      # base i exponente són paràmetres
+    return base ** exponente
+
+print(potencia(2, 10))              # 2 i 10 són arguments → 1024
+print(potencia(3, 3))               # 27
+```
+
+Els **paràmetres amb valor per defecte** permeten ometre alguns arguments en la crida quan el valor habitual és conegut d'antuvi:
+
+```{pyodide}
+def potencia(base, exponente=2):    # exponente té valor per defecte 2
+    return base ** exponente
+
+print(potencia(5))        # 25    (exponente pren el seu valor per defecte)
+print(potencia(5, 3))     # 125   (se sobreescriu el valor per defecte)
+print(potencia(2, 10))    # 1024
+```
+
+::: {#imp-default .callout-important title="Regla d'ordre en els paràmetres amb valor per defecte"}
+Els paràmetres amb valor per defecte s'han de col·locar sempre **després** dels paràmetres sense valor per defecte. Invertir l'ordre produeix un `SyntaxError`:
+
+```python
+# Correcte
+def f(x, y=0, z=1):
+    ...
+
+# SyntaxError: paràmetres sense defecte no poden anar després dels que en tenen
+def f(x=0, y):
+    ...
+```
+
+La raó és que Python assigna els arguments posicionalment d'esquerra a dreta: si un paràmetre amb valor per defecte precedís a un sense ell, seria ambigu quin argument correspon a quin paràmetre.
+:::
+
+::: {#cau-return-none .callout-caution title="Usar el resultat d'una funció que retorna `None`"}
+Si una funció no té `return`, o té un `return` sense expressió, retorna `None`. Usar aquest resultat en un càlcul posterior produeix un `TypeError` difícil de diagnosticar:
+
+```{pyodide}
+def duplicar(x):
+    y = x * 2       # calcula però no retorna
+
+resultado = duplicar(5)
+print(resultado)    # None  (no 10)
+```
+
+L'error més freqüent és confondre *imprimir* amb *retornar*: `print(x * 2)` mostra el valor en pantalla, però la funció segueix retornant `None`. **Tota funció que produeixi un valor ha de tenir un `return` explícit**.
+:::
+
+Un exemple matemàtic que il·lustra bé els paràmetres amb valor per defecte és el **mètode de Newton-Raphson** per aproximar $\sqrt{x}$, que accepta el valor $x$ i una tolerància opcional:
+
+```{pyodide}
+def raiz_cuadrada(x, tol=1e-10):
+    if x < 0:
+        return None
+    if x == 0:
+        return 0.0
+    aprox = x / 2.0
+    while True:
+        nueva = (aprox + x / aprox) / 2
+        if abs(nueva - aprox) < tol:
+            return nueva
+        aprox = nueva
+
+print(raiz_cuadrada(2))              # 1.4142135623730951
+print(raiz_cuadrada(9))              # 3.0
+print(raiz_cuadrada(2, tol=1e-4))    # 1.4142156862...  (menys precís)
+```
+
+### **3.1.3 Recursió**
+
+Una funció es pot cridar a si mateixa dins del seu propi cos. Aquesta tècnica s'anomena **recursió** i és especialment natural per a càlculs que s'expressen matemàticament en termes d'ells mateixos.
+
+::: {#tip-recursion .callout-tip title="Recursió"}
+Una funció és **recursiva** quan el seu cos conté una crida a si mateixa. Perquè la recursió acabi i no produeixi un bucle infinit, tota funció recursiva ha de tenir:
+
+1. **Cas base**: una o diverses condicions sota les quals la funció retorna un resultat directament, sense cridar-se de nou.
+2. **Cas recursiu**: la crida a si mateixa amb un argument *estrictament més proper* al cas base.
+
+La recursió és la traducció directa a codi de les definicions matemàtiques per recurrència.
+:::
+
+L'exemple canònic és el factorial, la definició matemàtica del qual és recursiva:
+
+$$n! = \begin{cases} 1 & \text{si } n = 0 \\ n \cdot (n-1)! & \text{si } n \geq 1 \end{cases}$$
+
+```{pyodide}
+def factorial(n):
+    if n == 0:                    # cas base
+        return 1
+    return n * factorial(n - 1)  # cas recursiu
+
+print(factorial(0))    # 1
+print(factorial(5))    # 120
+print(factorial(10))   # 3628800
+```
+
+Cada crida a `factorial(n)` genera una crida a `factorial(n-1)`, i així successivament fins arribar a `factorial(0)`, que retorna `1` directament. El resultat final es construeix en desfer la pila de crides:
+
+```text
+factorial(5) = 5 * factorial(4)
+             = 5 * (4 * factorial(3))
+             = 5 * (4 * (3 * factorial(2)))
+             = 5 * (4 * (3 * (2 * factorial(1))))
+             = 5 * (4 * (3 * (2 * (1 * factorial(0)))))
+             = 5 * (4 * (3 * (2 * (1 * 1))))
+             = 120
+```
+
+:::{#nte-mcd .callout-note title="Algorisme d'Euclides per al MCD"}
+El **màxim comú divisor** de dos enters $a$ i $b$ (amb $b \neq 0$) es defineix de forma recursiva per l'algorisme d'Euclides, basat en la identitat $\text{mcd}(a, b) = \text{mcd}(b,\, a \bmod b)$:
+
+$$
+\text{mcd}(a, b) = \begin{cases} a & \text{si } b = 0 \\ \text{mcd}(b,\; a \bmod b) & \text{si } b \neq 0 \end{cases}
+$$
+
+La traducció a Python és immediata:
+
+```{pyodide}
+def mcd(a, b):
+    if b == 0:
+        return a
+    return mcd(b, a % b)
+
+print(mcd(48, 18))    # 6
+print(mcd(100, 75))   # 25
+print(mcd(17, 5))     # 1  (coprimers)
+```
+
+El nombre de crides recursives és $O(\log \min(a, b))$, la qual cosa fa l'algorisme extremadament eficient.
+
+```text
+mcd(48, 18) = mcd(18, 48 mod 18) = mcd(18, 12)
+            = mcd(12, 18 mod 12) = mcd(12, 6)
+            = mcd(6, 12 mod 6)   = mcd(6, 0)
+            = 6
+```
+
+A partir del MCD s'obté el mínim comú múltiple:
+$$
+\text{mcm}(a, b) = |a \cdot b| \,/\, \text{mcd}(a, b).
+$$
+:::
+
+La successió de Fibonacci també té una definició recursiva, però la seva implementació directa és molt ineficient:
+
+```{pyodide}
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(10))   # 55
+```
+
+::: {.callout-caution appearance="simple"}
+`fibonacci(n)` amb la implementació anterior té cost exponencial $O(2^n)$: per calcular `fibonacci(40)` es realitzen més de mil milions de crides, perquè cada valor es recalcula repetidament des de zero. La versió iterativa del Tema 2 és infinitament més eficient. La recursió és una eina potent però no sempre eficient; triar entre recursió i iteració exigeix considerar el cost computacional.
+
+![Arbre de crides recursives de `fibonacci(5)`. Les línies puntejades indiquen la suma pendent entre els dos subproblemes de cada node.](../../images/fibonacci5.png){#fig-fibonacci-tree width=100%}
+
+La ineficiència de la implementació anterior té una causa concreta tal com s'observa en l'arbre de crides mostrat a la @fig-fibonacci-tree: `fibonacci(3)` es calcula dues vegades, `fibonacci(2)` tres vegades, i així successivament.
+
+La solució general a aquest problema s'anomena **memorització** (*memoization* en anglès): guardar el resultat de cada crida la primera vegada que es computa i retornar-lo directament en crides posteriors, sense repetir la feina. En temes posteriors es veurà com Python implementa memorització de forma transparent reduint el cost d'aquesta implementació de $O(2^n)$ a $O(n)$.
+:::
+
+::: {#cau-recursion-base .callout-caution title="Oblidar el cas base → `RecursionError`"}
+Si la funció recursiva no té cas base, o la condició d'aturada mai s'assoleix, Python esgota la pila de crides i llança un `RecursionError`:
+
+```python
+def factorial_roto(n):
+    return n * factorial_roto(n - 1)   # sense cas base
+
+factorial_roto(5)   # RecursionError: maximum recursion depth exceeded
+```
+
+- **Abans d'escriure el cas recursiu, escriu i prova sempre el cas base per separat**.
+- **Assegura't que la crida recursiva es fa amb un argument que s'acosta al cas base**.
+- **Si l'argument no canvia o s'allunya del cas base, la recursió serà infinita**.
+:::
+
+---
+
+## 3.2. Visibilitat de variables (Scope)
+
+Quan Python troba un nom de variable dins d'una funció, necessita saber a quin objecte es refereix. L'**àmbit** o *scope* d'una variable determina des de quines parts del codi aquell nom és visible.
+
+::: {#tip-scope .callout-tip title="Àmbit (Scope) i espai de noms (Namespace)"}
+L'**àmbit** (*scope*) d'una variable és la regió del codi en la qual el nom d'aquella variable és reconegut i pot usar-se. L'**espai de noms** (*namespace*) és l'estructura interna de Python que implementa l'àmbit: un diccionari que mapeja noms a objectes.
+
+Python busca els noms seguint la regla **LEGB**, en aquest ordre:
+
+1. **L**ocal — el cos de la funció actual.
+2. **E**nclosing — funcions que embolcallen l'actual (funcions niuades, temes posteriors).
+3. **G**lobal — el mòdul (el fitxer `.py`) en el qual és el codi.
+4. **B**uilt-in — els noms predefinits de Python: `print`, `len`, `int`, `range`…
+
+Si el nom no es troba en cap d'aquests àmbits, Python llança un `NameError`.
+:::
+
+### **3.2.1 Àmbit local**
+
+Tota variable que s'assigna dins d'una funció és **local** a aquella funció: existeix només durant l'execució de la crida i desapareix en retornar.
+
+```{pyodide}
+def calcular():
+    resultado = 42       # variable local
+    return resultado
+
+print(calcular())        # 42
+# print(resultado)       # NameError: resultado no està definida fora de la funció
+```
+
+L'àmbit local garanteix l'**aïllament**: dues funcions poden usar el mateix nom de variable sense interferir entre si.
+
+```{pyodide}
+def cuadrado(x):
+    y = x ** 2     # y és local a cuadrado
+    return y
+
+def cubo(x):
+    y = x ** 3     # y és local a cubo, independent de l'anterior
+    return y
+
+print(cuadrado(3), cubo(3))   # 9 27
+```
+
+### **3.2.2 Àmbit global**
+
+Les variables definides fora de qualsevol funció tenen **àmbit global** i són visibles des de qualsevol punt del mòdul, inclòs el cos de les funcions. En Python, un **mòdul** és simplement un fitxer `.py`. Quan escrius codi en `programa.py` i l'executes, aquell fitxer és el teu mòdul. Els mòduls es tracten en detall a la secció 3.4.
+
+```{pyodide}
+PI = 3.141592653589793    # constant global (convenció: majúscules)
+
+def area_circulo(r):
+    return PI * r ** 2    # llegeix PI de l'àmbit global
+
+print(area_circulo(1))    # 3.141592653589793
+print(area_circulo(5))    # 78.53981633974483
+```
+
+**Llegir una variable global des d'una funció és acceptable, especialment per a constants matemàtiques o de configuració. Modificar-la des de dins d'una funció és una pràctica que convé evitar.**
+
+::: {#cau-scope-global .callout-caution title="Modificar variables globals amb `global`"}
+Python permet modificar una variable global des de dins d'una funció usant la declaració `global`, però és una pràctica que dificulta la comprensió i el manteniment del codi:
+
+```python
+contador = 0
+
+def incrementar():
+    global contador       # sense aquesta línia, Python crearia una variable local
+    contador += 1
+
+incrementar()
+incrementar()
+print(contador)   # 2
+```
+
+El problema és que `incrementar()` té un **efecte lateral** (*side effect*) ocult: modifica un estat extern sense que això sigui visible en la seva signatura. Si la funció es crida des de diversos punts del programa, rastrejar el valor de `contador` es torna molt difícil.
+
+L'alternativa correcta és passar el valor com a paràmetre i retornar el nou valor:
+
+```{pyodide}
+def incrementar(contador):
+    return contador + 1
+
+c = 0
+c = incrementar(c)
+c = incrementar(c)
+print(c)   # 2
+```
+
+Aquesta versió és transparent: el seu comportament queda completament determinat pels seus arguments i no produeix cap efecte lateral.
+:::
+
+En Python les variables declarades en un cicle `for` pertanyen al **mateix àmbit** en el qual és el cicle. Si el `for` és en el cos d'una funció, la variable és local a aquella funció; si és a nivell de mòdul, és global:
+
+```{pyodide}
+for i in range(5):
+    pass
+
+print(i)  # 4  — i segueix existint després del cicle
+```
+
+Això contrasta amb llenguatges com C o Java, on la variable del `for` queda confinada al bloc del bucle. En Python no hi ha àmbit de bloc: només funció (local), mòdul (global) i built-in.
+
+### **3.2.3 Àmbit enclosing**
+
+L'àmbit **enclosing** apareix quan una funció es defineix **dins d'una altra funció**. La funció interna pot llegir les variables de la funció que la conté, tot i que aquelles variables no siguin locals ni globals:
+
+```{pyodide}
+def funcion_exterior():
+    y = 20
+
+    def funcion_interior():
+        z = 30
+        print(f"Local z: {z}")
+        print(f"Enclosing y: {y}")
+
+    funcion_interior()
+    print(f"Local y: {y}")
+
+funcion_exterior()
+```
+
+La variable `y` no és local de `funcion_interior` (no es defineix allà) ni és global (és dins de `funcion_exterior`): viu en l'àmbit *enclosing*. Python la troba seguint la cadena **L → E → G → B**.
+
+![Àmbits respecte a `funcion_interior`.](../../images/legb.png){#fig-legb width=100%}
+
+A la figura @fig-legb es mostra la jerarquia d'àmbits quan l'intèrpret de Python es troba a l'interior de `funcion_interior`. S'observa que en aquest cas l'àmbit local de `funcion_exterior` és l'àmbit enclosing de `funcion_interior`. La variable `x` és visible des de `funcion_interior` ja que es troba en l'àmbit global. També l'ús de la funció `len()` és possible perquè està definida en l'àmbit built-in.
+
+---
+
+## 3.3. Docstrings, anotacions de tipus i contractes
+
+Una funció ben escrita no només calcula correctament: també comunica clarament què fa, què espera rebre i què garanteix retornar. Aquesta informació forma el **contracte** de la funció, i Python proporciona dos mecanismes complementaris per expressar-lo: els *docstrings* i les anotacions de tipus.
+
+### **3.3.1 Docstrings**
+
+::: {#tip-docstring .callout-tip title="Docstring"}
+Un **docstring** és una cadena de text que apareix com a primera instrucció en el cos d'una funció (o mòdul, o classe) i descriu el seu propòsit, paràmetres i valor de retorn. Python l'emmagatzema en l'atribut `__doc__` de l'objecte i la fa accessible en temps d'execució mitjançant la funció `help()`.
+
+Els docstrings no són comentaris: els comentaris amb `#` van dirigits al lector del codi font; els docstrings van dirigits a l'usuari de la funció i es poden consultar sense llegir la implementació.
+:::
+
+La convenció [@pep257] distingeix dues formes:
+
+**Docstring d'una línia**: per a funcions el propòsit de les quals és evident.
+
+```{pyodide}
+def cuadrado(x):
+    """Retorna el quadrat de x."""
+    return x ** 2
+
+help(cuadrado)
+```
+
+**Docstring multilínia**: per a funcions més complexes. La primera línia és el resum; després d'una línia en blanc, es detallen els paràmetres i el valor de retorn.
+
+```{pyodide}
+import math
+
+def es_primo(n):
+    """
+    Comprova si n és un nombre primer.
+
+    Paràmetres
+    ----------
+    n : int
+        L'enter a comprovar. Ha de ser major o igual que 2.
+
+    Retorna
+    -------
+    bool
+        True si n és primer, False en cas contrari.
+    """
+    if n < 2:
+        return False
+    for d in range(2, int(math.sqrt(n)) + 1):
+        if n % d == 0:
+            return False
+    return True
+
+help(es_primo)
+```
+
+### **3.3.2 Anotacions de tipus (type hints)**
+
+Les **anotacions de tipus** permeten declarar el tipus esperat de cada paràmetre i del valor de retorn directament en la capçalera de la funció [@pep484]:
+
+```{pyodide}
+def potencia(base: float, exponente: int = 2) -> float:
+    """Calcula base elevat a exponente."""
+    return base ** exponente
+
+print(potencia(3.0))        # 9.0
+print(potencia(2.0, 10))    # 1024.0
+```
+
+::: {#imp-typehints .callout-important title="Sintaxi de les anotacions de tipus"}
+La sintaxi és:
+
+```python
+def nombre(param: tipo, param2: tipo = defecto) -> tipo_retorno:
+```
+
+Els tipus bàsics disponibles sense importar res són `int`, `float`, `str`, `bool` i `None` (per a funcions que no retornen valor). Per indicar que una funció no retorna res s'anota `-> None`.
+
+Les anotacions de tipus **no es comproven en temps d'execució**: Python les ignora en executar el codi. El seu valor és doble: serveixen de documentació llegible per al programador i són usades per eines d'anàlisi estàtica com `mypy` i el propi VS Code per detectar errors i oferir autocompletat.
+:::
+
+::: {.callout-caution appearance="simple"}
+Atès que Python no comprova els tipus en temps d'execució, una funció anotada es pot cridar amb arguments del tipus equivocat sense que es produeixi cap error immediat. Les anotacions de tipus documenten la intenció però no substitueixen la validació explícita d'arguments quan aquesta sigui necessària.
+:::
+
+### **3.3.3 Precondicions, postcondicions i el contracte d'una funció**
+
+::: {#tip-contrato .callout-tip title="Contracte d'una funció"}
+El **contracte** d'una funció especifica formalment:
+
+- **Precondició**: el que ha de ser cert sobre els arguments *abans* de cridar la funció. Si el cridador no satisfà la precondició, el comportament de la funció és indefinit.
+- **Postcondició**: el que la funció garanteix sobre el seu resultat *quan* la precondició es compleix.
+
+Aquest concepte prové del **disseny per contracte** (*Design by Contract*, Bertrand Meyer) i és l'equivalent programàtic del parell hipòtesi–tesi d'un teorema matemàtic: si es compleixen les hipòtesis (precondició), es garanteix la conclusió (postcondició).
+:::
+
+Les precondicions i postcondicions s'expressen en Python de dues formes complementàries:
+
+**Via docstring**: especificació en text natural, visible amb `help()` i llegible sense executar el codi. És la forma preferida per documentar el contracte de cara a l'usuari de la funció.
+
+**Via `assert`**: comprovació activa en temps d'execució. Llança un `AssertionError` amb un missatge descriptiu si la condició falla, la qual cosa facilita detectar usos incorrectes de la funció durant el desenvolupament.
+
+L'exemple següent mostra les dues vies aplicades a la mateixa funció:
+
+```{pyodide}
+import math
+
+def raiz_cuadrada(x: float, tol: float = 1e-10) -> float:
+    """
+    Aproxima √x mitjançant el mètode de Newton-Raphson.
+
+    Precondició:  x >= 0  i  tol > 0
+    Postcondició: |resultado² - x| < tol * 100
+
+    Paràmetres
+    ----------
+    x   : float  — El radicand. Ha de ser no negatiu.
+    tol : float  — Tolerància de l'error. Ha de ser positiva.
+
+    Retorna
+    -------
+    float — Aproximació de √x amb error inferior a tol.
+    """
+    assert x >= 0,   f"raiz_cuadrada: x ha de ser ≥ 0, rebut {x}"
+    assert tol > 0,  f"raiz_cuadrada: tol ha de ser > 0, rebut {tol}"
+
+    if x == 0:
+        return 0.0
+    aprox = x / 2.0
+    while True:
+        nueva = (aprox + x / aprox) / 2
+        if abs(nueva - aprox) < tol:
+            return nueva
+        aprox = nueva
+
+print(raiz_cuadrada(2))         # 1.4142135623730951
+print(raiz_cuadrada(0))         # 0.0
+# raiz_cuadrada(-1)             # AssertionError: x ha de ser ≥ 0, rebut -1
+```
+
+::: {#cau-assert .callout-caution title="`assert` es pot desactivar"}
+Les instruccions `assert` s'eliminen quan Python s'executa amb l'opció `-O` (*optimize*). Per això, **`assert` és adequat per verificar condicions durant el desenvolupament** —detectar errors de programació en les proves— **però no per validar entrades de l'usuari en producció**. Per gestionar entrades incorrectes del món exterior s'usa `raise`:
+
+```python
+if x < 0:
+    raise ValueError(f"x ha de ser no negatiu, rebut {x}")
+```
+
+Els `assert` comproven que el programador usa la funció correctament; els `raise` gestionen entrades incorrectes externes. El mecanisme `raise`/`except` s'estudia al Tema 4.
+:::
+
+---
+
+## 3.4. Concepte de mòdul. Importació i creació de mòduls propis
+
+A mesura que un programa creix, concentrar tot el codi en un únic fitxer es torna inmanejable. Els **mòduls** són la solució de Python per organitzar el codi en unitats reutilitzables i independents.
+
+::: {#tip-modulo .callout-tip title="Mòdul"}
+Un **mòdul** en Python és un fitxer `.py` que conté definicions de funcions, variables i altres objectes. El seu nom és el nom del fitxer sense l'extensió `.py`. Els mòduls permeten:
+
+- **Separar** el codi en unitats amb una responsabilitat clara.
+- **Reutilitzar** funcions en distints programes sense copiar-les.
+- **Ocultar** detalls d'implementació: l'usuari importa i crida funcions sense necessitat de conèixer com estan escrites internament.
+
+Des del Tema 2 s'usa `import math`: `math` és un mòdul de la biblioteca estàndard de Python. Les seves funcions (`sqrt`, `log`, `sin`, etc.) estan definides amb el mateix mecanisme que qualsevol mòdul propi.
+:::
+
+### **3.4.1 Importació de mòduls**
+
+Python ofereix tres formes d'importar un mòdul o els seus continguts:
+
+::: {#imp-import .callout-important title="Formes d'importació"}
+**Forma 1 — `import módulo`**: importa el mòdul complet; els noms s'accedeixen amb la notació punt.
+
+```{pyodide}
+import math
+print(math.sqrt(2))          # 1.4142135623730951
+print(math.pi)               # 3.141592653589793
+print(math.factorial(10))    # 3628800
+```
+
+**Forma 2 — `import módulo as alias`**: igual que l'anterior, amb un nom més curt.
+
+```{pyodide}
+import math as m
+print(m.sqrt(2))
+print(m.pi)
+```
+
+**Forma 3 — `from módulo import nombre`**: importa només els noms especificats, directament a l'espai de noms local.
+
+```{pyodide}
+from math import sqrt, pi, factorial
+print(sqrt(2))        # sense prefix math.
+print(pi)
+print(factorial(10))
+```
+
+La **Forma 1** és la més recomanable en general perquè fa explícit l'origen de cada nom (`math.sqrt` deixa clar que `sqrt` ve de `math`). La **Forma 3** és convenient per a noms molt usats, però pot causar conflictes si dos mòduls defineixen el mateix nom.
+:::
+
+Alguns mòduls de la biblioteca estàndard especialment útils en matemàtiques:
+
+| Mòdul | Contingut principal |
+|---|---|
+| `math` | Funcions reals: `sqrt`, `log`, `sin`, `cos`, `exp`; constants `pi`, `e`, `inf` |
+| `cmath` | Versions complexes de les funcions de `math` |
+| `random` | Generació de nombres pseudoaleatoris |
+| `statistics` | Mitjana, mediana, variància i desviació típica |
+| `fractions` | Aritmètica exacta amb fraccions racionals |
+| `decimal` | Aritmètica decimal de precisió arbitrària |
+
+### **3.4.2 Creació de mòduls propis**
+
+Qualsevol fitxer `.py` és automàticament un mòdul importable des d'un altre fitxer del mateix directori. Per crear un mòdul propi n'hi ha prou amb escriure les funcions en un fitxer amb un nom descriptiu.
+
+El fitxer `numeros.py` agrupa algunes de les funcions de teoria de nombres construïdes al llarg del Tema 2 i el Tema 3:
+
+```python
+# numeros.py
+"""Mòdul amb funcions bàsiques de teoria de nombres."""
+
+import math
+
+
+def es_primo(n: int) -> bool:
+    """Retorna True si n és primer (n ha de ser >= 2)."""
+    if n < 2:
+        return False
+    for d in range(2, int(math.sqrt(n)) + 1):
+        if n % d == 0:
+            return False
+    return True
+
+
+def mcd(a: int, b: int) -> int:
+    """Màxim comú divisor de a i b (algorisme d'Euclides)."""
+    if b == 0:
+        return a
+    return mcd(b, a % b)
+
+
+def mcm(a: int, b: int) -> int:
+    """Mínim comú múltiple de a i b."""
+    return abs(a * b) // mcd(a, b)
+
+
+def factorial(n: int) -> int:
+    """Factorial de n. Precondició: n >= 0."""
+    assert n >= 0, f"factorial no està definit per a negatius, rebut {n}"
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)
+
+
+if __name__ == "__main__":
+    # Només s'executa en llançar: python numeros.py
+    print("=== Proves del mòdul numeros ===")
+    print(f"es_primo(17)  = {es_primo(17)}")      # True
+    print(f"es_primo(18)  = {es_primo(18)}")      # False
+    print(f"mcd(48, 18)   = {mcd(48, 18)}")       # 6
+    print(f"mcm(4, 6)     = {mcm(4, 6)}")         # 12
+    print(f"factorial(10) = {factorial(10)}")     # 3628800
+```
+
+Des d'un altre fitxer del mateix directori s'importa com qualsevol mòdul de la biblioteca estàndard:
+
+```python
+# main.py
+import numeros
+
+print(numeros.es_primo(17))       # True
+print(numeros.mcd(48, 18))        # 6
+print(numeros.mcm(4, 6))          # 12
+print(numeros.factorial(10))      # 3628800
+```
+
+### **3.4.3 El bloc `if __name__ == "__main__"`**
+
+Quan Python carrega un mòdul mitjançant `import`, executa tot el seu codi de nivell superior. Això planteja un problema si el mòdul conté proves o demostracions que no volem executar en importar-lo.
+
+::: {#imp-main .callout-important title="El bloc `if __name__ == \"__main__\"`"}
+Python assigna automàticament a cada mòdul una variable especial `__name__`:
+
+- Quan el fitxer s'**executa directament** (`python numeros.py`), `__name__` pren el valor `"__main__"`.
+- Quan el fitxer s'**importa** des d'un altre mòdul, `__name__` pren el nom del mòdul (`"numeros"`).
+
+El bloc `if __name__ == "__main__":` permet incloure en el mateix fitxer tant la biblioteca (importable) com un petit programa de prova executable directament amb `python numeros.py`. El codi dins d'aquest bloc només s'executa quan el mòdul es llança com a programa, i no quan s'importa.
+
+Aquest patró és la pràctica estàndard en Python: el mateix fitxer pot actuar com a biblioteca (importat per altres mòduls) o com a programa (executat directament), i el bloc `if __name__ == "__main__":` separa nítidament tots dos rols.
+:::
+
+---
+
+## 3.5. Organització de projectes
+
+A mesura que un projecte creix, dividir el codi en mòduls amb responsabilitats ben definides facilita el manteniment, la detecció d'errors i la col·laboració. Organitzar un projecte en Python correctament des del principi és fonamental per assegurar que el codi sigui escalable, reproduïble i fàcil de mantenir. Actualment, la comunitat de Python ha convergit en un conjunt d'estàndards molt clars, allunyant-se dels scripts solts i adoptant eines modernes.
+
+### **3.5.1 Estructura de fitxers**
+
+L'estructura més recomanada per la [Python Packaging Authority (PyPA)](https://packaging.python.org/en/latest/){target="_blank"} utilitza una carpeta `src/` per contenir el codi font, separant així el codi dels tests i de la documentació. L'organització d'un exemple de projecte, titulat `t03_ejemplo`, seria:
+
+```text
+t03_ejemplo/
+├── .gitignore             # Fitxers que Git no ha de rastrejar
+├── pyproject.toml         # Configuració central del projecte i dependències
+├── README.md              # Documentació principal
+├── src/                   # Contenidor del codi font
+│   └── t03_paquete/       # El teu paquet de Python real
+│       ├── __init__.py    # Converteix la carpeta en paquet (pot estar buit)
+│       ├── main.py        # Punt d'entrada del programa
+│       ├── numeros.py     # Funcions de teoria de nombres
+│       ├── geometria.py   # Funcions de geometria
+│       └── conversor.py   # Funcions de conversió d'unitats
+├── tests/                 # Proves automatitzades (separades del codi font)
+│   ├── conftest.py        # Configuració i "fixtures" per a pytest
+│   └── test_numeros.py    # Proves específiques per a numeros.py (es veuran al Tema 5)
+└── docs/                  # Fitxers de documentació
+
+```
+
+Cada mòdul (fitxer `.py` sota `src/mi_paquete/`) agrupa funcions relacionades per temàtica o responsabilitat. `main.py` actua com a punt d'entrada: importa els mòduls que necessita i orquestra la lògica principal del programa.
+
+Python busca els mòduls al mateix directori que el fitxer que els importa, sense necessitat de configuració addicional. Aquesta estructura funciona directament en un entorn local i en un Codespace.
+
+::: {#imp-modulobien .callout-important title="Mòduls amb una única responsabilitat"}
+Un mòdul ha de fer **una cosa bé**. Si un mòdul comença a agrupar funcions de geometria i també d'estadística, és senyal que hauria de dividir-se en dos. La pregunta de disseny és sempre: *què tenen en comú les funcions d'aquest mòdul?*
+
+**Mantén els mòduls petits**
+
+Una guia pràctica:
+
+- menys de 500 línies: ideal
+- entre 500 i 1000: revisar si convé dividir
+- més de 1000: normalment mereix una refactorització
+
+No és una regla estricta, però ajuda a mantenir el codi manejable.
+:::
+
+### **3.5.2 Exemple de mòduls del projecte `t03_ejemplo`**
+
+El projecte `t03_ejemplo`, amb l'estructura presentada anteriorment, inclou a més de `numeros.py`, altres tres mòduls `geometria.py`, `conversor.py` i `main.py` amb responsabilitats distintes que es presenten a continuació.
+
+**`geometria.py`**:
+
+```python
+"""Mòdul de funcions geomètriques bàsiques."""
+
+import math
+
+
+def area_circulo(r: float) -> float:
+    """Àrea d'un cercle de radi r. Precondició: r >= 0."""
+    assert r >= 0, f"El radi ha de ser no negatiu, rebut {r}"
+    return math.pi * r ** 2
+
+
+def hipotenusa(a: float, b: float) -> float:
+    """Longitud de la hipotenusa donats els catets a i b."""
+    assert a > 0 and b > 0, "Els catets han de ser positius"
+    return math.sqrt(a ** 2 + b ** 2)
+
+
+def es_triangulo_valido(a: float, b: float, c: float) -> bool:
+    """True si a, b, c satisfan la desigualtat triangular."""
+    return a > 0 and b > 0 and c > 0 and a + b > c and a + c > b and b + c > a
+
+
+if __name__ == "__main__":
+    print(f"Àrea cercle r=1:    {area_circulo(1):.6f}")
+    print(f"Hipotenusa 3, 4:     {hipotenusa(3, 4):.6f}")
+    print(f"Triangle 3, 4, 5:   {es_triangulo_valido(3, 4, 5)}")
+    print(f"Triangle 1, 2, 10:  {es_triangulo_valido(1, 2, 10)}")
+```
+
+**`conversor.py`**:
+
+```python
+"""Mòdul de conversió d'unitats."""
+
+
+def celsius_a_fahrenheit(c: float) -> float:
+    """Converteix graus Celsius a Fahrenheit."""
+    return 9 / 5 * c + 32
+
+
+def fahrenheit_a_celsius(f: float) -> float:
+    """Converteix graus Fahrenheit a Celsius."""
+    return 5 / 9 * (f - 32)
+
+
+def celsius_a_kelvin(c: float) -> float:
+    """Converteix graus Celsius a Kelvin. Precondició: c >= -273.15."""
+    assert c >= -273.15, f"Temperatura per sota del zero absolut: {c}"
+    return c + 273.15
+
+
+def radianes_a_grados(r: float) -> float:
+    """Converteix radians a graus."""
+    import math
+    return r * 180 / math.pi
+
+
+def grados_a_radianes(g: float) -> float:
+    """Converteix graus a radians."""
+    import math
+    return g * math.pi / 180
+
+
+if __name__ == "__main__":
+    print(f"100 °C en °F:  {celsius_a_fahrenheit(100):.2f}")
+    print(f"212 °F en °C:  {fahrenheit_a_celsius(212):.2f}")
+    print(f"0 °C en K:     {celsius_a_kelvin(0):.2f}")
+    print(f"π rad en °:    {radianes_a_grados(3.141592653589793):.4f}")
+```
+
+**`main.py`** — punt d'entrada que coordina els mòduls:
+
+```python
+"""Eina matemàtica interactiva."""
+
+from t03_paquete import numeros, geometria, conversor
+
+
+def mostrar_menu() -> None:
+    print("\n=== Eina matemàtica ===")
+    print("  1. Test de primalitat")
+    print("  2. MCD de dos enters")
+    print("  3. Àrea d'un cercle")
+    print("  4. Conversió de temperatura (°C → °F)")
+    print("  0. Sortir")
+    print("------------------------------")
+
+
+def ejecutar() -> None:
+    while True:
+        mostrar_menu()
+        opcion = input("Tria una opció: ")
+
+        if opcion == "1":
+            n = int(input("n: "))
+            print(f"{n} és primer: {numeros.es_primo(n)}")
+
+        elif opcion == "2":
+            a = int(input("a: "))
+            b = int(input("b: "))
+            print(f"mcd({a}, {b}) = {numeros.mcd(a, b)}")
+
+        elif opcion == "3":
+            r = float(input("Radi: "))
+            print(f"Àrea = {geometria.area_circulo(r):.6f}")
+
+        elif opcion == "4":
+            c = float(input("Temperatura en °C: "))
+            print(f"{c} °C = {conversor.celsius_a_fahrenheit(c):.2f} °F")
+
+        elif opcion == "0":
+            print("Fins aviat.")
+            break
+
+        else:
+            print("Opció no vàlida.")
+
+
+if __name__ == "__main__":
+    ejecutar()
+```
+
+::: {.callout-note appearance="simple"}
+`main.py` no conté cap càlcul propi: es limita a importar els mòduls i coordinar la interacció amb l'usuari. Aquesta separació entre **lògica de negoci** (els mòduls) i **punt d'entrada** (`main.py`) és una pràctica de disseny fonamental que escala bé a projectes de qualsevol mida.
+
+El projecte complet `t03_ejemplo` està disponible al repositori del curs: [https://github.com/UIB-23200-Programacion/t03_ejemplo](https://github.com/UIB-23200-Programacion/t03_ejemplo){target="_blank"}. No cal que et concentris a memoritzar tots els detalls de l'estructura, ja que el projecte exemple té implementades les millors pràctiques de disseny en Python i el podràs reutilitzar en els teus propis repositoris. El que importa és comprendre el patró general i la filosofia de disseny que subjau. **El que és veritablement fonamental és entendre el codi en els mòduls `numeros.py`, `geometria.py`, `conversor.py` i en l'script `main.py` que s'han presentat anteriorment**.
+:::
+
+## Bibliografia {.unnumbered}
+
+::: {#refs}
+:::
