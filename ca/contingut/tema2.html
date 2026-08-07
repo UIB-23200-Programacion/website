@@ -824,11 +824,11 @@ Fonament Teòric&nbsp;2: Tipus
 </div>
 </div>
 <p>L’<strong>assignació</strong> d’un valor a una variable (en Python, un <em>enllaç de nom</em> o <em>name binding</em> en anglès) es realitza amb l’operador <code>=</code>. A diferència d’altres llenguatges, <code>=</code> no copia un valor en una cel·la de memòria: fa que el nom de l’esquerra quedi apuntant a l’objecte produït per l’expressió de la dreta. Per exemple:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">42</span>         <span class="co"># x referencia l'enter 42</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">42</span>         <span class="co"># x referencia el entero 42</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)       <span class="co"># 42</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">3.14</span>       <span class="co"># ara x referencia el flotant 3.14</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">3.14</span>       <span class="co"># ahora x referencia el flotante 3.14</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)       <span class="co"># 3.14</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"hola"</span>     <span class="co"># ara x referencia la cadena "hola"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"hola"</span>     <span class="co"># ahora x referencia la cadena "hola"</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)       <span class="co"># hola</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="imp-comentario" class="callout callout-style-default callout-important no-icon callout-titled" title="Comentaris en codi Python">
 <div class="callout-header d-flex align-content-center">
@@ -850,7 +850,7 @@ Concepte Clau&nbsp;1: Comentaris en codi Python
 
 </div>
 <script type="pyodide-1-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSwgYiwgYyA9IDEsIDIsIDNcbnByaW50KGEsIGIsIGMpICAjIDEgMiAzXG54ID0geSA9IDAgICAgICAgIyB0YW50IHggY29tIHkgcmVmZXJlbmNpZW4gZWwgdmFsb3IgMFxucHJpbnQoeCwgeSkgICAgICMgMCAwIn0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSwgYiwgYyA9IDEsIDIsIDNcbnByaW50KGEsIGIsIGMpICAjIDEgMiAzXG54ID0geSA9IDAgICAgICAgIyB0YW50byB4IGNvbW8geSByZWZlcmVuY2lhbiBlbCB2YWxvciAwXG5wcmludCh4LCB5KSAgICAgIyAwIDAifQ==
 </script>
 </div>
 <p>La funció <code>print()</code> pot rebre diverses variables com a arguments, separades per comes, i les imprimeix a la sortida estàndard (normalment el terminal). Més endavant es veurà que <code>print()</code> té paràmetres opcionals per controlar el format de sortida.</p>
@@ -869,17 +869,17 @@ Concepte Clau&nbsp;2: Convenció de noms: snake_case
 </div>
 <div class="callout-body-container callout-body">
 <p>Per convenció <span class="citation" data-cites="pep8">(<a href="#ref-pep8" role="doc-biblioref">Rossum, Warsaw, i Coghlan 2001</a>)</span>, els noms de variables en Python usen <strong>snake_case</strong>: paraules en minúscules separades per guions baixos. Els noms han de ser <strong>descriptius</strong> del valor que contenen.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correcte</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correcto</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>numero_de_iteraciones <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>radio_circulo <span class="op">=</span> <span class="fl">5.0</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>es_primo <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Acceptable per a variables de curta vida o amb significat matemàtic obvi</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span>       <span class="co"># comptador genèric</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="dv">3</span>, <span class="dv">4</span>  <span class="co"># coordenades</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>i, j, k <span class="op">=</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>  <span class="co"># índexs de bucles</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Aceptable para variables de corta vida o con significado matemático obvio</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span>       <span class="co"># contador genérico</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="dv">3</span>, <span class="dv">4</span>  <span class="co"># coordenadas</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>i, j, k <span class="op">=</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>  <span class="co"># índices de bucles</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Evitar: noms sense significat</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Evitar: nombres sin significado</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>cosa <span class="op">=</span> <span class="va">True</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -969,7 +969,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDQyXG5wcmludCh0eXBl
 
 </div>
 <script type="pyodide-3-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoNDIpICAgICAgICAgICAgICAgICAgICAgIyA0MlxucHJpbnQoXCJob2xhXCIpICAgICAgICAgICAgICAgICAjIGhvbGFcbnByaW50KFwibm9tYnJlczogXCIsIDEsIDIsIDMpICAgIyBub21icmVzOiAxIDIgMyJ9
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoNDIpICAgICAgICAgICAgICAgICAgICAgIyA0MlxucHJpbnQoXCJob2xhXCIpICAgICAgICAgICAgICAgICAjIGhvbGFcbnByaW50KFwibsO6bWVyb3M6IFwiLCAxLCAyLCAzKSAgICMgbsO6bWVyb3M6IDEgMiAzIn0=
 </script>
 </div>
 <p>Els paràmetres opcionals més útils de <code>print()</code> són <code>sep</code> (separador entre arguments, per defecte <code>" "</code>) i <code>end</code> (caràcter final, per defecte <code>"\n"</code> per salt de línia):</p>
@@ -978,7 +978,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoNDIpICAgICAgICAg
 
 </div>
 <script type="pyodide-4-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoMSwgMiwgMywgc2VwPVwiLCBcIikgICAgICMgMSwgMiwgM1xucHJpbnQoXCJob2xhXCIsIGVuZD1cIiBcIilcbnByaW50KFwibcOzblwiKSAgICAgICAgICAgICAgICAgICMgaG9sYSBtw7NuICAoZW4gbGEgbWF0ZWl4YSBsw61uaWEpIn0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoMSwgMiwgMywgc2VwPVwiLCBcIikgICAgICMgMSwgMiwgM1xucHJpbnQoXCJob2xhXCIsIGVuZD1cIiBcIilcbnByaW50KFwibXVuZG9cIikgICAgICAgICAgICAgICAgIyBob2xhIG11bmRvICAoZW4gbGEgbWlzbWEgbMOtbmVhKSJ9
 </script>
 </div>
 <p>Les funcions <code>type</code> i <code>print</code> vénen integrades en l’intèrpret i estan disponibles en qualsevol programa sense necessitat d’importar res.</p>
@@ -1082,7 +1082,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoMS44ZTMwOCkgICAg
 
 </div>
 <script type="pyodide-13-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiejEgPSAzICsgMmpcbnoyID0gY29tcGxleCgxLCAtNCkgICAgIyBlcXVpdmFsZW50IGEgMSAtIDRqXG5cbnByaW50KHoxICsgejIpICAgICAgICAgIyAoNC0yailcbnByaW50KHoxICogejIpICAgICAgICAgIyAoMTEtMTBqKVxucHJpbnQoejEucmVhbCkgICAgICAgICAjIDMuMFxucHJpbnQoejEuaW1hZykgICAgICAgICAjIDIuMFxucHJpbnQoejEuY29uanVnYXRlKCkpICAjICgzLTJqKVxucHJpbnQoYWJzKHoxKSkgICAgICAgICAjIDMuNjA1Li4uICAobcOyZHVsOiDiiJooM8KyICsgMsKyKSkifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiejEgPSAzICsgMmpcbnoyID0gY29tcGxleCgxLCAtNCkgICAgIyBlcXVpdmFsZSBhIDEgLSA0alxuXG5wcmludCh6MSArIHoyKSAgICAgICAgICMgKDQtMmopXG5wcmludCh6MSAqIHoyKSAgICAgICAgICMgKDExLTEwailcbnByaW50KHoxLnJlYWwpICAgICAgICAgIyAzLjBcbnByaW50KHoxLmltYWcpICAgICAgICAgIyAyLjBcbnByaW50KHoxLmNvbmp1Z2F0ZSgpKSAgIyAoMy0yailcbnByaW50KGFicyh6MSkpICAgICAgICAgIyAzLjYwNS4uLiAgKG3Ds2R1bG86IOKImigzwrIgKyAywrIpKSJ9
 </script>
 </div>
 <p>Els nombres complexos il·lustren bé un concepte central en Python: els objectes tenen <strong>atributs</strong> i <strong>mètodes</strong> als quals s’accedeix amb l’operador punt <code>.</code>:</p>
@@ -1113,7 +1113,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiejEgPSAzICsgMmpcbnoyID0g
 
 </div>
 <script type="pyodide-14-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibm9tYnJlID0gXCJFdWxlclwiXG5mcmFzZSA9ICdMYSBpZGVudGl0YXQgZV4oac+AKSArIDEgPSAwJ1xubXVsdGlsaW5lYSA9IFwiXCJcIkFxdWVzdGEgY2FkZW5hXG5hYmFzdGEgZGl2ZXJzZXNcbmzDrW5pZXMuXCJcIlwiXG5wcmludChub21icmUsICc6JywgZnJhc2UpXG5wcmludChtdWx0aWxpbmVhKSJ9
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibm9tYnJlID0gXCJFdWxlclwiXG5mcmFzZSA9ICdMYSBpZGVudGl0YXQgZV4oac+AKSArIDEgPSAwJ1xubXVsdGlsaW5lYSA9IFwiXCJcIkVzdGEgY2FkZW5hXG5hYmFyY2EgdmFyaWFzXG5sw61uZWFzLlwiXCJcIlxucHJpbnQobm9tYnJlLCAnOicsIGZyYXNlKVxucHJpbnQobXVsdGlsaW5lYSkifQ==
 </script>
 </div>
 <p>Les <strong>seqüències d’escapament</strong> permeten incloure caràcters especials dins d’una cadena:</p>
@@ -1148,7 +1148,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibm9tYnJlID0gXCJFdWxlclwi
 
 </div>
 <script type="pyodide-15-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibXVsdGlsaW5lYTIgPSBcIkFxdWVzdGEgY2FkZW5hXFxuYWJhc3RhIGRpdmVyc2VzXFxubMOtbmllcy5cIlxucHJpbnQobXVsdGlsaW5lYTIpXG5wcmludChtdWx0aWxpbmVhID09IG11bHRpbGluZWEyKSAgIyBUcnVlIn0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibXVsdGlsaW5lYTIgPSBcIkVzdGEgY2FkZW5hXFxuYWJhcmNhIHZhcmlhc1xcbmzDrW5lYXMuXCJcbnByaW50KG11bHRpbGluZWEyKVxucHJpbnQobXVsdGlsaW5lYSA9PSBtdWx0aWxpbmVhMikgICMgVHJ1ZSJ9
 </script>
 </div>
 <p>Amb la notació <code>objecte.mètode()</code>, explicada a la secció de nombres complexos, podem accedir a diversos mètodes útils de les cadenes. Per exemple:</p>
@@ -1157,7 +1157,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibXVsdGlsaW5lYTIgPSBcIkFx
 
 </div>
 <script type="pyodide-16-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidGV4dG8gPSBcImhvbGEgbcOzblwiXG5wcmludCh0ZXh0by51cHBlcigpKSAgICAgICAgICAgICAgICAgICAgIyBcIkhPTEEgTcOTTlwiXG5wcmludCh0ZXh0by5jb3VudChcIm9cIikpICAgICAgICAgICAgICAgICAjIDJcbnByaW50KHRleHRvLnJlcGxhY2UoXCJtw7NuXCIsIFwiUHl0aG9uXCIpKSAgICMgXCJob2xhIFB5dGhvblwiIn0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidGV4dG8gPSBcImhvbGEgbXVuZG9cIlxucHJpbnQodGV4dG8udXBwZXIoKSkgICAgICAgICAgICAgICAgICAgICAjIFwiSE9MQSBNVU5ET1wiXG5wcmludCh0ZXh0by5jb3VudChcIm9cIikpICAgICAgICAgICAgICAgICAgIyAyXG5wcmludCh0ZXh0by5yZXBsYWNlKFwibXVuZG9cIiwgXCJQeXRob25cIikpICAjIFwiaG9sYSBQeXRob25cIiJ9
 </script>
 </div>
 <p>Aquí <code>upper</code> és un mètode de la variable <code>texto</code> (objecte del tipus <code>str</code>). El punt <code>.</code> és l’operador d’accés a membres: indica “busca dins d’aquest objecte alguna cosa anomenada <code>upper</code> i crida-la”.</p>
@@ -1219,7 +1219,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidGV4dG8gPSBcImhvbGEgbcOz
 
 </div>
 <script type="pyodide-17-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQobGVuKHRleHRvKSkgICAgICAgICAgICAjIDhcbnByaW50KGxlbihcIm1hdGVtw6B0aXF1ZXNcIikpICAgIyAxMiJ9
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQobGVuKHRleHRvKSkgICAgICAgICAgICMgMTBcbnByaW50KGxlbihcIm1hdGVtw6F0aWNhc1wiKSkgICAjIDExIn0=
 </script>
 </div>
 <div class="callout callout-style-simple callout-tip no-icon">
@@ -1391,7 +1391,7 @@ Concepte Clau&nbsp;4: Precedència d’operadors aritmètics
 
 </div>
 <script type="pyodide-23-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBwcmVjZWTDqG5jaWEgZXN0w6BuZGFyZFxucHJpbnQoMiArIDMgKiA0KSAgICAgICAjIDE0ICAobm8gMjA6ICogYWJhbnMgcXVlICspXG5wcmludCgxMCAtIDYgLyAyKSAgICAgICMgNy4wIChubyAyLjA6IC8gYWJhbnMgcXVlIC0pXG5wcmludCgyICoqIDMgKyAxKSAgICAgICMgOSAgIChubyAxNjogKiogYWJhbnMgcXVlICspXG5wcmludCgxMCAlIDMgKyAxKSAgICAgICMgMiAgIChubyAxOiAgJSBhYmFucyBxdWUgKylcblxuIyBlbHMgcGFyw6hudGVzaXMgYWx0ZXJlbiBsJ29yZHJlXG5wcmludCgoMiArIDMpICogNCkgICAgICMgMjBcbnByaW50KCgxMCAtIDYpIC8gMikgICAgIyAyLjBcblxuIyAqKiDDqXMgYXNzb2NpYXRpdSBwZXIgbGEgZHJldGFcbnByaW50KDIgKiogMyAqKiAyKSAgICAgIyA1MTIgICg9IDIgKiogOSwgbm8gOCAqKiAyID0gNjQpXG5wcmludCgoMiAqKiAzKSAqKiAyKSAgICMgNjRcblxuIyBzaWduZSB1bmFyaVxucHJpbnQoLTIgKiogMikgICAgICAgICAjIC00ICAgKCoqIGFiYW5zIHF1ZSBzaWduZTogLSgyKioyKSlcbnByaW50KCgtMikgKiogMikgICAgICAgIyA0In0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBwcmVjZWRlbmNpYSBlc3TDoW5kYXJcbnByaW50KDIgKyAzICogNCkgICAgICAgIyAxNCAgKG5vIDIwOiAqIGFudGVzIHF1ZSArKVxucHJpbnQoMTAgLSA2IC8gMikgICAgICAjIDcuMCAobm8gMi4wOiAvIGFudGVzIHF1ZSAtKVxucHJpbnQoMiAqKiAzICsgMSkgICAgICAjIDkgICAobm8gMTY6ICoqIGFudGVzIHF1ZSArKVxucHJpbnQoMTAgJSAzICsgMSkgICAgICAjIDIgICAobm8gMTogICUgYW50ZXMgcXVlICspXG5cbiMgcGFyw6ludGVzaXMgYWx0ZXJhbiBlbCBvcmRlblxucHJpbnQoKDIgKyAzKSAqIDQpICAgICAjIDIwXG5wcmludCgoMTAgLSA2KSAvIDIpICAgICMgMi4wXG5cbiMgKiogZXMgYXNvY2lhdGl2byBwb3IgbGEgZGVyZWNoYVxucHJpbnQoMiAqKiAzICoqIDIpICAgICAjIDUxMiAgKD0gMiAqKiA5LCBubyA4ICoqIDIgPSA2NClcbnByaW50KCgyICoqIDMpICoqIDIpICAgIyA2NFxuXG4jIHNpZ25vIHVuYXJpb1xucHJpbnQoLTIgKiogMikgICAgICAgICAjIC00ICAgKCoqIGFudGVzIHF1ZSBzaWdubzogLSgyKioyKSlcbnByaW50KCgtMikgKiogMikgICAgICAgIyA0In0=
 </script>
 </div>
 </div>
@@ -1445,7 +1445,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSwgYiA9IDE3LCA1XG5wcmlu
 
 </div>
 <script type="pyodide-27-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDEwXG54ICs9IDMgICAgIyBlcXVpdmFsZW50IGEgeCA9IHggKyAzICAg4oaSIHggw6lzIDEzXG54IC09IDEgICAgIyBlcXVpdmFsZW50IGEgeCA9IHggLSAxICAg4oaSIHggw6lzIDEyXG54ICo9IDIgICAgIyBlcXVpdmFsZW50IGEgeCA9IHggKiAyICAg4oaSIHggw6lzIDI0XG54IC8vPSA1ICAgIyBlcXVpdmFsZW50IGEgeCA9IHggLy8gNSAg4oaSIHggw6lzIDRcbnggKio9IDMgICAjIGVxdWl2YWxlbnQgYSB4ID0geCAqKiAzICDihpIgeCDDqXMgNjRcbnByaW50KHgpICAjIDY0In0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDEwXG54ICs9IDMgICAgIyBlcXVpdmFsZSBhIHggPSB4ICsgMyAgIOKGkiB4IGVzIDEzXG54IC09IDEgICAgIyBlcXVpdmFsZSBhIHggPSB4IC0gMSAgIOKGkiB4IGVzIDEyXG54ICo9IDIgICAgIyBlcXVpdmFsZSBhIHggPSB4ICogMiAgIOKGkiB4IGVzIDI0XG54IC8vPSA1ICAgIyBlcXVpdmFsZSBhIHggPSB4IC8vIDUgIOKGkiB4IGVzIDRcbnggKio9IDMgICAjIGVxdWl2YWxlIGEgeCA9IHggKiogMyAg4oaSIHggZXMgNjRcbnByaW50KHgpICAjIDY0In0=
 </script>
 </div>
 <div id="cau-ieee754" class="callout callout-style-default callout-caution no-icon callout-titled" title="Tractar l'aritmètica amb floats com la dels nombres reals">
@@ -1556,7 +1556,7 @@ Error Freqüent&nbsp;2: Tractar l’aritmètica amb floats com la dels nombres r
 
 </div>
 <script type="pyodide-28-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBjb21wbGV4OiA9PSBpICE9IGZ1bmNpb25lbiwgb3JkcmUgbm8gZXN0w6AgZGVmaW5pdFxueiA9IDMgKyAyalxucHJpbnQoeiA9PSAzICsgMmopICAgIyBUcnVlXG5wcmludCh6ICE9IDBqKSAgICAgICAgIyBUcnVlXG4jIHByaW50KHogPCAxICsgMGopICAjIFR5cGVFcnJvcjogJzwnIG5vdCBzdXBwb3J0ZWQgYmV0d2VlbiAnY29tcGxleCcgYW5kICdjb21wbGV4J1xuXG4jIHN0cjogb3JkcmUgbGV4aWNvZ3LDoGZpYyBwZXIgY29kaSBVbmljb2RlXG5wcmludChcIlpcIiA8IFwiYVwiKSAgICAgICMgVHJ1ZSAgKG9yZChcIlpcIikgPSA5MCwgb3JkKFwiYVwiKSA9IDk3KVxucHJpbnQoXCJiYW5hbmFcIiA8IFwibWFuZ29cIikgICAgICMgVHJ1ZSAgKGNvbXBhcmEgY2Fyw6BjdGVyIGEgY2Fyw6BjdGVyKVxucHJpbnQoXCJhYmNcIiA9PSBcIkFCQ1wiKSAgIyBGYWxzZSJ9
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBjb21wbGV4OiA9PSB5ICE9IGZ1bmNpb25hbiwgb3JkZW4gbm8gZXN0w6EgZGVmaW5pZG9cbnogPSAzICsgMmpcbnByaW50KHogPT0gMyArIDJqKSAgICMgVHJ1ZVxucHJpbnQoeiAhPSAwaikgICAgICAgICMgVHJ1ZVxuIyBwcmludCh6IDwgMSArIDBqKSAgIyBUeXBlRXJyb3I6ICc8JyBub3Qgc3VwcG9ydGVkIGJldHdlZW4gJ2NvbXBsZXgnIGFuZCAnY29tcGxleCdcblxuIyBzdHI6IG9yZGVuIGxleGljb2dyw6FmaWNvIHBvciBjw7NkaWdvIFVuaWNvZGVcbnByaW50KFwiWlwiIDwgXCJhXCIpICAgICAgIyBUcnVlICAob3JkKFwiWlwiKSA9IDkwLCBvcmQoXCJhXCIpID0gOTcpXG5wcmludChcImJhbmFuYVwiIDwgXCJtYW56YW5hXCIpICAgIyBUcnVlICAoY29tcGFyYSBjYXLDoWN0ZXIgYSBjYXLDoWN0ZXIpXG5wcmludChcImFiY1wiID09IFwiQUJDXCIpICAjIEZhbHNlIn0=
 </script>
 </div>
 <div id="cau-comptip" class="callout callout-style-default callout-caution no-icon callout-titled" title="Comparar tipus diferents">
@@ -1575,7 +1575,7 @@ Error Freqüent&nbsp;3: Comparar tipus diferents
 
 </div>
 <script type="pyodide-29-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyB0aXB1cyBkaWZlcmVudHM6ID09IHJldG9ybmEgRmFsc2UsIG9yZHJlIGxsYW7Dp2EgVHlwZUVycm9yXG5wcmludCg0MiA9PSBcIjQyXCIpICAgICAjIEZhbHNlXG4jIHByaW50KDQyIDwgXCI0MlwiKSAgICAjIFR5cGVFcnJvcjogJzwnIG5vdCBzdXBwb3J0ZWQgYmV0d2VlbiAnaW50JyBhbmQgJ3N0cicifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyB0aXBvcyBkaXN0aW50b3M6ID09IGRldnVlbHZlIEZhbHNlLCBvcmRlbiBsYW56YSBUeXBlRXJyb3JcbnByaW50KDQyID09IFwiNDJcIikgICAgICMgRmFsc2VcbiMgcHJpbnQoNDIgPCBcIjQyXCIpICAgICMgVHlwZUVycm9yOiAnPCcgbm90IHN1cHBvcnRlZCBiZXR3ZWVuICdpbnQnIGFuZCAnc3RyJyJ9
 </script>
 </div>
 </div>
@@ -1586,7 +1586,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyB0aXB1cyBkaWZlcmVudHM6
 
 </div>
 <script type="pyodide-30-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDdcbnByaW50KDEgPD0geCA8PSAxMCkgICAjIFRydWUgICAoZXF1aXZhbGVudCBhIDEgPD0geCBhbmQgeCA8PSAxMClcbnByaW50KDAgPCB4IDwgNSkgICAgICAjIEZhbHNlXG5wcmludCgyID09IDIgPT0gMikgICAgIyBUcnVlIn0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDdcbnByaW50KDEgPD0geCA8PSAxMCkgICAjIFRydWUgICAoZXF1aXZhbGUgYSAxIDw9IHggYW5kIHggPD0gMTApXG5wcmludCgwIDwgeCA8IDUpICAgICAgIyBGYWxzZVxucHJpbnQoMiA9PSAyID09IDIpICAgICMgVHJ1ZSJ9
 </script>
 </div>
 <div id="tip-compara" class="callout callout-style-default callout-tip no-icon callout-titled" title="Operadors de comparació">
@@ -1656,7 +1656,7 @@ Fonament Teòric&nbsp;3: Operadors de comparació
 
 </div>
 <script type="pyodide-31-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDdcbnByaW50KHggPiAwIGFuZCB4IDwgMTApICAgIyBUcnVlICAgKHggZXN0w6AgZW4gbCdpbnRlcnZhbCAoMCwgMTApKVxucHJpbnQoeCA8IDAgb3IgeCA+IDUpICAgICAjIFRydWUgICAoeCA8IDAgw6lzIEZhbHNlLCBwZXLDsiB4ID4gNSDDqXMgVHJ1ZSlcbnByaW50KG5vdCAoeCA9PSA3KSkgICAgICAgIyBGYWxzZVxucHJpbnQoeCAhPSA3KSAgICAgICAgICAgICAjIEZhbHNlIn0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDdcbnByaW50KHggPiAwIGFuZCB4IDwgMTApICAgIyBUcnVlICAgKHggZXN0w6EgZW4gZWwgaW50ZXJ2YWxvICgwLCAxMCkpXG5wcmludCh4IDwgMCBvciB4ID4gNSkgICAgICMgVHJ1ZSAgICh4IDwgMCBlcyBGYWxzZSwgcGVybyB4ID4gNSBlcyBUcnVlKVxucHJpbnQobm90ICh4ID09IDcpKSAgICAgICAjIEZhbHNlXG5wcmludCh4ICE9IDcpICAgICAgICAgICAgICMgRmFsc2UifQ==
 </script>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Avaluació en curtcircuit (short-circuit evaluation)">
@@ -1680,7 +1680,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDdcbnByaW50KHggPiAw
 
 </div>
 <script type="pyodide-32-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYiA9IDBcbmlmIGIgIT0gMCBhbmQgMTAgLyBiID4gMjogICAjIG5vIGxsYW7Dp2EgWmVyb0RpdmlzaW9uRXJyb3JcbiAgICBwcmludChcInF1b2NpZW50IGdyYW5cIikifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYiA9IDBcbmlmIGIgIT0gMCBhbmQgMTAgLyBiID4gMjogICAjIG5vIGxhbnphIFplcm9EaXZpc2lvbkVycm9yXG4gICAgcHJpbnQoXCJjb2NpZW50ZSBncmFuZGVcIikifQ==
 </script>
 </div>
 </div>
@@ -1846,6 +1846,16 @@ Fonament Teòric&nbsp;6: Condicionals
 <li><code>if</code>-<code>else</code>: afegeix un bloc alternatiu per quan la condició és falsa.</li>
 <li><code>if</code>-<code>elif</code>-<code>else</code>: encadena múltiples condicions mútuament excloents, avaluades en ordre fins que una sigui verdadera.</li>
 </ul>
+<div id="fig-condicionales-python" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-condicionales-python-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/condi3.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-condicionales-python-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Condicionals de Python
+</figcaption>
+</figure>
+</div>
 <section id="estructura-if" class="level3">
 <h3 class="anchored" data-anchor-id="estructura-if"><strong>2.5.1 Estructura <code>if</code></strong></h3>
 <p>La forma més simple és el <code>if</code>:</p>
@@ -1854,7 +1864,7 @@ Fonament Teòric&nbsp;6: Condicionals
 
 </div>
 <script type="pyodide-34-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IC01XG5pZiB4IDwgMDpcbiAgICBwcmludChcInggw6lzIG5lZ2F0aXVcIikifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IC01XG5pZiB4IDwgMDpcbiAgICBwcmludChcInggZXMgbmVnYXRpdm9cIikifQ==
 </script>
 </div>
 <p>El bloc indentat només s’executa si la condició és <code>True</code>. Si la condició és <code>False</code>, el bloc s’omet i l’execució continua en la instrucció següent no indentada.</p>
@@ -1879,7 +1889,7 @@ Concepte Clau&nbsp;6: Delimitació de blocs per indentació
 
 </div>
 <script type="pyodide-35-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDE3XG5pZiBuICUgMiA9PSAwOlxuICAgIHByaW50KGZcIntufSDDqXMgcGFyZWxsXCIpXG5lbHNlOlxuICAgIHByaW50KGZcIntufSDDqXMgc2VuYXJcIikifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDE3XG5pZiBuICUgMiA9PSAwOlxuICAgIHByaW50KGZcIntufSBlcyBwYXJcIilcbmVsc2U6XG4gICAgcHJpbnQoZlwie259IGVzIGltcGFyXCIpIn0=
 </script>
 </div>
 </section>
@@ -1891,7 +1901,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDE3XG5pZiBuICUgMiA9
 
 </div>
 <script type="pyodide-36-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibm90YSA9IDcuNVxuXG5pZiBub3RhID49IDk6XG4gICAgY2FsaWZpY2FjaW9uID0gXCJFeGNlbMK3bGVudFwiXG5lbGlmIG5vdGEgPj0gNzpcbiAgICBjYWxpZmljYWNpb24gPSBcIk5vdGFibGVcIlxuZWxpZiBub3RhID49IDU6XG4gICAgY2FsaWZpY2FjaW9uID0gXCJBcHJvdmF0XCJcbmVsc2U6XG4gICAgY2FsaWZpY2FjaW9uID0gXCJTdXNww6hzXCJcblxucHJpbnQoZlwiTm90YToge25vdGF9IOKGkiB7Y2FsaWZpY2FjaW9ufVwiKVxuIyBOb3RhOiA3LjUg4oaSIE5vdGFibGUifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibm90YSA9IDcuNVxuXG5pZiBub3RhID49IDk6XG4gICAgY2FsaWZpY2FjaW9uID0gXCJTb2JyZXNhbGllbnRlXCJcbmVsaWYgbm90YSA+PSA3OlxuICAgIGNhbGlmaWNhY2lvbiA9IFwiTm90YWJsZVwiXG5lbGlmIG5vdGEgPj0gNTpcbiAgICBjYWxpZmljYWNpb24gPSBcIkFwcm9iYWRvXCJcbmVsc2U6XG4gICAgY2FsaWZpY2FjaW9uID0gXCJTdXNwZW5zb1wiXG5cbnByaW50KGZcIk5vdGE6IHtub3RhfSDihpIge2NhbGlmaWNhY2lvbn1cIilcbiMgTm90YTogNy41IOKGkiBOb3RhYmxlIn0=
 </script>
 </div>
 <div id="nte-ecucua" class="callout callout-style-default callout-note no-icon callout-titled" title="Arrels d'una equació quadràtica">
@@ -1910,7 +1920,7 @@ Exemple&nbsp;1: Arrels d’una equació quadràtica
 
 </div>
 <script type="pyodide-37-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuYSwgYiwgYyA9IDEsIC0zLCAyICAgICMgZXF1YWNpw7M6IHheMiAtIDN4ICsgMiA9IDBcbmRpc2NyaW1pbmFudGUgPSBiKioyIC0gNCAqIGEgKiBjXG5cbmlmIGRpc2NyaW1pbmFudGUgPiAwOlxuICAgIHIxID0gKC1iICsgbWF0aC5zcXJ0KGRpc2NyaW1pbmFudGUpKSAvICgyICogYSlcbiAgICByMiA9ICgtYiAtIG1hdGguc3FydChkaXNjcmltaW5hbnRlKSkgLyAoMiAqIGEpXG4gICAgcHJpbnQoZlwiRHVlcyBhcnJlbHMgcmVhbHM6IHjigoEgPSB7cjE6LjRmfSwgeOKCgiA9IHtyMjouNGZ9XCIpXG5lbGlmIGRpc2NyaW1pbmFudGUgPT0gMDpcbiAgICByID0gLWIgLyAoMiAqIGEpXG4gICAgcHJpbnQoZlwiQXJyZWwgZG9ibGU6IHggPSB7cjouNGZ9XCIpXG5lbHNlOlxuICAgIHByaW50KFwiU2Vuc2UgYXJyZWxzIHJlYWxzIChkaXNjcmltaW5hbnQgbmVnYXRpdSlcIikifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuYSwgYiwgYyA9IDEsIC0zLCAyICAgICMgZWN1YWNpw7NuOiB4XjIgLSAzeCArIDIgPSAwXG5kaXNjcmltaW5hbnRlID0gYioqMiAtIDQgKiBhICogY1xuXG5pZiBkaXNjcmltaW5hbnRlID4gMDpcbiAgICByMSA9ICgtYiArIG1hdGguc3FydChkaXNjcmltaW5hbnRlKSkgLyAoMiAqIGEpXG4gICAgcjIgPSAoLWIgLSBtYXRoLnNxcnQoZGlzY3JpbWluYW50ZSkpIC8gKDIgKiBhKVxuICAgIHByaW50KGZcIkRvcyByYcOtY2VzIHJlYWxlczogeOKCgSA9IHtyMTouNGZ9LCB44oKCID0ge3IyOi40Zn1cIilcbmVsaWYgZGlzY3JpbWluYW50ZSA9PSAwOlxuICAgIHIgPSAtYiAvICgyICogYSlcbiAgICBwcmludChmXCJSYcOteiBkb2JsZTogeCA9IHtyOi40Zn1cIilcbmVsc2U6XG4gICAgcHJpbnQoXCJTaW4gcmHDrWNlcyByZWFsZXMgKGRpc2NyaW1pbmFudGUgbmVnYXRpdm8pXCIpIn0=
 </script>
 </div>
 <p>La instrucció <code>import math</code> fa disponibles les funcions matemàtiques del mòdul estàndard <code>math</code>, com <code>math.sqrt()</code> (arrel quadrada), <code>math.pi</code> (π), <code>math.log()</code> (logaritme), etc. Els mòduls s’estudien en profunditat en el Tema 3; per ara n’hi ha prou amb saber que <code>import math</code> s’ha d’escriure abans d’usar qualsevol funció d’aquell mòdul. La notació <code>math.xxxxxx()</code>, per exemple <code>math.sqrt()</code>, indica que la funció <code>xxxxxx</code> pertany al mòdul <code>math</code>.</p>
@@ -1925,7 +1935,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuYSwg
 
 </div>
 <script type="pyodide-38-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDNcbmlmIHggIT0gMDpcbiAgICBpZiB4ID4gMDpcbiAgICAgICAgcHJpbnQoXCJ4IMOpcyBwb3NpdGl1XCIpXG4gICAgZWxzZTpcbiAgICAgICAgcHJpbnQoXCJ4IMOpcyBuZWdhdGl1XCIpXG5lbHNlOlxuICAgIHByaW50KFwieCDDqXMgemVyb1wiKSJ9
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDNcbmlmIHggIT0gMDpcbiAgICBpZiB4ID4gMDpcbiAgICAgICAgcHJpbnQoXCJ4IGVzIHBvc2l0aXZvXCIpXG4gICAgZWxzZTpcbiAgICAgICAgcHJpbnQoXCJ4IGVzIG5lZ2F0aXZvXCIpXG5lbHNlOlxuICAgIHByaW50KFwieCBlcyBjZXJvXCIpIn0=
 </script>
 </div>
 <p>Quan la lògica es complica, sol ser preferible combinar condicions amb <code>and</code> i <code>or</code>, o usar <code>elif</code>, en lloc d’aniuar massa nivells.</p>
@@ -1945,7 +1955,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDNcbmlmIHggIT0gMDpc
 
 </div>
 <script type="pyodide-39-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDdcbnNpZ25vID0gXCJwb3NpdGl1XCIgaWYgeCA+IDAgZWxzZSBcIm5vIHBvc2l0aXVcIlxucHJpbnQoc2lnbm8pICAgIyBwb3NpdGl1In0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDdcbnNpZ25vID0gXCJwb3NpdGl2b1wiIGlmIHggPiAwIGVsc2UgXCJubyBwb3NpdGl2b1wiXG5wcmludChzaWdubykgICAjIHBvc2l0aXZvIn0=
 </script>
 </div>
 <p>La sintaxi és <code>valor_si_true if condició else valor_si_false</code>. És útil per a assignacions simples, però convé evitar-la quan la lògica és complexa, ja que pot dificultar la lectura.</p>
@@ -1984,10 +1994,10 @@ Exemple&nbsp;2: Imprimir els quadrats perfectes menors que 100
 
 </div>
 <script type="pyodide-40-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDFcbndoaWxlIG4gKiBuIDwgMTAwOlxuICAgIHByaW50KG4gKiBuLCBlbmQ9XCIgIFwiKVxuICAgIG4gKz0gMVxucHJpbnQoXCJcXG5GaSBkZWwgYnVjbGVcIikifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDFcbndoaWxlIG4gKiBuIDwgMTAwOlxuICAgIHByaW50KG4gKiBuLCBlbmQ9XCIgIFwiKVxuICAgIG4gKz0gMVxucHJpbnQoXCJcXG5GaW4gZGVsIGJ1Y2xlXCIpIn0=
 </script>
 </div>
-<p>En cada iteració s’avalua la condició. Tan aviat com és <code>False</code> (quan <code>n == 100</code>), el bucle acaba i l’execució continua amb la instrucció següent imprimint “Fi del bucle” en una nova línia. Observeu que <code>print("\nFi del bucle")</code> imprimeix un salt de línia amb <code>\n</code> abans del missatge.</p>
+<p>En cada iteració s’avalua la condició. Tan aviat com és <code>False</code> (quan <code>n == 100</code>), el bucle acaba i l’execució continua amb la instrucció següent imprimint “Fin del bucle” en una nova línia. Observeu que <code>print("\nFin del bucle")</code> imprimeix un salt de línia amb <code>\n</code> abans del missatge.</p>
 </div>
 </div>
 <div id="cau-while" class="callout callout-style-default callout-caution no-icon callout-titled" title="Bucle infinit">
@@ -2001,7 +2011,7 @@ Error Freqüent&nbsp;4: Bucle infinit
 </div>
 <div class="callout-body-container callout-body">
 <p>Si la condició del <code>while</code> mai passa a <code>False</code>, el programa no acaba mai. Aquest error —el <strong>bucle infinit</strong>— és un dels més freqüents en començar a programar:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PERILL: bucle infinit (n sempre creix)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PELIGRO: bucle infinito (n siempre crece)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span>:</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    n <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2036,13 +2046,13 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSwgYiA9IDEuMCwgMi4wXG53
 
 </div>
 <script type="pyodide-43-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDEuMFxud2hpbGUgVHJ1ZTpcbiAgICB4X251ZXZvID0gKHggKyAyIC8geCkgLyAyICAgIyBtw6h0b2RlIGRlIE5ld3RvbiBwZXIgYSDiiJoyXG4gICAgaWYgYWJzKHhfbnVldm8gLSB4KSA8IDFlLTEyOlxuICAgICAgICBicmVha1xuICAgIHggPSB4X251ZXZvXG5wcmludCh4KSJ9
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IDEuMFxud2hpbGUgVHJ1ZTpcbiAgICB4X251ZXZvID0gKHggKyAyIC8geCkgLyAyICAgIyBtw6l0b2RvIGRlIE5ld3RvbiBwYXJhIOKImjJcbiAgICBpZiBhYnMoeF9udWV2byAtIHgpIDwgMWUtMTI6XG4gICAgICAgIGJyZWFrXG4gICAgeCA9IHhfbnVldm9cbnByaW50KHgpIn0=
 </script>
 </div></li>
 <li><p><strong>Validació d’entrada</strong> — repetir fins a obtenir un valor vàlid (la funció <code>input()</code> es veurà a la secció 2.7):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introdueix un enter positiu: "</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introduce un entero positivo: "</span>))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ha de ser positiu. Torna-ho a intentar: "</span>))</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Debe ser positivo. Inténtalo de nuevo: "</span>))</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>Dígits d’un nombre</strong> — processar xifra a xifra:</p>
 <div>
 <div id="pyodide-44" class="exercise-cell">
@@ -2066,7 +2076,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDEyMzQ1Nlxud2hpbGUg
 
 </div>
 <script type="pyodide-45-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBicmVhazogdHJvYmFyIGVsIHByaW1lciBkaXZpc29yIGRlIG4gbWFqb3IgcXVlIDFcbm4gPSA3N1xuZCA9IDJcbndoaWxlIGQgPCBuOlxuICAgIGlmIG4gJSBkID09IDA6XG4gICAgICAgIHByaW50KGZcIkVsIG1lbm9yIGRpdmlzb3IgZGUge259IG1ham9yIHF1ZSAxIMOpcyB7ZH1cIilcbiAgICAgICAgYnJlYWtcbiAgICBkICs9IDEifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBicmVhazogZW5jb250cmFyIGVsIHByaW1lciBkaXZpc29yIGRlIG4gbWF5b3IgcXVlIDFcbm4gPSA3N1xuZCA9IDJcbndoaWxlIGQgPCBuOlxuICAgIGlmIG4gJSBkID09IDA6XG4gICAgICAgIHByaW50KGZcIkVsIG1lbm9yIGRpdmlzb3IgZGUge259IG1heW9yIHF1ZSAxIGVzIHtkfVwiKVxuICAgICAgICBicmVha1xuICAgIGQgKz0gMSJ9
 </script>
 </div>
 <div>
@@ -2074,7 +2084,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBicmVhazogdHJvYmFyIGVs
 
 </div>
 <script type="pyodide-46-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBjb250aW51ZTogaW1wcmltaXIgbm9tw6lzIGVscyBlbnRlcnMgc2VuYXJzIGRlIGwnMSBhbCAxMFxuaSA9IDBcbndoaWxlIGkgPCAxMDpcbiAgICBpICs9IDFcbiAgICBpZiBpICUgMiA9PSAwOlxuICAgICAgICBjb250aW51ZSAgICMgc2FsdGEgYSBsJ2luaWNpIHNpIGkgw6lzIHBhcmVsbFxuICAgIHByaW50KGksIGVuZD1cIiAgXCIpXG4jIDEgIDMgIDUgIDcgIDkifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBjb250aW51ZTogaW1wcmltaXIgc29sbyBsb3MgZW50ZXJvcyBpbXBhcmVzIGRlbCAxIGFsIDEwXG5pID0gMFxud2hpbGUgaSA8IDEwOlxuICAgIGkgKz0gMVxuICAgIGlmIGkgJSAyID09IDA6XG4gICAgICAgIGNvbnRpbnVlICAgIyBzYWx0YSBhbCBpbmljaW8gc2kgaSBlcyBwYXJcbiAgICBwcmludChpLCBlbmQ9XCIgIFwiKVxuIyAxICAzICA1ICA3ICA5In0=
 </script>
 </div>
 </section>
@@ -2162,7 +2172,7 @@ Fonament Teòric&nbsp;8: Invariant de bucle
 
 </div>
 <script type="pyodide-47-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIGkgaW4gcmFuZ2UoNSk6XG4gICAgcHJpbnQoaSwgZW5kPVwiIFwiKSAgICAgIyAwIDEgMiAzIDRcbnByaW50KCkgICMgc2FsdCBkZSBsw61uaWFcblxuZm9yIGkgaW4gcmFuZ2UoMSwgNik6XG4gICAgcHJpbnQoaSwgZW5kPVwiIFwiKSAgICAgIyAxIDIgMyA0IDVcbnByaW50KCkgICMgc2FsdCBkZSBsw61uaWFcblxuZm9yIGkgaW4gcmFuZ2UoMCwgMTAsIDIpOlxuICAgIHByaW50KGksIGVuZD1cIiBcIikgICAgICMgMCAyIDQgNiA4XG5wcmludCgpICMgc2FsdCBkZSBsw61uaWFcblxuZm9yIGkgaW4gcmFuZ2UoMTAsIDAsIC0xKTpcbiAgICBwcmludChpLCBlbmQ9XCIgXCIpICAgICAjIDEwIDkgOCA3IDYgNSA0IDMgMiAxIn0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIGkgaW4gcmFuZ2UoNSk6XG4gICAgcHJpbnQoaSwgZW5kPVwiIFwiKSAgICAgIyAwIDEgMiAzIDRcbnByaW50KCkgICMgc2FsdG8gZGUgbMOtbmVhXG5cbmZvciBpIGluIHJhbmdlKDEsIDYpOlxuICAgIHByaW50KGksIGVuZD1cIiBcIikgICAgICMgMSAyIDMgNCA1XG5wcmludCgpICAjIHNhbHRvIGRlIGzDrW5lYVxuXG5mb3IgaSBpbiByYW5nZSgwLCAxMCwgMik6XG4gICAgcHJpbnQoaSwgZW5kPVwiIFwiKSAgICAgIyAwIDIgNCA2IDhcbnByaW50KCkgIyBzYWx0byBkZSBsw61uZWFcblxuZm9yIGkgaW4gcmFuZ2UoMTAsIDAsIC0xKTpcbiAgICBwcmludChpLCBlbmQ9XCIgXCIpICAgICAjIDEwIDkgOCA3IDYgNSA0IDMgMiAxIn0=
 </script>
 </div>
 <div id="imp-range" class="callout callout-style-default callout-important no-icon callout-titled" title="L'anatomia de l'objecte `range`">
@@ -2224,7 +2234,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBGYWN0b3JpYWw6IG4hID0g
 
 </div>
 <script type="pyodide-50-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIHggaW4gcmFuZ2UoMSwgNSk6XG4gICAgcHJpbnQoeCAqKiAzKSAgICMgY3ViIGRlIGNhZGEgZW50ZXIifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIHggaW4gcmFuZ2UoMSwgNSk6XG4gICAgcHJpbnQoeCAqKiAzKSAgICMgY3VibyBkZSBjYWRhIGVudGVybyJ9
 </script>
 </div></li>
 <li><p><strong>Cerca</strong> — detectar si un enter en un rang compleix una condició:</p>
@@ -2233,7 +2243,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIHggaW4gcmFuZ2UoMSwg
 
 </div>
 <script type="pyodide-51-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIG4gaW4gcmFuZ2UoMiwgNTApOlxuICAgIGlmIG4gJSA3ID09IDA6XG4gICAgICAgIHByaW50KG4sIFwiw6lzIG3Dumx0aXBsZSBkZSA3XCIpIn0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIG4gaW4gcmFuZ2UoMiwgNTApOlxuICAgIGlmIG4gJSA3ID09IDA6XG4gICAgICAgIHByaW50KG4sIFwiZXMgbcO6bHRpcGxvIGRlIDdcIikifQ==
 </script>
 </div></li>
 </ul>
@@ -2308,7 +2318,7 @@ Exemple&nbsp;5: Imprimir nombres primers
 
 </div>
 <script type="pyodide-54-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuIyBMbGlzdGFyIHRvdHMgZWxzIHByaW1lcnMgZmlucyBhIDUwXG5mb3IgbiBpbiByYW5nZSgyLCA1MSk6XG4gICAgZXNfcHJpbW8gPSBUcnVlICAgICAgICAgICAgICAgICAgICAgICAgICAjIGhpcMOydGVzaSBpbmljaWFsOiBuIMOpcyBwcmltZXJcbiAgICBmb3IgZCBpbiByYW5nZSgyLCBpbnQobWF0aC5zcXJ0KG4pKSArIDEpOlxuICAgICAgICBpZiBuICUgZCA9PSAwOlxuICAgICAgICAgICAgZXNfcHJpbW8gPSBGYWxzZSAgICAgICAgICAgICAgICAgIyBzJ2hhIHRyb2JhdCB1biBkaXZpc29yXG4gICAgICAgICAgICBicmVhayAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIyBubyBjYWwgY29udGludWFyIGJ1c2NhbnRcbiAgICBpZiBlc19wcmltbzpcbiAgICAgICAgcHJpbnQobiwgZW5kPVwiICBcIikifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuIyBMaXN0YXIgdG9kb3MgbG9zIHByaW1vcyBoYXN0YSA1MFxuZm9yIG4gaW4gcmFuZ2UoMiwgNTEpOlxuICAgIGVzX3ByaW1vID0gVHJ1ZSAgICAgICAgICAgICAgICAgICAgICAgICAgICMgaGlww7N0ZXNpcyBpbmljaWFsOiBuIGVzIHByaW1vXG4gICAgZm9yIGQgaW4gcmFuZ2UoMiwgaW50KG1hdGguc3FydChuKSkgKyAxKTpcbiAgICAgICAgaWYgbiAlIGQgPT0gMDpcbiAgICAgICAgICAgIGVzX3ByaW1vID0gRmFsc2UgICAgICAgICAgICAgICAgICAjIHNlIGVuY29udHLDsyB1biBkaXZpc29yXG4gICAgICAgICAgICBicmVhayAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIyBubyBoYWNlIGZhbHRhIHNlZ3VpciBidXNjYW5kb1xuICAgIGlmIGVzX3ByaW1vOlxuICAgICAgICBwcmludChuLCBlbmQ9XCIgIFwiKSJ9
 </script>
 </div>
 </div>
@@ -2355,7 +2365,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicGFsYWJyYSA9IFwiUHl0aG9u
 
 </div>
 <script type="pyodide-57-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicGFsYWJyYSA9IFwiUHl0aG9uXCJcbmZvciBpIGluIHJhbmdlKGxlbihwYWxhYnJhKSk6XG4gICAgcHJpbnQoZlwicG9zaWNpw7Mge2l9OiB7cGFsYWJyYVtpXX1cIikifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicGFsYWJyYSA9IFwiUHl0aG9uXCJcbmZvciBpIGluIHJhbmdlKGxlbihwYWxhYnJhKSk6XG4gICAgcHJpbnQoZlwicG9zaWNpw7NuIHtpfToge3BhbGFicmFbaV19XCIpIn0=
 </script>
 </div>
 <p>Una altra forma d’obtenir la posició de cada caràcter és usar el tipus <code>enumerate()</code>. Igual que <code>range</code>, <code>enumerate</code> és un tipus built-in de Python. Amb <code>enumerate(iterable)</code> es produeix un objecte iterable de parells <code>(índex, valor)</code> generats de forma mandrosa. Amb <code>index</code> s’obté la posició de l’element en la seqüència, i amb <code>valor</code> s’obté l’element en si. Això permet recórrer una cadena (o qualsevol iterable) i conèixer simultàniament l’índex de cada element:</p>
@@ -2364,7 +2374,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicGFsYWJyYSA9IFwiUHl0aG9u
 
 </div>
 <script type="pyodide-58-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIGksIGxldHJhIGluIGVudW1lcmF0ZShcImFiY1wiKTpcbiAgICBwcmludChmXCJwb3NpY2nDsyB7aX06IHtsZXRyYX1cIikifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIGksIGxldHJhIGluIGVudW1lcmF0ZShcImFiY1wiKTpcbiAgICBwcmludChmXCJwb3NpY2nDs24ge2l9OiB7bGV0cmF9XCIpIn0=
 </script>
 </div>
 <p>Les cadenes que comencen amb <code>f</code> i contenen expressions entre claus <code>{}</code> s’anomenen <strong>f-strings</strong> (cadenes formatades). Es veuran a la secció 2.7.2.</p>
@@ -2382,7 +2392,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIGksIGxldHJhIGluIGVu
 
 </div>
 <script type="pyodide-59-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoXCJFbCByZXN1bHRhdCDDqXNcIiwgNDIpICAgICAgICAgICAjIEVsIHJlc3VsdGF0IMOpcyA0MlxucHJpbnQoMSwgMiwgMykgICAgICAgICAgICAgICAgICAgICAgICAgIyAxIDIgMyAgKHNlcGFyYWRvciBwZXIgZGVmZWN0ZTogZXNwYWkpXG5wcmludCgxLCAyLCAzLCBzZXA9XCIsIFwiKSAgICAgICAgICAgICAgICMgMSwgMiwgM1xucHJpbnQoMSwgMiwgMywgc2VwPVwiIHwgXCIpICAgICAgICAgICAgICAjIDEgfCAyIHwgM1xucHJpbnQoXCJzZW5zZSBzYWx0XCIsIGVuZD1cIlwiKSAgICAgICAgICAgICMgcm9tYW4gYSBsYSBtYXRlaXhhIGzDrW5pYVxucHJpbnQoXCIg4oCUIGNvbnRpbnVhY2nDs1wiKSAgICAgICAgICAgICAgICAjIOKAlCBjb250aW51YWNpw7NcbnByaW50KCkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICMgbMOtbmlhIGVuIGJsYW5jIn0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoXCJFbCByZXN1bHRhZG8gZXNcIiwgNDIpICAgICAgICAgICAjIEVsIHJlc3VsdGFkbyBlcyA0MlxucHJpbnQoMSwgMiwgMykgICAgICAgICAgICAgICAgICAgICAgICAgIyAxIDIgMyAgKHNlcGFyYWRvciBwb3IgZGVmZWN0bzogZXNwYWNpbylcbnByaW50KDEsIDIsIDMsIHNlcD1cIiwgXCIpICAgICAgICAgICAgICAgIyAxLCAyLCAzXG5wcmludCgxLCAyLCAzLCBzZXA9XCIgfCBcIikgICAgICAgICAgICAgICMgMSB8IDIgfCAzXG5wcmludChcInNpbiBzYWx0b1wiLCBlbmQ9XCJcIikgICAgICAgICAgICAgIyBwZXJtYW5lY2UgZW4gbGEgbWlzbWEgbMOtbmVhXG5wcmludChcIiDigJQgY29udGludWFjacOzblwiKSAgICAgICAgICAgICAgICMg4oCUIGNvbnRpbnVhY2nDs25cbnByaW50KCkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICMgbMOtbmVhIGVuIGJsYW5jbyJ9
 </script>
 </div>
 </section>
@@ -2394,7 +2404,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoXCJFbCByZXN1bHRh
 
 </div>
 <script type="pyodide-60-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDEwMFxuc3VtYSA9IG4gKiAobiArIDEpIC8vIDJcbnByaW50KGZcIkdhdXNzIHZhIGNhbGN1bGFyIHF1ZSBsYSBzdW1hIGRlIDEgYSB7bn0gw6lzIHtzdW1hfS5cIilcbnByaW50KGZcIkVsIHF1YWRyYXQgZGUgNyDDqXMgezcqKjJ9LlwiKSJ9
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDEwMFxuc3VtYSA9IG4gKiAobiArIDEpIC8vIDJcbnByaW50KGZcIkdhdXNzIGNhbGN1bMOzIHF1ZSBsYSBzdW1hIGRlIDEgYSB7bn0gZXMge3N1bWF9LlwiKVxucHJpbnQoZlwiRWwgY3VhZHJhZG8gZGUgNyBlcyB7NyoqMn0uXCIpIn0=
 </script>
 </div>
 <p>El veritable avantatge de les f-strings no és només inserir variables estàtiques; permeten executar codi Python vàlid directament dins de les claus. És possible fer càlculs matemàtics, cridar mètodes o usar funcions sense necessitat de crear variables temporals prèvies.</p>
@@ -2403,7 +2413,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDEwMFxuc3VtYSA9IG4g
 
 </div>
 <script type="pyodide-61-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJlY2lvID0gNTBcbmltcHVlc3RvID0gMC4yMVxuXG4jIE9wZXJhY2nDsyBtYXRlbcOgdGljYSBkaXJlY3RhXG5wcmludChmXCJFbCBwcmV1IHRvdGFsIGFtYiBJVkEgw6lzIHtwcmVjaW8gKyAocHJlY2lvICogaW1wdWVzdG8pfVwiKVxuXG5wYWxhYnJhID0gXCJweXRob25cIlxuIyBDcmlkYSBhIHVuIG3DqHRvZGUgZGUgY2FkZW5hXG5wcmludChmXCJNJ2VuY2FudGEgcHJvZ3JhbWFyIGVuIHtwYWxhYnJhLmNhcGl0YWxpemUoKX0hXCIpIn0=
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJlY2lvID0gNTBcbmltcHVlc3RvID0gMC4yMVxuXG4jIE9wZXJhY2nDs24gbWF0ZW3DoXRpY2EgZGlyZWN0YVxucHJpbnQoZlwiRWwgcHJlY2lvIHRvdGFsIGNvbiBJVkEgZXMge3ByZWNpbyArIChwcmVjaW8gKiBpbXB1ZXN0byl9XCIpXG5cbnBhbGFicmEgPSBcInB5dGhvblwiXG4jIExsYW1hZGEgYSB1biBtw6l0b2RvIGRlIGNhZGVuYVxucHJpbnQoZlwiTWUgZW5jYW50YSBwcm9ncmFtYXIgZW4ge3BhbGFicmEuY2FwaXRhbGl6ZSgpfSFcIikifQ==
 </script>
 </div>
 <p>A partir de Python 3.8 es pot afegir un signe igual <code>=</code> després del nom de la variable (o expressió) dins de les claus. Això imprimeix tant el nom de la variable com el seu valor resultant, la qual cosa estalvia molt de temps en fer <em>depuració</em> (<em>debugging</em>) amb <code>print()</code>.</p>
@@ -2412,7 +2422,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJlY2lvID0gNTBcbmltcHVl
 
 </div>
 <script type="pyodide-62-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidXN1YXJpb19pZCA9IDQwOTJcbnZlbG9jaWRhZF9hY3R1YWwgPSAxMjBcblxucHJpbnQoZlwie3VzdWFyaW9faWQ9fVwiKSAgICAgICAgICAgICAgICAjIHVzdWFyaW9faWQ9NDA5MlxuXG5wcmludChmXCJ7dmVsb2NpZGFkX2FjdHVhbCAvIDIgPSB9XCIpICAgIyB2ZWxvY2lkYWRfYWN0dWFsIC8gMiA9IDYwLjAifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidXN1YXJpb19pZCA9IDQwOTJcbnZlbG9jaWRhZF9hY3R1YWwgPSAxMjBcblxucHJpbnQoZlwie3VzdWFyaW9faWQ9fVwiKSAgICAgICAgICAgICAgIyB1c3VhcmlvX2lkPTQwOTJcblxucHJpbnQoZlwie3ZlbG9jaWRhZF9hY3R1YWwgLyAyID0gfVwiKSAgIyB2ZWxvY2lkYWRfYWN0dWFsIC8gMiA9IDYwLjAifQ==
 </script>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Especificadors de format en f-strings">
@@ -2498,15 +2508,15 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidXN1YXJpb19pZCA9IDQwOTJc
 <section id="la-funció-input" class="level3">
 <h3 class="anchored" data-anchor-id="la-funció-input"><strong>2.7.3 La funció <code>input()</code></strong></h3>
 <p><code>input()</code> atura l’execució del programa, mostra un missatge opcional en pantalla i espera que l’usuari escrigui alguna cosa i premi Retorn. <strong>Sempre retorna una cadena de text</strong> (<code>str</code>), independentment del que l’usuari hagi escrit.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>texto <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escriu alguna cosa: "</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Has escrit: </span><span class="sc">{</span>texto<span class="sc">}</span><span class="ss">"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>texto <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escribe algo: "</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Escribiste: </span><span class="sc">{</span>texto<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(texto))              <span class="co"># &lt;class 'str'&gt;</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Per treballar amb valors numèrics, cal convertir la cadena retornada per <code>input()</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introdueix un nombre enter: "</span>))</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El quadrat de </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> és </span><span class="sc">{</span>n<span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss">."</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introduce un número entero: "</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El cuadrado de </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> es </span><span class="sc">{</span>n<span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss">."</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Introdueix un nombre real: "</span>))</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La seva arrel quadrada és </span><span class="sc">{</span>x<span class="op">**</span><span class="fl">0.5</span><span class="sc">:.6f}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Introduce un número real: "</span>))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Su raíz cuadrada es </span><span class="sc">{</span>x<span class="op">**</span><span class="fl">0.5</span><span class="sc">:.6f}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="cau-input" class="callout callout-style-default callout-caution no-icon callout-titled" title="Oblidar que input() sempre retorna str">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2518,11 +2528,11 @@ Error Freqüent&nbsp;5: Oblidar que input() sempre retorna str
 </div>
 <div class="callout-body-container callout-body">
 <p>Un dels errors més comuns en començar amb Python:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Introdueix n: "</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Introduce n: "</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span>     <span class="co"># TypeError: can only concatenate str (not "int") to str</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>La solució és convertir explícitament el tipus abans d’operar:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introdueix n: "</span>))</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span>     <span class="co"># correcte</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introduce n: "</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span>     <span class="co"># correcto</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div id="nte-calculadora" class="callout callout-style-default callout-note no-icon callout-titled" title="Calculadora interactiva">
@@ -2536,10 +2546,10 @@ Exemple&nbsp;6: Calculadora interactiva
 </div>
 <div class="callout-body-container callout-body">
 <p>Implementem una calculadora bàsica que sol·licita dos nombres i una operació a l’usuari, i després mostra el resultat:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Calculadora bàsica ==="</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Primer nombre: "</span>))</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Segon nombre: "</span>))</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>op <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Operació (+, -, *, /): "</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Calculadora básica ==="</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Primer número: "</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Segundo número: "</span>))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>op <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Operación (+, -, *, /): "</span>)</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> op <span class="op">==</span> <span class="st">"+"</span>:</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> a <span class="op">+</span> b</span>
@@ -2551,10 +2561,10 @@ Exemple&nbsp;6: Calculadora interactiva
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> b <span class="op">!=</span> <span class="dv">0</span>:</span>
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        resultado <span class="op">=</span> a <span class="op">/</span> b</span>
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Error: divisió per zero."</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Error: división por cero."</span>)</span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        resultado <span class="op">=</span> <span class="va">None</span></span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Operació '</span><span class="sc">{</span>op<span class="sc">}</span><span class="ss">' no reconeguda."</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Operación '</span><span class="sc">{</span>op<span class="sc">}</span><span class="ss">' no reconocida."</span>)</span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> <span class="va">None</span></span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> resultado <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
