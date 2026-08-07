@@ -70,6 +70,12 @@ El nombre de la función sigue las mismas convenciones que los nombres de variab
 
 En una función de Python, los **parámetros** son los nombres que aparecen en la definición de la función, mientras que los **argumentos** son los valores concretos que se le pasan al invocarla (llamarla). En esencia, los parámetros actúan como marcadores de posición (*placeholders*); son **variables temporales que deben aparecer en el cuerpo de la función** y le indican al intérprete: *"aquí habrá un valor disponible en cuanto alguien invoque la función"*. Los argumentos, por su parte, representan los datos reales que ocuparán ese lugar.
 
+::: {#nte-eje1 .callout-note title="Parámetros y argumentos de una función"}
+En el ejemplo siguiente:
+- `base` y `exponente` son **parámetros** de la función `potencia`, 
+- `2` y `10` son **argumentos** en la llamada `potencia(2, 10)`,
+- `3` y `3` son **argumentos** en la llamada `potencia(3, 3)`.
+
 ```{pyodide}
 def potencia(base, exponente):      # base y exponente son parámetros
     return base ** exponente
@@ -77,17 +83,25 @@ def potencia(base, exponente):      # base y exponente son parámetros
 print(potencia(2, 10))              # 2 y 10 son argumentos → 1024
 print(potencia(3, 3))               # 27
 ```
+:::
 
-Los **parámetros con valor por defecto** permiten omitir algunos argumentos en la llamada cuando el valor habitual es conocido de antemano:
+En Python, puedes definir funciones donde algunos parámetros tengan un valor por defecto. Si quien llama a la función no proporciona ese argumento, Python usa el valor predefinido. Es decir, los **parámetros con valor por defecto** permiten omitir algunos argumentos en la llamada cuando el valor habitual es conocido de antemano. Esto es muy útil para simplificar el código cuando un parámetro casi siempre usa el mismo valor.
+
+::: {#nte-eje2 .callout-note title="Parámetros con valor por defecto"}
+En el siguiente ejemplo, el parámetro `exponente` tiene un valor por defecto de `2`:
+
+- si la función se llama con un solo argumento, como en `potencia(5)`, `exponente` toma el valor por defecto `2`, y la función calcula $5^2 = 25$,
+- si se llama con dos argumentos, como en `potencia(5, 3)` y `potencia(2, 10)`, el segundo argumento sobrescribe el valor por defecto de exponente y se calcula $5^3 = 125$ y $2^{10} = 1024$ respectivamente.
 
 ```{pyodide}
 def potencia(base, exponente=2):    # exponente tiene valor por defecto 2
     return base ** exponente
 
 print(potencia(5))        # 25    (exponente toma su valor por defecto)
-print(potencia(5, 3))     # 125   (se sobreescribe el valor por defecto)
-print(potencia(2, 10))    # 1024
+print(potencia(5, 3))     # 125   (se sobreescribe el valor por defecto con 3)
+print(potencia(2, 10))    # 1024  (se sobreescribe el valor por defecto con 10)
 ```
+:::
 
 ::: {#imp-default .callout-important title="Regla de orden en los parámetros con valor por defecto"}
 Los parámetros con valor por defecto deben colocarse siempre **después** de los parámetros sin valor por defecto. Invertir el orden produce un `SyntaxError`:
@@ -119,7 +133,11 @@ print(resultado)    # None  (no 10)
 El error más frecuente es confundir *imprimir* con *devolver*: `print(x * 2)` muestra el valor en pantalla, pero la función sigue devolviendo `None`. **Toda función que produzca un valor debe tener un `return` explícito**.
 :::
 
-Un ejemplo matemático que ilustra bien los parámetros con valor por defecto es el **método de Newton-Raphson** para aproximar $\sqrt{x}$, que acepta el valor $x$ y una tolerancia opcional:
+::: {#nte-eje3 .callout-note title="Métodos de Newton-Raphson para $\sqrt{x}$"}
+Un ejemplo matemático que ilustra bien los parámetros con valor por defecto es el **método de Newton-Raphson** para aproximar $\sqrt{x}$, que acepta el valor $x$ y una tolerancia (`tol`) opcional:
+
+- en la llamada `raiz_cuadrada(2)` se usa la tolerancia por defecto de $10^{-10}$, y el resultado es muy preciso,
+- en la llamada `raiz_cuadrada(2, tol=1e-4)` se especifica una tolerancia menos estricta, y el resultado es menos preciso pero se obtiene más rápido.
 
 ```{pyodide}
 def raiz_cuadrada(x, tol=1e-10):
@@ -138,6 +156,7 @@ print(raiz_cuadrada(2))              # 1.4142135623730951
 print(raiz_cuadrada(9))              # 3.0
 print(raiz_cuadrada(2, tol=1e-4))    # 1.4142156862...  (menos preciso)
 ```
+:::
 
 ### **3.1.3 Recursión**
 
@@ -214,7 +233,8 @@ $$
 $$
 :::
 
-La sucesión de Fibonacci también tiene una definición recursiva, pero su implementación directa es muy ineficiente:
+::: {#nte-eje4 .callout-note title="Fibonacci recursivo"}
+La sucesión de Fibonacci también tiene una definición recursiva muy elegante dado que $F(n) = F(n-1) + F(n-2)$. Es decir, el cómputo se define en términos de $F$ misma. Los casos base son $F(0) = 0$ y $F(1) = 1$. La implementación directa es muy simple (remplazamos $F(n)$ por `fibonacci(n)`):
 
 ```{pyodide}
 def fibonacci(n):
@@ -225,14 +245,46 @@ def fibonacci(n):
 print(fibonacci(10))   # 55
 ```
 
-::: {.callout-caution appearance="simple"}
-`fibonacci(n)` con la implementación anterior tiene coste exponencial $O(2^n)$: para calcular `fibonacci(40)` se realizan más de mil millones de llamadas, porque cada valor se recalcula repetidamente desde cero. La versión iterativa del Tema 2 es infinitamente más eficiente. La recursión es una herramienta potente pero no siempre eficiente; elegir entre recursión e iteración exige considerar el coste computacional.
+Sin embargo, `fibonacci(n)` con la implementación anterior tiene coste (complejidad temporal) exponencial $O(2^n)$: para calcular `fibonacci(40)` se realizan más de mil millones de llamadas, porque cada valor se recalcula repetidamente desde cero o uno. La versión iterativa del Tema 2 es infinitamente más eficiente. 
+
+**La recursión es una herramienta potente pero no siempre eficiente; elegir entre recursión e iteración exige considerar el coste computacional**.
 
 ![Árbol de llamadas recursivas de `fibonacci(5)`. Las líneas punteadas indican la suma pendiente entre los dos subproblemas de cada nodo.](../../images/fibonacci5.png){#fig-fibonacci-tree width=100%}
 
 La ineficiencia de la implementación anterior tiene una causa concreta como se observa en el árbol de llamadas mostrado en la @fig-fibonacci-tree: `fibonacci(3)` se calcula dos veces, `fibonacci(2)` tres veces, y así sucesivamente. 
 
-La solución general a este problema se llama **memorización** (*memoization* en inglés): guardar el resultado de cada llamada la primera vez que se computa y devolverlo directamente en llamadas posteriores, sin repetir el trabajo. En temas posteriores se verá cómo Python implementa memorización de forma transparente reduciendo el coste de esta implementación de $O(2^n)$ a $O(n)$.
+Veamos esto midiendo el tiempo de ejecución de versiones iterativas y recursivas del cálculo de términos de la sucesión de Fibonacci. Para ello en el siguiente código se importa el modulo `time` (nativo de Python) y se mide el tiempo de ejecución de cada versión con `time.perf_counter()`:
+
+```{pyodide}
+import time
+
+
+def fibonacci_iterativa(n):
+    if n <= 1:
+        return n
+    a, b = 0, 1
+    for _ in range(2, n + 1):
+        a, b = b, a + b
+    return b
+
+
+def fibonacci_recursiva(n):
+    if n <= 1:
+        return n
+    return fibonacci_recursiva(n - 1) + fibonacci_recursiva(n - 2)
+
+
+n = 40
+inicio = time.perf_counter()
+fibonacci_iterativa(n)
+fin = time.perf_counter()
+print(f"Tiempo de ejecución fibonacci_iterativa({n}): {fin - inicio:.6f} segundos")
+
+inicio = time.perf_counter()
+fibonacci_recursiva(n)
+fin = time.perf_counter()
+print(f"Tiempo de ejecución fibonacci_recursiva({n}): {fin - inicio:.6f} segundos")
+```
 :::
 
 ::: {#cau-recursion-base .callout-caution title="Olvidar el caso base → `RecursionError`"}
@@ -384,7 +436,11 @@ En la figura @fig-legb se muestra la jerarquía de ámbitos cuando el intérpret
 
 ## 3.3. Docstrings, anotaciones de tipo y contratos
 
-Una función bien escrita no solo calcula correctamente: también comunica claramente qué hace, qué espera recibir y qué garantiza devolver. Esta información forma el **contrato** de la función, y Python proporciona dos mecanismos complementarios para expresarlo: los *docstrings* y las anotaciones de tipo.
+Una función bien escrita no solo calcula correctamente: también comunica claramente qué hace, qué espera recibir y qué garantiza devolver. Esta información forma el **contrato** de la función. Python proporciona mecanismos complementarios para expresarlo de forma estática (con *docstrings* y anotaciones de tipo) y para hacerlo cumplir en ejecución (mediante el manejo de excepciones y validaciones). Las buenas prácticas del Python moderno exigen el uso de docstrings y type hints porque transforman un código ambiguo en una arquitectura robusta, predecible y autodescriptiva.
+
+::: {.callout-tip appearance="simple"}
+La generación de docstrings y type hints es uno de los casos de uso donde herramientas como GitHub Copilot, Cursor o ChatGPT (entre muchas otras) destacan y ahorran más tiempo, ya que es un trabajo repetitivo pero altamente estructurado. Escribir documentación manual es tedioso, pero las IA la generan en segundos analizando la lógica interna de la función. Por ello **lo importante es entender qué es un docstring y qué son las anotaciones de tipo, para poder revisarlas y corregirlas si la IA se equivoca**. En las sesiones practicas se verá cómo usar GitHub Copilot para generar docstrings y type hints automáticamente.
+:::
 
 ### **3.3.1 Docstrings**
 
@@ -458,9 +514,7 @@ def nombre(param: tipo, param2: tipo = defecto) -> tipo_retorno:
 Los tipos básicos disponibles sin importar nada son `int`, `float`, `str`, `bool` y `None` (para funciones que no devuelven valor). Para indicar que una función no devuelve nada se anota `-> None`.
 
 Las anotaciones de tipo **no se comprueban en tiempo de ejecución**: Python las ignora al ejecutar el código. Su valor es doble: sirven de documentación legible para el programador y son usadas por herramientas de análisis estático como `mypy` y el propio VS Code para detectar errores y ofrecer autocompletado.
-:::
 
-::: {.callout-caution appearance="simple"}
 Dado que Python no comprueba los tipos en tiempo de ejecución, una función anotada puede llamarse con argumentos del tipo equivocado sin que se produzca error inmediato. Las anotaciones de tipo documentan la intención pero no sustituyen a la validación explícita de argumentos cuando esta sea necesaria.
 :::
 
@@ -481,7 +535,8 @@ Las precondiciones y postcondiciones se expresan en Python de dos formas complem
 
 **Vía `assert`**: comprobación activa en tiempo de ejecución. Lanza un `AssertionError` con un mensaje descriptivo si la condición falla, lo que facilita detectar usos incorrectos de la función durante el desarrollo.
 
-El siguiente ejemplo muestra las dos vías aplicadas a la misma función:
+::: {#nte-eje7 .callout-note title="Precondición y postcondición en docstrings y `assert`"}
+El siguiente ejemplo muestra las dos vías mencionadas anteriormente aplicadas a la misma función `raiz_cuadrada()`, que aproxima $\sqrt{x}$ mediante el método de Newton-Raphson. La precondición es que $x$ sea no negativo y la tolerancia positiva; la postcondición es que el error de la aproximación sea menor que `tol * 100`:
 
 ```{pyodide}
 import math
@@ -518,6 +573,7 @@ print(raiz_cuadrada(2))         # 1.4142135623730951
 print(raiz_cuadrada(0))         # 0.0
 # raiz_cuadrada(-1)             # AssertionError: x debe ser ≥ 0, recibido -1
 ```
+:::
 
 ::: {#cau-assert .callout-caution title="`assert` puede desactivarse"}
 Las instrucciones `assert` se eliminan cuando Python se ejecuta con la opción `-O` (*optimize*). Por ello, **`assert` es adecuado para verificar condiciones durante el desarrollo** —detectar errores de programación en las pruebas— **pero no para validar entradas del usuario en producción**. Para gestionar entradas incorrectas del mundo exterior se usa `raise`:
@@ -555,6 +611,7 @@ Python ofrece tres formas de importar un módulo o sus contenidos:
 
 ```{pyodide}
 import math
+
 print(math.sqrt(2))          # 1.4142135623730951
 print(math.pi)               # 3.141592653589793
 print(math.factorial(10))    # 3628800
@@ -564,6 +621,7 @@ print(math.factorial(10))    # 3628800
 
 ```{pyodide}
 import math as m
+
 print(m.sqrt(2))
 print(m.pi)
 ```
@@ -572,6 +630,7 @@ print(m.pi)
 
 ```{pyodide}
 from math import sqrt, pi, factorial
+
 print(sqrt(2))        # sin prefijo math.
 print(pi)
 print(factorial(10))
@@ -595,6 +654,7 @@ Algunos módulos de la biblioteca estándar especialmente útiles en matemática
 
 Cualquier fichero `.py` es automáticamente un módulo importable desde otro fichero del mismo directorio. Para crear un módulo propio basta con escribir las funciones en un fichero con un nombre descriptivo.
 
+::: {#nte-eje8 .callout-note title="Módulo `numeros`"}
 El fichero `numeros.py` agrupa algunas de las funciones de teoría de números construidas a lo largo del Tema 2 y el Tema 3:
 
 ```python
@@ -655,6 +715,7 @@ print(numeros.mcd(48, 18))        # 6
 print(numeros.mcm(4, 6))          # 12
 print(numeros.factorial(10))      # 3628800
 ```
+:::
 
 ### **3.4.3 El bloque `if __name__ == "__main__"`**
 
@@ -722,7 +783,7 @@ No es una regla estricta, pero ayuda a mantener el código manejable.
 
 El proyecto `t03_ejemplo`, con la estructura presentada anteriormente, incluye además de `numeros.py`, otros tres módulos `geometria.py`, `conversor.py` y `main.py` con responsabilidades distintas que se presentan a continuación.
 
-**`geometria.py`**:
+::: {#nte-eje9 .callout-note title="Módulo `geometria` en fichero `geometria.py`"}
 
 ```python
 """Módulo de funciones geométricas básicas."""
@@ -753,8 +814,9 @@ if __name__ == "__main__":
     print(f"Triángulo 3, 4, 5:   {es_triangulo_valido(3, 4, 5)}")
     print(f"Triángulo 1, 2, 10:  {es_triangulo_valido(1, 2, 10)}")
 ```
+:::
 
-**`conversor.py`**:
+::: {#nte-eje10 .callout-note title="Módulo `conversor` en fichero `conversor.py`"}
 
 ```python
 """Módulo de conversión de unidades."""
@@ -794,8 +856,10 @@ if __name__ == "__main__":
     print(f"0 °C en K:     {celsius_a_kelvin(0):.2f}")
     print(f"π rad en °:    {radianes_a_grados(3.141592653589793):.4f}")
 ```
+:::
 
-**`main.py`** — punto de entrada que coordina los módulos:
+::: {#nte-eje11 .callout-note title="Módulo `main` en fichero `main.py`"}
+Meadiante `main.py` se importan los módulos y se coordina la interacción con el usuario. Esta separación entre **lógica de negocio** (los módulos) y **punto de entrada** (`main.py`) es una práctica de diseño fundamental.
 
 ```python
 """Herramienta matemática interactiva."""
@@ -846,11 +910,12 @@ def ejecutar() -> None:
 if __name__ == "__main__":
     ejecutar()
 ```
+:::
 
 ::: {.callout-note appearance="simple"}
-`main.py` no contiene ningún cálculo propio: se limita a importar los módulos y coordinar la interacción con el usuario. Esta separación entre **lógica de negocio** (los módulos) y **punto de entrada** (`main.py`) es una práctica de diseño fundamental que escala bien a proyectos de cualquier tamaño.
+El proyecto completo `t03_ejemplo` está disponible en el repositorio del curso: [https://github.com/UIB-23200-Programacion/t03_ejemplo](https://github.com/UIB-23200-Programacion/t03_ejemplo){target="_blank"}. No es necesario que se concentre en memorizar todos los detalles de la estructura ya que el proyecto ejemplo tiene implementadas las mejores prácticas explicadas arriba y lo podrás reutilizar en tus propios repositorios. Lo importante es comprender el patrón general y la filosofía de diseño que subyace. **Lo verdaderamente fundamental es entender el código en los módulos `numeros.py`, `geometria.py`, `conversor.py` y en el script `main.py` que se han presentado anteriormente**.
 
-El proyecto completo `t03_ejemplo` está disponible en el repositorio del curso: [https://github.com/UIB-23200-Programacion/t03_ejemplo](https://github.com/UIB-23200-Programacion/t03_ejemplo){target="_blank"}. No es necesario que se concentre en memorizar todos los detalles de la estructura ya que el proyecto ejemplo tiene implementadas las mejores prácticas de diseño en Python y lo podrás reutilizar en tus propios repositorios. Lo importante es comprender el patrón general y la filosofía de diseño que subyace. **Lo verdaderamente fundamental es entender el código en los módulos `numeros.py`, `geometria.py`, `conversor.py` y en el script `main.py` que se han presentado anteriormente**.
+Se observa además que las funciones de los módulos `numeros.py`, `geometria.py` y `conversor.py` están documentadas con docstrings y anotaciones de tipo. Uno de los ejercicios de la práctica consistira en  añadir funciones a estos módulos con la correspondiente documentación generada mediante el uso de GitHub Copilot.
 :::
 
 ## Bibliografía {.unnumbered}

@@ -98,11 +98,11 @@ En Python el tipus no el declara el programador: el determina el propi objecte. 
 L'**assignació** d'un valor a una variable (en Python, un *enllaç de nom* o *name binding* en anglès) es realitza amb l'operador `=`. A diferència d'altres llenguatges, `=` no copia un valor en una cel·la de memòria: fa que el nom de l'esquerra quedi apuntant a l'objecte produït per l'expressió de la dreta. Per exemple:
 
 ```python
-x = 42         # x referencia l'enter 42
+x = 42         # x referencia el entero 42
 print(x)       # 42
-x = 3.14       # ara x referencia el flotant 3.14
+x = 3.14       # ahora x referencia el flotante 3.14
 print(x)       # 3.14
-x = "hola"     # ara x referencia la cadena "hola"
+x = "hola"     # ahora x referencia la cadena "hola"
 print(x)       # hola
 ```
 
@@ -117,7 +117,7 @@ Python admet assignació múltiple en una sola línia:
 ```{pyodide}
 a, b, c = 1, 2, 3
 print(a, b, c)  # 1 2 3
-x = y = 0       # tant x com y referencien el valor 0
+x = y = 0       # tanto x como y referencian el valor 0
 print(x, y)     # 0 0
 ```
 
@@ -131,17 +131,17 @@ Els noms de variables només poden contenir lletres, dígits i el guió baix `_`
 Per convenció [@pep8], els noms de variables en Python usen **snake_case**: paraules en minúscules separades per guions baixos. Els noms han de ser **descriptius** del valor que contenen.
 
 ```python
-# Correcte
+# Correcto
 numero_de_iteraciones = 100
 radio_circulo = 5.0
 es_primo = True
 
-# Acceptable per a variables de curta vida o amb significat matemàtic obvi
-n = 100       # comptador genèric
-x, y = 3, 4  # coordenades
-i, j, k = 0, 0, 0  # índexs de bucles
+# Aceptable para variables de corta vida o con significado matemático obvio
+n = 100       # contador genérico
+x, y = 3, 4  # coordenadas
+i, j, k = 0, 0, 0  # índices de bucles
 
-# Evitar: noms sense significat
+# Evitar: nombres sin significado
 a1 = 100
 cosa = True
 ```
@@ -180,7 +180,7 @@ La funció `print()` escriu a la sortida estàndard (normalment el terminal) els
 ```{pyodide}
 print(42)                     # 42
 print("hola")                 # hola
-print("nombres: ", 1, 2, 3)   # nombres: 1 2 3
+print("números: ", 1, 2, 3)   # números: 1 2 3
 ```
 
 Els paràmetres opcionals més útils de `print()` són `sep` (separador entre arguments, per defecte `" "`) i `end` (caràcter final, per defecte `"\n"` per salt de línia):
@@ -188,7 +188,7 @@ Els paràmetres opcionals més útils de `print()` són `sep` (separador entre a
 ```{pyodide}
 print(1, 2, 3, sep=", ")     # 1, 2, 3
 print("hola", end=" ")
-print("món")                  # hola món  (en la mateixa línia)
+print("mundo")                # hola mundo  (en la misma línea)
 ```
 
 Les funcions `type` i `print` vénen integrades en l'intèrpret i estan disponibles en qualsevol programa sense necessitat d'importar res.
@@ -300,14 +300,14 @@ Python incorpora els nombres complexos com a tipus natiu, sense necessitat d'imp
 
 ```{pyodide}
 z1 = 3 + 2j
-z2 = complex(1, -4)    # equivalent a 1 - 4j
+z2 = complex(1, -4)    # equivale a 1 - 4j
 
 print(z1 + z2)         # (4-2j)
 print(z1 * z2)         # (11-10j)
 print(z1.real)         # 3.0
 print(z1.imag)         # 2.0
 print(z1.conjugate())  # (3-2j)
-print(abs(z1))         # 3.605...  (mòdul: √(3² + 2²))
+print(abs(z1))         # 3.605...  (módulo: √(3² + 2²))
 ```
 
 Els nombres complexos il·lustren bé un concepte central en Python: els objectes tenen **atributs** i **mètodes** als quals s'accedeix amb l'operador punt `.`:
@@ -334,9 +334,9 @@ Les cadenes (o cadenes de caràcters) són seqüències de caràcters delimitade
 ```{pyodide}
 nombre = "Euler"
 frase = 'La identitat e^(iπ) + 1 = 0'
-multilinea = """Aquesta cadena
-abasta diverses
-línies."""
+multilinea = """Esta cadena
+abarca varias
+líneas."""
 print(nombre, ':', frase)
 print(multilinea)
 ```
@@ -351,7 +351,7 @@ Les **seqüències d'escapament** permeten incloure caràcters especials dins d'
 | `\"` | Cometes dobles literal |
 
 ```{pyodide}
-multilinea2 = "Aquesta cadena\nabasta diverses\nlínies."
+multilinea2 = "Esta cadena\nabarca varias\nlíneas."
 print(multilinea2)
 print(multilinea == multilinea2)  # True
 ```
@@ -359,10 +359,10 @@ print(multilinea == multilinea2)  # True
 Amb la notació `objecte.mètode()`, explicada a la secció de nombres complexos, podem accedir a diversos mètodes útils de les cadenes. Per exemple:
 
 ```{pyodide}
-texto = "hola món"
-print(texto.upper())                    # "HOLA MÓN"
-print(texto.count("o"))                 # 2
-print(texto.replace("món", "Python"))   # "hola Python"
+texto = "hola mundo"
+print(texto.upper())                     # "HOLA MUNDO"
+print(texto.count("o"))                  # 2
+print(texto.replace("mundo", "Python"))  # "hola Python"
 ```
 
 Aquí `upper` és un mètode de la variable `texto` (objecte del tipus `str`). El punt `.` és l'operador d'accés a membres: indica "busca dins d'aquest objecte alguna cosa anomenada `upper` i crida-la".
@@ -382,8 +382,8 @@ Els mètodes de `str` més útils en la pràctica:
 La funció `len()` no és un mètode sinó una funció built-in, però s'aplica habitualment sobre cadenes:
 
 ```{pyodide}
-print(len(texto))            # 8
-print(len("matemàtiques"))   # 12
+print(len(texto))           # 10
+print(len("matemáticas"))   # 11
 ```
 
 ::: {.callout-tip appearance="simple"}
@@ -483,22 +483,22 @@ Python segueix les mateixes regles de precedència que la notació matemàtica e
 Quan dos operadors tenen la mateixa precedència s'avaluen d'esquerra a dreta, excepte `**` que és associatiu per la dreta. Els parèntesis permeten alterar qualsevol ordre d'avaluació.
 
 ```{pyodide}
-# precedència estàndard
-print(2 + 3 * 4)       # 14  (no 20: * abans que +)
-print(10 - 6 / 2)      # 7.0 (no 2.0: / abans que -)
-print(2 ** 3 + 1)      # 9   (no 16: ** abans que +)
-print(10 % 3 + 1)      # 2   (no 1:  % abans que +)
+# precedencia estándar
+print(2 + 3 * 4)       # 14  (no 20: * antes que +)
+print(10 - 6 / 2)      # 7.0 (no 2.0: / antes que -)
+print(2 ** 3 + 1)      # 9   (no 16: ** antes que +)
+print(10 % 3 + 1)      # 2   (no 1:  % antes que +)
 
-# els parèntesis alteren l'ordre
+# paréntesis alteran el orden
 print((2 + 3) * 4)     # 20
 print((10 - 6) / 2)    # 2.0
 
-# ** és associatiu per la dreta
+# ** es asociativo por la derecha
 print(2 ** 3 ** 2)     # 512  (= 2 ** 9, no 8 ** 2 = 64)
 print((2 ** 3) ** 2)   # 64
 
-# signe unari
-print(-2 ** 2)         # -4   (** abans que signe: -(2**2))
+# signo unario
+print(-2 ** 2)         # -4   (** antes que signo: -(2**2))
 print((-2) ** 2)       # 4
 ```
 :::
@@ -538,11 +538,11 @@ Els **operadors d'assignació composta** combinen una operació aritmètica amb 
 
 ```{pyodide}
 x = 10
-x += 3    # equivalent a x = x + 3   → x és 13
-x -= 1    # equivalent a x = x - 1   → x és 12
-x *= 2    # equivalent a x = x * 2   → x és 24
-x //= 5   # equivalent a x = x // 5  → x és 4
-x **= 3   # equivalent a x = x ** 3  → x és 64
+x += 3    # equivale a x = x + 3   → x es 13
+x -= 1    # equivale a x = x - 1   → x es 12
+x *= 2    # equivale a x = x * 2   → x es 24
+x //= 5   # equivale a x = x // 5  → x es 4
+x **= 3   # equivale a x = x ** 3  → x es 64
 print(x)  # 64
 ```
 
@@ -587,15 +587,15 @@ Els operadors de comparació s'apliquen a tots els tipus simples, amb dues excep
 - **`str` usa ordre lexicogràfic**: les comparacions d'ordre segueixen el codi Unicode de cada caràcter, no l'ordre alfabètic intuïtiu. En particular, totes les majúscules precedeixen totes les minúscules: `"Z" < "a"` és `True`.
 
 ```{pyodide}
-# complex: == i != funcionen, ordre no està definit
+# complex: == y != funcionan, orden no está definido
 z = 3 + 2j
 print(z == 3 + 2j)   # True
 print(z != 0j)        # True
 # print(z < 1 + 0j)  # TypeError: '<' not supported between 'complex' and 'complex'
 
-# str: ordre lexicogràfic per codi Unicode
+# str: orden lexicográfico por código Unicode
 print("Z" < "a")      # True  (ord("Z") = 90, ord("a") = 97)
-print("banana" < "mango")     # True  (compara caràcter a caràcter)
+print("banana" < "manzana")   # True  (compara carácter a carácter)
 print("abc" == "ABC")  # False
 ```
 
@@ -603,7 +603,7 @@ print("abc" == "ABC")  # False
 Comparar valors de tipus diferents amb `==` no produeix error sinó `False` directament (`42 == "42"` és `False`). Usar `<` o `>` entre tipus incompatibles sí llança `TypeError`.
 
 ```{pyodide}
-# tipus diferents: == retorna False, ordre llança TypeError
+# tipos distintos: == devuelve False, orden lanza TypeError
 print(42 == "42")     # False
 # print(42 < "42")    # TypeError: '<' not supported between 'int' and 'str'
 ```
@@ -613,7 +613,7 @@ Python permet **encadenar comparacions** de forma natural, exactament com en not
 
 ```{pyodide}
 x = 7
-print(1 <= x <= 10)   # True   (equivalent a 1 <= x and x <= 10)
+print(1 <= x <= 10)   # True   (equivale a 1 <= x and x <= 10)
 print(0 < x < 5)      # False
 print(2 == 2 == 2)    # True
 ```
@@ -656,8 +656,8 @@ Els operadors lògics (`and`, `or`, `not`) permeten construir condicions compost
 
 ```{pyodide}
 x = 7
-print(x > 0 and x < 10)   # True   (x està en l'interval (0, 10))
-print(x < 0 or x > 5)     # True   (x < 0 és False, però x > 5 és True)
+print(x > 0 and x < 10)   # True   (x está en el intervalo (0, 10))
+print(x < 0 or x > 5)     # True   (x < 0 es False, pero x > 5 es True)
 print(not (x == 7))       # False
 print(x != 7)             # False
 ```
@@ -672,8 +672,8 @@ Això és important per evitar errors quan l'avaluació del segon operand podria
 
 ```{pyodide}
 b = 0
-if b != 0 and 10 / b > 2:   # no llança ZeroDivisionError
-    print("quocient gran")
+if b != 0 and 10 / b > 2:   # no lanza ZeroDivisionError
+    print("cociente grande")
 ```
 :::
 
@@ -754,6 +754,8 @@ L'estructura condicional en Python és `if`, que admet tres formes:
 - `if`-`else`: afegeix un bloc alternatiu per quan la condició és falsa.
 - `if`-`elif`-`else`: encadena múltiples condicions mútuament excloents, avaluades en ordre fins que una sigui verdadera.
 
+![Condicionals de Python](../../images/condi3.png){#fig-condicionales-python width=90%}
+
 ### **2.5.1 Estructura `if`**
 
 La forma més simple és el `if`:
@@ -761,7 +763,7 @@ La forma més simple és el `if`:
 ```{pyodide}
 x = -5
 if x < 0:
-    print("x és negatiu")
+    print("x es negativo")
 ```
 
 El bloc indentat només s'executa si la condició és `True`. Si la condició és `False`, el bloc s'omet i l'execució continua en la instrucció següent no indentada.
@@ -775,9 +777,9 @@ En Python la **indentació** no és una convenció estilística sinó part de la
 ```{pyodide}
 n = 17
 if n % 2 == 0:
-    print(f"{n} és parell")
+    print(f"{n} es par")
 else:
-    print(f"{n} és senar")
+    print(f"{n} es impar")
 ```
 
 ### **2.5.3 Estructura `if`-`elif`-`else`**
@@ -788,13 +790,13 @@ Per a diverses condicions mútuament excloents s'encadenen branques `elif` (*els
 nota = 7.5
 
 if nota >= 9:
-    calificacion = "Excel·lent"
+    calificacion = "Sobresaliente"
 elif nota >= 7:
     calificacion = "Notable"
 elif nota >= 5:
-    calificacion = "Aprovat"
+    calificacion = "Aprobado"
 else:
-    calificacion = "Suspès"
+    calificacion = "Suspenso"
 
 print(f"Nota: {nota} → {calificacion}")
 # Nota: 7.5 → Notable
@@ -806,18 +808,18 @@ El discriminant $\Delta = b^2 - 4ac$ determina la naturalesa de les arrels de $a
 ```{pyodide}
 import math
 
-a, b, c = 1, -3, 2    # equació: x^2 - 3x + 2 = 0
+a, b, c = 1, -3, 2    # ecuación: x^2 - 3x + 2 = 0
 discriminante = b**2 - 4 * a * c
 
 if discriminante > 0:
     r1 = (-b + math.sqrt(discriminante)) / (2 * a)
     r2 = (-b - math.sqrt(discriminante)) / (2 * a)
-    print(f"Dues arrels reals: x₁ = {r1:.4f}, x₂ = {r2:.4f}")
+    print(f"Dos raíces reales: x₁ = {r1:.4f}, x₂ = {r2:.4f}")
 elif discriminante == 0:
     r = -b / (2 * a)
-    print(f"Arrel doble: x = {r:.4f}")
+    print(f"Raíz doble: x = {r:.4f}")
 else:
-    print("Sense arrels reals (discriminant negatiu)")
+    print("Sin raíces reales (discriminante negativo)")
 ```
 
 La instrucció `import math` fa disponibles les funcions matemàtiques del mòdul estàndard `math`, com `math.sqrt()` (arrel quadrada), `math.pi` (π), `math.log()` (logaritme), etc. Els mòduls s'estudien en profunditat en el Tema 3; per ara n'hi ha prou amb saber que `import math` s'ha d'escriure abans d'usar qualsevol funció d'aquell mòdul. La notació `math.xxxxxx()`, per exemple `math.sqrt()`, indica que la funció `xxxxxx` pertany al mòdul `math`.
@@ -831,11 +833,11 @@ Un bloc `if` pot contenir un altre `if` al seu interior. Els condicionals aniuat
 x = 3
 if x != 0:
     if x > 0:
-        print("x és positiu")
+        print("x es positivo")
     else:
-        print("x és negatiu")
+        print("x es negativo")
 else:
-    print("x és zero")
+    print("x es cero")
 ```
 
 Quan la lògica es complica, sol ser preferible combinar condicions amb `and` i `or`, o usar `elif`, en lloc d'aniuar massa nivells.
@@ -845,8 +847,8 @@ Python disposa d'una **expressió condicional** que assigna un valor segons una 
 
 ```{pyodide}
 x = 7
-signo = "positiu" if x > 0 else "no positiu"
-print(signo)   # positiu
+signo = "positivo" if x > 0 else "no positivo"
+print(signo)   # positivo
 ```
 
 La sintaxi és `valor_si_true if condició else valor_si_false`. És útil per a assignacions simples, però convé evitar-la quan la lògica és complexa, ja que pot dificultar la lectura.
@@ -881,17 +883,17 @@ n = 1
 while n * n < 100:
     print(n * n, end="  ")
     n += 1
-print("\nFi del bucle")
+print("\nFin del bucle")
 ```
 
-En cada iteració s'avalua la condició. Tan aviat com és `False` (quan `n == 100`), el bucle acaba i l'execució continua amb la instrucció següent imprimint "Fi del bucle" en una nova línia. Observeu que `print("\nFi del bucle")` imprimeix un salt de línia amb `\n` abans del missatge.
+En cada iteració s'avalua la condició. Tan aviat com és `False` (quan `n == 100`), el bucle acaba i l'execució continua amb la instrucció següent imprimint "Fin del bucle" en una nova línia. Observeu que `print("\nFin del bucle")` imprimeix un salt de línia amb `\n` abans del missatge.
 :::
 
 ::: {#cau-while .callout-caution title="Bucle infinit"}
 Si la condició del `while` mai passa a `False`, el programa no acaba mai. Aquest error —el **bucle infinit**— és un dels més freqüents en començar a programar:
 
 ```python
-# PERILL: bucle infinit (n sempre creix)
+# PELIGRO: bucle infinito (n siempre crece)
 n = 1
 while n > 0:
     n += 1
@@ -931,7 +933,7 @@ Usos típics del bucle `while` inclouen:
     ```{pyodide}
     x = 1.0
     while True:
-        x_nuevo = (x + 2 / x) / 2   # mètode de Newton per a √2
+        x_nuevo = (x + 2 / x) / 2   # método de Newton para √2
         if abs(x_nuevo - x) < 1e-12:
             break
         x = x_nuevo
@@ -941,9 +943,9 @@ Usos típics del bucle `while` inclouen:
 - **Validació d'entrada** — repetir fins a obtenir un valor vàlid (la funció `input()` es veurà a la secció 2.7):
 
     ```python
-    n = int(input("Introdueix un enter positiu: "))
+    n = int(input("Introduce un entero positivo: "))
     while n <= 0:
-        n = int(input("Ha de ser positiu. Torna-ho a intentar: "))
+        n = int(input("Debe ser positivo. Inténtalo de nuevo: "))
     ```
 
 - **Dígits d'un nombre** — processar xifra a xifra:
@@ -963,23 +965,23 @@ Dins de qualsevol bucle, dues instruccions permeten modificar el flux d'iteraci�
 - **`continue`**: salta a l'inici de la següent iteració, ometent la resta del bloc actual.
 
 ```{pyodide}
-# break: trobar el primer divisor de n major que 1
+# break: encontrar el primer divisor de n mayor que 1
 n = 77
 d = 2
 while d < n:
     if n % d == 0:
-        print(f"El menor divisor de {n} major que 1 és {d}")
+        print(f"El menor divisor de {n} mayor que 1 es {d}")
         break
     d += 1
 ```
 
 ```{pyodide}
-# continue: imprimir només els enters senars de l'1 al 10
+# continue: imprimir solo los enteros impares del 1 al 10
 i = 0
 while i < 10:
     i += 1
     if i % 2 == 0:
-        continue   # salta a l'inici si i és parell
+        continue   # salta al inicio si i es par
     print(i, end="  ")
 # 1  3  5  7  9
 ```
@@ -1034,15 +1036,15 @@ El tipus `range()` genera seqüències d'enters de les tres formes següents:
 ```{pyodide}
 for i in range(5):
     print(i, end=" ")     # 0 1 2 3 4
-print()  # salt de línia
+print()  # salto de línea
 
 for i in range(1, 6):
     print(i, end=" ")     # 1 2 3 4 5
-print()  # salt de línia
+print()  # salto de línea
 
 for i in range(0, 10, 2):
     print(i, end=" ")     # 0 2 4 6 8
-print() # salt de línia
+print() # salto de línea
 
 for i in range(10, 0, -1):
     print(i, end=" ")     # 10 9 8 7 6 5 4 3 2 1
@@ -1092,7 +1094,7 @@ Altres usos comuns del bucle `for` inclouen:
 
     ```{pyodide}
     for x in range(1, 5):
-        print(x ** 3)   # cub de cada enter
+        print(x ** 3)   # cubo de cada entero
     ```
 
 - **Cerca** — detectar si un enter en un rang compleix una condició:
@@ -1100,7 +1102,7 @@ Altres usos comuns del bucle `for` inclouen:
     ```{pyodide}
     for n in range(2, 50):
         if n % 7 == 0:
-            print(n, "és múltiple de 7")
+            print(n, "es múltiplo de 7")
     ```
 
 #### Exemples matemàtics d'ús del bucle `for`
@@ -1156,13 +1158,13 @@ Un nombre $p \geq 2$ és **primer** si no té divisors propis entre 2 i $\lfloor
 ```{pyodide}
 import math
 
-# Llistar tots els primers fins a 50
+# Listar todos los primos hasta 50
 for n in range(2, 51):
-    es_primo = True                          # hipòtesi inicial: n és primer
+    es_primo = True                           # hipótesis inicial: n es primo
     for d in range(2, int(math.sqrt(n)) + 1):
         if n % d == 0:
-            es_primo = False                 # s'ha trobat un divisor
-            break                             # no cal continuar buscant
+            es_primo = False                  # se encontró un divisor
+            break                             # no hace falta seguir buscando
     if es_primo:
         print(n, end="  ")
 ```
@@ -1205,14 +1207,14 @@ Si es vol conèixer la posició de cada caràcter, es pot usar `range()` amb `le
 ```{pyodide}
 palabra = "Python"
 for i in range(len(palabra)):
-    print(f"posició {i}: {palabra[i]}")
+    print(f"posición {i}: {palabra[i]}")
 ```
 
 Una altra forma d'obtenir la posició de cada caràcter és usar el tipus `enumerate()`. Igual que `range`, `enumerate` és un tipus built-in de Python. Amb `enumerate(iterable)` es produeix un objecte iterable de parells `(índex, valor)` generats de forma mandrosa. Amb `index` s'obté la posició de l'element en la seqüència, i amb `valor` s'obté l'element en si. Això permet recórrer una cadena (o qualsevol iterable) i conèixer simultàniament l'índex de cada element:
 
 ```{pyodide}
 for i, letra in enumerate("abc"):
-    print(f"posició {i}: {letra}")
+    print(f"posición {i}: {letra}")
 ```
 
 Les cadenes que comencen amb `f` i contenen expressions entre claus `{}` s'anomenen **f-strings** (cadenes formatades). Es veuran a la secció 2.7.2.
@@ -1228,13 +1230,13 @@ La interacció entre el programa i l'usuari és fonamental en qualsevol aplicaci
 Ja vam veure anteriorment que `print()` escriu a la **sortida estàndard** (la pantalla en condicions normals). Accepta qualsevol nombre d'arguments separats per comes:
 
 ```{pyodide}
-print("El resultat és", 42)           # El resultat és 42
-print(1, 2, 3)                         # 1 2 3  (separador per defecte: espai)
+print("El resultado es", 42)           # El resultado es 42
+print(1, 2, 3)                         # 1 2 3  (separador por defecto: espacio)
 print(1, 2, 3, sep=", ")               # 1, 2, 3
 print(1, 2, 3, sep=" | ")              # 1 | 2 | 3
-print("sense salt", end="")            # roman a la mateixa línia
-print(" — continuació")                # — continuació
-print()                                # línia en blanc
+print("sin salto", end="")             # permanece en la misma línea
+print(" — continuación")               # — continuación
+print()                                # línea en blanco
 ```
 
 ### **2.7.2 Cadenes formatades: f-strings**
@@ -1244,8 +1246,8 @@ Les **f-strings** (cadenes formatades) són la forma més moderna, llegible i r�
 ```{pyodide}
 n = 100
 suma = n * (n + 1) // 2
-print(f"Gauss va calcular que la suma de 1 a {n} és {suma}.")
-print(f"El quadrat de 7 és {7**2}.")
+print(f"Gauss calculó que la suma de 1 a {n} es {suma}.")
+print(f"El cuadrado de 7 es {7**2}.")
 ```
 
 El veritable avantatge de les f-strings no és només inserir variables estàtiques; permeten executar codi Python vàlid directament dins de les claus. És possible fer càlculs matemàtics, cridar mètodes o usar funcions sense necessitat de crear variables temporals prèvies.
@@ -1254,12 +1256,13 @@ El veritable avantatge de les f-strings no és només inserir variables estàtiq
 precio = 50
 impuesto = 0.21
 
-# Operació matemàtica directa
-print(f"El preu total amb IVA és {precio + (precio * impuesto)}")
+# Operación matemática directa
+print(f"El precio total con IVA es {precio + (precio * impuesto)}")
 
 palabra = "python"
-# Crida a un mètode de cadena
-print(f"M'encanta programar en {palabra.capitalize()}!")
+# Llamada a un método de cadena
+print(f"Me encanta programar en {palabra.capitalize()}!")
+
 ```
 
 A partir de Python 3.8 es pot afegir un signe igual `=` després del nom de la variable (o expressió) dins de les claus. Això imprimeix tant el nom de la variable com el seu valor resultant, la qual cosa estalvia molt de temps en fer *depuració* (*debugging*) amb `print()`.
@@ -1268,9 +1271,10 @@ A partir de Python 3.8 es pot afegir un signe igual `=` després del nom de la v
 usuario_id = 4092
 velocidad_actual = 120
 
-print(f"{usuario_id=}")                # usuario_id=4092
+print(f"{usuario_id=}")              # usuario_id=4092
 
-print(f"{velocidad_actual / 2 = }")   # velocidad_actual / 2 = 60.0
+print(f"{velocidad_actual / 2 = }")  # velocidad_actual / 2 = 60.0
+
 ```
 
 ::: {.callout-note title="Especificadors de format en f-strings"}
@@ -1294,34 +1298,34 @@ Els **especificadors de format** en una f-string s'escriuen dins de `{}` i perme
 `input()` atura l'execució del programa, mostra un missatge opcional en pantalla i espera que l'usuari escrigui alguna cosa i premi Retorn. **Sempre retorna una cadena de text** (`str`), independentment del que l'usuari hagi escrit.
 
 ```python
-texto = input("Escriu alguna cosa: ")
-print(f"Has escrit: {texto}")
+texto = input("Escribe algo: ")
+print(f"Escribiste: {texto}")
 print(type(texto))              # <class 'str'>
 ```
 
 Per treballar amb valors numèrics, cal convertir la cadena retornada per `input()`:
 
 ```python
-n = int(input("Introdueix un nombre enter: "))
-print(f"El quadrat de {n} és {n**2}.")
+n = int(input("Introduce un número entero: "))
+print(f"El cuadrado de {n} es {n**2}.")
 
-x = float(input("Introdueix un nombre real: "))
-print(f"La seva arrel quadrada és {x**0.5:.6f}.")
+x = float(input("Introduce un número real: "))
+print(f"Su raíz cuadrada es {x**0.5:.6f}.")
 ```
 
 ::: {#cau-input .callout-caution title="Oblidar que input() sempre retorna str"}
 Un dels errors més comuns en començar amb Python:
 
 ```python
-n = input("Introdueix n: ")
+n = input("Introduce n: ")
 resultado = n + 1     # TypeError: can only concatenate str (not "int") to str
 ```
 
 La solució és convertir explícitament el tipus abans d'operar:
 
 ```python
-n = int(input("Introdueix n: "))
-resultado = n + 1     # correcte
+n = int(input("Introduce n: "))
+resultado = n + 1     # correcto
 ```
 :::
 
@@ -1329,10 +1333,10 @@ resultado = n + 1     # correcte
 Implementem una calculadora bàsica que sol·licita dos nombres i una operació a l'usuari, i després mostra el resultat:
 
 ```python
-print("=== Calculadora bàsica ===")
-a = float(input("Primer nombre: "))
-b = float(input("Segon nombre: "))
-op = input("Operació (+, -, *, /): ")
+print("=== Calculadora básica ===")
+a = float(input("Primer número: "))
+b = float(input("Segundo número: "))
+op = input("Operación (+, -, *, /): ")
 
 if op == "+":
     resultado = a + b
@@ -1344,10 +1348,10 @@ elif op == "/":
     if b != 0:
         resultado = a / b
     else:
-        print("Error: divisió per zero.")
+        print("Error: división por cero.")
         resultado = None
 else:
-    print(f"Operació '{op}' no reconeguda.")
+    print(f"Operación '{op}' no reconocida.")
     resultado = None
 
 if resultado is not None:

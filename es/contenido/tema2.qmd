@@ -754,6 +754,8 @@ La estructura condicional en Python es `if`, que admite tres formas:
 - `if`-`else`: añade un bloque alternativo para cuando la condición es falsa.
 - `if`-`elif`-`else`: encadena múltiples condiciones mutuamente excluyentes, evaluadas en orden hasta que una sea verdadera.
 
+![Condicionales de Python](../../images/condi3.png){#fig-condicionales-python width=90%}
+
 ### **2.5.1 Estructura `if`**
 
 La forma más simple es el `if`:
