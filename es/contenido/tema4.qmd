@@ -17,7 +17,7 @@ Una **estructura de datos** es una forma organizada de almacenar y relacionar da
 
 La elección importa porque el rendimiento de las operaciones a realizar depende de la estructura. Buscar un elemento en una lista requiere recorrerla entera en el peor de los casos; en un diccionario o conjunto, la búsqueda es muy eficiente.
 
-La diferencia con lenguajes como C o Java es que en Python no necesitas implementar estas estructuras desde cero ni importar librerías externas: están disponibles con sintaxis directa (`[]`, `{}`, `()`). Esto permite centrarse en *cuál* elegir en función del problema, no en *cómo* construirla.
+La diferencia con lenguajes como C o Java es que en Python no necesitas implementar estas estructuras desde cero ni importar librerías externas: están disponibles con sintaxis directa (`[]`, `{}`, `()`). Esto permite centrarse en **cuál elegir en función del problema, no en cómo construirla**.
 :::
 
 ---
@@ -93,7 +93,7 @@ Usa `a[-1]` para el último elemento sin necesidad de conocer `len(a)`. Para ite
 
 ### **4.1.2 Sublistas (*slicing*)**
 
-El operador de *slicing* extrae una **sublista** sin modificar la original. La sintaxis `lista[inicio:fin:paso]` funciona igual que en cadenas: `inicio` incluido, `fin` excluido, `paso` opcional:
+El operador de *slicing* extrae una **sublista** sin modificar la original. La sintaxis `lista[inicio:fin:paso]` funciona igual que en rangos (`range()`): `inicio` incluido, `fin` excluido, `paso` opcional:
 
 ```{pyodide}
 p = [2, 3, 5, 7, 11, 13, 17, 19]
@@ -729,6 +729,98 @@ print(producto_matriz_vector(M, v, 5))    # [1.0, 2.0, 0.0, 5.0, 3.0]
 ```
 
 La clave `(i, j)` es una tupla —hashable e inmutable— lo que ilustra directamente por qué las tuplas pueden ser claves de diccionario y las listas no. En matrices con millones de entradas pero pocas no nulas (matrices de rigidez en elementos finitos, grafos de la web), este enfoque reduce dramáticamente el uso de memoria.
+:::
+
+::: {#tip-grafos .callout-tip title="Teoría de grafos"}
+La **teoría de grafos** es una rama de las matemáticas y de las ciencias de la computación que estudia las **relaciones entre objetos** a través de una estructura matemática formal llamada **grafo**. Un grafo se define como un conjunto de objetos llamados **vértices** (o nodos) unidos por enlaces llamados **aristas** (o arcos), que permiten representar relaciones binarias entre elementos de un conjunto. 
+
+Un **grafo** $G = (V, E)$ consiste entonces en un conjunto de **vértices** (**nodos**) $V$ y un conjunto de **aristas** (**arcos**) $E \subseteq \{\{u, v\} \mid u, v \in V\}$ que representan conexiones entre pares de vértices. Cuando las aristas tienen dirección se habla de **grafo dirigido** (**dígrafo**); cuando tienen un peso numérico asociado, de **grafo ponderado**.
+
+Las dos representaciones clásicas de un grafo $G = (V, E)$ con $n = |V|$ vértices y $m = |E|$ aristas son:
+
+- **Lista de adyacencia** — para cada vértice $u$ se almacena el conjunto de sus vecinos. Es eficiente cuando el grafo es **disperso** (pocas aristas respecto al máximo posible $n^2$).
+
+- **Matriz de adyacencia** — una matriz $A$ de $n \times n$ donde $A[i][j] = 1$ si existe la arista $\{i, j\}$ y $0$ en caso contrario. Es ineficiente para grafos dispersos pero conveniente para grafos **densos** y para ciertos cálculos matriciales: por ejemplo, $A^k[i][j]$ cuenta el número de caminos de longitud exactamente $k$ entre $i$ y $j$.
+
+En la práctica, la lista de adyacencia es la representación por defecto; la matriz de adyacencia se reserva para algoritmos que explotan explícitamente la estructura algebraica de los grafos.
+
+**Conceptos Clave**
+
+- **Adyacencia:** Dos vértices son adyacentes (vecinos) si existe una arista que los conecta directamente.
+- **Grado (Degree):** Es el número de aristas que inciden en un vértice. En digrafos, se distingue entre grado de entrada (in-degree) y grado de salida (out-degree).
+- **Camino (Path):** Una secuencia de vértices donde cada vértice adyacente está conectado por una arista, sin repetir vértices.
+- **Ciclo:** Un camino que empieza y termina en el mismo vértice.
+- **Grafo Conexo:** Un grafo donde existe al menos un camino entre cualquier par de vértices.
+:::
+
+::: {#nte-grafo .callout-note title="Diccionarios y grafos"}
+La forma más "Pythonica" y eficiente de representar grafos es Python en la mayoría de los casos (especialmente si el grafo tiene muchos nodos pero pocas conexiones) es mediante diccionarios. Para grafos y digrados se emplea un diccionario donde las claves son los nodos y los valores son la lista de adyacencia en forma de conjunto (`set`). Para un grafo ponderado la lista de adyacencia se representa mediante un diccionario que contiene pares `{nodo: peso}`.
+
+```python
+# grafo no dirigido dict[int, set[int]]
+g = {1: {2, 3}, 2: {1, 4},3: {1}, 4: {2}}
+
+# digrafo dict[int, set[int]] pero sin simetría, arista 1→2 si pero 2→1 no  
+d = {1: {2, 3}, 2: {4}, 3: {4}, 4: {3}}  
+
+# grafo ponderado dict[int, dict[int, float]]   
+w = {1: {2: 1.5, 3: 2.0}, 2: {1: 1.5, 4: 3.5}, 3: {1: 2.0}, 4: {2: 3.5}}
+```
+
+En todos los casos la comprobación de adyacencia es eficiente gracias al uso de `set` o `dict` para los vecinos, a diferencia de una lista de adyacencia donde habría que recorrerla entera.
+
+```{pyodide}
+def agregar_arista(g: dict[int, set[int]], u: int, v: int) -> None:
+    """
+    Añade la arista {u, v} al grafo no dirigido g.
+    Crea los nodos u y v si no existen.
+    """
+    g.setdefault(u, set()).add(v)
+    g.setdefault(v, set()).add(u)
+	
+
+def grado(g: dict[int, set[int]], u: int) -> int:
+    """
+    Devuelve el grado del nodo u, es decir, el número de aristas incidentes en él.
+	
+    Precondición: u pertenece a g.
+    """
+    return len(g[u])
+	
+
+def es_adyacente(g: dict[int, set[int]], u: int, v: int) -> bool:
+    """
+    Devuelve True si existe la arista {u, v} en el grafo g.
+	
+    Precondición: u y v pertenecen a g.
+    """
+    return v in g[u]
+
+
+# Grafo de ejemplo:
+#   1 — 2 — 4
+#   |   |
+#   3   5 — 6
+
+grafo: dict[int, set[int]] = {
+    1: {2, 3},
+    2: {1, 4, 5},
+    3: {1},
+    4: {2},
+    5: {2, 6},
+    6: {5},
+}
+
+# Diccionario para los grados de cada nodo
+grados = {}
+for u in grafo:
+    grados[u] = grado(grafo, u)
+print(grados)
+# {1: 2, 2: 3, 3: 1, 4: 1, 5: 2, 6: 1}
+
+print(es_adyacente(grafo, 2, 5))    # True
+print(es_adyacente(grafo, 1, 6))    # False
+```
 :::
 
 ---
