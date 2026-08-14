@@ -148,30 +148,75 @@ Se debe verificar que $n \geq 3$ y $l > 0$. La función `math.tan` devuelve el v
 
 ### 2.7 Función `es_cuadrado(l, r, d, u)`:
 
-Esta función se puede emplear en el problema [Draw a Square](https://codeforces.com/problemset/problem/2074/A) de [Codeforces](https://codeforces.com/). La traducción de parte del enunciado es la siguiente:
+Esta función se puede emplear en el problema [Draw a Square](https://codeforces.com/problemset/problem/2074/A){target="_blank"} de [Codeforces](https://codeforces.com/){target="_blank"}. La traducción de parte del enunciado es la siguiente:
 
-> Los soldados rosa te han dado 4 puntos distintos en el plano. Las coordenadas de los 4 puntos son $(−l,0)$, $(r,0)$, $(0,−d)$, $(0,u)$ respectivamente, donde $l, r, d, u$ son enteros positivos. Determina si es posible dibujar un cuadrado con los puntos dados como vértices.
+> Los soldados Rosa te han dado 4 puntos distintos en el plano. Las coordenadas de los 4 puntos son $(−l,0)$, $(r,0)$, $(0,−d)$, $(0,u)$ respectivamente, donde $l, r, d, u$ son enteros positivos. Determina si es posible dibujar un cuadrado con los puntos dados como vértices.
+
+La función `es_cuadrado(l, r, d, u)` debe retornar `True` si es posible dibujar un cuadrado con los puntos dados como vértices y `False` en caso contrario.
+
+**Ejemplos:**
+
+```python
+print(es_cuadrado(1, 1, 1, 1))  # True
+print(es_cuadrado(1, 2, 1, 1))  # False
+print(es_cuadrado(1, 2, 3, 4))  # False
+```
 
 ### 2.8 Función `make_a_triangle(a, b, c)`:
 
-Esta función se puede emplear en el problema [Make a Triangle!](https://codeforces.com/contest/1064/problem/A) de [Codeforces](https://codeforces.com/). La traducción de parte del enunciado es la siguiente:
+Esta función se puede emplear en el problema [Make a Triangle!](https://codeforces.com/contest/1064/problem/A){target="_blank"} de [Codeforces](https://codeforces.com/){target="_blank"}. La traducción de parte del enunciado es la siguiente:
 
 > Masha tiene tres palos de longitudes $a$, $b$ y $c$ centímetros respectivamente. En un minuto, Masha puede elegir un palo arbitrario y aumentar su longitud en un centímetro. No le está permitido romper palos. ¿Cuál es el número mínimo de minutos que necesita dedicar a aumentar la longitud de un palo para poder ensamblar un triángulo de área positiva? Los palos deben usarse como lados del triángulo (un palo por lado) y sus extremos deben situarse en los vértices del triángulo. Se cumple que $a, b, c$ enteros con $1 \leq a, b, c \leq 100$.
 
 La función `make_a_triangle(a, b, c)` debe calcular el número mínimo de minutos (un entero no negativo) que Masha necesita para poder formar el triángulo de área positiva con sus bastones.
 
+**Ejemplos:**
+
+```python
+print(make_a_triangle(3, 4, 5))      # 0
+print(make_a_triangle(2, 5, 3))      # 1
+print(make_a_triangle(100, 10, 10))  # 81
+```
+
 ### 2.9 Función `perimetro_minimo(n)`:
 
-Esta función se puede emplear en el problema [Lazy Security Guard](https://codeforces.com/contest/859/problem/B) de [Codeforces](https://codeforces.com/). La traducción de parte del enunciado es la siguiente:
+Esta función se puede emplear en el problema [Lazy Security Guard](https://codeforces.com/contest/859/problem/B){target="_blank"} de [Codeforces](https://codeforces.com/){target="_blank"}. La traducción de parte del enunciado es la siguiente:
 
 > Tu amigo guardia de seguridad consiguió recientemente un nuevo trabajo en una nueva empresa de seguridad. La compañía le exige patrullar una zona de la ciudad que abarca exactamente $n$ manzanas, pero le dejan elegir cuáles manzanas. Es decir, tu amigo debe recorrer el perímetro de una región cuya superficie es exactamente $n$ bloques cuadrados. Tu amigo es bastante vago y le gustaría que le ayudaras a encontrar la ruta más corta posible que cumpla con los requisitos. La ciudad está dispuesta en un patrón de cuadrícula y es lo suficientemente grande como para que, a efectos del problema, pueda considerarse infinita.
 
 La entrada consistirá en un solo entero $n$ ($1 \leq n \leq 10^6$), el número de manzanas que deben estar delimitadas por la ruta. Debe retorna el perímetro mínimo que se pueda alcanzar. Las manzanas se consideran cuadrados de lado 1.
 
-### 2.10 Función `paralelepipedo(l, m, n)`:
+**Ejemplos:**
 
-Esta función se puede emplear en el problema [Parallelepiped](https://codeforces.com/contest/224/problem/A) de [Codeforces](https://codeforces.com/). La traducción de parte del enunciado es la siguiente:
+```python
+print(perimetro_minimo(4))   # 8
+print(perimetro_minimo(11))  # 14
+print(perimetro_minimo(22))  # 20
+```
 
-> Tienes un paralelepípedo rectangular con aristas de longitudes enteras. Conoces las áreas de sus tres caras que tienen un vértice común. Tu tarea es encontrar la suma de las longitudes de las 12 aristas de este paralelepípedo.
+**Pista:**
+
+Para cualquier región conexa de área $n$ en una cuadrícula, el perímetro mínimo alcanzable es exactamente $2 \lceil 2\sqrt{n} \rceil$. Las regiones que logran este mínimo son configuraciones compactas que siempre pueden inscribirse dentro de una caja delimitadora de dimensiones $k \times k$, $k \times (k+1)$ o $(k+1) \times (k+1)$, donde $k = \lfloor \sqrt{n} \rfloor$. Las funciones `math.floor` y `math.ceil` devuelven el piso ($\lfloor x \rfloor$) y el techo de un número real ($\lceil x \rceil$), respectivamente.
+
+### 2.10 Función `ortoedro(l, m, n)`:
+
+Esta función se puede emplear en el problema [Parallelepiped](https://codeforces.com/contest/224/problem/A){target="_blank"} de [Codeforces](https://codeforces.com/){target="_blank"}. La traducción de parte del enunciado es la siguiente:
+
+> Tienes un paralelepípedo rectangular (ortoedro) con aristas de longitudes enteras. Conoces las áreas de sus tres caras que tienen un vértice común. Tu tarea es encontrar la suma de las longitudes de las 12 aristas de este paralelepípedo.
 
 La función recibe tres enteros positivos `l`, `m` y `n` que representan las áreas de las tres caras que comparten un vértice común. Debe retornar la suma de las longitudes de las 12 aristas del paralelepípedo.
+
+***Ejemplos:**
+
+```python
+print(ortoedro(1, 1, 1))  # 12
+print(ortoedro(4, 6, 6))  # 28
+```
+
+**Pista:**
+
+Sean $a, b, c$ las aristas y $l = ab$, $m = bc$, $n = ac$ las tres áreas conocidas. Los productos cruzados eliminan la variable no deseada:
+$$
+l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
+$$
+
