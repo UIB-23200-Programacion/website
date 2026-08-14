@@ -58,7 +58,13 @@ print(es_par(0))    # True
 ::: {#imp-def .callout-important title="Anatomía de una función"}
 Toda función en Python tiene cuatro partes:
 
-1. **Cabecera**: `def nombre(parámetros):` — define el nombre y los parámetros de entrada.
+1. **Cabecera (o signature)**: `def nombre(parámetros):` — define el nombre y los parámetros de entrada. Incluye los siguientes elementos:
+
+    - **La palabra clave `def`:** Le indica a Python que estás a punto de crear una función.
+    - **El nombre de la función:** Un identificador claro y descriptivo (por convención, escrito en minúsculas y separado por guiones bajos, ej. `calcular_area`).
+    - **Los parámetros `()`:** Las variables que la función recibe, encerradas entre paréntesis. Pueden ser obligatorios o tener un valor por defecto (opcionales, vea sección 3.1.2).
+    - **Anotaciones de tipo o *Type Hints* (Opcionales):** Especifican qué tipo de dato se espera para cada parámetro (`: tipo`) y qué tipo de dato devolverá la función al terminar (`-> tipo`). Se explican más adelante en la sección 3.3.2.
+    - **Los dos puntos `:`:** Marcan el final estricto de la cabecera y el inicio del bloque de código indentado (**cuerpo**) que contendrá la lógica.
 2. **Docstring** (opcional pero recomendado): cadena de texto que documenta qué hace la función. Se trata en la sección 3.3.
 3. **Cuerpo**: el bloque indentado con las instrucciones.
 4. **Retorno**: `return expresión` devuelve el resultado. Si se omite `return`, la función devuelve `None`.
@@ -66,9 +72,25 @@ Toda función en Python tiene cuatro partes:
 El nombre de la función sigue las mismas convenciones que los nombres de variable: `snake_case`, descriptivo y en minúsculas.
 :::
 
+::: {#cau-return-none .callout-caution title="Usar el resultado de una función que devuelve `None`"}
+Si una función no tiene `return`, o tiene un `return` sin expresión, devuelve `None`. Usar ese resultado en un cálculo posterior produce un `TypeError` difícil de diagnosticar:
+
+```{pyodide}
+def duplicar(x):
+    y = x * 2       # calcula pero no devuelve
+
+resultado = duplicar(5)
+print(resultado)    # None  (no 10)
+```
+
+El error más frecuente es confundir *imprimir* con *devolver*: `print(x * 2)` muestra el valor en pantalla, pero la función sigue devolviendo `None`. **Toda función que produzca un valor debe tener un `return` explícito**.
+:::
+
 ### **3.1.2 Parámetros, argumentos y valores por defecto**
 
+::: {#imp-parametros .callout-important title="Parámetros y argumentos de una función"}
 En una función de Python, los **parámetros** son los nombres que aparecen en la definición de la función, mientras que los **argumentos** son los valores concretos que se le pasan al invocarla (llamarla). En esencia, los parámetros actúan como marcadores de posición (*placeholders*); son **variables temporales que deben aparecer en el cuerpo de la función** y le indican al intérprete: *"aquí habrá un valor disponible en cuanto alguien invoque la función"*. Los argumentos, por su parte, representan los datos reales que ocuparán ese lugar.
+:::
 
 ::: {#nte-eje1 .callout-note title="Parámetros y argumentos de una función"}
 En el ejemplo siguiente:
@@ -84,6 +106,8 @@ print(potencia(2, 10))              # 2 y 10 son argumentos → 1024
 print(potencia(3, 3))               # 27
 ```
 :::
+
+#### Parámetros con valor por defecto
 
 En Python, puedes definir funciones donde algunos parámetros tengan un valor por defecto. Si quien llama a la función no proporciona ese argumento, Python usa el valor predefinido. Es decir, los **parámetros con valor por defecto** permiten omitir algunos argumentos en la llamada cuando el valor habitual es conocido de antemano. Esto es muy útil para simplificar el código cuando un parámetro casi siempre usa el mismo valor.
 
@@ -119,20 +143,6 @@ def f(x=0, y):
 La razón es que Python asigna los argumentos posicionalmente de izquierda a derecha: si un parámetro con valor por defecto precediera a uno sin él, sería ambiguo qué argumento corresponde a qué parámetro.
 :::
 
-::: {#cau-return-none .callout-caution title="Usar el resultado de una función que devuelve `None`"}
-Si una función no tiene `return`, o tiene un `return` sin expresión, devuelve `None`. Usar ese resultado en un cálculo posterior produce un `TypeError` difícil de diagnosticar:
-
-```{pyodide}
-def duplicar(x):
-    y = x * 2       # calcula pero no devuelve
-
-resultado = duplicar(5)
-print(resultado)    # None  (no 10)
-```
-
-El error más frecuente es confundir *imprimir* con *devolver*: `print(x * 2)` muestra el valor en pantalla, pero la función sigue devolviendo `None`. **Toda función que produzca un valor debe tener un `return` explícito**.
-:::
-
 ::: {#nte-eje3 .callout-note title="Métodos de Newton-Raphson para $\sqrt{x}$"}
 Un ejemplo matemático que ilustra bien los parámetros con valor por defecto es el **método de Newton-Raphson** para aproximar $\sqrt{x}$, que acepta el valor $x$ y una tolerancia (`tol`) opcional:
 
@@ -156,6 +166,46 @@ print(raiz_cuadrada(2))              # 1.4142135623730951
 print(raiz_cuadrada(9))              # 3.0
 print(raiz_cuadrada(2, tol=1e-4))    # 1.4142156862...  (menos preciso)
 ```
+:::
+
+#### Argumentos de palabra clave (keyword arguments)
+
+En Python, un **argumento de palabra clave** (*keyword argument*) es aquel que se pasa en la llamada a una función usando el nombre del parámetro explícitamente, en lugar de depender de su posición:
+
+```{pyodide}
+def potencia(base, exponente):
+    return base ** exponente
+
+print(potencia(2, 10))               # posicional: base=2, exponente=10
+print(potencia(base=2, exponente=10))   # por palabra clave: equivalente
+print(potencia(exponente=10, base=2))   # el orden ya no importa
+```
+
+Los keyword arguments son especialmente útiles cuando una función tiene varios parámetros con valor por defecto, ya que permiten especificar solo los que se quieren modificar sin necesidad de respetar el orden:
+
+```python
+def raiz_cuadrada(x, tol=1e-10, max_iter=1000):
+    ...
+
+raiz_cuadrada(2, tol=1e-6)          # solo se modifica tol
+raiz_cuadrada(2, max_iter=50)       # solo se modifica max_iter
+```
+
+La conexión entre ambos conceptos es frecuente pero no necesaria: los parámetros con valor por defecto se definen en la **cabecera o signature** de la función; los keyword arguments son una forma de **llamarla**. Cualquier parámetro, tenga o no valor por defecto, puede pasarse por nombre.
+
+::: {#imp-keyword-only .callout-important title="Parámetros exclusivamente de palabra clave"}
+Python permite declarar parámetros que **solo** pueden pasarse por nombre, nunca posicionalmente. Se consigue colocando `*` antes de ellos en la definición:
+
+```{pyodide}
+def raiz(x: float, *, tol: float = 1e-10) -> float:
+    """tol solo puede pasarse por nombre."""
+    ...
+
+raiz(2, tol=1e-6)    # correcto
+# raiz(2, 1e-6)      # TypeError: tol es keyword-only
+```
+
+Esta técnica es útil cuando un parámetro es opcional y su nombre añade claridad imprescindible en la llamada. Queda fuera del alcance de este tema pero conviene conocer su existencia.
 :::
 
 ### **3.1.3 Recursión**

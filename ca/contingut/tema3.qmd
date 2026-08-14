@@ -58,7 +58,13 @@ print(es_par(0))    # True
 ::: {#imp-def .callout-important title="Anatomia d'una funció"}
 Tota funció en Python té quatre parts:
 
-1. **Capçalera**: `def nombre(parámetros):` — defineix el nom i els paràmetres d'entrada.
+1. **Capçalera (o signature)**: `def nombre(parámetros):` — defineix el nom i els paràmetres d'entrada. Inclou els elements següents:
+
+    - **La paraula clau `def`:** Li indica a Python que estàs a punt de crear una funció.
+    - **El nom de la funció:** Un identificador clar i descriptiu (per convenció, escrit en minúscules i separat per guions baixos, ex. `calcular_area`).
+    - **Els paràmetres `()`:** Les variables que la funció rep, tancades entre parèntesis. Poden ser obligatoris o tenir un valor per defecte (opcionals, vegeu secció 3.1.2).
+    - **Anotacions de tipus o *Type Hints* (Opcionals):** Especifiquen quin tipus de dada s'espera per a cada paràmetre (`: tipo`) i quin tipus de dada retornarà la funció en acabar (`-> tipo`). S'expliquen més endavant a la secció 3.3.2.
+    - **Els dos punts `:`:** Marquen el final estricte de la capçalera i l'inici del bloc de codi indentat (**cos**) que contindrà la lògica.
 2. **Docstring** (opcional però recomanat): cadena de text que documenta què fa la funció. Es tracta a la secció 3.3.
 3. **Cos**: el bloc indentat amb les instruccions.
 4. **Retorn**: `return expresión` retorna el resultat. Si s'omet `return`, la funció retorna `None`.
@@ -66,9 +72,25 @@ Tota funció en Python té quatre parts:
 El nom de la funció segueix les mateixes convencions que els noms de variable: `snake_case`, descriptiu i en minúscules.
 :::
 
+::: {#cau-return-none .callout-caution title="Usar el resultat d'una funció que retorna `None`"}
+Si una funció no té `return`, o té un `return` sense expressió, retorna `None`. Usar aquest resultat en un càlcul posterior produeix un `TypeError` difícil de diagnosticar:
+
+```{pyodide}
+def duplicar(x):
+    y = x * 2       # calcula pero no devuelve
+
+resultado = duplicar(5)
+print(resultado)    # None  (no 10)
+```
+
+L'error més freqüent és confondre *imprimir* amb *retornar*: `print(x * 2)` mostra el valor en pantalla, però la funció segueix retornant `None`. **Tota funció que produeixi un valor ha de tenir un `return` explícit**.
+:::
+
 ### **3.1.2 Paràmetres, arguments i valors per defecte**
 
+::: {#imp-parametros .callout-important title="Paràmetres i arguments d'una funció"}
 En una funció de Python, els **paràmetres** són els noms que apareixen en la definició de la funció, mentre que els **arguments** són els valors concrets que se li passen en invocar-la (cridar-la). En essència, els paràmetres actuen com a marcadors de posició (*placeholders*); són **variables temporals que han d'aparèixer en el cos de la funció** i li indiquen a l'intèrpret: *"aquí hi haurà un valor disponible quan algú invoqui la funció"*. Els arguments, per la seva banda, representen les dades reals que ocuparan aquell lloc.
+:::
 
 ::: {#nte-eje1 .callout-note title="Paràmetres i arguments d'una funció"}
 En l'exemple següent:
@@ -84,6 +106,8 @@ print(potencia(2, 10))              # 2 y 10 son argumentos → 1024
 print(potencia(3, 3))               # 27
 ```
 :::
+
+#### Paràmetres amb valor per defecte
 
 En Python, pots definir funcions on alguns paràmetres tinguin un valor per defecte. Si qui crida la funció no proporciona aquell argument, Python usa el valor predefinit. És a dir, els **paràmetres amb valor per defecte** permeten ometre alguns arguments en la crida quan el valor habitual és conegut d'antuvi. Això és molt útil per simplificar el codi quan un paràmetre gairebé sempre usa el mateix valor.
 
@@ -119,20 +143,6 @@ def f(x=0, y):
 La raó és que Python assigna els arguments posicionalment d'esquerra a dreta: si un paràmetre amb valor per defecte precedís a un sense ell, seria ambigu quin argument correspon a quin paràmetre.
 :::
 
-::: {#cau-return-none .callout-caution title="Usar el resultat d'una funció que retorna `None`"}
-Si una funció no té `return`, o té un `return` sense expressió, retorna `None`. Usar aquest resultat en un càlcul posterior produeix un `TypeError` difícil de diagnosticar:
-
-```{pyodide}
-def duplicar(x):
-    y = x * 2       # calcula pero no devuelve
-
-resultado = duplicar(5)
-print(resultado)    # None  (no 10)
-```
-
-L'error més freqüent és confondre *imprimir* amb *retornar*: `print(x * 2)` mostra el valor en pantalla, però la funció segueix retornant `None`. **Tota funció que produeixi un valor ha de tenir un `return` explícit**.
-:::
-
 ::: {#nte-eje3 .callout-note title="Mètodes de Newton-Raphson per a $\sqrt{x}$"}
 Un exemple matemàtic que il·lustra bé els paràmetres amb valor per defecte és el **mètode de Newton-Raphson** per aproximar $\sqrt{x}$, que accepta el valor $x$ i una tolerància (`tol`) opcional:
 
@@ -156,6 +166,46 @@ print(raiz_cuadrada(2))              # 1.4142135623730951
 print(raiz_cuadrada(9))              # 3.0
 print(raiz_cuadrada(2, tol=1e-4))    # 1.4142156862...  (menos preciso)
 ```
+:::
+
+#### Arguments de paraula clau (keyword arguments)
+
+En Python, un **argument de paraula clau** (*keyword argument*) és aquell que es passa en la crida a una funció usant el nom del paràmetre explícitament, en lloc de dependre de la seva posició:
+
+```{pyodide}
+def potencia(base, exponente):
+    return base ** exponente
+
+print(potencia(2, 10))                  # posicional: base=2, exponente=10
+print(potencia(base=2, exponente=10))   # per paraula clau: equivalent
+print(potencia(exponente=10, base=2))   # l'ordre ja no importa
+```
+
+Els keyword arguments són especialment útils quan una funció té diversos paràmetres amb valor per defecte, ja que permeten especificar només els que es volen modificar sense necessitat de respectar l'ordre:
+
+```python
+def raiz_cuadrada(x, tol=1e-10, max_iter=1000):
+    ...
+
+raiz_cuadrada(2, tol=1e-6)          # solo se modifica tol
+raiz_cuadrada(2, max_iter=50)       # solo se modifica max_iter
+```
+
+La connexió entre tots dos conceptes és freqüent però no necessària: els paràmetres amb valor per defecte es defineixen en la **capçalera o signature** de la funció; els keyword arguments són una forma de **cridar-la**. Qualsevol paràmetre, tingui o no valor per defecte, es pot passar per nom.
+
+::: {#imp-keyword-only .callout-important title="Paràmetres exclusivament de paraula clau"}
+Python permet declarar paràmetres que **només** es poden passar per nom, mai posicionalment. S'aconsegueix col·locant `*` abans d'ells en la definició:
+
+```{pyodide}
+def raiz(x: float, *, tol: float = 1e-10) -> float:
+    """tol solo puede pasarse por nombre."""
+    ...
+
+raiz(2, tol=1e-6)    # correcte
+# raiz(2, 1e-6)      # TypeError: tol és keyword-only
+```
+
+Aquesta tècnica és útil quan un paràmetre és opcional i el seu nom afegeix claredat imprescindible en la crida. Queda fora de l'abast d'aquest tema però convé conèixer-ne l'existència.
 :::
 
 ### **3.1.3 Recursió**

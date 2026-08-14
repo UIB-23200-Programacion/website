@@ -6,7 +6,11 @@ sidebar: barra-es
 
 Para la realización de los ejercicios debe utilizar el proyecto de ejemplo `t03_ejemplo` que está disponible en el repositorio del curso: [https://github.com/UIB-23200-Programacion/t03_ejemplo](https://github.com/UIB-23200-Programacion/t03_ejemplo){target="_blank"}. Navega al sitio y sigue las instrucciones en `README.md` para copiar el repositorio en tu entorno local de GitHub.
 
-Agrega las siguientes funciones al módulo que se especifica del paquete `t03_paquete` contenido en el proyecto. En todos los casos, la función debe contener type hints, docstrings y precondiciones. Al bloque `if __name__ == "__main__"` del  módulo se deben agregar pruebas para validar el comportamiento de cada función. Se deben realizar las pruebas al menos para un caso normal y un caso límite (de existir).
+Agrega las siguientes funciones al módulo que se especifica del paquete `t03_paquete` contenido en el proyecto respetando las siguientes reglas siempre:
+
+- la función debe contener type hints, docstrings y precondiciones, 
+- si la precondición (o alguna de las precondiciones) no se cumple la función debe retornar `None`,
+- Al bloque `if __name__ == "__main__"` del módulo se deben agregar pruebas para validar el comportamiento de cada función. Se deben realizar las pruebas al menos para un caso normal y un caso límite (de existir).
 
 ## Ejercicio 1: Módulo `numeros.py`
 
@@ -88,3 +92,86 @@ a^n \bmod m = \begin{cases}
 a \cdot \left(a^{(n-1)/2} \bmod m\right)^2 \bmod m & \text{si } n \text{ es impar}
 \end{cases}
 $$
+
+## Ejercicio 2: Módulo `geometria.py`
+
+### 2.1 Función `area_elipse(a, b)`:
+
+Calcula el área de una elipse a partir de la longitud de sus semiejes `a` y `b` mediante la fórmula:
+$$
+A = \pi \cdot a \cdot b.
+$$
+Se debe verificar que ambos semiejes sean reales positivos.
+
+### 2.2 Función `area_triangulo(a, b, c)`:
+
+Calcula el área de un triángulo a partir de la longitud de sus lados `a`, `b` y `c` utilizando la fórmula de Herón:
+$$
+A = \sqrt{s(s-a)(s-b)(s-c)}
+$$
+donde $s = \frac{a+b+c}{2}$ es el semiperímetro. Reutiliza `es_triangulo_valido` para validar que los lados forman un triángulo válido.
+
+### 2.3 Función `area_trapecio(b1, b2, h)`:
+
+Calcula el área de un trapecio a partir de la longitud de sus bases `b1` y `b2` y su altura `h`
+$$
+A = \frac{(b_1+b_2)}{2} \cdot h.
+$$
+
+### 2.4 Función `es_cuadrilatero_valido(a, b, c, d)`:
+
+Verifica si los lados `a`, `b`, `c` y `d` forman un cuadrilátero válido. La condición necesaria y suficiente es la generalización de la desigualdad triangular: **cada lado debe ser menor que la suma de los otros tres**. Equivalentemente, el lado más largo debe ser menor que la suma de los demás:
+$$
+\max(a, b, c, d) < a + b + c + d - \max(a, b, c, d),
+$$
+que simplifica a:
+$$
+2\max(a, b, c, d) < a + b + c + d.
+$$
+Obviamente se debe verificar además que todos los lados sean positivos. Recuerde que en Python la función built-in `max` puede recibir un número arbitrario de argumentos: `max(a, b, c, d)`.
+
+### 2.5 Función `area_maxima_cuadrilatero(a, b, c, d)`:
+
+Calcula el área máxima posible de un cuadrilátero de lados $a, b, c, d$ correspondiente al cuadrilátero cíclico (inscrito en una circunferencia), mediante la fórmula de Brahmagupta que generaliza la de Herón:
+$$
+A = \sqrt{(s-a)(s-b)(s-c)(s-d)}
+$$
+donde $s = \dfrac{a+b+c+d}{2}$ es el semiperímetro. Observa que cuando $d = 0$ se recupera exactamente la fórmula de Herón. Reutiliza `es_cuadrilatero_valido` para validar que los lados forman un cuadrilátero válido.
+
+### 2.6 Función `area_poligono_regular(n, l)`:
+
+Calcula el área de un polígono regular de $n$ lados y longitud de lado $l$ mediante la fórmula:
+$$
+A = \frac{n \cdot l^2}{4 \cdot \tan\left(\frac{\pi}{n}\right)}.
+$$
+Se debe verificar que $n \geq 3$ y $l > 0$. La función `math.tan` devuelve el valor de la tangente de un ángulo dado en radianes.
+
+### 2.7 Función `es_cuadrado(l, r, d, u)`:
+
+Esta función se puede emplear en el problema [Draw a Square](https://codeforces.com/problemset/problem/2074/A) de [Codeforces](https://codeforces.com/). La traducción de parte del enunciado es la siguiente:
+
+> Los soldados rosa te han dado 4 puntos distintos en el plano. Las coordenadas de los 4 puntos son $(−l,0)$, $(r,0)$, $(0,−d)$, $(0,u)$ respectivamente, donde $l, r, d, u$ son enteros positivos. Determina si es posible dibujar un cuadrado con los puntos dados como vértices.
+
+### 2.8 Función `make_a_triangle(a, b, c)`:
+
+Esta función se puede emplear en el problema [Make a Triangle!](https://codeforces.com/contest/1064/problem/A) de [Codeforces](https://codeforces.com/). La traducción de parte del enunciado es la siguiente:
+
+> Masha tiene tres palos de longitudes $a$, $b$ y $c$ centímetros respectivamente. En un minuto, Masha puede elegir un palo arbitrario y aumentar su longitud en un centímetro. No le está permitido romper palos. ¿Cuál es el número mínimo de minutos que necesita dedicar a aumentar la longitud de un palo para poder ensamblar un triángulo de área positiva? Los palos deben usarse como lados del triángulo (un palo por lado) y sus extremos deben situarse en los vértices del triángulo. Se cumple que $a, b, c$ enteros con $1 \leq a, b, c \leq 100$.
+
+La función `make_a_triangle(a, b, c)` debe calcular el número mínimo de minutos (un entero no negativo) que Masha necesita para poder formar el triángulo de área positiva con sus bastones.
+
+### 2.9 Función `perimetro_minimo(n)`:
+
+Esta función se puede emplear en el problema [Lazy Security Guard](https://codeforces.com/contest/859/problem/B) de [Codeforces](https://codeforces.com/). La traducción de parte del enunciado es la siguiente:
+
+> Tu amigo guardia de seguridad consiguió recientemente un nuevo trabajo en una nueva empresa de seguridad. La compañía le exige patrullar una zona de la ciudad que abarca exactamente $n$ manzanas, pero le dejan elegir cuáles manzanas. Es decir, tu amigo debe recorrer el perímetro de una región cuya superficie es exactamente $n$ bloques cuadrados. Tu amigo es bastante vago y le gustaría que le ayudaras a encontrar la ruta más corta posible que cumpla con los requisitos. La ciudad está dispuesta en un patrón de cuadrícula y es lo suficientemente grande como para que, a efectos del problema, pueda considerarse infinita.
+
+La entrada consistirá en un solo entero $n$ ($1 \leq n \leq 10^6$), el número de manzanas que deben estar delimitadas por la ruta. Debe retorna el perímetro mínimo que se pueda alcanzar. Las manzanas se consideran cuadrados de lado 1.
+
+### 2.10 Función `paralelepipedo(l, m, n)`:
+
+Esta función se puede emplear en el problema [Parallelepiped](https://codeforces.com/contest/224/problem/A) de [Codeforces](https://codeforces.com/). La traducción de parte del enunciado es la siguiente:
+
+> Tienes un paralelepípedo rectangular con aristas de longitudes enteras. Conoces las áreas de sus tres caras que tienen un vértice común. Tu tarea es encontrar la suma de las longitudes de las 12 aristas de este paralelepípedo.
+
+La función recibe tres enteros positivos `l`, `m` y `n` que representan las áreas de las tres caras que comparten un vértice común. Debe retornar la suma de las longitudes de las 12 aristas del paralelepípedo.
