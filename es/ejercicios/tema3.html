@@ -581,6 +581,19 @@ window.Quarto = {
   <li><a href="#función-exponenciacion_rapidaa-n" id="toc-función-exponenciacion_rapidaa-n" class="nav-link" data-scroll-target="#función-exponenciacion_rapidaa-n">1.9. Función <code>exponenciacion_rapida(a, n)</code>:</a></li>
   <li><a href="#función-exponenciacion_modulara-n-m" id="toc-función-exponenciacion_modulara-n-m" class="nav-link" data-scroll-target="#función-exponenciacion_modulara-n-m">1.10. Función <code>exponenciacion_modular(a, n, m)</code>:</a></li>
   </ul></li>
+  <li><a href="#ejercicio-2-módulo-geometria.py" id="toc-ejercicio-2-módulo-geometria.py" class="nav-link" data-scroll-target="#ejercicio-2-módulo-geometria.py">Ejercicio 2: Módulo <code>geometria.py</code></a>
+  <ul class="collapse">
+  <li><a href="#función-area_elipsea-b" id="toc-función-area_elipsea-b" class="nav-link" data-scroll-target="#función-area_elipsea-b">2.1 Función <code>area_elipse(a, b)</code>:</a></li>
+  <li><a href="#función-area_trianguloa-b-c" id="toc-función-area_trianguloa-b-c" class="nav-link" data-scroll-target="#función-area_trianguloa-b-c">2.2 Función <code>area_triangulo(a, b, c)</code>:</a></li>
+  <li><a href="#función-area_trapeciob1-b2-h" id="toc-función-area_trapeciob1-b2-h" class="nav-link" data-scroll-target="#función-area_trapeciob1-b2-h">2.3 Función <code>area_trapecio(b1, b2, h)</code>:</a></li>
+  <li><a href="#función-es_cuadrilatero_validoa-b-c-d" id="toc-función-es_cuadrilatero_validoa-b-c-d" class="nav-link" data-scroll-target="#función-es_cuadrilatero_validoa-b-c-d">2.4 Función <code>es_cuadrilatero_valido(a, b, c, d)</code>:</a></li>
+  <li><a href="#función-area_maxima_cuadrilateroa-b-c-d" id="toc-función-area_maxima_cuadrilateroa-b-c-d" class="nav-link" data-scroll-target="#función-area_maxima_cuadrilateroa-b-c-d">2.5 Función <code>area_maxima_cuadrilatero(a, b, c, d)</code>:</a></li>
+  <li><a href="#función-area_poligono_regularn-l" id="toc-función-area_poligono_regularn-l" class="nav-link" data-scroll-target="#función-area_poligono_regularn-l">2.6 Función <code>area_poligono_regular(n, l)</code>:</a></li>
+  <li><a href="#función-es_cuadradol-r-d-u" id="toc-función-es_cuadradol-r-d-u" class="nav-link" data-scroll-target="#función-es_cuadradol-r-d-u">2.7 Función <code>es_cuadrado(l, r, d, u)</code>:</a></li>
+  <li><a href="#función-make_a_trianglea-b-c" id="toc-función-make_a_trianglea-b-c" class="nav-link" data-scroll-target="#función-make_a_trianglea-b-c">2.8 Función <code>make_a_triangle(a, b, c)</code>:</a></li>
+  <li><a href="#función-perimetro_minimon" id="toc-función-perimetro_minimon" class="nav-link" data-scroll-target="#función-perimetro_minimon">2.9 Función <code>perimetro_minimo(n)</code>:</a></li>
+  <li><a href="#función-paralelepipedol-m-n" id="toc-función-paralelepipedol-m-n" class="nav-link" data-scroll-target="#función-paralelepipedol-m-n">2.10 Función <code>paralelepipedo(l, m, n)</code>:</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -608,7 +621,12 @@ window.Quarto = {
 
 
 <p>Para la realización de los ejercicios debe utilizar el proyecto de ejemplo <code>t03_ejemplo</code> que está disponible en el repositorio del curso: <a href="https://github.com/UIB-23200-Programacion/t03_ejemplo" target="_blank">https://github.com/UIB-23200-Programacion/t03_ejemplo</a>. Navega al sitio y sigue las instrucciones en <code>README.md</code> para copiar el repositorio en tu entorno local de GitHub.</p>
-<p>Agrega las siguientes funciones al módulo que se especifica del paquete <code>t03_paquete</code> contenido en el proyecto. En todos los casos, la función debe contener type hints, docstrings y precondiciones. Al bloque <code>if __name__ == "__main__"</code> del módulo se deben agregar pruebas para validar el comportamiento de cada función. Se deben realizar las pruebas al menos para un caso normal y un caso límite (de existir).</p>
+<p>Agrega las siguientes funciones al módulo que se especifica del paquete <code>t03_paquete</code> contenido en el proyecto respetando las siguientes reglas siempre:</p>
+<ul>
+<li>la función debe contener type hints, docstrings y precondiciones,</li>
+<li>si la precondición (o alguna de las precondiciones) no se cumple la función debe retornar <code>None</code>,</li>
+<li>Al bloque <code>if __name__ == "__main__"</code> del módulo se deben agregar pruebas para validar el comportamiento de cada función. Se deben realizar las pruebas al menos para un caso normal y un caso límite (de existir).</li>
+</ul>
 <section id="ejercicio-1-módulo-numeros.py" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-1-módulo-numeros.py">Ejercicio 1: Módulo <code>numeros.py</code></h2>
 <section id="función-es_perfecton" class="level3">
@@ -676,6 +694,78 @@ a^n \bmod m = \begin{cases}
 a \cdot \left(a^{(n-1)/2} \bmod m\right)^2 \bmod m &amp; \text{si } n \text{ es impar}
 \end{cases}
 \]</span></p>
+</section>
+</section>
+<section id="ejercicio-2-módulo-geometria.py" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-2-módulo-geometria.py">Ejercicio 2: Módulo <code>geometria.py</code></h2>
+<section id="función-area_elipsea-b" class="level3">
+<h3 class="anchored" data-anchor-id="función-area_elipsea-b">2.1 Función <code>area_elipse(a, b)</code>:</h3>
+<p>Calcula el área de una elipse a partir de la longitud de sus semiejes <code>a</code> y <code>b</code> mediante la fórmula: <span class="math display">\[
+A = \pi \cdot a \cdot b.
+\]</span> Se debe verificar que ambos semiejes sean reales positivos.</p>
+</section>
+<section id="función-area_trianguloa-b-c" class="level3">
+<h3 class="anchored" data-anchor-id="función-area_trianguloa-b-c">2.2 Función <code>area_triangulo(a, b, c)</code>:</h3>
+<p>Calcula el área de un triángulo a partir de la longitud de sus lados <code>a</code>, <code>b</code> y <code>c</code> utilizando la fórmula de Herón: <span class="math display">\[
+A = \sqrt{s(s-a)(s-b)(s-c)}
+\]</span> donde <span class="math inline">\(s = \frac{a+b+c}{2}\)</span> es el semiperímetro. Reutiliza <code>es_triangulo_valido</code> para validar que los lados forman un triángulo válido.</p>
+</section>
+<section id="función-area_trapeciob1-b2-h" class="level3">
+<h3 class="anchored" data-anchor-id="función-area_trapeciob1-b2-h">2.3 Función <code>area_trapecio(b1, b2, h)</code>:</h3>
+<p>Calcula el área de un trapecio a partir de la longitud de sus bases <code>b1</code> y <code>b2</code> y su altura <code>h</code> <span class="math display">\[
+A = \frac{(b_1+b_2)}{2} \cdot h.
+\]</span></p>
+</section>
+<section id="función-es_cuadrilatero_validoa-b-c-d" class="level3">
+<h3 class="anchored" data-anchor-id="función-es_cuadrilatero_validoa-b-c-d">2.4 Función <code>es_cuadrilatero_valido(a, b, c, d)</code>:</h3>
+<p>Verifica si los lados <code>a</code>, <code>b</code>, <code>c</code> y <code>d</code> forman un cuadrilátero válido. La condición necesaria y suficiente es la generalización de la desigualdad triangular: <strong>cada lado debe ser menor que la suma de los otros tres</strong>. Equivalentemente, el lado más largo debe ser menor que la suma de los demás: <span class="math display">\[
+\max(a, b, c, d) &lt; a + b + c + d - \max(a, b, c, d),
+\]</span> que simplifica a: <span class="math display">\[
+2\max(a, b, c, d) &lt; a + b + c + d.
+\]</span> Obviamente se debe verificar además que todos los lados sean positivos. Recuerde que en Python la función built-in <code>max</code> puede recibir un número arbitrario de argumentos: <code>max(a, b, c, d)</code>.</p>
+</section>
+<section id="función-area_maxima_cuadrilateroa-b-c-d" class="level3">
+<h3 class="anchored" data-anchor-id="función-area_maxima_cuadrilateroa-b-c-d">2.5 Función <code>area_maxima_cuadrilatero(a, b, c, d)</code>:</h3>
+<p>Calcula el área máxima posible de un cuadrilátero de lados <span class="math inline">\(a, b, c, d\)</span> correspondiente al cuadrilátero cíclico (inscrito en una circunferencia), mediante la fórmula de Brahmagupta que generaliza la de Herón: <span class="math display">\[
+A = \sqrt{(s-a)(s-b)(s-c)(s-d)}
+\]</span> donde <span class="math inline">\(s = \dfrac{a+b+c+d}{2}\)</span> es el semiperímetro. Observa que cuando <span class="math inline">\(d = 0\)</span> se recupera exactamente la fórmula de Herón. Reutiliza <code>es_cuadrilatero_valido</code> para validar que los lados forman un cuadrilátero válido.</p>
+</section>
+<section id="función-area_poligono_regularn-l" class="level3">
+<h3 class="anchored" data-anchor-id="función-area_poligono_regularn-l">2.6 Función <code>area_poligono_regular(n, l)</code>:</h3>
+<p>Calcula el área de un polígono regular de <span class="math inline">\(n\)</span> lados y longitud de lado <span class="math inline">\(l\)</span> mediante la fórmula: <span class="math display">\[
+A = \frac{n \cdot l^2}{4 \cdot \tan\left(\frac{\pi}{n}\right)}.
+\]</span> Se debe verificar que <span class="math inline">\(n \geq 3\)</span> y <span class="math inline">\(l &gt; 0\)</span>. La función <code>math.tan</code> devuelve el valor de la tangente de un ángulo dado en radianes.</p>
+</section>
+<section id="función-es_cuadradol-r-d-u" class="level3">
+<h3 class="anchored" data-anchor-id="función-es_cuadradol-r-d-u">2.7 Función <code>es_cuadrado(l, r, d, u)</code>:</h3>
+<p>Esta función se puede emplear en el problema <a href="https://codeforces.com/problemset/problem/2074/A">Draw a Square</a> de <a href="https://codeforces.com/">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
+<blockquote class="blockquote">
+<p>Los soldados rosa te han dado 4 puntos distintos en el plano. Las coordenadas de los 4 puntos son <span class="math inline">\((−l,0)\)</span>, <span class="math inline">\((r,0)\)</span>, <span class="math inline">\((0,−d)\)</span>, <span class="math inline">\((0,u)\)</span> respectivamente, donde <span class="math inline">\(l, r, d, u\)</span> son enteros positivos. Determina si es posible dibujar un cuadrado con los puntos dados como vértices.</p>
+</blockquote>
+</section>
+<section id="función-make_a_trianglea-b-c" class="level3">
+<h3 class="anchored" data-anchor-id="función-make_a_trianglea-b-c">2.8 Función <code>make_a_triangle(a, b, c)</code>:</h3>
+<p>Esta función se puede emplear en el problema <a href="https://codeforces.com/contest/1064/problem/A">Make a Triangle!</a> de <a href="https://codeforces.com/">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
+<blockquote class="blockquote">
+<p>Masha tiene tres palos de longitudes <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> y <span class="math inline">\(c\)</span> centímetros respectivamente. En un minuto, Masha puede elegir un palo arbitrario y aumentar su longitud en un centímetro. No le está permitido romper palos. ¿Cuál es el número mínimo de minutos que necesita dedicar a aumentar la longitud de un palo para poder ensamblar un triángulo de área positiva? Los palos deben usarse como lados del triángulo (un palo por lado) y sus extremos deben situarse en los vértices del triángulo. Se cumple que <span class="math inline">\(a, b, c\)</span> enteros con <span class="math inline">\(1 \leq a, b, c \leq 100\)</span>.</p>
+</blockquote>
+<p>La función <code>make_a_triangle(a, b, c)</code> debe calcular el número mínimo de minutos (un entero no negativo) que Masha necesita para poder formar el triángulo de área positiva con sus bastones.</p>
+</section>
+<section id="función-perimetro_minimon" class="level3">
+<h3 class="anchored" data-anchor-id="función-perimetro_minimon">2.9 Función <code>perimetro_minimo(n)</code>:</h3>
+<p>Esta función se puede emplear en el problema <a href="https://codeforces.com/contest/859/problem/B">Lazy Security Guard</a> de <a href="https://codeforces.com/">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
+<blockquote class="blockquote">
+<p>Tu amigo guardia de seguridad consiguió recientemente un nuevo trabajo en una nueva empresa de seguridad. La compañía le exige patrullar una zona de la ciudad que abarca exactamente <span class="math inline">\(n\)</span> manzanas, pero le dejan elegir cuáles manzanas. Es decir, tu amigo debe recorrer el perímetro de una región cuya superficie es exactamente <span class="math inline">\(n\)</span> bloques cuadrados. Tu amigo es bastante vago y le gustaría que le ayudaras a encontrar la ruta más corta posible que cumpla con los requisitos. La ciudad está dispuesta en un patrón de cuadrícula y es lo suficientemente grande como para que, a efectos del problema, pueda considerarse infinita.</p>
+</blockquote>
+<p>La entrada consistirá en un solo entero <span class="math inline">\(n\)</span> (<span class="math inline">\(1 \leq n \leq 10^6\)</span>), el número de manzanas que deben estar delimitadas por la ruta. Debe retorna el perímetro mínimo que se pueda alcanzar. Las manzanas se consideran cuadrados de lado 1.</p>
+</section>
+<section id="función-paralelepipedol-m-n" class="level3">
+<h3 class="anchored" data-anchor-id="función-paralelepipedol-m-n">2.10 Función <code>paralelepipedo(l, m, n)</code>:</h3>
+<p>Esta función se puede emplear en el problema <a href="https://codeforces.com/contest/224/problem/A">Parallelepiped</a> de <a href="https://codeforces.com/">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
+<blockquote class="blockquote">
+<p>Tienes un paralelepípedo rectangular con aristas de longitudes enteras. Conoces las áreas de sus tres caras que tienen un vértice común. Tu tarea es encontrar la suma de las longitudes de las 12 aristas de este paralelepípedo.</p>
+</blockquote>
+<p>La función recibe tres enteros positivos <code>l</code>, <code>m</code> y <code>n</code> que representan las áreas de las tres caras que comparten un vértice común. Debe retornar la suma de las longitudes de las 12 aristas del paralelepípedo.</p>
 
 
 </section>
