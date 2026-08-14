@@ -204,6 +204,8 @@ Esta función se puede emplear en el problema [Parallelepiped](https://codeforce
 
 > Tienes un paralelepípedo rectangular (ortoedro) con aristas de longitudes enteras. Conoces las áreas de sus tres caras que tienen un vértice común. Tu tarea es encontrar la suma de las longitudes de las 12 aristas de este paralelepípedo.
 
+![Ortoedro](../../images/ortoedro.png){#fig-ortoedro width=90%}
+
 La función recibe tres enteros positivos `l`, `m` y `n` que representan las áreas de las tres caras que comparten un vértice común. Debe retornar la suma de las longitudes de las 12 aristas del paralelepípedo.
 
 ***Ejemplos:**
