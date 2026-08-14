@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -105,7 +140,10 @@ window.Quarto = {
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Ejercicios — Tema 3: Funciones, Módulos y Organización del Código – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/ortoedro.png">
 <meta property="og:site_name" content="Programación (23200)">
+<meta property="og:image:height" content="594">
+<meta property="og:image:width" content="1024">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -592,7 +630,7 @@ window.Quarto = {
   <li><a href="#función-es_cuadradol-r-d-u" id="toc-función-es_cuadradol-r-d-u" class="nav-link" data-scroll-target="#función-es_cuadradol-r-d-u">2.7 Función <code>es_cuadrado(l, r, d, u)</code>:</a></li>
   <li><a href="#función-make_a_trianglea-b-c" id="toc-función-make_a_trianglea-b-c" class="nav-link" data-scroll-target="#función-make_a_trianglea-b-c">2.8 Función <code>make_a_triangle(a, b, c)</code>:</a></li>
   <li><a href="#función-perimetro_minimon" id="toc-función-perimetro_minimon" class="nav-link" data-scroll-target="#función-perimetro_minimon">2.9 Función <code>perimetro_minimo(n)</code>:</a></li>
-  <li><a href="#función-paralelepipedol-m-n" id="toc-función-paralelepipedol-m-n" class="nav-link" data-scroll-target="#función-paralelepipedol-m-n">2.10 Función <code>paralelepipedo(l, m, n)</code>:</a></li>
+  <li><a href="#función-ortoedrol-m-n" id="toc-función-ortoedrol-m-n" class="nav-link" data-scroll-target="#función-ortoedrol-m-n">2.10 Función <code>ortoedro(l, m, n)</code>:</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -738,34 +776,66 @@ A = \frac{n \cdot l^2}{4 \cdot \tan\left(\frac{\pi}{n}\right)}.
 </section>
 <section id="función-es_cuadradol-r-d-u" class="level3">
 <h3 class="anchored" data-anchor-id="función-es_cuadradol-r-d-u">2.7 Función <code>es_cuadrado(l, r, d, u)</code>:</h3>
-<p>Esta función se puede emplear en el problema <a href="https://codeforces.com/problemset/problem/2074/A">Draw a Square</a> de <a href="https://codeforces.com/">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
+<p>Esta función se puede emplear en el problema <a href="https://codeforces.com/problemset/problem/2074/A" target="_blank">Draw a Square</a> de <a href="https://codeforces.com/" target="_blank">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
 <blockquote class="blockquote">
-<p>Los soldados rosa te han dado 4 puntos distintos en el plano. Las coordenadas de los 4 puntos son <span class="math inline">\((−l,0)\)</span>, <span class="math inline">\((r,0)\)</span>, <span class="math inline">\((0,−d)\)</span>, <span class="math inline">\((0,u)\)</span> respectivamente, donde <span class="math inline">\(l, r, d, u\)</span> son enteros positivos. Determina si es posible dibujar un cuadrado con los puntos dados como vértices.</p>
+<p>Los soldados Rosa te han dado 4 puntos distintos en el plano. Las coordenadas de los 4 puntos son <span class="math inline">\((−l,0)\)</span>, <span class="math inline">\((r,0)\)</span>, <span class="math inline">\((0,−d)\)</span>, <span class="math inline">\((0,u)\)</span> respectivamente, donde <span class="math inline">\(l, r, d, u\)</span> son enteros positivos. Determina si es posible dibujar un cuadrado con los puntos dados como vértices.</p>
 </blockquote>
+<p>La función <code>es_cuadrado(l, r, d, u)</code> debe retornar <code>True</code> si es posible dibujar un cuadrado con los puntos dados como vértices y <code>False</code> en caso contrario.</p>
+<p><strong>Ejemplos:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_cuadrado(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># True</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_cuadrado(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># False</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_cuadrado(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))  <span class="co"># False</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="función-make_a_trianglea-b-c" class="level3">
 <h3 class="anchored" data-anchor-id="función-make_a_trianglea-b-c">2.8 Función <code>make_a_triangle(a, b, c)</code>:</h3>
-<p>Esta función se puede emplear en el problema <a href="https://codeforces.com/contest/1064/problem/A">Make a Triangle!</a> de <a href="https://codeforces.com/">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
+<p>Esta función se puede emplear en el problema <a href="https://codeforces.com/contest/1064/problem/A" target="_blank">Make a Triangle!</a> de <a href="https://codeforces.com/" target="_blank">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
 <blockquote class="blockquote">
 <p>Masha tiene tres palos de longitudes <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> y <span class="math inline">\(c\)</span> centímetros respectivamente. En un minuto, Masha puede elegir un palo arbitrario y aumentar su longitud en un centímetro. No le está permitido romper palos. ¿Cuál es el número mínimo de minutos que necesita dedicar a aumentar la longitud de un palo para poder ensamblar un triángulo de área positiva? Los palos deben usarse como lados del triángulo (un palo por lado) y sus extremos deben situarse en los vértices del triángulo. Se cumple que <span class="math inline">\(a, b, c\)</span> enteros con <span class="math inline">\(1 \leq a, b, c \leq 100\)</span>.</p>
 </blockquote>
 <p>La función <code>make_a_triangle(a, b, c)</code> debe calcular el número mínimo de minutos (un entero no negativo) que Masha necesita para poder formar el triángulo de área positiva con sus bastones.</p>
+<p><strong>Ejemplos:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(make_a_triangle(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))      <span class="co"># 0</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(make_a_triangle(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>))      <span class="co"># 1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(make_a_triangle(<span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">10</span>))  <span class="co"># 81</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="función-perimetro_minimon" class="level3">
 <h3 class="anchored" data-anchor-id="función-perimetro_minimon">2.9 Función <code>perimetro_minimo(n)</code>:</h3>
-<p>Esta función se puede emplear en el problema <a href="https://codeforces.com/contest/859/problem/B">Lazy Security Guard</a> de <a href="https://codeforces.com/">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
+<p>Esta función se puede emplear en el problema <a href="https://codeforces.com/contest/859/problem/B" target="_blank">Lazy Security Guard</a> de <a href="https://codeforces.com/" target="_blank">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
 <blockquote class="blockquote">
 <p>Tu amigo guardia de seguridad consiguió recientemente un nuevo trabajo en una nueva empresa de seguridad. La compañía le exige patrullar una zona de la ciudad que abarca exactamente <span class="math inline">\(n\)</span> manzanas, pero le dejan elegir cuáles manzanas. Es decir, tu amigo debe recorrer el perímetro de una región cuya superficie es exactamente <span class="math inline">\(n\)</span> bloques cuadrados. Tu amigo es bastante vago y le gustaría que le ayudaras a encontrar la ruta más corta posible que cumpla con los requisitos. La ciudad está dispuesta en un patrón de cuadrícula y es lo suficientemente grande como para que, a efectos del problema, pueda considerarse infinita.</p>
 </blockquote>
 <p>La entrada consistirá en un solo entero <span class="math inline">\(n\)</span> (<span class="math inline">\(1 \leq n \leq 10^6\)</span>), el número de manzanas que deben estar delimitadas por la ruta. Debe retorna el perímetro mínimo que se pueda alcanzar. Las manzanas se consideran cuadrados de lado 1.</p>
+<p><strong>Ejemplos:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(perimetro_minimo(<span class="dv">4</span>))   <span class="co"># 8</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(perimetro_minimo(<span class="dv">11</span>))  <span class="co"># 14</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(perimetro_minimo(<span class="dv">22</span>))  <span class="co"># 20</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Pista:</strong></p>
+<p>Para cualquier región conexa de área <span class="math inline">\(n\)</span> en una cuadrícula, el perímetro mínimo alcanzable es exactamente <span class="math inline">\(2 \lceil 2\sqrt{n} \rceil\)</span>. Las regiones que logran este mínimo son configuraciones compactas que siempre pueden inscribirse dentro de una caja delimitadora de dimensiones <span class="math inline">\(k \times k\)</span>, <span class="math inline">\(k \times (k+1)\)</span> o <span class="math inline">\((k+1) \times (k+1)\)</span>, donde <span class="math inline">\(k = \lfloor \sqrt{n} \rfloor\)</span>. Las funciones <code>math.floor</code> y <code>math.ceil</code> devuelven el piso (<span class="math inline">\(\lfloor x \rfloor\)</span>) y el techo de un número real (<span class="math inline">\(\lceil x \rceil\)</span>), respectivamente.</p>
 </section>
-<section id="función-paralelepipedol-m-n" class="level3">
-<h3 class="anchored" data-anchor-id="función-paralelepipedol-m-n">2.10 Función <code>paralelepipedo(l, m, n)</code>:</h3>
-<p>Esta función se puede emplear en el problema <a href="https://codeforces.com/contest/224/problem/A">Parallelepiped</a> de <a href="https://codeforces.com/">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
+<section id="función-ortoedrol-m-n" class="level3">
+<h3 class="anchored" data-anchor-id="función-ortoedrol-m-n">2.10 Función <code>ortoedro(l, m, n)</code>:</h3>
+<p>Esta función se puede emplear en el problema <a href="https://codeforces.com/contest/224/problem/A" target="_blank">Parallelepiped</a> de <a href="https://codeforces.com/" target="_blank">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
 <blockquote class="blockquote">
-<p>Tienes un paralelepípedo rectangular con aristas de longitudes enteras. Conoces las áreas de sus tres caras que tienen un vértice común. Tu tarea es encontrar la suma de las longitudes de las 12 aristas de este paralelepípedo.</p>
+<p>Tienes un paralelepípedo rectangular (ortoedro) con aristas de longitudes enteras. Conoces las áreas de sus tres caras que tienen un vértice común. Tu tarea es encontrar la suma de las longitudes de las 12 aristas de este paralelepípedo.</p>
 </blockquote>
+<div id="fig-ortoedro" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ortoedro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/ortoedro.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ortoedro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Ortoedro
+</figcaption>
+</figure>
+</div>
 <p>La función recibe tres enteros positivos <code>l</code>, <code>m</code> y <code>n</code> que representan las áreas de las tres caras que comparten un vértice común. Debe retornar la suma de las longitudes de las 12 aristas del paralelepípedo.</p>
+<p>*<strong>Ejemplos:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ortoedro(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># 12</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ortoedro(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">6</span>))  <span class="co"># 28</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Pista:</strong></p>
+<p>Sean <span class="math inline">\(a, b, c\)</span> las aristas y <span class="math inline">\(l = ab\)</span>, <span class="math inline">\(m = bc\)</span>, <span class="math inline">\(n = ac\)</span> las tres áreas conocidas. Los productos cruzados eliminan la variable no deseada: <span class="math display">\[
+l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
+\]</span></p>
 
 
 </section>
