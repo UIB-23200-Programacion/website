@@ -278,7 +278,7 @@ A continuación el pseudocódigo de implementaciones para las funciones en 3.4.3
 
 **Pseudocódigo:**
 
-En el siguiente pseudocódigo, la operación `div` representa la **división entera** truncada hacia abajo (floor division), y `mod` representa la operación módulo. La constante `719468` representa los días transcurridos desde el 1 de marzo del año 0 hasta el 1 de enero de 1970 (el Epoch de Unix).
+En el siguiente pseudocódigo, la constante `719468` representa los días transcurridos desde el 1 de marzo del año 0 hasta el 1 de enero de 1970 (el Epoch de Unix).
 
 **De Fecha a Días**
 
@@ -298,12 +298,12 @@ FUNCIÓN fecha_a_unix(año, mes, dia):
         mes_logico = mes - 3
         
     // 2. Calcular el periodo de 400 años (Era)
-    era = año_logico div 400
+    era = año_logico // 400
     año_en_era = año_logico - (era * 400)
     
     // 3. Calcular el día dentro del año y luego dentro de la Era
-    dia_en_año = (153 * mes_logico + 2) div 5 + dia - 1
-    dia_en_era = (año_en_era * 365) + (año_en_era div 4) - (año_en_era div 100) + dia_en_año
+    dia_en_año = (153 * mes_logico + 2) // 5 + dia - 1
+    dia_en_era = (año_en_era * 365) + (año_en_era // 4) - (año_en_era // 100) + dia_en_año
     
     // 4. Retornar días totales ajustados al Epoch de 1970
     RETORNAR (era * 146097) + dia_en_era - 719468
@@ -321,18 +321,18 @@ FUNCIÓN unix_a_fecha(dias_desde_epoch):
     dias_totales = dias_desde_epoch + 719468
     
     // 2. Extraer la Era y el día exacto dentro de esa Era
-    era = dias_totales div 146097
+    era = dias_totales // 146097
     dia_en_era = dias_totales - (era * 146097)
     
     // 3. Reconstruir el año lógico (fórmula que aplica la regla bisiesta)
-    año_en_era = (dia_en_era - (dia_en_era div 1460) + (dia_en_era div 36524) - (dia_en_era div 146096)) div 365
+    año_en_era = (dia_en_era - (dia_en_era // 1460) + (dia_en_era // 36524) - (dia_en_era // 146096)) // 365
     año_logico = año_en_era + (era * 400)
     
     // 4. Reconstruir el mes y el día a partir de los días restantes
-    dia_en_año = dia_en_era - (365 * año_en_era + (año_en_era div 4) - (año_en_era div 100))
-    mes_logico = (5 * dia_en_año + 2) div 153
+    dia_en_año = dia_en_era - (365 * año_en_era + (año_en_era // 4) - (año_en_era // 100))
+    mes_logico = (5 * dia_en_año + 2) // 153
     
-    dia = dia_en_año - ((153 * mes_logico + 2) div 5) + 1
+    dia = dia_en_año - ((153 * mes_logico + 2) // 5) + 1
     
     // 5. Deshacer el desplazamiento de marzo a enero
     SI mes_logico < 10:
