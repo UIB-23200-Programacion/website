@@ -407,3 +407,50 @@ FIN FUNCIÓN
 :::
 
 :::
+
+## Ejercicio 4: Nuevo módulo `aproximacion.py`
+
+Crea un nuevo módulo `aproximacion.py` en el paquete `t03_paquete` para métodos numéricos. Agrega las siguientes funciones:
+
+::: {.callout-note title="4.1 Función `raiz_cubica(x, tol)`:" collapse="true"}
+
+Calcula la raíz cúbica de un número real `x` utilizando el **método de Newton-Raphson** con una tolerancia `tol` con valor por defecto de `1e-10`. Admite `x` negativo. La iteración es 
+$$
+a_{n+1} = \frac{1}{3}\left(\frac{x}{a_n^2} + 2a_n\right)
+$$
+La iteración se detiene cuando $|a_{n+1} - a_n| < \text{tol}$.
+
+:::
+
+::: {.callout-note title="4.2 Función `biseccion(f, a, b, tol)`:" collapse="true"}
+
+La función `biseccion(f, a, b, tol)` implementa el **método de bisección** para encontrar una raíz de la función continua `f` en el intervalo `(a, b)` con una tolerancia `tol` con valor por defecto de `1e-6`. La función debe verificar que `f(a)` y `f(b)` tengan signos opuestos antes de iniciar el proceso. Si no se cumple esta condición, la función debe retornar `None`.
+
+El método de bisección es un algoritmo clásico del análisis numérico utilizado para encontrar las raíces de una función $f$, es decir, un valor de $x$ tal que $f(x) = 0$. Se fundamenta en el **Teorema de Bolzano** (o teorema del valor intermedio): si tienes una función continua en un intervalo cerrado $[a, b]$ y los valores de $f(a)$ y $f(b)$ tienen signos opuestos (es decir, uno es positivo y el otro negativo, por lo que $f(a) \cdot f(b) < 0$), entonces existe $x$ en el intervalo $(a, b)$ tal que $f(x) = 0$.
+
+El método consiste en atrapar la raíz dividiendo repetidamente el intervalo a la mitad y descartando la porción donde sabemos que no está la solución.
+
+1. **Iterar:** Se repiten los pasos siguientes mientras $|b - a| > \text{tol}$.
+
+2. **Calcular el punto medio:** Se encuentra el centro del intervalo actual usando la fórmula $c = \frac{a+b}{2}$.
+
+3. **Evaluar la función:** Se calcula el valor de $f(c)$. Si $f(c)$ es exactamente $0$ entonces $c$ es la raíz y el proceso termina.
+
+4. **Seleccionar el nuevo subintervalo:** Determinar en qué mitad está la raíz verificando los signos:
+
+- Si $f(a)$ y $f(c)$ tienen **signos opuestos**, la raíz está en la primera mitad. El nuevo intervalo será $[a, c]$ (es decir, $b$ toma el valor de $c$ `biseccion(f, a, c, tol)`).
+- Si tienen el **mismo signo**, la raíz obligatoriamente está en la segunda mitad. El nuevo intervalo será $[c, b]$ (es decir, $a$ toma el valor de $c$ `biseccion(f, c, b, tol)`).
+
+**Ejemplo:**
+
+Si `f(x) = x^3 - x - 2` en el intervalo `[1, 2]` la solución exacta es
+$$
+x=\frac{1}{3a}+a\text{ con }a=\left( \frac{\sqrt{702}}{27}+1\right) ^{1/3}
+$$
+por lo cual $x \approx 1.5213797068045676$.
+
+**Pista:**
+
+La implementación recursiva de este método es directa y elegante.
+
+:::
