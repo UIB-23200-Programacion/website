@@ -632,6 +632,13 @@ window.Quarto = {
   <li><a href="#función-perimetro_minimon" id="toc-función-perimetro_minimon" class="nav-link" data-scroll-target="#función-perimetro_minimon">2.9 Función <code>perimetro_minimo(n)</code>:</a></li>
   <li><a href="#función-ortoedrol-m-n" id="toc-función-ortoedrol-m-n" class="nav-link" data-scroll-target="#función-ortoedrol-m-n">2.10 Función <code>ortoedro(l, m, n)</code>:</a></li>
   </ul></li>
+  <li><a href="#ejercicio-3-módulo-conversor.py" id="toc-ejercicio-3-módulo-conversor.py" class="nav-link" data-scroll-target="#ejercicio-3-módulo-conversor.py">Ejercicio 3: Módulo <code>conversor.py</code></a>
+  <ul class="collapse">
+  <li><a href="#función-decimal_a_binarion" id="toc-función-decimal_a_binarion" class="nav-link" data-scroll-target="#función-decimal_a_binarion">3.1 Función <code>decimal_a_binario(n)</code>:</a></li>
+  <li><a href="#función-segundos_a_dhmss" id="toc-función-segundos_a_dhmss" class="nav-link" data-scroll-target="#función-segundos_a_dhmss">3.2 Función segundos_a_dhms(s)`</a></li>
+  <li><a href="#función-dhms_a_segundosd-h-m-s" id="toc-función-dhms_a_segundosd-h-m-s" class="nav-link" data-scroll-target="#función-dhms_a_segundosd-h-m-s">3.3 Función <code>dhms_a_segundos(d, h, m, s)</code>:</a></li>
+  <li><a href="#representación-de-fechas-con-un-único-entero-no-negativo" id="toc-representación-de-fechas-con-un-único-entero-no-negativo" class="nav-link" data-scroll-target="#representación-de-fechas-con-un-único-entero-no-negativo">3.4 Representación de fechas con un único entero no negativo:</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -833,11 +840,124 @@ Figura&nbsp;1: Ortoedro
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ortoedro(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># 12</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ortoedro(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">6</span>))  <span class="co"># 28</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Pista:</strong></p>
-<p>Sean <span class="math inline">\(a, b, c\)</span> las aristas y <span class="math inline">\(l = ab\)</span>, <span class="math inline">\(m = bc\)</span>, <span class="math inline">\(n = ac\)</span> las tres áreas conocidas. Los productos cruzados eliminan la variable no deseada: <span class="math display">\[
+<p>Sean <span class="math inline">\(a, b, c\)</span> las aristas (altura, longitud y profundidad) y <span class="math inline">\(l = ab\)</span>, <span class="math inline">\(m = bc\)</span>, <span class="math inline">\(n = ac\)</span> las tres áreas conocidas. Los productos cruzados eliminan la variable no deseada: <span class="math display">\[
 l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
 \]</span></p>
+</section>
+</section>
+<section id="ejercicio-3-módulo-conversor.py" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-3-módulo-conversor.py">Ejercicio 3: Módulo <code>conversor.py</code></h2>
+<section id="función-decimal_a_binarion" class="level3">
+<h3 class="anchored" data-anchor-id="función-decimal_a_binarion">3.1 Función <code>decimal_a_binario(n)</code>:</h3>
+<p>Convierte un número entero positivo <code>n</code> a su representación binaria como una cadena de caracteres. Por ejemplo, <code>decimal_a_binario(10)</code> devuelve <code>'1010'</code>.</p>
+<p><strong>Pista:</strong></p>
+<p>El algoritmo clásico para convertir un número decimal a binario se conoce como el <strong>método de divisiones sucesivas por 2</strong>. Consiste en dividir el número decimal entre 2 repetidas veces. En cada paso, guardamos el residuo (que siempre será 0 o 1) y continuamos dividiendo el cociente hasta que este llegue a 0. El número binario final se forma leyendo los residuos obtenidos de abajo hacia arriba (es decir, el último residuo es el primer dígito del binario). Por ejemplo, para convertir el número decimal 10 a binario:</p>
+<ul>
+<li>10 % 2 = 0, 10 ÷ 2 = 5, agregar ‘0’ a binario</li>
+<li>5 % 2 = 1, 5 ÷ 2 = 2, agregar ‘1’ a binario</li>
+<li>2 % 2 = 0, 2 ÷ 2 = 1, agregar ‘0’ a binario</li>
+<li>1 % 2 = 1, 1 ÷ 2 = 0, agregar ‘1’ a binario</li>
+</ul>
+</section>
+<section id="función-segundos_a_dhmss" class="level3">
+<h3 class="anchored" data-anchor-id="función-segundos_a_dhmss">3.2 Función segundos_a_dhms(s)`</h3>
+<p>Imprime el número de segundos <code>s &gt;= 0</code> en el formato <code>DD:HH:MM:SS</code> donde <code>DD</code> son los días, <code>HH</code> las horas, <code>MM</code> los minutos y <code>SS</code> los segundos. Usa división entera y módulo exclusivamente. Por ejemplo, <code>segundos_a_dhms(100000)</code> imprime <code>01:03:46:40</code>. Esta función no retorna ningún valor, solo imprime el resultado en pantalla.</p>
+</section>
+<section id="función-dhms_a_segundosd-h-m-s" class="level3">
+<h3 class="anchored" data-anchor-id="función-dhms_a_segundosd-h-m-s">3.3 Función <code>dhms_a_segundos(d, h, m, s)</code>:</h3>
+<p>Convierte un tiempo dado en días <code>d</code>, horas <code>h</code>, minutos <code>m</code> y segundos <code>s</code> a su equivalente en segundos. Por ejemplo, <code>dhms_a_segundos(1, 3, 46, 40)</code> devuelve <code>100000</code>.</p>
+</section>
+<section id="representación-de-fechas-con-un-único-entero-no-negativo" class="level3">
+<h3 class="anchored" data-anchor-id="representación-de-fechas-con-un-único-entero-no-negativo">3.4 Representación de fechas con un único entero no negativo:</h3>
+<p>En informática, representar una fecha con un único número se logra por dos vías fundamentales:</p>
+<ol type="1">
+<li>Calculando el tiempo transcurrido desde un punto de referencia fijo temporal. A este punto de referencia se le conoce como <strong>Epoch</strong> (o época). El estándar absoluto en programación y sistemas operativos de este método es el <strong>Tiempo Unix</strong>. Representa una fecha como la cantidad de <strong>segundos</strong> (o milisegundos) transcurridos desde el <strong>“Unix Epoch”</strong> que es el <strong>1 de enero de 1970 a las 00:00:00 UTC</strong> (del inglés Coordinated Universal Time).</li>
+<li><strong>Formato de Entero Posicional</strong> (YYYYMMDD) muy común en el procesamiento de datos y almacenamiento plano. Consiste en concatenar el año, mes y día en un solo número entero. Por ejemplo, el 7 de septiembre de 2026 se representa como <code>20260907</code>. Este formato tiene la ventaja de ser legible por humanos y de mantener el orden cronológico (un número mayor siempre es una fecha posterior), lo que permite ordenamientos muy eficientes sin necesidad de parsear la fecha.</li>
+</ol>
+<p>Agrega las siguientes funciones al módulo <code>conversor.py</code>:</p>
+<section id="función-fecha_a_enteroaño-mes-dia" class="level4">
+<h4 class="anchored" data-anchor-id="función-fecha_a_enteroaño-mes-dia">3.4.1 Función <code>fecha_a_entero(año, mes, dia)</code>:</h4>
+<p>Convierte una fecha dada por año, mes y día a un único número entero no negativo en formato YYYYMMDD. Por ejemplo, <code>fecha_a_entero(2026, 9, 7)</code> devuelve <code>20260907</code>. Tanto el año como el mes y el día deben ser enteros positivos. El mes debe estar en el rango 1 a 12 y el día debe ser válido para el mes y año dados (considerando años bisiestos).</p>
+</section>
+<section id="función-entero_a_fechan" class="level4">
+<h4 class="anchored" data-anchor-id="función-entero_a_fechan">3.4.2 Función <code>entero_a_fecha(n)</code>:</h4>
+<p>Convierte un número entero no negativo en formato YYYYMMDD a una fecha dada por año, mes y día en el formato DD/MM/AAAA. Por ejemplo, <code>entero_a_fecha(20260907)</code> devuelve la cadena <code>'07/09/2026'</code>.</p>
+</section>
+<section id="función-entero_a_unixn" class="level4">
+<h4 class="anchored" data-anchor-id="función-entero_a_unixn">3.4.3 Función <code>entero_a_unix(n)</code>:</h4>
+<p>Convierte una fecha dada por <code>n</code> en formato de entero posicional YYYYMMDD a Tiempo Unix en segundos. Por ejemplo, <code>entero_a_unix(20260907)</code> devuelve <code>1788739200</code>. Tanto el año como el mes y el día deben ser enteros positivos. El mes debe estar en el rango 1 a 12 y el día debe ser válido para el mes y año dados (considerando años bisiestos).</p>
+<p>Observe que si la fecha es anterior al 1 de enero de 1970, la función debe retornar un entero negativo. Por ejemplo, <code>entero_a_unix(19000101)</code> devuelve <code>-2208988800</code>.</p>
+</section>
+<section id="función-unix_a_enterot" class="level4">
+<h4 class="anchored" data-anchor-id="función-unix_a_enterot">3.4.4 Función <code>unix_a_entero(t)</code>:</h4>
+<p>Convierte un entero <code>t</code> que representa el Tiempo Unix en segundos a un número entero en formato YYYYMMDD. Por ejemplo, <code>unix_a_entero(1788739200)</code> devuelve <code>20260907</code> y <code>unix_a_entero(-2208988800)</code> devuelve <code>19000101</code>. La función debe retornar un entero no negativo.</p>
+<p><strong>Pista:</strong></p>
+<p>A continuación el pseudocódigo de implementaciones para las funciones en 3.4.3 y 3.4.4. Se emplea el <a href="https://howardhinnant.github.io/date_algorithms.html?utm_source=chatgpt.com" target="_blank">algoritmo de Howard Hinnant</a> expuesto en las funciones <em>civil-to-days</em> y <em>days-to-civil</em>.</p>
+<p><strong>Pseudocódigo:</strong></p>
+<p>En el siguiente pseudocódigo, la operación <code>div</code> representa la <strong>división entera</strong> truncada hacia abajo (floor division), y <code>mod</code> representa la operación módulo. La constante <code>719468</code> representa los días transcurridos desde el 1 de marzo del año 0 hasta el 1 de enero de 1970 (el Epoch de Unix).</p>
+<p><strong>De Fecha a Días</strong></p>
+<p>Convierte un año, mes y día en el número de días transcurridos desde el Epoch. Para obtener el Tiempo Unix, el resultado final simplemente se multiplica por <span class="math inline">\(86400\)</span> (los segundos de un día). Observe que el pesudocódico asume entrada de año, mes y día a diferencia de <code>entero_a_unix(n)</code> que recibe un entero en formato YYYYMMDD.</p>
+<pre class="text"><code>FUNCIÓN fecha_a_unix(año, mes, dia):
+    // 1. Desplazar el año para que comience en marzo
+    SI mes &lt;= 2:
+        año_logico = año - 1
+    SINO:
+        año_logico = año
+
+    SI mes &lt;= 2:
+        mes_logico = mes + 9
+    SINO:
+        mes_logico = mes - 3
+        
+    // 2. Calcular el periodo de 400 años (Era)
+    era = año_logico div 400
+    año_en_era = año_logico - (era * 400)
+    
+    // 3. Calcular el día dentro del año y luego dentro de la Era
+    dia_en_año = (153 * mes_logico + 2) div 5 + dia - 1
+    dia_en_era = (año_en_era * 365) + (año_en_era div 4) - (año_en_era div 100) + dia_en_año
+    
+    // 4. Retornar días totales ajustados al Epoch de 1970
+    RETORNAR (era * 146097) + dia_en_era - 719468
+FIN FUNCIÓN
+</code></pre>
+<p><strong>De Días a Fecha</strong></p>
+<p>Realiza el proceso inverso. Toma los días continuos desde 1970 y reconstruye el año, mes y día exactos.</p>
+<pre class="text"><code>FUNCIÓN unix_a_fecha(dias_desde_epoch):
+    // 1. Reajustar la base sumando los días previos a 1970
+    dias_totales = dias_desde_epoch + 719468
+    
+    // 2. Extraer la Era y el día exacto dentro de esa Era
+    era = dias_totales div 146097
+    dia_en_era = dias_totales - (era * 146097)
+    
+    // 3. Reconstruir el año lógico (fórmula que aplica la regla bisiesta)
+    año_en_era = (dia_en_era - (dia_en_era div 1460) + (dia_en_era div 36524) - (dia_en_era div 146096)) div 365
+    año_logico = año_en_era + (era * 400)
+    
+    // 4. Reconstruir el mes y el día a partir de los días restantes
+    dia_en_año = dia_en_era - (365 * año_en_era + (año_en_era div 4) - (año_en_era div 100))
+    mes_logico = (5 * dia_en_año + 2) div 153
+    
+    dia = dia_en_año - ((153 * mes_logico + 2) div 5) + 1
+    
+    // 5. Deshacer el desplazamiento de marzo a enero
+    SI mes_logico &lt; 10:
+        mes = mes_logico + 3
+    SINO:
+        mes = mes_logico - 9
+        
+    SI mes &lt;= 2:
+        año = año_logico + 1
+    SINO:
+        año = año_logico
+        
+    RETORNAR año, mes, dia
+FIN FUNCIÓN
+</code></pre>
 
 
+</section>
 </section>
 </section>
 
