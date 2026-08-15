@@ -14,23 +14,32 @@ Agrega las siguientes funciones al módulo que se especifica del paquete `t03_pa
 
 ## Ejercicio 1: Módulo `numeros.py`
 
-### 1.1 Función `es_perfecto(n)`: 
+::: {.callout-note title="1.1 Función `es_perfecto(n)`:" collapse="true"}
 
-Retorna `True` si el entero positivo `n` es un número **perfecto** y `False` en caso contrario. Un número es perfecto si es igual a la suma de sus divisores propios (divisores distintos de él mismo). Por ejemplo, $6 = 1 + 2 + 3$.
+Retorna `True` si el entero positivo `n` es un número **perfecto** y `False` en caso contrario. Un número es perfecto si es igual a la suma de sus divisores propios (divisores distintos de él mismo). Por ejemplo, $6 = 1 + 2 + 3$ por lo que `es_perfecto(6)` devuelve `True`.
 
-### 1.2. Función `siguiente_primo(n)`: 
+:::
 
-Devuelve el menor primo estrictamente mayor que `n`. Reutiliza `es_primo` del módulo `numeros.py`.
+::: {.callout-note title="1.2 Función `siguiente_primo(n)`:" collapse="true"}
 
-### 1.3. Función `collatz_tstime(n)`: 
+Devuelve el menor primo estrictamente mayor que `n`. Reutiliza `es_primo` del módulo `numeros.py`. Por ejemplo, `siguiente_primo(7)` devuelve 11.
 
-Devuelve el número de pasos (**t**otal **s**topping **time**) que tarda la **conjetura de Collatz** en llegar a 1 para un entero positivo `n`. La conjetura establece que, dado un número entero positivo `n`, si es par se divide entre 2 y si es impar se multiplica por 3 y se le suma 1. Se repite el proceso hasta llegar a 1. Vea ejercicio 27 del tema 2 para más detalles.
+:::
 
-### 1.4. Función `collatz_max(n)`: 
 
-Devuelve el valor máximo alcanzado durante la secuencia de la conjetura de Collatz para un entero positivo `n`. Vea ejercicio 27 del tema 2 para más detalles.
+::: {.callout-note title="1.3. Función `collatz_tstime(n)`:" collapse="true"}
 
-### 1.5. Función `p_fibonacci(n, p)`: 
+Devuelve el número de pasos (**t**otal **s**topping **time**) que tarda la **conjetura de Collatz** en llegar a 1 para un entero positivo `n`. La conjetura establece que, dado un número entero positivo `n`, si es par se divide entre 2 y si es impar se multiplica por 3 y se le suma 1. Se repite el proceso hasta llegar a 1. Vea ejercicio 27 del tema 2 para más detalles. Por ejemplo, `collatz_tstime(6)` devuelve 8 porque la secuencia es: 6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1.
+
+:::
+
+::: {.callout-note title="1.4. Función `collatz_max(n)`:" collapse="true"}
+
+Devuelve el valor máximo alcanzado durante la secuencia de la conjetura de Collatz para un entero positivo `n`. Vea ejercicio 27 del tema 2 para más detalles. Por ejemplo `collatz_max(6)` devuelve 16 porque la secuencia es: 6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1.
+
+:::
+
+::: {.callout-note title="1.5. Función `p_fibonacci(n, p)`:" collapse="true"}
 
 Devuelve el n-ésimo número de la secuencia $p$-Fibonacci. La secuencia  $p$-Fibonacci, para $p \in \mathbb{Z}$ con $p > 0$ se define mediante la siguiente relación de recurrencia: 
 $$
@@ -46,19 +55,27 @@ $$
 $$
 Por ejemplo, `p_fibonacci(5, 2)` devuelve el quinto término de la secuencia de Pell, que es 12. En esta función $p$ debe ser un parámetro con valor por defecto de 1 (produce la secuencia de Fibonacci clásica). 
 
-### 1.6. Función `phi_euler(n)`: 
+:::
+
+::: {.callout-note title="1.6. Función `phi_euler(n)`:" collapse="true"}
 
 Devuelve el valor de la función totiente de Euler $\phi(n)$ para un entero positivo `n`. La función $\phi(n)$ se define como el número de enteros positivos menores o iguales a `n` que son coprimos con `n`. Dos números $m$ y $n$ son coprimos si $\text{mcd}(m, n) = 1$. Por ejemplo, $\phi(9) = 6$ porque los enteros positivos menores o iguales a 9 que son coprimos con 9 son: 1, 2, 4, 5, 7 y 8.
 
-### 1.7. Función `tau(n)`: 
+:::
+
+::: {.callout-note title="1.7. Función `tau(n)`:" collapse="true"}
 
 Devuelve el número de divisores positivos de un entero positivo `n`. Por ejemplo, `tau(12)` devuelve 6 porque los divisores positivos de 12 son: 1, 2, 3, 4, 6 y 12.
 
-### 1.8. Función `sigma(n)`: 
+:::
+
+::: {.callout-note title="1.8. Función `sigma(n)`:" collapse="true"}
 
 Devuelve la suma de los divisores positivos de un entero positivo `n`. Por ejemplo, `sigma(12)` devuelve 28 porque los divisores positivos de 12 son: 1, 2, 3, 4, 6 y 12 y su suma es $1 + 2 + 3 + 4 + 6 + 12 = 28$.
 
-### 1.9. Función `exponenciacion_rapida(a, n)`: 
+:::
+
+::: {.callout-note title="1.9. Función `exponenciacion_rapida(a, n)`:" collapse="true"} 
 
 Devuelve el valor de $a^n$ utilizando el algoritmo de **exponenciación rápida**. La **exponenciación rápida** (*fast exponentiation* o *exponentiation by squaring*) es un algoritmo para calcular $a^n$ en $O(\log n)$ multiplicaciones en lugar de las $O(n)$ del método ingenuo.
 
@@ -74,7 +91,9 @@ En lugar de multiplicar $a$ por sí mismo $n$ veces, cada paso **divide el expon
 
 **La implementación recursiva de esta función es directa y elegante**.
 
-### 1.10. Función `exponenciacion_modular(a, n, m)`:
+:::
+
+::: {.callout-note title="1.10. Función `exponenciacion_modular(a, n, m)`:" collapse="true"}
 
 La **exponenciación modular rápida** es la combinación de la exponenciación rápida con aritmética modular: calcula $a^n \bmod m$ de forma eficiente. Es el algoritmo central de la criptografía moderna —RSA, Diffie-Hellman, pruebas de primalidad— porque en esos contextos se necesita calcular potencias con exponentes de cientos de dígitos, pero solo interesa el resto módulo un número grande.
 
@@ -93,9 +112,11 @@ a \cdot \left(a^{(n-1)/2} \bmod m\right)^2 \bmod m & \text{si } n \text{ es impa
 \end{cases}
 $$
 
+:::
+
 ## Ejercicio 2: Módulo `geometria.py`
 
-### 2.1 Función `area_elipse(a, b)`:
+::: {.callout-note title="2.1 Función `area_elipse(a, b)`:" collapse="true"}
 
 Calcula el área de una elipse a partir de la longitud de sus semiejes `a` y `b` mediante la fórmula:
 $$
@@ -103,7 +124,9 @@ A = \pi \cdot a \cdot b.
 $$
 Se debe verificar que ambos semiejes sean reales positivos.
 
-### 2.2 Función `area_triangulo(a, b, c)`:
+:::
+
+::: {.callout-note title="2.2 Función `area_triangulo(a, b, c)`:" collapse="true"}
 
 Calcula el área de un triángulo a partir de la longitud de sus lados `a`, `b` y `c` utilizando la fórmula de Herón:
 $$
@@ -111,14 +134,18 @@ A = \sqrt{s(s-a)(s-b)(s-c)}
 $$
 donde $s = \frac{a+b+c}{2}$ es el semiperímetro. Reutiliza `es_triangulo_valido` para validar que los lados forman un triángulo válido.
 
-### 2.3 Función `area_trapecio(b1, b2, h)`:
+:::
+
+::: {.callout-note title="2.3 Función `area_trapecio(b1, b2, h)`:" collapse="true"}
 
 Calcula el área de un trapecio a partir de la longitud de sus bases `b1` y `b2` y su altura `h`
 $$
 A = \frac{(b_1+b_2)}{2} \cdot h.
 $$
 
-### 2.4 Función `es_cuadrilatero_valido(a, b, c, d)`:
+:::
+
+::: {.callout-note title="2.4 Función `es_cuadrilatero_valido(a, b, c, d)`:" collapse="true"}
 
 Verifica si los lados `a`, `b`, `c` y `d` forman un cuadrilátero válido. La condición necesaria y suficiente es la generalización de la desigualdad triangular: **cada lado debe ser menor que la suma de los otros tres**. Equivalentemente, el lado más largo debe ser menor que la suma de los demás:
 $$
@@ -130,7 +157,9 @@ $$
 $$
 Obviamente se debe verificar además que todos los lados sean positivos. Recuerde que en Python la función built-in `max` puede recibir un número arbitrario de argumentos: `max(a, b, c, d)`.
 
-### 2.5 Función `area_maxima_cuadrilatero(a, b, c, d)`:
+:::
+
+::: {.callout-note title="2.5 Función `area_maxima_cuadrilatero(a, b, c, d)`:" collapse="true"}
 
 Calcula el área máxima posible de un cuadrilátero de lados $a, b, c, d$ correspondiente al cuadrilátero cíclico (inscrito en una circunferencia), mediante la fórmula de Brahmagupta que generaliza la de Herón:
 $$
@@ -138,7 +167,9 @@ A = \sqrt{(s-a)(s-b)(s-c)(s-d)}
 $$
 donde $s = \dfrac{a+b+c+d}{2}$ es el semiperímetro. Observa que cuando $d = 0$ se recupera exactamente la fórmula de Herón. Reutiliza `es_cuadrilatero_valido` para validar que los lados forman un cuadrilátero válido.
 
-### 2.6 Función `area_poligono_regular(n, l)`:
+:::
+
+::: {.callout-note title="2.6 Función `area_poligono_regular(n, l)`:" collapse="true"}
 
 Calcula el área de un polígono regular de $n$ lados y longitud de lado $l$ mediante la fórmula:
 $$
@@ -146,7 +177,9 @@ A = \frac{n \cdot l^2}{4 \cdot \tan\left(\frac{\pi}{n}\right)}.
 $$
 Se debe verificar que $n \geq 3$ y $l > 0$. La función `math.tan` devuelve el valor de la tangente de un ángulo dado en radianes.
 
-### 2.7 Función `es_cuadrado(l, r, d, u)`:
+:::
+
+::: {.callout-note title="2.7 Función `es_cuadrado(l, r, d, u)`:" collapse="true"}
 
 Esta función se puede emplear en el problema [Draw a Square](https://codeforces.com/problemset/problem/2074/A){target="_blank"} de [Codeforces](https://codeforces.com/){target="_blank"}. La traducción de parte del enunciado es la siguiente:
 
@@ -161,8 +194,9 @@ print(es_cuadrado(1, 1, 1, 1))  # True
 print(es_cuadrado(1, 2, 1, 1))  # False
 print(es_cuadrado(1, 2, 3, 4))  # False
 ```
+:::
 
-### 2.8 Función `make_a_triangle(a, b, c)`:
+::: {.callout-note title="2.8 Función `make_a_triangle(a, b, c)`:" collapse="true"}
 
 Esta función se puede emplear en el problema [Make a Triangle!](https://codeforces.com/contest/1064/problem/A){target="_blank"} de [Codeforces](https://codeforces.com/){target="_blank"}. La traducción de parte del enunciado es la siguiente:
 
@@ -178,7 +212,9 @@ print(make_a_triangle(2, 5, 3))      # 1
 print(make_a_triangle(100, 10, 10))  # 81
 ```
 
-### 2.9 Función `perimetro_minimo(n)`:
+:::
+
+::: {.callout-note title="2.9 Función `perimetro_minimo(n)`:" collapse="true"}
 
 Esta función se puede emplear en el problema [Lazy Security Guard](https://codeforces.com/contest/859/problem/B){target="_blank"} de [Codeforces](https://codeforces.com/){target="_blank"}. La traducción de parte del enunciado es la siguiente:
 
@@ -198,7 +234,9 @@ print(perimetro_minimo(22))  # 20
 
 Para cualquier región conexa de área $n$ en una cuadrícula, el perímetro mínimo alcanzable es exactamente $2 \lceil 2\sqrt{n} \rceil$. Las regiones que logran este mínimo son configuraciones compactas que siempre pueden inscribirse dentro de una caja delimitadora de dimensiones $k \times k$, $k \times (k+1)$ o $(k+1) \times (k+1)$, donde $k = \lfloor \sqrt{n} \rfloor$. Las funciones `math.floor` y `math.ceil` devuelven el piso ($\lfloor x \rfloor$) y el techo de un número real ($\lceil x \rceil$), respectivamente.
 
-### 2.10 Función `ortoedro(l, m, n)`:
+:::
+
+::: {.callout-note title="2.10 Función `ortoedro(l, m, n)`:" collapse="true"}
 
 Esta función se puede emplear en el problema [Parallelepiped](https://codeforces.com/contest/224/problem/A){target="_blank"} de [Codeforces](https://codeforces.com/){target="_blank"}. La traducción de parte del enunciado es la siguiente:
 
@@ -222,9 +260,11 @@ $$
 l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
 $$
 
+:::
+
 ## Ejercicio 3: Módulo `conversor.py`
 
-### 3.1 Función `decimal_a_binario(n)`:
+::: {.callout-note title="3.1 Función `decimal_a_binario(n)`:" collapse="true"}
 
 Convierte un número entero positivo `n` a su representación binaria como una cadena de caracteres. Por ejemplo, `decimal_a_binario(10)` devuelve `'1010'`. 
 
@@ -237,15 +277,21 @@ El algoritmo clásico para convertir un número decimal a binario se conoce como
 - 2 % 2 = 0, 2 ÷ 2 = 1, agregar '0' a binario
 - 1 % 2 = 1, 1 ÷ 2 = 0, agregar '1' a binario
 
-### 3.2 Función segundos_a_dhms(s)`
+::: 
+
+::: {.callout-note title="3.2 Función `segundos_a_dhms(s)`:" collapse="true"}
 
 Imprime el número de segundos `s >= 0` en el formato `DD:HH:MM:SS` donde `DD` son los días, `HH` las horas, `MM` los minutos y `SS` los segundos. Usa división entera y módulo exclusivamente. Por ejemplo, `segundos_a_dhms(100000)` imprime `01:03:46:40`. Esta función no retorna ningún valor, solo imprime el resultado en pantalla.
 
-### 3.3 Función `dhms_a_segundos(d, h, m, s)`:
+:::
+
+::: {.callout-note title="3.3 Función `dhms_a_segundos(d, h, m, s)`:" collapse="true"}
 
 Convierte un tiempo dado en días `d`, horas `h`, minutos `m` y segundos `s` a su equivalente en segundos. Por ejemplo, `dhms_a_segundos(1, 3, 46, 40)` devuelve `100000`.
 
-### 3.4 Representación de fechas con un único entero no negativo:
+:::
+
+::: {.callout-note title="3.4 Representación de fechas con único entero:" collapse="true"}
 
 En informática, representar una fecha con un único número se logra por dos vías fundamentales:
 
@@ -254,25 +300,33 @@ En informática, representar una fecha con un único número se logra por dos v�
 
 Agrega las siguientes funciones al módulo `conversor.py`:
 
-#### 3.4.1 Función `fecha_a_entero(año, mes, dia)`:
+::: {.callout-note title="3.4.1 Función `fecha_a_entero(año, mes, dia)`:" collapse="true"}
 
 Convierte una fecha dada por año, mes y día a un único número entero no negativo en formato YYYYMMDD. Por ejemplo, `fecha_a_entero(2026, 9, 7)` devuelve `20260907`. Tanto el año como el mes y el día deben ser enteros positivos. El mes debe estar en el rango 1 a 12 y el día debe ser válido para el mes y año dados (considerando años bisiestos).
 
-#### 3.4.2 Función `entero_a_fecha(n)`:
+:::
+
+::: {.callout-note title="3.4.2 Función `entero_a_fecha(n)`:" collapse="true"}
 
 Convierte un número entero no negativo en formato YYYYMMDD a una fecha dada por año, mes y día en el formato DD/MM/AAAA. Por ejemplo, `entero_a_fecha(20260907)` devuelve la cadena `'07/09/2026'`.
 
-#### 3.4.3 Función `entero_a_unix(n)`:
+:::
+
+::: {.callout-note title="3.4.3 Función `entero_a_unix(n)`:" collapse="true"}
 
 Convierte una fecha dada por `n` en formato de entero posicional YYYYMMDD a Tiempo Unix en segundos. Por ejemplo, `entero_a_unix(20260907)` devuelve `1788739200`. Tanto el año como el mes y el día deben ser enteros positivos. El mes debe estar en el rango 1 a 12 y el día debe ser válido para el mes y año dados (considerando años bisiestos). 
 
 Observe que si la fecha es anterior al 1 de enero de 1970, la función debe retornar un entero negativo. Por ejemplo, `entero_a_unix(19000101)` devuelve `-2208988800`.
 
-#### 3.4.4 Función `unix_a_entero(t)`:
+:::
+
+::: {.callout-note title="3.4.4 Función `unix_a_entero(t)`:" collapse="true"}
 
 Convierte un entero `t` que representa el Tiempo Unix en segundos a un número entero en formato YYYYMMDD. Por ejemplo, `unix_a_entero(1788739200)` devuelve `20260907` y `unix_a_entero(-2208988800)` devuelve `19000101`. La función debe retornar un entero no negativo.
 
-**Pista:**
+:::
+
+::: {.callout-note title="Algoritmo para 3.4.3 y 3.4.4" collapse="true"}
 
 A continuación el pseudocódigo de implementaciones para las funciones en 3.4.3 y 3.4.4. Se emplea el [algoritmo de Howard Hinnant](https://howardhinnant.github.io/date_algorithms.html?utm_source=chatgpt.com){target="_blank"} expuesto en las funciones *civil-to-days* y *days-to-civil*.
 
@@ -349,3 +403,7 @@ FUNCIÓN unix_a_fecha(dias_desde_epoch):
 FIN FUNCIÓN
 
 ```
+
+:::
+
+:::
