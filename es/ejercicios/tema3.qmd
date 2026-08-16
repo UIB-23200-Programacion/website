@@ -237,8 +237,6 @@ print(area_trapecio(3, 5, 4))  # 16.0
 
 :::
 
-:::
-
 ::: {.callout-note title="2.4 Función `es_cuadrilatero_valido(a, b, c, d)`:" collapse="true"}
 
 Verifica si los lados `a`, `b`, `c` y `d` forman un cuadrilátero válido. 
