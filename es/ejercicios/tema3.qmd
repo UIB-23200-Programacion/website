@@ -571,11 +571,11 @@ print(unix_a_entero(-2208988800))  # 19000101
 
 :::
 
-## Ejercicio 4: Nuevo módulo `aproximacion.py`
+## Ejercicio 3.4: Nuevo módulo `aproximacion.py`
 
 Crea un nuevo módulo `aproximacion.py` en el paquete `t03_paquete` para métodos numéricos. Agrega las siguientes funciones:
 
-::: {.callout-note title="4.1 Función `raiz_cubica(x, tol)`:" collapse="true"}
+::: {.callout-note title="3.4.1 Función `raiz_cubica(x, tol)`:" collapse="true"}
 
 Calcula la raíz cúbica de un número real `x` utilizando el [método de Newton-Raphson](https://es.wikipedia.org/wiki/Método_de_Newton-Raphson){target="_blank"} con una tolerancia `tol` con valor por defecto de `1e-10`. Admite `x` negativo. 
 
@@ -587,7 +587,7 @@ La iteración se detiene cuando $|a_{n+1} - a_n| < \text{tol}$.
 
 :::
 
-::: {.callout-note title="4.2 Función `biseccion(f, a, b, tol)`:" collapse="true"}
+::: {.callout-note title="3.4.2 Función `biseccion(f, a, b, tol)`:" collapse="true"}
 
 La función `biseccion(f, a, b, tol)` implementa el **método de bisección** para encontrar una raíz de la función continua `f` en el intervalo `(a, b)` con una tolerancia `tol` con valor por defecto de `1e-6`. Se debe verificar que `f(a)` y `f(b)` tengan signos opuestos antes de iniciar el proceso. La función `f` (parámetro de `biseccion`) debe ser una función que acepte un único argumento y devuelva un valor numérico, debe estar definida en el ámbito global en el cual se encuentra `biseccion`.
 
@@ -630,7 +630,7 @@ print(biseccion(f, 1, 2))  # 1.5213797068
 
 :::
 
-::: {.callout-note title="4.2 Función `regula_falsi(f, a, b, tol)`:" collapse="true"}
+::: {.callout-note title="3.4.3 Función `regula_falsi(f, a, b, tol)`:" collapse="true"}
 
 La función `regula_falsi(f, a, b, tol)` implementa el **método de la regula_falsi** (regla del falso o falsa posición) para encontrar una raíz de la función continua `f` en el intervalo `(a, b)` con una tolerancia `tol` con valor por defecto de `1e-10`. Al igual que en el método de bisección, se debe verificar que `f(a)` y `f(b)` tengan signos opuestos antes de iniciar el proceso. La función `f` (parámetro de `regula_falsi`) debe ser una función que acepte un único argumento y devuelva un valor numérico, debe estar definida en el ámbito global en el cual se encuentra `regula_falsi`.
 
