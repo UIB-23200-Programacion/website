@@ -609,6 +609,7 @@ window.Quarto = {
   <li><a href="#ejercicio-1-módulo-numeros.py" id="toc-ejercicio-1-módulo-numeros.py" class="nav-link active" data-scroll-target="#ejercicio-1-módulo-numeros.py">Ejercicio 1: Módulo <code>numeros.py</code></a></li>
   <li><a href="#ejercicio-2-módulo-geometria.py" id="toc-ejercicio-2-módulo-geometria.py" class="nav-link" data-scroll-target="#ejercicio-2-módulo-geometria.py">Ejercicio 2: Módulo <code>geometria.py</code></a></li>
   <li><a href="#ejercicio-3-módulo-conversor.py" id="toc-ejercicio-3-módulo-conversor.py" class="nav-link" data-scroll-target="#ejercicio-3-módulo-conversor.py">Ejercicio 3: Módulo <code>conversor.py</code></a></li>
+  <li><a href="#ejercicio-4-nuevo-módulo-aproximacion.py" id="toc-ejercicio-4-nuevo-módulo-aproximacion.py" class="nav-link" data-scroll-target="#ejercicio-4-nuevo-módulo-aproximacion.py">Ejercicio 4: Nuevo módulo <code>aproximacion.py</code></a></li>
   </ul>
 </nav>
     </div>
@@ -645,7 +646,7 @@ window.Quarto = {
 <section id="ejercicio-1-módulo-numeros.py" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-1-módulo-numeros.py">Ejercicio 1: Módulo <code>numeros.py</code></h2>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="1.1 Función `es_perfecto(n)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -654,14 +655,28 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Retorna <code>True</code> si el entero positivo <code>n</code> es un número <strong>perfecto</strong> y <code>False</code> en caso contrario. Un número es perfecto si es igual a la suma de sus divisores propios (divisores distintos de él mismo). Por ejemplo, <span class="math inline">\(6 = 1 + 2 + 3\)</span> por lo que <code>es_perfecto(6)</code> devuelve <code>True</code>.</p>
+<p>Retorna <code>True</code> si el entero positivo <code>n</code> es un número <strong>perfecto</strong> y <code>False</code> en caso contrario. Un número es perfecto si es igual a la suma de sus divisores propios (divisores distintos de él mismo).</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tenemos que <span class="math inline">\(6 = 1 + 2 + 3\)</span> por lo que</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>es_perfecto(<span class="dv">6</span>)  <span class="co"># True</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="1.2 Función `siguiente_primo(n)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -670,14 +685,28 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Devuelve el menor primo estrictamente mayor que <code>n</code>. Reutiliza <code>es_primo</code> del módulo <code>numeros.py</code>. Por ejemplo, <code>siguiente_primo(7)</code> devuelve 11.</p>
+<p>Devuelve el menor primo estrictamente mayor que <code>n</code>. Reutiliza <code>es_primo</code> del módulo <code>numeros.py</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>siguiente_primo(<span class="dv">7</span>)  <span class="co"># 11</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>siguiente_primo(<span class="dv">11</span>) <span class="co"># 13</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="1.3. Función `collatz_tstime(n)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -686,14 +715,14 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Devuelve el número de pasos (<strong>t</strong>otal <strong>s</strong>topping <strong>time</strong>) que tarda la <strong>conjetura de Collatz</strong> en llegar a 1 para un entero positivo <code>n</code>. La conjetura establece que, dado un número entero positivo <code>n</code>, si es par se divide entre 2 y si es impar se multiplica por 3 y se le suma 1. Se repite el proceso hasta llegar a 1. Vea ejercicio 27 del tema 2 para más detalles. Por ejemplo, <code>collatz_tstime(6)</code> devuelve 8 porque la secuencia es: 6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="1.4. Función `collatz_max(n)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -702,14 +731,14 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Devuelve el valor máximo alcanzado durante la secuencia de la conjetura de Collatz para un entero positivo <code>n</code>. Vea ejercicio 27 del tema 2 para más detalles. Por ejemplo <code>collatz_max(6)</code> devuelve 16 porque la secuencia es: 6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="1.5. Función `p_fibonacci(n, p)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -718,7 +747,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Devuelve el n-ésimo número de la secuencia <span class="math inline">\(p\)</span>-Fibonacci. La secuencia <span class="math inline">\(p\)</span>-Fibonacci, para <span class="math inline">\(p \in \mathbb{Z}\)</span> con <span class="math inline">\(p &gt; 0\)</span> se define mediante la siguiente relación de recurrencia: <span class="math display">\[
 \begin{aligned}
@@ -733,7 +762,7 @@ F_p(n) &amp;= F_p(n-1) + F_p(n-2), \quad n \geq 2.
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="1.6. Función `phi_euler(n)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -742,14 +771,14 @@ F_p(n) &amp;= F_p(n-1) + F_p(n-2), \quad n \geq 2.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Devuelve el valor de la función totiente de Euler <span class="math inline">\(\phi(n)\)</span> para un entero positivo <code>n</code>. La función <span class="math inline">\(\phi(n)\)</span> se define como el número de enteros positivos menores o iguales a <code>n</code> que son coprimos con <code>n</code>. Dos números <span class="math inline">\(m\)</span> y <span class="math inline">\(n\)</span> son coprimos si <span class="math inline">\(\text{mcd}(m, n) = 1\)</span>. Por ejemplo, <span class="math inline">\(\phi(9) = 6\)</span> porque los enteros positivos menores o iguales a 9 que son coprimos con 9 son: 1, 2, 4, 5, 7 y 8.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="1.7. Función `tau(n)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -758,14 +787,14 @@ F_p(n) &amp;= F_p(n-1) + F_p(n-2), \quad n \geq 2.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Devuelve el número de divisores positivos de un entero positivo <code>n</code>. Por ejemplo, <code>tau(12)</code> devuelve 6 porque los divisores positivos de 12 son: 1, 2, 3, 4, 6 y 12.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="1.8. Función `sigma(n)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -774,14 +803,14 @@ F_p(n) &amp;= F_p(n-1) + F_p(n-2), \quad n \geq 2.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Devuelve la suma de los divisores positivos de un entero positivo <code>n</code>. Por ejemplo, <code>sigma(12)</code> devuelve 28 porque los divisores positivos de 12 son: 1, 2, 3, 4, 6 y 12 y su suma es <span class="math inline">\(1 + 2 + 3 + 4 + 6 + 12 = 28\)</span>.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="1.9. Función `exponenciacion_rapida(a, n)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -790,7 +819,7 @@ F_p(n) &amp;= F_p(n-1) + F_p(n-2), \quad n \geq 2.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Devuelve el valor de <span class="math inline">\(a^n\)</span> utilizando el algoritmo de <strong>exponenciación rápida</strong>. La <strong>exponenciación rápida</strong> (<em>fast exponentiation</em> o <em>exponentiation by squaring</em>) es un algoritmo para calcular <span class="math inline">\(a^n\)</span> en <span class="math inline">\(O(\log n)\)</span> multiplicaciones en lugar de las <span class="math inline">\(O(n)\)</span> del método ingenuo.</p>
 <p>Se basa en la observación: <span class="math display">\[
@@ -805,7 +834,7 @@ a \cdot \left(a^{(n-1)/2}\right)^2 &amp; \text{si } n \text{ es impar}
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="1.10. Función `exponenciacion_modular(a, n, m)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -814,7 +843,7 @@ a \cdot \left(a^{(n-1)/2}\right)^2 &amp; \text{si } n \text{ es impar}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La <strong>exponenciación modular rápida</strong> es la combinación de la exponenciación rápida con aritmética modular: calcula <span class="math inline">\(a^n \bmod m\)</span> de forma eficiente. Es el algoritmo central de la criptografía moderna —RSA, Diffie-Hellman, pruebas de primalidad— porque en esos contextos se necesita calcular potencias con exponentes de cientos de dígitos, pero solo interesa el resto módulo un número grande.</p>
 <p>La clave es que el módulo puede aplicarse en <strong>cada paso intermedio</strong>, sin esperar al resultado final. Esto se justifica por la propiedad: <span class="math display">\[
@@ -834,7 +863,7 @@ a \cdot \left(a^{(n-1)/2} \bmod m\right)^2 \bmod m &amp; \text{si } n \text{ es 
 <section id="ejercicio-2-módulo-geometria.py" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-2-módulo-geometria.py">Ejercicio 2: Módulo <code>geometria.py</code></h2>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="2.1 Función `area_elipse(a, b)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -843,7 +872,7 @@ a \cdot \left(a^{(n-1)/2} \bmod m\right)^2 \bmod m &amp; \text{si } n \text{ es 
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Calcula el área de una elipse a partir de la longitud de sus semiejes <code>a</code> y <code>b</code> mediante la fórmula: <span class="math display">\[
 A = \pi \cdot a \cdot b.
@@ -852,7 +881,7 @@ A = \pi \cdot a \cdot b.
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="2.2 Función `area_triangulo(a, b, c)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -861,7 +890,7 @@ A = \pi \cdot a \cdot b.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Calcula el área de un triángulo a partir de la longitud de sus lados <code>a</code>, <code>b</code> y <code>c</code> utilizando la fórmula de Herón: <span class="math display">\[
 A = \sqrt{s(s-a)(s-b)(s-c)}
@@ -870,7 +899,7 @@ A = \sqrt{s(s-a)(s-b)(s-c)}
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="2.3 Función `area_trapecio(b1, b2, h)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -879,7 +908,7 @@ A = \sqrt{s(s-a)(s-b)(s-c)}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Calcula el área de un trapecio a partir de la longitud de sus bases <code>b1</code> y <code>b2</code> y su altura <code>h</code> <span class="math display">\[
 A = \frac{(b_1+b_2)}{2} \cdot h.
@@ -888,7 +917,7 @@ A = \frac{(b_1+b_2)}{2} \cdot h.
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="2.4 Función `es_cuadrilatero_valido(a, b, c, d)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -897,7 +926,7 @@ A = \frac{(b_1+b_2)}{2} \cdot h.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Verifica si los lados <code>a</code>, <code>b</code>, <code>c</code> y <code>d</code> forman un cuadrilátero válido. La condición necesaria y suficiente es la generalización de la desigualdad triangular: <strong>cada lado debe ser menor que la suma de los otros tres</strong>. Equivalentemente, el lado más largo debe ser menor que la suma de los demás: <span class="math display">\[
 \max(a, b, c, d) &lt; a + b + c + d - \max(a, b, c, d),
@@ -908,7 +937,7 @@ A = \frac{(b_1+b_2)}{2} \cdot h.
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="2.5 Función `area_maxima_cuadrilatero(a, b, c, d)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -917,7 +946,7 @@ A = \frac{(b_1+b_2)}{2} \cdot h.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Calcula el área máxima posible de un cuadrilátero de lados <span class="math inline">\(a, b, c, d\)</span> correspondiente al cuadrilátero cíclico (inscrito en una circunferencia), mediante la fórmula de Brahmagupta que generaliza la de Herón: <span class="math display">\[
 A = \sqrt{(s-a)(s-b)(s-c)(s-d)}
@@ -926,7 +955,7 @@ A = \sqrt{(s-a)(s-b)(s-c)(s-d)}
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="2.6 Función `area_poligono_regular(n, l)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -935,7 +964,7 @@ A = \sqrt{(s-a)(s-b)(s-c)(s-d)}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Calcula el área de un polígono regular de <span class="math inline">\(n\)</span> lados y longitud de lado <span class="math inline">\(l\)</span> mediante la fórmula: <span class="math display">\[
 A = \frac{n \cdot l^2}{4 \cdot \tan\left(\frac{\pi}{n}\right)}.
@@ -944,7 +973,7 @@ A = \frac{n \cdot l^2}{4 \cdot \tan\left(\frac{\pi}{n}\right)}.
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="2.7 Función `es_cuadrado(l, r, d, u)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -953,7 +982,7 @@ A = \frac{n \cdot l^2}{4 \cdot \tan\left(\frac{\pi}{n}\right)}.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Esta función se puede emplear en el problema <a href="https://codeforces.com/problemset/problem/2074/A" target="_blank">Draw a Square</a> de <a href="https://codeforces.com/" target="_blank">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
 <blockquote class="blockquote">
@@ -961,14 +990,14 @@ A = \frac{n \cdot l^2}{4 \cdot \tan\left(\frac{\pi}{n}\right)}.
 </blockquote>
 <p>La función <code>es_cuadrado(l, r, d, u)</code> debe retornar <code>True</code> si es posible dibujar un cuadrado con los puntos dados como vértices y <code>False</code> en caso contrario.</p>
 <p><strong>Ejemplos:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_cuadrado(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># True</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_cuadrado(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># False</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_cuadrado(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))  <span class="co"># False</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_cuadrado(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># True</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_cuadrado(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># False</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_cuadrado(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))  <span class="co"># False</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="2.8 Función `make_a_triangle(a, b, c)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -977,7 +1006,7 @@ A = \frac{n \cdot l^2}{4 \cdot \tan\left(\frac{\pi}{n}\right)}.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Esta función se puede emplear en el problema <a href="https://codeforces.com/contest/1064/problem/A" target="_blank">Make a Triangle!</a> de <a href="https://codeforces.com/" target="_blank">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
 <blockquote class="blockquote">
@@ -985,14 +1014,14 @@ A = \frac{n \cdot l^2}{4 \cdot \tan\left(\frac{\pi}{n}\right)}.
 </blockquote>
 <p>La función <code>make_a_triangle(a, b, c)</code> debe calcular el número mínimo de minutos (un entero no negativo) que Masha necesita para poder formar el triángulo de área positiva con sus bastones.</p>
 <p><strong>Ejemplos:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(make_a_triangle(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))      <span class="co"># 0</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(make_a_triangle(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>))      <span class="co"># 1</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(make_a_triangle(<span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">10</span>))  <span class="co"># 81</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(make_a_triangle(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))      <span class="co"># 0</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(make_a_triangle(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>))      <span class="co"># 1</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(make_a_triangle(<span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">10</span>))  <span class="co"># 81</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="2.9 Función `perimetro_minimo(n)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1001,7 +1030,7 @@ A = \frac{n \cdot l^2}{4 \cdot \tan\left(\frac{\pi}{n}\right)}.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Esta función se puede emplear en el problema <a href="https://codeforces.com/contest/859/problem/B" target="_blank">Lazy Security Guard</a> de <a href="https://codeforces.com/" target="_blank">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
 <blockquote class="blockquote">
@@ -1009,16 +1038,16 @@ A = \frac{n \cdot l^2}{4 \cdot \tan\left(\frac{\pi}{n}\right)}.
 </blockquote>
 <p>La entrada consistirá en un solo entero <span class="math inline">\(n\)</span> (<span class="math inline">\(1 \leq n \leq 10^6\)</span>), el número de manzanas que deben estar delimitadas por la ruta. Debe retorna el perímetro mínimo que se pueda alcanzar. Las manzanas se consideran cuadrados de lado 1.</p>
 <p><strong>Ejemplos:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(perimetro_minimo(<span class="dv">4</span>))   <span class="co"># 8</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(perimetro_minimo(<span class="dv">11</span>))  <span class="co"># 14</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(perimetro_minimo(<span class="dv">22</span>))  <span class="co"># 20</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(perimetro_minimo(<span class="dv">4</span>))   <span class="co"># 8</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(perimetro_minimo(<span class="dv">11</span>))  <span class="co"># 14</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(perimetro_minimo(<span class="dv">22</span>))  <span class="co"># 20</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Pista:</strong></p>
 <p>Para cualquier región conexa de área <span class="math inline">\(n\)</span> en una cuadrícula, el perímetro mínimo alcanzable es exactamente <span class="math inline">\(2 \lceil 2\sqrt{n} \rceil\)</span>. Las regiones que logran este mínimo son configuraciones compactas que siempre pueden inscribirse dentro de una caja delimitadora de dimensiones <span class="math inline">\(k \times k\)</span>, <span class="math inline">\(k \times (k+1)\)</span> o <span class="math inline">\((k+1) \times (k+1)\)</span>, donde <span class="math inline">\(k = \lfloor \sqrt{n} \rfloor\)</span>. Las funciones <code>math.floor</code> y <code>math.ceil</code> devuelven el piso (<span class="math inline">\(\lfloor x \rfloor\)</span>) y el techo de un número real (<span class="math inline">\(\lceil x \rceil\)</span>), respectivamente.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="2.10 Función `ortoedro(l, m, n)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1027,7 +1056,7 @@ A = \frac{n \cdot l^2}{4 \cdot \tan\left(\frac{\pi}{n}\right)}.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Esta función se puede emplear en el problema <a href="https://codeforces.com/contest/224/problem/A" target="_blank">Parallelepiped</a> de <a href="https://codeforces.com/" target="_blank">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
 <blockquote class="blockquote">
@@ -1045,8 +1074,8 @@ Figura&nbsp;1: Ortoedro
 </div>
 <p>La función recibe tres enteros positivos <code>l</code>, <code>m</code> y <code>n</code> que representan las áreas de las tres caras que comparten un vértice común. Debe retornar la suma de las longitudes de las 12 aristas del paralelepípedo.</p>
 <p>*<strong>Ejemplos:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ortoedro(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># 12</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ortoedro(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">6</span>))  <span class="co"># 28</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ortoedro(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># 12</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ortoedro(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">6</span>))  <span class="co"># 28</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Pista:</strong></p>
 <p>Sean <span class="math inline">\(a, b, c\)</span> las aristas (altura, longitud y profundidad) y <span class="math inline">\(l = ab\)</span>, <span class="math inline">\(m = bc\)</span>, <span class="math inline">\(n = ac\)</span> las tres áreas conocidas. Los productos cruzados eliminan la variable no deseada: <span class="math display">\[
 l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
@@ -1058,7 +1087,7 @@ l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
 <section id="ejercicio-3-módulo-conversor.py" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-3-módulo-conversor.py">Ejercicio 3: Módulo <code>conversor.py</code></h2>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="3.1 Función `decimal_a_binario(n)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1067,7 +1096,7 @@ l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Convierte un número entero positivo <code>n</code> a su representación binaria como una cadena de caracteres. Por ejemplo, <code>decimal_a_binario(10)</code> devuelve <code>'1010'</code>.</p>
 <p><strong>Pista:</strong></p>
@@ -1082,7 +1111,7 @@ l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="3.2 Función `segundos_a_dhms(s)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1091,14 +1120,14 @@ l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Imprime el número de segundos <code>s &gt;= 0</code> en el formato <code>DD:HH:MM:SS</code> donde <code>DD</code> son los días, <code>HH</code> las horas, <code>MM</code> los minutos y <code>SS</code> los segundos. Usa división entera y módulo exclusivamente. Por ejemplo, <code>segundos_a_dhms(100000)</code> imprime <code>01:03:46:40</code>. Esta función no retorna ningún valor, solo imprime el resultado en pantalla.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="3.3 Función `dhms_a_segundos(d, h, m, s)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1107,14 +1136,14 @@ l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Convierte un tiempo dado en días <code>d</code>, horas <code>h</code>, minutos <code>m</code> y segundos <code>s</code> a su equivalente en segundos. Por ejemplo, <code>dhms_a_segundos(1, 3, 46, 40)</code> devuelve <code>100000</code>.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="3.4 Representación de fechas con único entero:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1123,7 +1152,7 @@ l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-29" class="callout-29-contents callout-collapse collapse">
+<div id="callout-31" class="callout-31-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>En informática, representar una fecha con un único número se logra por dos vías fundamentales:</p>
 <ol type="1">
@@ -1132,7 +1161,7 @@ l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
 </ol>
 <p>Agrega las siguientes funciones al módulo <code>conversor.py</code>:</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="3.4.1 Función `fecha_a_entero(año, mes, dia)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1141,14 +1170,14 @@ l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Convierte una fecha dada por año, mes y día a un único número entero no negativo en formato YYYYMMDD. Por ejemplo, <code>fecha_a_entero(2026, 9, 7)</code> devuelve <code>20260907</code>. Tanto el año como el mes y el día deben ser enteros positivos. El mes debe estar en el rango 1 a 12 y el día debe ser válido para el mes y año dados (considerando años bisiestos).</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="3.4.2 Función `entero_a_fecha(n)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1157,14 +1186,14 @@ l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Convierte un número entero no negativo en formato YYYYMMDD a una fecha dada por año, mes y día en el formato DD/MM/AAAA. Por ejemplo, <code>entero_a_fecha(20260907)</code> devuelve la cadena <code>'07/09/2026'</code>.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="3.4.3 Función `entero_a_unix(n)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1173,7 +1202,7 @@ l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Convierte una fecha dada por <code>n</code> en formato de entero posicional YYYYMMDD a Tiempo Unix en segundos. Por ejemplo, <code>entero_a_unix(20260907)</code> devuelve <code>1788739200</code>. Tanto el año como el mes y el día deben ser enteros positivos. El mes debe estar en el rango 1 a 12 y el día debe ser válido para el mes y año dados (considerando años bisiestos).</p>
 <p>Observe que si la fecha es anterior al 1 de enero de 1970, la función debe retornar un entero negativo. Por ejemplo, <code>entero_a_unix(19000101)</code> devuelve <code>-2208988800</code>.</p>
@@ -1181,7 +1210,7 @@ l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="3.4.4 Función `unix_a_entero(t)`:">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1190,25 +1219,25 @@ l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div id="callout-29" class="callout-29-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Convierte un entero <code>t</code> que representa el Tiempo Unix en segundos a un número entero en formato YYYYMMDD. Por ejemplo, <code>unix_a_entero(1788739200)</code> devuelve <code>20260907</code> y <code>unix_a_entero(-2208988800)</code> devuelve <code>19000101</code>. La función debe retornar un entero no negativo.</p>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note no-icon callout-titled" title="Algoritmo para 3.4.3 y 3.4.4">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Algoritmo para 3.4.3 y 3.4.4">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Algoritmo para 3.4.3 y 3.4.4
+<span class="screen-reader-only">Importante</span>Algoritmo para 3.4.3 y 3.4.4
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A continuación el pseudocódigo de implementaciones para las funciones en 3.4.3 y 3.4.4. Se emplea el <a href="https://howardhinnant.github.io/date_algorithms.html?utm_source=chatgpt.com" target="_blank">algoritmo de Howard Hinnant</a> expuesto en las funciones <em>civil-to-days</em> y <em>days-to-civil</em>.</p>
+<p>A continuación el pseudocódigo de implementaciones para las funciones en 3.4.3 y 3.4.4. Se emplea el <a href="https://howardhinnant.github.io/date_algorithms.html?utm_source=chatgpt.com" target="_blank">algoritmo de Howard Hinnant</a> expuesto en las funciones <em>civil-to-days</em> y <em>days-to-civil</em>. Trate de convertir de pseudocódigo a Python de la manera más eficiente posible.</p>
 <p><strong>Pseudocódigo:</strong></p>
 <p>En el siguiente pseudocódigo, la constante <code>719468</code> representa los días transcurridos desde el 1 de marzo del año 0 hasta el 1 de enero de 1970 (el Epoch de Unix).</p>
 <p><strong>De Fecha a Días</strong></p>
@@ -1274,6 +1303,74 @@ FIN FUNCIÓN
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-4-nuevo-módulo-aproximacion.py" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-4-nuevo-módulo-aproximacion.py">Ejercicio 4: Nuevo módulo <code>aproximacion.py</code></h2>
+<p>Crea un nuevo módulo <code>aproximacion.py</code> en el paquete <code>t03_paquete</code> para métodos numéricos. Agrega las siguientes funciones:</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.1 Función `raiz_cubica(x, tol)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.1 Función <code>raiz_cubica(x, tol)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula la raíz cúbica de un número real <code>x</code> utilizando el <strong>método de Newton-Raphson</strong> con una tolerancia <code>tol</code> con valor por defecto de <code>1e-10</code>. Admite <code>x</code> negativo. La iteración es <span class="math display">\[
+a_{n+1} = \frac{1}{3}\left(\frac{x}{a_n^2} + 2a_n\right)
+\]</span> La iteración se detiene cuando <span class="math inline">\(|a_{n+1} - a_n| &lt; \text{tol}\)</span>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.2 Función `biseccion(f, a, b, tol)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.2 Función <code>biseccion(f, a, b, tol)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-34" class="callout-34-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>La función <code>biseccion(f, a, b, tol)</code> implementa el <strong>método de bisección</strong> para encontrar una raíz de la función continua <code>f</code> en el intervalo <code>(a, b)</code> con una tolerancia <code>tol</code> con valor por defecto de <code>1e-6</code>. Se debe verificar que <code>f(a)</code> y <code>f(b)</code> tengan signos opuestos antes de iniciar el proceso. La función <code>f</code> (parámetro de <code>biseccion</code>) debe ser una función que acepte un único argumento y devuelva un valor numérico, debe estar definida en el ámbito global en el cual se encuentra <code>biseccion</code>.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Método de bisección">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Método de bisección
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El <a href="https://es.wikipedia.org/wiki/Método_de_bisección" target="_blank">método de bisección</a> es un algoritmo clásico del análisis numérico utilizado para encontrar las raíces de una función <span class="math inline">\(f\)</span>, es decir, un valor de <span class="math inline">\(x\)</span> tal que <span class="math inline">\(f(x) = 0\)</span>. Se fundamenta en el <strong>Teorema de Bolzano</strong> (o teorema del valor intermedio): si tienes una función continua en un intervalo cerrado <span class="math inline">\([a, b]\)</span> y los valores de <span class="math inline">\(f(a)\)</span> y <span class="math inline">\(f(b)\)</span> tienen signos opuestos (es decir, uno es positivo y el otro negativo, por lo que <span class="math inline">\(f(a) \cdot f(b) &lt; 0\)</span>), entonces existe <span class="math inline">\(x\)</span> en el intervalo <span class="math inline">\((a, b)\)</span> tal que <span class="math inline">\(f(x) = 0\)</span>.</p>
+<p>El método consiste en atrapar la raíz dividiendo repetidamente el intervalo a la mitad y descartando la porción donde sabemos que no está la solución.</p>
+<ol type="1">
+<li><p><strong>Iterar:</strong> Se repiten los pasos siguientes mientras <span class="math inline">\(|b - a| &gt; \text{tol}\)</span>.</p></li>
+<li><p><strong>Calcular el punto medio:</strong> Se encuentra el centro del intervalo actual usando la fórmula <span class="math inline">\(c = \frac{a+b}{2}\)</span>.</p></li>
+<li><p><strong>Evaluar la función:</strong> Se calcula el valor de <span class="math inline">\(f(c)\)</span>. Si <span class="math inline">\(f(c)\)</span> es exactamente <span class="math inline">\(0\)</span> entonces <span class="math inline">\(c\)</span> es la raíz y el proceso termina.</p></li>
+<li><p><strong>Seleccionar el nuevo subintervalo:</strong> Determinar en qué mitad está la raíz verificando los signos:</p></li>
+</ol>
+<ul>
+<li>Si <span class="math inline">\(f(a)\)</span> y <span class="math inline">\(f(c)\)</span> tienen <strong>signos opuestos</strong>, la raíz está en la primera mitad. El nuevo intervalo será <span class="math inline">\([a, c]\)</span> (es decir, <span class="math inline">\(b\)</span> toma el valor de <span class="math inline">\(c\)</span> <code>biseccion(f, a, c, tol)</code>).</li>
+<li>Si tienen el <strong>mismo signo</strong>, la raíz obligatoriamente está en la segunda mitad. El nuevo intervalo será <span class="math inline">\([c, b]\)</span> (es decir, <span class="math inline">\(a\)</span> toma el valor de <span class="math inline">\(c\)</span> <code>biseccion(f, c, b, tol)</code>).</li>
+</ul>
+</div>
+</div>
+<p><strong>Ejemplo:</strong></p>
+<p>Si <code>f(x) = x^3 - x - 2</code> en el intervalo <code>[1, 2]</code> la solución exacta es <span class="math display">\[
+x=\frac{1}{3a}+a\text{ con }a=\left( \frac{\sqrt{702}}{27}+1\right) ^{1/3}
+\]</span> por lo cual <span class="math inline">\(x \approx 1.5213797068045676\)</span>.</p>
+<p><strong>Pista:</strong></p>
+<p>La implementación recursiva de este método es directa y elegante.</p>
 </div>
 </div>
 </div>
