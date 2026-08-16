@@ -12,9 +12,9 @@ Agrega las siguientes funciones al módulo que se especifica del paquete `t03_pa
 - si la precondición (o alguna de las precondiciones) no se cumple la función debe retornar `None`,
 - Al bloque `if __name__ == "__main__"` del módulo se deben agregar pruebas para validar el comportamiento de cada función. Se deben realizar las pruebas al menos para un caso normal y un caso límite (de existir).
 
-## Ejercicio 1: Módulo `numeros.py`
+## Ejercicio 3.1: Módulo `numeros.py`
 
-::: {.callout-note title="1.1 Función `es_perfecto(n)`:" collapse="true"}
+::: {.callout-note title="3.1.1 Función `es_perfecto(n)`:" collapse="true"}
 
 Retorna `True` si el entero positivo `n` es un número **perfecto** y `False` en caso contrario. Un número es perfecto si es igual a la suma de sus divisores propios (divisores distintos de él mismo).
 
@@ -27,7 +27,7 @@ print(es_perfecto(6))  # True
 
 :::
 
-::: {.callout-note title="1.2 Función `siguiente_primo(n)`:" collapse="true"}
+::: {.callout-note title="3.1.2 Función `siguiente_primo(n)`:" collapse="true"}
 
 Devuelve el menor primo estrictamente mayor que `n`. Reutiliza `es_primo` del módulo `numeros.py`. 
 
@@ -40,7 +40,7 @@ print(siguiente_primo(11)) # 13
 
 :::
 
-::: {.callout-note title="1.3. Función `collatz_tstime(n)`:" collapse="true"}
+::: {.callout-note title="3.1.3. Función `collatz_tstime(n)`:" collapse="true"}
 
 Devuelve el número de pasos (**t**otal **s**topping **time**) que tarda la **conjetura de Collatz** en llegar a 1 para un entero positivo `n`. La conjetura establece que, dado un número entero positivo `n`, si es par se divide entre 2 y si es impar se multiplica por 3 y se le suma 1. Se repite el proceso hasta llegar a 1. Vea ejercicio 27 del tema 2 para más detalles.
 
@@ -53,7 +53,7 @@ print(collatz_tstime(6))  # 8
 
 :::
 
-::: {.callout-note title="1.4. Función `collatz_max(n)`:" collapse="true"}
+::: {.callout-note title="3.1.4. Función `collatz_max(n)`:" collapse="true"}
 
 Devuelve el valor máximo alcanzado durante la secuencia de la conjetura de Collatz para un entero positivo `n`. Vea ejercicio 27 del tema 2 para más detalles. Por ejemplo `collatz_max(6)` devuelve 16 porque la secuencia es: 6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1.
 
@@ -66,7 +66,7 @@ print(collatz_max(6))  # 16
 
 :::
 
-::: {.callout-note title="1.5. Función `p_fibonacci(n, p)`:" collapse="true"}
+::: {.callout-note title="3.1.5. Función `p_fibonacci(n, p)`:" collapse="true"}
 
 Devuelve el n-ésimo número de la secuencia $p$-Fibonacci. La secuencia  $p$-Fibonacci, para $p \in \mathbb{Z}$ con $p > 0$ se define mediante la siguiente relación de recurrencia: 
 $$
@@ -91,7 +91,7 @@ print(p_fibonacci(5, 2))  # 12
 
 :::
 
-::: {.callout-note title="1.6. Función `phi_euler(n)`:" collapse="true"}
+::: {.callout-note title="3.1.6. Función `phi_euler(n)`:" collapse="true"}
 
 Devuelve el valor de la función totiente de Euler $\phi(n)$ para un entero positivo `n`. La función $\phi(n)$ se define como el número de enteros positivos menores o iguales a `n` que son coprimos con `n`. Dos números $m$ y $n$ son coprimos si $\text{mcd}(m, n) = 1$.
 
@@ -104,7 +104,7 @@ print(phi_euler(9))  # 6
 
 :::
 
-::: {.callout-note title="1.7. Función `tau(n)`:" collapse="true"}
+::: {.callout-note title="3.1.7. Función `tau(n)`:" collapse="true"}
 
 Devuelve el número de divisores positivos de un entero positivo `n`.
 
@@ -117,7 +117,7 @@ print(tau(12))  # 6
 
 :::
 
-::: {.callout-note title="1.8. Función `sigma(n)`:" collapse="true"}
+::: {.callout-note title="3.1.8. Función `sigma(n)`:" collapse="true"}
 
 Devuelve la suma de los divisores positivos de un entero positivo `n`.
 
@@ -131,7 +131,7 @@ print(sigma(12))  # 28
 
 :::
 
-::: {.callout-note title="1.9. Función `exponenciacion_rapida(a, n)`:" collapse="true"} 
+::: {.callout-note title="3.1.9. Función `exponenciacion_rapida(a, n)`:" collapse="true"} 
 
 Devuelve el valor de $a^n$ utilizando el algoritmo de **exponenciación rápida**. 
 
@@ -154,7 +154,7 @@ En lugar de multiplicar $a$ por sí mismo $n$ veces, cada paso **divide el expon
 
 :::
 
-::: {.callout-note title="1.10. Función `exponenciacion_modular(a, n, m)`:" collapse="true"}
+::: {.callout-note title="3.1.10. Función `exponenciacion_modular(a, n, m)`:" collapse="true"}
 
 Devuelve el valor de $a^n \bmod m$ utilizando el algoritmo de **exponenciación modular rápida**.
 
@@ -188,9 +188,9 @@ print(exponenciacion_modular(2, 1000, 1000))  # 376
 
 :::
 
-## Ejercicio 2: Módulo `geometria.py`
+## Ejercicio 3.2: Módulo `geometria.py`
 
-::: {.callout-note title="2.1 Función `area_elipse(a, b)`:" collapse="true"}
+::: {.callout-note title="3.2.1 Función `area_elipse(a, b)`:" collapse="true"}
 
 Calcula el área de una elipse a partir de la longitud de sus semiejes `a` y `b` mediante la fórmula:
 $$
@@ -206,7 +206,7 @@ print(area_elipse(3, 4))  # 37.69911184307752
 
 :::
 
-::: {.callout-note title="2.2 Función `area_triangulo(a, b, c)`:" collapse="true"}
+::: {.callout-note title="3.2.2 Función `area_triangulo(a, b, c)`:" collapse="true"}
 
 Calcula el área de un triángulo a partir de la longitud de sus lados `a`, `b` y `c` utilizando la fórmula de Herón:
 $$
@@ -222,7 +222,7 @@ print(area_triangulo(3, 4, 5))  # 6.0
 
 :::
 
-::: {.callout-note title="2.3 Función `area_trapecio(b1, b2, h)`:" collapse="true"}
+::: {.callout-note title="3.2.3 Función `area_trapecio(b1, b2, h)`:" collapse="true"}
 
 Calcula el área de un trapecio a partir de la longitud de sus bases `b1` y `b2` y su altura `h`
 $$
@@ -237,7 +237,7 @@ print(area_trapecio(3, 5, 4))  # 16.0
 
 :::
 
-::: {.callout-note title="2.4 Función `es_cuadrilatero_valido(a, b, c, d)`:" collapse="true"}
+::: {.callout-note title="3.2.4 Función `es_cuadrilatero_valido(a, b, c, d)`:" collapse="true"}
 
 Verifica si los lados `a`, `b`, `c` y `d` forman un cuadrilátero válido. 
 
@@ -262,7 +262,7 @@ print(es_cuadrilatero_valido(1, 2, 3, 7))  # False
 
 :::
 
-::: {.callout-note title="2.5 Función `area_maxima_cuadrilatero(a, b, c, d)`:" collapse="true"}
+::: {.callout-note title="3.2.5 Función `area_maxima_cuadrilatero(a, b, c, d)`:" collapse="true"}
 
 Calcula el área máxima posible de un cuadrilátero de lados $a, b, c, d$ correspondiente al cuadrilátero cíclico (inscrito en una circunferencia). Reutiliza `es_cuadrilatero_valido` para validar que los lados forman un cuadrilátero válido. 
 
@@ -283,7 +283,7 @@ print(area_maxima_cuadrilatero(3, 4, 5, 6))  # 13.416407864998739
 
 :::
 
-::: {.callout-note title="2.6 Función `area_poligono_regular(n, l)`:" collapse="true"}
+::: {.callout-note title="3.2.6 Función `area_poligono_regular(n, l)`:" collapse="true"}
 
 Calcula el área de un polígono regular de $n$ lados y longitud de lado $l$ mediante la fórmula:
 $$
@@ -300,7 +300,7 @@ print(area_poligono_regular(4, 1))  # 1.0000000000000002
 
 :::
 
-::: {.callout-note title="2.7 Función `es_cuadrado(l, r, d, u)`:" collapse="true"}
+::: {.callout-note title="3.2.7 Función `es_cuadrado(l, r, d, u)`:" collapse="true"}
 
 Esta función se puede emplear en el problema [Draw a Square](https://codeforces.com/problemset/problem/2074/A){target="_blank"} de [Codeforces](https://codeforces.com/){target="_blank"}. La traducción de parte del enunciado es la siguiente:
 
@@ -318,7 +318,7 @@ print(es_cuadrado(1, 2, 3, 4))  # False
 
 :::
 
-::: {.callout-note title="2.8 Función `make_a_triangle(a, b, c)`:" collapse="true"}
+::: {.callout-note title="3.2.8 Función `make_a_triangle(a, b, c)`:" collapse="true"}
 
 Esta función se puede emplear en el problema [Make a Triangle!](https://codeforces.com/contest/1064/problem/A){target="_blank"} de [Codeforces](https://codeforces.com/){target="_blank"}. La traducción de parte del enunciado es la siguiente:
 
@@ -336,7 +336,7 @@ print(make_a_triangle(100, 10, 10))  # 81
 
 :::
 
-::: {.callout-note title="2.9 Función `perimetro_minimo(n)`:" collapse="true"}
+::: {.callout-note title="3.2.9 Función `perimetro_minimo(n)`:" collapse="true"}
 
 Esta función se puede emplear en el problema [Lazy Security Guard](https://codeforces.com/contest/859/problem/B){target="_blank"} de [Codeforces](https://codeforces.com/){target="_blank"}. La traducción de parte del enunciado es la siguiente:
 
@@ -358,7 +358,7 @@ Para cualquier región conexa de área $n$ en una cuadrícula, el perímetro mí
 
 :::
 
-::: {.callout-note title="2.10 Función `ortoedro(l, m, n)`:" collapse="true"}
+::: {.callout-note title="3.2.10 Función `ortoedro(l, m, n)`:" collapse="true"}
 
 Esta función se puede emplear en el problema [Parallelepiped](https://codeforces.com/contest/224/problem/A){target="_blank"} de [Codeforces](https://codeforces.com/){target="_blank"}. La traducción de parte del enunciado es la siguiente:
 
@@ -384,9 +384,9 @@ $$
 
 :::
 
-## Ejercicio 3: Módulo `conversor.py`
+## Ejercicio 3.3: Módulo `conversor.py`
 
-::: {.callout-note title="3.1 Función `decimal_a_binario(n)`:" collapse="true"}
+::: {.callout-note title="3.3.1 Función `decimal_a_binario(n)`:" collapse="true"}
 
 Convierte un número entero positivo `n` a su representación binaria como una cadena de caracteres. 
 
@@ -409,7 +409,7 @@ print(decimal_a_binario(255)) # '11111111'
 
 ::: 
 
-::: {.callout-note title="3.2 Función `segundos_a_dhms(s)`:" collapse="true"}
+::: {.callout-note title="3.3.2 Función `segundos_a_dhms(s)`:" collapse="true"}
 
 Imprime el número de segundos `s >= 0` en el formato `DD:HH:MM:SS` donde `DD` son los días, `HH` las horas, `MM` los minutos y `SS` los segundos. Usa división entera y módulo exclusivamente. Esta función no retorna ningún valor, solo imprime el resultado en pantalla.
 
@@ -421,7 +421,7 @@ segundos_a_dhms(100000)  # 01:03:46:40
 
 :::
 
-::: {.callout-note title="3.3 Función `dhms_a_segundos(d, h, m, s)`:" collapse="true"}
+::: {.callout-note title="3.3.3 Función `dhms_a_segundos(d, h, m, s)`:" collapse="true"}
 
 Convierte un tiempo dado en días `d`, horas `h`, minutos `m` y segundos `s` a su equivalente en segundos. 
 
@@ -433,19 +433,16 @@ print(dhms_a_segundos(1, 3, 46, 40))  # 100000
 
 :::
 
-::: {.callout-note title="3.4 Representación de fechas con único entero:" collapse="true"}
+::: {.callout-note title="3.3.4 Función `fecha_a_entero(anyo, mes, dia)`:" collapse="true"}
 
-En informática, representar una fecha con un único número se logra por dos vías fundamentales:
+Convierte una fecha dada por año, mes y día a un único número entero no negativo en formato YYYYMMDD. Tanto `anyo` como `mes` y `dia` deben ser enteros positivos. El mes debe estar en el rango 1 a 12 y el día debe ser válido para el mes y año dados (considerando años bisiestos).
 
-1. Calculando el tiempo transcurrido desde un punto de referencia fijo temporal. A este punto de referencia se le conoce como **Epoch** (o época). El estándar absoluto en programación y sistemas operativos de este método es el **Tiempo Unix**. Representa una fecha como la cantidad de **segundos** (o milisegundos) transcurridos desde el **"Unix Epoch"** que es el **1 de enero de 1970 a las 00:00:00 UTC** (del inglés Coordinated Universal Time).
-2. **Formato de Entero Posicional** (YYYYMMDD) muy común en el procesamiento de datos y almacenamiento plano. Consiste en concatenar el año, mes y día en un solo número entero. Por ejemplo, el 7 de septiembre de 2026 se representa como `20260907`. Este formato tiene la ventaja de ser legible por humanos y de mantener el orden cronológico (un número mayor siempre es una fecha posterior), lo que permite ordenamientos muy eficientes sin necesidad de parsear la fecha.
+::: {.callout-important title="Formato de Entero Posicional YYYYMMDD"}
 
-Agrega las siguientes funciones al módulo `conversor.py`:
+Representar una fecha con un único número entero se logra por varias vías. Una de ellas es el **Formato de Entero Posicional** (YYYYMMDD) muy común en el procesamiento de datos y almacenamiento plano. Consiste en concatenar el año, mes y día en un solo número entero. Por ejemplo, el 7 de septiembre de 2026 se representa como `20260907`. Este formato tiene la ventaja de ser legible por humanos y de mantener el orden cronológico (un número mayor siempre es una fecha posterior), lo que permite ordenamientos muy eficientes sin necesidad de parsear la fecha.
 
-::: {.callout-note title="3.4.1 Función `fecha_a_entero(año, mes, dia)`:" collapse="true"}
+:::
 
-Convierte una fecha dada por año, mes y día a un único número entero no negativo en formato YYYYMMDD. Tanto el año como el mes y el día deben ser enteros positivos. El mes debe estar en el rango 1 a 12 y el día debe ser válido para el mes y año dados (considerando años bisiestos).
- 
 ::: {.callout-tip title="Ejemplo"}
 ```python
 print(fecha_a_entero(2026, 9, 7))  # 20260907
@@ -454,9 +451,9 @@ print(fecha_a_entero(2026, 9, 7))  # 20260907
 
 :::
 
-::: {.callout-note title="3.4.2 Función `entero_a_fecha(n)`:" collapse="true"}
+::: {.callout-note title="3.3.5 Función `entero_a_fecha(n)`:" collapse="true"}
 
-Convierte un número entero no negativo en formato YYYYMMDD a una fecha dada por año, mes y día en el formato DD/MM/AAAA. 
+Convierte un número entero no negativo en formato YYYYMMDD a una fecha dada por año, mes y día en el formato `'DD/MM/AAAA'`. Retorna una cadena de caracteres. Tanto el año como el mes y el día deben ser enteros positivos. El mes debe estar en el rango 1 a 12 y el día debe ser válido para el mes y año dados (considerando años bisiestos).
 
 ::: {.callout-tip title="Ejemplo"}
 ```python
@@ -466,43 +463,21 @@ print(entero_a_fecha(20260907))  # 07/09/2026
 
 :::
 
-::: {.callout-note title="3.4.3 Función `entero_a_unix(n)`:" collapse="true"}
+::: {.callout-note title="3.3.6 Función `fecha_a_unix(anyo, mes, dia)`:" collapse="true"}
 
-Convierte una fecha dada por `n` en formato de entero posicional YYYYMMDD a Tiempo Unix en segundos. Tanto el año como el mes y el día deben ser enteros positivos. El mes debe estar en el rango 1 a 12 y el día debe ser válido para el mes y año dados (considerando años bisiestos). Observe que si la fecha es anterior al 1 de enero de 1970, la función debe retornar un entero negativo. 
+Convierte una fecha dada por `anyo`, `mes` y `dia` a **Tiempo Unix** en segundos. Tanto el año como el mes y el día deben ser enteros positivos. El mes debe estar en el rango 1 a 12 y el día debe ser válido para el mes y año dados (considerando años bisiestos). Observe que si la fecha es anterior al 1 de enero de 1970, la función debe retornar un entero negativo.
 
-::: {.callout-tip title="Ejemplo"}
-```python
-print(entero_a_unix(20260907))  # 1788739200
-print(entero_a_unix(19000101))  # -2208988800
-```
-:::
+::: {.callout-important title="Tiempo Unix"}
+
+Otra forma de representar una fecha y hora mediante un único entero se obtiene calculando el tiempo transcurrido desde un punto de referencia fijo temporal. A este punto de referencia se le conoce como **Epoch** (o época). El estándar absoluto en programación y sistemas operativos de este método es el **Tiempo Unix**. Representa una fecha como la cantidad de **segundos** (o milisegundos) transcurridos desde el **"Unix Epoch"** que es el **1 de enero de 1970 a las 00:00:00 UTC** (del inglés Coordinated Universal Time).
 
 :::
 
-::: {.callout-note title="3.4.4 Función `unix_a_entero(t)`:" collapse="true"}
+::: {.callout-important title="Algoritmo para 3.3.6" collapse="true"}
 
-Convierte un entero `t` que representa el Tiempo Unix en segundos a un número entero en formato YYYYMMDD.
+A continuación el pseudocódigo para las función en 3.3.6. Se emplea el [algoritmo de Howard Hinnant](https://howardhinnant.github.io/date_algorithms.html?utm_source=chatgpt.com){target="_blank"}. Trate de convertir de pseudocódigo a Python de la manera más eficiente posible.
 
-::: {.callout-tip title="Ejemplo"}
-```python
-print(unix_a_entero(1788739200))  # 20260907
-print(unix_a_entero(-2208988800))  # 19000101
-```
-:::
-
-:::
-
-::: {.callout-important title="Algoritmo para 3.4.3 y 3.4.4" collapse="true"}
-
-A continuación el pseudocódigo de implementaciones para las funciones en 3.4.3 y 3.4.4. Se emplea el [algoritmo de Howard Hinnant](https://howardhinnant.github.io/date_algorithms.html?utm_source=chatgpt.com){target="_blank"} expuesto en las funciones *civil-to-days* y *days-to-civil*. Trate de convertir de pseudocódigo a Python de la manera más eficiente posible.
-
-**Pseudocódigo:**
-
-En el siguiente pseudocódigo, la constante `719468` representa los días transcurridos desde el 1 de marzo del año 0 hasta el 1 de enero de 1970 (el Epoch de Unix).
-
-**De Fecha a Días**
-
-Convierte un año, mes y día en el número de días transcurridos desde el Epoch. Para obtener el Tiempo Unix, el resultado final simplemente se multiplica por $86400$ (los segundos de un día). Observe que el pesudocódico asume entrada de año, mes y día a diferencia de `entero_a_unix(n)` que recibe un entero en formato YYYYMMDD.
+En el siguiente pseudocódigo, la constante `719468` representa los días transcurridos desde el 1 de marzo del año 0 hasta el 1 de enero de 1970 (el Epoch de Unix). Convierte un año, mes y día en el número de días transcurridos desde el Epoch. Para obtener el Tiempo Unix en segundos, el resultado final simplemente se multiplica por $86400$ (los segundos de un día).
 
 ```text
 FUNCIÓN fecha_a_unix(año, mes, dia):
@@ -530,10 +505,26 @@ FUNCIÓN fecha_a_unix(año, mes, dia):
 FIN FUNCIÓN
 
 ```
+:::
 
-**De Días a Fecha**
+::: {.callout-tip title="Ejemplo"}
+```python
+print(entero_a_unix(2026, 9, 7))  # 1788739200
+print(entero_a_unix(1900, 1, 1))  # -2208988800
+```
+:::
 
-Realiza el proceso inverso. Toma los días continuos desde 1970 y reconstruye el año, mes y día exactos.
+:::
+
+::: {.callout-note title="3.3.7 Función `unix_a_entero(t)`:" collapse="true"}
+
+Convierte un entero `t` que representa el Tiempo Unix en segundos a un número entero en formato YYYYMMDD.
+
+::: {.callout-important title="Algoritmo para 3.3.7" collapse="true"}
+
+A continuación el pseudocódigo para la función en 3.3.7. Se emplea el [algoritmo de Howard Hinnant](https://howardhinnant.github.io/date_algorithms.html?utm_source=chatgpt.com){target="_blank"}. Trate de convertir de pseudocódigo a Python de la manera más eficiente posible.
+
+En el siguiente pseudocódigo, la constante `719468` representa los días transcurridos desde el 1 de marzo del año 0 hasta el 1 de enero de 1970 (el Epoch de Unix). Se realiza el proceso inverso al de la función `fecha_a_unix`. Toma los días continuos desde 1970 y reconstruye el año, mes y día exactos. Observe que el resultado final en el pseudocódigo es un año, mes y día que luego se puede convertir a un entero en formato YYYYMMDD.
 
 ```text
 FUNCIÓN unix_a_fecha(dias_desde_epoch):
@@ -569,7 +560,13 @@ FUNCIÓN unix_a_fecha(dias_desde_epoch):
 FIN FUNCIÓN
 
 ```
+:::
 
+::: {.callout-tip title="Ejemplo"}
+```python
+print(unix_a_entero(1788739200))  # 20260907
+print(unix_a_entero(-2208988800))  # 19000101
+```
 :::
 
 :::
