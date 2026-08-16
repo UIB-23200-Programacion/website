@@ -16,16 +16,29 @@ Agrega las siguientes funciones al módulo que se especifica del paquete `t03_pa
 
 ::: {.callout-note title="1.1 Función `es_perfecto(n)`:" collapse="true"}
 
-Retorna `True` si el entero positivo `n` es un número **perfecto** y `False` en caso contrario. Un número es perfecto si es igual a la suma de sus divisores propios (divisores distintos de él mismo). Por ejemplo, $6 = 1 + 2 + 3$ por lo que `es_perfecto(6)` devuelve `True`.
+Retorna `True` si el entero positivo `n` es un número **perfecto** y `False` en caso contrario. Un número es perfecto si es igual a la suma de sus divisores propios (divisores distintos de él mismo).
+
+::: {.callout-tip title="Ejemplo"}
+Tenemos que $6 = 1 + 2 + 3$ por lo que 
+```python
+es_perfecto(6)  # True
+```
+:::
 
 :::
 
 ::: {.callout-note title="1.2 Función `siguiente_primo(n)`:" collapse="true"}
 
-Devuelve el menor primo estrictamente mayor que `n`. Reutiliza `es_primo` del módulo `numeros.py`. Por ejemplo, `siguiente_primo(7)` devuelve 11.
+Devuelve el menor primo estrictamente mayor que `n`. Reutiliza `es_primo` del módulo `numeros.py`. 
 
+::: {.callout-tip title="Ejemplo"}
+```python
+siguiente_primo(7)  # 11
+siguiente_primo(11) # 13
+``` 
 :::
 
+:::
 
 ::: {.callout-note title="1.3. Función `collatz_tstime(n)`:" collapse="true"}
 
@@ -326,9 +339,9 @@ Convierte un entero `t` que representa el Tiempo Unix en segundos a un número e
 
 :::
 
-::: {.callout-note title="Algoritmo para 3.4.3 y 3.4.4" collapse="true"}
+::: {.callout-important title="Algoritmo para 3.4.3 y 3.4.4" collapse="true"}
 
-A continuación el pseudocódigo de implementaciones para las funciones en 3.4.3 y 3.4.4. Se emplea el [algoritmo de Howard Hinnant](https://howardhinnant.github.io/date_algorithms.html?utm_source=chatgpt.com){target="_blank"} expuesto en las funciones *civil-to-days* y *days-to-civil*.
+A continuación el pseudocódigo de implementaciones para las funciones en 3.4.3 y 3.4.4. Se emplea el [algoritmo de Howard Hinnant](https://howardhinnant.github.io/date_algorithms.html?utm_source=chatgpt.com){target="_blank"} expuesto en las funciones *civil-to-days* y *days-to-civil*. Trate de convertir de pseudocódigo a Python de la manera más eficiente posible.
 
 **Pseudocódigo:**
 
@@ -426,7 +439,7 @@ La iteración se detiene cuando $|a_{n+1} - a_n| < \text{tol}$.
 
 La función `biseccion(f, a, b, tol)` implementa el **método de bisección** para encontrar una raíz de la función continua `f` en el intervalo `(a, b)` con una tolerancia `tol` con valor por defecto de `1e-6`. Se debe verificar que `f(a)` y `f(b)` tengan signos opuestos antes de iniciar el proceso. La función `f` (parámetro de `biseccion`) debe ser una función que acepte un único argumento y devuelva un valor numérico, debe estar definida en el ámbito global en el cual se encuentra `biseccion`.
 
-::: {.callout-tip title="Método de bisección"}
+::: {.callout-important title="Método de bisección"}
 
 El [método de bisección](https://es.wikipedia.org/wiki/Método_de_bisección){target="_blank"} es un algoritmo clásico del análisis numérico utilizado para encontrar las raíces de una función $f$, es decir, un valor de $x$ tal que $f(x) = 0$. Se fundamenta en el **Teorema de Bolzano** (o teorema del valor intermedio): si tienes una función continua en un intervalo cerrado $[a, b]$ y los valores de $f(a)$ y $f(b)$ tienen signos opuestos (es decir, uno es positivo y el otro negativo, por lo que $f(a) \cdot f(b) < 0$), entonces existe $x$ en el intervalo $(a, b)$ tal que $f(x) = 0$.
 
