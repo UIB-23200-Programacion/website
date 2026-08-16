@@ -352,7 +352,7 @@ print(perimetro_minimo(22))  # 20
 ```
 :::
 
-::: {callout-warning title="Pista"}
+::: {.callout-warning title="Pista"}
 Para cualquier región conexa de área $n$ en una cuadrícula, el perímetro mínimo alcanzable es exactamente $2 \lceil 2\sqrt{n} \rceil$. Las regiones que logran este mínimo son configuraciones compactas que siempre pueden inscribirse dentro de una caja delimitadora de dimensiones $k \times k$, $k \times (k+1)$ o $(k+1) \times (k+1)$, donde $k = \lfloor \sqrt{n} \rfloor$. Las funciones `math.floor` y `math.ceil` devuelven el piso ($\lfloor x \rfloor$) y el techo de un número real ($\lceil x \rceil$), respectivamente.
 :::
 
@@ -375,7 +375,7 @@ print(ortoedro(4, 6, 6))  # 28
 ```
 :::
 
-::: {callout-warning title="Pista"}
+::: {.callout-warning title="Pista"}
 Sean $a, b, c$ las aristas (altura, longitud y profundidad) y $l = ab$, $m = bc$, $n = ac$ las tres áreas conocidas. Los productos cruzados eliminan la variable no deseada:
 $$
 l \cdot n = ab \cdot ac = a^2 bc \implies \frac{l n}{m} = a^2
@@ -400,7 +400,7 @@ El algoritmo clásico para convertir un número decimal a binario se conoce como
 
 :::
 
-::: {callout-tip title="Ejemplo"}
+::: {.callout-tip title="Ejemplo"}
 ```python
 print(decimal_a_binario(10))  # '1010'
 print(decimal_a_binario(255)) # '11111111'
@@ -456,7 +456,13 @@ print(fecha_a_entero(2026, 9, 7))  # 20260907
 
 ::: {.callout-note title="3.4.2 Función `entero_a_fecha(n)`:" collapse="true"}
 
-Convierte un número entero no negativo en formato YYYYMMDD a una fecha dada por año, mes y día en el formato DD/MM/AAAA. Por ejemplo, `entero_a_fecha(20260907)` devuelve la cadena `'07/09/2026'`.
+Convierte un número entero no negativo en formato YYYYMMDD a una fecha dada por año, mes y día en el formato DD/MM/AAAA. 
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(entero_a_fecha(20260907))  # 07/09/2026
+```
+:::
 
 :::
 
