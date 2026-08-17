@@ -114,22 +114,22 @@
     ]
   },
   {
-    "objectID": "es/ejercicios/tema2.html#ejercicios-1.1-a-1.35",
-    "href": "es/ejercicios/tema2.html#ejercicios-1.1-a-1.35",
+    "objectID": "es/ejercicios/tema2.html#ejercicios-2.1-a-2.35",
+    "href": "es/ejercicios/tema2.html#ejercicios-2.1-a-2.35",
     "title": "Ejercicios — Tema 2: Componentes del Lenguaje y Control de Flujo",
-    "section": "Ejercicios 1.1 a 1.35",
-    "text": "Ejercicios 1.1 a 1.35\nLos ejercicios 1.1 a 1.35 se encuentran en los archivos ejer_t02_01-11_mo.py, ejer_t02_12-19_mo.py, ejer_t02_20-26_mo.py y ejer_t02_27-35_mo.py contenidos en el directorio /notebooks. Estos ficheros son tanto scripts de Python como notebooks de Marimo que permiten ejecución interactiva. Para resolver los ejercicios, abre cada archivo en el Codespace y sigue las instrucciones proporcionadas en las diferentes celdas de cada notebook. Hay celdas de código y celdas de texto, estas últimas contienen los enunciados de los ejercicios.\nEs necesario abrir los ficheros con Marimo para disponer de la ejecución interactiva en celdas del notebook, para ello (si no ocurre de forma automática) debes hacer clic en el botón “Open in Marimo” ()",
+    "section": "Ejercicios 2.1 a 2.35",
+    "text": "Ejercicios 2.1 a 2.35\nLos ejercicios 2.1 a 2.35 se encuentran en los archivos ejer_t02_01-11_mo.py, ejer_t02_12-19_mo.py, ejer_t02_20-26_mo.py y ejer_t02_27-35_mo.py contenidos en el directorio /notebooks.\nEstos ficheros son tanto scripts de Python como notebooks de Marimo que permiten ejecución interactiva. Para resolver los ejercicios, abre cada archivo en el Codespace y sigue las instrucciones proporcionadas en las diferentes celdas de cada notebook. Hay celdas de código y celdas de texto, estas últimas contienen los enunciados de los ejercicios.\nEs necesario abrir los ficheros con Marimo para disponer de la ejecución interactiva en celdas del notebook, para ello (si no ocurre de forma automática) debes hacer clic en el botón “Open in Marimo” ()",
     "crumbs": [
       "Ejercicios",
       "Ejercicios — Tema 2"
     ]
   },
   {
-    "objectID": "es/ejercicios/tema2.html#ejercicios-1.36-a-1.40",
-    "href": "es/ejercicios/tema2.html#ejercicios-1.36-a-1.40",
+    "objectID": "es/ejercicios/tema2.html#ejercicios-2.36-a-2.40",
+    "href": "es/ejercicios/tema2.html#ejercicios-2.36-a-2.40",
     "title": "Ejercicios — Tema 2: Componentes del Lenguaje y Control de Flujo",
-    "section": "Ejercicios 1.36 a 1.40",
-    "text": "Ejercicios 1.36 a 1.40\nLos ejercicios 1.36 a 1.40 se encuentran en los archivos ejer_t02_36.py al ejer_t02_40.py contenidos en el directorio /ejercicios_simples. Estos ficheros son scripts de Python cuya ejecución no es interactiva. Para resolver los ejercicios, abre cada archivo en el Codespace y sigue las instrucciones proporcionadas en los comentarios. Una vez resuelto el ejercicio, puedes ejecutar el script de Python de varias formas: - haciendo clic en Run Python File (triángulo de play en la parte superior derecha del editor de código), - haciendo clic derecho sobre el archivo y seleccionando Run Python File in Terminal, - ejecutando el comando python &lt;nombre_del_archivo&gt;.py en la terminal integrada del Codespace.\nEstos ejercicios son para comprender el uso de la función input() de Python. Su ejecución requiere que el usuario introduzca datos por teclado desde la terminal integrada del Codespace.",
+    "section": "Ejercicios 2.36 a 2.40",
+    "text": "Ejercicios 2.36 a 2.40\nLos ejercicios 2.36 a 2.40 se encuentran en los archivos ejer_t02_36.py al ejer_t02_40.py contenidos en el directorio /ejercicios_simples. Estos ficheros son scripts de Python cuya ejecución no es interactiva. Para resolver los ejercicios, abre cada archivo en el Codespace y sigue las instrucciones proporcionadas en los comentarios. Una vez resuelto el ejercicio, puedes ejecutar el script de Python de varias formas:\n\nhaciendo clic en Run Python File (triángulo de play en la parte superior derecha del editor de código),\nhaciendo clic derecho sobre el archivo y seleccionando Run Python File in Terminal,\nejecutando el comando python &lt;nombre_del_archivo&gt;.py en la terminal integrada del Codespace.\n\nEstos ejercicios son para comprender el uso de la función input() de Python. Su ejecución requiere que el usuario introduzca datos por teclado desde la terminal integrada del Codespace.",
     "crumbs": [
       "Ejercicios",
       "Ejercicios — Tema 2"
@@ -421,9 +421,31 @@
   {
     "objectID": "ca/exercicis/tema2.html",
     "href": "ca/exercicis/tema2.html",
-    "title": "Exercicis — Tema 2",
+    "title": "Exercicis — Tema 2: Components del Llenguatge i Control de Flux",
     "section": "",
-    "text": "(Contenido pendiente.)",
+    "text": "Per a la realització dels exercicis heu d’utilitzar el projecte ejercicios-tema-02 que està disponible al repositori del curs: https://github.com/UIB-23200-Programacion/ejercicios-tema-02. Navega al lloc i segueix les instruccions a README.md per copiar el repositori al teu entorn local de GitHub i obrir un Codespace per treballar als exercicis.",
+    "crumbs": [
+      "Exercicis",
+      "Exercicis — Tema 2"
+    ]
+  },
+  {
+    "objectID": "ca/exercicis/tema2.html#exercicis-2.1-a-2.35",
+    "href": "ca/exercicis/tema2.html#exercicis-2.1-a-2.35",
+    "title": "Exercicis — Tema 2: Components del Llenguatge i Control de Flux",
+    "section": "Exercicis 2.1 a 2.35",
+    "text": "Exercicis 2.1 a 2.35\nEls exercicis 2.1 a 2.35 es troben als arxius ejer_t02_01-11_mo.py, ejer_t02_12-19_mo.py, ejer_t02_20-26_mo.py i ejer_t02_27-35_mo.py continguts al directori /notebooks.\nAquests fitxers són tant scripts de Python com notebooks de Marimo que permeten l’execució interactiva. Per resoldre els exercicis, obre cada arxiu al Codespace i segueix les instruccions proporcionades a les diferents cel·les de cada notebook. Hi ha cel·les de codi i cel·les de text, aquestes últimes contenen els enunciats dels exercicis.\nCal obrir els fitxers amb Marimo per disposar de l’execució interactiva en cel·les del notebook; per fer-ho (si no ocorre de forma automàtica) has de fer clic al botó “Open in Marimo” ()",
+    "crumbs": [
+      "Exercicis",
+      "Exercicis — Tema 2"
+    ]
+  },
+  {
+    "objectID": "ca/exercicis/tema2.html#exercicis-2.36-a-2.40",
+    "href": "ca/exercicis/tema2.html#exercicis-2.36-a-2.40",
+    "title": "Exercicis — Tema 2: Components del Llenguatge i Control de Flux",
+    "section": "Exercicis 2.36 a 2.40",
+    "text": "Exercicis 2.36 a 2.40\nEls exercicis 2.36 a 2.40 es troben als arxius ejer_t02_36.py al ejer_t02_40.py continguts al directori /ejercicios_simples. Aquests fitxers són scripts de Python l’execució dels quals no és interactiva. Per resoldre els exercicis, obre cada arxiu al Codespace i segueix les instruccions proporcionades als comentaris. Un cop resolt l’exercici, pots executar el script de Python de diverses formes:\n\nfent clic a Run Python File (triangle de play a la part superior dreta de l’editor de codi),\nfent clic dret sobre l’arxiu i seleccionant Run Python File in Terminal,\nexecutant la comanda python &lt;nom_de_l_arxiu&gt;.py a la terminal integrada del Codespace.\n\nAquests exercicis són per comprendre l’ús de la funció input() de Python. La seva execució requereix que l’usuari introdueixi dades per teclat des de la terminal integrada del Codespace.",
     "crumbs": [
       "Exercicis",
       "Exercicis — Tema 2"
