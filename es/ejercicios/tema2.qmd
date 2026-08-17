@@ -4,7 +4,7 @@ lang: es
 sidebar: barra-es
 ---
 
-Para la realización de los ejercicios debe utilizar el proyecto `ejercicios-tema-02` que está disponible en el repositorio del curso: [https://github.com/UIB-23200-Programacion/ejercicios-tema-02](https://github.com/UIB-23200-Programacion/ejercicios-tema-02){target="_blank"}. Navega al sitio y sigue las instrucciones en `README.md` para copiar el repositorio en tu entorno local de GitHub y abrir un Codespace para trabajar en los ejercicios.
+Para la realización de los ejercicios debe utilizar el proyecto `ejercicios-tema-02` que está disponible en el repositorio del curso: [https://github.com/UIB-23200-Programacion/ejercicios-tema-02](https://github.com/UIB-23200-Programacion/ejercicios-tema-02){target="_blank"}. Navega al sitio y sigue las instrucciones en `README.md` para copiar el repositorio en tu entorno local de GitHub y **abrir un Codespace** para trabajar en los ejercicios.
 
 ## Ejercicios 1.1 a 1.35
 

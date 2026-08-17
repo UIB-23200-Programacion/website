@@ -103,6 +103,7 @@ Un **repositori de GitHub** és un espai on es desa un projecte: conté el codi,
 Els repositoris poden ser públics o privats, suporten branques i col·laboracions (pull requests, issues) per coordinar el treball en equip, i actuen com la unitat bàsica de treball dins de GitHub.
 
 Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per usar, que us permet programar directament des de GitHub sense configurar la vostra màquina local. Sol venir amb eines i dependències preconfigurades per a un repositori concret, la qual cosa facilita començar a treballar ràpidament.
+
 :::
 
 ::: {.callout-note title="1. Accedir al vostre compte de GitHub (si no ho heu fet ja)" collapse="true"}
