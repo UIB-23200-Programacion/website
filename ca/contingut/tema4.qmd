@@ -2,6 +2,1246 @@
 title: "Tema 4: Estructures de Dades natives fonamentals de Python"
 lang: ca
 sidebar: barra-ca
+bibliography: tema4.bib
+engine: markdown
 ---
 
-*(Contingut pendent.)*
+Els temes anteriors han presentat els tipus de dades bàsics de Python —enters, flotants, cadenes i booleans— que representen un únic valor. A la pràctica, la majoria dels problemes interessants requereixen manipular **col·leccions de valors**: les qualificacions d'un grup d'alumnes, els coeficients d'un polinomi, els vèrtexs d'un polígon o els elements d'una mostra estadística.
+
+Per a representar algunes d'aquestes col·leccions, Python proporciona quatre estructures de dades natives: **llistes**, **tuples**, **diccionaris** i **conjunts**. Cadascuna té propietats distintes que la fan adequada per a situacions diferents.
+
+![Estructures de dades natives de Python](../../images/edapython.png){#fig-edas width=90%}
+
+::: {#tip-eda .callout-tip title="Estructures de dades"}
+Una **estructura de dades** és una forma organitzada d'emmagatzemar i relacionar dades en memòria, dissenyada per fer eficients certes operacions. No es tracta només de «guardar» dades, sinó de triar *com* guardar-les segons quines operacions cal fer amb elles.
+
+L'elecció importa perquè el rendiment de les operacions a realitzar depèn de l'estructura. Cercar un element en una llista requereix recórrer-la sencera en el pitjor dels casos; en un diccionari o conjunt, la cerca és molt eficient.
+
+La diferència amb llenguatges com C o Java és que en Python no cal implementar aquestes estructures des de zero ni importar biblioteques externes: estan disponibles amb sintaxi directa (`[]`, `{}`, `()`). Això permet centrar-se en **quina triar en funció del problema, no en com construir-la**.
+:::
+
+---
+
+## 4.1. Llistes: seqüències ordenades i mutables
+
+Les llistes són, sens dubte, l'estructura de dades més utilitzada i fonamental en Python. Si les variables normals són com «caixes» que guarden una sola dada (un nombre o un text), les llistes són com **arxivadors o organitzadors** on pots agrupar col·leccions senceres d'informació sota un mateix nom.
+
+::: {#tip-lista .callout-tip title="Llista"}
+Una **llista** en Python és una seqüència **ordenada** i **mutable** d'elements. Pot contenir qualsevol combinació de tipus i la seva longitud pot canviar durant l'execució.
+
+Matemàticament, una llista de $n$ elements correspon a una successió finita $(a_0, a_1, \ldots, a_{n-1})$ indexada a partir de $0$. La mutabilitat —la possibilitat de modificar elements, afegir o eliminar— és el que distingeix fonamentalment les llistes de les cadenes i les tuples (es veuran més endavant).
+:::
+
+::: {#imp-mutable .callout-important title="Objectes mutables i immutables en Python"}
+En Python, **mutable** significa que el contingut de l'objecte pot ser modificat *després* d'haver estat creat, sense que aquest canviï la seva identitat (la seva ubicació en la memòria). Imagina que és com una caixa oberta: pots ficar o treure coses d'ella, però la caixa continua sent exactament la mateixa.
+
+Els objectes **immutables** (com les cadenes `str`, els nombres `int` o `float`) són com caixes segellades. Si cal canviar alguna cosa, Python no modifica l'objecte original; en el seu lloc, destrueix aquesta caixa i en crea una de completament nova en la memòria amb el nou valor.
+:::
+
+La importància enorme de les llistes en la programació amb Python es resumeix en quatre punts clau:
+
+- **Són la navalla suïssa del llenguatge (Versatilitat):** A diferència d'altres llenguatges més estrictes, una llista en Python és increïblement flexible. Pots guardar nombres, textos, booleans i fins i tot altres llistes al seu interior, tot alhora!
+- **Són dinàmiques i mutables:** Com hem vist, les llistes poden créixer o encongir-se. Pots afegir milers de dades noves, eliminar les que ja no serveixin o modificar-les mentre el teu programa s'executa.
+- **Mantenen l'ordre:** Cada element que guardes en una llista té una posició numèrica exacta (un índex, comptant des de zero). Això és crucial quan cal processar dades en un ordre específic o cercar alguna cosa en una posició concreta.
+- **Són la porta d'entrada a dades complexes:** Entendre com iterar (recórrer) i manipular llistes és el pas previ i obligatori abans de saltar a eines més avançades de la indústria, com els *arrays* matemàtics de NumPy o les bases de dades en Pandas.
+
+### **4.1.1 Creació i indexació**
+
+Una llista es crea tancant els seus elements entre claudàtors `[]`, separats per comes. La funció `list()` converteix qualsevol iterable en llista:
+
+```{pyodide}
+notas = [8.5, 7.0, 9.5, 6.0, 8.0]
+primos = [2, 3, 5, 7, 11, 13]
+vacia = []
+print(notas)
+print(len(notas))      # 5
+print(type(notas))     # <class 'list'>
+
+print(list(range(1, 8)))    # [1, 2, 3, 4, 5, 6, 7]
+print(list("Python"))       # ['P', 'y', 't', 'h', 'o', 'n']
+```
+
+Cada element té un **índex** enter que indica la seva posició i permet accedir-hi. Python admet índexs positius (des del principi) i negatius (des del final):
+
+::: {#imp-indexacion .callout-important title="Indexació positiva i negativa"}
+Donada una llista `a` amb `n` elements, l'índex positiu `i` (amb $0 \leq i < n$) accedeix a l'element `a[i]`, i l'índex negatiu `-k` (amb $1 \leq k \leq n$) accedeix a l'element `a[n-k]`:
+
+| Posició | 1a | 2a | … | penúltima | última |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Índex positiu | `a[0]` | `a[1]` | … | `a[n-2]` | `a[n-1]` |
+| Índex negatiu | `a[-n]` | `a[-n+1]` | … | `a[-2]` | `a[-1]` |
+
+```{pyodide}
+notas = [8.5, 7.0, 9.5, 6.0, 8.0]
+print(notas[0])    # 8.5   (primera)
+print(notas[2])    # 9.5   (tercera)
+print(notas[-1])   # 8.0   (última)
+print(notas[-2])   # 6.0   (penúltima)
+```
+:::
+
+::: {#cau-indexerror .callout-caution title="`IndexError`: índex fora de rang"}
+Accedir a un índex que no existeix llança un `IndexError`:
+
+```python
+notas = [8.5, 7.0, 9.5]
+print(notas[5])    # IndexError: list index out of range
+```
+
+Usa `a[-1]` per a l'últim element sense necessitat de conèixer `len(a)`. Per iterar sobre tots els elements, usa un bucle `for` directament sobre la llista en lloc d'iterar sobre índexs: `for nota in notas:`.
+:::
+
+### **4.1.2 Subllistes (*slicing*)**
+
+L'operador de *slicing* extreu una **subllista** sense modificar l'original. La sintaxi `llista[inici:fi:pas]` funciona igual que en els rangs (`range()`): `inici` inclòs, `fi` exclòs, `pas` opcional:
+
+```{pyodide}
+p = [2, 3, 5, 7, 11, 13, 17, 19]
+print(p[2:5])      # [5, 7, 11]       — índices 2, 3, 4
+print(p[:4])       # [2, 3, 5, 7]     — los cuatro primeros
+print(p[4:])       # [11, 13, 17, 19] — desde el índice 4 hasta el final
+print(p[::2])      # [2, 5, 11, 17]   — uno de cada dos
+print(p[::-1])     # [19, 17, ..., 2] — invertida
+print(p[-3:])      # [13, 17, 19]     — los tres últimos
+```
+
+El resultat és sempre una **nova llista** (còpia superficial): modificar la subllista no altera l'original.
+
+::: {#imp-shalow .callout-important title="Còpia superficial vs. còpia profunda"}
+Una **còpia superficial** (*shallow copy* en anglès) d'una llista és una nova llista que conté *referències* als mateixos objectes que l'original. Si algun dels elements de la còpia són mutables, modificar-los a la còpia afectarà l'original.
+
+Una **còpia profunda** (*deep copy* en anglès) crea una nova llista i també copia els objectes mutables que conté, de manera que la còpia i l'original són completament independents.
+:::
+
+### **4.1.3 Mutabilitat: modificar llistes**
+
+Les llistes són **mutables**: els seus elements poden canviar-se directament mitjançant assignació, i la seva mida pot modificar-se:
+
+```{pyodide}
+v = [1, 2, 3, 4, 5]
+v[0] = 10           # modifica el primer elemento
+print(v)            # [10, 2, 3, 4, 5]
+
+v[1:3] = [20, 30]   # reemplaza los elementos 1 y 2
+print(v)            # [10, 20, 30, 4, 5]
+
+v[1:3] = []         # elimina los elementos 1 y 2
+print(v)            # [10, 4, 5]
+```
+
+### **4.1.4 Mètodes i operacions principals**
+
+Les llistes (objectes del tipus `list`) disposen d'un conjunt de mètodes que cobreixen les operacions més comunes: afegir i eliminar elements, cercar, ordenar i invertir.
+
+Una distinció important és si el mètode **modifica la llista al seu lloc** o **retorna un valor nou** sense tocar-la. Confondre ambdós casos és un error freqüent: `a.sort()` ordena `a` i retorna `None`, mentre que `sorted(a)` deixa `a` intacta i retorna una llista nova ordenada.
+
+A més dels mètodes propis, les llistes admeten operacions amb operadors (`+`, `*`, `in`) i funcions *built-in* del llenguatge (`len()`, `sum()`, `min()`, `max()`, `sorted()`, `reversed()`), que funcionen sobre qualsevol seqüència, no només llistes.
+
+::: {#imp-metodos-lista .callout-important title="Mètodes de les llistes"}
+
+| Mètode | Descripció | Modifica la llista |
+|---|---|:---:|
+| `a.append(x)` | Afegeix `x` al final | Sí |
+| `a.extend(iterable)` | Afegeix tots els elements de l'iterable al final | Sí |
+| `a.insert(i, x)` | Insereix `x` a la posició `i` | Sí |
+| `a.remove(x)` | Elimina la primera aparició de `x` (`ValueError` si no existeix) | Sí |
+| `a.pop(i=-1)` | Elimina i retorna l'element a la posició `i` (per defecte l'últim) | Sí |
+| `a.sort()` | Ordena al seu lloc (modifica `a`) | Sí |
+| `a.reverse()` | Inverteix al seu lloc | Sí |
+| `a.index(x)` | Retorna l'índex de la primera aparició de `x` | No |
+| `a.count(x)` | Compta les aparicions de `x` | No |
+| `a.copy()` | Retorna una còpia superficial | No |
+| `a.clear()` | Elimina tots els elements | Sí |
+
+```{pyodide}
+a = [3, 1, 4, 1, 5, 9, 2, 6]
+a.append(5)
+print(a.count(1))   # 2
+a.sort()
+print(a)            # [1, 1, 2, 3, 4, 5, 5, 6, 9]
+print(a.pop())      # 9 (elimina y devuelve el último)
+print(a)            # [1, 1, 2, 3, 4, 5, 5, 6]
+a.reverse()
+print(a)            # [6, 5, 5, 4, 3, 2, 1, 1]
+print(a.count(5))   # 2
+```
+:::
+
+La funció *built-in* `sorted(a)` retorna una **nova llista** ordenada sense modificar `a`. La funció *built-in* `reversed(a)` retorna un iterador invers.
+
+```{pyodide}
+a = [3, 1, 4, 1, 5, 9, 2, 6]
+
+# sorted() — devuelve una nueva lista ordenada, a queda intacta
+b = sorted(a)
+print(b)  # [1, 1, 2, 3, 4, 5, 6, 9]
+c = sorted(a, reverse=True)
+print(c)  # [9, 6, 5, 4, 3, 2, 1, 1]
+print(a)  # [3, 1, 4, 1, 5, 9, 2, 6]  — sin cambios
+
+# reversed() — devuelve un iterador inverso, a queda intacta
+for x in reversed(a):
+    print(x, end=" ")  # 6 2 9 5 1 4 1 3
+
+# Convertir a lista si necesitas el resultado como lista
+d = list(reversed(a))
+print(d)  # [6, 2, 9, 5, 1, 4, 1, 3]
+print(a)  # [3, 1, 4, 1, 5, 9, 2, 6]  — sin cambios
+```
+
+L'operador `+` concatena dues llistes (produint una de nova), `*` repeteix, i `in` comprova pertinença (cost $O(n)$):
+
+```{pyodide}
+print([1, 2] + [3, 4])     # [1, 2, 3, 4]
+print([0] * 5)             # [0, 0, 0, 0, 0]
+print(3 in [1, 2, 3, 4])   # True
+```
+
+::: {#nte-copy .callout-note title="Mutable vs immutable amb list.copy()"}
+Per visualitzar com es comporten els diferents tipus de dades sota una còpia superficial usant `.copy()`, crearem una llista que contingui tant un element immutable (un enter) com un element mutable (una llista).
+
+```{pyodide}
+# El 100 es inmutable. La lista [1, 2] es mutable.
+lista_original = [100, [1, 2]]
+
+# Hacemos una copia superficial
+mi_copia = lista_original.copy()
+
+# Como el 100 no se puede alterar (inmutable), Python simplemente
+# reemplaza la conexión en la copia con un número nuevo (999).
+mi_copia[0] = 999
+
+# 2. Acción sobre el MUTABLE:
+# Como las listas sí se pueden modificar (mutables), agregamos un número
+# a la lista [1, 2].
+mi_copia[1].append(3)
+
+print("Original:", lista_original)  # Original: [100, [1, 2, 3]]
+print("Copia:   ", mi_copia)        # Copia:    [999, [1, 2, 3]]
+```
+
+S'observa que l'element immutable (l'enter 100) no es veu afectat a la llista original per la modificació a la còpia. L'element mutable (la llista [1, 2]) sí que es veu alterat, reflectint el comportament de les còpies superficials.
+:::
+
+### **4.1.5 Llistes i matemàtiques**
+
+Les llistes són la representació natural dels objectes matemàtics més bàsics: un vector de $\mathbb{R}^n$ és una successió finita de nombres reals, els coeficients d'un polinomi formen una seqüència ordenada, i una matriu no és més que una successió de files. La correspondència entre el concepte matemàtic i la llista de Python és directa i immediata.
+
+En aquesta secció s'il·lustra aquesta correspondència amb exemples concrets: com representar vectors i calcular les seves operacions elementals, com avaluar un polinomi de forma eficient usant l'[algorisme de Horner](https://es.wikipedia.org/wiki/Algoritmo_de_Horner), i com una llista de llistes reprodueix l'estructura d'una matriu. L'objectiu no és reemplaçar les eines de l'ecosistema científic —NumPy ho farà molt millor al Tema 8— sinó entendre què hi ha a sota: abans d'usar `np.dot()` convé saber implementar un producte escalar a mà.
+
+::: {#nte-vector .callout-note title="Vectors i operacions bàsiques"}
+Una llista de flotants representa naturalment un vector de $\mathbb{R}^n$. La suma de vectors i el producte escalar s'implementen amb comprensions (secció 4.5) o amb la funció `sum()`:
+
+```{pyodide}
+import math
+
+u = [1.0, 2.0, 3.0]
+v = [4.0, 5.0, 6.0]
+
+# Suma de vectores
+suma = [u[i] + v[i] for i in range(len(u))]
+print(suma)                                  # [5.0, 7.0, 9.0]
+
+# Producto escalar u·v = Σ uᵢvᵢ
+prod_escalar = sum(u[i] * v[i] for i in range(len(u)))
+print(prod_escalar)                          # 32.0
+
+# Norma euclidiana ‖u‖ = √(Σ uᵢ²)
+norma = math.sqrt(sum(x**2 for x in u))
+print(f"‖u‖ = {norma:.6f}")                 # ‖u‖ = 3.741657
+```
+:::
+
+::: {#nte-horner .callout-note title="Avaluació d'un polinomi — algorisme de Horner"}
+Els coeficients d'un polinomi $p(x) = a_0 + a_1 x + \cdots + a_n x^n$ s'emmagatzemen en una llista `[a0, a1, ..., an]` (del grau menor al major). L'**algorisme de Horner** avalua el polinomi en $O(n)$ operacions sense calcular potències:
+$$
+\begin{aligned}
+p(x) &= a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n \\
+     &= a_0 + x\bigl(a_1 + x\bigl(a_2 + x(\cdots + x \cdot a_n)\bigr)\bigr)
+\end{aligned}
+$$
+
+Assumirem que els coeficients s'emmagatzemen en una llista `coefs` de manera que `coefs[i]` és el coeficient de $x^i$.
+
+```{pyodide}
+def evaluar_horner(coefs: list[float], x: float) -> float:
+    """
+    Evalúa el polinomio p(x) = coefs[0] + coefs[1]*x + ... + coefs[n]*x^n
+    usando el algoritmo de Horner.
+
+    Precondición: coefs no está vacía.
+    Devuelve: el valor numérico de p(x).
+    """
+    resultado = 0.0
+    for c in reversed(coefs):
+        resultado = resultado * x + c
+    return resultado
+
+
+# p(x) = 1 + 2x + 3x²
+coefs = [1, 2, 3]
+print(evaluar_horner(coefs, 0))    # 1
+print(evaluar_horner(coefs, 1))    # 6    (1 + 2 + 3)
+print(evaluar_horner(coefs, 2))    # 17   (1 + 4 + 12)
+print(evaluar_horner(coefs, -1))   # 2    (1 - 2 + 3)
+```
+:::
+
+::: {#nte-lista-anidada .callout-note title="Llistes de llistes: matrius i accés per doble índex"}
+Una llista pot contenir altres llistes com a elements. L'accés usa dos índexs consecutius: `matriu[fila][columna]`.
+
+```{pyodide}
+# Matriz 3×3 como lista de listas
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+print(matriz[0])        # [1, 2, 3]  — primera fila completa
+print(matriz[0][1])     # 2          — fila 0, columna 1
+print(matriz[2][2])     # 9          — fila 2, columna 2
+print(matriz[-1][0])    # 7          — última fila, primer elemento
+
+# Recorrer toda la matriz
+for fila in matriz:
+    for elemento in fila:
+        print(elemento, end=" ")
+    print()
+```
+
+La lectura és d'esquerra a dreta: `matriu[i]` retorna la llista de la «fila» `i`, i sobre aquest resultat s'aplica `[j]` per obtenir l'element de la «columna» `j`. Aquesta representació correspon directament a una matriu $n \times n$ on $a_{ij}$ s'accedeix com `matriu[i][j]`.
+:::
+
+---
+
+## 4.2. Tuples: seqüències ordenades i immutables
+
+Les tuples són, en aparença, llistes que no es poden modificar. Però aquesta definició per negació no fa justícia al seu paper: la immutabilitat no és una restricció arbitrària, sinó una **garantia de disseny** que comunica una intenció. Quan una funció retorna una tupla `(quocient, resta)` o quan s'emmagatzemen les coordenades d'un punt com `(x, y)`, el programador està dient explícitament que aquests valors formen una unitat fixa que no ha de canviar.
+
+Aquesta distinció semàntica té conseqüències pràctiques directes. En ser immutables, les tuples poden usar-se com a claus de diccionari o com a elements d'un conjunt, cosa impossible amb llistes. Són també lleugerament més eficients en memòria i accés, encara que aquesta diferència rarament és determinant a la pràctica.
+
+La regla informal per triar entre llista i tupla és:
+
+- usa una llista quan la col·lecció pot créixer, encongir-se o canviar;
+- usa una tupla quan els elements formen una estructura fixa amb un significat conjunt:
+    - les coordenades d'un punt,
+    - els components d'un vector de dimensió coneguda,
+    - els valors de retorn múltiple d'una funció.
+
+::: {#tip-tupla .callout-tip title="Tupla"}
+Una **tupla** en Python és una seqüència **ordenada** i **immutable** d'elements. Un cop creada, no pot modificar-se: no es poden afegir, eliminar ni canviar els seus elements.
+
+La immutabilitat fa que les tuples puguin usar-se com a claus de diccionaris i com a elements de conjunts, cosa que les llistes no permeten. S'usen quan es vol garantir que una col·lecció de valors roman constant (coordenades d'un punt, colors RGB, un parell $(q, r)$ de quocient i resta…).
+:::
+
+### **4.2.1 Creació i immutabilitat**
+
+Les tuples es creen amb parèntesis `()` o simplement separant els elements per comes. Per a una tupla d'un sol element, la coma final és **obligatòria**:
+
+```{pyodide}
+punto   = (3.0, 4.0)         # par ordenado
+rgb     = (255, 128, 0)       # color RGB
+sin_par = 1, 2, 3             # también es tupla: (1, 2, 3)
+vacia   = ()
+print(punto, type(punto))
+print(sin_par, type(sin_par))
+```
+
+::: {#imp-tupla-uno .callout-important title="Tupla d'un element: la coma és obligatòria"}
+Parèntesis sense coma **no creen una tupla**; simplement agrupen una expressió. Els parèntesis són opcionals per definir tuples, però la coma final és obligatòria per a una tupla d'un sol element:
+
+```{pyodide}
+no_es_tupla = (42)     # <class 'int'>
+si_es_tupla = (42,)    # <class 'tuple'>
+otra_tupla = 42,       # <class 'tuple'>
+print(type(no_es_tupla))
+print(type(si_es_tupla))
+print(type(otra_tupla))
+```
+:::
+
+La indexació i el *slicing* funcionen igual que a les llistes, però qualsevol intent de modificar una tupla llança `TypeError`:
+
+```python
+punto = (3.0, 4.0)
+print(punto[0])        # 3.0
+punto[0] = 5.0         # TypeError: 'tuple' object does not support item assignment
+```
+
+### **4.2.2 Desempaquetament**
+
+El **desempaquetament** (*unpacking*) assigna els elements d'una tupla (o de qualsevol iterable) a diverses variables en una sola instrucció:
+
+```{pyodide}
+punto = (3.0, 4.0)
+x, y = punto
+print(f"x = {x}, y = {y}")    # x = 3.0, y = 4.0
+
+# Intercambio (swap) sin variable auxiliar
+a, b = 10, 20
+a, b = b, a
+print(a, b)    # 20 10
+```
+
+### **4.2.3 Retorn múltiple**
+
+El **retorn múltiple** en Python és la capacitat que té una funció de retornar més d'un valor alhora en una sola instrucció `return`. En llenguatges més antics o estrictes, una funció només pot retornar un únic resultat. Si calia retornar diverses dades, s'havia de crear un array, un objecte o usar punters. En Python, és tan natural com separar les variables per comes (tupla).
+
+::: {#nte-retorno .callout-note title="Retorn múltiple amb tuples"}
+Una funció pot retornar diversos valors empaquetant-los en una tupla. El cridador els desempaqueta directament:
+
+```{pyodide}
+import math
+
+def division_euclidea(a: int, b: int) -> tuple[int, int]:
+    """
+    Devuelve el cociente y el resto de la división entera de a entre b,
+    es decir, el único par (q, r) tal que a = b·q + r con 0 ≤ r < |b|.
+
+    Precondición: b != 0.
+    """
+    return a // b, a % b
+
+cociente, resto = division_euclidea(17, 5)
+print(f"17 = 5 × {cociente} + {resto}")    # 17 = 5 × 3 + 2
+
+def polar(x: float, y: float) -> tuple[float, float]:
+    """
+    Convierte el punto (x, y) en coordenadas cartesianas a polares (r, θ),
+    donde r = √(x² + y²) es el módulo y θ = atan2(y, x) ∈ (-π, π] es el argumento.
+
+    Precondición: (x, y) != (0, 0) si se requiere θ bien definido.
+    """
+    return math.sqrt(x**2 + y**2), math.atan2(y, x)
+
+r, theta = polar(3.0, 4.0)
+print(f"r = {r:.4f},  θ = {theta:.4f} rad")    # r = 5.0000,  θ = 0.9273 rad
+```
+:::
+
+### **4.2.4 Mètodes i operacions principals**
+
+A diferència de les llistes, les tuples disposen de tan sols dos mètodes: `count()` i `index()`. Aquesta absència no és un oblit del llenguatge sinó una conseqüència directa de la immutabilitat: no té sentit oferir mètodes per afegir, eliminar o ordenar elements que no poden canviar.
+
+El que sí que comparteixen amb les llistes és la capacitat de ser **iterades** amb un bucle `for`, de ser consultades amb `in`, i de ser mesurades amb `len()`. A la pràctica, una tupla es recorre exactament igual que una llista; la diferència és que no es pot modificar res durant el recorregut.
+
+```{pyodide}
+t = (4, 1, 2, 1, 3, 1)
+
+# Los dos métodos propios de las tuplas
+print(t.count(1))     # 3   — cuántas veces aparece 1
+print(t.index(2))     # 2   — índice de la primera aparición de 2
+
+# Funciones built-in que funcionan con cualquier secuencia
+print(len(t))         # 6
+print(min(t))         # 1
+print(max(t))         # 4
+print(sum(t))         # 12
+
+# Operadores
+print(3 in t)         # True
+print((1, 2) + (3,))  # (1, 2, 3)  — concatenación, produce tupla nueva
+print((1, 2) * 3)     # (1, 2, 1, 2, 1, 2)
+
+# Iteración
+for x in t:
+    print(x, end=" ")    # 4 1 2 1 3 1
+```
+
+### **4.2.5 Tuples i matemàtiques**
+
+Les tuples són la representació natural dels objectes matemàtics que no poden modificar-se. Per exemple, un punt de $\mathbb{R}^2$ és un parell ordenat de coordenades, una fracció irreductible és un parell d'enters.
+
+Combinant tuples i llistes, es poden representar estructures més complexes com polígons. Els vèrtexs del polígon es poden emmagatzemar com una llista de tuples.
+
+::: {#nte-poligono .callout-note title="Polígons: llista de vèrtexs com a tuples"}
+Un polígon de $n$ vèrtexs es representa com una **llista de tuples**: la llista reflecteix que el nombre de vèrtexs pot variar (o construir-se incrementalment), i cada tupla reflecteix que les coordenades d'un vèrtex són fixes i immutables.
+
+```{pyodide}
+import math
+
+
+def perimetro(vertices: list[tuple[float, float]]) -> float:
+    """
+    Calcula el perímetro de un polígono dado como lista de vértices (x, y).
+
+    Precondición: len(vertices) >= 2.
+    """
+    n = len(vertices)
+    total = 0.0
+    for i in range(n):
+        x1, y1 = vertices[i]
+        x2, y2 = vertices[(i + 1) % n]    # el último vértice conecta con el primero
+        total += math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
+    return total
+
+
+def area(vertices: list[tuple[float, float]]) -> float:
+    """
+    Calcula el área de un polígono simple (fórmula de Gauss/del lazador).
+
+    Precondición: len(vertices) >= 3.
+    """
+    n = len(vertices)
+    s = 0.0
+    for i in range(n):
+        x1, y1 = vertices[i]
+        x2, y2 = vertices[(i + 1) % n]
+        s += x1 * y2 - x2 * y1
+    return abs(s) / 2.0
+
+
+# Cuadrado de lado 1
+cuadrado = [(0.0, 0.0), (1.0, 0.0), (1.0, 1.0), (0.0, 1.0)]
+print(f"Perímetro: {perimetro(cuadrado):.4f}")    # 4.0
+print(f"Área:      {area(cuadrado):.4f}")          # 1.0
+
+# Triángulo equilátero de lado 1
+h = math.sqrt(3) / 2
+triangulo = [(0.0, 0.0), (1.0, 0.0), (0.5, h)]
+print(f"Perímetro: {perimetro(triangulo):.4f}")    # 3.0
+print(f"Área:      {area(triangulo):.4f}")          # 0.4330...
+```
+:::
+
+La fórmula de l'àrea és la del **llaçador** (*shoelace formula*):
+$$
+A = \frac{1}{2}\left|\sum_{i=0}^{n-1}(x_i\, y_{i+1} - x_{i+1}\, y_i)\right|
+$$
+on els índexs són mòdul $n$ (el vèrtex $n$ és el vèrtex $0$). És una fórmula elegant que apareix en geometria computacional i que s'implementa directament amb el bucle anterior.
+
+---
+
+## 4.3. Diccionaris: mapejos clau-valor
+
+::: {#tip-diccionario .callout-tip title="Diccionari"}
+Un **diccionari** en Python és una col·lecció **mutable** de parells **clau–valor** on les claus són úniques. Des de Python 3.7, l'ordre d'inserció es preserva.
+
+Matemàticament, un diccionari implementa una **funció finita** $f: K \to V$ on $K$ és el conjunt de claus i $V$ el de valors. Les claus han de ser **hashables** (immutables: enters, flotants, cadenes, tuples…).
+
+La cerca, inserció i eliminació tenen cost **promig $O(1)$** gràcies a la taula de hash interna, la qual cosa els fa extraordinàriament eficients davant les llistes ($O(n)$ per a cerca).
+:::
+
+### **4.3.1 Creació i accés**
+
+Els diccionaris es creen amb claus `{}` usant la sintaxi `clau: valor`, o amb `dict()`:
+
+```{pyodide}
+alumno = {
+    "nombre": "Ana",
+    "nota":   9.5,
+    "aprobado": True,
+}
+print(alumno)
+print(len(alumno))    # 3
+```
+
+L'accés a un valor es realitza per clau. El mètode `.get()` és més segur perquè retorna `None` (o un valor per defecte) si la clau no existeix, sense llançar error:
+
+```{pyodide}
+alumno = {"nombre": "Ana", "nota": 9.5}
+
+print(alumno["nombre"])             # "Ana"
+print(alumno.get("nota"))           # 9.5
+print(alumno.get("edad"))           # None  — sin error
+print(alumno.get("edad", 18))       # 18    — valor por defecto
+```
+
+::: {#cau-keyerror .callout-caution title="`KeyError`: clau inexistent"}
+Accedir amb `[]` a una clau que no existeix llança `KeyError`:
+
+```python
+d = {"a": 1}
+print(d["b"])    # KeyError: 'b'
+```
+
+L'alternativa segura és `d.get(clau)` o comprovar abans amb `clau in d`.
+:::
+
+L'assignació afegeix o actualitza parells, i `del` n'elimina un:
+
+```{pyodide}
+d = {"a": 1, "b": 2}
+d["c"] = 3        # añade
+d["a"] = 10       # modifica
+del d["b"]        # elimina
+print(d)          # {'a': 10, 'c': 3}
+```
+
+Atès que les tuples són **hashables**, poden usar-se com a claus de diccionari: això permet indexar taules per parells o triples de valors, cosa impossible amb llistes. L'exemple següent mostra com emmagatzemar en un diccionari distàncies a l'origen de coordenades d'un punt $ (x, y) \in \mathbb{R}^2 $. El diccionari té com a claus tuples `(x, y)` que representen les coordenades del punt, el valor associat és la distància euclidiana a l'origen:
+
+```{pyodide}
+# Tabla de distancias al origen de coordenadas
+distancias = {
+    (0, 0): 0.0,
+    (1, 0): 1.0,
+    (0, 1): 1.0,
+    (1, 1): math.sqrt(2),
+}
+print(f"dist(1,1) = {distancias[(1, 1)]:.6f}")    # 1.414213…
+```
+
+### **4.3.2 Mètodes principals i iteració**
+
+Els diccionaris exposen tres **vistes** que permeten accedir per separat a claus, valors o parells: `d.keys()`, `d.values()` i `d.items()`. Són objectes dinàmics —reflecteixen l'estat actual del diccionari en tot moment— i són la base de la iteració idiomàtica en Python.
+
+La forma més comuna de recórrer un diccionari és amb `.items()`, que en cada iteració desempaqueta directament el parell `(clau, valor)` en dues variables. Iterar sobre el diccionari directament (`for k in d`) equival a iterar sobre les seves claus, igual que `for k in d.keys()`.
+
+A més de les vistes, els diccionaris ofereixen mètodes per a accés segur (`.get()`), inserció condicional (`.setdefault()`), fusió (`.update()`) i eliminació amb retorn del valor (`.pop()`).
+
+::: {#imp-metodos-dic .callout-important title="Mètodes principals dels diccionaris"}
+
+| Mètode | Descripció |
+|---|---|
+| `d.keys()` | Vista de totes les claus |
+| `d.values()` | Vista de tots els valors |
+| `d.items()` | Vista de parells `(clau, valor)` |
+| `d.get(k, v)` | Retorna `d[k]` o `v` si `k` no existeix (per defecte `None`) |
+| `d.update(altre)` | Afegeix o sobreescriu amb els parells d'`altre` |
+| `d.pop(k)` | Elimina i retorna `d[k]` |
+| `d.setdefault(k, v)` | Si `k` no existeix, l'insereix amb valor `v` i el retorna |
+
+La forma idiomàtica d'iterar sobre un diccionari és amb `.items()`, que retorna parells `(clau, valor)`:
+
+```{pyodide}
+poblacion = {"Madrid": 3_300_000, "Barcelona": 1_620_000, "Valencia": 800_000}
+
+for ciudad, hab in poblacion.items():
+    print(f"{ciudad}: {hab:,} habitantes")
+```
+:::
+
+L'operador `in` comprova la presència d'una **clau** en temps $O(1)$:
+
+```{pyodide}
+d = {"a": 1, "b": 2, "c": 3}
+print("a" in d)     # True
+print("z" in d)     # False
+print(1 in d)       # False — comprueba claves, no valores
+```
+
+### **4.3.3 Diccionaris i matemàtiques**
+
+::: {#nte-tabla-factorial .callout-note title="Diccionari per a funció discreta finita"}
+Un diccionari és l'estructura natural per a una **funció discreta finita**: les claus són els elements del domini i els valors les imatges. L'accés a qualsevol valor és $O(1)$ independentment de la mida de la taula.
+
+```{pyodide}
+# Tabla de factoriales {n: n!} para n = 0..10
+def factorial(n: int) -> int:
+    """
+    Devuelve el factorial de n, definido como n! = n · (n-1) · … · 1,
+    con 0! = 1. Versión recursiva.
+
+    Precondición: n >= 0.
+    """
+    return 1 if n == 0 else n * factorial(n - 1)
+
+
+tabla = {n: factorial(n) for n in range(11)}
+print(f"7!  = {tabla[7]}")     # 5040
+print(f"10! = {tabla[10]}")    # 3628800
+```
+:::
+
+::: {#nte-polinomio .callout-note title="Diccionari per a polinomis dispersos"}
+Un diccionari també permet representar **polinomis dispersos** (amb molts coeficients nuls) de forma compacta: les claus són els graus i els valors els coeficients no nuls.
+
+```{pyodide}
+def evaluar_disperso(p: dict[int, float], x: float) -> float:
+    """
+    Evalúa el polinomio disperso p en x.
+
+    p representa un polinomio mediante un diccionario {grado: coeficiente},
+    donde solo se almacenan los términos con coeficiente no nulo.
+    Por ejemplo, 5x^100 - 3x^10 + 7 se representa como {100: 5, 10: -3, 0: 7}.
+
+    Precondición: los grados (claves) son enteros no negativos.
+    """
+    resultado = 0.0
+    for grado, coef in p.items():
+        resultado += coef * x**grado
+    return resultado
+
+
+# p(x) = 5x^100 − 3x^10 + 7  →  solo almacena los términos no nulos
+p = {100: 5, 10: -3, 0: 7}
+
+print(evaluar_disperso(p, 1))    # 9.0
+print(evaluar_disperso(p, 0))    # 7.0
+print(evaluar_disperso(p, 2))    # 6.338253001141147e+30
+```
+:::
+
+::: {#nte-matdis .callout-note title="Diccionari per a matrius disperses"}
+Una **matriu dispersa** té la majoria de les seves entrades a zero. Emmagatzemar-la com a llista de llistes malbarataria memòria; un diccionari amb claus `(fila, columna)` només guarda les entrades no nul·les:
+
+```{pyodide}
+def get(M: dict[tuple[int, int], float], i: int, j: int) -> float:
+    """
+    Devuelve el elemento M[i, j] de la matriz dispersa M.
+    Si la entrada no está almacenada explícitamente, devuelve 0.0.
+
+    Precondición: i y j son índices válidos para la dimensión de M.
+    """
+    return M.get((i, j), 0.0)
+
+
+def producto_matriz_vector(
+    M: dict[tuple[int, int], float],
+    v: list[float],
+    n: int
+) -> list[float]:
+    """
+    Multiplica la matriz dispersa M (n×n) por el vector v de longitud n.
+    Solo itera sobre las entradas no nulas de M, lo que resulta
+    eficiente cuando la mayoría de los elementos son cero.
+
+    Precondición: len(v) == n y todas las claves (i, j) de M satisfacen
+    0 <= i < n y 0 <= j < n.
+    Devuelve: lista de n floats con el resultado del producto M·v.
+    """
+    resultado = [0.0] * n
+    for (i, j), valor in M.items():
+        resultado[i] += valor * v[j]
+    return resultado
+
+
+# Matriz dispersa 5×5: solo 4 entradas no nulas
+# ⎡1 0 0 0 0⎤
+# ⎢0 0 2 0 0⎥
+# ⎢0 0 0 0 0⎥
+# ⎢0 0 0 5 0⎥
+# ⎣0 0 0 0 3⎦
+
+M = {
+    (0, 0): 1.0,
+    (1, 2): 2.0,
+    (3, 3): 5.0,
+    (4, 4): 3.0,
+}
+
+print(get(M, 1, 2))       # 2.0
+print(get(M, 2, 2))       # 0.0  — cero implícito
+
+v = [1.0, 1.0, 1.0, 1.0, 1.0]
+print(producto_matriz_vector(M, v, 5))    # [1.0, 2.0, 0.0, 5.0, 3.0]
+```
+
+La clau `(i, j)` és una tupla —hashable i immutable— la qual cosa il·lustra directament per què les tuples poden ser claus de diccionari i les llistes no. En matrius amb milions d'entrades però poques no nul·les (matrius de rigidesa en elements finits, grafs de la web), aquest enfocament redueix dràsticament l'ús de memòria.
+:::
+
+::: {#tip-grafos .callout-tip title="Teoria de grafs"}
+La **teoria de grafs** és una branca de les matemàtiques i de les ciències de la computació que estudia les **relacions entre objectes** a través d'una estructura matemàtica formal anomenada **graf**. Un graf es defineix com un conjunt d'objectes anomenats **vèrtexs** (o nodes) units per enllaços anomenats **arestes** (o arcs), que permeten representar relacions binàries entre elements d'un conjunt.
+
+Un **graf** $G = (V, E)$ consisteix doncs en un conjunt de **vèrtexs** (**nodes**) $V$ i un conjunt d'**arestes** (**arcs**) $E \subseteq \{\{u, v\} \mid u, v \in V\}$ que representen connexions entre parells de vèrtexs. Quan les arestes tenen direcció es parla de **graf dirigit** (**dígraf**); quan tenen un pes numèric associat, de **graf ponderat**.
+
+Les dues representacions clàssiques d'un graf $G = (V, E)$ amb $n = |V|$ vèrtexs i $m = |E|$ arestes són:
+
+- **Llista d'adjacència** — per a cada vèrtex $u$ s'emmagatzema el conjunt dels seus veïns. És eficient quan el graf és **dispers** (poques arestes respecte al màxim possible $n^2$).
+
+- **Matriu d'adjacència** — una matriu $A$ de $n \times n$ on $A[i][j] = 1$ si existeix l'aresta $\{i, j\}$ i $0$ en cas contrari. És ineficient per a grafs dispersos però convenient per a grafs **densos** i per a certs càlculs matricials: per exemple, $A^k[i][j]$ compta el nombre de camins de longitud exactament $k$ entre $i$ i $j$.
+
+A la pràctica, la llista d'adjacència és la representació per defecte; la matriu d'adjacència es reserva per a algorismes que exploten explícitament l'estructura algebraica dels grafs.
+
+**Conceptes Clau**
+
+- **Adjacència:** Dos vèrtexs són adjacents (veïns) si existeix una aresta que els connecta directament.
+- **Grau (Degree):** És el nombre d'arestes que incideixen en un vèrtex. En dígrafos, es distingeix entre grau d'entrada (*in-degree*) i grau de sortida (*out-degree*).
+- **Camí (Path):** Una seqüència de vèrtexs on cada vèrtex adjacent està connectat per una aresta, sense repetir vèrtexs.
+- **Cicle:** Un camí que comença i acaba en el mateix vèrtex.
+- **Graf Connex:** Un graf on existeix almenys un camí entre qualsevol parell de vèrtexs.
+:::
+
+::: {#nte-grafo .callout-note title="Diccionaris i grafs"}
+La forma més «Pythònica» i eficient de representar grafs en Python en la majoria dels casos (especialment si el graf té molts nodes però poques connexions) és mitjançant diccionaris. Per a grafs i dígrafos s'empra un diccionari on les claus són els nodes i els valors són la llista d'adjacència en forma de conjunt (`set`). Per a un graf ponderat la llista d'adjacència es representa mitjançant un diccionari que conté parells `{node: pes}`.
+
+```python
+# grafo no dirigido dict[int, set[int]]
+g = {1: {2, 3}, 2: {1, 4},3: {1}, 4: {2}}
+
+# digrafo dict[int, set[int]] pero sin simetría, arista 1→2 si pero 2→1 no
+d = {1: {2, 3}, 2: {4}, 3: {4}, 4: {3}}
+
+# grafo ponderado dict[int, dict[int, float]]
+w = {1: {2: 1.5, 3: 2.0}, 2: {1: 1.5, 4: 3.5}, 3: {1: 2.0}, 4: {2: 3.5}}
+```
+
+En tots els casos la comprovació d'adjacència és eficient gràcies a l'ús de `set` o `dict` per als veïns, a diferència d'una llista d'adjacència on caldria recórrer-la sencera.
+
+```{pyodide}
+def agregar_arista(g: dict[int, set[int]], u: int, v: int) -> None:
+    """
+    Añade la arista {u, v} al grafo no dirigido g.
+    Crea los nodos u y v si no existen.
+    """
+    g.setdefault(u, set()).add(v)
+    g.setdefault(v, set()).add(u)
+
+
+def grado(g: dict[int, set[int]], u: int) -> int:
+    """
+    Devuelve el grado del nodo u, es decir, el número de aristas incidentes en él.
+
+    Precondición: u pertenece a g.
+    """
+    return len(g[u])
+
+
+def es_adyacente(g: dict[int, set[int]], u: int, v: int) -> bool:
+    """
+    Devuelve True si existe la arista {u, v} en el grafo g.
+
+    Precondición: u y v pertenecen a g.
+    """
+    return v in g[u]
+
+
+# Grafo de ejemplo:
+#   1 — 2 — 4
+#   |   |
+#   3   5 — 6
+
+grafo: dict[int, set[int]] = {
+    1: {2, 3},
+    2: {1, 4, 5},
+    3: {1},
+    4: {2},
+    5: {2, 6},
+    6: {5},
+}
+
+# Diccionario para los grados de cada nodo
+grados = {}
+for u in grafo:
+    grados[u] = grado(grafo, u)
+print(grados)
+# {1: 2, 2: 3, 3: 1, 4: 1, 5: 2, 6: 1}
+
+print(es_adyacente(grafo, 2, 5))    # True
+print(es_adyacente(grafo, 1, 6))    # False
+```
+:::
+
+---
+
+## 4.4. Conjunts: col·leccions no ordenades d'elements únics
+
+Els conjunts (`set`) són l'estructura de dades de Python que trasllada directament el concepte matemàtic de conjunt: una col·lecció **no ordenada** d'elements **únics**. A diferència de les llistes, no existeix noció de posició ni s'admeten duplicats; a diferència dels diccionaris, només s'emmagatzemen valors, no parells clau-valor. El seu tret més característic és que suporten de forma nativa les operacions clàssiques de l'àlgebra de conjunts —unió, intersecció, diferència i diferència simètrica— amb una sintaxi concisa i eficient. A la pràctica, els conjunts són l'eina natural quan el que importa és **pertinença** i **unicitat**, no ordre ni multiplicitat: eliminar duplicats d'una col·lecció, comprovar si dos grups comparteixen elements, o calcular què hi ha en un però no en l'altre.
+
+::: {#tip-conjunto .callout-tip title="Conjunt"}
+Un **conjunt** (*tipus set*) en Python és una col·lecció **no ordenada** d'elements **únics** i **hashables**. Implementa directament el concepte matemàtic de conjunt de la teoria de Cantor.
+
+Les seves propietats fonamentals són:
+
+- **Sense duplicats**: afegir un element ja present no té efecte.
+- **Sense ordre**: no hi ha indexació per posició.
+- **Pertinença en $O(1)$**: `x in s` és una operació en temps constant, davant l'$O(n)$ de les llistes.
+
+Existeix també `frozenset`, la versió **immutable** de `set` (usable com a clau de diccionari).
+:::
+
+### **4.4.1 Creació**
+
+Els conjunts es creen amb claus `{}` o amb `set()`. **Atenció**: `{}` buit crea un diccionari, no un conjunt:
+
+```{pyodide}
+A = {1, 2, 3, 4, 5}
+B = {3, 4, 5, 6, 7}
+desde_lista = set([1, 2, 2, 3, 3, 3])    # elimina duplicados
+vacio = set()                              # OBLIGATORIO para conjunto vacío
+print(A)
+print(desde_lista)    # {1, 2, 3}
+print(type(vacio))    # <class 'set'>
+```
+
+::: {#cau-conjunto-vacio .callout-caution title="`{}` crea un diccionari buit, no un conjunt"}
+```{pyodide}
+mal  = {}        # <class 'dict'>
+bien = set()     # <class 'set'>
+print(type(mal))
+print(type(bien))
+```
+:::
+
+### **4.4.2 Operacions de l'àlgebra de conjunts**
+
+Les operacions de l'àlgebra de conjunts són precisament el punt on `set` deixa de ser una mera col·lecció i es converteix en una eina matemàtica. Python implementa les quatre operacions clàssiques —unió, intersecció, diferència i diferència simètrica— tant mitjançant **operadors simbòlics** (`|`, `&`, `-`, `^`) com mitjançant **mètodes** (`.union()`, `.intersection()`, `.difference()`, `.symmetric_difference()`). La distinció entre ambdues formes és subtil però rellevant: els operadors exigeixen que ambdós operands siguin conjunts, mentre que els mètodes accepten qualsevol iterable com a argument. Totes aquestes operacions retornen un **nou conjunt** sense modificar els originals.
+
+::: {#imp-ops-conjunto .callout-important title="Operacions de conjunts en Python"}
+Python implementa les operacions clàssiques de la teoria de conjunts amb operadors simbòlics:
+
+| Operació matemàtica | Operador Python | Mètode equivalent |
+|---|:---:|---|
+| Unió $A \cup B$ | `A \| B` | `A.union(B)` |
+| Intersecció $A \cap B$ | `A & B` | `A.intersection(B)` |
+| Diferència $A \setminus B$ | `A - B` | `A.difference(B)` |
+| Diferència simètrica $A \triangle B$ | `A ^ B` | `A.symmetric_difference(B)` |
+| Subconjunt $A \subseteq B$ | `A <= B` | `A.issubset(B)` |
+| Subconjunt propi $A \subsetneq B$ | `A < B` | — |
+| Superconjunt $A \supseteq B$ | `A >= B` | `A.issuperset(B)` |
+| Disjunts $A \cap B = \emptyset$ | — | `A.isdisjoint(B)` |
+
+```{pyodide}
+A = {1, 2, 3, 4, 5}
+B = {3, 4, 5, 6, 7}
+
+print(f"A ∪ B = {A | B}")     # {1, 2, 3, 4, 5, 6, 7}
+print(f"A ∩ B = {A & B}")     # {3, 4, 5}
+print(f"A \\ B = {A - B}")     # {1, 2}
+print(f"A △ B = {A ^ B}")     # {1, 2, 6, 7}
+print(f"A ⊆ A: {A <= A}")     # True
+print(f"A ⊂ A: {A < A}")      # False (no es subconjunto propio)
+```
+:::
+
+Els mètodes `add()`, `remove()` i `discard()` modifiquen el conjunt. La diferència entre els dos últims és que `discard()` no llança error si l'element no existeix:
+
+```{pyodide}
+s = {1, 2, 3}
+s.add(4)          # añade 4
+s.add(2)          # sin efecto (ya existe)
+s.discard(10)     # sin error aunque 10 no esté
+# s.remove(10)    # KeyError si no existe
+print(s)          # {1, 2, 3, 4}
+```
+
+Una propietat fonamental és l'**eficiència del test de pertinença**. Per comprovar si un element és en una col·lecció de $n$ elements, una llista requereix $O(n)$ comparacions en el pitjor cas, mentre que un conjunt ho fa en $O(1)$ amortitzat:
+
+```{pyodide}
+import time
+
+n = 1_000_000
+lista  = list(range(n))
+conj   = set(range(n))
+valor  = n - 1  # último elemento, peor caso para la lista
+
+t0 = time.perf_counter()
+_ = valor in lista
+t_lista = time.perf_counter() - t0
+print(f"Lista:    {t_lista:.6f} s")
+
+t0 = time.perf_counter()
+_ = valor in conj
+t_conj = time.perf_counter() - t0
+print(f"Conjunto: {t_conj:.6f} s")
+
+print(f"El conjunto es {t_lista / t_conj:.0f}× más rápido")
+```
+
+### **4.4.3 Conjunts i matemàtiques**
+
+Anteriorment s'ha vist que els conjunts són l'estructura natural per traslladar directament a Python el concepte matemàtic de conjunt. Això permet implementar de forma immediata algorismes clàssics de teoria de nombres, com el càlcul del màxim comú divisor (MCD) i del mínim comú múltiple (MCM) mitjançant la intersecció i la unió de conjunts de divisors.
+
+::: {#nte-divisores .callout-note title="Divisors i MCD amb conjunts"}
+El conjunt de divisors d'un enter és un objecte matemàtic natural que es representa directament amb un `set`. Les operacions de conjunts donen el MCD i el MCM de forma immediata:
+
+```{pyodide}
+def divisores(n: int) -> set[int]:
+    """
+    Devuelve el conjunto de divisores positivos de n.
+
+    Precondición: n >= 1.
+    """
+    resultado = set()
+    for d in range(1, int(n**0.5) + 1):
+        if n % d == 0:
+            resultado.add(d)
+            resultado.add(n // d)
+    return resultado
+
+
+D18 = divisores(18)
+D24 = divisores(24)
+print(f"Div(18) = {D18}")
+print(f"Div(24) = {D24}")
+
+divisores_comunes = D18 & D24
+print(f"Divisores comunes: {divisores_comunes}")
+
+print(f"MCD(18, 24) = {max(divisores_comunes)}")     # 6
+print(f"MCM(18, 24) = {min(D18 | D24)}")             # 72
+```
+
+A la funció `divisores()`, el bucle només itera fins a $\sqrt{n}$, afegint alhora el divisor i el seu complement. Això redueix el nombre d'iteracions a $O(\sqrt{n})$ davant l'$O(n)$ d'un enfocament ingenu. Es basa en el fet que els divisors d'un nombre apareixen en parells: si $d$ divideix $n$, llavors també ho fa $n/d$ (Si $d \mid n$, existeix un enter $k$ tal que $n = d \cdot k$. Llavors $k = n/d$, i com que $n = k \cdot d$, es té que $k \mid n$).
+:::
+
+Un altre exemple clàssic és la **criba d'Eratòstenes** per generar tots els nombres primers fins a un límit $n$. Ho veurem al @nte-criba a la propera secció, on s'implementa amb conjunts i operacions de conjunts.
+
+---
+
+## 4.5. Comprensió de llistes, diccionaris i conjunts
+
+Una de les característiques més expressives de Python és la **comprensió** (*comprehension* en anglès): una sintaxi compacta per construir llistes, diccionaris i conjunts a partir de qualsevol iterable, amb un filtre opcional. La seva importància va més enllà de la brevetat: una comprensió ben escrita comunica la *intenció* directament, sense el soroll de variables auxiliars ni crides a `.append()`.
+
+La correspondència amb la notació matemàtica de conjunts és immediata. L'expressió $\{x^2 \mid x \in \mathbb{Z},\ 1 \leq x \leq 5\}$ s'escriu en Python com `{x**2 for x in range(1, 6)}`. És la traducció directa a Python de la notació de comprensió de conjunts de la teoria de conjunts:
+$$
+\bigl\{\ f(x)\ \bigm|\ x \in A,\; P(x)\ \bigr\}
+\quad\longleftrightarrow\quad
+\texttt{[f(x)\ for\ x\ in\ A\ if\ P(x)]}
+$$
+Aquesta alineació entre matemàtica i codi és especialment valuosa: permet expressar transformacions i filtres sobre col·leccions de dades de forma que el codi reflecteixi fidelment l'enunciat del problema.
+
+Les comprensions no són un atall estilístic opcional: apareixen de forma ubiqua en codi Python real, en biblioteques científiques i en exemples de la documentació oficial. Dominar-les és, a la pràctica, una condició necessària per llegir i escriure Python amb fluïdesa.
+
+::: {#tip-comprension .callout-tip title="Comprensió de llistes"}
+Una **comprensió de llistes** construeix una nova llista avaluant una expressió per a cada element d'un iterable, amb un filtre opcional:
+
+```python
+[expresión  for variable in iterable]                # sin filtro
+[expresión  for variable in iterable  if condición]  # con filtro
+```
+
+És **equivalent** a un bucle `for` amb `append`, però més concisa i generalment més eficient:
+
+```python
+resultado = []
+for variable in iterable:
+    if condición:
+        resultado.append(expresión)
+```
+
+La comprensió és una **expressió** (produeix un valor), mentre que el bucle equivalent és una **seqüència d'instruccions**. Això permet usar-la directament en arguments de funcions, assignacions i altres expressions [@pep202].
+:::
+
+### **4.5.1 Comprensió de llistes**
+
+```{pyodide}
+# Cuadrados del 1 al 10
+cuadrados = [x**2 for x in range(1, 11)]
+print(cuadrados)
+
+# Cuadrados de los impares del 1 al 20
+cuad_impares = [x**2 for x in range(1, 21) if x % 2 != 0]
+print(cuad_impares)
+
+# Transformar cadenas
+palabras = ["hola", "mundo", "python"]
+print([p.capitalize() for p in palabras])    # ['Hola', 'Mundo', 'Python']
+```
+
+Les comprensions admeten **anidament** per generar matrius o altres estructures bidimensionals:
+
+```{pyodide}
+# Matriz n×n inicializada a ceros
+n = 4
+matriz = [[0] * n for _ in range(n)]
+print(matriz)
+
+# Tabla de multiplicar como lista de listas
+tabla = [[i * j for j in range(1, 7)] for i in range(1, 7)]
+for fila in tabla:
+    print(fila)
+```
+
+::: {.callout-caution appearance="simple"}
+**No usar** `[[0] * n] * n` per inicialitzar una matriu de zeros: crea $n$ referències a la **mateixa** fila, de manera que modificar un element afecta totes les files. La forma correcta és `[[0] * n for _ in range(n)]`, que crea $n$ llistes independents.
+:::
+
+### **4.5.2 Comprensió de diccionaris i conjunts**
+
+La mateixa sintaxi s'estén a diccionaris (amb `{clau: valor for …}`) i a conjunts (amb `{expr for …}`):
+
+```{pyodide}
+# Diccionario {n: n²} para n = 1..6
+cuad_dict = {n: n**2 for n in range(1, 7)}
+print(cuad_dict)    # {1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36}
+
+# Invertir un diccionario (solo si los valores son únicos)
+original  = {"a": 1, "b": 2, "c": 3}
+invertido = {v: k for k, v in original.items()}
+print(invertido)    # {1: 'a', 2: 'b', 3: 'c'}
+
+# Conjunto de residuos de n² módulo 7
+residuos = {n**2 % 7 for n in range(7)}
+print(residuos)    # {0, 1, 2, 4}
+```
+
+::: {#cau-gen-tupla .callout-caution title="La comprensió de tupla no existeix"}
+`(x**2 for x in range(5))` no és una tupla: és un **generador**. Si es passa directament a una funció que espera una seqüència, pot produir resultats inesperats o consumir-se una sola vegada:
+
+```{pyodide}
+g = (x**2 for x in range(5))
+print(sum(g))     # 30  — correcto
+print(sum(g))     # 0   — el generador ya está agotado
+```
+
+Per obtenir una tupla, embolica l'expressió en `tuple()`:
+
+```{pyodide}
+t = tuple(x**2 for x in range(5))
+print(sum(t))     # 30
+print(sum(t))     # 30  — la tupla puede recorrerse tantas veces como se quiera
+```
+:::
+
+### **4.5.3 Comprensions i notació matemàtica**
+
+::: {#nte-comprension-mat .callout-note title="Comprensions com a notació de conjunts"}
+Les comprensions de Python són la traducció directa de la notació de comprensió matemàtica. La taula següent il·lustra la correspondència:
+
+| Notació matemàtica | Python |
+|---|---|
+| $\{2k \mid k \in \mathbb{N},\; 0 \leq k \leq 10\}$ | `{2*k for k in range(11)}` |
+| $\{n^2 \mid n \in \{1,\ldots,20\},\; n \text{ imparell}\}$ | `{n**2 for n in range(1, 21) if n % 2 != 0}` |
+| $\displaystyle\sum_{k=1}^{100} k^2$ | `sum(k**2 for k in range(1, 101))` |
+| $\displaystyle\prod_{k=1}^{n} k = n!$ | `from math import prod; prod(range(1, n+1))` |
+
+```{pyodide}
+import math
+
+# Σ k² para k=1..100 y verificación de la fórmula n(n+1)(2n+1)/6
+n = 100
+suma_cuad = sum(k**2 for k in range(1, n + 1))
+formula   = n * (n + 1) * (2 * n + 1) // 6
+print(f"Σk² = {suma_cuad},  fórmula = {formula},  iguales: {suma_cuad == formula}")
+
+# Residuos cuadráticos módulo 7
+res_cuad = {k**2 % 7 for k in range(7)}
+no_res   = set(range(7)) - res_cuad
+print(f"Residuos cuadráticos mod 7:     {res_cuad}")
+print(f"No residuos cuadráticos mod 7:  {no_res}")
+```
+:::
+
+::: {#nte-criba .callout-note title="Criba d'Eratòstenes amb comprensió de conjunts i operadors de conjunts"}
+La [**criba d'Eratòstenes**](https://es.wikipedia.org/wiki/Criba_de_Erat%C3%B3stenes) és un algorisme clàssic per obtenir tots els primers fins a $n$: es part del conjunt $\{2, 3, \ldots, n\}$ i s'eliminen successivament els múltiples de cada primer trobat. Després d'eliminar tots els múltiples d'un primer $p$, el proper primer és l'element del conjunt que segueix a $p$. L'eliminació dels múltiples de $p$ es pot expressar com una **diferència de conjunts**.
+
+```{pyodide}
+def criba(n: int) -> set[int]:
+    """
+    Devuelve el conjunto de números primos menores o iguales que n
+    mediante la criba de Eratóstenes.
+
+    Precondición: n >= 2.
+    """
+    candidatos = set(range(2, n + 1))
+    for p in range(2, int(n**0.5) + 1):
+        if p in candidatos:
+            multiplos = set(range(p * p, n + 1, p))
+            candidatos -= multiplos          # elimina todos los múltiplos de p
+    return candidatos
+
+primos = criba(50)
+print(sorted(primos))
+# [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+print(len(primos))    # 15
+```
+
+L'operació `-=` (diferència de conjunts) elimina de cop tots els múltiples de `p`, sense necessitat de recórrer la llista marcant posicions com a la versió clàssica amb arrays. Només cal cribar fins a $\sqrt{n}$ perquè qualsevol nombre compost $m \leq n$ té almenys un factor primer $p \leq \sqrt{m} \leq \sqrt{n}$.
+:::
+
+::: {#nte-perfectos .callout-note title="Nombres perfectes"}
+Un enter $n \geq 1$ és **perfecte** si és igual a la suma dels seus divisors propis (divisors positius distints de $n$). Els quatre primers són $6, 28, 496$ i $8128$; es desconeix si n'existeixen d'infinits.
+
+```{pyodide}
+def divisores_propios(n: int) -> set[int]:
+    """
+    Devuelve el conjunto de divisores propios de n,
+    es decir, los divisores positivos estrictamente menores que n.
+
+    Precondición: n >= 1.
+    """
+    return {d for d in range(1, n) if n % d == 0}
+
+def numeros_perfectos(limite: int) -> list[int]:
+    """
+    Devuelve la lista de números perfectos en el intervalo [2, limite].
+
+    Precondición: limite >= 2.
+    """
+    return [n for n in range(2, limite + 1) if sum(divisores_propios(n)) == n]
+
+print(numeros_perfectos(10_000))    # [6, 28, 496, 8128]
+```
+:::
+
+::: {#nte-perfectos .callout-note title="Primers bessons"}
+Dos primers $p$ i $p+2$ formen un **parell de primers bessons**. La conjectura dels primers bessons afirma que n'existeixen d'infinits, però roman sense demostració.
+
+```{pyodide}
+def es_primo(n: int) -> bool:
+    """
+    Devuelve True si n es primo, False en caso contrario.
+
+    Precondición: n >= 0.
+    """
+    return n >= 2 and all(n % d != 0 for d in range(2, int(n**0.5) + 1))
+
+def primos_gemelos(limite: int) -> list[tuple[int, int]]:
+    """
+    Devuelve la lista de pares de primos gemelos (p, p+2) con p <= limite.
+
+    Precondición: limite >= 2.
+    """
+    return [(p, p + 2) for p in range(2, limite + 1) if es_primo(p) and es_primo(p + 2)]
+
+print(primos_gemelos(100))
+# [(3, 5), (5, 7), (11, 13), (17, 19), (29, 31), (41, 43), (59, 61), (71, 73)]
+```
+:::
+
+::: {#nte-perfectos .callout-note title="Primers bessons"}
+La **funció d'Euler** $\varphi(n)$ compta quants enters a $\{1, \ldots, n\}$ són coprimers amb $n$, és a dir, quants satisfan $\gcd(k, n) = 1$. És fonamental en teoria de nombres i en criptografia (RSA).
+
+```{pyodide}
+from math import gcd
+
+def phi(n: int) -> int:
+    """
+    Devuelve el valor de la función de Euler φ(n): la cantidad de enteros
+    en {1, …, n} que son coprimos con n.
+
+    Precondición: n >= 1.
+    """
+    return len({k for k in range(1, n + 1) if gcd(k, n) == 1})
+
+print([phi(n) for n in range(1, 13)])
+# [1, 1, 2, 2, 4, 2, 6, 4, 6, 4, 10, 4]
+```
+:::
+
+### **4.5.4 Expressions generadores**
+
+Una **expressió generadora** té la mateixa sintaxi que una comprensió de llistes però amb **parèntesis en lloc de claudàtors**. La diferència no és merament tipogràfica: mentre que la comprensió construeix la llista completa en memòria de manera immediata, l'expressió generadora produeix els valors **un a un** i només quan se li sol·licita el següent, igual que una funció generadora (secció 3.1.4).
+
+```{pyodide}
+# Comprensión de lista — toda la lista en memoria
+lista = [x**2 for x in range(1, 6)]
+print(lista)          # [1, 4, 9, 16, 25]
+print(type(lista))    # <class 'list'>
+
+# Expresión generadora — no construye nada todavía
+gen = (x**2 for x in range(1, 6))
+print(gen)            # <generator object <genexpr> at ...>
+print(type(gen))      # <class 'generator'>
+```
+
+L'ús més freqüent és com a argument directe de `sum()`, `max()`, `min()`, `any()` i `all()`, sense necessitar una llista intermèdia. Quan l'expressió generadora és l'**únic argument** d'una funció, els parèntesis de l'argument i els del generador es fusionen en un de sol:
+
+```{pyodide}
+print(sum(x**2 for x in range(1, 101)))              # 338350
+print(max(len(s) for s in ["hola", "mundo", "!"]))   # 5
+print(any(n % 7 == 0 for n in range(1, 20)))         # True
+print(all(n > 0 for n in [1, 2, 3, -1]))             # False
+```
+
+Com s'ha vist a `@cau-gen-tupla`, un generador s'**esgota** després de consumir-se. Si cal recórrer els valors més d'una vegada, usa una comprensió de llista.
+
+::: {#nte-gen-expr-mat .callout-note title="Expressions generadores i sumes matemàtiques"}
+L'expressió `sum(f(k) for k in range(a, b+1))` és la traducció directa de $\displaystyle\sum_{k=a}^{b} f(k)$, sense construir la llista de sumands:
+
+```{pyodide}
+import math
+
+# Suma de Basilea: Σ 1/k² → π²/6
+suma = sum(1/k**2 for k in range(1, 1001))
+print(f"Suma parcial: {suma:.6f}")
+print(f"π²/6:         {math.pi**2 / 6:.6f}")
+```
+:::
+
+## Bibliografia {.unnumbered}
+
+::: {#refs}
+:::

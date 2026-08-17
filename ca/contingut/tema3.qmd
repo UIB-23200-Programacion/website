@@ -352,6 +352,121 @@ factorial_roto(5)   # RecursionError: maximum recursion depth exceeded
 - **Si l'argument no canvia o s'allunya del cas base, la recursió serà infinita**.
 :::
 
+### **3.1.4 Funcions generadores**
+
+En una funció ordinària, `return` lliura un únic valor i acaba l'execució. Les **funcions generadores** amplien aquest model: en lloc de calcular tots els valors d'una seqüència i retornar-los de cop, produeixen els valors **un a un i sota demanda**, pausant l'execució en cada lliurament i reprenent-la quan se'n sol·licita el següent. Això les converteix en l'eina natural per representar seqüències llargues o fins i tot infinites sense consumir memòria proporcional a la seva mida.
+
+La paraula clau que distingeix una funció generadora d'una funció ordinària és `yield`. Quan Python troba `yield expr` dins d'una funció, suspèn l'execució, lliura el valor de `expr` al codi que la crida, i desa l'estat intern (variables locals, punt d'execució) per poder reprendre'l més endavant.
+
+::: {#tip-generador .callout-tip title="Funció generadora"}
+Una **funció generadora** és una funció que conté almenys una instrucció `yield`. Cridar-la no executa el seu cos: retorna un **objecte generador** (un iterador mandrós). Els valors es produeixen un a un cada vegada que el generador avança, ja sigui amb la funció integrada `next()` o implícitament mitjançant un bucle `for`.
+
+```{pyodide}
+def contar(hasta):
+    """
+    Genera enteros n con 1 <= n <= hasta.
+ 
+    Si hasta < 1, el generador no produce ningún valor.
+    """
+    n = 1
+    while n <= hasta:
+        yield n          # pausa aquí y entrega n
+        n += 1           # se reanuda aquí en la próxima llamada
+
+gen = contar(3)          # crea el objeto generador; no ejecuta nada aún
+print(next(gen))         # 1
+print(next(gen))         # 2
+print(next(gen))         # 3
+# print(next(gen))       # StopIteration — la secuencia se agotó
+
+for x in contar(5):      # forma habitual: el for llama a next() automáticamente
+    print(x, end=" ")    # 1 2 3 4 5
+```
+:::
+
+L'analogia més propera que ja coneixes és `range()`: `range(10)` no crea una llista de deu enters en memòria, sinó un objecte que els produeix quan se li demana. Les funcions generadores són la manera de definir objectes similars per a qualsevol seqüència pròpia.
+
+::: {#nte-fibonacci-gen .callout-note title="Generador de la successió de Fibonacci"}
+La recursió calcula $F(n)$ en $O(2^n)$ crides. Un generador produeix tots els termes en $O(1)$ memòria i $O(1)$ treball per terme:
+
+```{pyodide}
+def fibonacci():
+    """
+    Genera los términos de la sucesión de Fibonacci indefinidamente.
+    """
+    a, b = 0, 1
+    while True:          # secuencia infinita: el generador nunca lanza StopIteration
+        yield a
+        a, b = b, a + b
+
+# Primeros 10 términos
+gen = fibonacci()
+print([next(gen) for _ in range(10)])
+# [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+```
+
+El generador **no acaba per si sol**: és responsabilitat del codi que l'usa decidir quan aturar-se. Intentar convertir-lo en llista amb `list(fibonacci())` esgotaria la memòria.
+:::
+
+::: {#nte-primos-gen .callout-note title="Generador de nombres primers"}
+Un generador de primers permet iterar sobre la successió de primers sense calcular-los tots per endavant ni limitar el rang a priori:
+
+```{pyodide}
+def es_primo(n: int) -> bool:
+    """
+    Retorna True si n es primo y False en caso contrario.
+    """
+    if n < 2:
+        return None
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    i = 3
+    while i * i <= n:
+        if n % i == 0:
+            return False
+        i += 2
+    return True
+
+
+def primos():
+    """
+    Genera los números primos en orden creciente, indefinidamente.
+    """
+    n = 2
+    while True:
+        if es_primo(n):
+            yield n
+        n += 1
+
+
+# Primeros 10 primos
+gen = primos()
+print([next(gen) for _ in range(10)])
+# [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+
+# Primer primo mayor que 1000
+gen = primos()
+p = next(gen)
+while p <= 1000:
+    p = next(gen)
+print(p)    # 1009
+```
+:::
+
+::: {#cau-generador-agotado .callout-caution title="Un generador només es pot recórrer una vegada"}
+A diferència d'una llista, un generador s'**esgota** en completar la seva seqüència. Un cop esgotat, qualsevol crida a `next()` llança `StopIteration` i un bucle `for` acaba immediatament sense iterar:
+
+```python
+gen = contar(3)
+print(list(gen))   # [1, 2, 3]
+print(list(gen))   # []   — generador agotado, no produce más valores
+```
+
+Si necessites recórrer la seqüència diverses vegades, crea un nou objecte generador cada vegada cridant de nou la funció: `gen = contar(3)`.
+:::
+
 ---
 
 ## 3.2. Visibilitat de variables (Scope)

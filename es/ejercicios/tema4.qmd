@@ -1,7 +1,534 @@
 ---
-title: "Ejercicios — Tema 4"
+title: "Ejercicios — Tema 4: Estructuras de Datos Nativas Fundamentales de Python"
 lang: es
 sidebar: barra-es
 ---
 
-*(Contenido pendiente.)*
+Para la realización de los ejercicios debe utilizar el proyecto `t04_colecciones` que estará disponible en el repositorio del curso. Navega al sitio y sigue las instrucciones en `README.md` para copiar el repositorio en tu entorno local de GitHub y abrir un Codespace para trabajar en los ejercicios.
+
+El proyecto `t04_colecciones` organiza cuatro módulos en el paquete `t04_paquete`. Cada módulo explota una estructura de datos del tema 4 como herramienta principal para implementar una familia de operaciones matemáticas o algorítmicas:
+
+| Módulo | Estructura principal | Dominio |
+|---|---|---|
+| `vectores.py` | listas y tuplas | álgebra lineal elemental |
+| `polinomios.py` | listas y diccionarios | operaciones con polinomios |
+| `grafos.py` | `dict[int, set[int]]` | teoría de grafos |
+| `conjuntos.py` | `set` y comprensiones | teoría de números |
+
+Agrega las siguientes funciones al módulo que se especifica respetando siempre las mismas reglas del tema 3:
+
+- la función debe contener type hints, docstrings y precondiciones,
+- si la precondición (o alguna de las precondiciones) no se cumple la función debe retornar `None`,
+- al bloque `if __name__ == "__main__"` del módulo se deben agregar pruebas para validar el comportamiento de cada función. Se deben realizar las pruebas al menos para un caso normal y un caso límite (de existir).
+
+---
+
+## Ejercicio 4.1: Módulo `vectores.py`
+
+En este módulo los vectores se representan como `list[float]` y las matrices como `list[list[float]]` (lista de filas). Salvo que se indique lo contrario, las funciones trabajan con vectores de dimensión arbitraria.
+
+::: {.callout-note title="4.1.1 Función `producto_escalar(u, v)`:" collapse="true"}
+
+Calcula el producto escalar (producto interior) $\mathbf{u} \cdot \mathbf{v} = \sum_{i=0}^{n-1} u_i v_i$ de dos vectores de la misma dimensión.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(producto_escalar([1.0, 2.0, 3.0], [4.0, 5.0, 6.0]))  # 32.0
+print(producto_escalar([1.0, 0.0], [0.0, 1.0]))            # 0.0
+```
+:::
+
+:::
+
+::: {.callout-note title="4.1.2 Función `norma(u)`:" collapse="true"}
+
+Calcula la norma euclídea $\|\mathbf{u}\|_2 = \sqrt{\mathbf{u} \cdot \mathbf{u}}$ de un vector. Reutiliza `producto_escalar`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(norma([3.0, 4.0]))           # 5.0
+print(norma([1.0, 1.0, 1.0]))      # 1.7320508075688772
+```
+:::
+
+:::
+
+::: {.callout-note title="4.1.3 Función `son_ortogonales(u, v)`:" collapse="true"}
+
+Retorna `True` si los vectores `u` y `v` son ortogonales (su producto escalar es cero) y `False` en caso contrario. Reutiliza `producto_escalar`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(son_ortogonales([1.0, 0.0], [0.0, 1.0]))   # True
+print(son_ortogonales([1.0, 1.0], [1.0, 0.0]))   # False
+```
+:::
+
+:::
+
+::: {.callout-note title="4.1.4 Función `proyeccion(u, v)`:" collapse="true"}
+
+Calcula la **proyección ortogonal** de `u` sobre `v`:
+$$
+\text{proj}_{\mathbf{v}}(\mathbf{u}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{v}\|^2}\, \mathbf{v}.
+$$
+Retorna un `list[float]` de la misma dimensión. Reutiliza `producto_escalar` y `norma`. La precondición exige que `v` no sea el vector cero.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(proyeccion([3.0, 4.0], [1.0, 0.0]))   # [3.0, 0.0]
+print(proyeccion([1.0, 1.0], [1.0, 1.0]))   # [1.0, 1.0]
+```
+:::
+
+:::
+
+::: {.callout-note title="4.1.5 Función `producto_vectorial(u, v)`:" collapse="true"}
+
+Calcula el **producto vectorial** $\mathbf{u} \times \mathbf{v}$ en $\mathbb{R}^3$:
+$$
+\mathbf{u} \times \mathbf{v} =
+\begin{vmatrix} \mathbf{e}_1 & \mathbf{e}_2 & \mathbf{e}_3 \\ u_0 & u_1 & u_2 \\ v_0 & v_1 & v_2 \end{vmatrix}
+= (u_1 v_2 - u_2 v_1,\; u_2 v_0 - u_0 v_2,\; u_0 v_1 - u_1 v_0).
+$$
+Retorna `tuple[float, float, float]`. La precondición exige `len(u) == len(v) == 3`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(producto_vectorial([1.0, 0.0, 0.0], [0.0, 1.0, 0.0]))  # (0.0, 0.0, 1.0)
+print(producto_vectorial([1.0, 2.0, 3.0], [4.0, 5.0, 6.0]))  # (-3.0, 6.0, -3.0)
+```
+:::
+
+::: {.callout-warning title="Conexión geométrica"}
+La magnitud $\|\mathbf{u} \times \mathbf{v}\|$ es el área del paralelogramo que forman `u` y `v`. Si `u` y `v` son paralelos (o uno es el vector cero), el producto vectorial es el vector cero, lo que refleja que el paralelogramo tiene área nula.
+:::
+
+:::
+
+::: {.callout-note title="4.1.6 Función `trasponer(A)`:" collapse="true"}
+
+Calcula la **matriz traspuesta** $A^T$ donde $(A^T)_{ij} = A_{ji}$. Recibe una matriz $m \times n$ y retorna una $n \times m$, ambas como `list[list[float]]`. La precondición exige que `A` no esté vacía y que todas las filas tengan la misma longitud.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+A = [[1.0, 2.0, 3.0],
+     [4.0, 5.0, 6.0]]
+
+print(trasponer(A))
+# [[1.0, 4.0], [2.0, 5.0], [3.0, 6.0]]
+```
+:::
+
+:::
+
+::: {.callout-note title="4.1.7 Función `producto_matrices(A, B)`:" collapse="true"}
+
+Calcula el producto matricial $C = A \cdot B$ donde $C_{ij} = \text{fila}_i(A) \cdot \text{col}_j(B)$. La precondición exige que el número de columnas de `A` coincida con el número de filas de `B`. Reutiliza `producto_escalar`. Combina `trasponer` con `producto_escalar` para obtener una implementación limpia: la columna $j$ de $B$ es la fila $j$ de $B^T$.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+A = [[1.0, 2.0], [3.0, 4.0]]
+B = [[5.0, 6.0], [7.0, 8.0]]
+print(producto_matrices(A, B))
+# [[19.0, 22.0], [43.0, 50.0]]
+```
+:::
+
+:::
+
+---
+
+## Ejercicio 4.2: Módulo `polinomios.py`
+
+Este módulo implementa dos representaciones de polinomios:
+
+- **Densa**: `list[float]` donde `coefs[i]` es el coeficiente de $x^i$. Eficiente para polinomios de grado pequeño sin coeficientes nulos.
+- **Dispersa**: `dict[int, float]` donde solo se almacenan los términos con coeficiente no nulo. Eficiente para polinomios de grado elevado con muchos ceros.
+
+::: {.callout-note title="4.2.1 Función `evaluar_horner(coefs, x)`:" collapse="true"}
+
+Evalúa el polinomio denso $p(x) = c_0 + c_1 x + \cdots + c_n x^n$ en el punto `x` usando el **algoritmo de Horner**:
+$$
+p(x) = c_0 + x\bigl(c_1 + x\bigl(c_2 + x(\cdots + x \cdot c_n)\bigr)\bigr)
+$$
+que requiere solo $n$ multiplicaciones y $n$ sumas (en lugar de las $O(n^2)$ de la evaluación directa). La precondición exige que `coefs` no esté vacío.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+# p(x) = 1 + 2x + 3x²
+print(evaluar_horner([1.0, 2.0, 3.0], 2.0))   # 17.0   (1 + 4 + 12)
+print(evaluar_horner([1.0, 2.0, 3.0], 0.0))   # 1.0
+print(evaluar_horner([1.0, 2.0, 3.0], -1.0))  # 2.0    (1 - 2 + 3)
+```
+:::
+
+:::
+
+::: {.callout-note title="4.2.2 Función `derivada(coefs)`:" collapse="true"}
+
+Calcula la **derivada formal** del polinomio denso $p(x) = c_0 + c_1 x + \cdots + c_n x^n$:
+$$
+p'(x) = c_1 + 2c_2 x + \cdots + n c_n x^{n-1}.
+$$
+Retorna `list[float]` con los coeficientes del polinomio derivado. La lista vacía `[]` representa el polinomio nulo. La precondición exige que `coefs` no esté vacío.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+# p(x) = 3 + 2x + x²   →   p'(x) = 2 + 2x
+print(derivada([3.0, 2.0, 1.0]))     # [2.0, 2.0]
+
+# p(x) = x⁵             →   p'(x) = 5x⁴
+print(derivada([0.0, 0.0, 0.0, 0.0, 0.0, 1.0]))  # [0.0, 0.0, 0.0, 0.0, 5.0]
+
+# p(x) = 7  (constante)  →   p'(x) = 0
+print(derivada([7.0]))               # []
+```
+:::
+
+:::
+
+::: {.callout-note title="4.2.3 Función `primitiva(coefs, c)`:" collapse="true"}
+
+Calcula la **primitiva** (antiderivada) del polinomio denso $p(x)$ con constante de integración `c` (por defecto `0.0`):
+$$
+F(x) = c + c_0 x + \frac{c_1}{2} x^2 + \frac{c_2}{3} x^3 + \cdots + \frac{c_n}{n+1} x^{n+1}.
+$$
+Retorna `list[float]` de longitud `len(coefs) + 1`. La precondición exige que `coefs` no esté vacío.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+# p(x) = 1 + 2x   →   F(x) = x + x²  (c=0)
+print(primitiva([1.0, 2.0]))         # [0.0, 1.0, 1.0]
+
+# p(x) = 3x²      →   F(x) = 5 + x³  (c=5)
+print(primitiva([0.0, 0.0, 3.0], 5.0))  # [5.0, 0.0, 0.0, 1.0]
+```
+:::
+
+:::
+
+::: {.callout-note title="4.2.4 Función `multiplicar_polinomios(p, q)`:" collapse="true"}
+
+Calcula el **producto** de dos polinomios densos. Si $p$ tiene grado $m$ y $q$ tiene grado $n$, el producto tiene grado $m+n$ y su coeficiente $k$-ésimo es:
+$$
+(p \cdot q)_k = \sum_{i=\max(0,\, k-n)}^{\min(m,\, k)} p_i \cdot q_{k-i}.
+$$
+Retorna `list[float]` de longitud `len(p) + len(q) - 1`. La precondición exige que `p` y `q` no estén vacíos.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+# (1 + x) · (1 + x) = 1 + 2x + x²
+print(multiplicar_polinomios([1.0, 1.0], [1.0, 1.0]))  # [1.0, 2.0, 1.0]
+
+# (1 + x) · (1 - x) = 1 - x²
+print(multiplicar_polinomios([1.0, 1.0], [1.0, -1.0])) # [1.0, 0.0, -1.0]
+```
+:::
+
+::: {.callout-important title="Conexión con la convolución discreta"}
+El coeficiente $k$-ésimo del producto $p \cdot q$ es precisamente la **convolución discreta** de los vectores de coeficientes evaluada en $k$. Este mismo cálculo aparece en procesamiento de señales (filtros FIR), en multiplicación de grandes enteros y en el análisis de probabilidades (suma de variables aleatorias independientes). El algoritmo más eficiente conocido usa la Transformada Rápida de Fourier (FFT) y requiere solo $O(n \log n)$ operaciones en lugar de las $O(n^2)$ del método directo.
+:::
+
+:::
+
+::: {.callout-note title="4.2.5 Función `sumar_disperso(p, q)`:" collapse="true"}
+
+Calcula la suma de dos polinomios dispersos. Retorna `dict[int, float]` que contiene únicamente los términos con coeficiente no nulo de $p + q$.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+# 5x^100 + 7   +   (-5x^100 + x^3)   =   x^3 + 7
+p = {100: 5.0, 0: 7.0}
+q = {100: -5.0, 3: 1.0}
+print(sumar_disperso(p, q))     # {0: 7.0, 3: 1.0}  (orden puede variar)
+```
+:::
+
+:::
+
+::: {.callout-note title="4.2.6 Función `multiplicar_disperso_escalar(p, c)`:" collapse="true"}
+
+Multiplica un polinomio disperso por el escalar `c`. Retorna `dict[int, float]` con solo los términos con coeficiente no nulo. Si `c == 0`, retorna el diccionario vacío `{}`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+p = {100: 5.0, 3: -3.0, 0: 7.0}
+print(multiplicar_disperso_escalar(p, 2.0))   # {100: 10.0, 3: -6.0, 0: 14.0}
+print(multiplicar_disperso_escalar(p, 0.0))   # {}
+```
+:::
+
+:::
+
+---
+
+## Ejercicio 4.3: Módulo `grafos.py`
+
+En este módulo los grafos se representan como `dict[int, set[int]]`: las claves son los vértices y los valores son el conjunto de vecinos. Salvo que se indique lo contrario, todos los grafos son **no dirigidos** (si $v \in g[u]$ entonces $u \in g[v]$).
+
+::: {.callout-note title="4.3.1 Función `num_aristas(g)`:" collapse="true"}
+
+Retorna el número de aristas del grafo no dirigido `g`. Dado que cada arista $\{u, v\}$ aparece en `g[u]` y en `g[v]`, la suma de los grados dividida entre 2 da el número de aristas.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+g = {1: {2, 3}, 2: {1, 3, 4}, 3: {1, 2}, 4: {2}}
+print(num_aristas(g))  # 4   (aristas: {1,2}, {1,3}, {2,3}, {2,4})
+```
+:::
+
+:::
+
+::: {.callout-note title="4.3.2 Función `vecinos_comunes(g, u, v)`:" collapse="true"}
+
+Retorna el conjunto de vértices que son vecinos simultáneamente de `u` y de `v`, es decir, $g[u] \cap g[v]$. La precondición exige que `u` y `v` pertenezcan a `g`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+g = {1: {2, 3}, 2: {1, 3, 4}, 3: {1, 2}, 4: {2}}
+print(vecinos_comunes(g, 1, 2))  # {3}
+print(vecinos_comunes(g, 1, 4))  # set()  — no tienen vecinos comunes
+```
+:::
+
+:::
+
+::: {.callout-note title="4.3.3 Función `es_conexo(g)`:" collapse="true"}
+
+Retorna `True` si el grafo `g` es **conexo** (existe un camino entre cualquier par de vértices) y `False` en caso contrario. La precondición exige que `g` no esté vacío.
+
+::: {.callout-important title="Algoritmo DFS iterativo"}
+Para verificar la conexidad basta hacer una búsqueda en profundidad (DFS) desde cualquier vértice y comprobar que se visitan todos:
+
+1. Inicializa un conjunto `visitados = {inicio}` y una pila `pila = [inicio]`.
+2. Mientras `pila` no esté vacía: extrae el último vértice `u` (con `pila.pop()`), y para cada vecino `v` de `u` no visitado: añade `v` a `visitados` y a `pila`.
+3. El grafo es conexo si y solo si `visitados == set(g.keys())`.
+
+Esta estrategia usa una lista de Python como pila LIFO (con `append`/`pop`), sin necesidad de `deque`.
+:::
+
+::: {.callout-tip title="Ejemplo"}
+```python
+g1 = {1: {2, 3}, 2: {1, 3}, 3: {1, 2}}
+print(es_conexo(g1))  # True
+
+g2 = {1: {2}, 2: {1}, 3: {4}, 4: {3}}
+print(es_conexo(g2))  # False — dos componentes: {1,2} y {3,4}
+```
+:::
+
+:::
+
+::: {.callout-note title="4.3.4 Función `componentes_conexas(g)`:" collapse="true"}
+
+Retorna la lista de **componentes conexas** del grafo `g`. Cada componente es un `set[int]` con los vértices de esa componente. El orden de las componentes en la lista no importa. La precondición exige que `g` no esté vacío. Reutiliza la lógica de DFS de `es_conexo`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+g = {1: {2}, 2: {1}, 3: {4}, 4: {3}, 5: set()}
+comps = componentes_conexas(g)
+print(sorted([sorted(c) for c in comps]))
+# [[1, 2], [3, 4], [5]]
+```
+:::
+
+:::
+
+::: {.callout-note title="4.3.5 Función `es_bipartito(g)`:" collapse="true"}
+
+Retorna `True` si el grafo `g` es **bipartito** y `False` en caso contrario. Un grafo es bipartito si y solo si no contiene ciclos de longitud impar, lo que equivale a poder colorear sus vértices con dos colores de forma que ninguna arista una dos vértices del mismo color. La precondición exige que `g` no esté vacío.
+
+::: {.callout-important title="Algoritmo de 2-coloración"}
+La 2-coloración se implementa como un BFS que asigna colores alternados:
+
+1. Inicializa `color: dict[int, int] = {}` (los dos colores son `0` y `1`).
+2. Para cada vértice no coloreado, asígnale color `0` e inícialo como frontera.
+3. Para cada vértice `u` en la frontera actual: para cada vecino `v`:
+   - Si `v` no está coloreado: asígnale `1 - color[u]` y agrégalo a la siguiente frontera.
+   - Si `v` está coloreado y `color[v] == color[u]`: el grafo **no** es bipartito, retorna `False`.
+4. Si se procesan todos los vértices sin conflicto: retorna `True`.
+:::
+
+::: {.callout-tip title="Ejemplo"}
+```python
+# Grafo bipartito K_{2,3}
+g1 = {1: {3, 4, 5}, 2: {3, 4, 5}, 3: {1, 2}, 4: {1, 2}, 5: {1, 2}}
+print(es_bipartito(g1))  # True
+
+# Triángulo — ciclo impar
+g2 = {1: {2, 3}, 2: {1, 3}, 3: {1, 2}}
+print(es_bipartito(g2))  # False
+```
+:::
+
+:::
+
+::: {.callout-note title="4.3.6 Función `distancia(g, origen, destino)`:" collapse="true"}
+
+Calcula la **distancia** (longitud del camino más corto) entre `origen` y `destino` en el grafo no ponderado `g`. Retorna un `int` con el número de aristas del camino mínimo, o `None` si `destino` no es alcanzable desde `origen`. La precondición exige que `origen` y `destino` pertenezcan a `g`.
+
+::: {.callout-important title="Algoritmo BFS por niveles"}
+El BFS por niveles procesa vértices capa a capa y garantiza que el primer camino encontrado hasta `destino` es el más corto:
+
+1. Inicializa `dist: dict[int, int] = {origen: 0}` y `frontera: set[int] = {origen}`.
+2. Mientras `frontera` no esté vacía y `destino` no esté en `dist`:
+   - `nueva_frontera = set()`
+   - Para cada `u` en `frontera`, para cada `v` en `g[u]` no visitado: `dist[v] = dist[u] + 1` y añade `v` a `nueva_frontera`.
+   - `frontera = nueva_frontera`
+3. Retorna `dist.get(destino)`.
+
+Esta implementación usa conjuntos y diccionarios —estructuras de tema 4— sin necesidad de `deque`.
+:::
+
+::: {.callout-tip title="Ejemplo"}
+```python
+#   1 — 2 — 4
+#   |
+#   3
+g = {1: {2, 3}, 2: {1, 4}, 3: {1}, 4: {2}}
+
+print(distancia(g, 1, 4))  # 2    (1→2→4)
+print(distancia(g, 3, 4))  # 3    (3→1→2→4)
+
+g2 = {1: {2}, 2: {1}, 3: {4}, 4: {3}}
+print(distancia(g2, 1, 3))  # None — no hay camino
+```
+:::
+
+:::
+
+---
+
+## Ejercicio 4.4: Módulo `conjuntos.py`
+
+::: {.callout-note title="4.4.1 Función `divisores_propios(n)`:" collapse="true"}
+
+Retorna el conjunto de **divisores propios** de `n`, es decir, los divisores positivos de `n` estrictamente menores que `n`. La precondición exige `n >= 1`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(divisores_propios(12))  # {1, 2, 3, 4, 6}
+print(divisores_propios(1))   # set()
+```
+:::
+
+::: {.callout-important title="Implementación eficiente"}
+Itera `d` desde `1` hasta $\lfloor\sqrt{n}\rfloor$ incluido; si `d` divide a `n`, añade `d` y `n//d`, excluyendo el propio `n`. Esto da $O(\sqrt{n})$ iteraciones.
+:::
+
+:::
+
+::: {.callout-note title="4.4.2 Función `primos_hasta(n)`:" collapse="true"}
+
+Retorna la lista ordenada de todos los primos menores o iguales que `n` usando la **criba de Eratóstenes**. La precondición exige `n >= 2`.
+
+::: {.callout-important title="Criba de Eratóstenes con operadores de conjuntos"}
+El conjunto de primos se obtiene partiendo de $\{2, 3, \ldots, n\}$ y eliminando los múltiplos de cada primo encontrado mediante diferencia de conjuntos (`-=`). Solo es necesario cribar hasta $\lfloor\sqrt{n}\rfloor$ porque cualquier número compuesto $m \leq n$ tiene un factor primo $p \leq \sqrt{m} \leq \sqrt{n}$.
+:::
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(primos_hasta(30))
+# [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+print(len(primos_hasta(100)))  # 25
+```
+:::
+
+:::
+
+::: {.callout-note title="4.4.3 Función `son_amigos(a, b)`:" collapse="true"}
+
+Retorna `True` si `a` y `b` son un par de **números amigos** y `False` en caso contrario. Dos números $a$ y $b$ (con $a \neq b$) son amigos si la suma de los divisores propios de cada uno es igual al otro:
+$$
+\sigma(a) - a = b \quad \text{y} \quad \sigma(b) - b = a.
+$$
+Reutiliza `divisores_propios`. La precondición exige `a >= 1` y `b >= 1`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(son_amigos(220, 284))  # True
+# sum(divisores_propios(220)) = 284 y sum(divisores_propios(284)) = 220
+print(son_amigos(6, 10))     # False
+```
+:::
+
+:::
+
+::: {.callout-note title="4.4.4 Función `pares_amigos(limite)`:" collapse="true"}
+
+Retorna la lista de **pares de números amigos** $(a, b)$ con $a < b \leq$ `limite`, en orden creciente por primer elemento. Reutiliza `son_amigos`. La precondición exige `limite >= 1`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(pares_amigos(1500))
+# [(220, 284), (1184, 1210)]
+```
+:::
+
+::: {.callout-warning title="Pista"}
+Para evitar comprobar todos los pares $(a, b)$ con $a < b$, observa que si $b = \sum \text{divisores\_propios}(a)$ y $a = \sum \text{divisores\_propios}(b)$ y además $a < b$, entonces el par es amigo. Itera `a` de `1` a `limite` y calcula `b` directamente.
+:::
+
+:::
+
+::: {.callout-note title="4.4.5 Función `anagramas(palabras)`:" collapse="true"}
+
+Agrupa una lista de palabras en **clases de anagramas**: dos palabras son anagramas si contienen exactamente las mismas letras (con la misma multiplicidad). Retorna `list[set[str]]` donde cada `set` contiene las palabras de una clase. El orden de las clases en la lista no importa. La precondición exige que `palabras` no esté vacío.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(anagramas(["amor", "roma", "mora", "hola", "loha", "ola"]))
+# [{'amor', 'roma', 'mora'}, {'hola', 'loha'}, {'ola'}]  (orden puede variar)
+```
+:::
+
+::: {.callout-important title="Clave de agrupación"}
+Dos palabras son anagramas si y solo si `tuple(sorted(palabra))` es idéntico. Usa un `dict[tuple, set[str]]` para agrupar: la clave es `tuple(sorted(palabra))` y el valor es el conjunto de palabras con esa firma. La función `d.setdefault(clave, set()).add(palabra)` es la forma idiomática de construir este agrupamiento.
+:::
+
+:::
+
+::: {.callout-note title="4.4.6 Función `residuos_cuadraticos(p)`:" collapse="true"}
+
+Retorna el conjunto de **residuos cuadráticos** módulo el primo `p`, es decir, el conjunto de valores que puede tomar $k^2 \bmod p$ para $k \in \{1, 2, \ldots, p-1\}$:
+$$
+QR_p = \bigl\{k^2 \bmod p \;\bigm|\; k = 1, \ldots, p-1\bigr\}.
+$$
+Retorna `set[int]`. La precondición exige que `p` sea un primo mayor o igual a 3.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(residuos_cuadraticos(7))   # {1, 2, 4}
+print(residuos_cuadraticos(11))  # {1, 3, 4, 5, 9}
+```
+:::
+
+::: {.callout-important title="Hecho teórico"}
+Para un primo $p$ impar, siempre hay exactamente $\frac{p-1}{2}$ residuos cuadráticos distintos en $\{1, \ldots, p-1\}$. Los enteros en $\{1, \ldots, p-1\}$ que **no** son residuos cuadráticos se llaman **no residuos cuadráticos**. La distinción entre ambos grupos es fundamental en teoría de números: el [símbolo de Legendre](https://es.wikipedia.org/wiki/S%C3%ADmbolo_de_Legendre) $\left(\frac{a}{p}\right)$ vale $1$ si $a$ es un residuo cuadrático mod $p$ y $-1$ en caso contrario.
+:::
+
+:::
+
+::: {.callout-note title="4.4.7 Función `sistema_registro(nombres)`:" collapse="true"}
+
+Esta función se puede emplear en el problema [Registration system](https://codeforces.com/contest/4/problem/C){target="_blank"} de [Codeforces](https://codeforces.com/){target="_blank"}. La traducción de parte del enunciado es la siguiente:
+
+> Se registran $n$ usuarios en un sistema. Para cada usuario con nombre `nombre`:
+> - Si es la primera vez que aparece ese nombre, se acepta como válido y el sistema responde `"OK"`.
+> - Si el nombre ya fue registrado, se rechaza y el sistema sugiere `nombre + str(k)`, donde `k` es el número de veces que ese nombre había aparecido antes de este intento (empezando en `2` la primera vez que se rechaza).
+
+La función `sistema_registro(nombres)` recibe `list[str]` con los nombres en orden de llegada y retorna `list[str]` con la respuesta del sistema para cada solicitud.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(sistema_registro(["ana", "bob", "ana", "carlos", "bob", "ana"]))
+# ["OK", "OK", "ana2", "OK", "bob2", "ana3"]
+```
+:::
+
+::: {.callout-important title="Estructura de datos clave"}
+Un diccionario `conteo: dict[str, int]` que almacena cuántas veces ha aparecido cada nombre hasta ahora es suficiente. Si `nombre not in conteo`: respuesta `"OK"` y `conteo[nombre] = 1`. Si ya existe: `conteo[nombre] += 1` y respuesta `nombre + str(conteo[nombre])`.
+:::
+
+:::

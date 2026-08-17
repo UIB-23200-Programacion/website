@@ -1131,10 +1131,6 @@ print(len(primos))    # 15
 La operación `-=` (diferencia de conjuntos) elimina de golpe todos los múltiplos de `p`, sin necesidad de recorrer la lista marcando posiciones como en la versión clásica con arrays. Solo hay que cribar hasta $\sqrt{n}$ porque cualquier número compuesto $m \leq n$ tiene al menos un factor primo $p \leq \sqrt{m} \leq \sqrt{n}$.
 :::
 
-::: {.callout-note appearance="simple"}
-Las expresiones `sum(k**2 for k in range(1, 101))` y `prod(range(1, n+1))` usan **expresiones generadoras** (sin corchetes). A diferencia de las comprensiones de listas, no construyen la secuencia completa en memoria sino que producen los valores uno a uno. Para pasarlas a funciones como `sum()` o `max()` son preferibles porque son más eficientes en memoria.
-:::
-
 ::: {#nte-perfectos .callout-note title="Números perfectos"}
 Un entero $n \geq 1$ es **perfecto** si es igual a la suma de sus divisores propios (divisores positivos distintos de $n$). Los cuatro primeros son $6, 28, 496$ y $8128$; se desconoce si existen infinitos.
 
@@ -1202,6 +1198,46 @@ def phi(n: int) -> int:
 
 print([phi(n) for n in range(1, 13)])
 # [1, 1, 2, 2, 4, 2, 6, 4, 6, 4, 10, 4]
+```
+:::
+
+### **4.5.4 Expresiones generadoras**
+
+Una **expresión generadora** tiene la misma sintaxis que una comprensión de listas pero con **paréntesis en lugar de corchetes**. La diferencia no es meramente tipográfica: mientras que la comprensión construye la lista completa en memoria de inmediato, la expresión generadora produce los valores **uno a uno** y solo cuando se le solicita el siguiente, igual que una función generadora (sección 3.1.4).
+
+```{pyodide}
+# Comprensión de lista — toda la lista en memoria
+lista = [x**2 for x in range(1, 6)]
+print(lista)          # [1, 4, 9, 16, 25]
+print(type(lista))    # <class 'list'>
+
+# Expresión generadora — no construye nada todavía
+gen = (x**2 for x in range(1, 6))
+print(gen)            # <generator object <genexpr> at ...>
+print(type(gen))      # <class 'generator'>
+```
+
+Su uso más frecuente es como argumento directo de `sum()`, `max()`, `min()`, `any()` y `all()`, sin necesitar una lista intermedia. Cuando la expresión generadora es el **único argumento** de una función, los paréntesis del argumento y los del generador se fusionan en uno solo:
+
+```{pyodide}
+print(sum(x**2 for x in range(1, 101)))              # 338350
+print(max(len(s) for s in ["hola", "mundo", "!"]))   # 5
+print(any(n % 7 == 0 for n in range(1, 20)))         # True
+print(all(n > 0 for n in [1, 2, 3, -1]))             # False
+```
+
+Como se vio en `@cau-gen-tupla`, un generador se **agota** después de consumirse. Si se necesita recorrer los valores más de una vez, usa una comprensión de lista en su lugar.
+
+::: {#nte-gen-expr-mat .callout-note title="Expresiones generadoras y sumas matemáticas"}
+La expresión `sum(f(k) for k in range(a, b+1))` es la traducción directa de $\displaystyle\sum_{k=a}^{b} f(k)$, sin construir la lista de sumandos:
+
+```{pyodide}
+import math
+
+# Suma de Basilea: Σ 1/k² → π²/6
+suma = sum(1/k**2 for k in range(1, 1001))
+print(f"Suma parcial: {suma:.6f}")
+print(f"π²/6:         {math.pi**2 / 6:.6f}")
 ```
 :::
 
