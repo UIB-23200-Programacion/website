@@ -10,7 +10,7 @@ El objetivo de este ejercicio es que el estudiante cree su propia cuenta en **Gi
 
 A continuación las instrucciones, paso a paso, que debes seguir para completar este ejercicio.
 
-### 1. Crear una cuenta en GitHub
+::: {.callout-note title="1. Crear una cuenta en GitHub" collapse="true"}
 
 - **Paso 1:** Entra en: [**https://github.com/**](https://github.com/){target="_blank" rel="noopener noreferrer"}
 
@@ -24,7 +24,9 @@ A continuación las instrucciones, paso a paso, que debes seguir para completar 
 
 - **Paso 4:** Verificar tu correo. GitHub enviará un mensaje a tu email de la UIB. Abre el correo y pulsa **Verify email address**.
 
-### 2. Completar tu perfil
+:::
+
+::: {.callout-note title="2. Completar tu perfil" collapse="true"}
 
 Una vez creada la cuenta, completa tu perfil de usuario siguiendo estos pasos:
 
@@ -40,7 +42,9 @@ Una vez creada la cuenta, completa tu perfil de usuario siguiendo estos pasos:
 
 Tras completar estos pasos, tendrás un **perfil académico básico y correcto**, adecuado para solicitar el **GitHub Student Developer Pack**
 
-### 3. Activar la autenticación en dos pasos (2FA)
+:::
+
+::: {.callout-note title="3. Activar la autenticación en dos pasos (2FA)" collapse="true"}
 
 - **Paso 1:** Accede a la configuración de tu cuenta. Haz clic en tu foto o avatar (arriba a la derecha) y selecciona **Settings**.
 
@@ -59,9 +63,14 @@ Tras completar estos pasos, tendrás un **perfil académico básico y correcto**
     3. Tocar el ícono de GitHub en la app (en tu móvil) para ver el **código temporal** de 6 dígitos que se genera cada 30 segundos. 
     4. Introducir el **código temporal** anterior en la página de GitHub.
 
-### 4. Reportar la cuenta de GitHub en el Aula Digital
+:::
 
-### 5. Solicitar el GitHub Student Developer Pack
+::: {.callout-note title="4. Reportar la cuenta de GitHub en el Aula Digital" collapse="true"}
+
+
+:::
+
+::: {.callout-note title="5. Solicitar el GitHub Student Developer Pack" collapse="true"}
 
 - **Paso 1:** Ve a [**https://education.github.com/pack**](https://education.github.com/pack){target="_blank" rel="noopener noreferrer"}. Haz clic en **Sign up for Student Developer Pack**.
 
@@ -79,6 +88,8 @@ Tras completar estos pasos, tendrás un **perfil académico básico y correcto**
 
 GitHub suele tardar entre **1 y 5 días** en revisar la solicitud. Recibirás un correo indicando si ha sido aprobada. Una vez aceptado, tendrás acceso a todas las herramientas del Pack desde tu cuenta de GitHub.
 
+:::
+
 ## Ejercicio 1.2
 
 Este ejercicio tiene como objetivo que aprendas a:
@@ -95,14 +106,16 @@ Los repositorios pueden ser públicos o privados, soportan ramas y colaboracione
 Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar, que te permite programar directamente desde GitHub sin configurar tu máquina local. Suele venir con herramientas y dependencias preconfiguradas para un repositorio concreto, lo que facilita empezar a trabajar rápido.
 :::
 
-### 1. Acceder a tu cuenta de GitHub (si no lo has hecho ya)
+::: {.callout-note title="1. Acceder a tu cuenta de GitHub (si no lo has hecho ya)" collapse="true"}
 
 - Abrir el navegador.  
 - Ir a: `https://github.com/`  
 - Pulsar **Sign in**.  
 - Introducir usuario y contraseña.
 
-### 2. Crear el repositorio “test-de-codespaces–tema-1”
+:::
+
+::: {.callout-note title="2. Crear el repositorio “test-de-codespaces–tema-1”" collapse="true"}
 
 - **Paso 1:** En la parte superior izquierda, hacer clic en `+` (![](../../images/signomas.png){width="50px"}).
 
@@ -123,7 +136,9 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
     - Un archivo `README.md` ya creado.  
     - Un menú con pestañas como *Code*, *Issues*, *Pull requests*, etc.
 
-### 3. Crear un Codespace preconfigurado para Python
+:::
+
+::: {.callout-note title="3. Crear un Codespace preconfigurado para Python" collapse="true"}
 
 - **Paso 1:** Crear la carpeta `.devcontainer` y el fichero `devcontainer.json` 
 
@@ -192,7 +207,9 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
 
     5. Acepta el mensaje por defecto sobre los cambios y haz clic en **Commit changes**.
 
-### 4. Arrancar el Codespace
+:::
+
+::: {.callout-note title="4. Arrancar el Codespace" collapse="true"}
 
 - **Paso 1:** Has clic en **Code → Codespaces**. 
 
@@ -212,7 +229,9 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
 
     Una vez listo, verás un mensaje en la parte inferior derecha de VS Code indicando que el entorno está listo.
 
-### 5. Reconocer la interfaz del Codespace
+:::
+
+::: {.callout-note title="5. Reconocer la interfaz del Codespace" collapse="true"}
 
 El entorno tendrá:
 
@@ -227,7 +246,11 @@ El entorno tendrá:
 - **Terminal integrada** en el centro abajo.  
 - **Barra lateral derecha** para el **CHAT** con Copilot.
 
-### 6. Verificar que Python está configurado
+![](../../images/codespace.png){width="90%"}
+
+:::
+
+::: {.callout-note title="6. Verificar que Python está configurado" collapse="true"}
 
 En la **TERMINAL** del Codespace escribe el siguiente comando para comprobar la versión de Python instalada (si copias y pegas el comando, probablemente debas dar permiso en la ventana emergente del navegador para poder pegar texto en la terminal):
 
@@ -241,7 +264,9 @@ Debe aparecer:
 Python 3.12.x
 ```
 
-### 7. Crear un archivo de prueba y ejecutarlo
+:::
+
+::: {.callout-note title="7. Crear un archivo de prueba y ejecutarlo" collapse="true"}
 
 1. En el explorador, pulsar **New File** o **Nuevo archivo**.  
 
@@ -268,7 +293,9 @@ Python 3.12.x
 
     - Variante 2: Hacer clic en **Ejecutar archivo de Python** (triángulo de play arriba a la derecha del editor de código).
 
-### 8. Cerrar el Codespace
+:::
+
+::: {.callout-note title="8. Cerrar el Codespace" collapse="true"}
 
 **Este es un paso sumamente importante**. Cuando termines de trabajar en el Codespace, debes cerrarlo para liberar recursos y evitar que se acumulen cargos en tu cuenta de GitHub. **Principalmente ya que el número de horas de Codespaces gratuitas es limitado.**
 
@@ -282,3 +309,5 @@ Python 3.12.x
     - Ve a tu repositorio en GitHub.
     - Haz clic en **Code → Codespaces**.
     - Localiza el Codespace que quieres cerrar y haz clic en **... → Stop Codespace**.
+
+:::

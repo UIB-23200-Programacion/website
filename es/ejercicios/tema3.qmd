@@ -4,7 +4,7 @@ lang: es
 sidebar: barra-es
 ---
 
-Para la realización de los ejercicios debe utilizar el proyecto de ejemplo `t03_ejemplo` que está disponible en el repositorio del curso: [https://github.com/UIB-23200-Programacion/t03_ejemplo](https://github.com/UIB-23200-Programacion/t03_ejemplo){target="_blank"}. Navega al sitio y sigue las instrucciones en `README.md` para copiar el repositorio en tu entorno local de GitHub.
+Para la realización de los ejercicios debe utilizar el proyecto de ejemplo `t03_ejemplo` que está disponible en el repositorio del curso: [https://github.com/UIB-23200-Programacion/t03_ejemplo](https://github.com/UIB-23200-Programacion/t03_ejemplo){target="_blank"}. Navega al sitio y sigue las instrucciones en `README.md` para copiar el repositorio en tu entorno local de GitHub y abrir un Codespace para trabajar en los ejercicios.
 
 Agrega las siguientes funciones al módulo que se especifica del paquete `t03_paquete` contenido en el proyecto respetando las siguientes reglas siempre:
 
