@@ -6,15 +6,18 @@ sidebar: barra-es
 
 Para la realización de los ejercicios debe utilizar el proyecto `ejercicios-tema-02` que está disponible en el repositorio del curso: [https://github.com/UIB-23200-Programacion/ejercicios-tema-02](https://github.com/UIB-23200-Programacion/ejercicios-tema-02){target="_blank"}. Navega al sitio y sigue las instrucciones en `README.md` para copiar el repositorio en tu entorno local de GitHub y **abrir un Codespace** para trabajar en los ejercicios.
 
-## Ejercicios 1.1 a 1.35
+## Ejercicios 2.1 a 2.35
 
-Los ejercicios 1.1 a 1.35 se encuentran en los archivos `ejer_t02_01-11_mo.py`, `ejer_t02_12-19_mo.py`, `ejer_t02_20-26_mo.py` y `ejer_t02_27-35_mo.py` contenidos en el directorio `/notebooks`. Estos ficheros son tanto scripts de Python como notebooks de Marimo que permiten ejecución interactiva. Para resolver los ejercicios, abre cada archivo en el Codespace y sigue las instrucciones proporcionadas en las diferentes celdas de cada notebook. Hay celdas de código y celdas de texto, estas últimas contienen los enunciados de los ejercicios. 
+Los ejercicios 2.1 a 2.35 se encuentran en los archivos `ejer_t02_01-11_mo.py`, `ejer_t02_12-19_mo.py`, `ejer_t02_20-26_mo.py` y `ejer_t02_27-35_mo.py` contenidos en el directorio `/notebooks`. 
 
-**Es necesario abrir los ficheros con Marimo para disponer de la ejecución interactiva en celdas del notebook, para ello (si no ocurre de forma automática) debes hacer clic en el botón "Open in Marimo" (![](../../images/openmarimo.png){width="50px"})** 
+Estos ficheros son tanto scripts de Python como notebooks de Marimo que permiten ejecución interactiva. Para resolver los ejercicios, abre cada archivo en el Codespace y sigue las instrucciones proporcionadas en las diferentes celdas de cada notebook. Hay celdas de código y celdas de texto, estas últimas contienen los enunciados de los ejercicios. 
 
-## Ejercicios 1.36 a 1.40
+**Es necesario abrir los ficheros con Marimo para disponer de la ejecución interactiva en celdas del notebook, para ello (si no ocurre de forma automática) debes hacer clic en el botón "Open in Marimo" (![](../../images/openmarimo.png){width="30px"})** 
 
-Los ejercicios 1.36 a 1.40 se encuentran en los archivos `ejer_t02_36.py` al `ejer_t02_40.py` contenidos en el directorio `/ejercicios_simples`. Estos ficheros son scripts de Python cuya ejecución no es interactiva. Para resolver los ejercicios, abre cada archivo en el Codespace y sigue las instrucciones proporcionadas en los comentarios. Una vez resuelto el ejercicio, puedes ejecutar el script de Python de varias formas:
+## Ejercicios 2.36 a 2.40
+
+Los ejercicios 2.36 a 2.40 se encuentran en los archivos `ejer_t02_36.py` al `ejer_t02_40.py` contenidos en el directorio `/ejercicios_simples`. Estos ficheros son scripts de Python cuya ejecución no es interactiva. Para resolver los ejercicios, abre cada archivo en el Codespace y sigue las instrucciones proporcionadas en los comentarios. Una vez resuelto el ejercicio, puedes ejecutar el script de Python de varias formas:
+
 - haciendo clic en **Run Python File** (triángulo de play en la parte superior derecha del editor de código),
 - haciendo clic derecho sobre el archivo y seleccionando **Run Python File in Terminal**,
 - ejecutando el comando `python <nombre_del_archivo>.py` en la **terminal integrada** del Codespace.

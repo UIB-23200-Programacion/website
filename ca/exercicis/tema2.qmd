@@ -1,7 +1,25 @@
 ---
-title: "Exercicis — Tema 2"
+title: "Exercicis — Tema 2: Components del Llenguatge i Control de Flux"
 lang: ca
 sidebar: barra-ca
 ---
 
-*(Contenido pendiente.)*
+Per a la realització dels exercicis heu d'utilitzar el projecte `ejercicios-tema-02` que està disponible al repositori del curs: [https://github.com/UIB-23200-Programacion/ejercicios-tema-02](https://github.com/UIB-23200-Programacion/ejercicios-tema-02){target="_blank"}. Navega al lloc i segueix les instruccions a `README.md` per copiar el repositori al teu entorn local de GitHub i **obrir un Codespace** per treballar als exercicis.
+
+## Exercicis 2.1 a 2.35
+
+Els exercicis 2.1 a 2.35 es troben als arxius `ejer_t02_01-11_mo.py`, `ejer_t02_12-19_mo.py`, `ejer_t02_20-26_mo.py` i `ejer_t02_27-35_mo.py` continguts al directori `/notebooks`.
+
+Aquests fitxers són tant scripts de Python com notebooks de Marimo que permeten l'execució interactiva. Per resoldre els exercicis, obre cada arxiu al Codespace i segueix les instruccions proporcionades a les diferents cel·les de cada notebook. Hi ha cel·les de codi i cel·les de text, aquestes últimes contenen els enunciats dels exercicis.
+
+**Cal obrir els fitxers amb Marimo per disposar de l'execució interactiva en cel·les del notebook; per fer-ho (si no ocorre de forma automàtica) has de fer clic al botó "Open in Marimo" (![](../../images/openmarimo.png){width="30px"})**
+
+## Exercicis 2.36 a 2.40
+
+Els exercicis 2.36 a 2.40 es troben als arxius `ejer_t02_36.py` al `ejer_t02_40.py` continguts al directori `/ejercicios_simples`. Aquests fitxers són scripts de Python l'execució dels quals no és interactiva. Per resoldre els exercicis, obre cada arxiu al Codespace i segueix les instruccions proporcionades als comentaris. Un cop resolt l'exercici, pots executar el script de Python de diverses formes:
+
+- fent clic a **Run Python File** (triangle de play a la part superior dreta de l'editor de codi),
+- fent clic dret sobre l'arxiu i seleccionant **Run Python File in Terminal**,
+- executant la comanda `python <nom_de_l_arxiu>.py` a la **terminal integrada** del Codespace.
+
+Aquests exercicis són per comprendre l'ús de la funció `input()` de Python. La seva execució requereix que l'usuari introdueixi dades per teclat des de la **terminal integrada** del Codespace.
