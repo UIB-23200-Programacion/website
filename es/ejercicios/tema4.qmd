@@ -64,6 +64,51 @@ print(son_ortogonales([1.0, 1.0], [1.0, 0.0]))   # False
 ```
 :::
 
+::: {.callout-important title="Errores de redondeo en punto flotante"}
+
+Si en la función `son_ortogonales` se compara el producto escalar con `0.0` usando igualdad estricta, puede ocurrir que dos vectores que son ortogonales no sean detectados como tales debido a errores de redondeo en la representación de números de punto flotante. Tomemos, como ejemplo, los vectores $\vec{u}$ y $\vec{v}$:
+
+- $\vec{u} = (0.1, 0.2, 0.3)$
+- $\vec{v} = (0.2, -0.4, 0.2)$
+
+Su producto escalar es cero (lo cual se comprueba fácilmente reescribiendo $\vec{u} = (1, 2, 3)/10$ y $\vec{v} = (2, -4, 2)/10$). Pero en Python tenemos:
+
+```python
+pe = (0.1 * 0.2) + (0.2 * -0.4) + (0.3 * 0.2)
+print(pe)         # -1.3877787807814457e-17
+print(pe == 0.0)  # False
+```
+
+Para evitar falsos negativos, es recomendable usar una tolerancia al comparar con cero, por ejemplo:
+
+```python
+print(abs(pe) < 1e-10)  # True
+```
+
+El valor de la tolerancia depende de la magnitud de los vectores involucrados. Por ejemplo, los vectores $\vec{u}$ y $\vec{v}$
+
+- $\vec{u} = (1500.1,\ 2500.2,\ 3500.3)$
+- $\vec{v} = (2500.2,\ -5000.4,\ 2500.2)$ 
+
+son ortogonales, pero su producto escalar en Python es:
+
+```python
+pe = (1500.1 * 2500.2) + (2500.2 * -5000.4) + (3500.3 * 2500.2)
+print(pe)               # 1.862645149230957e-09
+print(abs(pe) < 1e-10)  # False
+```
+
+La comparación `abs(pe) < 1e-10` da `False`, indicando incorrectamente que los vectores no son ortogonales. La tolerancia de `1e-10` es insuficiente en este caso. 
+
+Una alternativa más robusta es usar una tolerancia relativa basada en la norma de los vectores:
+
+```python
+tolerancia = 1e-10 * norma(u) * norma(v)
+print(abs(pe) < tolerancia)  # True
+```
+
+:::
+
 :::
 
 ::: {.callout-note title="4.1.4 Función `proyeccion(u, v)`:" collapse="true"}
