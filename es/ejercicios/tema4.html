@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Ejercicios — Tema 4 – Programación (23200)</title>
+<title>Ejercicios — Tema 4: Estructuras de Datos Nativas Fundamentales de Python – Programación (23200)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -72,9 +107,38 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Ejercicios — Tema 4 – Programación (23200)">
+<meta property="og:title" content="Ejercicios — Tema 4: Estructuras de Datos Nativas Fundamentales de Python – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
 <meta property="og:site_name" content="Programación (23200)">
 </head>
@@ -534,8 +598,17 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#ejercicio-4.1-módulo-vectores.py" id="toc-ejercicio-4.1-módulo-vectores.py" class="nav-link active" data-scroll-target="#ejercicio-4.1-módulo-vectores.py">Ejercicio 4.1: Módulo <code>vectores.py</code></a></li>
+  <li><a href="#ejercicio-4.2-módulo-polinomios.py" id="toc-ejercicio-4.2-módulo-polinomios.py" class="nav-link" data-scroll-target="#ejercicio-4.2-módulo-polinomios.py">Ejercicio 4.2: Módulo <code>polinomios.py</code></a></li>
+  <li><a href="#ejercicio-4.3-módulo-grafos.py" id="toc-ejercicio-4.3-módulo-grafos.py" class="nav-link" data-scroll-target="#ejercicio-4.3-módulo-grafos.py">Ejercicio 4.3: Módulo <code>grafos.py</code></a></li>
+  <li><a href="#ejercicio-4.4-módulo-conjuntos.py" id="toc-ejercicio-4.4-módulo-conjuntos.py" class="nav-link" data-scroll-target="#ejercicio-4.4-módulo-conjuntos.py">Ejercicio 4.4: Módulo <code>conjuntos.py</code></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -543,7 +616,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../es/ejercicios/tema1.html">Ejercicios</a></li><li class="breadcrumb-item"><a href="../../es/ejercicios/tema4.html">Ejercicios — Tema 4</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Ejercicios — Tema 4</h1>
+<h1 class="title">Ejercicios — Tema 4: Estructuras de Datos Nativas Fundamentales de Python</h1>
 </div>
 
 
@@ -560,9 +633,1085 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contenido pendiente.)</em></p>
+<p>Para la realización de los ejercicios debe utilizar el proyecto <code>t04_colecciones</code> que estará disponible en el repositorio del curso. Navega al sitio y sigue las instrucciones en <code>README.md</code> para copiar el repositorio en tu entorno local de GitHub y abrir un Codespace para trabajar en los ejercicios.</p>
+<p>El proyecto <code>t04_colecciones</code> organiza cuatro módulos en el paquete <code>t04_paquete</code>. Cada módulo explota una estructura de datos del tema 4 como herramienta principal para implementar una familia de operaciones matemáticas o algorítmicas:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Módulo</th>
+<th>Estructura principal</th>
+<th>Dominio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>vectores.py</code></td>
+<td>listas y tuplas</td>
+<td>álgebra lineal elemental</td>
+</tr>
+<tr class="even">
+<td><code>polinomios.py</code></td>
+<td>listas y diccionarios</td>
+<td>operaciones con polinomios</td>
+</tr>
+<tr class="odd">
+<td><code>grafos.py</code></td>
+<td><code>dict[int, set[int]]</code></td>
+<td>teoría de grafos</td>
+</tr>
+<tr class="even">
+<td><code>conjuntos.py</code></td>
+<td><code>set</code> y comprensiones</td>
+<td>teoría de números</td>
+</tr>
+</tbody>
+</table>
+<p>Agrega las siguientes funciones al módulo que se especifica respetando siempre las mismas reglas del tema 3:</p>
+<ul>
+<li>la función debe contener type hints, docstrings y precondiciones,</li>
+<li>si la precondición (o alguna de las precondiciones) no se cumple la función debe retornar <code>None</code>,</li>
+<li>al bloque <code>if __name__ == "__main__"</code> del módulo se deben agregar pruebas para validar el comportamiento de cada función. Se deben realizar las pruebas al menos para un caso normal y un caso límite (de existir).</li>
+</ul>
+<hr>
+<section id="ejercicio-4.1-módulo-vectores.py" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-4.1-módulo-vectores.py">Ejercicio 4.1: Módulo <code>vectores.py</code></h2>
+<p>En este módulo los vectores se representan como <code>list[float]</code> y las matrices como <code>list[list[float]]</code> (lista de filas). Salvo que se indique lo contrario, las funciones trabajan con vectores de dimensión arbitraria.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.1.1 Función `producto_escalar(u, v)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.1.1 Función <code>producto_escalar(u, v)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula el producto escalar (producto interior) <span class="math inline">\(\mathbf{u} \cdot \mathbf{v} = \sum_{i=0}^{n-1} u_i v_i\)</span> de dos vectores de la misma dimensión.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(producto_escalar([<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>], [<span class="fl">4.0</span>, <span class="fl">5.0</span>, <span class="fl">6.0</span>]))  <span class="co"># 32.0</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(producto_escalar([<span class="fl">1.0</span>, <span class="fl">0.0</span>], [<span class="fl">0.0</span>, <span class="fl">1.0</span>]))            <span class="co"># 0.0</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.1.2 Función `norma(u)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.1.2 Función <code>norma(u)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula la norma euclídea <span class="math inline">\(\|\mathbf{u}\|_2 = \sqrt{\mathbf{u} \cdot \mathbf{u}}\)</span> de un vector. Reutiliza <code>producto_escalar</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(norma([<span class="fl">3.0</span>, <span class="fl">4.0</span>]))           <span class="co"># 5.0</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(norma([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>]))      <span class="co"># 1.7320508075688772</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.1.3 Función `son_ortogonales(u, v)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.1.3 Función <code>son_ortogonales(u, v)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna <code>True</code> si los vectores <code>u</code> y <code>v</code> son ortogonales (su producto escalar es cero) y <code>False</code> en caso contrario. Reutiliza <code>producto_escalar</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(son_ortogonales([<span class="fl">1.0</span>, <span class="fl">0.0</span>], [<span class="fl">0.0</span>, <span class="fl">1.0</span>]))   <span class="co"># True</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(son_ortogonales([<span class="fl">1.0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="fl">0.0</span>]))   <span class="co"># False</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.1.4 Función `proyeccion(u, v)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.1.4 Función <code>proyeccion(u, v)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula la <strong>proyección ortogonal</strong> de <code>u</code> sobre <code>v</code>: <span class="math display">\[
+\text{proj}_{\mathbf{v}}(\mathbf{u}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{v}\|^2}\, \mathbf{v}.
+\]</span> Retorna un <code>list[float]</code> de la misma dimensión. Reutiliza <code>producto_escalar</code> y <code>norma</code>. La precondición exige que <code>v</code> no sea el vector cero.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(proyeccion([<span class="fl">3.0</span>, <span class="fl">4.0</span>], [<span class="fl">1.0</span>, <span class="fl">0.0</span>]))   <span class="co"># [3.0, 0.0]</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(proyeccion([<span class="fl">1.0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="fl">1.0</span>]))   <span class="co"># [1.0, 1.0]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.1.5 Función `producto_vectorial(u, v)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.1.5 Función <code>producto_vectorial(u, v)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula el <strong>producto vectorial</strong> <span class="math inline">\(\mathbf{u} \times \mathbf{v}\)</span> en <span class="math inline">\(\mathbb{R}^3\)</span>: <span class="math display">\[
+\mathbf{u} \times \mathbf{v} =
+\begin{vmatrix} \mathbf{e}_1 &amp; \mathbf{e}_2 &amp; \mathbf{e}_3 \\ u_0 &amp; u_1 &amp; u_2 \\ v_0 &amp; v_1 &amp; v_2 \end{vmatrix}
+= (u_1 v_2 - u_2 v_1,\; u_2 v_0 - u_0 v_2,\; u_0 v_1 - u_1 v_0).
+\]</span> Retorna <code>tuple[float, float, float]</code>. La precondición exige <code>len(u) == len(v) == 3</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(producto_vectorial([<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>], [<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.0</span>]))  <span class="co"># (0.0, 0.0, 1.0)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(producto_vectorial([<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>], [<span class="fl">4.0</span>, <span class="fl">5.0</span>, <span class="fl">6.0</span>]))  <span class="co"># (-3.0, 6.0, -3.0)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Conexión geométrica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Conexión geométrica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La magnitud <span class="math inline">\(\|\mathbf{u} \times \mathbf{v}\|\)</span> es el área del paralelogramo que forman <code>u</code> y <code>v</code>. Si <code>u</code> y <code>v</code> son paralelos (o uno es el vector cero), el producto vectorial es el vector cero, lo que refleja que el paralelogramo tiene área nula.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.1.6 Función `trasponer(A)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.1.6 Función <code>trasponer(A)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula la <strong>matriz traspuesta</strong> <span class="math inline">\(A^T\)</span> donde <span class="math inline">\((A^T)_{ij} = A_{ji}\)</span>. Recibe una matriz <span class="math inline">\(m \times n\)</span> y retorna una <span class="math inline">\(n \times m\)</span>, ambas como <code>list[list[float]]</code>. La precondición exige que <code>A</code> no esté vacía y que todas las filas tengan la misma longitud.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [[<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>],</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>     [<span class="fl">4.0</span>, <span class="fl">5.0</span>, <span class="fl">6.0</span>]]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(trasponer(A))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># [[1.0, 4.0], [2.0, 5.0], [3.0, 6.0]]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.1.7 Función `producto_matrices(A, B)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.1.7 Función <code>producto_matrices(A, B)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula el producto matricial <span class="math inline">\(C = A \cdot B\)</span> donde <span class="math inline">\(C_{ij} = \text{fila}_i(A) \cdot \text{col}_j(B)\)</span>. La precondición exige que el número de columnas de <code>A</code> coincida con el número de filas de <code>B</code>. Reutiliza <code>producto_escalar</code>. Combina <code>trasponer</code> con <code>producto_escalar</code> para obtener una implementación limpia: la columna <span class="math inline">\(j\)</span> de <span class="math inline">\(B\)</span> es la fila <span class="math inline">\(j\)</span> de <span class="math inline">\(B^T\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [[<span class="fl">1.0</span>, <span class="fl">2.0</span>], [<span class="fl">3.0</span>, <span class="fl">4.0</span>]]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> [[<span class="fl">5.0</span>, <span class="fl">6.0</span>], [<span class="fl">7.0</span>, <span class="fl">8.0</span>]]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(producto_matrices(A, B))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [[19.0, 22.0], [43.0, 50.0]]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="ejercicio-4.2-módulo-polinomios.py" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-4.2-módulo-polinomios.py">Ejercicio 4.2: Módulo <code>polinomios.py</code></h2>
+<p>Este módulo implementa dos representaciones de polinomios:</p>
+<ul>
+<li><strong>Densa</strong>: <code>list[float]</code> donde <code>coefs[i]</code> es el coeficiente de <span class="math inline">\(x^i\)</span>. Eficiente para polinomios de grado pequeño sin coeficientes nulos.</li>
+<li><strong>Dispersa</strong>: <code>dict[int, float]</code> donde solo se almacenan los términos con coeficiente no nulo. Eficiente para polinomios de grado elevado con muchos ceros.</li>
+</ul>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.2.1 Función `evaluar_horner(coefs, x)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.2.1 Función <code>evaluar_horner(coefs, x)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Evalúa el polinomio denso <span class="math inline">\(p(x) = c_0 + c_1 x + \cdots + c_n x^n\)</span> en el punto <code>x</code> usando el <strong>algoritmo de Horner</strong>: <span class="math display">\[
+p(x) = c_0 + x\bigl(c_1 + x\bigl(c_2 + x(\cdots + x \cdot c_n)\bigr)\bigr)
+\]</span> que requiere solo <span class="math inline">\(n\)</span> multiplicaciones y <span class="math inline">\(n\)</span> sumas (en lugar de las <span class="math inline">\(O(n^2)\)</span> de la evaluación directa). La precondición exige que <code>coefs</code> no esté vacío.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p(x) = 1 + 2x + 3x²</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(evaluar_horner([<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>], <span class="fl">2.0</span>))   <span class="co"># 17.0   (1 + 4 + 12)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(evaluar_horner([<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>], <span class="fl">0.0</span>))   <span class="co"># 1.0</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(evaluar_horner([<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>], <span class="op">-</span><span class="fl">1.0</span>))  <span class="co"># 2.0    (1 - 2 + 3)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.2.2 Función `derivada(coefs)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.2.2 Función <code>derivada(coefs)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula la <strong>derivada formal</strong> del polinomio denso <span class="math inline">\(p(x) = c_0 + c_1 x + \cdots + c_n x^n\)</span>: <span class="math display">\[
+p'(x) = c_1 + 2c_2 x + \cdots + n c_n x^{n-1}.
+\]</span> Retorna <code>list[float]</code> con los coeficientes del polinomio derivado. La lista vacía <code>[]</code> representa el polinomio nulo. La precondición exige que <code>coefs</code> no esté vacío.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p(x) = 3 + 2x + x²   →   p'(x) = 2 + 2x</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(derivada([<span class="fl">3.0</span>, <span class="fl">2.0</span>, <span class="fl">1.0</span>]))     <span class="co"># [2.0, 2.0]</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># p(x) = x⁵             →   p'(x) = 5x⁴</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(derivada([<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>]))  <span class="co"># [0.0, 0.0, 0.0, 0.0, 5.0]</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># p(x) = 7  (constante)  →   p'(x) = 0</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(derivada([<span class="fl">7.0</span>]))               <span class="co"># []</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.2.3 Función `primitiva(coefs, c)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.2.3 Función <code>primitiva(coefs, c)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula la <strong>primitiva</strong> (antiderivada) del polinomio denso <span class="math inline">\(p(x)\)</span> con constante de integración <code>c</code> (por defecto <code>0.0</code>): <span class="math display">\[
+F(x) = c + c_0 x + \frac{c_1}{2} x^2 + \frac{c_2}{3} x^3 + \cdots + \frac{c_n}{n+1} x^{n+1}.
+\]</span> Retorna <code>list[float]</code> de longitud <code>len(coefs) + 1</code>. La precondición exige que <code>coefs</code> no esté vacío.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p(x) = 1 + 2x   →   F(x) = x + x²  (c=0)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(primitiva([<span class="fl">1.0</span>, <span class="fl">2.0</span>]))         <span class="co"># [0.0, 1.0, 1.0]</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># p(x) = 3x²      →   F(x) = 5 + x³  (c=5)</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(primitiva([<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">3.0</span>], <span class="fl">5.0</span>))  <span class="co"># [5.0, 0.0, 0.0, 1.0]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.2.4 Función `multiplicar_polinomios(p, q)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.2.4 Función <code>multiplicar_polinomios(p, q)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula el <strong>producto</strong> de dos polinomios densos. Si <span class="math inline">\(p\)</span> tiene grado <span class="math inline">\(m\)</span> y <span class="math inline">\(q\)</span> tiene grado <span class="math inline">\(n\)</span>, el producto tiene grado <span class="math inline">\(m+n\)</span> y su coeficiente <span class="math inline">\(k\)</span>-ésimo es: <span class="math display">\[
+(p \cdot q)_k = \sum_{i=\max(0,\, k-n)}^{\min(m,\, k)} p_i \cdot q_{k-i}.
+\]</span> Retorna <code>list[float]</code> de longitud <code>len(p) + len(q) - 1</code>. La precondición exige que <code>p</code> y <code>q</code> no estén vacíos.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (1 + x) · (1 + x) = 1 + 2x + x²</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(multiplicar_polinomios([<span class="fl">1.0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="fl">1.0</span>]))  <span class="co"># [1.0, 2.0, 1.0]</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (1 + x) · (1 - x) = 1 - x²</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(multiplicar_polinomios([<span class="fl">1.0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>])) <span class="co"># [1.0, 0.0, -1.0]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Conexión con la convolución discreta">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Conexión con la convolución discreta
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El coeficiente <span class="math inline">\(k\)</span>-ésimo del producto <span class="math inline">\(p \cdot q\)</span> es precisamente la <strong>convolución discreta</strong> de los vectores de coeficientes evaluada en <span class="math inline">\(k\)</span>. Este mismo cálculo aparece en procesamiento de señales (filtros FIR), en multiplicación de grandes enteros y en el análisis de probabilidades (suma de variables aleatorias independientes). El algoritmo más eficiente conocido usa la Transformada Rápida de Fourier (FFT) y requiere solo <span class="math inline">\(O(n \log n)\)</span> operaciones en lugar de las <span class="math inline">\(O(n^2)\)</span> del método directo.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.2.5 Función `sumar_disperso(p, q)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.2.5 Función <code>sumar_disperso(p, q)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula la suma de dos polinomios dispersos. Retorna <code>dict[int, float]</code> que contiene únicamente los términos con coeficiente no nulo de <span class="math inline">\(p + q\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5x^100 + 7   +   (-5x^100 + x^3)   =   x^3 + 7</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> {<span class="dv">100</span>: <span class="fl">5.0</span>, <span class="dv">0</span>: <span class="fl">7.0</span>}</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> {<span class="dv">100</span>: <span class="op">-</span><span class="fl">5.0</span>, <span class="dv">3</span>: <span class="fl">1.0</span>}</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sumar_disperso(p, q))     <span class="co"># {0: 7.0, 3: 1.0}  (orden puede variar)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.2.6 Función `multiplicar_disperso_escalar(p, c)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.2.6 Función <code>multiplicar_disperso_escalar(p, c)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Multiplica un polinomio disperso por el escalar <code>c</code>. Retorna <code>dict[int, float]</code> con solo los términos con coeficiente no nulo. Si <code>c == 0</code>, retorna el diccionario vacío <code>{}</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> {<span class="dv">100</span>: <span class="fl">5.0</span>, <span class="dv">3</span>: <span class="op">-</span><span class="fl">3.0</span>, <span class="dv">0</span>: <span class="fl">7.0</span>}</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(multiplicar_disperso_escalar(p, <span class="fl">2.0</span>))   <span class="co"># {100: 10.0, 3: -6.0, 0: 14.0}</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(multiplicar_disperso_escalar(p, <span class="fl">0.0</span>))   <span class="co"># {}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="ejercicio-4.3-módulo-grafos.py" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-4.3-módulo-grafos.py">Ejercicio 4.3: Módulo <code>grafos.py</code></h2>
+<p>En este módulo los grafos se representan como <code>dict[int, set[int]]</code>: las claves son los vértices y los valores son el conjunto de vecinos. Salvo que se indique lo contrario, todos los grafos son <strong>no dirigidos</strong> (si <span class="math inline">\(v \in g[u]\)</span> entonces <span class="math inline">\(u \in g[v]\)</span>).</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.3.1 Función `num_aristas(g)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.3.1 Función <code>num_aristas(g)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna el número de aristas del grafo no dirigido <code>g</code>. Dado que cada arista <span class="math inline">\(\{u, v\}\)</span> aparece en <code>g[u]</code> y en <code>g[v]</code>, la suma de los grados dividida entre 2 da el número de aristas.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> {<span class="dv">1</span>: {<span class="dv">2</span>, <span class="dv">3</span>}, <span class="dv">2</span>: {<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>}, <span class="dv">3</span>: {<span class="dv">1</span>, <span class="dv">2</span>}, <span class="dv">4</span>: {<span class="dv">2</span>}}</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(num_aristas(g))  <span class="co"># 4   (aristas: {1,2}, {1,3}, {2,3}, {2,4})</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.3.2 Función `vecinos_comunes(g, u, v)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.3.2 Función <code>vecinos_comunes(g, u, v)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna el conjunto de vértices que son vecinos simultáneamente de <code>u</code> y de <code>v</code>, es decir, <span class="math inline">\(g[u] \cap g[v]\)</span>. La precondición exige que <code>u</code> y <code>v</code> pertenezcan a <code>g</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> {<span class="dv">1</span>: {<span class="dv">2</span>, <span class="dv">3</span>}, <span class="dv">2</span>: {<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>}, <span class="dv">3</span>: {<span class="dv">1</span>, <span class="dv">2</span>}, <span class="dv">4</span>: {<span class="dv">2</span>}}</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vecinos_comunes(g, <span class="dv">1</span>, <span class="dv">2</span>))  <span class="co"># {3}</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vecinos_comunes(g, <span class="dv">1</span>, <span class="dv">4</span>))  <span class="co"># set()  — no tienen vecinos comunes</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.3.3 Función `es_conexo(g)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.3.3 Función <code>es_conexo(g)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-35" class="callout-35-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna <code>True</code> si el grafo <code>g</code> es <strong>conexo</strong> (existe un camino entre cualquier par de vértices) y <code>False</code> en caso contrario. La precondición exige que <code>g</code> no esté vacío.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Algoritmo DFS iterativo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Algoritmo DFS iterativo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para verificar la conexidad basta hacer una búsqueda en profundidad (DFS) desde cualquier vértice y comprobar que se visitan todos:</p>
+<ol type="1">
+<li>Inicializa un conjunto <code>visitados = {inicio}</code> y una pila <code>pila = [inicio]</code>.</li>
+<li>Mientras <code>pila</code> no esté vacía: extrae el último vértice <code>u</code> (con <code>pila.pop()</code>), y para cada vecino <code>v</code> de <code>u</code> no visitado: añade <code>v</code> a <code>visitados</code> y a <code>pila</code>.</li>
+<li>El grafo es conexo si y solo si <code>visitados == set(g.keys())</code>.</li>
+</ol>
+<p>Esta estrategia usa una lista de Python como pila LIFO (con <code>append</code>/<code>pop</code>), sin necesidad de <code>deque</code>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="op">=</span> {<span class="dv">1</span>: {<span class="dv">2</span>, <span class="dv">3</span>}, <span class="dv">2</span>: {<span class="dv">1</span>, <span class="dv">3</span>}, <span class="dv">3</span>: {<span class="dv">1</span>, <span class="dv">2</span>}}</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_conexo(g1))  <span class="co"># True</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>g2 <span class="op">=</span> {<span class="dv">1</span>: {<span class="dv">2</span>}, <span class="dv">2</span>: {<span class="dv">1</span>}, <span class="dv">3</span>: {<span class="dv">4</span>}, <span class="dv">4</span>: {<span class="dv">3</span>}}</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_conexo(g2))  <span class="co"># False — dos componentes: {1,2} y {3,4}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.3.4 Función `componentes_conexas(g)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.3.4 Función <code>componentes_conexas(g)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-37" class="callout-37-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna la lista de <strong>componentes conexas</strong> del grafo <code>g</code>. Cada componente es un <code>set[int]</code> con los vértices de esa componente. El orden de las componentes en la lista no importa. La precondición exige que <code>g</code> no esté vacío. Reutiliza la lógica de DFS de <code>es_conexo</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> {<span class="dv">1</span>: {<span class="dv">2</span>}, <span class="dv">2</span>: {<span class="dv">1</span>}, <span class="dv">3</span>: {<span class="dv">4</span>}, <span class="dv">4</span>: {<span class="dv">3</span>}, <span class="dv">5</span>: <span class="bu">set</span>()}</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>comps <span class="op">=</span> componentes_conexas(g)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>([<span class="bu">sorted</span>(c) <span class="cf">for</span> c <span class="kw">in</span> comps]))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [[1, 2], [3, 4], [5]]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.3.5 Función `es_bipartito(g)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.3.5 Función <code>es_bipartito(g)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-40" class="callout-40-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna <code>True</code> si el grafo <code>g</code> es <strong>bipartito</strong> y <code>False</code> en caso contrario. Un grafo es bipartito si y solo si no contiene ciclos de longitud impar, lo que equivale a poder colorear sus vértices con dos colores de forma que ninguna arista una dos vértices del mismo color. La precondición exige que <code>g</code> no esté vacío.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Algoritmo de 2-coloración">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Algoritmo de 2-coloración
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La 2-coloración se implementa como un BFS que asigna colores alternados:</p>
+<ol type="1">
+<li>Inicializa <code>color: dict[int, int] = {}</code> (los dos colores son <code>0</code> y <code>1</code>).</li>
+<li>Para cada vértice no coloreado, asígnale color <code>0</code> e inícialo como frontera.</li>
+<li>Para cada vértice <code>u</code> en la frontera actual: para cada vecino <code>v</code>:
+<ul>
+<li>Si <code>v</code> no está coloreado: asígnale <code>1 - color[u]</code> y agrégalo a la siguiente frontera.</li>
+<li>Si <code>v</code> está coloreado y <code>color[v] == color[u]</code>: el grafo <strong>no</strong> es bipartito, retorna <code>False</code>.</li>
+</ul></li>
+<li>Si se procesan todos los vértices sin conflicto: retorna <code>True</code>.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grafo bipartito K_{2,3}</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>g1 <span class="op">=</span> {<span class="dv">1</span>: {<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>}, <span class="dv">2</span>: {<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>}, <span class="dv">3</span>: {<span class="dv">1</span>, <span class="dv">2</span>}, <span class="dv">4</span>: {<span class="dv">1</span>, <span class="dv">2</span>}, <span class="dv">5</span>: {<span class="dv">1</span>, <span class="dv">2</span>}}</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_bipartito(g1))  <span class="co"># True</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Triángulo — ciclo impar</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>g2 <span class="op">=</span> {<span class="dv">1</span>: {<span class="dv">2</span>, <span class="dv">3</span>}, <span class="dv">2</span>: {<span class="dv">1</span>, <span class="dv">3</span>}, <span class="dv">3</span>: {<span class="dv">1</span>, <span class="dv">2</span>}}</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_bipartito(g2))  <span class="co"># False</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.3.6 Función `distancia(g, origen, destino)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.3.6 Función <code>distancia(g, origen, destino)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-43" class="callout-43-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula la <strong>distancia</strong> (longitud del camino más corto) entre <code>origen</code> y <code>destino</code> en el grafo no ponderado <code>g</code>. Retorna un <code>int</code> con el número de aristas del camino mínimo, o <code>None</code> si <code>destino</code> no es alcanzable desde <code>origen</code>. La precondición exige que <code>origen</code> y <code>destino</code> pertenezcan a <code>g</code>.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Algoritmo BFS por niveles">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Algoritmo BFS por niveles
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El BFS por niveles procesa vértices capa a capa y garantiza que el primer camino encontrado hasta <code>destino</code> es el más corto:</p>
+<ol type="1">
+<li>Inicializa <code>dist: dict[int, int] = {origen: 0}</code> y <code>frontera: set[int] = {origen}</code>.</li>
+<li>Mientras <code>frontera</code> no esté vacía y <code>destino</code> no esté en <code>dist</code>:
+<ul>
+<li><code>nueva_frontera = set()</code></li>
+<li>Para cada <code>u</code> en <code>frontera</code>, para cada <code>v</code> en <code>g[u]</code> no visitado: <code>dist[v] = dist[u] + 1</code> y añade <code>v</code> a <code>nueva_frontera</code>.</li>
+<li><code>frontera = nueva_frontera</code></li>
+</ul></li>
+<li>Retorna <code>dist.get(destino)</code>.</li>
+</ol>
+<p>Esta implementación usa conjuntos y diccionarios —estructuras de tema 4— sin necesidad de <code>deque</code>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#   1 — 2 — 4</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   |</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   3</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> {<span class="dv">1</span>: {<span class="dv">2</span>, <span class="dv">3</span>}, <span class="dv">2</span>: {<span class="dv">1</span>, <span class="dv">4</span>}, <span class="dv">3</span>: {<span class="dv">1</span>}, <span class="dv">4</span>: {<span class="dv">2</span>}}</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(distancia(g, <span class="dv">1</span>, <span class="dv">4</span>))  <span class="co"># 2    (1→2→4)</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(distancia(g, <span class="dv">3</span>, <span class="dv">4</span>))  <span class="co"># 3    (3→1→2→4)</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>g2 <span class="op">=</span> {<span class="dv">1</span>: {<span class="dv">2</span>}, <span class="dv">2</span>: {<span class="dv">1</span>}, <span class="dv">3</span>: {<span class="dv">4</span>}, <span class="dv">4</span>: {<span class="dv">3</span>}}</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(distancia(g2, <span class="dv">1</span>, <span class="dv">3</span>))  <span class="co"># None — no hay camino</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="ejercicio-4.4-módulo-conjuntos.py" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-4.4-módulo-conjuntos.py">Ejercicio 4.4: Módulo <code>conjuntos.py</code></h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.4.1 Función `divisores_propios(n)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-46-contents" aria-controls="callout-46" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.4.1 Función <code>divisores_propios(n)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-46" class="callout-46-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna el conjunto de <strong>divisores propios</strong> de <code>n</code>, es decir, los divisores positivos de <code>n</code> estrictamente menores que <code>n</code>. La precondición exige <code>n &gt;= 1</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(divisores_propios(<span class="dv">12</span>))  <span class="co"># {1, 2, 3, 4, 6}</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(divisores_propios(<span class="dv">1</span>))   <span class="co"># set()</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Implementación eficiente">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Implementación eficiente
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Itera <code>d</code> desde <code>1</code> hasta <span class="math inline">\(\lfloor\sqrt{n}\rfloor\)</span> incluido; si <code>d</code> divide a <code>n</code>, añade <code>d</code> y <code>n//d</code>, excluyendo el propio <code>n</code>. Esto da <span class="math inline">\(O(\sqrt{n})\)</span> iteraciones.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.4.2 Función `primos_hasta(n)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-49-contents" aria-controls="callout-49" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.4.2 Función <code>primos_hasta(n)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-49" class="callout-49-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna la lista ordenada de todos los primos menores o iguales que <code>n</code> usando la <strong>criba de Eratóstenes</strong>. La precondición exige <code>n &gt;= 2</code>.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Criba de Eratóstenes con operadores de conjuntos">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Criba de Eratóstenes con operadores de conjuntos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El conjunto de primos se obtiene partiendo de <span class="math inline">\(\{2, 3, \ldots, n\}\)</span> y eliminando los múltiplos de cada primo encontrado mediante diferencia de conjuntos (<code>-=</code>). Solo es necesario cribar hasta <span class="math inline">\(\lfloor\sqrt{n}\rfloor\)</span> porque cualquier número compuesto <span class="math inline">\(m \leq n\)</span> tiene un factor primo <span class="math inline">\(p \leq \sqrt{m} \leq \sqrt{n}\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(primos_hasta(<span class="dv">30</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(primos_hasta(<span class="dv">100</span>)))  <span class="co"># 25</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.4.3 Función `son_amigos(a, b)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-51-contents" aria-controls="callout-51" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.4.3 Función <code>son_amigos(a, b)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-51" class="callout-51-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna <code>True</code> si <code>a</code> y <code>b</code> son un par de <strong>números amigos</strong> y <code>False</code> en caso contrario. Dos números <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> (con <span class="math inline">\(a \neq b\)</span>) son amigos si la suma de los divisores propios de cada uno es igual al otro: <span class="math display">\[
+\sigma(a) - a = b \quad \text{y} \quad \sigma(b) - b = a.
+\]</span> Reutiliza <code>divisores_propios</code>. La precondición exige <code>a &gt;= 1</code> y <code>b &gt;= 1</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(son_amigos(<span class="dv">220</span>, <span class="dv">284</span>))  <span class="co"># True</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># sum(divisores_propios(220)) = 284 y sum(divisores_propios(284)) = 220</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(son_amigos(<span class="dv">6</span>, <span class="dv">10</span>))     <span class="co"># False</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.4.4 Función `pares_amigos(limite)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-54-contents" aria-controls="callout-54" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.4.4 Función <code>pares_amigos(limite)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-54" class="callout-54-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna la lista de <strong>pares de números amigos</strong> <span class="math inline">\((a, b)\)</span> con <span class="math inline">\(a &lt; b \leq\)</span> <code>limite</code>, en orden creciente por primer elemento. Reutiliza <code>son_amigos</code>. La precondición exige <code>limite &gt;= 1</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pares_amigos(<span class="dv">1500</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [(220, 284), (1184, 1210)]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Pista">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Pista
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para evitar comprobar todos los pares <span class="math inline">\((a, b)\)</span> con <span class="math inline">\(a &lt; b\)</span>, observa que si <span class="math inline">\(b = \sum \text{divisores\_propios}(a)\)</span> y <span class="math inline">\(a = \sum \text{divisores\_propios}(b)\)</span> y además <span class="math inline">\(a &lt; b\)</span>, entonces el par es amigo. Itera <code>a</code> de <code>1</code> a <code>limite</code> y calcula <code>b</code> directamente.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.4.5 Función `anagramas(palabras)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-57-contents" aria-controls="callout-57" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.4.5 Función <code>anagramas(palabras)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-57" class="callout-57-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Agrupa una lista de palabras en <strong>clases de anagramas</strong>: dos palabras son anagramas si contienen exactamente las mismas letras (con la misma multiplicidad). Retorna <code>list[set[str]]</code> donde cada <code>set</code> contiene las palabras de una clase. El orden de las clases en la lista no importa. La precondición exige que <code>palabras</code> no esté vacío.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(anagramas([<span class="st">"amor"</span>, <span class="st">"roma"</span>, <span class="st">"mora"</span>, <span class="st">"hola"</span>, <span class="st">"loha"</span>, <span class="st">"ola"</span>]))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [{'amor', 'roma', 'mora'}, {'hola', 'loha'}, {'ola'}]  (orden puede variar)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Clave de agrupación">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Clave de agrupación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dos palabras son anagramas si y solo si <code>tuple(sorted(palabra))</code> es idéntico. Usa un <code>dict[tuple, set[str]]</code> para agrupar: la clave es <code>tuple(sorted(palabra))</code> y el valor es el conjunto de palabras con esa firma. La función <code>d.setdefault(clave, set()).add(palabra)</code> es la forma idiomática de construir este agrupamiento.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.4.6 Función `residuos_cuadraticos(p)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-60-contents" aria-controls="callout-60" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.4.6 Función <code>residuos_cuadraticos(p)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-60" class="callout-60-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna el conjunto de <strong>residuos cuadráticos</strong> módulo el primo <code>p</code>, es decir, el conjunto de valores que puede tomar <span class="math inline">\(k^2 \bmod p\)</span> para <span class="math inline">\(k \in \{1, 2, \ldots, p-1\}\)</span>: <span class="math display">\[
+QR_p = \bigl\{k^2 \bmod p \;\bigm|\; k = 1, \ldots, p-1\bigr\}.
+\]</span> Retorna <code>set[int]</code>. La precondición exige que <code>p</code> sea un primo mayor o igual a 3.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(residuos_cuadraticos(<span class="dv">7</span>))   <span class="co"># {1, 2, 4}</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(residuos_cuadraticos(<span class="dv">11</span>))  <span class="co"># {1, 3, 4, 5, 9}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Hecho teórico">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Hecho teórico
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para un primo <span class="math inline">\(p\)</span> impar, siempre hay exactamente <span class="math inline">\(\frac{p-1}{2}\)</span> residuos cuadráticos distintos en <span class="math inline">\(\{1, \ldots, p-1\}\)</span>. Los enteros en <span class="math inline">\(\{1, \ldots, p-1\}\)</span> que <strong>no</strong> son residuos cuadráticos se llaman <strong>no residuos cuadráticos</strong>. La distinción entre ambos grupos es fundamental en teoría de números: el <a href="https://es.wikipedia.org/wiki/S%C3%ADmbolo_de_Legendre">símbolo de Legendre</a> <span class="math inline">\(\left(\frac{a}{p}\right)\)</span> vale <span class="math inline">\(1\)</span> si <span class="math inline">\(a\)</span> es un residuo cuadrático mod <span class="math inline">\(p\)</span> y <span class="math inline">\(-1\)</span> en caso contrario.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="4.4.7 Función `sistema_registro(nombres)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-63-contents" aria-controls="callout-63" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>4.4.7 Función <code>sistema_registro(nombres)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-63" class="callout-63-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Esta función se puede emplear en el problema <a href="https://codeforces.com/contest/4/problem/C" target="_blank">Registration system</a> de <a href="https://codeforces.com/" target="_blank">Codeforces</a>. La traducción de parte del enunciado es la siguiente:</p>
+<blockquote class="blockquote">
+<p>Se registran <span class="math inline">\(n\)</span> usuarios en un sistema. Para cada usuario con nombre <code>nombre</code>: - Si es la primera vez que aparece ese nombre, se acepta como válido y el sistema responde <code>"OK"</code>. - Si el nombre ya fue registrado, se rechaza y el sistema sugiere <code>nombre + str(k)</code>, donde <code>k</code> es el número de veces que ese nombre había aparecido antes de este intento (empezando en <code>2</code> la primera vez que se rechaza).</p>
+</blockquote>
+<p>La función <code>sistema_registro(nombres)</code> recibe <code>list[str]</code> con los nombres en orden de llegada y retorna <code>list[str]</code> con la respuesta del sistema para cada solicitud.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sistema_registro([<span class="st">"ana"</span>, <span class="st">"bob"</span>, <span class="st">"ana"</span>, <span class="st">"carlos"</span>, <span class="st">"bob"</span>, <span class="st">"ana"</span>]))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ["OK", "OK", "ana2", "OK", "bob2", "ana3"]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Estructura de datos clave">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Estructura de datos clave
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un diccionario <code>conteo: dict[str, int]</code> que almacena cuántas veces ha aparecido cada nombre hasta ahora es suficiente. Si <code>nombre not in conteo</code>: respuesta <code>"OK"</code> y <code>conteo[nombre] = 1</code>. Si ya existe: <code>conteo[nombre] += 1</code> y respuesta <code>nombre + str(conteo[nombre])</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

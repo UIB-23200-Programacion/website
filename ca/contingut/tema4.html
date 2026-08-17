@@ -20,7 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -76,11 +131,43 @@ ul.task-list li input[type="checkbox"] {
 <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Tema 4: Estructures de Dades natives fonamentals de Python – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/edapython.png">
 <meta property="og:site_name" content="Programación (23200)">
+<meta property="og:image:height" content="1536">
+<meta property="og:image:width" content="2816">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -538,8 +625,49 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En aquesta pàgina</h2>
+   
+  <ul>
+  <li><a href="#llistes-seqüències-ordenades-i-mutables" id="toc-llistes-seqüències-ordenades-i-mutables" class="nav-link active" data-scroll-target="#llistes-seqüències-ordenades-i-mutables">4.1. Llistes: seqüències ordenades i mutables</a>
+  <ul class="collapse">
+  <li><a href="#creació-i-indexació" id="toc-creació-i-indexació" class="nav-link" data-scroll-target="#creació-i-indexació"><strong>4.1.1 Creació i indexació</strong></a></li>
+  <li><a href="#subllistes-slicing" id="toc-subllistes-slicing" class="nav-link" data-scroll-target="#subllistes-slicing"><strong>4.1.2 Subllistes (<em>slicing</em>)</strong></a></li>
+  <li><a href="#mutabilitat-modificar-llistes" id="toc-mutabilitat-modificar-llistes" class="nav-link" data-scroll-target="#mutabilitat-modificar-llistes"><strong>4.1.3 Mutabilitat: modificar llistes</strong></a></li>
+  <li><a href="#mètodes-i-operacions-principals" id="toc-mètodes-i-operacions-principals" class="nav-link" data-scroll-target="#mètodes-i-operacions-principals"><strong>4.1.4 Mètodes i operacions principals</strong></a></li>
+  <li><a href="#llistes-i-matemàtiques" id="toc-llistes-i-matemàtiques" class="nav-link" data-scroll-target="#llistes-i-matemàtiques"><strong>4.1.5 Llistes i matemàtiques</strong></a></li>
+  </ul></li>
+  <li><a href="#tuples-seqüències-ordenades-i-immutables" id="toc-tuples-seqüències-ordenades-i-immutables" class="nav-link" data-scroll-target="#tuples-seqüències-ordenades-i-immutables">4.2. Tuples: seqüències ordenades i immutables</a>
+  <ul class="collapse">
+  <li><a href="#creació-i-immutabilitat" id="toc-creació-i-immutabilitat" class="nav-link" data-scroll-target="#creació-i-immutabilitat"><strong>4.2.1 Creació i immutabilitat</strong></a></li>
+  <li><a href="#desempaquetament" id="toc-desempaquetament" class="nav-link" data-scroll-target="#desempaquetament"><strong>4.2.2 Desempaquetament</strong></a></li>
+  <li><a href="#retorn-múltiple" id="toc-retorn-múltiple" class="nav-link" data-scroll-target="#retorn-múltiple"><strong>4.2.3 Retorn múltiple</strong></a></li>
+  <li><a href="#mètodes-i-operacions-principals-1" id="toc-mètodes-i-operacions-principals-1" class="nav-link" data-scroll-target="#mètodes-i-operacions-principals-1"><strong>4.2.4 Mètodes i operacions principals</strong></a></li>
+  <li><a href="#tuples-i-matemàtiques" id="toc-tuples-i-matemàtiques" class="nav-link" data-scroll-target="#tuples-i-matemàtiques"><strong>4.2.5 Tuples i matemàtiques</strong></a></li>
+  </ul></li>
+  <li><a href="#diccionaris-mapejos-clau-valor" id="toc-diccionaris-mapejos-clau-valor" class="nav-link" data-scroll-target="#diccionaris-mapejos-clau-valor">4.3. Diccionaris: mapejos clau-valor</a>
+  <ul class="collapse">
+  <li><a href="#creació-i-accés" id="toc-creació-i-accés" class="nav-link" data-scroll-target="#creació-i-accés"><strong>4.3.1 Creació i accés</strong></a></li>
+  <li><a href="#mètodes-principals-i-iteració" id="toc-mètodes-principals-i-iteració" class="nav-link" data-scroll-target="#mètodes-principals-i-iteració"><strong>4.3.2 Mètodes principals i iteració</strong></a></li>
+  <li><a href="#diccionaris-i-matemàtiques" id="toc-diccionaris-i-matemàtiques" class="nav-link" data-scroll-target="#diccionaris-i-matemàtiques"><strong>4.3.3 Diccionaris i matemàtiques</strong></a></li>
+  </ul></li>
+  <li><a href="#conjunts-colleccions-no-ordenades-delements-únics" id="toc-conjunts-colleccions-no-ordenades-delements-únics" class="nav-link" data-scroll-target="#conjunts-colleccions-no-ordenades-delements-únics">4.4. Conjunts: col·leccions no ordenades d’elements únics</a>
+  <ul class="collapse">
+  <li><a href="#creació" id="toc-creació" class="nav-link" data-scroll-target="#creació"><strong>4.4.1 Creació</strong></a></li>
+  <li><a href="#operacions-de-làlgebra-de-conjunts" id="toc-operacions-de-làlgebra-de-conjunts" class="nav-link" data-scroll-target="#operacions-de-làlgebra-de-conjunts"><strong>4.4.2 Operacions de l’àlgebra de conjunts</strong></a></li>
+  <li><a href="#conjunts-i-matemàtiques" id="toc-conjunts-i-matemàtiques" class="nav-link" data-scroll-target="#conjunts-i-matemàtiques"><strong>4.4.3 Conjunts i matemàtiques</strong></a></li>
+  </ul></li>
+  <li><a href="#comprensió-de-llistes-diccionaris-i-conjunts" id="toc-comprensió-de-llistes-diccionaris-i-conjunts" class="nav-link" data-scroll-target="#comprensió-de-llistes-diccionaris-i-conjunts">4.5. Comprensió de llistes, diccionaris i conjunts</a>
+  <ul class="collapse">
+  <li><a href="#comprensió-de-llistes" id="toc-comprensió-de-llistes" class="nav-link" data-scroll-target="#comprensió-de-llistes"><strong>4.5.1 Comprensió de llistes</strong></a></li>
+  <li><a href="#comprensió-de-diccionaris-i-conjunts" id="toc-comprensió-de-diccionaris-i-conjunts" class="nav-link" data-scroll-target="#comprensió-de-diccionaris-i-conjunts"><strong>4.5.2 Comprensió de diccionaris i conjunts</strong></a></li>
+  <li><a href="#comprensions-i-notació-matemàtica" id="toc-comprensions-i-notació-matemàtica" class="nav-link" data-scroll-target="#comprensions-i-notació-matemàtica"><strong>4.5.3 Comprensions i notació matemàtica</strong></a></li>
+  <li><a href="#expressions-generadores" id="toc-expressions-generadores" class="nav-link" data-scroll-target="#expressions-generadores"><strong>4.5.4 Expressions generadores</strong></a></li>
+  </ul></li>
+  <li><a href="#bibliografia" id="toc-bibliografia" class="nav-link" data-scroll-target="#bibliografia">Bibliografia</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -564,11 +692,1310 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contingut pendent.)</em></p>
+<p>Els temes anteriors han presentat els tipus de dades bàsics de Python —enters, flotants, cadenes i booleans— que representen un únic valor. A la pràctica, la majoria dels problemes interessants requereixen manipular <strong>col·leccions de valors</strong>: les qualificacions d’un grup d’alumnes, els coeficients d’un polinomi, els vèrtexs d’un polígon o els elements d’una mostra estadística.</p>
+<p>Per a representar algunes d’aquestes col·leccions, Python proporciona quatre estructures de dades natives: <strong>llistes</strong>, <strong>tuples</strong>, <strong>diccionaris</strong> i <strong>conjunts</strong>. Cadascuna té propietats distintes que la fan adequada per a situacions diferents.</p>
+<div id="fig-edas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-edas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/edapython.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-edas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Estructures de dades natives de Python
+</figcaption>
+</figure>
+</div>
+<div id="tip-eda" class="callout callout-style-default callout-tip no-icon callout-titled" title="Estructures de dades">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;1: Estructures de dades
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>estructura de dades</strong> és una forma organitzada d’emmagatzemar i relacionar dades en memòria, dissenyada per fer eficients certes operacions. No es tracta només de «guardar» dades, sinó de triar <em>com</em> guardar-les segons quines operacions cal fer amb elles.</p>
+<p>L’elecció importa perquè el rendiment de les operacions a realitzar depèn de l’estructura. Cercar un element en una llista requereix recórrer-la sencera en el pitjor dels casos; en un diccionari o conjunt, la cerca és molt eficient.</p>
+<p>La diferència amb llenguatges com C o Java és que en Python no cal implementar aquestes estructures des de zero ni importar biblioteques externes: estan disponibles amb sintaxi directa (<code>[]</code>, <code>{}</code>, <code>()</code>). Això permet centrar-se en <strong>quina triar en funció del problema, no en com construir-la</strong>.</p>
+</div>
+</div>
+<hr>
+<section id="llistes-seqüències-ordenades-i-mutables" class="level2">
+<h2 class="anchored" data-anchor-id="llistes-seqüències-ordenades-i-mutables">4.1. Llistes: seqüències ordenades i mutables</h2>
+<p>Les llistes són, sens dubte, l’estructura de dades més utilitzada i fonamental en Python. Si les variables normals són com «caixes» que guarden una sola dada (un nombre o un text), les llistes són com <strong>arxivadors o organitzadors</strong> on pots agrupar col·leccions senceres d’informació sota un mateix nom.</p>
+<div id="tip-lista" class="callout callout-style-default callout-tip no-icon callout-titled" title="Llista">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;2: Llista
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>llista</strong> en Python és una seqüència <strong>ordenada</strong> i <strong>mutable</strong> d’elements. Pot contenir qualsevol combinació de tipus i la seva longitud pot canviar durant l’execució.</p>
+<p>Matemàticament, una llista de <span class="math inline">\(n\)</span> elements correspon a una successió finita <span class="math inline">\((a_0, a_1, \ldots, a_{n-1})\)</span> indexada a partir de <span class="math inline">\(0\)</span>. La mutabilitat —la possibilitat de modificar elements, afegir o eliminar— és el que distingeix fonamentalment les llistes de les cadenes i les tuples (es veuran més endavant).</p>
+</div>
+</div>
+<div id="imp-mutable" class="callout callout-style-default callout-important no-icon callout-titled" title="Objectes mutables i immutables en Python">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;1: Objectes mutables i immutables en Python
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En Python, <strong>mutable</strong> significa que el contingut de l’objecte pot ser modificat <em>després</em> d’haver estat creat, sense que aquest canviï la seva identitat (la seva ubicació en la memòria). Imagina que és com una caixa oberta: pots ficar o treure coses d’ella, però la caixa continua sent exactament la mateixa.</p>
+<p>Els objectes <strong>immutables</strong> (com les cadenes <code>str</code>, els nombres <code>int</code> o <code>float</code>) són com caixes segellades. Si cal canviar alguna cosa, Python no modifica l’objecte original; en el seu lloc, destrueix aquesta caixa i en crea una de completament nova en la memòria amb el nou valor.</p>
+</div>
+</div>
+<p>La importància enorme de les llistes en la programació amb Python es resumeix en quatre punts clau:</p>
+<ul>
+<li><strong>Són la navalla suïssa del llenguatge (Versatilitat):</strong> A diferència d’altres llenguatges més estrictes, una llista en Python és increïblement flexible. Pots guardar nombres, textos, booleans i fins i tot altres llistes al seu interior, tot alhora!</li>
+<li><strong>Són dinàmiques i mutables:</strong> Com hem vist, les llistes poden créixer o encongir-se. Pots afegir milers de dades noves, eliminar les que ja no serveixin o modificar-les mentre el teu programa s’executa.</li>
+<li><strong>Mantenen l’ordre:</strong> Cada element que guardes en una llista té una posició numèrica exacta (un índex, comptant des de zero). Això és crucial quan cal processar dades en un ordre específic o cercar alguna cosa en una posició concreta.</li>
+<li><strong>Són la porta d’entrada a dades complexes:</strong> Entendre com iterar (recórrer) i manipular llistes és el pas previ i obligatori abans de saltar a eines més avançades de la indústria, com els <em>arrays</em> matemàtics de NumPy o les bases de dades en Pandas.</li>
+</ul>
+<section id="creació-i-indexació" class="level3">
+<h3 class="anchored" data-anchor-id="creació-i-indexació"><strong>4.1.1 Creació i indexació</strong></h3>
+<p>Una llista es crea tancant els seus elements entre claudàtors <code>[]</code>, separats per comes. La funció <code>list()</code> converteix qualsevol iterable en llista:</p>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibm90YXMgPSBbOC41LCA3LjAsIDkuNSwgNi4wLCA4LjBdXG5wcmltb3MgPSBbMiwgMywgNSwgNywgMTEsIDEzXVxudmFjaWEgPSBbXVxucHJpbnQobm90YXMpXG5wcmludChsZW4obm90YXMpKSAgICAgICMgNVxucHJpbnQodHlwZShub3RhcykpICAgICAjIDxjbGFzcyAnbGlzdCc+XG5cbnByaW50KGxpc3QocmFuZ2UoMSwgOCkpKSAgICAjIFsxLCAyLCAzLCA0LCA1LCA2LCA3XVxucHJpbnQobGlzdChcIlB5dGhvblwiKSkgICAgICAgIyBbJ1AnLCAneScsICd0JywgJ2gnLCAnbycsICduJ10ifQ==
+</script>
+</div>
+<p>Cada element té un <strong>índex</strong> enter que indica la seva posició i permet accedir-hi. Python admet índexs positius (des del principi) i negatius (des del final):</p>
+<div id="imp-indexacion" class="callout callout-style-default callout-important no-icon callout-titled" title="Indexació positiva i negativa">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;2: Indexació positiva i negativa
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Donada una llista <code>a</code> amb <code>n</code> elements, l’índex positiu <code>i</code> (amb <span class="math inline">\(0 \leq i &lt; n\)</span>) accedeix a l’element <code>a[i]</code>, i l’índex negatiu <code>-k</code> (amb <span class="math inline">\(1 \leq k \leq n\)</span>) accedeix a l’element <code>a[n-k]</code>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Posició</th>
+<th style="text-align: center;">1a</th>
+<th style="text-align: center;">2a</th>
+<th style="text-align: center;">…</th>
+<th style="text-align: center;">penúltima</th>
+<th style="text-align: center;">última</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Índex positiu</td>
+<td style="text-align: center;"><code>a[0]</code></td>
+<td style="text-align: center;"><code>a[1]</code></td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;"><code>a[n-2]</code></td>
+<td style="text-align: center;"><code>a[n-1]</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Índex negatiu</td>
+<td style="text-align: center;"><code>a[-n]</code></td>
+<td style="text-align: center;"><code>a[-n+1]</code></td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;"><code>a[-2]</code></td>
+<td style="text-align: center;"><code>a[-1]</code></td>
+</tr>
+</tbody>
+</table>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibm90YXMgPSBbOC41LCA3LjAsIDkuNSwgNi4wLCA4LjBdXG5wcmludChub3Rhc1swXSkgICAgIyA4LjUgICAocHJpbWVyYSlcbnByaW50KG5vdGFzWzJdKSAgICAjIDkuNSAgICh0ZXJjZXJhKVxucHJpbnQobm90YXNbLTFdKSAgICMgOC4wICAgKMO6bHRpbWEpXG5wcmludChub3Rhc1stMl0pICAgIyA2LjAgICAocGVuw7psdGltYSkifQ==
+</script>
+</div>
+</div>
+</div>
+<div id="cau-indexerror" class="callout callout-style-default callout-caution no-icon callout-titled" title="`IndexError`: índex fora de rang">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;1: <code>IndexError</code>: índex fora de rang
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Accedir a un índex que no existeix llança un <code>IndexError</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>notas <span class="op">=</span> [<span class="fl">8.5</span>, <span class="fl">7.0</span>, <span class="fl">9.5</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(notas[<span class="dv">5</span>])    <span class="co"># IndexError: list index out of range</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Usa <code>a[-1]</code> per a l’últim element sense necessitat de conèixer <code>len(a)</code>. Per iterar sobre tots els elements, usa un bucle <code>for</code> directament sobre la llista en lloc d’iterar sobre índexs: <code>for nota in notas:</code>.</p>
+</div>
+</div>
+</section>
+<section id="subllistes-slicing" class="level3">
+<h3 class="anchored" data-anchor-id="subllistes-slicing"><strong>4.1.2 Subllistes (<em>slicing</em>)</strong></h3>
+<p>L’operador de <em>slicing</em> extreu una <strong>subllista</strong> sense modificar l’original. La sintaxi <code>llista[inici:fi:pas]</code> funciona igual que en els rangs (<code>range()</code>): <code>inici</code> inclòs, <code>fi</code> exclòs, <code>pas</code> opcional:</p>
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicCA9IFsyLCAzLCA1LCA3LCAxMSwgMTMsIDE3LCAxOV1cbnByaW50KHBbMjo1XSkgICAgICAjIFs1LCA3LCAxMV0gICAgICAg4oCUIMOtbmRpY2VzIDIsIDMsIDRcbnByaW50KHBbOjRdKSAgICAgICAjIFsyLCAzLCA1LCA3XSAgICAg4oCUIGxvcyBjdWF0cm8gcHJpbWVyb3NcbnByaW50KHBbNDpdKSAgICAgICAjIFsxMSwgMTMsIDE3LCAxOV0g4oCUIGRlc2RlIGVsIMOtbmRpY2UgNCBoYXN0YSBlbCBmaW5hbFxucHJpbnQocFs6OjJdKSAgICAgICMgWzIsIDUsIDExLCAxN10gICDigJQgdW5vIGRlIGNhZGEgZG9zXG5wcmludChwWzo6LTFdKSAgICAgIyBbMTksIDE3LCAuLi4sIDJdIOKAlCBpbnZlcnRpZGFcbnByaW50KHBbLTM6XSkgICAgICAjIFsxMywgMTcsIDE5XSAgICAg4oCUIGxvcyB0cmVzIMO6bHRpbW9zIn0=
+</script>
+</div>
+<p>El resultat és sempre una <strong>nova llista</strong> (còpia superficial): modificar la subllista no altera l’original.</p>
+<div id="imp-shalow" class="callout callout-style-default callout-important no-icon callout-titled" title="Còpia superficial vs. còpia profunda">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;3: Còpia superficial vs.&nbsp;còpia profunda
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>còpia superficial</strong> (<em>shallow copy</em> en anglès) d’una llista és una nova llista que conté <em>referències</em> als mateixos objectes que l’original. Si algun dels elements de la còpia són mutables, modificar-los a la còpia afectarà l’original.</p>
+<p>Una <strong>còpia profunda</strong> (<em>deep copy</em> en anglès) crea una nova llista i també copia els objectes mutables que conté, de manera que la còpia i l’original són completament independents.</p>
+</div>
+</div>
+</section>
+<section id="mutabilitat-modificar-llistes" class="level3">
+<h3 class="anchored" data-anchor-id="mutabilitat-modificar-llistes"><strong>4.1.3 Mutabilitat: modificar llistes</strong></h3>
+<p>Les llistes són <strong>mutables</strong>: els seus elements poden canviar-se directament mitjançant assignació, i la seva mida pot modificar-se:</p>
+<div>
+<div id="pyodide-4" class="exercise-cell">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidiA9IFsxLCAyLCAzLCA0LCA1XVxudlswXSA9IDEwICAgICAgICAgICAjIG1vZGlmaWNhIGVsIHByaW1lciBlbGVtZW50b1xucHJpbnQodikgICAgICAgICAgICAjIFsxMCwgMiwgMywgNCwgNV1cblxudlsxOjNdID0gWzIwLCAzMF0gICAjIHJlZW1wbGF6YSBsb3MgZWxlbWVudG9zIDEgeSAyXG5wcmludCh2KSAgICAgICAgICAgICMgWzEwLCAyMCwgMzAsIDQsIDVdXG5cbnZbMTozXSA9IFtdICAgICAgICAgIyBlbGltaW5hIGxvcyBlbGVtZW50b3MgMSB5IDJcbnByaW50KHYpICAgICAgICAgICAgIyBbMTAsIDQsIDVdIn0=
+</script>
+</div>
+</section>
+<section id="mètodes-i-operacions-principals" class="level3">
+<h3 class="anchored" data-anchor-id="mètodes-i-operacions-principals"><strong>4.1.4 Mètodes i operacions principals</strong></h3>
+<p>Les llistes (objectes del tipus <code>list</code>) disposen d’un conjunt de mètodes que cobreixen les operacions més comunes: afegir i eliminar elements, cercar, ordenar i invertir.</p>
+<p>Una distinció important és si el mètode <strong>modifica la llista al seu lloc</strong> o <strong>retorna un valor nou</strong> sense tocar-la. Confondre ambdós casos és un error freqüent: <code>a.sort()</code> ordena <code>a</code> i retorna <code>None</code>, mentre que <code>sorted(a)</code> deixa <code>a</code> intacta i retorna una llista nova ordenada.</p>
+<p>A més dels mètodes propis, les llistes admeten operacions amb operadors (<code>+</code>, <code>*</code>, <code>in</code>) i funcions <em>built-in</em> del llenguatge (<code>len()</code>, <code>sum()</code>, <code>min()</code>, <code>max()</code>, <code>sorted()</code>, <code>reversed()</code>), que funcionen sobre qualsevol seqüència, no només llistes.</p>
+<div id="imp-metodos-lista" class="callout callout-style-default callout-important no-icon callout-titled" title="Mètodes de les llistes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;4: Mètodes de les llistes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 27%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mètode</th>
+<th>Descripció</th>
+<th style="text-align: center;">Modifica la llista</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>a.append(x)</code></td>
+<td>Afegeix <code>x</code> al final</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+<tr class="even">
+<td><code>a.extend(iterable)</code></td>
+<td>Afegeix tots els elements de l’iterable al final</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+<tr class="odd">
+<td><code>a.insert(i, x)</code></td>
+<td>Insereix <code>x</code> a la posició <code>i</code></td>
+<td style="text-align: center;">Sí</td>
+</tr>
+<tr class="even">
+<td><code>a.remove(x)</code></td>
+<td>Elimina la primera aparició de <code>x</code> (<code>ValueError</code> si no existeix)</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+<tr class="odd">
+<td><code>a.pop(i=-1)</code></td>
+<td>Elimina i retorna l’element a la posició <code>i</code> (per defecte l’últim)</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+<tr class="even">
+<td><code>a.sort()</code></td>
+<td>Ordena al seu lloc (modifica <code>a</code>)</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+<tr class="odd">
+<td><code>a.reverse()</code></td>
+<td>Inverteix al seu lloc</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+<tr class="even">
+<td><code>a.index(x)</code></td>
+<td>Retorna l’índex de la primera aparició de <code>x</code></td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="odd">
+<td><code>a.count(x)</code></td>
+<td>Compta les aparicions de <code>x</code></td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="even">
+<td><code>a.copy()</code></td>
+<td>Retorna una còpia superficial</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="odd">
+<td><code>a.clear()</code></td>
+<td>Elimina tots els elements</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+</tbody>
+</table>
+<div>
+<div id="pyodide-5" class="exercise-cell">
+
+</div>
+<script type="pyodide-5-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSA9IFszLCAxLCA0LCAxLCA1LCA5LCAyLCA2XVxuYS5hcHBlbmQoNSlcbnByaW50KGEuY291bnQoMSkpICAgIyAyXG5hLnNvcnQoKVxucHJpbnQoYSkgICAgICAgICAgICAjIFsxLCAxLCAyLCAzLCA0LCA1LCA1LCA2LCA5XVxucHJpbnQoYS5wb3AoKSkgICAgICAjIDkgKGVsaW1pbmEgeSBkZXZ1ZWx2ZSBlbCDDumx0aW1vKVxucHJpbnQoYSkgICAgICAgICAgICAjIFsxLCAxLCAyLCAzLCA0LCA1LCA1LCA2XVxuYS5yZXZlcnNlKClcbnByaW50KGEpICAgICAgICAgICAgIyBbNiwgNSwgNSwgNCwgMywgMiwgMSwgMV1cbnByaW50KGEuY291bnQoNSkpICAgIyAyIn0=
+</script>
+</div>
+</div>
+</div>
+<p>La funció <em>built-in</em> <code>sorted(a)</code> retorna una <strong>nova llista</strong> ordenada sense modificar <code>a</code>. La funció <em>built-in</em> <code>reversed(a)</code> retorna un iterador invers.</p>
+<div>
+<div id="pyodide-6" class="exercise-cell">
+
+</div>
+<script type="pyodide-6-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSA9IFszLCAxLCA0LCAxLCA1LCA5LCAyLCA2XVxuXG4jIHNvcnRlZCgpIOKAlCBkZXZ1ZWx2ZSB1bmEgbnVldmEgbGlzdGEgb3JkZW5hZGEsIGEgcXVlZGEgaW50YWN0YVxuYiA9IHNvcnRlZChhKVxucHJpbnQoYikgICMgWzEsIDEsIDIsIDMsIDQsIDUsIDYsIDldXG5jID0gc29ydGVkKGEsIHJldmVyc2U9VHJ1ZSlcbnByaW50KGMpICAjIFs5LCA2LCA1LCA0LCAzLCAyLCAxLCAxXVxucHJpbnQoYSkgICMgWzMsIDEsIDQsIDEsIDUsIDksIDIsIDZdICDigJQgc2luIGNhbWJpb3NcblxuIyByZXZlcnNlZCgpIOKAlCBkZXZ1ZWx2ZSB1biBpdGVyYWRvciBpbnZlcnNvLCBhIHF1ZWRhIGludGFjdGFcbmZvciB4IGluIHJldmVyc2VkKGEpOlxuICAgIHByaW50KHgsIGVuZD1cIiBcIikgICMgNiAyIDkgNSAxIDQgMSAzXG5cbiMgQ29udmVydGlyIGEgbGlzdGEgc2kgbmVjZXNpdGFzIGVsIHJlc3VsdGFkbyBjb21vIGxpc3RhXG5kID0gbGlzdChyZXZlcnNlZChhKSlcbnByaW50KGQpICAjIFs2LCAyLCA5LCA1LCAxLCA0LCAxLCAzXVxucHJpbnQoYSkgICMgWzMsIDEsIDQsIDEsIDUsIDksIDIsIDZdICDigJQgc2luIGNhbWJpb3MifQ==
+</script>
+</div>
+<p>L’operador <code>+</code> concatena dues llistes (produint una de nova), <code>*</code> repeteix, i <code>in</code> comprova pertinença (cost <span class="math inline">\(O(n)\)</span>):</p>
+<div>
+<div id="pyodide-7" class="exercise-cell">
+
+</div>
+<script type="pyodide-7-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoWzEsIDJdICsgWzMsIDRdKSAgICAgIyBbMSwgMiwgMywgNF1cbnByaW50KFswXSAqIDUpICAgICAgICAgICAgICMgWzAsIDAsIDAsIDAsIDBdXG5wcmludCgzIGluIFsxLCAyLCAzLCA0XSkgICAjIFRydWUifQ==
+</script>
+</div>
+<div id="nte-copy" class="callout callout-style-default callout-note no-icon callout-titled" title="Mutable vs immutable amb list.copy()">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;1: Mutable vs immutable amb list.copy()
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Per visualitzar com es comporten els diferents tipus de dades sota una còpia superficial usant <code>.copy()</code>, crearem una llista que contingui tant un element immutable (un enter) com un element mutable (una llista).</p>
+<div>
+<div id="pyodide-8" class="exercise-cell">
+
+</div>
+<script type="pyodide-8-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBFbCAxMDAgZXMgaW5tdXRhYmxlLiBMYSBsaXN0YSBbMSwgMl0gZXMgbXV0YWJsZS5cbmxpc3RhX29yaWdpbmFsID0gWzEwMCwgWzEsIDJdXVxuXG4jIEhhY2Vtb3MgdW5hIGNvcGlhIHN1cGVyZmljaWFsXG5taV9jb3BpYSA9IGxpc3RhX29yaWdpbmFsLmNvcHkoKVxuXG4jIENvbW8gZWwgMTAwIG5vIHNlIHB1ZWRlIGFsdGVyYXIgKGlubXV0YWJsZSksIFB5dGhvbiBzaW1wbGVtZW50ZVxuIyByZWVtcGxhemEgbGEgY29uZXhpw7NuIGVuIGxhIGNvcGlhIGNvbiB1biBuw7ptZXJvIG51ZXZvICg5OTkpLlxubWlfY29waWFbMF0gPSA5OTlcblxuIyAyLiBBY2Npw7NuIHNvYnJlIGVsIE1VVEFCTEU6XG4jIENvbW8gbGFzIGxpc3RhcyBzw60gc2UgcHVlZGVuIG1vZGlmaWNhciAobXV0YWJsZXMpLCBhZ3JlZ2Ftb3MgdW4gbsO6bWVyb1xuIyBhIGxhIGxpc3RhIFsxLCAyXS5cbm1pX2NvcGlhWzFdLmFwcGVuZCgzKVxuXG5wcmludChcIk9yaWdpbmFsOlwiLCBsaXN0YV9vcmlnaW5hbCkgICMgT3JpZ2luYWw6IFsxMDAsIFsxLCAyLCAzXV1cbnByaW50KFwiQ29waWE6ICAgXCIsIG1pX2NvcGlhKSAgICAgICAgIyBDb3BpYTogICAgWzk5OSwgWzEsIDIsIDNdXSJ9
+</script>
+</div>
+<p>S’observa que l’element immutable (l’enter 100) no es veu afectat a la llista original per la modificació a la còpia. L’element mutable (la llista [1, 2]) sí que es veu alterat, reflectint el comportament de les còpies superficials.</p>
+</div>
+</div>
+</section>
+<section id="llistes-i-matemàtiques" class="level3">
+<h3 class="anchored" data-anchor-id="llistes-i-matemàtiques"><strong>4.1.5 Llistes i matemàtiques</strong></h3>
+<p>Les llistes són la representació natural dels objectes matemàtics més bàsics: un vector de <span class="math inline">\(\mathbb{R}^n\)</span> és una successió finita de nombres reals, els coeficients d’un polinomi formen una seqüència ordenada, i una matriu no és més que una successió de files. La correspondència entre el concepte matemàtic i la llista de Python és directa i immediata.</p>
+<p>En aquesta secció s’il·lustra aquesta correspondència amb exemples concrets: com representar vectors i calcular les seves operacions elementals, com avaluar un polinomi de forma eficient usant l’<a href="https://es.wikipedia.org/wiki/Algoritmo_de_Horner">algorisme de Horner</a>, i com una llista de llistes reprodueix l’estructura d’una matriu. L’objectiu no és reemplaçar les eines de l’ecosistema científic —NumPy ho farà molt millor al Tema 8— sinó entendre què hi ha a sota: abans d’usar <code>np.dot()</code> convé saber implementar un producte escalar a mà.</p>
+<div id="nte-vector" class="callout callout-style-default callout-note no-icon callout-titled" title="Vectors i operacions bàsiques">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;2: Vectors i operacions bàsiques
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una llista de flotants representa naturalment un vector de <span class="math inline">\(\mathbb{R}^n\)</span>. La suma de vectors i el producte escalar s’implementen amb comprensions (secció 4.5) o amb la funció <code>sum()</code>:</p>
+<div>
+<div id="pyodide-9" class="exercise-cell">
+
+</div>
+<script type="pyodide-9-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxudSA9IFsxLjAsIDIuMCwgMy4wXVxudiA9IFs0LjAsIDUuMCwgNi4wXVxuXG4jIFN1bWEgZGUgdmVjdG9yZXNcbnN1bWEgPSBbdVtpXSArIHZbaV0gZm9yIGkgaW4gcmFuZ2UobGVuKHUpKV1cbnByaW50KHN1bWEpICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICMgWzUuMCwgNy4wLCA5LjBdXG5cbiMgUHJvZHVjdG8gZXNjYWxhciB1wrd2ID0gzqMgdeG1onbhtaJcbnByb2RfZXNjYWxhciA9IHN1bSh1W2ldICogdltpXSBmb3IgaSBpbiByYW5nZShsZW4odSkpKVxucHJpbnQocHJvZF9lc2NhbGFyKSAgICAgICAgICAgICAgICAgICAgICAgICAgIyAzMi4wXG5cbiMgTm9ybWEgZXVjbGlkaWFuYSDigJZ14oCWID0g4oiaKM6jIHXhtaLCsilcbm5vcm1hID0gbWF0aC5zcXJ0KHN1bSh4KioyIGZvciB4IGluIHUpKVxucHJpbnQoZlwi4oCWdeKAliA9IHtub3JtYTouNmZ9XCIpICAgICAgICAgICAgICAgICAjIOKAlnXigJYgPSAzLjc0MTY1NyJ9
+</script>
+</div>
+</div>
+</div>
+<div id="nte-horner" class="callout callout-style-default callout-note no-icon callout-titled" title="Avaluació d'un polinomi — algorisme de Horner">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;3: Avaluació d’un polinomi — algorisme de Horner
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Els coeficients d’un polinomi <span class="math inline">\(p(x) = a_0 + a_1 x + \cdots + a_n x^n\)</span> s’emmagatzemen en una llista <code>[a0, a1, ..., an]</code> (del grau menor al major). L’<strong>algorisme de Horner</strong> avalua el polinomi en <span class="math inline">\(O(n)\)</span> operacions sense calcular potències: <span class="math display">\[
+\begin{aligned}
+p(x) &amp;= a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n \\
+     &amp;= a_0 + x\bigl(a_1 + x\bigl(a_2 + x(\cdots + x \cdot a_n)\bigr)\bigr)
+\end{aligned}
+\]</span></p>
+<p>Assumirem que els coeficients s’emmagatzemen en una llista <code>coefs</code> de manera que <code>coefs[i]</code> és el coeficient de <span class="math inline">\(x^i\)</span>.</p>
+<div>
+<div id="pyodide-10" class="exercise-cell">
+
+</div>
+<script type="pyodide-10-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGV2YWx1YXJfaG9ybmVyKGNvZWZzOiBsaXN0W2Zsb2F0XSwgeDogZmxvYXQpIC0+IGZsb2F0OlxuICAgIFwiXCJcIlxuICAgIEV2YWzDumEgZWwgcG9saW5vbWlvIHAoeCkgPSBjb2Vmc1swXSArIGNvZWZzWzFdKnggKyAuLi4gKyBjb2Vmc1tuXSp4Xm5cbiAgICB1c2FuZG8gZWwgYWxnb3JpdG1vIGRlIEhvcm5lci5cblxuICAgIFByZWNvbmRpY2nDs246IGNvZWZzIG5vIGVzdMOhIHZhY8OtYS5cbiAgICBEZXZ1ZWx2ZTogZWwgdmFsb3IgbnVtw6lyaWNvIGRlIHAoeCkuXG4gICAgXCJcIlwiXG4gICAgcmVzdWx0YWRvID0gMC4wXG4gICAgZm9yIGMgaW4gcmV2ZXJzZWQoY29lZnMpOlxuICAgICAgICByZXN1bHRhZG8gPSByZXN1bHRhZG8gKiB4ICsgY1xuICAgIHJldHVybiByZXN1bHRhZG9cblxuXG4jIHAoeCkgPSAxICsgMnggKyAzeMKyXG5jb2VmcyA9IFsxLCAyLCAzXVxucHJpbnQoZXZhbHVhcl9ob3JuZXIoY29lZnMsIDApKSAgICAjIDFcbnByaW50KGV2YWx1YXJfaG9ybmVyKGNvZWZzLCAxKSkgICAgIyA2ICAgICgxICsgMiArIDMpXG5wcmludChldmFsdWFyX2hvcm5lcihjb2VmcywgMikpICAgICMgMTcgICAoMSArIDQgKyAxMilcbnByaW50KGV2YWx1YXJfaG9ybmVyKGNvZWZzLCAtMSkpICAgIyAyICAgICgxIC0gMiArIDMpIn0=
+</script>
+</div>
+</div>
+</div>
+<div id="nte-lista-anidada" class="callout callout-style-default callout-note no-icon callout-titled" title="Llistes de llistes: matrius i accés per doble índex">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;4: Llistes de llistes: matrius i accés per doble índex
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una llista pot contenir altres llistes com a elements. L’accés usa dos índexs consecutius: <code>matriu[fila][columna]</code>.</p>
+<div>
+<div id="pyodide-11" class="exercise-cell">
+
+</div>
+<script type="pyodide-11-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBNYXRyaXogM8OXMyBjb21vIGxpc3RhIGRlIGxpc3Rhc1xubWF0cml6ID0gW1xuICAgIFsxLCAyLCAzXSxcbiAgICBbNCwgNSwgNl0sXG4gICAgWzcsIDgsIDldXG5dXG5cbnByaW50KG1hdHJpelswXSkgICAgICAgICMgWzEsIDIsIDNdICDigJQgcHJpbWVyYSBmaWxhIGNvbXBsZXRhXG5wcmludChtYXRyaXpbMF1bMV0pICAgICAjIDIgICAgICAgICAg4oCUIGZpbGEgMCwgY29sdW1uYSAxXG5wcmludChtYXRyaXpbMl1bMl0pICAgICAjIDkgICAgICAgICAg4oCUIGZpbGEgMiwgY29sdW1uYSAyXG5wcmludChtYXRyaXpbLTFdWzBdKSAgICAjIDcgICAgICAgICAg4oCUIMO6bHRpbWEgZmlsYSwgcHJpbWVyIGVsZW1lbnRvXG5cbiMgUmVjb3JyZXIgdG9kYSBsYSBtYXRyaXpcbmZvciBmaWxhIGluIG1hdHJpejpcbiAgICBmb3IgZWxlbWVudG8gaW4gZmlsYTpcbiAgICAgICAgcHJpbnQoZWxlbWVudG8sIGVuZD1cIiBcIilcbiAgICBwcmludCgpIn0=
+</script>
+</div>
+<p>La lectura és d’esquerra a dreta: <code>matriu[i]</code> retorna la llista de la «fila» <code>i</code>, i sobre aquest resultat s’aplica <code>[j]</code> per obtenir l’element de la «columna» <code>j</code>. Aquesta representació correspon directament a una matriu <span class="math inline">\(n \times n\)</span> on <span class="math inline">\(a_{ij}\)</span> s’accedeix com <code>matriu[i][j]</code>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="tuples-seqüències-ordenades-i-immutables" class="level2">
+<h2 class="anchored" data-anchor-id="tuples-seqüències-ordenades-i-immutables">4.2. Tuples: seqüències ordenades i immutables</h2>
+<p>Les tuples són, en aparença, llistes que no es poden modificar. Però aquesta definició per negació no fa justícia al seu paper: la immutabilitat no és una restricció arbitrària, sinó una <strong>garantia de disseny</strong> que comunica una intenció. Quan una funció retorna una tupla <code>(quocient, resta)</code> o quan s’emmagatzemen les coordenades d’un punt com <code>(x, y)</code>, el programador està dient explícitament que aquests valors formen una unitat fixa que no ha de canviar.</p>
+<p>Aquesta distinció semàntica té conseqüències pràctiques directes. En ser immutables, les tuples poden usar-se com a claus de diccionari o com a elements d’un conjunt, cosa impossible amb llistes. Són també lleugerament més eficients en memòria i accés, encara que aquesta diferència rarament és determinant a la pràctica.</p>
+<p>La regla informal per triar entre llista i tupla és:</p>
+<ul>
+<li>usa una llista quan la col·lecció pot créixer, encongir-se o canviar;</li>
+<li>usa una tupla quan els elements formen una estructura fixa amb un significat conjunt:
+<ul>
+<li>les coordenades d’un punt,</li>
+<li>els components d’un vector de dimensió coneguda,</li>
+<li>els valors de retorn múltiple d’una funció.</li>
+</ul></li>
+</ul>
+<div id="tip-tupla" class="callout callout-style-default callout-tip no-icon callout-titled" title="Tupla">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;3: Tupla
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>tupla</strong> en Python és una seqüència <strong>ordenada</strong> i <strong>immutable</strong> d’elements. Un cop creada, no pot modificar-se: no es poden afegir, eliminar ni canviar els seus elements.</p>
+<p>La immutabilitat fa que les tuples puguin usar-se com a claus de diccionaris i com a elements de conjunts, cosa que les llistes no permeten. S’usen quan es vol garantir que una col·lecció de valors roman constant (coordenades d’un punt, colors RGB, un parell <span class="math inline">\((q, r)\)</span> de quocient i resta…).</p>
+</div>
+</div>
+<section id="creació-i-immutabilitat" class="level3">
+<h3 class="anchored" data-anchor-id="creació-i-immutabilitat"><strong>4.2.1 Creació i immutabilitat</strong></h3>
+<p>Les tuples es creen amb parèntesis <code>()</code> o simplement separant els elements per comes. Per a una tupla d’un sol element, la coma final és <strong>obligatòria</strong>:</p>
+<div>
+<div id="pyodide-12" class="exercise-cell">
+
+</div>
+<script type="pyodide-12-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHVudG8gICA9ICgzLjAsIDQuMCkgICAgICAgICAjIHBhciBvcmRlbmFkb1xucmdiICAgICA9ICgyNTUsIDEyOCwgMCkgICAgICAgIyBjb2xvciBSR0JcbnNpbl9wYXIgPSAxLCAyLCAzICAgICAgICAgICAgICMgdGFtYmnDqW4gZXMgdHVwbGE6ICgxLCAyLCAzKVxudmFjaWEgICA9ICgpXG5wcmludChwdW50bywgdHlwZShwdW50bykpXG5wcmludChzaW5fcGFyLCB0eXBlKHNpbl9wYXIpKSJ9
+</script>
+</div>
+<div id="imp-tupla-uno" class="callout callout-style-default callout-important no-icon callout-titled" title="Tupla d'un element: la coma és obligatòria">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;5: Tupla d’un element: la coma és obligatòria
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Parèntesis sense coma <strong>no creen una tupla</strong>; simplement agrupen una expressió. Els parèntesis són opcionals per definir tuples, però la coma final és obligatòria per a una tupla d’un sol element:</p>
+<div>
+<div id="pyodide-13" class="exercise-cell">
+
+</div>
+<script type="pyodide-13-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibm9fZXNfdHVwbGEgPSAoNDIpICAgICAjIDxjbGFzcyAnaW50Jz5cbnNpX2VzX3R1cGxhID0gKDQyLCkgICAgIyA8Y2xhc3MgJ3R1cGxlJz5cbm90cmFfdHVwbGEgPSA0MiwgICAgICAgIyA8Y2xhc3MgJ3R1cGxlJz5cbnByaW50KHR5cGUobm9fZXNfdHVwbGEpKVxucHJpbnQodHlwZShzaV9lc190dXBsYSkpXG5wcmludCh0eXBlKG90cmFfdHVwbGEpKSJ9
+</script>
+</div>
+</div>
+</div>
+<p>La indexació i el <em>slicing</em> funcionen igual que a les llistes, però qualsevol intent de modificar una tupla llança <code>TypeError</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>punto <span class="op">=</span> (<span class="fl">3.0</span>, <span class="fl">4.0</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(punto[<span class="dv">0</span>])        <span class="co"># 3.0</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>punto[<span class="dv">0</span>] <span class="op">=</span> <span class="fl">5.0</span>         <span class="co"># TypeError: 'tuple' object does not support item assignment</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="desempaquetament" class="level3">
+<h3 class="anchored" data-anchor-id="desempaquetament"><strong>4.2.2 Desempaquetament</strong></h3>
+<p>El <strong>desempaquetament</strong> (<em>unpacking</em>) assigna els elements d’una tupla (o de qualsevol iterable) a diverses variables en una sola instrucció:</p>
+<div>
+<div id="pyodide-14" class="exercise-cell">
+
+</div>
+<script type="pyodide-14-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHVudG8gPSAoMy4wLCA0LjApXG54LCB5ID0gcHVudG9cbnByaW50KGZcInggPSB7eH0sIHkgPSB7eX1cIikgICAgIyB4ID0gMy4wLCB5ID0gNC4wXG5cbiMgSW50ZXJjYW1iaW8gKHN3YXApIHNpbiB2YXJpYWJsZSBhdXhpbGlhclxuYSwgYiA9IDEwLCAyMFxuYSwgYiA9IGIsIGFcbnByaW50KGEsIGIpICAgICMgMjAgMTAifQ==
+</script>
+</div>
+</section>
+<section id="retorn-múltiple" class="level3">
+<h3 class="anchored" data-anchor-id="retorn-múltiple"><strong>4.2.3 Retorn múltiple</strong></h3>
+<p>El <strong>retorn múltiple</strong> en Python és la capacitat que té una funció de retornar més d’un valor alhora en una sola instrucció <code>return</code>. En llenguatges més antics o estrictes, una funció només pot retornar un únic resultat. Si calia retornar diverses dades, s’havia de crear un array, un objecte o usar punters. En Python, és tan natural com separar les variables per comes (tupla).</p>
+<div id="nte-retorno" class="callout callout-style-default callout-note no-icon callout-titled" title="Retorn múltiple amb tuples">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;5: Retorn múltiple amb tuples
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una funció pot retornar diversos valors empaquetant-los en una tupla. El cridador els desempaqueta directament:</p>
+<div>
+<div id="pyodide-15" class="exercise-cell">
+
+</div>
+<script type="pyodide-15-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuZGVmIGRpdmlzaW9uX2V1Y2xpZGVhKGE6IGludCwgYjogaW50KSAtPiB0dXBsZVtpbnQsIGludF06XG4gICAgXCJcIlwiXG4gICAgRGV2dWVsdmUgZWwgY29jaWVudGUgeSBlbCByZXN0byBkZSBsYSBkaXZpc2nDs24gZW50ZXJhIGRlIGEgZW50cmUgYixcbiAgICBlcyBkZWNpciwgZWwgw7puaWNvIHBhciAocSwgcikgdGFsIHF1ZSBhID0gYsK3cSArIHIgY29uIDAg4omkIHIgPCB8YnwuXG5cbiAgICBQcmVjb25kaWNpw7NuOiBiICE9IDAuXG4gICAgXCJcIlwiXG4gICAgcmV0dXJuIGEgLy8gYiwgYSAlIGJcblxuY29jaWVudGUsIHJlc3RvID0gZGl2aXNpb25fZXVjbGlkZWEoMTcsIDUpXG5wcmludChmXCIxNyA9IDUgw5cge2NvY2llbnRlfSArIHtyZXN0b31cIikgICAgIyAxNyA9IDUgw5cgMyArIDJcblxuZGVmIHBvbGFyKHg6IGZsb2F0LCB5OiBmbG9hdCkgLT4gdHVwbGVbZmxvYXQsIGZsb2F0XTpcbiAgICBcIlwiXCJcbiAgICBDb252aWVydGUgZWwgcHVudG8gKHgsIHkpIGVuIGNvb3JkZW5hZGFzIGNhcnRlc2lhbmFzIGEgcG9sYXJlcyAociwgzrgpLFxuICAgIGRvbmRlIHIgPSDiiJooeMKyICsgecKyKSBlcyBlbCBtw7NkdWxvIHkgzrggPSBhdGFuMih5LCB4KSDiiIggKC3PgCwgz4BdIGVzIGVsIGFyZ3VtZW50by5cblxuICAgIFByZWNvbmRpY2nDs246ICh4LCB5KSAhPSAoMCwgMCkgc2kgc2UgcmVxdWllcmUgzrggYmllbiBkZWZpbmlkby5cbiAgICBcIlwiXCJcbiAgICByZXR1cm4gbWF0aC5zcXJ0KHgqKjIgKyB5KioyKSwgbWF0aC5hdGFuMih5LCB4KVxuXG5yLCB0aGV0YSA9IHBvbGFyKDMuMCwgNC4wKVxucHJpbnQoZlwiciA9IHtyOi40Zn0sICDOuCA9IHt0aGV0YTouNGZ9IHJhZFwiKSAgICAjIHIgPSA1LjAwMDAsICDOuCA9IDAuOTI3MyByYWQifQ==
+</script>
+</div>
+</div>
+</div>
+</section>
+<section id="mètodes-i-operacions-principals-1" class="level3">
+<h3 class="anchored" data-anchor-id="mètodes-i-operacions-principals-1"><strong>4.2.4 Mètodes i operacions principals</strong></h3>
+<p>A diferència de les llistes, les tuples disposen de tan sols dos mètodes: <code>count()</code> i <code>index()</code>. Aquesta absència no és un oblit del llenguatge sinó una conseqüència directa de la immutabilitat: no té sentit oferir mètodes per afegir, eliminar o ordenar elements que no poden canviar.</p>
+<p>El que sí que comparteixen amb les llistes és la capacitat de ser <strong>iterades</strong> amb un bucle <code>for</code>, de ser consultades amb <code>in</code>, i de ser mesurades amb <code>len()</code>. A la pràctica, una tupla es recorre exactament igual que una llista; la diferència és que no es pot modificar res durant el recorregut.</p>
+<div>
+<div id="pyodide-16" class="exercise-cell">
+
+</div>
+<script type="pyodide-16-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidCA9ICg0LCAxLCAyLCAxLCAzLCAxKVxuXG4jIExvcyBkb3MgbcOpdG9kb3MgcHJvcGlvcyBkZSBsYXMgdHVwbGFzXG5wcmludCh0LmNvdW50KDEpKSAgICAgIyAzICAg4oCUIGN1w6FudGFzIHZlY2VzIGFwYXJlY2UgMVxucHJpbnQodC5pbmRleCgyKSkgICAgICMgMiAgIOKAlCDDrW5kaWNlIGRlIGxhIHByaW1lcmEgYXBhcmljacOzbiBkZSAyXG5cbiMgRnVuY2lvbmVzIGJ1aWx0LWluIHF1ZSBmdW5jaW9uYW4gY29uIGN1YWxxdWllciBzZWN1ZW5jaWFcbnByaW50KGxlbih0KSkgICAgICAgICAjIDZcbnByaW50KG1pbih0KSkgICAgICAgICAjIDFcbnByaW50KG1heCh0KSkgICAgICAgICAjIDRcbnByaW50KHN1bSh0KSkgICAgICAgICAjIDEyXG5cbiMgT3BlcmFkb3Jlc1xucHJpbnQoMyBpbiB0KSAgICAgICAgICMgVHJ1ZVxucHJpbnQoKDEsIDIpICsgKDMsKSkgICMgKDEsIDIsIDMpICDigJQgY29uY2F0ZW5hY2nDs24sIHByb2R1Y2UgdHVwbGEgbnVldmFcbnByaW50KCgxLCAyKSAqIDMpICAgICAjICgxLCAyLCAxLCAyLCAxLCAyKVxuXG4jIEl0ZXJhY2nDs25cbmZvciB4IGluIHQ6XG4gICAgcHJpbnQoeCwgZW5kPVwiIFwiKSAgICAjIDQgMSAyIDEgMyAxIn0=
+</script>
+</div>
+</section>
+<section id="tuples-i-matemàtiques" class="level3">
+<h3 class="anchored" data-anchor-id="tuples-i-matemàtiques"><strong>4.2.5 Tuples i matemàtiques</strong></h3>
+<p>Les tuples són la representació natural dels objectes matemàtics que no poden modificar-se. Per exemple, un punt de <span class="math inline">\(\mathbb{R}^2\)</span> és un parell ordenat de coordenades, una fracció irreductible és un parell d’enters.</p>
+<p>Combinant tuples i llistes, es poden representar estructures més complexes com polígons. Els vèrtexs del polígon es poden emmagatzemar com una llista de tuples.</p>
+<div id="nte-poligono" class="callout callout-style-default callout-note no-icon callout-titled" title="Polígons: llista de vèrtexs com a tuples">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;6: Polígons: llista de vèrtexs com a tuples
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un polígon de <span class="math inline">\(n\)</span> vèrtexs es representa com una <strong>llista de tuples</strong>: la llista reflecteix que el nombre de vèrtexs pot variar (o construir-se incrementalment), i cada tupla reflecteix que les coordenades d’un vèrtex són fixes i immutables.</p>
+<div>
+<div id="pyodide-17" class="exercise-cell">
+
+</div>
+<script type="pyodide-17-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuXG5kZWYgcGVyaW1ldHJvKHZlcnRpY2VzOiBsaXN0W3R1cGxlW2Zsb2F0LCBmbG9hdF1dKSAtPiBmbG9hdDpcbiAgICBcIlwiXCJcbiAgICBDYWxjdWxhIGVsIHBlcsOtbWV0cm8gZGUgdW4gcG9sw61nb25vIGRhZG8gY29tbyBsaXN0YSBkZSB2w6lydGljZXMgKHgsIHkpLlxuXG4gICAgUHJlY29uZGljacOzbjogbGVuKHZlcnRpY2VzKSA+PSAyLlxuICAgIFwiXCJcIlxuICAgIG4gPSBsZW4odmVydGljZXMpXG4gICAgdG90YWwgPSAwLjBcbiAgICBmb3IgaSBpbiByYW5nZShuKTpcbiAgICAgICAgeDEsIHkxID0gdmVydGljZXNbaV1cbiAgICAgICAgeDIsIHkyID0gdmVydGljZXNbKGkgKyAxKSAlIG5dICAgICMgZWwgw7psdGltbyB2w6lydGljZSBjb25lY3RhIGNvbiBlbCBwcmltZXJvXG4gICAgICAgIHRvdGFsICs9IG1hdGguc3FydCgoeDIgLSB4MSkqKjIgKyAoeTIgLSB5MSkqKjIpXG4gICAgcmV0dXJuIHRvdGFsXG5cblxuZGVmIGFyZWEodmVydGljZXM6IGxpc3RbdHVwbGVbZmxvYXQsIGZsb2F0XV0pIC0+IGZsb2F0OlxuICAgIFwiXCJcIlxuICAgIENhbGN1bGEgZWwgw6FyZWEgZGUgdW4gcG9sw61nb25vIHNpbXBsZSAoZsOzcm11bGEgZGUgR2F1c3MvZGVsIGxhemFkb3IpLlxuXG4gICAgUHJlY29uZGljacOzbjogbGVuKHZlcnRpY2VzKSA+PSAzLlxuICAgIFwiXCJcIlxuICAgIG4gPSBsZW4odmVydGljZXMpXG4gICAgcyA9IDAuMFxuICAgIGZvciBpIGluIHJhbmdlKG4pOlxuICAgICAgICB4MSwgeTEgPSB2ZXJ0aWNlc1tpXVxuICAgICAgICB4MiwgeTIgPSB2ZXJ0aWNlc1soaSArIDEpICUgbl1cbiAgICAgICAgcyArPSB4MSAqIHkyIC0geDIgKiB5MVxuICAgIHJldHVybiBhYnMocykgLyAyLjBcblxuXG4jIEN1YWRyYWRvIGRlIGxhZG8gMVxuY3VhZHJhZG8gPSBbKDAuMCwgMC4wKSwgKDEuMCwgMC4wKSwgKDEuMCwgMS4wKSwgKDAuMCwgMS4wKV1cbnByaW50KGZcIlBlcsOtbWV0cm86IHtwZXJpbWV0cm8oY3VhZHJhZG8pOi40Zn1cIikgICAgIyA0LjBcbnByaW50KGZcIsOBcmVhOiAgICAgIHthcmVhKGN1YWRyYWRvKTouNGZ9XCIpICAgICAgICAgICMgMS4wXG5cbiMgVHJpw6FuZ3VsbyBlcXVpbMOhdGVybyBkZSBsYWRvIDFcbmggPSBtYXRoLnNxcnQoMykgLyAyXG50cmlhbmd1bG8gPSBbKDAuMCwgMC4wKSwgKDEuMCwgMC4wKSwgKDAuNSwgaCldXG5wcmludChmXCJQZXLDrW1ldHJvOiB7cGVyaW1ldHJvKHRyaWFuZ3Vsbyk6LjRmfVwiKSAgICAjIDMuMFxucHJpbnQoZlwiw4FyZWE6ICAgICAge2FyZWEodHJpYW5ndWxvKTouNGZ9XCIpICAgICAgICAgICMgMC40MzMwLi4uIn0=
+</script>
+</div>
+</div>
+</div>
+<p>La fórmula de l’àrea és la del <strong>llaçador</strong> (<em>shoelace formula</em>): <span class="math display">\[
+A = \frac{1}{2}\left|\sum_{i=0}^{n-1}(x_i\, y_{i+1} - x_{i+1}\, y_i)\right|
+\]</span> on els índexs són mòdul <span class="math inline">\(n\)</span> (el vèrtex <span class="math inline">\(n\)</span> és el vèrtex <span class="math inline">\(0\)</span>). És una fórmula elegant que apareix en geometria computacional i que s’implementa directament amb el bucle anterior.</p>
+<hr>
+</section>
+</section>
+<section id="diccionaris-mapejos-clau-valor" class="level2">
+<h2 class="anchored" data-anchor-id="diccionaris-mapejos-clau-valor">4.3. Diccionaris: mapejos clau-valor</h2>
+<div id="tip-diccionario" class="callout callout-style-default callout-tip no-icon callout-titled" title="Diccionari">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;4: Diccionari
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>diccionari</strong> en Python és una col·lecció <strong>mutable</strong> de parells <strong>clau–valor</strong> on les claus són úniques. Des de Python 3.7, l’ordre d’inserció es preserva.</p>
+<p>Matemàticament, un diccionari implementa una <strong>funció finita</strong> <span class="math inline">\(f: K \to V\)</span> on <span class="math inline">\(K\)</span> és el conjunt de claus i <span class="math inline">\(V\)</span> el de valors. Les claus han de ser <strong>hashables</strong> (immutables: enters, flotants, cadenes, tuples…).</p>
+<p>La cerca, inserció i eliminació tenen cost <strong>promig <span class="math inline">\(O(1)\)</span></strong> gràcies a la taula de hash interna, la qual cosa els fa extraordinàriament eficients davant les llistes (<span class="math inline">\(O(n)\)</span> per a cerca).</p>
+</div>
+</div>
+<section id="creació-i-accés" class="level3">
+<h3 class="anchored" data-anchor-id="creació-i-accés"><strong>4.3.1 Creació i accés</strong></h3>
+<p>Els diccionaris es creen amb claus <code>{}</code> usant la sintaxi <code>clau: valor</code>, o amb <code>dict()</code>:</p>
+<div>
+<div id="pyodide-18" class="exercise-cell">
+
+</div>
+<script type="pyodide-18-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYWx1bW5vID0ge1xuICAgIFwibm9tYnJlXCI6IFwiQW5hXCIsXG4gICAgXCJub3RhXCI6ICAgOS41LFxuICAgIFwiYXByb2JhZG9cIjogVHJ1ZSxcbn1cbnByaW50KGFsdW1ubylcbnByaW50KGxlbihhbHVtbm8pKSAgICAjIDMifQ==
+</script>
+</div>
+<p>L’accés a un valor es realitza per clau. El mètode <code>.get()</code> és més segur perquè retorna <code>None</code> (o un valor per defecte) si la clau no existeix, sense llançar error:</p>
+<div>
+<div id="pyodide-19" class="exercise-cell">
+
+</div>
+<script type="pyodide-19-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYWx1bW5vID0ge1wibm9tYnJlXCI6IFwiQW5hXCIsIFwibm90YVwiOiA5LjV9XG5cbnByaW50KGFsdW1ub1tcIm5vbWJyZVwiXSkgICAgICAgICAgICAgIyBcIkFuYVwiXG5wcmludChhbHVtbm8uZ2V0KFwibm90YVwiKSkgICAgICAgICAgICMgOS41XG5wcmludChhbHVtbm8uZ2V0KFwiZWRhZFwiKSkgICAgICAgICAgICMgTm9uZSAg4oCUIHNpbiBlcnJvclxucHJpbnQoYWx1bW5vLmdldChcImVkYWRcIiwgMTgpKSAgICAgICAjIDE4ICAgIOKAlCB2YWxvciBwb3IgZGVmZWN0byJ9
+</script>
+</div>
+<div id="cau-keyerror" class="callout callout-style-default callout-caution no-icon callout-titled" title="`KeyError`: clau inexistent">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;2: <code>KeyError</code>: clau inexistent
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Accedir amb <code>[]</code> a una clau que no existeix llança <code>KeyError</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">"a"</span>: <span class="dv">1</span>}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d[<span class="st">"b"</span>])    <span class="co"># KeyError: 'b'</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>L’alternativa segura és <code>d.get(clau)</code> o comprovar abans amb <code>clau in d</code>.</p>
+</div>
+</div>
+<p>L’assignació afegeix o actualitza parells, i <code>del</code> n’elimina un:</p>
+<div>
+<div id="pyodide-20" class="exercise-cell">
+
+</div>
+<script type="pyodide-20-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZCA9IHtcImFcIjogMSwgXCJiXCI6IDJ9XG5kW1wiY1wiXSA9IDMgICAgICAgICMgYcOxYWRlXG5kW1wiYVwiXSA9IDEwICAgICAgICMgbW9kaWZpY2FcbmRlbCBkW1wiYlwiXSAgICAgICAgIyBlbGltaW5hXG5wcmludChkKSAgICAgICAgICAjIHsnYSc6IDEwLCAnYyc6IDN9In0=
+</script>
+</div>
+<p>Atès que les tuples són <strong>hashables</strong>, poden usar-se com a claus de diccionari: això permet indexar taules per parells o triples de valors, cosa impossible amb llistes. L’exemple següent mostra com emmagatzemar en un diccionari distàncies a l’origen de coordenades d’un punt $ (x, y) ^2 $. El diccionari té com a claus tuples <code>(x, y)</code> que representen les coordenades del punt, el valor associat és la distància euclidiana a l’origen:</p>
+<div>
+<div id="pyodide-21" class="exercise-cell">
+
+</div>
+<script type="pyodide-21-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBUYWJsYSBkZSBkaXN0YW5jaWFzIGFsIG9yaWdlbiBkZSBjb29yZGVuYWRhc1xuZGlzdGFuY2lhcyA9IHtcbiAgICAoMCwgMCk6IDAuMCxcbiAgICAoMSwgMCk6IDEuMCxcbiAgICAoMCwgMSk6IDEuMCxcbiAgICAoMSwgMSk6IG1hdGguc3FydCgyKSxcbn1cbnByaW50KGZcImRpc3QoMSwxKSA9IHtkaXN0YW5jaWFzWygxLCAxKV06LjZmfVwiKSAgICAjIDEuNDE0MjEz4oCmIn0=
+</script>
+</div>
+</section>
+<section id="mètodes-principals-i-iteració" class="level3">
+<h3 class="anchored" data-anchor-id="mètodes-principals-i-iteració"><strong>4.3.2 Mètodes principals i iteració</strong></h3>
+<p>Els diccionaris exposen tres <strong>vistes</strong> que permeten accedir per separat a claus, valors o parells: <code>d.keys()</code>, <code>d.values()</code> i <code>d.items()</code>. Són objectes dinàmics —reflecteixen l’estat actual del diccionari en tot moment— i són la base de la iteració idiomàtica en Python.</p>
+<p>La forma més comuna de recórrer un diccionari és amb <code>.items()</code>, que en cada iteració desempaqueta directament el parell <code>(clau, valor)</code> en dues variables. Iterar sobre el diccionari directament (<code>for k in d</code>) equival a iterar sobre les seves claus, igual que <code>for k in d.keys()</code>.</p>
+<p>A més de les vistes, els diccionaris ofereixen mètodes per a accés segur (<code>.get()</code>), inserció condicional (<code>.setdefault()</code>), fusió (<code>.update()</code>) i eliminació amb retorn del valor (<code>.pop()</code>).</p>
+<div id="imp-metodos-dic" class="callout callout-style-default callout-important no-icon callout-titled" title="Mètodes principals dels diccionaris">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;6: Mètodes principals dels diccionaris
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mètode</th>
+<th>Descripció</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>d.keys()</code></td>
+<td>Vista de totes les claus</td>
+</tr>
+<tr class="even">
+<td><code>d.values()</code></td>
+<td>Vista de tots els valors</td>
+</tr>
+<tr class="odd">
+<td><code>d.items()</code></td>
+<td>Vista de parells <code>(clau, valor)</code></td>
+</tr>
+<tr class="even">
+<td><code>d.get(k, v)</code></td>
+<td>Retorna <code>d[k]</code> o <code>v</code> si <code>k</code> no existeix (per defecte <code>None</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>d.update(altre)</code></td>
+<td>Afegeix o sobreescriu amb els parells d’<code>altre</code></td>
+</tr>
+<tr class="even">
+<td><code>d.pop(k)</code></td>
+<td>Elimina i retorna <code>d[k]</code></td>
+</tr>
+<tr class="odd">
+<td><code>d.setdefault(k, v)</code></td>
+<td>Si <code>k</code> no existeix, l’insereix amb valor <code>v</code> i el retorna</td>
+</tr>
+</tbody>
+</table>
+<p>La forma idiomàtica d’iterar sobre un diccionari és amb <code>.items()</code>, que retorna parells <code>(clau, valor)</code>:</p>
+<div>
+<div id="pyodide-22" class="exercise-cell">
+
+</div>
+<script type="pyodide-22-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicG9ibGFjaW9uID0ge1wiTWFkcmlkXCI6IDNfMzAwXzAwMCwgXCJCYXJjZWxvbmFcIjogMV82MjBfMDAwLCBcIlZhbGVuY2lhXCI6IDgwMF8wMDB9XG5cbmZvciBjaXVkYWQsIGhhYiBpbiBwb2JsYWNpb24uaXRlbXMoKTpcbiAgICBwcmludChmXCJ7Y2l1ZGFkfToge2hhYjosfSBoYWJpdGFudGVzXCIpIn0=
+</script>
+</div>
+</div>
+</div>
+<p>L’operador <code>in</code> comprova la presència d’una <strong>clau</strong> en temps <span class="math inline">\(O(1)\)</span>:</p>
+<div>
+<div id="pyodide-23" class="exercise-cell">
+
+</div>
+<script type="pyodide-23-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZCA9IHtcImFcIjogMSwgXCJiXCI6IDIsIFwiY1wiOiAzfVxucHJpbnQoXCJhXCIgaW4gZCkgICAgICMgVHJ1ZVxucHJpbnQoXCJ6XCIgaW4gZCkgICAgICMgRmFsc2VcbnByaW50KDEgaW4gZCkgICAgICAgIyBGYWxzZSDigJQgY29tcHJ1ZWJhIGNsYXZlcywgbm8gdmFsb3JlcyJ9
+</script>
+</div>
+</section>
+<section id="diccionaris-i-matemàtiques" class="level3">
+<h3 class="anchored" data-anchor-id="diccionaris-i-matemàtiques"><strong>4.3.3 Diccionaris i matemàtiques</strong></h3>
+<div id="nte-tabla-factorial" class="callout callout-style-default callout-note no-icon callout-titled" title="Diccionari per a funció discreta finita">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;7: Diccionari per a funció discreta finita
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un diccionari és l’estructura natural per a una <strong>funció discreta finita</strong>: les claus són els elements del domini i els valors les imatges. L’accés a qualsevol valor és <span class="math inline">\(O(1)\)</span> independentment de la mida de la taula.</p>
+<div>
+<div id="pyodide-24" class="exercise-cell">
+
+</div>
+<script type="pyodide-24-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBUYWJsYSBkZSBmYWN0b3JpYWxlcyB7bjogbiF9IHBhcmEgbiA9IDAuLjEwXG5kZWYgZmFjdG9yaWFsKG46IGludCkgLT4gaW50OlxuICAgIFwiXCJcIlxuICAgIERldnVlbHZlIGVsIGZhY3RvcmlhbCBkZSBuLCBkZWZpbmlkbyBjb21vIG4hID0gbiDCtyAobi0xKSDCtyDigKYgwrcgMSxcbiAgICBjb24gMCEgPSAxLiBWZXJzacOzbiByZWN1cnNpdmEuXG5cbiAgICBQcmVjb25kaWNpw7NuOiBuID49IDAuXG4gICAgXCJcIlwiXG4gICAgcmV0dXJuIDEgaWYgbiA9PSAwIGVsc2UgbiAqIGZhY3RvcmlhbChuIC0gMSlcblxuXG50YWJsYSA9IHtuOiBmYWN0b3JpYWwobikgZm9yIG4gaW4gcmFuZ2UoMTEpfVxucHJpbnQoZlwiNyEgID0ge3RhYmxhWzddfVwiKSAgICAgIyA1MDQwXG5wcmludChmXCIxMCEgPSB7dGFibGFbMTBdfVwiKSAgICAjIDM2Mjg4MDAifQ==
+</script>
+</div>
+</div>
+</div>
+<div id="nte-polinomio" class="callout callout-style-default callout-note no-icon callout-titled" title="Diccionari per a polinomis dispersos">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;8: Diccionari per a polinomis dispersos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un diccionari també permet representar <strong>polinomis dispersos</strong> (amb molts coeficients nuls) de forma compacta: les claus són els graus i els valors els coeficients no nuls.</p>
+<div>
+<div id="pyodide-25" class="exercise-cell">
+
+</div>
+<script type="pyodide-25-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGV2YWx1YXJfZGlzcGVyc28ocDogZGljdFtpbnQsIGZsb2F0XSwgeDogZmxvYXQpIC0+IGZsb2F0OlxuICAgIFwiXCJcIlxuICAgIEV2YWzDumEgZWwgcG9saW5vbWlvIGRpc3BlcnNvIHAgZW4geC5cblxuICAgIHAgcmVwcmVzZW50YSB1biBwb2xpbm9taW8gbWVkaWFudGUgdW4gZGljY2lvbmFyaW8ge2dyYWRvOiBjb2VmaWNpZW50ZX0sXG4gICAgZG9uZGUgc29sbyBzZSBhbG1hY2VuYW4gbG9zIHTDqXJtaW5vcyBjb24gY29lZmljaWVudGUgbm8gbnVsby5cbiAgICBQb3IgZWplbXBsbywgNXheMTAwIC0gM3heMTAgKyA3IHNlIHJlcHJlc2VudGEgY29tbyB7MTAwOiA1LCAxMDogLTMsIDA6IDd9LlxuXG4gICAgUHJlY29uZGljacOzbjogbG9zIGdyYWRvcyAoY2xhdmVzKSBzb24gZW50ZXJvcyBubyBuZWdhdGl2b3MuXG4gICAgXCJcIlwiXG4gICAgcmVzdWx0YWRvID0gMC4wXG4gICAgZm9yIGdyYWRvLCBjb2VmIGluIHAuaXRlbXMoKTpcbiAgICAgICAgcmVzdWx0YWRvICs9IGNvZWYgKiB4KipncmFkb1xuICAgIHJldHVybiByZXN1bHRhZG9cblxuXG4jIHAoeCkgPSA1eF4xMDAg4oiSIDN4XjEwICsgNyAg4oaSICBzb2xvIGFsbWFjZW5hIGxvcyB0w6lybWlub3Mgbm8gbnVsb3NcbnAgPSB7MTAwOiA1LCAxMDogLTMsIDA6IDd9XG5cbnByaW50KGV2YWx1YXJfZGlzcGVyc28ocCwgMSkpICAgICMgOS4wXG5wcmludChldmFsdWFyX2Rpc3BlcnNvKHAsIDApKSAgICAjIDcuMFxucHJpbnQoZXZhbHVhcl9kaXNwZXJzbyhwLCAyKSkgICAgIyA2LjMzODI1MzAwMTE0MTE0N2UrMzAifQ==
+</script>
+</div>
+</div>
+</div>
+<div id="nte-matdis" class="callout callout-style-default callout-note no-icon callout-titled" title="Diccionari per a matrius disperses">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;9: Diccionari per a matrius disperses
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>matriu dispersa</strong> té la majoria de les seves entrades a zero. Emmagatzemar-la com a llista de llistes malbarataria memòria; un diccionari amb claus <code>(fila, columna)</code> només guarda les entrades no nul·les:</p>
+<div>
+<div id="pyodide-26" class="exercise-cell">
+
+</div>
+<script type="pyodide-26-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGdldChNOiBkaWN0W3R1cGxlW2ludCwgaW50XSwgZmxvYXRdLCBpOiBpbnQsIGo6IGludCkgLT4gZmxvYXQ6XG4gICAgXCJcIlwiXG4gICAgRGV2dWVsdmUgZWwgZWxlbWVudG8gTVtpLCBqXSBkZSBsYSBtYXRyaXogZGlzcGVyc2EgTS5cbiAgICBTaSBsYSBlbnRyYWRhIG5vIGVzdMOhIGFsbWFjZW5hZGEgZXhwbMOtY2l0YW1lbnRlLCBkZXZ1ZWx2ZSAwLjAuXG5cbiAgICBQcmVjb25kaWNpw7NuOiBpIHkgaiBzb24gw61uZGljZXMgdsOhbGlkb3MgcGFyYSBsYSBkaW1lbnNpw7NuIGRlIE0uXG4gICAgXCJcIlwiXG4gICAgcmV0dXJuIE0uZ2V0KChpLCBqKSwgMC4wKVxuXG5cbmRlZiBwcm9kdWN0b19tYXRyaXpfdmVjdG9yKFxuICAgIE06IGRpY3RbdHVwbGVbaW50LCBpbnRdLCBmbG9hdF0sXG4gICAgdjogbGlzdFtmbG9hdF0sXG4gICAgbjogaW50XG4pIC0+IGxpc3RbZmxvYXRdOlxuICAgIFwiXCJcIlxuICAgIE11bHRpcGxpY2EgbGEgbWF0cml6IGRpc3BlcnNhIE0gKG7Dl24pIHBvciBlbCB2ZWN0b3IgdiBkZSBsb25naXR1ZCBuLlxuICAgIFNvbG8gaXRlcmEgc29icmUgbGFzIGVudHJhZGFzIG5vIG51bGFzIGRlIE0sIGxvIHF1ZSByZXN1bHRhXG4gICAgZWZpY2llbnRlIGN1YW5kbyBsYSBtYXlvcsOtYSBkZSBsb3MgZWxlbWVudG9zIHNvbiBjZXJvLlxuXG4gICAgUHJlY29uZGljacOzbjogbGVuKHYpID09IG4geSB0b2RhcyBsYXMgY2xhdmVzIChpLCBqKSBkZSBNIHNhdGlzZmFjZW5cbiAgICAwIDw9IGkgPCBuIHkgMCA8PSBqIDwgbi5cbiAgICBEZXZ1ZWx2ZTogbGlzdGEgZGUgbiBmbG9hdHMgY29uIGVsIHJlc3VsdGFkbyBkZWwgcHJvZHVjdG8gTcK3di5cbiAgICBcIlwiXCJcbiAgICByZXN1bHRhZG8gPSBbMC4wXSAqIG5cbiAgICBmb3IgKGksIGopLCB2YWxvciBpbiBNLml0ZW1zKCk6XG4gICAgICAgIHJlc3VsdGFkb1tpXSArPSB2YWxvciAqIHZbal1cbiAgICByZXR1cm4gcmVzdWx0YWRvXG5cblxuIyBNYXRyaXogZGlzcGVyc2EgNcOXNTogc29sbyA0IGVudHJhZGFzIG5vIG51bGFzXG4jIOKOoTEgMCAwIDAgMOKOpFxuIyDijqIwIDAgMiAwIDDijqVcbiMg4o6iMCAwIDAgMCAw4o6lXG4jIOKOojAgMCAwIDUgMOKOpVxuIyDijqMwIDAgMCAwIDPijqZcblxuTSA9IHtcbiAgICAoMCwgMCk6IDEuMCxcbiAgICAoMSwgMik6IDIuMCxcbiAgICAoMywgMyk6IDUuMCxcbiAgICAoNCwgNCk6IDMuMCxcbn1cblxucHJpbnQoZ2V0KE0sIDEsIDIpKSAgICAgICAjIDIuMFxucHJpbnQoZ2V0KE0sIDIsIDIpKSAgICAgICAjIDAuMCAg4oCUIGNlcm8gaW1wbMOtY2l0b1xuXG52ID0gWzEuMCwgMS4wLCAxLjAsIDEuMCwgMS4wXVxucHJpbnQocHJvZHVjdG9fbWF0cml6X3ZlY3RvcihNLCB2LCA1KSkgICAgIyBbMS4wLCAyLjAsIDAuMCwgNS4wLCAzLjBdIn0=
+</script>
+</div>
+<p>La clau <code>(i, j)</code> és una tupla —hashable i immutable— la qual cosa il·lustra directament per què les tuples poden ser claus de diccionari i les llistes no. En matrius amb milions d’entrades però poques no nul·les (matrius de rigidesa en elements finits, grafs de la web), aquest enfocament redueix dràsticament l’ús de memòria.</p>
+</div>
+</div>
+<div id="tip-grafos" class="callout callout-style-default callout-tip no-icon callout-titled" title="Teoria de grafs">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;5: Teoria de grafs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>teoria de grafs</strong> és una branca de les matemàtiques i de les ciències de la computació que estudia les <strong>relacions entre objectes</strong> a través d’una estructura matemàtica formal anomenada <strong>graf</strong>. Un graf es defineix com un conjunt d’objectes anomenats <strong>vèrtexs</strong> (o nodes) units per enllaços anomenats <strong>arestes</strong> (o arcs), que permeten representar relacions binàries entre elements d’un conjunt.</p>
+<p>Un <strong>graf</strong> <span class="math inline">\(G = (V, E)\)</span> consisteix doncs en un conjunt de <strong>vèrtexs</strong> (<strong>nodes</strong>) <span class="math inline">\(V\)</span> i un conjunt d’<strong>arestes</strong> (<strong>arcs</strong>) <span class="math inline">\(E \subseteq \{\{u, v\} \mid u, v \in V\}\)</span> que representen connexions entre parells de vèrtexs. Quan les arestes tenen direcció es parla de <strong>graf dirigit</strong> (<strong>dígraf</strong>); quan tenen un pes numèric associat, de <strong>graf ponderat</strong>.</p>
+<p>Les dues representacions clàssiques d’un graf <span class="math inline">\(G = (V, E)\)</span> amb <span class="math inline">\(n = |V|\)</span> vèrtexs i <span class="math inline">\(m = |E|\)</span> arestes són:</p>
+<ul>
+<li><p><strong>Llista d’adjacència</strong> — per a cada vèrtex <span class="math inline">\(u\)</span> s’emmagatzema el conjunt dels seus veïns. És eficient quan el graf és <strong>dispers</strong> (poques arestes respecte al màxim possible <span class="math inline">\(n^2\)</span>).</p></li>
+<li><p><strong>Matriu d’adjacència</strong> — una matriu <span class="math inline">\(A\)</span> de <span class="math inline">\(n \times n\)</span> on <span class="math inline">\(A[i][j] = 1\)</span> si existeix l’aresta <span class="math inline">\(\{i, j\}\)</span> i <span class="math inline">\(0\)</span> en cas contrari. És ineficient per a grafs dispersos però convenient per a grafs <strong>densos</strong> i per a certs càlculs matricials: per exemple, <span class="math inline">\(A^k[i][j]\)</span> compta el nombre de camins de longitud exactament <span class="math inline">\(k\)</span> entre <span class="math inline">\(i\)</span> i <span class="math inline">\(j\)</span>.</p></li>
+</ul>
+<p>A la pràctica, la llista d’adjacència és la representació per defecte; la matriu d’adjacència es reserva per a algorismes que exploten explícitament l’estructura algebraica dels grafs.</p>
+<p><strong>Conceptes Clau</strong></p>
+<ul>
+<li><strong>Adjacència:</strong> Dos vèrtexs són adjacents (veïns) si existeix una aresta que els connecta directament.</li>
+<li><strong>Grau (Degree):</strong> És el nombre d’arestes que incideixen en un vèrtex. En dígrafos, es distingeix entre grau d’entrada (<em>in-degree</em>) i grau de sortida (<em>out-degree</em>).</li>
+<li><strong>Camí (Path):</strong> Una seqüència de vèrtexs on cada vèrtex adjacent està connectat per una aresta, sense repetir vèrtexs.</li>
+<li><strong>Cicle:</strong> Un camí que comença i acaba en el mateix vèrtex.</li>
+<li><strong>Graf Connex:</strong> Un graf on existeix almenys un camí entre qualsevol parell de vèrtexs.</li>
+</ul>
+</div>
+</div>
+<div id="nte-grafo" class="callout callout-style-default callout-note no-icon callout-titled" title="Diccionaris i grafs">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;10: Diccionaris i grafs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La forma més «Pythònica» i eficient de representar grafs en Python en la majoria dels casos (especialment si el graf té molts nodes però poques connexions) és mitjançant diccionaris. Per a grafs i dígrafos s’empra un diccionari on les claus són els nodes i els valors són la llista d’adjacència en forma de conjunt (<code>set</code>). Per a un graf ponderat la llista d’adjacència es representa mitjançant un diccionari que conté parells <code>{node: pes}</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grafo no dirigido dict[int, set[int]]</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> {<span class="dv">1</span>: {<span class="dv">2</span>, <span class="dv">3</span>}, <span class="dv">2</span>: {<span class="dv">1</span>, <span class="dv">4</span>},<span class="dv">3</span>: {<span class="dv">1</span>}, <span class="dv">4</span>: {<span class="dv">2</span>}}</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># digrafo dict[int, set[int]] pero sin simetría, arista 1→2 si pero 2→1 no</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">1</span>: {<span class="dv">2</span>, <span class="dv">3</span>}, <span class="dv">2</span>: {<span class="dv">4</span>}, <span class="dv">3</span>: {<span class="dv">4</span>}, <span class="dv">4</span>: {<span class="dv">3</span>}}</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># grafo ponderado dict[int, dict[int, float]]</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> {<span class="dv">1</span>: {<span class="dv">2</span>: <span class="fl">1.5</span>, <span class="dv">3</span>: <span class="fl">2.0</span>}, <span class="dv">2</span>: {<span class="dv">1</span>: <span class="fl">1.5</span>, <span class="dv">4</span>: <span class="fl">3.5</span>}, <span class="dv">3</span>: {<span class="dv">1</span>: <span class="fl">2.0</span>}, <span class="dv">4</span>: {<span class="dv">2</span>: <span class="fl">3.5</span>}}</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>En tots els casos la comprovació d’adjacència és eficient gràcies a l’ús de <code>set</code> o <code>dict</code> per als veïns, a diferència d’una llista d’adjacència on caldria recórrer-la sencera.</p>
+<div>
+<div id="pyodide-27" class="exercise-cell">
+
+</div>
+<script type="pyodide-27-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGFncmVnYXJfYXJpc3RhKGc6IGRpY3RbaW50LCBzZXRbaW50XV0sIHU6IGludCwgdjogaW50KSAtPiBOb25lOlxuICAgIFwiXCJcIlxuICAgIEHDsWFkZSBsYSBhcmlzdGEge3UsIHZ9IGFsIGdyYWZvIG5vIGRpcmlnaWRvIGcuXG4gICAgQ3JlYSBsb3Mgbm9kb3MgdSB5IHYgc2kgbm8gZXhpc3Rlbi5cbiAgICBcIlwiXCJcbiAgICBnLnNldGRlZmF1bHQodSwgc2V0KCkpLmFkZCh2KVxuICAgIGcuc2V0ZGVmYXVsdCh2LCBzZXQoKSkuYWRkKHUpXG5cblxuZGVmIGdyYWRvKGc6IGRpY3RbaW50LCBzZXRbaW50XV0sIHU6IGludCkgLT4gaW50OlxuICAgIFwiXCJcIlxuICAgIERldnVlbHZlIGVsIGdyYWRvIGRlbCBub2RvIHUsIGVzIGRlY2lyLCBlbCBuw7ptZXJvIGRlIGFyaXN0YXMgaW5jaWRlbnRlcyBlbiDDqWwuXG5cbiAgICBQcmVjb25kaWNpw7NuOiB1IHBlcnRlbmVjZSBhIGcuXG4gICAgXCJcIlwiXG4gICAgcmV0dXJuIGxlbihnW3VdKVxuXG5cbmRlZiBlc19hZHlhY2VudGUoZzogZGljdFtpbnQsIHNldFtpbnRdXSwgdTogaW50LCB2OiBpbnQpIC0+IGJvb2w6XG4gICAgXCJcIlwiXG4gICAgRGV2dWVsdmUgVHJ1ZSBzaSBleGlzdGUgbGEgYXJpc3RhIHt1LCB2fSBlbiBlbCBncmFmbyBnLlxuXG4gICAgUHJlY29uZGljacOzbjogdSB5IHYgcGVydGVuZWNlbiBhIGcuXG4gICAgXCJcIlwiXG4gICAgcmV0dXJuIHYgaW4gZ1t1XVxuXG5cbiMgR3JhZm8gZGUgZWplbXBsbzpcbiMgICAxIOKAlCAyIOKAlCA0XG4jICAgfCAgIHxcbiMgICAzICAgNSDigJQgNlxuXG5ncmFmbzogZGljdFtpbnQsIHNldFtpbnRdXSA9IHtcbiAgICAxOiB7MiwgM30sXG4gICAgMjogezEsIDQsIDV9LFxuICAgIDM6IHsxfSxcbiAgICA0OiB7Mn0sXG4gICAgNTogezIsIDZ9LFxuICAgIDY6IHs1fSxcbn1cblxuIyBEaWNjaW9uYXJpbyBwYXJhIGxvcyBncmFkb3MgZGUgY2FkYSBub2RvXG5ncmFkb3MgPSB7fVxuZm9yIHUgaW4gZ3JhZm86XG4gICAgZ3JhZG9zW3VdID0gZ3JhZG8oZ3JhZm8sIHUpXG5wcmludChncmFkb3MpXG4jIHsxOiAyLCAyOiAzLCAzOiAxLCA0OiAxLCA1OiAyLCA2OiAxfVxuXG5wcmludChlc19hZHlhY2VudGUoZ3JhZm8sIDIsIDUpKSAgICAjIFRydWVcbnByaW50KGVzX2FkeWFjZW50ZShncmFmbywgMSwgNikpICAgICMgRmFsc2UifQ==
+</script>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="conjunts-colleccions-no-ordenades-delements-únics" class="level2">
+<h2 class="anchored" data-anchor-id="conjunts-colleccions-no-ordenades-delements-únics">4.4. Conjunts: col·leccions no ordenades d’elements únics</h2>
+<p>Els conjunts (<code>set</code>) són l’estructura de dades de Python que trasllada directament el concepte matemàtic de conjunt: una col·lecció <strong>no ordenada</strong> d’elements <strong>únics</strong>. A diferència de les llistes, no existeix noció de posició ni s’admeten duplicats; a diferència dels diccionaris, només s’emmagatzemen valors, no parells clau-valor. El seu tret més característic és que suporten de forma nativa les operacions clàssiques de l’àlgebra de conjunts —unió, intersecció, diferència i diferència simètrica— amb una sintaxi concisa i eficient. A la pràctica, els conjunts són l’eina natural quan el que importa és <strong>pertinença</strong> i <strong>unicitat</strong>, no ordre ni multiplicitat: eliminar duplicats d’una col·lecció, comprovar si dos grups comparteixen elements, o calcular què hi ha en un però no en l’altre.</p>
+<div id="tip-conjunto" class="callout callout-style-default callout-tip no-icon callout-titled" title="Conjunt">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;6: Conjunt
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>conjunt</strong> (<em>tipus set</em>) en Python és una col·lecció <strong>no ordenada</strong> d’elements <strong>únics</strong> i <strong>hashables</strong>. Implementa directament el concepte matemàtic de conjunt de la teoria de Cantor.</p>
+<p>Les seves propietats fonamentals són:</p>
+<ul>
+<li><strong>Sense duplicats</strong>: afegir un element ja present no té efecte.</li>
+<li><strong>Sense ordre</strong>: no hi ha indexació per posició.</li>
+<li><strong>Pertinença en <span class="math inline">\(O(1)\)</span></strong>: <code>x in s</code> és una operació en temps constant, davant l’<span class="math inline">\(O(n)\)</span> de les llistes.</li>
+</ul>
+<p>Existeix també <code>frozenset</code>, la versió <strong>immutable</strong> de <code>set</code> (usable com a clau de diccionari).</p>
+</div>
+</div>
+<section id="creació" class="level3">
+<h3 class="anchored" data-anchor-id="creació"><strong>4.4.1 Creació</strong></h3>
+<p>Els conjunts es creen amb claus <code>{}</code> o amb <code>set()</code>. <strong>Atenció</strong>: <code>{}</code> buit crea un diccionari, no un conjunt:</p>
+<div>
+<div id="pyodide-28" class="exercise-cell">
+
+</div>
+<script type="pyodide-28-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiQSA9IHsxLCAyLCAzLCA0LCA1fVxuQiA9IHszLCA0LCA1LCA2LCA3fVxuZGVzZGVfbGlzdGEgPSBzZXQoWzEsIDIsIDIsIDMsIDMsIDNdKSAgICAjIGVsaW1pbmEgZHVwbGljYWRvc1xudmFjaW8gPSBzZXQoKSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICMgT0JMSUdBVE9SSU8gcGFyYSBjb25qdW50byB2YWPDrW9cbnByaW50KEEpXG5wcmludChkZXNkZV9saXN0YSkgICAgIyB7MSwgMiwgM31cbnByaW50KHR5cGUodmFjaW8pKSAgICAjIDxjbGFzcyAnc2V0Jz4ifQ==
+</script>
+</div>
+<div id="cau-conjunto-vacio" class="callout callout-style-default callout-caution no-icon callout-titled" title="`{}` crea un diccionari buit, no un conjunt">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;3: <code>{}</code> crea un diccionari buit, no un conjunt
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div>
+<div id="pyodide-29" class="exercise-cell">
+
+</div>
+<script type="pyodide-29-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibWFsICA9IHt9ICAgICAgICAjIDxjbGFzcyAnZGljdCc+XG5iaWVuID0gc2V0KCkgICAgICMgPGNsYXNzICdzZXQnPlxucHJpbnQodHlwZShtYWwpKVxucHJpbnQodHlwZShiaWVuKSkifQ==
+</script>
+</div>
+</div>
+</div>
+</section>
+<section id="operacions-de-làlgebra-de-conjunts" class="level3">
+<h3 class="anchored" data-anchor-id="operacions-de-làlgebra-de-conjunts"><strong>4.4.2 Operacions de l’àlgebra de conjunts</strong></h3>
+<p>Les operacions de l’àlgebra de conjunts són precisament el punt on <code>set</code> deixa de ser una mera col·lecció i es converteix en una eina matemàtica. Python implementa les quatre operacions clàssiques —unió, intersecció, diferència i diferència simètrica— tant mitjançant <strong>operadors simbòlics</strong> (<code>|</code>, <code>&amp;</code>, <code>-</code>, <code>^</code>) com mitjançant <strong>mètodes</strong> (<code>.union()</code>, <code>.intersection()</code>, <code>.difference()</code>, <code>.symmetric_difference()</code>). La distinció entre ambdues formes és subtil però rellevant: els operadors exigeixen que ambdós operands siguin conjunts, mentre que els mètodes accepten qualsevol iterable com a argument. Totes aquestes operacions retornen un <strong>nou conjunt</strong> sense modificar els originals.</p>
+<div id="imp-ops-conjunto" class="callout callout-style-default callout-important no-icon callout-titled" title="Operacions de conjunts en Python">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;7: Operacions de conjunts en Python
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Python implementa les operacions clàssiques de la teoria de conjunts amb operadors simbòlics:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 45%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operació matemàtica</th>
+<th style="text-align: center;">Operador Python</th>
+<th>Mètode equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Unió <span class="math inline">\(A \cup B\)</span></td>
+<td style="text-align: center;"><code>A \| B</code></td>
+<td><code>A.union(B)</code></td>
+</tr>
+<tr class="even">
+<td>Intersecció <span class="math inline">\(A \cap B\)</span></td>
+<td style="text-align: center;"><code>A &amp; B</code></td>
+<td><code>A.intersection(B)</code></td>
+</tr>
+<tr class="odd">
+<td>Diferència <span class="math inline">\(A \setminus B\)</span></td>
+<td style="text-align: center;"><code>A - B</code></td>
+<td><code>A.difference(B)</code></td>
+</tr>
+<tr class="even">
+<td>Diferència simètrica <span class="math inline">\(A \triangle B\)</span></td>
+<td style="text-align: center;"><code>A ^ B</code></td>
+<td><code>A.symmetric_difference(B)</code></td>
+</tr>
+<tr class="odd">
+<td>Subconjunt <span class="math inline">\(A \subseteq B\)</span></td>
+<td style="text-align: center;"><code>A &lt;= B</code></td>
+<td><code>A.issubset(B)</code></td>
+</tr>
+<tr class="even">
+<td>Subconjunt propi <span class="math inline">\(A \subsetneq B\)</span></td>
+<td style="text-align: center;"><code>A &lt; B</code></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Superconjunt <span class="math inline">\(A \supseteq B\)</span></td>
+<td style="text-align: center;"><code>A &gt;= B</code></td>
+<td><code>A.issuperset(B)</code></td>
+</tr>
+<tr class="even">
+<td>Disjunts <span class="math inline">\(A \cap B = \emptyset\)</span></td>
+<td style="text-align: center;">—</td>
+<td><code>A.isdisjoint(B)</code></td>
+</tr>
+</tbody>
+</table>
+<div>
+<div id="pyodide-30" class="exercise-cell">
+
+</div>
+<script type="pyodide-30-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiQSA9IHsxLCAyLCAzLCA0LCA1fVxuQiA9IHszLCA0LCA1LCA2LCA3fVxuXG5wcmludChmXCJBIOKIqiBCID0ge0EgfCBCfVwiKSAgICAgIyB7MSwgMiwgMywgNCwgNSwgNiwgN31cbnByaW50KGZcIkEg4oipIEIgPSB7QSAmIEJ9XCIpICAgICAjIHszLCA0LCA1fVxucHJpbnQoZlwiQSBcXFxcIEIgPSB7QSAtIEJ9XCIpICAgICAjIHsxLCAyfVxucHJpbnQoZlwiQSDilrMgQiA9IHtBIF4gQn1cIikgICAgICMgezEsIDIsIDYsIDd9XG5wcmludChmXCJBIOKKhiBBOiB7QSA8PSBBfVwiKSAgICAgIyBUcnVlXG5wcmludChmXCJBIOKKgiBBOiB7QSA8IEF9XCIpICAgICAgIyBGYWxzZSAobm8gZXMgc3ViY29uanVudG8gcHJvcGlvKSJ9
+</script>
+</div>
+</div>
+</div>
+<p>Els mètodes <code>add()</code>, <code>remove()</code> i <code>discard()</code> modifiquen el conjunt. La diferència entre els dos últims és que <code>discard()</code> no llança error si l’element no existeix:</p>
+<div>
+<div id="pyodide-31" class="exercise-cell">
+
+</div>
+<script type="pyodide-31-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicyA9IHsxLCAyLCAzfVxucy5hZGQoNCkgICAgICAgICAgIyBhw7FhZGUgNFxucy5hZGQoMikgICAgICAgICAgIyBzaW4gZWZlY3RvICh5YSBleGlzdGUpXG5zLmRpc2NhcmQoMTApICAgICAjIHNpbiBlcnJvciBhdW5xdWUgMTAgbm8gZXN0w6lcbiMgcy5yZW1vdmUoMTApICAgICMgS2V5RXJyb3Igc2kgbm8gZXhpc3RlXG5wcmludChzKSAgICAgICAgICAjIHsxLCAyLCAzLCA0fSJ9
+</script>
+</div>
+<p>Una propietat fonamental és l’<strong>eficiència del test de pertinença</strong>. Per comprovar si un element és en una col·lecció de <span class="math inline">\(n\)</span> elements, una llista requereix <span class="math inline">\(O(n)\)</span> comparacions en el pitjor cas, mentre que un conjunt ho fa en <span class="math inline">\(O(1)\)</span> amortitzat:</p>
+<div>
+<div id="pyodide-32" class="exercise-cell">
+
+</div>
+<script type="pyodide-32-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IHRpbWVcblxubiA9IDFfMDAwXzAwMFxubGlzdGEgID0gbGlzdChyYW5nZShuKSlcbmNvbmogICA9IHNldChyYW5nZShuKSlcbnZhbG9yICA9IG4gLSAxICAjIMO6bHRpbW8gZWxlbWVudG8sIHBlb3IgY2FzbyBwYXJhIGxhIGxpc3RhXG5cbnQwID0gdGltZS5wZXJmX2NvdW50ZXIoKVxuXyA9IHZhbG9yIGluIGxpc3RhXG50X2xpc3RhID0gdGltZS5wZXJmX2NvdW50ZXIoKSAtIHQwXG5wcmludChmXCJMaXN0YTogICAge3RfbGlzdGE6LjZmfSBzXCIpXG5cbnQwID0gdGltZS5wZXJmX2NvdW50ZXIoKVxuXyA9IHZhbG9yIGluIGNvbmpcbnRfY29uaiA9IHRpbWUucGVyZl9jb3VudGVyKCkgLSB0MFxucHJpbnQoZlwiQ29uanVudG86IHt0X2Nvbmo6LjZmfSBzXCIpXG5cbnByaW50KGZcIkVsIGNvbmp1bnRvIGVzIHt0X2xpc3RhIC8gdF9jb25qOi4wZn3DlyBtw6FzIHLDoXBpZG9cIikifQ==
+</script>
+</div>
+</section>
+<section id="conjunts-i-matemàtiques" class="level3">
+<h3 class="anchored" data-anchor-id="conjunts-i-matemàtiques"><strong>4.4.3 Conjunts i matemàtiques</strong></h3>
+<p>Anteriorment s’ha vist que els conjunts són l’estructura natural per traslladar directament a Python el concepte matemàtic de conjunt. Això permet implementar de forma immediata algorismes clàssics de teoria de nombres, com el càlcul del màxim comú divisor (MCD) i del mínim comú múltiple (MCM) mitjançant la intersecció i la unió de conjunts de divisors.</p>
+<div id="nte-divisores" class="callout callout-style-default callout-note no-icon callout-titled" title="Divisors i MCD amb conjunts">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;11: Divisors i MCD amb conjunts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El conjunt de divisors d’un enter és un objecte matemàtic natural que es representa directament amb un <code>set</code>. Les operacions de conjunts donen el MCD i el MCM de forma immediata:</p>
+<div>
+<div id="pyodide-33" class="exercise-cell">
+
+</div>
+<script type="pyodide-33-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGRpdmlzb3JlcyhuOiBpbnQpIC0+IHNldFtpbnRdOlxuICAgIFwiXCJcIlxuICAgIERldnVlbHZlIGVsIGNvbmp1bnRvIGRlIGRpdmlzb3JlcyBwb3NpdGl2b3MgZGUgbi5cblxuICAgIFByZWNvbmRpY2nDs246IG4gPj0gMS5cbiAgICBcIlwiXCJcbiAgICByZXN1bHRhZG8gPSBzZXQoKVxuICAgIGZvciBkIGluIHJhbmdlKDEsIGludChuKiowLjUpICsgMSk6XG4gICAgICAgIGlmIG4gJSBkID09IDA6XG4gICAgICAgICAgICByZXN1bHRhZG8uYWRkKGQpXG4gICAgICAgICAgICByZXN1bHRhZG8uYWRkKG4gLy8gZClcbiAgICByZXR1cm4gcmVzdWx0YWRvXG5cblxuRDE4ID0gZGl2aXNvcmVzKDE4KVxuRDI0ID0gZGl2aXNvcmVzKDI0KVxucHJpbnQoZlwiRGl2KDE4KSA9IHtEMTh9XCIpXG5wcmludChmXCJEaXYoMjQpID0ge0QyNH1cIilcblxuZGl2aXNvcmVzX2NvbXVuZXMgPSBEMTggJiBEMjRcbnByaW50KGZcIkRpdmlzb3JlcyBjb211bmVzOiB7ZGl2aXNvcmVzX2NvbXVuZXN9XCIpXG5cbnByaW50KGZcIk1DRCgxOCwgMjQpID0ge21heChkaXZpc29yZXNfY29tdW5lcyl9XCIpICAgICAjIDZcbnByaW50KGZcIk1DTSgxOCwgMjQpID0ge21pbihEMTggfCBEMjQpfVwiKSAgICAgICAgICAgICAjIDcyIn0=
+</script>
+</div>
+<p>A la funció <code>divisores()</code>, el bucle només itera fins a <span class="math inline">\(\sqrt{n}\)</span>, afegint alhora el divisor i el seu complement. Això redueix el nombre d’iteracions a <span class="math inline">\(O(\sqrt{n})\)</span> davant l’<span class="math inline">\(O(n)\)</span> d’un enfocament ingenu. Es basa en el fet que els divisors d’un nombre apareixen en parells: si <span class="math inline">\(d\)</span> divideix <span class="math inline">\(n\)</span>, llavors també ho fa <span class="math inline">\(n/d\)</span> (Si <span class="math inline">\(d \mid n\)</span>, existeix un enter <span class="math inline">\(k\)</span> tal que <span class="math inline">\(n = d \cdot k\)</span>. Llavors <span class="math inline">\(k = n/d\)</span>, i com que <span class="math inline">\(n = k \cdot d\)</span>, es té que <span class="math inline">\(k \mid n\)</span>).</p>
+</div>
+</div>
+<p>Un altre exemple clàssic és la <strong>criba d’Eratòstenes</strong> per generar tots els nombres primers fins a un límit <span class="math inline">\(n\)</span>. Ho veurem al <a href="#nte-criba" class="quarto-xref">exemple&nbsp;13</a> a la propera secció, on s’implementa amb conjunts i operacions de conjunts.</p>
+<hr>
+</section>
+</section>
+<section id="comprensió-de-llistes-diccionaris-i-conjunts" class="level2">
+<h2 class="anchored" data-anchor-id="comprensió-de-llistes-diccionaris-i-conjunts">4.5. Comprensió de llistes, diccionaris i conjunts</h2>
+<p>Una de les característiques més expressives de Python és la <strong>comprensió</strong> (<em>comprehension</em> en anglès): una sintaxi compacta per construir llistes, diccionaris i conjunts a partir de qualsevol iterable, amb un filtre opcional. La seva importància va més enllà de la brevetat: una comprensió ben escrita comunica la <em>intenció</em> directament, sense el soroll de variables auxiliars ni crides a <code>.append()</code>.</p>
+<p>La correspondència amb la notació matemàtica de conjunts és immediata. L’expressió <span class="math inline">\(\{x^2 \mid x \in \mathbb{Z},\ 1 \leq x \leq 5\}\)</span> s’escriu en Python com <code>{x**2 for x in range(1, 6)}</code>. És la traducció directa a Python de la notació de comprensió de conjunts de la teoria de conjunts: <span class="math display">\[
+\bigl\{\ f(x)\ \bigm|\ x \in A,\; P(x)\ \bigr\}
+\quad\longleftrightarrow\quad
+\texttt{[f(x)\ for\ x\ in\ A\ if\ P(x)]}
+\]</span> Aquesta alineació entre matemàtica i codi és especialment valuosa: permet expressar transformacions i filtres sobre col·leccions de dades de forma que el codi reflecteixi fidelment l’enunciat del problema.</p>
+<p>Les comprensions no són un atall estilístic opcional: apareixen de forma ubiqua en codi Python real, en biblioteques científiques i en exemples de la documentació oficial. Dominar-les és, a la pràctica, una condició necessària per llegir i escriure Python amb fluïdesa.</p>
+<div id="tip-comprension" class="callout callout-style-default callout-tip no-icon callout-titled" title="Comprensió de llistes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;7: Comprensió de llistes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>comprensió de llistes</strong> construeix una nova llista avaluant una expressió per a cada element d’un iterable, amb un filtre opcional:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>[expresión  <span class="cf">for</span> variable <span class="kw">in</span> iterable]                <span class="co"># sin filtro</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>[expresión  <span class="cf">for</span> variable <span class="kw">in</span> iterable  <span class="cf">if</span> condición]  <span class="co"># con filtro</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>És <strong>equivalent</strong> a un bucle <code>for</code> amb <code>append</code>, però més concisa i generalment més eficient:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> []</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> variable <span class="kw">in</span> iterable:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> condición:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        resultado.append(expresión)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La comprensió és una <strong>expressió</strong> (produeix un valor), mentre que el bucle equivalent és una <strong>seqüència d’instruccions</strong>. Això permet usar-la directament en arguments de funcions, assignacions i altres expressions <span class="citation" data-cites="pep202">(<a href="#ref-pep202" role="doc-biblioref">Peters 2000</a>)</span>.</p>
+</div>
+</div>
+<section id="comprensió-de-llistes" class="level3">
+<h3 class="anchored" data-anchor-id="comprensió-de-llistes"><strong>4.5.1 Comprensió de llistes</strong></h3>
+<div>
+<div id="pyodide-34" class="exercise-cell">
+
+</div>
+<script type="pyodide-34-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBDdWFkcmFkb3MgZGVsIDEgYWwgMTBcbmN1YWRyYWRvcyA9IFt4KioyIGZvciB4IGluIHJhbmdlKDEsIDExKV1cbnByaW50KGN1YWRyYWRvcylcblxuIyBDdWFkcmFkb3MgZGUgbG9zIGltcGFyZXMgZGVsIDEgYWwgMjBcbmN1YWRfaW1wYXJlcyA9IFt4KioyIGZvciB4IGluIHJhbmdlKDEsIDIxKSBpZiB4ICUgMiAhPSAwXVxucHJpbnQoY3VhZF9pbXBhcmVzKVxuXG4jIFRyYW5zZm9ybWFyIGNhZGVuYXNcbnBhbGFicmFzID0gW1wiaG9sYVwiLCBcIm11bmRvXCIsIFwicHl0aG9uXCJdXG5wcmludChbcC5jYXBpdGFsaXplKCkgZm9yIHAgaW4gcGFsYWJyYXNdKSAgICAjIFsnSG9sYScsICdNdW5kbycsICdQeXRob24nXSJ9
+</script>
+</div>
+<p>Les comprensions admeten <strong>anidament</strong> per generar matrius o altres estructures bidimensionals:</p>
+<div>
+<div id="pyodide-35" class="exercise-cell">
+
+</div>
+<script type="pyodide-35-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBNYXRyaXogbsOXbiBpbmljaWFsaXphZGEgYSBjZXJvc1xubiA9IDRcbm1hdHJpeiA9IFtbMF0gKiBuIGZvciBfIGluIHJhbmdlKG4pXVxucHJpbnQobWF0cml6KVxuXG4jIFRhYmxhIGRlIG11bHRpcGxpY2FyIGNvbW8gbGlzdGEgZGUgbGlzdGFzXG50YWJsYSA9IFtbaSAqIGogZm9yIGogaW4gcmFuZ2UoMSwgNyldIGZvciBpIGluIHJhbmdlKDEsIDcpXVxuZm9yIGZpbGEgaW4gdGFibGE6XG4gICAgcHJpbnQoZmlsYSkifQ==
+</script>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>No usar</strong> <code>[[0] * n] * n</code> per inicialitzar una matriu de zeros: crea <span class="math inline">\(n\)</span> referències a la <strong>mateixa</strong> fila, de manera que modificar un element afecta totes les files. La forma correcta és <code>[[0] * n for _ in range(n)]</code>, que crea <span class="math inline">\(n\)</span> llistes independents.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="comprensió-de-diccionaris-i-conjunts" class="level3">
+<h3 class="anchored" data-anchor-id="comprensió-de-diccionaris-i-conjunts"><strong>4.5.2 Comprensió de diccionaris i conjunts</strong></h3>
+<p>La mateixa sintaxi s’estén a diccionaris (amb <code>{clau: valor for …}</code>) i a conjunts (amb <code>{expr for …}</code>):</p>
+<div>
+<div id="pyodide-36" class="exercise-cell">
+
+</div>
+<script type="pyodide-36-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBEaWNjaW9uYXJpbyB7bjogbsKyfSBwYXJhIG4gPSAxLi42XG5jdWFkX2RpY3QgPSB7bjogbioqMiBmb3IgbiBpbiByYW5nZSgxLCA3KX1cbnByaW50KGN1YWRfZGljdCkgICAgIyB7MTogMSwgMjogNCwgMzogOSwgNDogMTYsIDU6IDI1LCA2OiAzNn1cblxuIyBJbnZlcnRpciB1biBkaWNjaW9uYXJpbyAoc29sbyBzaSBsb3MgdmFsb3JlcyBzb24gw7puaWNvcylcbm9yaWdpbmFsICA9IHtcImFcIjogMSwgXCJiXCI6IDIsIFwiY1wiOiAzfVxuaW52ZXJ0aWRvID0ge3Y6IGsgZm9yIGssIHYgaW4gb3JpZ2luYWwuaXRlbXMoKX1cbnByaW50KGludmVydGlkbykgICAgIyB7MTogJ2EnLCAyOiAnYicsIDM6ICdjJ31cblxuIyBDb25qdW50byBkZSByZXNpZHVvcyBkZSBuwrIgbcOzZHVsbyA3XG5yZXNpZHVvcyA9IHtuKioyICUgNyBmb3IgbiBpbiByYW5nZSg3KX1cbnByaW50KHJlc2lkdW9zKSAgICAjIHswLCAxLCAyLCA0fSJ9
+</script>
+</div>
+<div id="cau-gen-tupla" class="callout callout-style-default callout-caution no-icon callout-titled" title="La comprensió de tupla no existeix">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;4: La comprensió de tupla no existeix
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>(x**2 for x in range(5))</code> no és una tupla: és un <strong>generador</strong>. Si es passa directament a una funció que espera una seqüència, pot produir resultats inesperats o consumir-se una sola vegada:</p>
+<div>
+<div id="pyodide-37" class="exercise-cell">
+
+</div>
+<script type="pyodide-37-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZyA9ICh4KioyIGZvciB4IGluIHJhbmdlKDUpKVxucHJpbnQoc3VtKGcpKSAgICAgIyAzMCAg4oCUIGNvcnJlY3RvXG5wcmludChzdW0oZykpICAgICAjIDAgICDigJQgZWwgZ2VuZXJhZG9yIHlhIGVzdMOhIGFnb3RhZG8ifQ==
+</script>
+</div>
+<p>Per obtenir una tupla, embolica l’expressió en <code>tuple()</code>:</p>
+<div>
+<div id="pyodide-38" class="exercise-cell">
+
+</div>
+<script type="pyodide-38-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidCA9IHR1cGxlKHgqKjIgZm9yIHggaW4gcmFuZ2UoNSkpXG5wcmludChzdW0odCkpICAgICAjIDMwXG5wcmludChzdW0odCkpICAgICAjIDMwICDigJQgbGEgdHVwbGEgcHVlZGUgcmVjb3JyZXJzZSB0YW50YXMgdmVjZXMgY29tbyBzZSBxdWllcmEifQ==
+</script>
+</div>
+</div>
+</div>
+</section>
+<section id="comprensions-i-notació-matemàtica" class="level3">
+<h3 class="anchored" data-anchor-id="comprensions-i-notació-matemàtica"><strong>4.5.3 Comprensions i notació matemàtica</strong></h3>
+<div id="nte-comprension-mat" class="callout callout-style-default callout-note no-icon callout-titled" title="Comprensions com a notació de conjunts">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;12: Comprensions com a notació de conjunts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les comprensions de Python són la traducció directa de la notació de comprensió matemàtica. La taula següent il·lustra la correspondència:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Notació matemàtica</th>
+<th>Python</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\{2k \mid k \in \mathbb{N},\; 0 \leq k \leq 10\}\)</span></td>
+<td><code>{2*k for k in range(11)}</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\{n^2 \mid n \in \{1,\ldots,20\},\; n \text{ imparell}\}\)</span></td>
+<td><code>{n**2 for n in range(1, 21) if n % 2 != 0}</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\displaystyle\sum_{k=1}^{100} k^2\)</span></td>
+<td><code>sum(k**2 for k in range(1, 101))</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\displaystyle\prod_{k=1}^{n} k = n!\)</span></td>
+<td><code>from math import prod; prod(range(1, n+1))</code></td>
+</tr>
+</tbody>
+</table>
+<div>
+<div id="pyodide-39" class="exercise-cell">
+
+</div>
+<script type="pyodide-39-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuIyDOoyBrwrIgcGFyYSBrPTEuLjEwMCB5IHZlcmlmaWNhY2nDs24gZGUgbGEgZsOzcm11bGEgbihuKzEpKDJuKzEpLzZcbm4gPSAxMDBcbnN1bWFfY3VhZCA9IHN1bShrKioyIGZvciBrIGluIHJhbmdlKDEsIG4gKyAxKSlcbmZvcm11bGEgICA9IG4gKiAobiArIDEpICogKDIgKiBuICsgMSkgLy8gNlxucHJpbnQoZlwizqNrwrIgPSB7c3VtYV9jdWFkfSwgIGbDs3JtdWxhID0ge2Zvcm11bGF9LCAgaWd1YWxlczoge3N1bWFfY3VhZCA9PSBmb3JtdWxhfVwiKVxuXG4jIFJlc2lkdW9zIGN1YWRyw6F0aWNvcyBtw7NkdWxvIDdcbnJlc19jdWFkID0ge2sqKjIgJSA3IGZvciBrIGluIHJhbmdlKDcpfVxubm9fcmVzICAgPSBzZXQocmFuZ2UoNykpIC0gcmVzX2N1YWRcbnByaW50KGZcIlJlc2lkdW9zIGN1YWRyw6F0aWNvcyBtb2QgNzogICAgIHtyZXNfY3VhZH1cIilcbnByaW50KGZcIk5vIHJlc2lkdW9zIGN1YWRyw6F0aWNvcyBtb2QgNzogIHtub19yZXN9XCIpIn0=
+</script>
+</div>
+</div>
+</div>
+<div id="nte-criba" class="callout callout-style-default callout-note no-icon callout-titled" title="Criba d'Eratòstenes amb comprensió de conjunts i operadors de conjunts">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;13: Criba d’Eratòstenes amb comprensió de conjunts i operadors de conjunts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <a href="https://es.wikipedia.org/wiki/Criba_de_Erat%C3%B3stenes"><strong>criba d’Eratòstenes</strong></a> és un algorisme clàssic per obtenir tots els primers fins a <span class="math inline">\(n\)</span>: es part del conjunt <span class="math inline">\(\{2, 3, \ldots, n\}\)</span> i s’eliminen successivament els múltiples de cada primer trobat. Després d’eliminar tots els múltiples d’un primer <span class="math inline">\(p\)</span>, el proper primer és l’element del conjunt que segueix a <span class="math inline">\(p\)</span>. L’eliminació dels múltiples de <span class="math inline">\(p\)</span> es pot expressar com una <strong>diferència de conjunts</strong>.</p>
+<div>
+<div id="pyodide-40" class="exercise-cell">
+
+</div>
+<script type="pyodide-40-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGNyaWJhKG46IGludCkgLT4gc2V0W2ludF06XG4gICAgXCJcIlwiXG4gICAgRGV2dWVsdmUgZWwgY29uanVudG8gZGUgbsO6bWVyb3MgcHJpbW9zIG1lbm9yZXMgbyBpZ3VhbGVzIHF1ZSBuXG4gICAgbWVkaWFudGUgbGEgY3JpYmEgZGUgRXJhdMOzc3RlbmVzLlxuXG4gICAgUHJlY29uZGljacOzbjogbiA+PSAyLlxuICAgIFwiXCJcIlxuICAgIGNhbmRpZGF0b3MgPSBzZXQocmFuZ2UoMiwgbiArIDEpKVxuICAgIGZvciBwIGluIHJhbmdlKDIsIGludChuKiowLjUpICsgMSk6XG4gICAgICAgIGlmIHAgaW4gY2FuZGlkYXRvczpcbiAgICAgICAgICAgIG11bHRpcGxvcyA9IHNldChyYW5nZShwICogcCwgbiArIDEsIHApKVxuICAgICAgICAgICAgY2FuZGlkYXRvcyAtPSBtdWx0aXBsb3MgICAgICAgICAgIyBlbGltaW5hIHRvZG9zIGxvcyBtw7psdGlwbG9zIGRlIHBcbiAgICByZXR1cm4gY2FuZGlkYXRvc1xuXG5wcmltb3MgPSBjcmliYSg1MClcbnByaW50KHNvcnRlZChwcmltb3MpKVxuIyBbMiwgMywgNSwgNywgMTEsIDEzLCAxNywgMTksIDIzLCAyOSwgMzEsIDM3LCA0MSwgNDMsIDQ3XVxucHJpbnQobGVuKHByaW1vcykpICAgICMgMTUifQ==
+</script>
+</div>
+<p>L’operació <code>-=</code> (diferència de conjunts) elimina de cop tots els múltiples de <code>p</code>, sense necessitat de recórrer la llista marcant posicions com a la versió clàssica amb arrays. Només cal cribar fins a <span class="math inline">\(\sqrt{n}\)</span> perquè qualsevol nombre compost <span class="math inline">\(m \leq n\)</span> té almenys un factor primer <span class="math inline">\(p \leq \sqrt{m} \leq \sqrt{n}\)</span>.</p>
+</div>
+</div>
+<div id="nte-perfectos" class="callout callout-style-default callout-note no-icon callout-titled" title="Nombres perfectes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;14: Nombres perfectes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un enter <span class="math inline">\(n \geq 1\)</span> és <strong>perfecte</strong> si és igual a la suma dels seus divisors propis (divisors positius distints de <span class="math inline">\(n\)</span>). Els quatre primers són <span class="math inline">\(6, 28, 496\)</span> i <span class="math inline">\(8128\)</span>; es desconeix si n’existeixen d’infinits.</p>
+<div>
+<div id="pyodide-41" class="exercise-cell">
+
+</div>
+<script type="pyodide-41-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGRpdmlzb3Jlc19wcm9waW9zKG46IGludCkgLT4gc2V0W2ludF06XG4gICAgXCJcIlwiXG4gICAgRGV2dWVsdmUgZWwgY29uanVudG8gZGUgZGl2aXNvcmVzIHByb3Bpb3MgZGUgbixcbiAgICBlcyBkZWNpciwgbG9zIGRpdmlzb3JlcyBwb3NpdGl2b3MgZXN0cmljdGFtZW50ZSBtZW5vcmVzIHF1ZSBuLlxuXG4gICAgUHJlY29uZGljacOzbjogbiA+PSAxLlxuICAgIFwiXCJcIlxuICAgIHJldHVybiB7ZCBmb3IgZCBpbiByYW5nZSgxLCBuKSBpZiBuICUgZCA9PSAwfVxuXG5kZWYgbnVtZXJvc19wZXJmZWN0b3MobGltaXRlOiBpbnQpIC0+IGxpc3RbaW50XTpcbiAgICBcIlwiXCJcbiAgICBEZXZ1ZWx2ZSBsYSBsaXN0YSBkZSBuw7ptZXJvcyBwZXJmZWN0b3MgZW4gZWwgaW50ZXJ2YWxvIFsyLCBsaW1pdGVdLlxuXG4gICAgUHJlY29uZGljacOzbjogbGltaXRlID49IDIuXG4gICAgXCJcIlwiXG4gICAgcmV0dXJuIFtuIGZvciBuIGluIHJhbmdlKDIsIGxpbWl0ZSArIDEpIGlmIHN1bShkaXZpc29yZXNfcHJvcGlvcyhuKSkgPT0gbl1cblxucHJpbnQobnVtZXJvc19wZXJmZWN0b3MoMTBfMDAwKSkgICAgIyBbNiwgMjgsIDQ5NiwgODEyOF0ifQ==
+</script>
+</div>
+</div>
+</div>
+<div id="nte-perfectos" class="callout callout-style-default callout-note no-icon callout-titled" title="Primers bessons">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;15: Primers bessons
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dos primers <span class="math inline">\(p\)</span> i <span class="math inline">\(p+2\)</span> formen un <strong>parell de primers bessons</strong>. La conjectura dels primers bessons afirma que n’existeixen d’infinits, però roman sense demostració.</p>
+<div>
+<div id="pyodide-42" class="exercise-cell">
+
+</div>
+<script type="pyodide-42-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGVzX3ByaW1vKG46IGludCkgLT4gYm9vbDpcbiAgICBcIlwiXCJcbiAgICBEZXZ1ZWx2ZSBUcnVlIHNpIG4gZXMgcHJpbW8sIEZhbHNlIGVuIGNhc28gY29udHJhcmlvLlxuXG4gICAgUHJlY29uZGljacOzbjogbiA+PSAwLlxuICAgIFwiXCJcIlxuICAgIHJldHVybiBuID49IDIgYW5kIGFsbChuICUgZCAhPSAwIGZvciBkIGluIHJhbmdlKDIsIGludChuKiowLjUpICsgMSkpXG5cbmRlZiBwcmltb3NfZ2VtZWxvcyhsaW1pdGU6IGludCkgLT4gbGlzdFt0dXBsZVtpbnQsIGludF1dOlxuICAgIFwiXCJcIlxuICAgIERldnVlbHZlIGxhIGxpc3RhIGRlIHBhcmVzIGRlIHByaW1vcyBnZW1lbG9zIChwLCBwKzIpIGNvbiBwIDw9IGxpbWl0ZS5cblxuICAgIFByZWNvbmRpY2nDs246IGxpbWl0ZSA+PSAyLlxuICAgIFwiXCJcIlxuICAgIHJldHVybiBbKHAsIHAgKyAyKSBmb3IgcCBpbiByYW5nZSgyLCBsaW1pdGUgKyAxKSBpZiBlc19wcmltbyhwKSBhbmQgZXNfcHJpbW8ocCArIDIpXVxuXG5wcmludChwcmltb3NfZ2VtZWxvcygxMDApKVxuIyBbKDMsIDUpLCAoNSwgNyksICgxMSwgMTMpLCAoMTcsIDE5KSwgKDI5LCAzMSksICg0MSwgNDMpLCAoNTksIDYxKSwgKDcxLCA3MyldIn0=
+</script>
+</div>
+</div>
+</div>
+<div id="nte-perfectos" class="callout callout-style-default callout-note no-icon callout-titled" title="Primers bessons">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;16: Primers bessons
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>funció d’Euler</strong> <span class="math inline">\(\varphi(n)\)</span> compta quants enters a <span class="math inline">\(\{1, \ldots, n\}\)</span> són coprimers amb <span class="math inline">\(n\)</span>, és a dir, quants satisfan <span class="math inline">\(\gcd(k, n) = 1\)</span>. És fonamental en teoria de nombres i en criptografia (RSA).</p>
+<div>
+<div id="pyodide-43" class="exercise-cell">
+
+</div>
+<script type="pyodide-43-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZnJvbSBtYXRoIGltcG9ydCBnY2RcblxuZGVmIHBoaShuOiBpbnQpIC0+IGludDpcbiAgICBcIlwiXCJcbiAgICBEZXZ1ZWx2ZSBlbCB2YWxvciBkZSBsYSBmdW5jacOzbiBkZSBFdWxlciDPhihuKTogbGEgY2FudGlkYWQgZGUgZW50ZXJvc1xuICAgIGVuIHsxLCDigKYsIG59IHF1ZSBzb24gY29wcmltb3MgY29uIG4uXG5cbiAgICBQcmVjb25kaWNpw7NuOiBuID49IDEuXG4gICAgXCJcIlwiXG4gICAgcmV0dXJuIGxlbih7ayBmb3IgayBpbiByYW5nZSgxLCBuICsgMSkgaWYgZ2NkKGssIG4pID09IDF9KVxuXG5wcmludChbcGhpKG4pIGZvciBuIGluIHJhbmdlKDEsIDEzKV0pXG4jIFsxLCAxLCAyLCAyLCA0LCAyLCA2LCA0LCA2LCA0LCAxMCwgNF0ifQ==
+</script>
+</div>
+</div>
+</div>
+</section>
+<section id="expressions-generadores" class="level3">
+<h3 class="anchored" data-anchor-id="expressions-generadores"><strong>4.5.4 Expressions generadores</strong></h3>
+<p>Una <strong>expressió generadora</strong> té la mateixa sintaxi que una comprensió de llistes però amb <strong>parèntesis en lloc de claudàtors</strong>. La diferència no és merament tipogràfica: mentre que la comprensió construeix la llista completa en memòria de manera immediata, l’expressió generadora produeix els valors <strong>un a un</strong> i només quan se li sol·licita el següent, igual que una funció generadora (secció 3.1.4).</p>
+<div>
+<div id="pyodide-44" class="exercise-cell">
+
+</div>
+<script type="pyodide-44-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBDb21wcmVuc2nDs24gZGUgbGlzdGEg4oCUIHRvZGEgbGEgbGlzdGEgZW4gbWVtb3JpYVxubGlzdGEgPSBbeCoqMiBmb3IgeCBpbiByYW5nZSgxLCA2KV1cbnByaW50KGxpc3RhKSAgICAgICAgICAjIFsxLCA0LCA5LCAxNiwgMjVdXG5wcmludCh0eXBlKGxpc3RhKSkgICAgIyA8Y2xhc3MgJ2xpc3QnPlxuXG4jIEV4cHJlc2nDs24gZ2VuZXJhZG9yYSDigJQgbm8gY29uc3RydXllIG5hZGEgdG9kYXbDrWFcbmdlbiA9ICh4KioyIGZvciB4IGluIHJhbmdlKDEsIDYpKVxucHJpbnQoZ2VuKSAgICAgICAgICAgICMgPGdlbmVyYXRvciBvYmplY3QgPGdlbmV4cHI+IGF0IC4uLj5cbnByaW50KHR5cGUoZ2VuKSkgICAgICAjIDxjbGFzcyAnZ2VuZXJhdG9yJz4ifQ==
+</script>
+</div>
+<p>L’ús més freqüent és com a argument directe de <code>sum()</code>, <code>max()</code>, <code>min()</code>, <code>any()</code> i <code>all()</code>, sense necessitar una llista intermèdia. Quan l’expressió generadora és l’<strong>únic argument</strong> d’una funció, els parèntesis de l’argument i els del generador es fusionen en un de sol:</p>
+<div>
+<div id="pyodide-45" class="exercise-cell">
+
+</div>
+<script type="pyodide-45-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoc3VtKHgqKjIgZm9yIHggaW4gcmFuZ2UoMSwgMTAxKSkpICAgICAgICAgICAgICAjIDMzODM1MFxucHJpbnQobWF4KGxlbihzKSBmb3IgcyBpbiBbXCJob2xhXCIsIFwibXVuZG9cIiwgXCIhXCJdKSkgICAjIDVcbnByaW50KGFueShuICUgNyA9PSAwIGZvciBuIGluIHJhbmdlKDEsIDIwKSkpICAgICAgICAgIyBUcnVlXG5wcmludChhbGwobiA+IDAgZm9yIG4gaW4gWzEsIDIsIDMsIC0xXSkpICAgICAgICAgICAgICMgRmFsc2UifQ==
+</script>
+</div>
+<p>Com s’ha vist a <code>@cau-gen-tupla</code>, un generador s’<strong>esgota</strong> després de consumir-se. Si cal recórrer els valors més d’una vegada, usa una comprensió de llista.</p>
+<div id="nte-gen-expr-mat" class="callout callout-style-default callout-note no-icon callout-titled" title="Expressions generadores i sumes matemàtiques">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;17: Expressions generadores i sumes matemàtiques
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>L’expressió <code>sum(f(k) for k in range(a, b+1))</code> és la traducció directa de <span class="math inline">\(\displaystyle\sum_{k=a}^{b} f(k)\)</span>, sense construir la llista de sumands:</p>
+<div>
+<div id="pyodide-46" class="exercise-cell">
+
+</div>
+<script type="pyodide-46-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuIyBTdW1hIGRlIEJhc2lsZWE6IM6jIDEva8KyIOKGkiDPgMKyLzZcbnN1bWEgPSBzdW0oMS9rKioyIGZvciBrIGluIHJhbmdlKDEsIDEwMDEpKVxucHJpbnQoZlwiU3VtYSBwYXJjaWFsOiB7c3VtYTouNmZ9XCIpXG5wcmludChmXCLPgMKyLzY6ICAgICAgICAge21hdGgucGkqKjIgLyA2Oi42Zn1cIikifQ==
+</script>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="bibliografia" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="bibliografia">Bibliografia</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-pep202" class="csl-entry" role="listitem">
+Peters, Tim. 2000. <span>«<span>PEP 202 – List Comprehensions</span>»</span>. Python Enhancement Proposal. <a href="https://peps.python.org/pep-0202/">https://peps.python.org/pep-0202/</a>.
+</div>
+</div>
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIl19fQ==
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTQ2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQ2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80NiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQ1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQ1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80NSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQ0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQ0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80NCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80MyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80MiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQxIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQxLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80MSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNDAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNDAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV80MCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNDAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTM5IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzkgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTM5LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzktY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zOSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTM4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzggPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTM4LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zOCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTM3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTM3LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzctY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zNyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTM2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTM2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zNiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTM1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTM1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zNSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTM0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTM0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTMzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTMyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMxIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTMxLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMzAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTMwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMzAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8zMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMzAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTI5IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjkgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI5LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjktY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yOSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTI4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjggPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI4LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yOCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTI3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI3LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjctY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yNyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTI2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yNiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTI1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yNSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTI0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIxIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIxLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE5IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTkgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE5LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTktY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTggPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE4LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE3LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTctY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTExIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTExLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTkiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl85ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS05LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzkgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl84ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS04LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzggPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl83ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS03LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzcgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTYiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl82ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS02LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzYgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS01LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzUgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -581,6 +2008,7 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
+</section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
