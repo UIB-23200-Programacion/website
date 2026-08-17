@@ -368,7 +368,6 @@ def contar(hasta: int):
  
     Si hasta < 1, el generador no produce ningún valor.
     """
-    
     n = 1
     while n <= hasta:
         yield n          # pausa aquí y entrega n
@@ -392,7 +391,9 @@ La recursión calcula $F(n)$ en $O(2^n)$ llamadas. Un generador produce todos lo
 
 ```{pyodide}
 def fibonacci():
-    """Genera los términos de la sucesión de Fibonacci indefinidamente."""
+    """
+    Genera los términos de la sucesión de Fibonacci indefinidamente.
+    """
     a, b = 0, 1
     while True:          # secuencia infinita: el generador nunca lanza StopIteration
         yield a
@@ -411,13 +412,28 @@ El generador **no termina por sí solo**: es responsabilidad del código que lo 
 Un generador de primos permite iterar sobre la sucesión de primos sin calcularlos todos de antemano ni limitar el rango a priori:
 
 ```{pyodide}
-def es_primo(n):
-    """Devuelve True si n es primo. Precondición: n >= 0."""
-    return n >= 2 and all(n % d != 0 for d in range(2, int(n**0.5) + 1))
+def es_primo(n: int) -> bool:
+    """
+    Retorna True si n es primo y False en caso contrario.
+    """
+    if n < 2:
+        return None
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    i = 3
+    while i * i <= n:
+        if n % i == 0:
+            return False
+        i += 2
+    return True
 
 
 def primos():
-    """Genera los números primos en orden creciente, indefinidamente."""
+    """
+    Genera los números primos en orden creciente, indefinidamente.
+    """
     n = 2
     while True:
         if es_primo(n):
