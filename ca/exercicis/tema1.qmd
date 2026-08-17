@@ -10,7 +10,7 @@ L'objectiu d'aquest exercici és que l'estudiant creï el seu propi compte a **G
 
 A continuació les instruccions, pas a pas, que heu de seguir per completar aquest exercici.
 
-::: {.callout-note title="1. Crear un compte a GitHub" collapse="true"}
+::: {.callout-note title="1 - Crear un compte a GitHub" collapse="true"}
 
 - **Pas 1:** Entreu a: [**https://github.com/**](https://github.com/){target="_blank" rel="noopener noreferrer"}
 
@@ -26,7 +26,7 @@ A continuació les instruccions, pas a pas, que heu de seguir per completar aque
 
 :::
 
-::: {.callout-note title="2. Completar el vostre perfil" collapse="true"}
+::: {.callout-note title="2 - Completar el vostre perfil" collapse="true"}
 
 Un cop creat el compte, completeu el vostre perfil d'usuari seguint aquests passos:
 
@@ -44,7 +44,7 @@ Després de completar aquests passos, tindreu un **perfil acadèmic bàsic i cor
 
 :::
 
-::: {.callout-note title="3. Activar l'autenticació en dos passos (2FA)" collapse="true"}
+::: {.callout-note title="3 - Activar l'autenticació en dos passos (2FA)" collapse="true"}
 
 - **Pas 1:** Accediu a la configuració del vostre compte. Feu clic a la vostra foto o avatar (a dalt a la dreta) i seleccioneu **Settings**.
 
@@ -65,11 +65,11 @@ Després de completar aquests passos, tindreu un **perfil acadèmic bàsic i cor
 
 :::
 
-::: {.callout-note title="4. Reportar el compte de GitHub a l'Aula Digital" collapse="true"}
+::: {.callout-note title="4 - Reportar el compte de GitHub a l'Aula Digital" collapse="true"}
 
 :::
 
-::: {.callout-note title="5. Sol·licitar el GitHub Student Developer Pack" collapse="true"}
+::: {.callout-note title="5 - Sol·licitar el GitHub Student Developer Pack" collapse="true"}
 
 - **Pas 1:** Aneu a [**https://education.github.com/pack**](https://education.github.com/pack){target="_blank" rel="noopener noreferrer"}. Feu clic a **Sign up for Student Developer Pack**.
 
@@ -106,7 +106,7 @@ Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per us
 
 :::
 
-::: {.callout-note title="1. Accedir al vostre compte de GitHub (si no ho heu fet ja)" collapse="true"}
+::: {.callout-note title="1 - Accedir al vostre compte de GitHub (si no ho heu fet ja)" collapse="true"}
 
 - Obrir el navegador.
 - Anar a: `https://github.com/`
@@ -115,7 +115,7 @@ Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per us
 
 :::
 
-::: {.callout-note title="2. Crear el repositori "test-de-codespaces–tema-1"" collapse="true"}
+::: {.callout-note title="2 - Crear el repositori test-de-codespaces–tema-1" collapse="true"}
 
 - **Pas 1:** A la part superior esquerra, fer clic a `+` (![](../../images/signomas.png){width="50px"}).
 
@@ -138,7 +138,7 @@ Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per us
 
 :::
 
-::: {.callout-note title="3. Crear un Codespace preconfigurado per a Python" collapse="true"}
+::: {.callout-note title="3 - Crear un Codespace preconfigurado per a Python" collapse="true"}
 
 - **Pas 1:** Crear la carpeta `.devcontainer` i el fitxer `devcontainer.json`
 
@@ -209,7 +209,7 @@ Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per us
 
 :::
 
-::: {.callout-note title="4. Arrancar el Codespace" collapse="true"}
+::: {.callout-note title="4 - Arrancar el Codespace" collapse="true"}
 
 - **Pas 1:** Feu clic a **Code → Codespaces**.
 
@@ -231,7 +231,7 @@ Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per us
 
 :::
 
-::: {.callout-note title="5. Reconèixer la interfície del Codespace" collapse="true"}
+::: {.callout-note title="5 - Reconèixer la interfície del Codespace" collapse="true"}
 
 L'entorn tindrà:
 
@@ -250,7 +250,7 @@ L'entorn tindrà:
 
 :::
 
-::: {.callout-note title="6. Verificar que Python està configurat" collapse="true"}
+::: {.callout-note title="6 - Verificar que Python està configurat" collapse="true"}
 
 A la **TERMINAL** del Codespace escriviu l'ordre següent per comprovar la versió de Python instal·lada (si copieu i enganxeu l'ordre, probablement haureu de donar permís a la finestra emergent del navegador per poder enganxar text al terminal):
 
@@ -266,7 +266,7 @@ Python 3.12.x
 
 :::
 
-::: {.callout-note title="7. Crear un arxiu de prova i executar-lo" collapse="true"}
+::: {.callout-note title="7 - Crear un arxiu de prova i executar-lo" collapse="true"}
 
 1. A l'explorador, prémer **New File** o **Nou arxiu**.
 
@@ -295,7 +295,7 @@ Python 3.12.x
 
 :::
 
-::: {.callout-note title="8. Tancar el Codespace" collapse="true"}
+::: {.callout-note title="8 - Tancar el Codespace" collapse="true"}
 
 **Aquest és un pas summament important**. Quan acabeu de treballar al Codespace, l'heu de tancar per alliberar recursos i evitar que s'acumulin càrrecs al vostre compte de GitHub. **Principalment perquè el nombre d'hores de Codespaces gratuïtes és limitat.**
 
