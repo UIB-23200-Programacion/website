@@ -1181,7 +1181,7 @@ print(primos_gemelos(100))
 ```
 :::
 
-::: {#nte-perfectos .callout-note title="Primers bessons"}
+::: {#nte-perfectos .callout-note title="Funció d'Euler $\varphi(n)$"}
 La **funció d'Euler** $\varphi(n)$ compta quants enters a $\{1, \ldots, n\}$ són coprimers amb $n$, és a dir, quants satisfan $\gcd(k, n) = 1$. És fonamental en teoria de nombres i en criptografia (RSA).
 
 ```{pyodide}

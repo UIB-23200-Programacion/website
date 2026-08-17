@@ -1181,7 +1181,7 @@ print(primos_gemelos(100))
 ```
 :::
 
-::: {#nte-perfectos .callout-note title="Primos gemelos"}
+::: {#nte-perfectos .callout-note title="Función de Euler $\varphi(n)$"}
 La **función de Euler** $\varphi(n)$ cuenta cuántos enteros en $\{1, \ldots, n\}$ son coprimos con $n$, es decir, cuántos satisfacen $\gcd(k, n) = 1$. Es fundamental en teoría de números y en criptografía (RSA).
 
 ```{pyodide}
