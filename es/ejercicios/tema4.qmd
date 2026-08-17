@@ -532,3 +532,48 @@ Un diccionario `conteo: dict[str, int]` que almacena cuántas veces ha aparecido
 :::
 
 :::
+
+::: {.callout-note title="4.4.8 Función `es_inyectiva(f)`:" collapse="true"}
+
+Un diccionario puede representar una **función finita** $f: A \to B$: las claves son los elementos del dominio $A$ y los valores son las imágenes en $B$. Una función es **inyectiva** si elementos distintos del dominio tienen imágenes distintas:
+$$
+f(x) = f(y) \implies x = y.
+$$
+
+Implementa `es_inyectiva(f: dict) -> bool` que retorne `True` si y solo si la función representada por `f` es inyectiva. La precondición exige que `f` no sea `None`; la función vacía `{}` es inyectiva por vacuidad.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(es_inyectiva({'a': 1, 'b': 2, 'c': 3}))  # True  (biyectiva sobre su imagen)
+print(es_inyectiva({'a': 1, 'b': 2, 'c': 1}))  # False ('a' y 'c' comparten imagen)
+print(es_inyectiva({1: 'x'}))                   # True  (función de un elemento)
+print(es_inyectiva({}))                          # True  (vacía)
+```
+:::
+
+::: {.callout-important title="Implementación con conjuntos"}
+Una función es inyectiva si y solo si no hay valores repetidos en la imagen: `len(f.values()) == len(set(f.values()))`. Esta verificación es $O(n)$ y usa la unicidad garantizada por los conjuntos.
+:::
+
+:::
+
+::: {.callout-note title="4.4.9 Función `numeros_perfectos(limite)`:" collapse="true"}
+
+Un entero $n \geq 1$ es **perfecto** si es igual a la suma de sus **divisores propios** (divisores positivos distintos de $n$). Los cuatro primeros son 6, 28, 496 y 8128.
+
+Euler demostró que todo número perfecto par tiene la forma $2^{p-1}(2^p - 1)$ donde $2^p - 1$ es un primo de Mersenne. Se desconoce si existen números perfectos impares.
+
+Implementa `numeros_perfectos(limite: int) -> list[int]` que retorne la lista de números perfectos en $[2, \text{límite}]$, en orden creciente. Reutiliza `divisores_propios`. La precondición exige `limite >= 2`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(numeros_perfectos(1000))   # [6, 28, 496]
+print(numeros_perfectos(10000))  # [6, 28, 496, 8128]
+```
+:::
+
+::: {.callout-important title="Verificación con la fórmula de Euler"}
+Comprueba en el bloque `__main__` que $6 = 2^1(2^2-1)$, $28 = 2^2(2^3-1)$, $496 = 2^4(2^5-1)$ y $8128 = 2^6(2^7-1)$.
+:::
+
+:::
