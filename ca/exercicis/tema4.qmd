@@ -1,7 +1,511 @@
 ---
-title: "Exercicis — Tema 4"
+title: "Exercicis — Tema 4: Estructures de Dades Natives Fonamentals de Python"
 lang: ca
 sidebar: barra-ca
 ---
 
-*(Contingut pendent.)*
+Per a la realització dels exercicis heu d'emprar el projecte `t04_colecciones` que estarà disponible al repositori del curs. Navegueu al lloc i seguiu les instruccions de `README.md` per copiar el repositori en el vostre entorn local de GitHub i obrir un Codespace per treballar en els exercicis.
+
+## Exercicis 4.1 a 4.20
+
+Els exercicis 4.1 al 4.20 es troben en els arxius `ejer_t04_01-10_mo.py` i `ejer_t04_11-20_mo.py` continguts en el directori `/notebooks`.
+
+Aquests fitxers són tant scripts de Python com notebooks de Marimo que permeten execució interactiva. Per resoldre els exercicis, obriu cada fitxer al Codespace i seguiu les instruccions proporcionades en les diferents cel·les de cada notebook. Hi ha cel·les de codi i cel·les de text; aquestes últimes contenen els enunciats dels exercicis.
+
+**Cal obrir els fitxers amb Marimo per disposar de l'execució interactiva en cel·les del notebook; per a això (si no ocorre de manera automàtica) heu de fer clic al botó "Open in Marimo" (![](../../images/openmarimo.png){width="30px"})**
+
+---
+
+## Exercicis 4.21 a 4.24
+
+El projecte `t04_colecciones` organitza quatre mòduls en el paquet `t04_paquete`. Cada mòdul explota una estructura de dades del tema 4 com a eina principal per implementar una família d'operacions matemàtiques o algorísmiques:
+
+| Mòdul | Estructura principal | Domini |
+|---|---|---|
+| `vectores.py` | llistes i tuples | àlgebra lineal elemental |
+| `polinomios.py` | llistes i diccionaris | operacions amb polinomis |
+| `grafos.py` | `dict[int, set[int]]` | teoria de grafs |
+| `conjuntos.py` | `set` i comprensions | teoria de nombres |
+
+Afegiu les funcions següents al mòdul que s'especifica respectant sempre les mateixes regles del tema 3:
+
+- la funció ha de contenir type hints, docstrings i precondicions,
+- si la precondició (o alguna de les precondicions) no es compleix, la funció ha de retornar `None`,
+- al bloc `if __name__ == "__main__"` del mòdul s'han d'afegir proves per validar el comportament de cada funció. S'han de fer proves almenys per a un cas normal i un cas límit (si n'hi ha).
+
+---
+
+## Exercici 4.21: Mòdul `vectores.py`
+
+En aquest mòdul els vectors es representen com a `list[float]` i les matrius com a `list[list[float]]` (llista de files). Llevat que s'indiqui el contrari, les funcions treballen amb vectors de dimensió arbitrària.
+
+::: {.callout-note title="4.21.1 Funció `producto_escalar(u, v)`:" collapse="true"}
+
+Calcula el producte escalar (producte interior) $\mathbf{u} \cdot \mathbf{v} = \sum_{i=0}^{n-1} u_i v_i$ de dos vectors de la mateixa dimensió. Els vectors es representen com a `list[float]` i la funció retorna un `float`. La precondició exigeix que `len(u) == len(v)` i que ambdós vectors no estiguin buits.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(producto_escalar([1.0, 2.0, 3.0], [4.0, 5.0, 6.0]))  # 32.0
+print(producto_escalar([1.0, 0.0], [0.0, 1.0]))            # 0.0
+```
+:::
+
+:::
+
+::: {.callout-note title="4.21.2 Funció `norma(u)`:" collapse="true"}
+
+Calcula la norma euclidiana $\|\mathbf{u}\|_2 = \sqrt{\mathbf{u} \cdot \mathbf{u}}$ d'un vector. Reutilitza `producto_escalar`.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(norma([3.0, 4.0]))           # 5.0
+print(norma([1.0, 1.0, 1.0]))      # 1.7320508075688772
+```
+:::
+
+:::
+
+::: {.callout-note title="4.21.3 Funció `son_ortogonales(u, v)`:" collapse="true"}
+
+Retorna `True` si els vectors `u` i `v` són ortogonals (el seu producte escalar és zero) i `False` en cas contrari. Reutilitza `producto_escalar`.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(son_ortogonales([1.0, 0.0], [0.0, 1.0]))   # True
+print(son_ortogonales([1.0, 1.0], [1.0, 0.0]))   # False
+```
+:::
+
+::: {.callout-important title="Errors d'arrodoniment en punt flotant"}
+
+Si a la funció `son_ortogonales` es compara el producte escalar amb `0.0` usant igualtat estricta, pot ocórrer que dos vectors que són ortogonals no siguin detectats com a tals a causa d'errors d'arrodoniment en la representació de nombres de punt flotant. Prenguem com a exemple els vectors $\vec{u}$ i $\vec{v}$:
+
+- $\vec{u} = (0.1, 0.2, 0.3)$
+- $\vec{v} = (0.2, -0.4, 0.2)$
+
+El seu producte escalar és zero (cosa que es comprova fàcilment reescrivint $\vec{u} = (1, 2, 3)/10$ i $\vec{v} = (2, -4, 2)/10$). Però en Python tenim:
+
+```python
+pe = (0.1 * 0.2) + (0.2 * -0.4) + (0.3 * 0.2)
+print(pe)         # -1.3877787807814457e-17
+print(pe == 0.0)  # False
+```
+
+Per evitar falsos negatius, és recomanable usar una tolerància en comparar amb zero, per exemple:
+
+```python
+print(abs(pe) < 1e-10)  # True
+```
+
+El valor de la tolerància depèn de la magnitud dels vectors involucrats. Per exemple, els vectors $\vec{u}$ i $\vec{v}$
+
+- $\vec{u} = (1500.1,\ 2500.2,\ 3500.3)$
+- $\vec{v} = (2500.2,\ -5000.4,\ 2500.2)$
+
+són ortogonals, però el seu producte escalar en Python és:
+
+```python
+pe = (1500.1 * 2500.2) + (2500.2 * -5000.4) + (3500.3 * 2500.2)
+print(pe)               # 1.862645149230957e-09
+print(abs(pe) < 1e-10)  # False
+```
+
+La comparació `abs(pe) < 1e-10` dona `False`, indicant incorrectament que els vectors no són ortogonals. La tolerància d'`1e-10` és insuficient en aquest cas.
+
+Una alternativa més robusta és usar una tolerància relativa basada en la norma dels vectors:
+
+```python
+tolerancia = 1e-10 * norma(u) * norma(v)
+print(abs(pe) < tolerancia)  # True
+```
+
+:::
+
+:::
+
+::: {.callout-note title="4.21.4 Funció `proyeccion(u, v)`:" collapse="true"}
+
+Calcula la **projecció ortogonal** de `u` sobre `v`:
+$$
+\text{proj}_{\mathbf{v}}(\mathbf{u}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{v}\|^2}\, \mathbf{v}.
+$$
+Retorna un `list[float]` de la mateixa dimensió. Reutilitza `producto_escalar` i `norma`. La precondició exigeix que `v` no sigui el vector nul.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(proyeccion([3.0, 4.0], [1.0, 0.0]))   # [3.0, 0.0]
+print(proyeccion([1.0, 1.0], [1.0, 1.0]))   # [1.0, 1.0]
+```
+:::
+
+:::
+
+::: {.callout-note title="4.21.5 Funció `producto_vectorial(u, v)`:" collapse="true"}
+
+Calcula el **producte vectorial** $\mathbf{u} \times \mathbf{v}$ a $\mathbb{R}^3$:
+$$
+\mathbf{u} \times \mathbf{v} =
+\begin{vmatrix} \mathbf{e}_1 & \mathbf{e}_2 & \mathbf{e}_3 \\ u_0 & u_1 & u_2 \\ v_0 & v_1 & v_2 \end{vmatrix}
+= (u_1 v_2 - u_2 v_1,\; u_2 v_0 - u_0 v_2,\; u_0 v_1 - u_1 v_0).
+$$
+Retorna `tuple[float, float, float]`. La precondició exigeix `len(u) == len(v) == 3`.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(producto_vectorial([1.0, 0.0, 0.0], [0.0, 1.0, 0.0]))  # (0.0, 0.0, 1.0)
+print(producto_vectorial([1.0, 2.0, 3.0], [4.0, 5.0, 6.0]))  # (-3.0, 6.0, -3.0)
+```
+:::
+
+::: {.callout-warning title="Connexió geomètrica"}
+La magnitud $\|\mathbf{u} \times \mathbf{v}\|$ és l'àrea del paral·lelogram que formen `u` i `v`. Si `u` i `v` són paral·lels (o un és el vector nul), el producte vectorial és el vector nul, cosa que reflecteix que el paral·lelogram té àrea nul·la.
+:::
+
+:::
+
+::: {.callout-note title="4.21.6 Funció `trasponer(A)`:" collapse="true"}
+
+Calcula la **matriu transposada** $A^T$ on $(A^T)_{ij} = A_{ji}$. Rep una matriu $m \times n$ i retorna una $n \times m$, ambdues com a `list[list[float]]`. La precondició exigeix que `A` no estigui buida i que totes les files tinguin la mateixa longitud.
+
+::: {.callout-tip title="Exemple"}
+```python
+A = [[1.0, 2.0, 3.0],
+     [4.0, 5.0, 6.0]]
+
+print(trasponer(A))
+# [[1.0, 4.0], [2.0, 5.0], [3.0, 6.0]]
+```
+:::
+
+:::
+
+::: {.callout-note title="4.21.7 Funció `producto_matrices(A, B)`:" collapse="true"}
+
+Calcula el producte matricial $C = A \cdot B$ on $C_{ij} = \text{fila}_i(A) \cdot \text{col}_j(B)$. La precondició exigeix que el nombre de columnes d'`A` coincideixi amb el nombre de files de `B`. Reutilitza `producto_escalar`. Combina `trasponer` amb `producto_escalar` per obtenir una implementació neta: la columna $j$ de $B$ és la fila $j$ de $B^T$.
+
+::: {.callout-tip title="Exemple"}
+```python
+A = [[1.0, 2.0], [3.0, 4.0]]
+B = [[5.0, 6.0], [7.0, 8.0]]
+print(producto_matrices(A, B))
+# [[19.0, 22.0], [43.0, 50.0]]
+```
+:::
+
+:::
+
+---
+
+## Exercici 4.22: Mòdul `polinomios.py`
+
+Aquest mòdul implementa dues representacions de polinomis:
+
+- **Densa**: `list[float]` on `coefs[i]` és el coeficient de $x^i$. Eficient per a polinomis de grau petit sense coeficients nuls.
+- **Dispersa**: `dict[int, float]` on només s'emmagatzemen els termes amb coeficient no nul. Eficient per a polinomis de grau elevat amb molts zeros.
+
+::: {.callout-note title="4.22.1 Funció `evaluar_horner(coefs, x)`:" collapse="true"}
+
+Avalua el polinomi dens $p(x) = c_0 + c_1 x + \cdots + c_n x^n$ en el punt `x` usant l'**algorisme de Horner**:
+$$
+p(x) = c_0 + x\bigl(c_1 + x\bigl(c_2 + x(\cdots + x \cdot c_n)\bigr)\bigr)
+$$
+que requereix només $n$ multiplicacions i $n$ sumes (en lloc de les $O(n^2)$ de l'avaluació directa). La precondició exigeix que `coefs` no estigui buit.
+
+::: {.callout-tip title="Exemple"}
+```python
+# p(x) = 1 + 2x + 3x²
+print(evaluar_horner([1.0, 2.0, 3.0], 2.0))   # 17.0   (1 + 4 + 12)
+print(evaluar_horner([1.0, 2.0, 3.0], 0.0))   # 1.0
+print(evaluar_horner([1.0, 2.0, 3.0], -1.0))  # 2.0    (1 - 2 + 3)
+```
+:::
+
+:::
+
+::: {.callout-note title="4.22.2 Funció `derivada(coefs)`:" collapse="true"}
+
+Calcula la **derivada formal** del polinomi dens $p(x) = c_0 + c_1 x + \cdots + c_n x^n$:
+$$
+p'(x) = c_1 + 2c_2 x + \cdots + n c_n x^{n-1}.
+$$
+Retorna `list[float]` amb els coeficients del polinomi derivat. La llista buida `[]` representa el polinomi nul. La precondició exigeix que `coefs` no estigui buit.
+
+::: {.callout-tip title="Exemple"}
+```python
+# p(x) = 3 + 2x + x²   →   p'(x) = 2 + 2x
+print(derivada([3.0, 2.0, 1.0]))     # [2.0, 2.0]
+
+# p(x) = x⁵             →   p'(x) = 5x⁴
+print(derivada([0.0, 0.0, 0.0, 0.0, 0.0, 1.0]))  # [0.0, 0.0, 0.0, 0.0, 5.0]
+
+# p(x) = 7  (constant)   →   p'(x) = 0
+print(derivada([7.0]))               # []
+```
+:::
+
+:::
+
+::: {.callout-note title="4.22.3 Funció `primitiva(coefs, c)`:" collapse="true"}
+
+Calcula la **primitiva** (antiderivada) del polinomi dens $p(x)$ amb constant d'integració `c` (per defecte `0.0`):
+$$
+F(x) = c + c_0 x + \frac{c_1}{2} x^2 + \frac{c_2}{3} x^3 + \cdots + \frac{c_n}{n+1} x^{n+1}.
+$$
+Retorna `list[float]` de longitud `len(coefs) + 1`. La precondició exigeix que `coefs` no estigui buit.
+
+::: {.callout-tip title="Exemple"}
+```python
+# p(x) = 1 + 2x   →   F(x) = x + x²  (c=0)
+print(primitiva([1.0, 2.0]))         # [0.0, 1.0, 1.0]
+
+# p(x) = 3x²      →   F(x) = 5 + x³  (c=5)
+print(primitiva([0.0, 0.0, 3.0], 5.0))  # [5.0, 0.0, 0.0, 1.0]
+```
+:::
+
+:::
+
+::: {.callout-note title="4.22.4 Funció `multiplicar_polinomios(p, q)`:" collapse="true"}
+
+Calcula el **producte** de dos polinomis densos. Si $p$ té grau $m$ i $q$ té grau $n$, el producte té grau $m+n$ i el seu coeficient $k$-èsim és:
+$$
+(p \cdot q)_k = \sum_{i=\max(0,\, k-n)}^{\min(m,\, k)} p_i \cdot q_{k-i}.
+$$
+Retorna `list[float]` de longitud `len(p) + len(q) - 1`. La precondició exigeix que `p` i `q` no estiguin buits.
+
+::: {.callout-tip title="Exemple"}
+```python
+# (1 + x) · (1 + x) = 1 + 2x + x²
+print(multiplicar_polinomios([1.0, 1.0], [1.0, 1.0]))  # [1.0, 2.0, 1.0]
+
+# (1 + x) · (1 - x) = 1 - x²
+print(multiplicar_polinomios([1.0, 1.0], [1.0, -1.0])) # [1.0, 0.0, -1.0]
+```
+:::
+
+::: {.callout-important title="Connexió amb la convolució discreta"}
+El coeficient $k$-èsim del producte $p \cdot q$ és precisament la **convolució discreta** dels vectors de coeficients avaluada en $k$. Aquest mateix càlcul apareix en processament de senyals (filtres FIR), en multiplicació de grans enters i en l'anàlisi de probabilitats (suma de variables aleatòries independents). L'algorisme més eficient conegut usa la Transformada Ràpida de Fourier (FFT) i requereix només $O(n \log n)$ operacions en lloc de les $O(n^2)$ del mètode directe.
+:::
+
+:::
+
+::: {.callout-note title="4.22.5 Funció `sumar_disperso(p, q)`:" collapse="true"}
+
+Calcula la suma de dos polinomis dispersos. Retorna `dict[int, float]` que conté únicament els termes amb coeficient no nul de $p + q$.
+
+::: {.callout-tip title="Exemple"}
+```python
+# 5x^100 + 7   +   (-5x^100 + x^3)   =   x^3 + 7
+p = {100: 5.0, 0: 7.0}
+q = {100: -5.0, 3: 1.0}
+print(sumar_disperso(p, q))     # {0: 7.0, 3: 1.0}  (ordre pot variar)
+```
+:::
+
+:::
+
+::: {.callout-note title="4.22.6 Funció `multiplicar_disperso_escalar(p, c)`:" collapse="true"}
+
+Multiplica un polinomi dispers per l'escalar `c`. Retorna `dict[int, float]` amb només els termes amb coeficient no nul. Si `c == 0`, retorna el diccionari buit `{}`.
+
+::: {.callout-tip title="Exemple"}
+```python
+p = {100: 5.0, 3: -3.0, 0: 7.0}
+print(multiplicar_disperso_escalar(p, 2.0))   # {100: 10.0, 3: -6.0, 0: 14.0}
+print(multiplicar_disperso_escalar(p, 0.0))   # {}
+```
+:::
+
+:::
+
+---
+
+## Exercici 4.23: Mòdul `grafos.py`
+
+En aquest mòdul els grafs es representen com a `dict[int, set[int]]`: les claus són els vèrtexs i els valors són el conjunt de veïns. Llevat que s'indiqui el contrari, tots els grafs són **no dirigits** (si $v \in g[u]$ llavors $u \in g[v]$).
+
+::: {.callout-note title="4.23.1 Funció `num_aristas(g)`:" collapse="true"}
+
+Retorna el nombre d'arestes del graf no dirigit `g`. Atès que cada aresta $\{u, v\}$ apareix a `g[u]` i a `g[v]`, la suma dels graus dividida entre 2 dona el nombre d'arestes.
+
+::: {.callout-tip title="Exemple"}
+```python
+g = {1: {2, 3}, 2: {1, 3, 4}, 3: {1, 2}, 4: {2}}
+print(num_aristas(g))  # 4   (arestes: {1,2}, {1,3}, {2,3}, {2,4})
+```
+:::
+
+:::
+
+::: {.callout-note title="4.23.2 Funció `vecinos_comunes(g, u, v)`:" collapse="true"}
+
+Retorna el conjunt de vèrtexs que són veïns simultàniament de `u` i de `v`, és a dir, $g[u] \cap g[v]$. La precondició exigeix que `u` i `v` pertanyin a `g`.
+
+::: {.callout-tip title="Exemple"}
+```python
+g = {1: {2, 3}, 2: {1, 3, 4}, 3: {1, 2}, 4: {2}}
+print(vecinos_comunes(g, 1, 2))  # {3}
+print(vecinos_comunes(g, 1, 4))  # set()  — no tenen veïns comuns
+```
+:::
+
+:::
+
+::: {.callout-note title="4.23.3 Funció `es_conexo(g)`:" collapse="true"}
+
+Retorna `True` si el graf `g` és **connex** (existeix un camí entre qualsevol parell de vèrtexs) i `False` en cas contrari. La precondició exigeix que `g` no estigui buit.
+
+::: {.callout-important title="Algorisme DFS iteratiu"}
+Per verificar la connexitat n'hi ha prou de fer una cerca en profunditat (DFS) des de qualsevol vèrtex i comprovar que es visiten tots:
+
+1. Inicialitza un conjunt `visitados = {inicio}` i una pila `pila = [inicio]`.
+2. Mentre `pila` no estigui buida: extreu l'últim vèrtex `u` (amb `pila.pop()`), i per a cada veí `v` de `u` no visitat: afegeix `v` a `visitados` i a `pila`.
+3. El graf és connex si i només si `visitados == set(g.keys())`.
+
+Aquesta estratègia usa una llista de Python com a pila LIFO (amb `append`/`pop`), sense necessitat de `deque`.
+:::
+
+::: {.callout-tip title="Exemple"}
+```python
+g1 = {1: {2, 3}, 2: {1, 3}, 3: {1, 2}}
+print(es_conexo(g1))  # True
+
+g2 = {1: {2}, 2: {1}, 3: {4}, 4: {3}}
+print(es_conexo(g2))  # False — dues components: {1,2} i {3,4}
+```
+:::
+
+:::
+
+---
+
+## Exercici 4.24: Mòdul `conjuntos.py`
+
+::: {.callout-note title="4.24.1 Funció `divisores_propios(n)`:" collapse="true"}
+
+Retorna el conjunt de **divisors propis** de `n`, és a dir, els divisors positius de `n` estrictament menors que `n`. La precondició exigeix `n >= 1`.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(divisores_propios(12))  # {1, 2, 3, 4, 6}
+print(divisores_propios(1))   # set()
+```
+:::
+
+::: {.callout-important title="Implementació eficient"}
+Itera `d` des d'`1` fins a $\lfloor\sqrt{n}\rfloor$ inclòs; si `d` divideix `n`, afegeix `d` i `n//d`, excloent el propi `n`. Això dona $O(\sqrt{n})$ iteracions.
+:::
+
+:::
+
+::: {.callout-note title="4.24.2 Funció `primos_hasta(n)`:" collapse="true"}
+
+Retorna la llista ordenada de tots els primers menors o iguals que `n` usant el **Garbell d'Eratòstenes**. La precondició exigeix `n >= 2`.
+
+::: {.callout-important title="Garbell d'Eratòstenes amb operadors de conjunts"}
+El conjunt de primers s'obté partint de $\{2, 3, \ldots, n\}$ i eliminant els múltiples de cada primer trobat mitjançant diferència de conjunts (`-=`). Només cal garbellar fins a $\lfloor\sqrt{n}\rfloor$ perquè qualsevol nombre compost $m \leq n$ té un factor primer $p \leq \sqrt{m} \leq \sqrt{n}$.
+:::
+
+::: {.callout-tip title="Exemple"}
+```python
+print(primos_hasta(30))
+# [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+print(len(primos_hasta(100)))  # 25
+```
+:::
+
+:::
+
+::: {.callout-note title="4.24.3 Funció `son_amigos(a, b)`:" collapse="true"}
+
+Retorna `True` si `a` i `b` són un parell de **nombres amics** i `False` en cas contrari. Dos nombres $a$ i $b$ (amb $a \neq b$) són amics si la suma dels divisors propis de cadascun és igual a l'altre:
+$$
+\sigma(a) - a = b \quad \text{i} \quad \sigma(b) - b = a.
+$$
+Reutilitza `divisores_propios`. La precondició exigeix `a >= 1` i `b >= 1`.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(son_amigos(220, 284))  # True
+# sum(divisores_propios(220)) = 284 y sum(divisores_propios(284)) = 220
+print(son_amigos(6, 10))     # False
+```
+:::
+
+:::
+
+::: {.callout-note title="4.24.4 Funció `sistema_registro(nombres)`:" collapse="true"}
+
+Aquesta funció es pot emprar en el problema [Registration system](https://codeforces.com/contest/4/problem/C){target="_blank"} de [Codeforces](https://codeforces.com/){target="_blank"}. La traducció d'una part de l'enunciat és la següent:
+
+> Es registren $n$ usuaris en un sistema. Per a cada usuari amb nom `nombre`:
+> - Si és la primera vegada que apareix aquell nom, s'accepta com a vàlid i el sistema respon `"OK"`.
+> - Si el nom ja havia estat registrat, es rebutja i el sistema suggereix `nombre + str(k)`, on `k` és el nombre de vegades que aquell nom havia aparegut abans d'aquest intent (començant per `2` la primera vegada que es rebutja).
+
+La funció `sistema_registro(nombres)` rep `list[str]` amb els noms en ordre d'arribada i retorna `list[str]` amb la resposta del sistema per a cada sol·licitud.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(sistema_registro(["ana", "bob", "ana", "carlos", "bob", "ana"]))
+# ["OK", "OK", "ana2", "OK", "bob2", "ana3"]
+```
+:::
+
+::: {.callout-important title="Estructura de dades clau"}
+Un diccionari `conteo: dict[str, int]` que emmagatzema quantes vegades ha aparegut cada nom fins ara és suficient. Si `nombre not in conteo`: resposta `"OK"` i `conteo[nombre] = 1`. Si ja existeix: `conteo[nombre] += 1` i resposta `nombre + str(conteo[nombre])`.
+:::
+
+:::
+
+::: {.callout-note title="4.24.5 Funció `es_inyectiva(f)`:" collapse="true"}
+
+Un diccionari pot representar una **funció finita** $f: A \to B$: les claus són els elements del domini $A$ i els valors són les imatges a $B$. Una funció és **injectiva** si elements distints del domini tenen imatges distintes:
+$$
+f(x) = f(y) \implies x = y.
+$$
+
+Implementa `es_inyectiva(f: dict) -> bool` que retorni `True` si i només si la funció representada per `f` és injectiva. La precondició exigeix que `f` no sigui `None`; la funció buida `{}` és injectiva per vacuïtat.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(es_inyectiva({'a': 1, 'b': 2, 'c': 3}))  # True  (biyectiva sobre su imagen)
+print(es_inyectiva({'a': 1, 'b': 2, 'c': 1}))  # False ('a' y 'c' comparten imagen)
+print(es_inyectiva({1: 'x'}))                   # True  (función de un elemento)
+print(es_inyectiva({}))                          # True  (vacía)
+```
+:::
+
+::: {.callout-important title="Implementació amb conjunts"}
+Una funció és injectiva si i només si no hi ha valors repetits a la imatge: `len(f.values()) == len(set(f.values()))`. Aquesta verificació és $O(n)$ i usa la unicitat garantida pels conjunts.
+:::
+
+:::
+
+::: {.callout-note title="4.24.6 Funció `numeros_perfectos(limite)`:" collapse="true"}
+
+Un enter $n \geq 1$ és **perfecte** si és igual a la suma dels seus **divisors propis** (divisors positius distints de $n$). Els quatre primers són 6, 28, 496 i 8128.
+
+Euler va demostrar que tot nombre perfecte parell té la forma $2^{p-1}(2^p - 1)$ on $2^p - 1$ és un primer de Mersenne. Es desconeix si existeixen nombres perfectes senars.
+
+Implementa `numeros_perfectos(limite: int) -> list[int]` que retorni la llista de nombres perfectes en $[2, \text{límit}]$, en ordre creixent. Reutilitza `divisores_propios`. La precondició exigeix `limite >= 2`.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(numeros_perfectos(1000))   # [6, 28, 496]
+print(numeros_perfectos(10000))  # [6, 28, 496, 8128]
+```
+:::
+
+::: {.callout-important title="Verificació amb la fórmula d'Euler"}
+Comprova al bloc `__main__` que:
+$$
+\begin{aligned}
+6    &= 2^1(2^2 - 1) \\
+28   &= 2^2(2^3 - 1) \\
+496  &= 2^4(2^5 - 1) \\
+8128 &= 2^6(2^7 - 1)
+\end{aligned}
+$$
+:::
+
+:::
