@@ -1,7 +1,922 @@
 ---
-title: "Tema 5: Algoritmos Básicos y Verificación (Testing)"
+title: "Tema 5: Algoritmos Básicos y Verificación"
 lang: es
 sidebar: barra-es
+bibliography: tema5.bib
+engine: markdown
 ---
 
-*(Contenido pendiente.)*
+El tema anterior presentó las estructuras de datos (built-in) que Python emplea para representar colecciones. En este tema el enfoque cambia: ya no preguntamos *qué son* esas estructuras, sino **cómo podemos utilizarlas para resolver problemas**. La forma sistemática de combinar operaciones sobre dichas estructuras para obtener un resultado es lo que denominamos **algoritmo**.
+
+Ahora bien, un algoritmo solo es útil si es **correcto**, y esa corrección debe ser justificada o verificada mediante métodos formales o empíricos. La combinación —diseñar y verificar— se tratará en este tema.
+
+Vamos a distinguir dos tipos de algoritmos fundamentalmente: los que procesan **flujos de datos** (*data stream algorithms*) y los que realizan **procesamiento por lotes** (*batch processing algorithms*). Vamos primero a introducir el concepto de algoritmo. 
+
+::: {#tip-algoritmo .callout-tip title="Algoritmo"}
+Un **algoritmo** es una secuencia finita de instrucciones bien definidas que, aplicada a unos datos de entrada, produce un resultado en un tiempo finito. Las propiedades esenciales son: **corrección** (produce el resultado esperado), **terminación** (siempre acaba) y **determinismo** (el mismo entrada produce siempre el mismo resultado) [@downey2024].
+:::
+
+---
+
+## 5.1. Algoritmos sobre flujos de datos
+
+Los **algoritmos sobre flujos de datos** (*data stream algorithms*) se utilizan principalmente para procesar grandes volúmenes de datos continuos y en tiempo real utilizando memoria limitada. En este entorno, los datos se conciben en movimiento, lo que imposibilita su almacenamiento íntegro debido a restricciones físicas de memoria. Sus características principales son:
+
+- **Una sola pasada (*one-pass*):** Los datos se leen una sola vez y no se pueden almacenar por completo.
+- **Memoria sublineal:** Usan mucha menos memoria que el tamaño total de los datos.
+- **Tiempo real:** Dan respuestas rápidas o estimaciones exactas en cada instante.
+
+### **5.1.1 La idea de flujo de datos**
+
+Imagina que recibes, de forma continua y desde un sensor, mediciones de temperatura cada 5 minutos. En un día tendrás $24 \times 20 = 480$ valores en total. Quieres determinar la temperatura máxima en las últimas 24 horas. Este problema puede abordarse de dos maneras conceptualmente distintas:
+
+**Enfoque no óptimo**: almacenar todas las últimas $480$ mediciones en una lista y aplicar la función `max()`. Este método requiere conservar toda la colección antes de producir el resultado (batch processing).
+
+**Enfoque óptimo**: procesar cada medición en el momento en que llega y mantener actualizado un registro del valor máximo observado. Al recibir la última medición, ese registro ya contiene la respuesta, sin necesidad de almacenar la secuencia completa (data stream processing).
+
+El segundo enfoque es preferible porque permite obtener el resultado **en tiempo real** y reduce el **uso de memoria**, lo que lo convierte en una estrategia más adecuada cuando los datos llegan en flujo continuo o cuando la colección es muy grande.
+
+En el siguiente ejemplo se muestran ambas estrategias: la primera usa `max()` sobre la lista completa, y la segunda mantiene un acumulador que se actualiza con cada medición. Para simular el sensor de temperatura, se utiliza una función generadora con una lista de valores predefinidos.
+
+```{pyodide}
+import time
+from typing import Iterator
+
+def sensor_temperatura() -> Iterator[float]:
+    """
+    Simula un flujo continuo de datos provenientes de un sensor de temperatura.
+    
+    Yields:
+        float: La temperatura registrada en grados Celsius.
+    """
+    lecturas = [18.2, 19.5, 22.1, 24.8, 27.3, 
+	            26.0, 23.4, 21.0, 20.5, 19.8]
+    
+    for temp in lecturas:
+        yield temp
+        
+        print("(Esperando para la siguiente lectura...)")
+        # 300 segundos equivalen a 5 minutos. 
+        # time.sleep(300)
+		# Se cambia este valor a time.sleep(1) para probar el código rápidamente.
+        time.sleep(1)
+		
+
+# Forma óptima sin lista
+# Instanciamos el flujo de datos (el generador no comienza a ejecutarse aquí)
+flujo = sensor_temperatura()
+
+maxima_registrada = float('-inf')  # Inicializamos con el menor valor posible
+for temperatura in flujo:
+    if temperatura > maxima_registrada:
+        maxima_registrada = temperatura
+        print(f"📈 Nuevo pico detectado: {maxima_registrada}°C")
+
+print(f"\nResumen: La temperatura máxima del día fue {maxima_registrada}°C\n")
+
+# Forma no óptima con lista
+# Instanciamos nuevamente el flujo de datos
+flujo = sensor_temperatura()
+        
+valores_acumulados = list(flujo)
+# Si la lista está vacía, max() lanzará un ValueError
+if not valores_acumulados:
+    temperatura_maxima = float('-inf')
+else:
+    # Evaluamos la lista completa de una sola vez
+    temperatura_maxima = max(valores_acumulados)
+    
+print(f"\nResumen: La temperatura máxima del día fue {temperatura_maxima}°C")
+```
+
+La clave está en la variable `maxima_registrada`: es el **estado** del algoritmo en la variante óptima. Antes de cada nueva medición, `maxima_registrada` resume toda la información relevante de las mediciones anteriores. Tras procesar el último valor, ese estado es la respuesta.
+
+::: {#tip-estado .callout-tip title="Estado de un algoritmo"}
+El **estado** de un algoritmo en un instante dado es el conjunto de valores de sus variables en ese momento. En los algoritmos de flujo de datos, el estado se actualiza con cada elemento procesado y, al terminar, contiene el resultado.
+:::
+
+### **5.1.2 Procesamiento en una sola pasada**
+
+Un algoritmo de **una sola pasada** (*one-pass*) examina cada elemento exactamente una vez. Esto tiene ventajas prácticas importantes: es eficiente en tiempo ($O(n)$ operaciones para $n$ elementos), consume poca memoria (no necesita almacenar toda la secuencia), y puede procesar datos que llegan en tiempo real.
+
+::: {#imp-una-pasada .callout-important title="Varias estadísticas en una sola pasada"}
+Es posible calcular simultáneamente varias estadísticas sobre una secuencia en una sola pasada, manteniendo varios acumuladores a la vez. Supongamos que queremos calcular el máximo, el mínimo y la media de las mediciones de temperatura. Podemos hacerlo así:
+
+```{pyodide}
+import time
+from typing import Iterator
+
+def sensor_temperatura() -> Iterator[float]:
+    """
+    Simula un flujo continuo de datos provenientes de un sensor de temperatura.
+    
+    Yields:
+        float: La temperatura registrada en grados Celsius.
+    """
+    lecturas = [18.2, 19.5, 22.1, 24.8, 27.3, 
+	            26.0, 23.4, 21.0, 20.5, 19.8]
+    
+    for temp in lecturas:
+        yield temp
+        
+        print("(Esperando para la siguiente lectura...)")
+        # 300 segundos equivalen a 5 minutos. 
+        # time.sleep(300)
+		# Se cambia este valor a time.sleep(1) para probar el código rápidamente.
+        time.sleep(1)
+		
+
+# Instanciamos el flujo de datos
+flujo = sensor_temperatura()
+
+maxima_registrada = float('-inf')
+minima_registrada = float('inf')
+suma = 0
+contador = 0
+
+for temperatura in flujo:
+    if temperatura > maxima_registrada:
+        maxima_registrada = temperatura
+        print(f"📈 Nueva máxima detectada: {maxima_registrada}°C")
+    if temperatura < minima_registrada:
+        minima_registrada = temperatura
+        print(f"📈 Nueva mínima detectada: {minima_registrada}°C")
+    suma += temperatura
+    contador += 1
+
+print(f"\nResumen: La temperatura máxima del día fue {maxima_registrada}°C")
+print(f"Resumen: La temperatura mínima del día fue {minima_registrada}°C")
+print(f"Resumen: La temperatura media del día fue {suma / contador}°C")
+```
+
+Cuatro estadísticas distintas con un solo recorrido sobre los datos.
+:::
+
+### **5.1.3 Condiciones de parada distintas del final de la secuencia**
+
+No todos los algoritmos one-pass necesitan examinar todos los elementos. A veces la respuesta se conoce antes de llegar al final: se ha encontrado lo que se buscaba, o una condición especial permite deducir el resultado. Por ejemplo, si queremos saber si una medición de temperatura supera los 25°C, podemos detenernos en cuanto encontremos la primera.
+
+```{pyodide}
+import time
+from typing import Iterator
+
+def sensor_temperatura() -> Iterator[float]:
+    """
+    Simula un flujo continuo de datos provenientes de un sensor de temperatura.
+    
+    Yields:
+        float: La temperatura registrada en grados Celsius.
+    """
+    lecturas = [18.2, 19.5, 22.1, 24.8, 27.3, 
+	            26.0, 23.4, 21.0, 20.5, 19.8]
+    
+    for temp in lecturas:
+        yield temp
+        
+        print("(Esperando para la siguiente lectura...)")
+        # 300 segundos equivalen a 5 minutos. 
+        # time.sleep(300)
+		# Se cambia este valor a time.sleep(1) para probar el código rápidamente.
+        time.sleep(1)
+
+
+def supera_25(numeros: Iterator[float]) -> bool:
+    """Retorna True si la lista contiene algún número mayor a 25."""
+    for x in numeros:
+        if x > 25.0:
+            return True   # parada anticipada: ya tenemos la respuesta
+    return False
+
+
+print(supera_25(sensor_temperatura()))  # True
+```
+
+La instrucción `return True` dentro del bucle detiene el algoritmo en cuanto encuentra el primer valor mayor que 25, sin examinar el resto. Esto se llama **parada anticipada** o *early exit*.
+
+---
+
+## 5.2. Algoritmos de procesamiento por lotes
+
+Los **algoritmos de procesamiento por lotes** (*batch processing*) reciben la colección de datos **completa y de antemano**. A diferencia de los algoritmos de flujo, pueden acceder a los datos múltiples veces, consultarlos en cualquier orden y aplicar operaciones que requieren conocer el conjunto entero antes de producir un resultado.
+
+::: {#tip-batch .callout-tip title="Procesamiento por lotes"}
+Un algoritmo de **procesamiento por lotes** (*batch processing*) opera sobre una colección de datos que ya está almacenada en memoria en su totalidad. Puede leerla varias veces, ordenarla o acceder a posiciones arbitrarias mediante índices. A cambio, requiere disponer de toda la colección antes de comenzar y consume memoria proporcional al tamaño de los datos.
+:::
+
+### **5.2.1 Cuándo el procesamiento por lotes es necesario**
+
+Hay cálculos que no pueden realizarse en una sola pasada porque el resultado depende de toda la colección. El ejemplo más claro es la **mediana**: para saber cuál es el valor central hay que ordenar los datos, lo que exige tenerlos todos disponibles.
+
+```{pyodide}
+def mediana(datos: list[float]) -> float | None:
+    """
+    Calcula la mediana de una lista de datos.
+    Precondición: datos no está vacío.
+    """
+    if not datos:
+        return None
+    ordenados = sorted(datos)   # requiere la lista completa
+    n = len(ordenados)
+    if n % 2 == 1:
+        return ordenados[n // 2]
+    else:
+        return (ordenados[n // 2 - 1] + ordenados[n // 2]) / 2.0
+
+temperaturas = [18.2, 19.5, 22.1, 24.8, 27.3, 26.0, 23.4]
+print(f"Mediana: {mediana(temperaturas)} °C")   # 23.4
+print(f"Media:   {sum(temperaturas)/len(temperaturas):.2f} °C")
+```
+
+Nótese que la media sí puede calcularse en una pasada (sección 5.1), pero la mediana no: `sorted()` necesita acceder a todos los elementos antes de devolver el primero.
+
+### **5.2.2 Comparación entre los dos enfoques**
+
+La elección entre procesamiento por flujo y por lotes depende del problema y del contexto:
+
+| | Flujo de datos (*stream*) | Por lotes (*batch*) |
+|---|---|---|
+| **Datos disponibles** | Llegan uno a uno, en tiempo real | Colección completa disponible de antemano |
+| **Pasadas sobre los datos** | Una sola | Las que haga falta |
+| **Acceso por índice** | No | Sí |
+| **Memoria utilizada** | Sublineal (solo el estado) | Proporcional al tamaño de los datos |
+| **Ejemplos típicos** | máximo, mínimo, suma, conteo | mediana, ordenación, búsqueda binaria |
+
+::: {#imp-stream-vs-batch .callout-important title="Flujo y lotes no son excluyentes"}
+En la práctica, muchos sistemas combinan ambos enfoques: los datos se reciben en flujo y se acumulan en lotes periódicos (por horas, por días) sobre los que luego se aplican cálculos más complejos. Por ejemplo, un sistema meteorológico puede registrar temperaturas en tiempo real (flujo) y calcular percentiles o tendencias cada 24 horas (por lotes).
+:::
+
+Los patrones de la sección siguiente (recorrido, búsqueda, acumulación y conteo) funcionan en ambos modos: con listas completas (batch) o con generadores que producen elementos uno a uno (stream).
+
+---
+
+## 5.3. Patrones de recorrido, búsqueda, acumulación y conteo
+
+Los algoritmos sobre flujos de datos se construyen combinando cuatro **patrones** fundamentales. Reconocer el patrón adecuado para un problema es la habilidad central de esta sección.
+
+### **5.3.1 Recorrido**
+
+::: {#tip-recorrido .callout-tip title="Patrón de recorrido"}
+El **recorrido** procesa cada elemento de una secuencia exactamente una vez, aplicando la misma operación a todos. No hay condición de parada anticipada: se visitan todos los elementos.
+
+```python
+for elemento in secuencia:
+    procesar(elemento)
+```
+:::
+
+El recorrido es la estructura más simple. Su propósito es *hacer algo* con cada elemento: imprimirlo, transformarlo, acumularlo en un resultado.
+
+```{pyodide}
+# Recorrido para transformar: convertir grados Celsius a Fahrenheit
+celsius = [0.0, 20.0, 37.0, 100.0]
+fahrenheit = []
+for c in celsius:
+    fahrenheit.append(c * 9/5 + 32)
+print(fahrenheit)  # [32.0, 68.0, 98.6, 212.0]
+```
+
+Cuando se necesita tanto el índice como el valor, se usa `enumerate`:
+
+```{pyodide}
+notas = [8.5, 6.0, 9.5, 7.0, 5.5]
+print("Notas por encima de la media:")
+media = sum(notas) / len(notas)
+for i, nota in enumerate(notas):
+    if nota >= media:
+        print(f"  Estudiante {i+1}: {nota}")
+```
+
+::: {#imp-for-vs-while .callout-important title="`for` versus `while` en recorridos"}
+En Python, el bucle `for` es la forma idiomática de recorrer una secuencia cuando se visitan todos sus elementos. El bucle `while` es más apropiado cuando la condición de parada no depende de haber llegado al final de una colección (por ejemplo, búsquedas con parada anticipada, o algoritmos iterativos que convergen a una solución).
+
+Usar `while i < len(seq)` cuando un `for` bastaría es un antipatrón: más código, más posibilidad de error (off-by-one), sin ventaja alguna.
+:::
+
+### **5.3.2 Búsqueda**
+
+::: {#tip-busqueda .callout-tip title="Patrón de búsqueda"}
+La **búsqueda** recorre una secuencia para localizar uno o más elementos que satisfacen una condición. En cuanto se encuentra el primero (si solo se busca uno), el algoritmo puede detenerse.
+
+```python
+for elemento in secuencia:
+    if condicion(elemento):
+        return elemento   # o su índice, o True
+return None               # o False: no se encontró
+```
+:::
+
+#### Búsqueda lineal con `enumerate`
+
+```{pyodide}
+def buscar_primero(secuencia: list, objetivo) -> int:
+    """
+    Retorna el índice de la primera aparición de objetivo en secuencia,
+    o -1 si no se encuentra.
+    """
+    for i, x in enumerate(secuencia):
+        if x == objetivo:
+            return i
+    return -1
+
+nombres = ["Ana", "Bob", "Carlos", "Ana", "Diana"]
+print(buscar_primero(nombres, "Ana"))     # 0
+print(buscar_primero(nombres, "Diana"))   # 4
+print(buscar_primero(nombres, "Elena"))   # -1
+```
+
+#### El operador `in` como búsqueda implícita
+
+Python proporciona el operador `in` para la búsqueda booleana más frecuente: ¿está el elemento en la colección?
+
+```{pyodide}
+primos = [2, 3, 5, 7, 11, 13]
+print(7 in primos)    # True
+print(9 in primos)    # False
+```
+
+Internamente, `x in lista` realiza una búsqueda lineal. Para listas largas, es $O(n)$. Si la operación se repite muchas veces, conviene convertir la lista en un conjunto (`set`), donde la búsqueda es $O(1)$.
+
+#### Búsqueda del máximo y del mínimo
+
+Encontrar el máximo de una secuencia es un caso especial de búsqueda: se busca el elemento que supera a todos los demás.
+
+```{pyodide}
+def maximo_con_indice(secuencia: list[float]) -> tuple[float, int]:
+    """
+    Retorna (valor_maximo, indice) del elemento mayor de la secuencia.
+    Precondición: secuencia no está vacía.
+    """
+    if not secuencia:
+        return None
+    idx_max = 0
+    for i in range(1, len(secuencia)):
+        if secuencia[i] > secuencia[idx_max]:
+            idx_max = i
+    return secuencia[idx_max], idx_max
+
+notas = [7.5, 9.0, 6.5, 9.0, 8.5]
+valor, posicion = maximo_con_indice(notas)
+print(f"Nota máxima: {valor} (primera aparición en posición {posicion})")
+```
+
+::: {#cau-busqueda-inicio .callout-caution title="Inicializar el máximo con el primer elemento"}
+Una trampa habitual al programar la búsqueda del máximo es inicializar con un valor arbitrario como `maximo = 0` o `maximo = -999`. Esto puede fallar si todos los elementos son menores que ese valor inicial.
+
+La forma correcta es inicializar con el **primer elemento** de la secuencia: `maximo = secuencia[0]`. Después iterar desde el segundo elemento.
+
+Alternativa robusta: inicializar con `float('-inf')`, que es menor que cualquier número real.
+:::
+
+### **5.3.3 Acumulación**
+
+::: {#tip-acumulacion .callout-tip title="Patrón de acumulación"}
+La **acumulación** combina todos los elementos de una secuencia en un único resultado, aplicando una operación binaria de forma repetida. El resultado se construye incrementalmente, elemento a elemento.
+
+```python
+resultado = valor_inicial
+for elemento in secuencia:
+    resultado = combinar(resultado, elemento)
+```
+:::
+
+La clave es elegir el `valor_inicial` correcto: debe ser el **elemento neutro** de la operación `combinar`. Para la suma, el neutro es `0`; para el producto, `1`; para la intersección de conjuntos, el conjunto universal; para la concatenación de listas, `[]`.
+
+#### Acumulación numérica
+
+```{pyodide}
+# Suma
+numeros = [1.0, 2.0, 3.0, 4.0, 5.0]
+suma = 0.0
+for x in numeros:
+    suma += x
+print(f"Suma: {suma}")           # 15.0
+
+# Producto factorial
+n = 7
+factorial = 1
+for k in range(1, n + 1):
+    factorial *= k
+print(f"{n}! = {factorial}")     # 5040
+```
+
+::: {#nte-acumulacion-mat .callout-note title="Conexión con la notación matemática"}
+El patrón de acumulación por suma es la versión computacional de la notación sigma:
+$$
+\sum_{k=1}^{n} f(k) \quad \longleftrightarrow \quad
+\texttt{resultado = 0; for k in range(1, n+1): resultado += f(k)}
+$$
+Y la acumulación por producto corresponde a la notación pi:
+$$
+\prod_{k=1}^{n} f(k) \quad \longleftrightarrow \quad
+\texttt{resultado = 1; for k in range(1, n+1): resultado *= f(k)}
+$$
+:::
+
+#### Acumulación estructural
+
+La acumulación no es solo para números. Puede construir listas, cadenas u otras estructuras:
+
+```{pyodide}
+# Filtrar y acumular: números pares al cuadrado
+numeros = range(1, 11)
+resultado = []
+for x in numeros:
+    if x % 2 == 0:
+        resultado.append(x ** 2)
+print(resultado)  # [4, 16, 36, 64, 100]
+
+# Acumulación de cadenas
+palabras = ["la", "matemática", "es", "hermosa"]
+frase = ""
+for i, p in enumerate(palabras):
+    if i > 0:
+        frase += " "
+    frase += p
+print(frase)  # la matemática es hermosa
+```
+
+::: {#imp-join .callout-important title="Concatenación eficiente de cadenas"}
+El patrón `frase += p` en un bucle crea una nueva cadena en cada iteración, lo que resulta en $O(n^2)$ operaciones para $n$ palabras. La forma eficiente en Python es acumular en una lista y usar `str.join` al final:
+
+```python
+partes = []
+for p in palabras:
+    partes.append(p)
+frase = " ".join(partes)
+```
+
+O directamente: `" ".join(palabras)`.
+:::
+
+### **5.3.4 Conteo**
+
+::: {#tip-conteo .callout-tip title="Patrón de conteo"}
+El **conteo** es un caso especial de acumulación donde la operación de combinación es sumar `1` cada vez que el elemento satisface una condición. El resultado es el número de elementos que cumplen la condición.
+
+```python
+contador = 0
+for elemento in secuencia:
+    if condicion(elemento):
+        contador += 1
+```
+:::
+
+```{pyodide}
+def contar_aprobados(notas: list[float], umbral: float = 5.0) -> int:
+    """Cuenta cuántas notas son mayores o iguales al umbral."""
+    contador = 0
+    for nota in notas:
+        if nota >= umbral:
+            contador += 1
+    return contador
+
+notas = [4.5, 7.0, 3.5, 8.5, 5.0, 9.0, 2.0, 6.5]
+print(f"Aprobados: {contar_aprobados(notas)}")       # 5
+print(f"Aprobados (≥7): {contar_aprobados(notas, 7.0)}")  # 3
+```
+
+El conteo generaliza de forma natural a **contar categorías distintas** usando un diccionario:
+
+```{pyodide}
+def frecuencia_caracteres(texto: str) -> dict[str, int]:
+    """Cuenta la frecuencia de cada carácter en el texto."""
+    conteo: dict[str, int] = {}
+    for c in texto:
+        conteo[c] = conteo.get(c, 0) + 1
+    return conteo
+
+print(frecuencia_caracteres("abracadabra"))
+# {'a': 5, 'b': 2, 'r': 2, 'c': 1, 'd': 1}
+```
+
+::: {#nte-sum-generator .callout-note title="Conteo con expresiones generadoras"}
+El patrón de conteo puede escribirse en una línea usando `sum` con una expresión generadora:
+
+```python
+contador = sum(1 for x in secuencia if condicion(x))
+```
+
+O equivalentemente, aprovechando que `True` vale `1` y `False` vale `0` en contexto numérico:
+
+```python
+contador = sum(condicion(x) for x in secuencia)
+```
+
+Esta forma es idiomática en Python cuando la condición es simple.
+:::
+
+### **5.3.5 Composición de patrones**
+
+Los cuatro patrones no son excluyentes. La mayoría de los algoritmos reales los combinan. Un ejemplo: calcular la **desviación estándar** de una muestra.
+
+$$
+\sigma = \sqrt{\frac{1}{n}\sum_{i=0}^{n-1}(x_i - \bar{x})^2}
+$$
+
+```{pyodide}
+import math
+
+def desviacion_estandar(datos: list[float]) -> float | None:
+    """
+    Calcula la desviación estándar poblacional de una lista de datos.
+    Precondición: datos no está vacío.
+    """
+    if not datos:
+        return None
+
+    n = len(datos)
+
+    # Acumulación: calcular la media
+    suma = 0.0
+    for x in datos:
+        suma += x
+    media = suma / n
+
+    # Acumulación: calcular la varianza
+    suma_cuad = 0.0
+    for x in datos:
+        suma_cuad += (x - media) ** 2
+    varianza = suma_cuad / n
+
+    return math.sqrt(varianza)
+
+muestras = [2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 7.0, 9.0]
+print(f"Media: {sum(muestras)/len(muestras):.2f}")
+print(f"Desviación estándar: {desviacion_estandar(muestras):.2f}")  # 2.00
+```
+
+---
+
+## 5.4. Nociones de invariante de bucle como herramienta de razonamiento
+
+Escribir un bucle que parece correcto no es lo mismo que demostrar que lo es. El **invariante de bucle** es la herramienta formal para razonar sobre la corrección de los algoritmos iterativos [@dijkstra1976; @gries1981].
+
+::: {#tip-invariante .callout-tip title="Invariante de bucle"}
+Un **invariante de bucle** es una propiedad $P$ sobre las variables del programa que se cumple:
+
+1. **Antes de la primera iteración** (*inicialización*): $P$ es cierta cuando el bucle comienza.
+2. **Al inicio de cada iteración** (*mantenimiento*): si $P$ es cierta al inicio de una iteración, sigue siendo cierta al final de esa misma iteración (y por tanto al inicio de la siguiente).
+3. **Al terminar el bucle** (*terminación*): $P$, junto con la condición de salida del bucle, implica que el resultado es correcto.
+:::
+
+La estructura de la demostración es idéntica a la **inducción matemática**: el caso base es la inicialización, y el paso inductivo es el mantenimiento. Los estudiantes de matemáticas ya conocen este razonamiento; el invariante de bucle es su traducción al mundo de los algoritmos.
+
+### **5.4.1 Invariante de la acumulación de suma**
+
+Consideremos el algoritmo más simple: sumar los elementos de una lista.
+
+```python
+def sumar(v: list[float]) -> float:
+    acumulado = 0.0
+    for i in range(len(v)):
+        acumulado += v[i]
+    return acumulado
+```
+
+**Invariante**: al inicio de la iteración $i$, la variable `acumulado` contiene la suma de los primeros $i$ elementos:
+$$
+P(i):\quad \texttt{acumulado} = \sum_{k=0}^{i-1} v[k]
+$$
+
+**Demostración:**
+
+- *Inicialización* ($i = 0$): antes de la primera iteración, `acumulado = 0.0`. La suma vacía $\sum_{k=0}^{-1} v[k] = 0$. $P(0)$ es cierta. ✓
+- *Mantenimiento*: supongamos que $P(i)$ es cierta, es decir, `acumulado` $= \sum_{k=0}^{i-1} v[k]$. La iteración ejecuta `acumulado += v[i]`, por lo que al final `acumulado` $= \sum_{k=0}^{i-1} v[k] + v[i] = \sum_{k=0}^{i} v[k]$. Esto es $P(i+1)$. ✓
+- *Terminación*: el bucle termina cuando $i = n = \texttt{len(v)}$. Entonces $P(n)$ afirma que `acumulado` $= \sum_{k=0}^{n-1} v[k]$, que es exactamente la suma de todos los elementos de `v`. ✓
+
+### **5.4.2 Invariante de la búsqueda lineal**
+
+```python
+def buscar(v: list, objetivo) -> int:
+    for i in range(len(v)):
+        if v[i] == objetivo:
+            return i
+    return -1
+```
+
+**Invariante**: al inicio de la iteración $i$, el objetivo no ha aparecido entre los primeros $i$ elementos:
+$$
+P(i):\quad \texttt{objetivo} \notin \{v[0], v[1], \ldots, v[i-1]\}
+$$
+
+- *Inicialización*: antes de la primera iteración ($i = 0$), el conjunto vacío no contiene el objetivo. ✓
+- *Mantenimiento*: si $P(i)$ es cierta y `v[i] != objetivo`, entonces el objetivo tampoco está en $\{v[0],\ldots,v[i]\}$, lo que establece $P(i+1)$. Si `v[i] == objetivo`, la función retorna $i$ (correcto). ✓
+- *Terminación*: si el bucle llega hasta $i = n$ sin haber retornado, $P(n)$ garantiza que el objetivo no está en ninguna posición $\{0,\ldots,n-1\}$: la función retorna $-1$ correctamente. ✓
+
+::: {#nte-invariante-induccion .callout-note title="Invariante de bucle e inducción matemática"}
+La analogía es exacta:
+
+| Inducción matemática | Invariante de bucle |
+|---|---|
+| Caso base: $P(0)$ es cierta | Inicialización: $P$ es cierta antes de la primera iteración |
+| Paso inductivo: $P(k) \Rightarrow P(k+1)$ | Mantenimiento: $P$ al inicio $\Rightarrow$ $P$ al final de la iteración |
+| Conclusión: $P(n)$ es cierta para todo $n$ | Terminación: $P$ junto con la condición de salida da el resultado correcto |
+
+Esta equivalencia no es casual: la corrección de los bucles *es* inducción matemática aplicada a algoritmos.
+:::
+
+### **5.4.3 Uso informal del invariante**
+
+Pocos programadores escriben demostraciones formales en su trabajo cotidiano. Sin embargo, razonar *informalmente* con invariantes es un hábito valioso:
+
+- Al **diseñar** un bucle: preguntarse qué propiedad debe mantener la variable de estado.
+- Al **depurar** un bucle: insertar `assert` (sección 5.5) para verificar que el invariante se cumple en cada iteración.
+- Al **revisar** el código de otro: identificar el invariante implícito para entender qué hace el bucle.
+
+```{pyodide}
+def maximo(v: list[float]) -> float | None:
+    """
+    Retorna el máximo de la lista v.
+    Invariante: al inicio de la iteración i, `actual_max` es el mayor
+    de los elementos v[0], ..., v[i-1].
+    """
+    if not v:
+        return None
+    actual_max = v[0]
+    for i in range(1, len(v)):
+        # Invariante: actual_max == max(v[0], ..., v[i-1])
+        if v[i] > actual_max:
+            actual_max = v[i]
+    # Al salir: actual_max == max(v[0], ..., v[n-1])
+    return actual_max
+
+print(maximo([3.0, 1.0, 4.0, 1.0, 5.0, 9.0, 2.0, 6.0]))  # 9.0
+print(maximo([7.0]))                                         # 7.0
+print(maximo([]))                                            # None
+```
+
+Los comentarios con el invariante no son decoración: documentan el **por qué** el algoritmo es correcto, no solo el *qué* hace.
+
+---
+
+## 5.5. Uso de la instrucción `assert` y fundamentos de `pytest`
+
+Diseñar un algoritmo correcto es el primer paso. Verificar que la implementación en Python también lo es requiere **pruebas**. Python ofrece dos mecanismos complementarios: la instrucción `assert` para verificaciones dentro del código, y el framework `pytest` para pruebas automatizadas.
+
+### **5.5.1 La instrucción `assert`**
+
+::: {#tip-assert .callout-tip title="Instrucción `assert`"}
+La instrucción `assert` evalúa una expresión booleana. Si es `True`, no hace nada. Si es `False`, lanza una excepción `AssertionError` que detiene el programa (salvo que se capture con `try/except`).
+
+```python
+assert expresion
+assert expresion, "mensaje de error descriptivo"
+```
+:::
+
+```{pyodide}
+def raiz_cuadrada(x: float) -> float:
+    """
+    Calcula la raíz cuadrada de x.
+    Precondición: x >= 0.
+    """
+    assert x >= 0, f"raiz_cuadrada requiere x >= 0, pero se recibió {x}"
+    import math
+    return math.sqrt(x)
+
+print(raiz_cuadrada(9.0))   # 3.0
+print(raiz_cuadrada(2.0))   # 1.4142135623730951
+# print(raiz_cuadrada(-1.0))  # AssertionError: raiz_cuadrada requiere x >= 0
+```
+
+Los usos principales de `assert` son:
+
+- **Precondiciones**: verificar que los argumentos de una función cumplen los requisitos. Documentan el contrato de la función de forma ejecutable.
+- **Postcondiciones**: verificar que el resultado es plausible antes de retornarlo.
+- **Invariantes de bucle**: insertar `assert` dentro de un bucle para comprobar que la propiedad invariante se mantiene en cada iteración durante el desarrollo.
+
+```{pyodide}
+def buscar_verificado(v: list[float], objetivo: float) -> int:
+    """Búsqueda lineal con verificación del invariante."""
+    # Precondición: no la verificamos con assert aquí (lista puede ser vacía)
+    for i in range(len(v)):
+        # Invariante: objetivo no está en v[0..i-1]
+        assert objetivo not in v[:i], f"Invariante violado en i={i}"
+        if v[i] == objetivo:
+            return i
+    return -1
+
+print(buscar_verificado([3.0, 7.0, 2.0, 5.0], 2.0))   # 2
+print(buscar_verificado([3.0, 7.0, 2.0, 5.0], 9.0))   # -1
+```
+
+::: {#imp-assert-produccion .callout-important title="`assert` no sustituye a la validación de entrada"}
+La instrucción `assert` puede **desactivarse** completamente ejecutando Python con la opción `-O` (*optimize*): `python -O mi_programa.py`. En ese modo, ningún `assert` se ejecuta.
+
+Por esto, `assert` es adecuado para:
+- Verificar invariantes y suposiciones del programador durante el desarrollo.
+- Expresar precondiciones en código "de confianza" (usado por uno mismo o por el equipo).
+
+No es adecuado para:
+- Validar entradas del usuario (que pueden ser cualquier cosa).
+- Gestionar errores recuperables en producción.
+
+Para validación robusta de entradas en código de producción, usar `if condicion: raise ValueError("...")`.
+:::
+
+### **5.5.2 Fundamentos de `pytest`**
+
+Las verificaciones con `assert` dentro del código de producción son útiles durante el desarrollo, pero tienen un problema: hay que leer la salida del programa para saber si todo va bien. Las **pruebas automatizadas** resuelven esto: son funciones especiales que verifican el comportamiento del código de forma sistemática y producen un informe claro de qué pasa y qué falla.
+
+`pytest` es el framework de pruebas estándar en Python [@pytest]. No requiere importaciones especiales en los ficheros de prueba: basta con escribir funciones que empiecen por `test_` y usar `assert`.
+
+::: {#tip-test-unitario .callout-tip title="Prueba unitaria"}
+Una **prueba unitaria** (*unit test*) es una función que verifica el comportamiento correcto de una unidad pequeña de código (típicamente una función) ante entradas concretas. Cada prueba debe ser **independiente** (no depende del orden de ejecución), **repetible** (siempre da el mismo resultado) y **específica** (prueba una sola cosa).
+:::
+
+#### Estructura de un fichero de pruebas
+
+Por convención, los ficheros de prueba se llaman `test_nombre_modulo.py` y se colocan junto al módulo que prueban o en una carpeta `tests/`.
+
+```python
+# test_vectores.py
+
+from t04_paquete.vectores import producto_escalar, norma, son_ortogonales
+
+def test_producto_escalar_basico():
+    assert producto_escalar([1.0, 2.0, 3.0], [4.0, 5.0, 6.0]) == 32.0
+
+def test_producto_escalar_ortogonales():
+    assert producto_escalar([1.0, 0.0], [0.0, 1.0]) == 0.0
+
+def test_norma_pitagoras():
+    assert norma([3.0, 4.0]) == 5.0
+
+def test_norma_unitario():
+    import math
+    assert abs(norma([1.0, 0.0]) - 1.0) < 1e-12
+
+def test_son_ortogonales_true():
+    assert son_ortogonales([1.0, 0.0], [0.0, 1.0]) is True
+
+def test_son_ortogonales_false():
+    assert son_ortogonales([1.0, 1.0], [1.0, 0.0]) is False
+
+def test_producto_escalar_precondicion_violada():
+    # Vectores de distinta longitud → precondición no cumplida → None
+    assert producto_escalar([1.0, 2.0], [1.0]) is None
+```
+
+#### Ejecución de pytest
+
+Desde la terminal, dentro del directorio del proyecto:
+
+```text
+pytest                        # ejecuta todos los test_*.py del directorio
+pytest test_vectores.py       # ejecuta solo ese fichero
+pytest test_vectores.py -v    # verbose: muestra el nombre de cada prueba
+pytest -x                     # para en el primer fallo
+```
+
+Salida típica cuando todo pasa:
+
+```text
+========================= test session starts ==========================
+collected 7 items
+
+test_vectores.py .......                                          [100%]
+
+========================== 7 passed in 0.03s ===========================
+```
+
+Salida cuando una prueba falla:
+
+```text
+========================= test session starts ==========================
+collected 7 items
+
+test_vectores.py .F.....                                          [100%]
+
+============================== FAILURES ================================
+___________________ test_norma_pitagoras ___________________
+
+    def test_norma_pitagoras():
+>       assert norma([3.0, 4.0]) == 5.0
+E       AssertionError: assert 4.999999999 == 5.0
+
+test_vectores.py:12: AssertionError
+====================== 1 failed, 6 passed in 0.04s =====================
+```
+
+::: {#cau-igualdad-flotante .callout-caution title="Comparar flotantes en pruebas"}
+La igualdad estricta `==` entre números de punto flotante es problemática en las pruebas porque los errores de redondeo pueden hacer que dos resultados matemáticamente iguales difieran en el último bit. La solución es comparar con una **tolerancia**:
+
+```python
+# Mal: puede fallar por errores de redondeo
+assert norma([3.0, 4.0]) == 5.0
+
+# Bien: tolerancia absoluta
+assert abs(norma([3.0, 4.0]) - 5.0) < 1e-10
+
+# Bien: usando pytest.approx (recomendado en pytest)
+import pytest
+assert norma([3.0, 4.0]) == pytest.approx(5.0)
+```
+
+`pytest.approx` usa una tolerancia relativa de $10^{-6}$ por defecto, adecuada para la mayoría de cálculos numéricos.
+:::
+
+### **5.5.3 Qué pruebas escribir**
+
+Una prueba incompleta puede dar una falsa sensación de seguridad. Para cada función, es conveniente cubrir al menos tres tipos de casos:
+
+::: {#imp-casos-prueba .callout-important title="Tipos de casos de prueba"}
+1. **Caso normal**: entrada típica para la que la función debe funcionar correctamente.
+2. **Casos límite** (*edge cases*): valores en los extremos del dominio donde el comportamiento puede ser distinto (lista vacía, lista de un elemento, cero, negativo, número muy grande).
+3. **Precondición violada**: si la función retorna `None` cuando no se cumple la precondición, verificar que efectivamente retorna `None` y no lanza una excepción inesperada.
+:::
+
+```python
+# test_conjuntos.py
+
+from t04_paquete.conjuntos import divisores_propios, primos_hasta, son_amigos
+
+# --- divisores_propios ---
+
+def test_divisores_propios_normal():
+    assert divisores_propios(12) == {1, 2, 3, 4, 6}
+
+def test_divisores_propios_primo():
+    assert divisores_propios(7) == {1}
+
+def test_divisores_propios_uno():
+    # 1 no tiene divisores propios (ningún divisor positivo < 1)
+    assert divisores_propios(1) == set()
+
+def test_divisores_propios_cuadrado_perfecto():
+    assert divisores_propios(36) == {1, 2, 3, 4, 6, 9, 12, 18}
+
+def test_divisores_propios_precondicion():
+    # n < 1 viola la precondición → None
+    assert divisores_propios(0) is None
+
+# --- primos_hasta ---
+
+def test_primos_hasta_30():
+    assert primos_hasta(30) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+
+def test_primos_hasta_100_count():
+    assert len(primos_hasta(100)) == 25
+
+def test_primos_hasta_2():
+    # caso límite: el único primo <= 2 es el 2
+    assert primos_hasta(2) == [2]
+
+# --- son_amigos ---
+
+def test_son_amigos_par_clasico():
+    assert son_amigos(220, 284) is True
+
+def test_son_amigos_falso():
+    assert son_amigos(10, 20) is False
+
+def test_son_amigos_mismo_numero():
+    # Un número no es amigo de sí mismo (la definición exige a ≠ b)
+    assert son_amigos(6, 6) is False
+```
+
+::: {#nte-tdd .callout-note title="Desarrollo guiado por pruebas (TDD)"}
+El **desarrollo guiado por pruebas** (*Test-Driven Development*, TDD) invierte el orden habitual: primero se escriben las pruebas (que fallarán porque la función aún no existe), y después se implementa la función hasta que las pruebas pasen. Este enfoque obliga a clarificar el comportamiento esperado antes de escribir código y produce funciones con una cobertura de pruebas más completa. Es una práctica estándar en la industria del software.
+:::
+
+### **5.5.4 Integración de `assert` y `pytest` en el flujo de trabajo**
+
+Los dos mecanismos son complementarios y tienen roles distintos:
+
+| | `assert` en el código | Funciones `test_*` en pytest |
+|---|---|---|
+| **Dónde** | Dentro de las funciones del módulo | En ficheros `test_*.py` separados |
+| **Cuándo se ejecuta** | Siempre que se llama la función | Solo al ejecutar `pytest` |
+| **Propósito** | Documentar suposiciones del programador | Verificar el contrato de la función |
+| **En producción** | Desactivable con `-O` | No se incluye en el código de producción |
+
+Un flujo de trabajo típico para este curso:
+
+1. Leer el enunciado del ejercicio e identificar precondiciones, postcondiciones y casos límite.
+2. Escribir la signatura y el docstring de la función.
+3. Escribir dos o tres pruebas en `test_modulo.py` (aún fallarán).
+4. Implementar la función con `assert` para las precondiciones.
+5. Ejecutar `pytest`: las pruebas deben pasar. Si alguna falla, corregir la implementación.
+6. Añadir más casos de prueba si se detectan huecos en la cobertura.
+
+```{pyodide}
+# Ejemplo integrado: función con assert + pruebas documentadas
+
+def media_aritmetica(datos: list[float]) -> float | None:
+    """
+    Calcula la media aritmética de una lista de datos.
+    Precondición: datos no está vacío.
+    """
+    assert datos is not None, "datos no puede ser None"
+    if not datos:
+        return None
+    return sum(datos) / len(datos)
+
+# Pruebas informales (en producción irían en test_estadistica.py)
+assert media_aritmetica([1.0, 2.0, 3.0]) == 2.0
+assert media_aritmetica([5.0]) == 5.0
+assert media_aritmetica([]) is None
+assert abs(media_aritmetica([1.0, 2.0, 3.0, 4.0]) - 2.5) < 1e-12
+
+print("Todas las verificaciones pasaron.")
+```
