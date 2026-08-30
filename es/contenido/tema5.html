@@ -1317,7 +1317,7 @@ Concepto Clave&nbsp;5: <code>assert</code> no sustituye a la validación de entr
 <p>La instrucción <code>assert</code> puede <strong>desactivarse</strong> completamente ejecutando Python con la opción <code>-O</code> (<em>optimize</em>): <code>python -O mi_programa.py</code>. En ese modo, ningún <code>assert</code> se ejecuta.</p>
 <p>Por esto, <code>assert</code> es adecuado para: - Verificar invariantes y suposiciones del programador durante el desarrollo. - Expresar precondiciones en código “de confianza” (usado por uno mismo o por el equipo).</p>
 <p>No es adecuado para: - Validar entradas del usuario (que pueden ser cualquier cosa). - Gestionar errores recuperables en producción.</p>
-<p>Para validación robusta de entradas en código de producción, usar <code>if condicion: raise ValueError("...")</code>.</p>
+<p>Para validación robusta de entradas en código de producción, usar <code>if condicion: raise ValueError("...")</code> (véase sección 3.4).</p>
 </div>
 </div>
 </section>
@@ -1462,32 +1462,33 @@ Concepto Clave&nbsp;6: Tipos de casos de prueba
 <span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> divisores_propios(<span class="dv">36</span>) <span class="op">==</span> {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">18</span>}</span>
 <span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_divisores_propios_precondicion():</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># n &lt; 1 viola la precondición → None</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> divisores_propios(<span class="dv">0</span>) <span class="kw">is</span> <span class="va">None</span></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="co"># --- primos_hasta ---</span></span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_primos_hasta_30():</span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> primos_hasta(<span class="dv">30</span>) <span class="op">==</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">29</span>]</span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_primos_hasta_100_count():</span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(primos_hasta(<span class="dv">100</span>)) <span class="op">==</span> <span class="dv">25</span></span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_primos_hasta_2():</span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># caso límite: el único primo &lt;= 2 es el 2</span></span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> primos_hasta(<span class="dv">2</span>) <span class="op">==</span> [<span class="dv">2</span>]</span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="co"># --- son_amigos ---</span></span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_son_amigos_par_clasico():</span>
-<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> son_amigos(<span class="dv">220</span>, <span class="dv">284</span>) <span class="kw">is</span> <span class="va">True</span></span>
-<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_son_amigos_falso():</span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> son_amigos(<span class="dv">10</span>, <span class="dv">20</span>) <span class="kw">is</span> <span class="va">False</span></span>
-<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_son_amigos_mismo_numero():</span>
-<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Un número no es amigo de sí mismo (la definición exige a ≠ b)</span></span>
-<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> son_amigos(<span class="dv">6</span>, <span class="dv">6</span>) <span class="kw">is</span> <span class="va">False</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># n &lt; 1 viola la precondición → ValueError (sección 3.4)</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>        divisores_propios(<span class="dv">0</span>)</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co"># --- primos_hasta ---</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_primos_hasta_30():</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> primos_hasta(<span class="dv">30</span>) <span class="op">==</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">29</span>]</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_primos_hasta_100_count():</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(primos_hasta(<span class="dv">100</span>)) <span class="op">==</span> <span class="dv">25</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_primos_hasta_2():</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># caso límite: el único primo &lt;= 2 es el 2</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> primos_hasta(<span class="dv">2</span>) <span class="op">==</span> [<span class="dv">2</span>]</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co"># --- son_amigos ---</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_son_amigos_par_clasico():</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> son_amigos(<span class="dv">220</span>, <span class="dv">284</span>) <span class="kw">is</span> <span class="va">True</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_son_amigos_falso():</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> son_amigos(<span class="dv">10</span>, <span class="dv">20</span>) <span class="kw">is</span> <span class="va">False</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_son_amigos_mismo_numero():</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Un número no es amigo de sí mismo (la definición exige a ≠ b)</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> son_amigos(<span class="dv">6</span>, <span class="dv">6</span>) <span class="kw">is</span> <span class="va">False</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="nte-tdd" class="callout callout-style-default callout-note no-icon callout-titled" title="Desarrollo guiado por pruebas (TDD)">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
