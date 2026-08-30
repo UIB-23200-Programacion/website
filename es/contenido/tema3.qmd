@@ -515,7 +515,7 @@ print(cuadrado(3), cubo(3))   # 9 27
 
 ### **3.2.2 Ámbito global**
 
-Las variables definidas fuera de cualquier función tienen **ámbito global** y son visibles desde cualquier punto del módulo, incluido el cuerpo de las funciones. En Python, un **módulo** es simplemente un fichero `.py`. Cuando escribes código en `programa.py` y lo ejecutas, ese fichero es tu módulo. Los módulos se tratan en detalle en la sección 3.4.
+Las variables definidas fuera de cualquier función tienen **ámbito global** y son visibles desde cualquier punto del módulo, incluido el cuerpo de las funciones. En Python, un **módulo** es simplemente un fichero `.py`. Cuando escribes código en `programa.py` y lo ejecutas, ese fichero es tu módulo. Los módulos se tratan en detalle en la sección 3.5.
 
 ```{pyodide}
 PI = 3.141592653589793    # constante global (convención: mayúsculas)
@@ -748,12 +748,173 @@ if x < 0:
     raise ValueError(f"x debe ser no negativo, recibido {x}")
 ```
 
-Los `assert` comprueban que el programador usa la función correctamente; los `raise` gestionan entradas incorrectas externas. El mecanismo `raise`/`except` se estudia en el Tema 4.
+Los `assert` comprueban que el programador usa la función correctamente; los `raise` gestionan entradas incorrectas externas. El mecanismo `raise`/`except` se estudia en la sección 3.4.
 :::
 
 ---
 
-## 3.4. Concepto de módulo. Importación y creación de módulos propios
+## 3.4. Excepciones
+
+En la sección anterior se definió el contrato de una función: precondiciones que el llamador debe cumplir y postcondiciones que la función garantiza. Pero el contrato solo describe el camino feliz. ¿Qué ocurre cuando algo falla? Python usa las **excepciones** como mecanismo estándar para señalar errores en tiempo de ejecución y comunicarlos de forma controlada.
+
+::: {#tip-excepcion .callout-tip title="Excepción"}
+Una **excepción** es un objeto que Python crea cuando detecta un error durante la ejecución. Al lanzarse, interrumpe el flujo normal del programa y asciende por la pila de llamadas hasta que algún código la capture y la gestione. Si ningún código la captura, el programa termina y Python muestra un mensaje de error (*traceback*).
+:::
+
+Las excepciones más frecuentes en código matemático son:
+
+| Excepción | Se lanza cuando… | Ejemplo |
+|---|---|---|
+| `ValueError` | El tipo es correcto pero el valor no tiene sentido | `math.sqrt(-1)` |
+| `TypeError` | La operación no puede aplicarse al tipo recibido | `"tres" + 3` |
+| `ZeroDivisionError` | División o módulo por cero | `1 / 0` |
+| `IndexError` | Se accede a una posición fuera del rango de la lista | `v[10]` con `len(v) == 3` |
+| `KeyError` | Se accede a una clave que no existe en un diccionario | `d["z"]` si `"z"` no está en `d` |
+| `RecursionError` | La recursión supera el límite de profundidad de Python | Sin caso base |
+
+Estas excepciones no son errores de Python, sino señales bien definidas que el propio lenguaje o tu código puede lanzar y capturar.
+
+### **3.4.1 Lanzar excepciones con `raise`**
+
+La instrucción `raise` lanza una excepción desde tu propio código. Es la herramienta correcta para rechazar entradas inválidas cuando la función no puede continuar:
+
+```python
+raise TipoDeExcepcion("mensaje descriptivo")
+```
+
+El tipo de excepción debe elegirse según la naturaleza del problema: `ValueError` para valores fuera de dominio, `TypeError` para tipos incorrectos. El mensaje debe ser informativo.
+
+Retomando la función `raiz_cuadrada` de la sección anterior, la versión con `raise` en lugar de `assert` es adecuada cuando la función forma parte de un programa que recibe datos externos:
+
+```{pyodide}
+import math
+
+def raiz_cuadrada(x: float, tol: float = 1e-10) -> float:
+    """
+    Aproxima √x mediante el método de Newton-Raphson.
+
+    Precondición: x >= 0 y tol > 0.
+    Retorna: aproximación de √x con error inferior a tol.
+    """
+    if x < 0:
+        raise ValueError(f"raiz_cuadrada: x debe ser ≥ 0, recibido {x}")
+    if tol <= 0:
+        raise ValueError(f"raiz_cuadrada: tol debe ser > 0, recibida {tol}")
+    if x == 0:
+        return 0.0
+    aprox = x / 2.0
+    while True:
+        nueva = (aprox + x / aprox) / 2
+        if abs(nueva - aprox) < tol:
+            return nueva
+        aprox = nueva
+
+print(raiz_cuadrada(2))     # 1.4142135623730951
+print(raiz_cuadrada(0))     # 0.0
+# raiz_cuadrada(-1)         # ValueError: x debe ser ≥ 0, recibido -1
+```
+
+::: {#imp-raise-vs-assert .callout-important title="`raise` versus `assert`"}
+Ambas instrucciones pueden verificar precondiciones, pero tienen propósitos distintos:
+
+| | `assert condicion` | `raise ValueError(...)` |
+|---|---|---|
+| **Propósito** | Detectar errores del programador | Rechazar entradas externas inválidas |
+| **Se desactiva con** | `python -O` | Nunca |
+| **Cuándo usar** | Durante el desarrollo, en pruebas | En código de producción, datos del usuario |
+| **Mensaje** | Opcional | Siempre informativo |
+
+La regla práctica: usa `assert` para verificar suposiciones sobre *tu propio código*; usa `raise` para rechazar valores que llegan del *exterior* (usuario, fichero, red).
+:::
+
+### **3.4.2 Capturar excepciones con `try/except`**
+
+Lanzar una excepción señala que algo salió mal. Capturarla permite que el programa reaccione de forma controlada en lugar de terminar abruptamente. La estructura es:
+
+```python
+try:
+    # código que puede lanzar una excepción
+except TipoDeExcepcion as e:
+    # código que se ejecuta si ocurre la excepción
+```
+
+El bloque `try` se ejecuta normalmente hasta que ocurre una excepción del tipo indicado. Entonces la ejecución salta al bloque `except`, donde `e` es el objeto excepción y `str(e)` contiene el mensaje.
+
+Un caso frecuente es convertir texto a número — patrón habitual al procesar datos externos o entrada del usuario:
+
+```{pyodide}
+entradas = ["3.14", "dos", "-1.5", ""]
+
+for texto in entradas:
+    try:
+        valor = float(texto)
+        print(f"  '{texto}' → {valor}")
+    except ValueError:
+        print(f"  '{texto}' no es un número válido.")
+```
+
+Se pueden capturar varios tipos de excepción en bloques separados para responder de forma diferente a cada error:
+
+```{pyodide}
+def dividir_seguro(a: float, b: float) -> float | None:
+    """
+    Divide a entre b.
+    Retorna None e imprime un mensaje si b es cero o los operandos no son numéricos.
+    """
+    try:
+        return a / b
+    except ZeroDivisionError as e:
+        print(f"Error de división: {e}")
+        return None
+    except TypeError as e:
+        print(f"Tipo de dato incorrecto: {e}")
+        return None
+
+print(dividir_seguro(10.0, 4.0))    # 2.5
+print(dividir_seguro(10.0, 0.0))    # Error de división: float division by zero → None
+print(dividir_seguro(10.0, "dos"))  # Tipo de dato incorrecto: ... → None
+```
+
+::: {#cau-bare-except .callout-caution title="No usar `except:` sin tipo"}
+La forma `except:` sin especificar tipo captura **todas** las excepciones, incluyendo `KeyboardInterrupt` (Ctrl+C) y `SystemExit`. Esto puede dejar el programa atrapado en un estado inconsistente o impedir cerrarlo:
+
+```python
+# Mal: captura demasiado
+try:
+    resultado = calcular(x)
+except:
+    print("Algo salió mal.")
+
+# Bien: captura solo lo que esperas
+try:
+    resultado = calcular(x)
+except ValueError as e:
+    print(f"Valor inválido: {e}")
+```
+
+Como regla general: captura solo el tipo de excepción que sabes cómo manejar.
+:::
+
+### **3.4.3 La cláusula `finally`**
+
+El bloque `finally` contiene código que se ejecuta **siempre**, haya o no excepción. Su uso más habitual es garantizar que los recursos se liberan correctamente:
+
+```python
+try:
+    resultado = operacion_costosa()
+except ValueError as e:
+    print(f"Error: {e}")
+finally:
+    print("Limpieza: este bloque siempre se ejecuta.")
+```
+
+::: {#nte-finally .callout-note title="`finally` y gestión de recursos"}
+En la práctica, la liberación de recursos en Python se gestiona con la instrucción `with`, que implementa `finally` de forma implícita y más segura. El patrón `with` se estudia en el Tema 6 al trabajar con ficheros, que es donde su utilidad se hace más evidente.
+:::
+
+---
+
+## 3.5. Concepto de módulo. Importación y creación de módulos propios
 
 A medida que un programa crece, concentrar todo el código en un único fichero se vuelve inmanejable. Los **módulos** son la solución de Python para organizar el código en unidades reutilizables e independientes.
 
@@ -767,7 +928,7 @@ Un **módulo** en Python es un fichero `.py` que contiene definiciones de funcio
 Desde el Tema 2 se usa `import math`: `math` es un módulo de la biblioteca estándar de Python. Sus funciones (`sqrt`, `log`, `sin`, etc.) están definidas con el mismo mecanismo que cualquier módulo propio.
 :::
 
-### **3.4.1 Importación de módulos**
+### **3.5.1 Importación de módulos**
 
 Python ofrece tres formas de importar un módulo o sus contenidos:
 
@@ -815,7 +976,7 @@ Algunos módulos de la biblioteca estándar especialmente útiles en matemática
 | `fractions` | Aritmética exacta con fracciones racionales |
 | `decimal` | Aritmética decimal de precisión arbitraria |
 
-### **3.4.2 Creación de módulos propios**
+### **3.5.2 Creación de módulos propios**
 
 Cualquier fichero `.py` es automáticamente un módulo importable desde otro fichero del mismo directorio. Para crear un módulo propio basta con escribir las funciones en un fichero con un nombre descriptivo.
 
@@ -853,7 +1014,8 @@ def mcm(a: int, b: int) -> int:
 
 def factorial(n: int) -> int:
     """Factorial de n. Precondición: n >= 0."""
-    assert n >= 0, f"factorial no está definido para negativos, recibido {n}"
+    if n < 0:
+        raise ValueError(f"factorial: no está definido para negativos, recibido {n}")
     if n == 0:
         return 1
     return n * factorial(n - 1)
@@ -882,7 +1044,7 @@ print(numeros.factorial(10))      # 3628800
 ```
 :::
 
-### **3.4.3 El bloque `if __name__ == "__main__"`**
+### **3.5.3 El bloque `if __name__ == "__main__"`**
 
 Cuando Python carga un módulo mediante `import`, ejecuta todo su código de nivel superior. Esto plantea un problema si el módulo contiene pruebas o demostraciones que no queremos ejecutar al importarlo.
 
@@ -899,11 +1061,11 @@ Este patrón es la práctica estándar en Python: el mismo fichero puede actuar 
 
 ---
 
-## 3.5. Organización de proyectos
+## 3.6. Organización de proyectos
 
 A medida que un proyecto crece, dividir el código en módulos con responsabilidades bien definidas facilita el mantenimiento, la detección de errores y la colaboración. Organizar un proyecto en Python correctamente desde el principio es fundamental para asegurar que el código sea escalable, reproducible y fácil de mantener. Actualmente, la comunidad de Python ha convergido en un conjunto de estándares muy claros, alejándose de los scripts sueltos y adoptando herramientas modernas.
 
-### **3.5.1 Estructura de ficheros**
+### **3.6.1 Estructura de ficheros**
 
 La estructura más recomendada por la [Python Packaging Authority (PyPA)](https://packaging.python.org/en/latest/){target="_blank"} utiliza una carpeta `src/` para contener el código fuente, separando así el código de los tests y de la documentación. La organización de un ejemplo de proyecto, titulado `t03_ejemplo`, sería:
 
@@ -944,7 +1106,7 @@ Una guía práctica:
 No es una regla estricta, pero ayuda a mantener el código manejable.
 :::
 
-### **3.5.2 Ejemplo de módulos del proyecto `t03_ejemplo`**
+### **3.6.2 Ejemplo de módulos del proyecto `t03_ejemplo`**
 
 El proyecto `t03_ejemplo`, con la estructura presentada anteriormente, incluye además de `numeros.py`, otros tres módulos `geometria.py`, `conversor.py` y `main.py` con responsabilidades distintas que se presentan a continuación.
 
@@ -958,13 +1120,15 @@ import math
 
 def area_circulo(r: float) -> float:
     """Área de un círculo de radio r. Precondición: r >= 0."""
-    assert r >= 0, f"El radio debe ser no negativo, recibido {r}"
+    if r < 0:
+        raise ValueError(f"area_circulo: el radio debe ser no negativo, recibido {r}")
     return math.pi * r ** 2
 
 
 def hipotenusa(a: float, b: float) -> float:
     """Longitud de la hipotenusa dado los catetos a y b."""
-    assert a > 0 and b > 0, "Los catetos deben ser positivos"
+    if a <= 0 or b <= 0:
+        raise ValueError(f"hipotenusa: los catetos deben ser positivos, recibido a={a}, b={b}")
     return math.sqrt(a ** 2 + b ** 2)
 
 
@@ -999,7 +1163,8 @@ def fahrenheit_a_celsius(f: float) -> float:
 
 def celsius_a_kelvin(c: float) -> float:
     """Convierte grados Celsius a Kelvin. Precondición: c >= -273.15."""
-    assert c >= -273.15, f"Temperatura por debajo del cero absoluto: {c}"
+    if c < -273.15:
+        raise ValueError(f"celsius_a_kelvin: temperatura por debajo del cero absoluto, recibido {c}")
     return c + 273.15
 
 
@@ -1048,21 +1213,33 @@ def ejecutar() -> None:
         opcion = input("Elige una opción: ")
 
         if opcion == "1":
-            n = int(input("n: "))
-            print(f"{n} es primo: {numeros.es_primo(n)}")
+            try:
+                n = int(input("n: "))
+                print(f"{n} es primo: {numeros.es_primo(n)}")
+            except ValueError as e:
+                print(f"Error: {e}")
 
         elif opcion == "2":
-            a = int(input("a: "))
-            b = int(input("b: "))
-            print(f"mcd({a}, {b}) = {numeros.mcd(a, b)}")
+            try:
+                a = int(input("a: "))
+                b = int(input("b: "))
+                print(f"mcd({a}, {b}) = {numeros.mcd(a, b)}")
+            except ValueError as e:
+                print(f"Error: {e}")
 
         elif opcion == "3":
-            r = float(input("Radio: "))
-            print(f"Área = {geometria.area_circulo(r):.6f}")
+            try:
+                r = float(input("Radio: "))
+                print(f"Área = {geometria.area_circulo(r):.6f}")
+            except ValueError as e:
+                print(f"Error: {e}")
 
         elif opcion == "4":
-            c = float(input("Temperatura en °C: "))
-            print(f"{c} °C = {conversor.celsius_a_fahrenheit(c):.2f} °F")
+            try:
+                c = float(input("Temperatura en °C: "))
+                print(f"{c} °C = {conversor.celsius_a_fahrenheit(c):.2f} °F")
+            except ValueError as e:
+                print(f"Error: {e}")
 
         elif opcion == "0":
             print("Hasta luego.")

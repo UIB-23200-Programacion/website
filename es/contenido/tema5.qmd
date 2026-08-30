@@ -711,7 +711,7 @@ No es adecuado para:
 - Validar entradas del usuario (que pueden ser cualquier cosa).
 - Gestionar errores recuperables en producción.
 
-Para validación robusta de entradas en código de producción, usar `if condicion: raise ValueError("...")`.
+Para validación robusta de entradas en código de producción, usar `if condicion: raise ValueError("...")` (véase sección 3.4).
 :::
 
 ### **5.5.2 Fundamentos de `pytest`**
@@ -847,8 +847,9 @@ def test_divisores_propios_cuadrado_perfecto():
     assert divisores_propios(36) == {1, 2, 3, 4, 6, 9, 12, 18}
 
 def test_divisores_propios_precondicion():
-    # n < 1 viola la precondición → None
-    assert divisores_propios(0) is None
+    # n < 1 viola la precondición → ValueError (sección 3.4)
+    with pytest.raises(ValueError):
+        divisores_propios(0)
 
 # --- primos_hasta ---
 

@@ -515,7 +515,7 @@ print(cuadrado(3), cubo(3))   # 9 27
 
 ### **3.2.2 Àmbit global**
 
-Les variables definides fora de qualsevol funció tenen **àmbit global** i són visibles des de qualsevol punt del mòdul, inclòs el cos de les funcions. En Python, un **mòdul** és simplement un fitxer `.py`. Quan escrius codi en `programa.py` i l'executes, aquell fitxer és el teu mòdul. Els mòduls es tracten en detall a la secció 3.4.
+Les variables definides fora de qualsevol funció tenen **àmbit global** i són visibles des de qualsevol punt del mòdul, inclòs el cos de les funcions. En Python, un **mòdul** és simplement un fitxer `.py`. Quan escrius codi en `programa.py` i l'executes, aquell fitxer és el teu mòdul. Els mòduls es tracten en detall a la secció 3.5.
 
 ```{pyodide}
 PI = 3.141592653589793    # constante global (convención: mayúsculas)
@@ -748,12 +748,173 @@ if x < 0:
     raise ValueError(f"x debe ser no negativo, recibido {x}")
 ```
 
-Els `assert` comproven que el programador usa la funció correctament; els `raise` gestionen entrades incorrectes externes. El mecanisme `raise`/`except` s'estudia al Tema 4.
+Els `assert` comproven que el programador usa la funció correctament; els `raise` gestionen entrades incorrectes externes. El mecanisme `raise`/`except` s'estudia a la secció 3.4.
 :::
 
 ---
 
-## 3.4. Concepte de mòdul. Importació i creació de mòduls propis
+## 3.4. Excepcions
+
+A la secció anterior es va definir el contracte d'una funció: precondicions que el cridador ha de complir i postcondicions que la funció garanteix. Però el contracte només descriu el camí feliç. Què passa quan alguna cosa falla? Python usa les **excepcions** com a mecanisme estàndard per senyalar errors en temps d'execució i comunicar-los de forma controlada.
+
+::: {#tip-excepcion .callout-tip title="Excepció"}
+Una **excepció** és un objecte que Python crea quan detecta un error durant l'execució. En llançar-se, interromp el flux normal del programa i ascendeix per la pila de crides fins que algun codi la capturi i la gestioni. Si cap codi la captura, el programa acaba i Python mostra un missatge d'error (*traceback*).
+:::
+
+Les excepcions més freqüents en codi matemàtic són:
+
+| Excepció | Es llança quan… | Exemple |
+|---|---|---|
+| `ValueError` | El tipus és correcte però el valor no té sentit | `math.sqrt(-1)` |
+| `TypeError` | L'operació no pot aplicar-se al tipus rebut | `"tres" + 3` |
+| `ZeroDivisionError` | Divisió o mòdul per zero | `1 / 0` |
+| `IndexError` | S'accedeix a una posició fora del rang de la llista | `v[10]` amb `len(v) == 3` |
+| `KeyError` | S'accedeix a una clau que no existeix en un diccionari | `d["z"]` si `"z"` no és a `d` |
+| `RecursionError` | La recursió supera el límit de profunditat de Python | Sense cas base |
+
+Aquestes excepcions no són errors de Python, sinó senyals ben definides que el propi llenguatge o el teu codi pot llançar i capturar.
+
+### **3.4.1 Llançar excepcions amb `raise`**
+
+La instrucció `raise` llança una excepció des del teu propi codi. És l'eina correcta per rebutjar entrades invàlides quan la funció no pot continuar:
+
+```python
+raise TipusExcepció("missatge descriptiu")
+```
+
+El tipus d'excepció s'ha de triar en funció de la naturalesa del problema: `ValueError` per a valors fora de domini, `TypeError` per a tipus incorrectes. El missatge ha de ser informatiu.
+
+Reprenent la funció `raiz_cuadrada` de la secció anterior, la versió amb `raise` en lloc d'`assert` és adequada quan la funció forma part d'un programa que rep dades externes:
+
+```{pyodide}
+import math
+
+def raiz_cuadrada(x: float, tol: float = 1e-10) -> float:
+    """
+    Aproxima √x mediante el método de Newton-Raphson.
+
+    Precondición: x >= 0 y tol > 0.
+    Retorna: aproximación de √x con error inferior a tol.
+    """
+    if x < 0:
+        raise ValueError(f"raiz_cuadrada: x debe ser ≥ 0, recibido {x}")
+    if tol <= 0:
+        raise ValueError(f"raiz_cuadrada: tol debe ser > 0, recibida {tol}")
+    if x == 0:
+        return 0.0
+    aprox = x / 2.0
+    while True:
+        nueva = (aprox + x / aprox) / 2
+        if abs(nueva - aprox) < tol:
+            return nueva
+        aprox = nueva
+
+print(raiz_cuadrada(2))     # 1.4142135623730951
+print(raiz_cuadrada(0))     # 0.0
+# raiz_cuadrada(-1)         # ValueError: x debe ser ≥ 0, recibido -1
+```
+
+::: {#imp-raise-vs-assert .callout-important title="`raise` versus `assert`"}
+Ambdues instruccions poden verificar precondicions, però tenen propòsits distints:
+
+| | `assert condicio` | `raise ValueError(...)` |
+|---|---|---|
+| **Propòsit** | Detectar errors del programador | Rebutjar entrades externes invàlides |
+| **Es desactiva amb** | `python -O` | Mai |
+| **Quan usar** | Durant el desenvolupament, en proves | En codi de producció, dades de l'usuari |
+| **Missatge** | Opcional | Sempre informatiu |
+
+La regla pràctica: usa `assert` per verificar suposicions sobre el *teu propi codi*; usa `raise` per rebutjar valors que arriben de l'*exterior* (usuari, fitxer, xarxa).
+:::
+
+### **3.4.2 Capturar excepcions amb `try/except`**
+
+Llançar una excepció senyala que alguna cosa ha anat malament. Capturar-la permet que el programa reaccioni de forma controlada en lloc d'acabar abruptament. L'estructura és:
+
+```python
+try:
+    # codi que pot llançar una excepció
+except TipusExcepció as e:
+    # codi que s'executa si ocorre l'excepció
+```
+
+El bloc `try` s'executa normalment fins que ocorre una excepció del tipus indicat. Llavors l'execució salta al bloc `except`, on `e` és l'objecte excepció i `str(e)` conté el missatge.
+
+Un cas freqüent és convertir text a nombre — patró habitual en processar dades externes o entrada de l'usuari:
+
+```{pyodide}
+entradas = ["3.14", "dos", "-1.5", ""]
+
+for texto in entradas:
+    try:
+        valor = float(texto)
+        print(f"  '{texto}' → {valor}")
+    except ValueError:
+        print(f"  '{texto}' no es un número válido.")
+```
+
+Es poden capturar diversos tipus d'excepció en blocs separats per respondre de forma diferent a cada error:
+
+```{pyodide}
+def dividir_seguro(a: float, b: float) -> float | None:
+    """
+    Divide a entre b.
+    Retorna None e imprime un mensaje si b es cero o los operandos no son numéricos.
+    """
+    try:
+        return a / b
+    except ZeroDivisionError as e:
+        print(f"Error de división: {e}")
+        return None
+    except TypeError as e:
+        print(f"Tipo de dato incorrecto: {e}")
+        return None
+
+print(dividir_seguro(10.0, 4.0))    # 2.5
+print(dividir_seguro(10.0, 0.0))    # Error de división: float division by zero → None
+print(dividir_seguro(10.0, "dos"))  # Tipo de dato incorrecto: ... → None
+```
+
+::: {#cau-bare-except .callout-caution title="No usar `except:` sense tipus"}
+La forma `except:` sense especificar tipus captura **totes** les excepcions, incloent-hi `KeyboardInterrupt` (Ctrl+C) i `SystemExit`. Això pot deixar el programa atrapat en un estat inconsistent o impedir tancar-lo:
+
+```python
+# Malament: captura massa
+try:
+    resultado = calcular(x)
+except:
+    print("Algo salió mal.")
+
+# Bé: captura només el que s'espera
+try:
+    resultado = calcular(x)
+except ValueError as e:
+    print(f"Valor inválido: {e}")
+```
+
+Com a regla general: captura només el tipus d'excepció que saps com gestionar.
+:::
+
+### **3.4.3 La clàusula `finally`**
+
+El bloc `finally` conté codi que s'executa **sempre**, hi hagi o no excepció. L'ús més habitual és garantir que els recursos s'alliberen correctament:
+
+```python
+try:
+    resultado = operacion_costosa()
+except ValueError as e:
+    print(f"Error: {e}")
+finally:
+    print("Neteja: aquest bloc sempre s'executa.")
+```
+
+::: {#nte-finally .callout-note title="`finally` i gestió de recursos"}
+En la pràctica, l'alliberament de recursos en Python es gestiona amb la instrucció `with`, que implementa `finally` de forma implícita i més segura. El patró `with` s'estudia al Tema 6 en treballar amb fitxers, que és on la seva utilitat es fa més evident.
+:::
+
+---
+
+## 3.5. Concepte de mòdul. Importació i creació de mòduls propis
 
 A mesura que un programa creix, concentrar tot el codi en un únic fitxer es torna inmanejable. Els **mòduls** són la solució de Python per organitzar el codi en unitats reutilitzables i independents.
 
@@ -767,7 +928,7 @@ Un **mòdul** en Python és un fitxer `.py` que conté definicions de funcions, 
 Des del Tema 2 s'usa `import math`: `math` és un mòdul de la biblioteca estàndard de Python. Les seves funcions (`sqrt`, `log`, `sin`, etc.) estan definides amb el mateix mecanisme que qualsevol mòdul propi.
 :::
 
-### **3.4.1 Importació de mòduls**
+### **3.5.1 Importació de mòduls**
 
 Python ofereix tres formes d'importar un mòdul o els seus continguts:
 
@@ -815,7 +976,7 @@ Alguns mòduls de la biblioteca estàndard especialment útils en matemàtiques:
 | `fractions` | Aritmètica exacta amb fraccions racionals |
 | `decimal` | Aritmètica decimal de precisió arbitrària |
 
-### **3.4.2 Creació de mòduls propis**
+### **3.5.2 Creació de mòduls propis**
 
 Qualsevol fitxer `.py` és automàticament un mòdul importable des d'un altre fitxer del mateix directori. Per crear un mòdul propi n'hi ha prou amb escriure les funcions en un fitxer amb un nom descriptiu.
 
@@ -853,7 +1014,8 @@ def mcm(a: int, b: int) -> int:
 
 def factorial(n: int) -> int:
     """Factorial de n. Precondición: n >= 0."""
-    assert n >= 0, f"factorial no está definido para negativos, recibido {n}"
+    if n < 0:
+        raise ValueError(f"factorial: no está definido para negativos, recibido {n}")
     if n == 0:
         return 1
     return n * factorial(n - 1)
@@ -882,7 +1044,7 @@ print(numeros.factorial(10))      # 3628800
 ```
 :::
 
-### **3.4.3 El bloc `if __name__ == "__main__"`**
+### **3.5.3 El bloc `if __name__ == "__main__"`**
 
 Quan Python carrega un mòdul mitjançant `import`, executa tot el seu codi de nivell superior. Això planteja un problema si el mòdul conté proves o demostracions que no volem executar en importar-lo.
 
@@ -899,11 +1061,11 @@ Aquest patró és la pràctica estàndard en Python: el mateix fitxer pot actuar
 
 ---
 
-## 3.5. Organització de projectes
+## 3.6. Organització de projectes
 
 A mesura que un projecte creix, dividir el codi en mòduls amb responsabilitats ben definides facilita el manteniment, la detecció d'errors i la col·laboració. Organitzar un projecte en Python correctament des del principi és fonamental per assegurar que el codi sigui escalable, reproduïble i fàcil de mantenir. Actualment, la comunitat de Python ha convergit en un conjunt d'estàndards molt clars, allunyant-se dels scripts solts i adoptant eines modernes.
 
-### **3.5.1 Estructura de fitxers**
+### **3.6.1 Estructura de fitxers**
 
 L'estructura més recomanada per la [Python Packaging Authority (PyPA)](https://packaging.python.org/en/latest/){target="_blank"} utilitza una carpeta `src/` per contenir el codi font, separant així el codi dels tests i de la documentació. L'organització d'un exemple de projecte, titulat `t03_ejemplo`, seria:
 
@@ -944,7 +1106,7 @@ Una guia pràctica:
 No és una regla estricta, però ajuda a mantenir el codi manejable.
 :::
 
-### **3.5.2 Exemple de mòduls del projecte `t03_ejemplo`**
+### **3.6.2 Exemple de mòduls del projecte `t03_ejemplo`**
 
 El projecte `t03_ejemplo`, amb l'estructura presentada anteriorment, inclou a més de `numeros.py`, altres tres mòduls `geometria.py`, `conversor.py` i `main.py` amb responsabilitats distintes que es presenten a continuació.
 
@@ -958,13 +1120,15 @@ import math
 
 def area_circulo(r: float) -> float:
     """Área de un círculo de radio r. Precondición: r >= 0."""
-    assert r >= 0, f"El radio debe ser no negativo, recibido {r}"
+    if r < 0:
+        raise ValueError(f"area_circulo: el radio debe ser no negativo, recibido {r}")
     return math.pi * r ** 2
 
 
 def hipotenusa(a: float, b: float) -> float:
     """Longitud de la hipotenusa dado los catetos a y b."""
-    assert a > 0 and b > 0, "Los catetos deben ser positivos"
+    if a <= 0 or b <= 0:
+        raise ValueError(f"hipotenusa: los catetos deben ser positivos, recibido a={a}, b={b}")
     return math.sqrt(a ** 2 + b ** 2)
 
 
@@ -999,7 +1163,8 @@ def fahrenheit_a_celsius(f: float) -> float:
 
 def celsius_a_kelvin(c: float) -> float:
     """Convierte grados Celsius a Kelvin. Precondición: c >= -273.15."""
-    assert c >= -273.15, f"Temperatura por debajo del cero absoluto: {c}"
+    if c < -273.15:
+        raise ValueError(f"celsius_a_kelvin: temperatura por debajo del cero absoluto, recibido {c}")
     return c + 273.15
 
 
@@ -1048,21 +1213,33 @@ def ejecutar() -> None:
         opcion = input("Elige una opción: ")
 
         if opcion == "1":
-            n = int(input("n: "))
-            print(f"{n} es primo: {numeros.es_primo(n)}")
+            try:
+                n = int(input("n: "))
+                print(f"{n} es primo: {numeros.es_primo(n)}")
+            except ValueError as e:
+                print(f"Error: {e}")
 
         elif opcion == "2":
-            a = int(input("a: "))
-            b = int(input("b: "))
-            print(f"mcd({a}, {b}) = {numeros.mcd(a, b)}")
+            try:
+                a = int(input("a: "))
+                b = int(input("b: "))
+                print(f"mcd({a}, {b}) = {numeros.mcd(a, b)}")
+            except ValueError as e:
+                print(f"Error: {e}")
 
         elif opcion == "3":
-            r = float(input("Radio: "))
-            print(f"Área = {geometria.area_circulo(r):.6f}")
+            try:
+                r = float(input("Radio: "))
+                print(f"Área = {geometria.area_circulo(r):.6f}")
+            except ValueError as e:
+                print(f"Error: {e}")
 
         elif opcion == "4":
-            c = float(input("Temperatura en °C: "))
-            print(f"{c} °C = {conversor.celsius_a_fahrenheit(c):.2f} °F")
+            try:
+                c = float(input("Temperatura en °C: "))
+                print(f"{c} °C = {conversor.celsius_a_fahrenheit(c):.2f} °F")
+            except ValueError as e:
+                print(f"Error: {e}")
 
         elif opcion == "0":
             print("Hasta luego.")
