@@ -9,7 +9,7 @@ Para la realización de los ejercicios debe utilizar el proyecto de ejemplo `t03
 Agrega las siguientes funciones al módulo que se especifica del paquete `t03_paquete` contenido en el proyecto respetando las siguientes reglas siempre:
 
 - la función debe contener type hints, docstrings y precondiciones,
-- si la precondición (o alguna de las precondiciones) no se cumple la función debe lanzar `ValueError` con un mensaje descriptivo (véase sección 3.4),
+- si la precondición (o alguna de las precondiciones) no se cumple la función debe lanzar `ValueError` con un mensaje descriptivo (véase [sección 3.4 del tema 3](https://uib-23200-programacion.github.io/website/es/contenido/tema3.html#excepciones){target="_blank"}),
 - Al bloque `if __name__ == "__main__"` del módulo se deben agregar pruebas para validar el comportamiento de cada función. Se deben realizar las pruebas al menos para un caso normal, un caso límite (de existir) y un caso que viole la precondición (capturando la excepción con `try/except ValueError`).
 
 ## Ejercicio 3.1: Módulo `numeros.py`

@@ -847,10 +847,6 @@ def test_son_amigos_mismo_numero():
     assert son_amigos(6, 6) is False
 ```
 
-::: {#nte-tdd .callout-note title="Desarrollo guiado por pruebas (TDD)"}
-El **desarrollo guiado por pruebas** (*Test-Driven Development*, TDD) invierte el orden habitual: primero se escriben las pruebas (que fallarán porque la función aún no existe), y después se implementa la función hasta que las pruebas pasen. Este enfoque obliga a clarificar el comportamiento esperado antes de escribir código y produce funciones con una cobertura de pruebas más completa. Es una práctica estándar en la industria del software.
-:::
-
 ### **5.5.4 Integración de `assert` y `pytest` en el flujo de trabajo**
 
 Los dos mecanismos son complementarios y tienen roles distintos:
@@ -862,12 +858,12 @@ Los dos mecanismos son complementarios y tienen roles distintos:
 | **Propósito** | Documentar suposiciones del programador | Verificar el contrato de la función |
 | **En producción** | Desactivable con `-O` | No se incluye en el código de producción |
 
-Un flujo de trabajo típico para este curso:
+Un flujo de trabajo típico (se recomienda pero no se exige) para este curso:
 
 1. Leer el enunciado del ejercicio e identificar precondiciones, postcondiciones y casos límite.
 2. Escribir la signatura y el docstring de la función.
-3. Escribir dos o tres pruebas en `test_modulo.py` (aún fallarán).
-4. Implementar la función con `assert` para las precondiciones.
+3. Implementar la función con `assert` para las precondiciones.
+4. Escribir dos o tres pruebas en `test_modulo.py`.
 5. Ejecutar `pytest`: las pruebas deben pasar. Si alguna falla, corregir la implementación.
 6. Añadir más casos de prueba si se detectan huecos en la cobertura.
 
