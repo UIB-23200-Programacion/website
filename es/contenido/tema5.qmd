@@ -43,7 +43,6 @@ Para simular el sensor de temperatura, se utiliza una función generadora con un
 
 ```{pyodide}
 #| autorun: true
-
 import time
 from typing import Iterator
 
@@ -67,7 +66,7 @@ def sensor_temperatura() -> Iterator[float]:
         time.sleep(1)
 ```
 
-Veamos ahora los dos enfoques para calcular la temperatura máxima.
+Veamos ahora los dos enfoques para calcular la temperatura máxima. En el navegador, todos los `print()` aparecen al mismo tiempo al finalizar la ejecución. En un terminal real (Python local, VS Code, Codespace) cada línea aparece en el momento en que se ejecuta.
 
 ```{pyodide}
 # Forma stream sin lista
@@ -96,9 +95,9 @@ else:
     
 print(f"\nResumen: La temperatura máxima del día fue {temperatura_maxima}°C")
 ```
-
-La clave está en la variable `maxima_registrada`: es el **estado** del algoritmo en la variante óptima. Antes de cada nueva medición, `maxima_registrada` resume toda la información relevante de las mediciones anteriores. Tras procesar el último valor, ese estado es la respuesta.
 :::
+
+La clave está en la variable `maxima_registrada`: es el **estado** del algoritmo en la variante stream. Antes de cada nueva medición, `maxima_registrada` resume toda la información relevante de las mediciones anteriores. Tras procesar el último valor, ese estado es la respuesta.
 
 ::: {#tip-estado .callout-tip title="Estado de un algoritmo"}
 El **estado** de un algoritmo en un instante dado es el conjunto de valores de sus variables en ese momento. En los algoritmos de flujo de datos, el estado se actualiza con cada elemento procesado y, al terminar, contiene el resultado.
@@ -170,6 +169,7 @@ Un algoritmo de **procesamiento por lotes** (*batch processing*) opera sobre una
 
 Hay cálculos que no pueden realizarse en una sola pasada porque el resultado depende de toda la colección. El ejemplo más claro es la **mediana**: para saber cuál es el valor central hay que ordenar los datos, lo que exige tenerlos todos disponibles.
 
+::: {#nte-mediana .callout-note title="Cálculo de la mediana requiere toda la colección"}
 ```{pyodide}
 def mediana(datos: list[float]) -> float | None:
     """
@@ -189,6 +189,7 @@ temperaturas = [18.2, 19.5, 22.1, 24.8, 27.3, 26.0, 23.4]
 print(f"Mediana: {mediana(temperaturas)} °C")   # 23.4
 print(f"Media:   {sum(temperaturas)/len(temperaturas):.2f} °C")
 ```
+:::
 
 Nótese que la media sí puede calcularse en una pasada (sección 5.1), pero la mediana no: `sorted()` necesita acceder a todos los elementos antes de devolver el primero.
 
@@ -476,6 +477,10 @@ $$
 \sigma = \sqrt{\frac{1}{n}\sum_{i=0}^{n-1}(x_i - \bar{x})^2}
 $$
 
+::: {#nte-desviacion .callout-note title="Cálculo de la desviación estándar de una muestra"}
+
+Para calcular la desviación estándar, primero se necesita la media $\bar{x}$, que requiere un recorrido y una acumulación. Luego se recorre de nuevo para acumular la suma de los cuadrados de las diferencias respecto a la media. Finalmente, se calcula la raíz cuadrada de la varianza.
+
 ```{pyodide}
 import math
 
@@ -507,6 +512,7 @@ muestras = [2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 7.0, 9.0]
 print(f"Media: {sum(muestras)/len(muestras):.2f}")
 print(f"Desviación estándar: {desviacion_estandar(muestras):.2f}")  # 2.00
 ```
+:::
 
 ---
 
@@ -667,10 +673,12 @@ print(buscar_verificado([3.0, 7.0, 2.0, 5.0], 9.0))   # -1
 La instrucción `assert` puede **desactivarse** completamente ejecutando Python con la opción `-O` (*optimize*): `python -O mi_programa.py`. En ese modo, ningún `assert` se ejecuta.
 
 Por esto, `assert` es adecuado para:
+
 - Verificar invariantes y suposiciones del programador durante el desarrollo.
 - Expresar precondiciones en código "de confianza" (usado por uno mismo o por el equipo).
 
 No es adecuado para:
+
 - Validar entradas del usuario (que pueden ser cualquier cosa).
 - Gestionar errores recuperables en producción.
 

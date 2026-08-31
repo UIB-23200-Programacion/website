@@ -1029,6 +1029,11 @@ if __name__ == "__main__":
     print(f"mcd(48, 18)   = {mcd(48, 18)}")       # 6
     print(f"mcm(4, 6)     = {mcm(4, 6)}")         # 12
     print(f"factorial(10) = {factorial(10)}")     # 3628800
+    # prueba de precondición: factorial(-1) debe lanzar ValueError
+    try:
+        factorial(-1)
+    except ValueError as e:
+        print(f"Error: {e}")
 ```
 
 Desde otro fichero del mismo directorio se importa como cualquier módulo de la biblioteca estándar:
@@ -1142,6 +1147,16 @@ if __name__ == "__main__":
     print(f"Hipotenusa 3, 4:     {hipotenusa(3, 4):.6f}")
     print(f"Triángulo 3, 4, 5:   {es_triangulo_valido(3, 4, 5)}")
     print(f"Triángulo 1, 2, 10:  {es_triangulo_valido(1, 2, 10)}")
+    # prueba de precondición: radio negativo debe lanzar ValueError
+    try:
+        area_circulo(-1)
+    except ValueError as e:
+        print(f"Error: {e}")
+    # prueba de precondición: cateto no positivo debe lanzar ValueError
+    try:
+        hipotenusa(-3, 4)
+    except ValueError as e:
+        print(f"Error: {e}")
 ```
 :::
 
@@ -1185,6 +1200,11 @@ if __name__ == "__main__":
     print(f"212 °F en °C:  {fahrenheit_a_celsius(212):.2f}")
     print(f"0 °C en K:     {celsius_a_kelvin(0):.2f}")
     print(f"π rad en °:    {radianes_a_grados(3.141592653589793):.4f}")
+    # prueba de precondición: temperatura bajo cero absoluto debe lanzar ValueError
+    try:
+        celsius_a_kelvin(-300)
+    except ValueError as e:
+        print(f"Error: {e}")
 ```
 :::
 
