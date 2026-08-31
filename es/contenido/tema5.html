@@ -733,10 +733,10 @@ Ejemplo&nbsp;1: Temperatura máxima en flujo de datos versus por lotes
 
 </div>
 <script type="pyodide-1-contents">
-eyJhdHRyIjp7ImF1dG9ydW4iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiXG5pbXBvcnQgdGltZVxuZnJvbSB0eXBpbmcgaW1wb3J0IEl0ZXJhdG9yXG5cbmRlZiBzZW5zb3JfdGVtcGVyYXR1cmEoKSAtPiBJdGVyYXRvcltmbG9hdF06XG4gICAgXCJcIlwiXG4gICAgU2ltdWxhIHVuIGZsdWpvIGNvbnRpbnVvIGRlIGRhdG9zIHByb3ZlbmllbnRlcyBkZSB1biBzZW5zb3IgZGUgdGVtcGVyYXR1cmEuXG4gICAgXG4gICAgWWllbGRzOlxuICAgICAgICBmbG9hdDogTGEgdGVtcGVyYXR1cmEgcmVnaXN0cmFkYSBlbiBncmFkb3MgQ2Vsc2l1cy5cbiAgICBcIlwiXCJcbiAgICBsZWN0dXJhcyA9IFsxOC4yLCAxOS41LCAyMi4xLCAyNC44LCAyNy4zLCBcbiAgICAgICAgICAgICAgICAyNi4wLCAyMy40LCAyMS4wLCAyMC41LCAxOS44XVxuICAgIFxuICAgIGZvciB0ZW1wIGluIGxlY3R1cmFzOlxuICAgICAgICB5aWVsZCB0ZW1wXG4gICAgICAgIFxuICAgICAgICBwcmludChcIihFc3BlcmFuZG8gcGFyYSBsYSBzaWd1aWVudGUgbGVjdHVyYS4uLilcIilcbiAgICAgICAgIyAxODAgc2VndW5kb3MgZXF1aXZhbGVuIGEgMyBtaW51dG9zLiBcbiAgICAgICAgIyB0aW1lLnNsZWVwKDE4MClcbiAgICAgICAgIyBTZSBjYW1iaWEgZXN0ZSB2YWxvciBhIHRpbWUuc2xlZXAoMSkgcGFyYSBwcm9iYXIgZWwgY8OzZGlnbyByw6FwaWRhbWVudGUuXG4gICAgICAgIHRpbWUuc2xlZXAoMSkifQ==
+eyJhdHRyIjp7ImF1dG9ydW4iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IHRpbWVcbmZyb20gdHlwaW5nIGltcG9ydCBJdGVyYXRvclxuXG5kZWYgc2Vuc29yX3RlbXBlcmF0dXJhKCkgLT4gSXRlcmF0b3JbZmxvYXRdOlxuICAgIFwiXCJcIlxuICAgIFNpbXVsYSB1biBmbHVqbyBjb250aW51byBkZSBkYXRvcyBwcm92ZW5pZW50ZXMgZGUgdW4gc2Vuc29yIGRlIHRlbXBlcmF0dXJhLlxuICAgIFxuICAgIFlpZWxkczpcbiAgICAgICAgZmxvYXQ6IExhIHRlbXBlcmF0dXJhIHJlZ2lzdHJhZGEgZW4gZ3JhZG9zIENlbHNpdXMuXG4gICAgXCJcIlwiXG4gICAgbGVjdHVyYXMgPSBbMTguMiwgMTkuNSwgMjIuMSwgMjQuOCwgMjcuMywgXG4gICAgICAgICAgICAgICAgMjYuMCwgMjMuNCwgMjEuMCwgMjAuNSwgMTkuOF1cbiAgICBcbiAgICBmb3IgdGVtcCBpbiBsZWN0dXJhczpcbiAgICAgICAgeWllbGQgdGVtcFxuICAgICAgICBcbiAgICAgICAgcHJpbnQoXCIoRXNwZXJhbmRvIHBhcmEgbGEgc2lndWllbnRlIGxlY3R1cmEuLi4pXCIpXG4gICAgICAgICMgMTgwIHNlZ3VuZG9zIGVxdWl2YWxlbiBhIDMgbWludXRvcy4gXG4gICAgICAgICMgdGltZS5zbGVlcCgxODApXG4gICAgICAgICMgU2UgY2FtYmlhIGVzdGUgdmFsb3IgYSB0aW1lLnNsZWVwKDEpIHBhcmEgcHJvYmFyIGVsIGPDs2RpZ28gcsOhcGlkYW1lbnRlLlxuICAgICAgICB0aW1lLnNsZWVwKDEpIn0=
 </script>
 </div>
-<p>Veamos ahora los dos enfoques para calcular la temperatura máxima.</p>
+<p>Veamos ahora los dos enfoques para calcular la temperatura máxima. En el navegador, todos los <code>print()</code> aparecen al mismo tiempo al finalizar la ejecución. En un terminal real (Python local, VS Code, Codespace) cada línea aparece en el momento en que se ejecuta.</p>
 <div>
 <div id="pyodide-2" class="exercise-cell">
 
@@ -745,9 +745,9 @@ eyJhdHRyIjp7ImF1dG9ydW4iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiXG5p
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBGb3JtYSBzdHJlYW0gc2luIGxpc3RhXG4jIEluc3RhbmNpYW1vcyBlbCBmbHVqbyBkZSBkYXRvcyAoZWwgZ2VuZXJhZG9yIG5vIGNvbWllbnphIGEgZWplY3V0YXJzZSBhcXXDrSlcbmZsdWpvID0gc2Vuc29yX3RlbXBlcmF0dXJhKClcblxubWF4aW1hX3JlZ2lzdHJhZGEgPSBmbG9hdCgnLWluZicpICAjIEluaWNpYWxpemFtb3MgY29uIGVsIG1lbm9yIHZhbG9yIHBvc2libGVcbmZvciB0ZW1wZXJhdHVyYSBpbiBmbHVqbzpcbiAgICBpZiB0ZW1wZXJhdHVyYSA+IG1heGltYV9yZWdpc3RyYWRhOlxuICAgICAgICBtYXhpbWFfcmVnaXN0cmFkYSA9IHRlbXBlcmF0dXJhXG4gICAgICAgIHByaW50KGZcIvCfk4ggTnVldm8gcGljbyBkZXRlY3RhZG86IHttYXhpbWFfcmVnaXN0cmFkYX3CsENcIilcblxucHJpbnQoZlwiXFxuUmVzdW1lbjogTGEgdGVtcGVyYXR1cmEgbcOheGltYSBkZWwgZMOtYSBmdWUge21heGltYV9yZWdpc3RyYWRhfcKwQ1xcblwiKVxuXG4jIEZvcm1hIGJhdGNoIGNvbiBsaXN0YVxuIyBJbnN0YW5jaWFtb3MgbnVldmFtZW50ZSBlbCBmbHVqbyBkZSBkYXRvc1xuZmx1am8gPSBzZW5zb3JfdGVtcGVyYXR1cmEoKVxuICAgICAgICBcbnZhbG9yZXNfYWN1bXVsYWRvcyA9IGxpc3QoZmx1am8pXG4jIFNpIGxhIGxpc3RhIGVzdMOhIHZhY8OtYSwgbWF4KCkgbGFuemFyw6EgdW4gVmFsdWVFcnJvclxuaWYgbm90IHZhbG9yZXNfYWN1bXVsYWRvczpcbiAgICB0ZW1wZXJhdHVyYV9tYXhpbWEgPSBmbG9hdCgnLWluZicpXG5lbHNlOlxuICAgICMgRXZhbHVhbW9zIGxhIGxpc3RhIGNvbXBsZXRhIGRlIHVuYSBzb2xhIHZlelxuICAgIHRlbXBlcmF0dXJhX21heGltYSA9IG1heCh2YWxvcmVzX2FjdW11bGFkb3MpXG4gICAgXG5wcmludChmXCJcXG5SZXN1bWVuOiBMYSB0ZW1wZXJhdHVyYSBtw6F4aW1hIGRlbCBkw61hIGZ1ZSB7dGVtcGVyYXR1cmFfbWF4aW1hfcKwQ1wiKSJ9
 </script>
 </div>
-<p>La clave está en la variable <code>maxima_registrada</code>: es el <strong>estado</strong> del algoritmo en la variante óptima. Antes de cada nueva medición, <code>maxima_registrada</code> resume toda la información relevante de las mediciones anteriores. Tras procesar el último valor, ese estado es la respuesta.</p>
 </div>
 </div>
+<p>La clave está en la variable <code>maxima_registrada</code>: es el <strong>estado</strong> del algoritmo en la variante stream. Antes de cada nueva medición, <code>maxima_registrada</code> resume toda la información relevante de las mediciones anteriores. Tras procesar el último valor, ese estado es la respuesta.</p>
 <div id="tip-estado" class="callout callout-style-default callout-tip no-icon callout-titled" title="Estado de un algoritmo">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -822,6 +822,16 @@ Fundamento Teórico&nbsp;3: Procesamiento por lotes
 <section id="cuándo-el-procesamiento-por-lotes-es-necesario" class="level3">
 <h3 class="anchored" data-anchor-id="cuándo-el-procesamiento-por-lotes-es-necesario"><strong>5.2.1 Cuándo el procesamiento por lotes es necesario</strong></h3>
 <p>Hay cálculos que no pueden realizarse en una sola pasada porque el resultado depende de toda la colección. El ejemplo más claro es la <strong>mediana</strong>: para saber cuál es el valor central hay que ordenar los datos, lo que exige tenerlos todos disponibles.</p>
+<div id="nte-mediana" class="callout callout-style-default callout-note no-icon callout-titled" title="Cálculo de la mediana requiere toda la colección">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo&nbsp;2: Cálculo de la mediana requiere toda la colección
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <div>
 <div id="pyodide-5" class="exercise-cell">
 
@@ -829,6 +839,8 @@ Fundamento Teórico&nbsp;3: Procesamiento por lotes
 <script type="pyodide-5-contents">
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIG1lZGlhbmEoZGF0b3M6IGxpc3RbZmxvYXRdKSAtPiBmbG9hdCB8IE5vbmU6XG4gICAgXCJcIlwiXG4gICAgQ2FsY3VsYSBsYSBtZWRpYW5hIGRlIHVuYSBsaXN0YSBkZSBkYXRvcy5cbiAgICBQcmVjb25kaWNpw7NuOiBkYXRvcyBubyBlc3TDoSB2YWPDrW8uXG4gICAgXCJcIlwiXG4gICAgaWYgbm90IGRhdG9zOlxuICAgICAgICByZXR1cm4gTm9uZVxuICAgIG9yZGVuYWRvcyA9IHNvcnRlZChkYXRvcykgICAjIHJlcXVpZXJlIGxhIGxpc3RhIGNvbXBsZXRhXG4gICAgbiA9IGxlbihvcmRlbmFkb3MpXG4gICAgaWYgbiAlIDIgPT0gMTpcbiAgICAgICAgcmV0dXJuIG9yZGVuYWRvc1tuIC8vIDJdXG4gICAgZWxzZTpcbiAgICAgICAgcmV0dXJuIChvcmRlbmFkb3NbbiAvLyAyIC0gMV0gKyBvcmRlbmFkb3NbbiAvLyAyXSkgLyAyLjBcblxudGVtcGVyYXR1cmFzID0gWzE4LjIsIDE5LjUsIDIyLjEsIDI0LjgsIDI3LjMsIDI2LjAsIDIzLjRdXG5wcmludChmXCJNZWRpYW5hOiB7bWVkaWFuYSh0ZW1wZXJhdHVyYXMpfSDCsENcIikgICAjIDIzLjRcbnByaW50KGZcIk1lZGlhOiAgIHtzdW0odGVtcGVyYXR1cmFzKS9sZW4odGVtcGVyYXR1cmFzKTouMmZ9IMKwQ1wiKSJ9
 </script>
+</div>
+</div>
 </div>
 <p>Nótese que la media sí puede calcularse en una pasada (sección 5.1), pero la mediana no: <code>sorted()</code> necesita acceder a todos los elementos antes de devolver el primero.</p>
 </section>
@@ -1052,7 +1064,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBTdW1hXG5udW1lcm9zID0g
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Ejemplo&nbsp;2: Conexión con la notación matemática
+Ejemplo&nbsp;3: Conexión con la notación matemática
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1139,7 +1151,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGZyZWN1ZW5jaWFfY2Fy
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Ejemplo&nbsp;3: Conteo con expresiones generadoras
+Ejemplo&nbsp;4: Conteo con expresiones generadoras
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1157,6 +1169,17 @@ Ejemplo&nbsp;3: Conteo con expresiones generadoras
 <p><span class="math display">\[
 \sigma = \sqrt{\frac{1}{n}\sum_{i=0}^{n-1}(x_i - \bar{x})^2}
 \]</span></p>
+<div id="nte-desviacion" class="callout callout-style-default callout-note no-icon callout-titled" title="Cálculo de la desviación estándar de una muestra">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo&nbsp;5: Cálculo de la desviación estándar de una muestra
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para calcular la desviación estándar, primero se necesita la media <span class="math inline">\(\bar{x}\)</span>, que requiere un recorrido y una acumulación. Luego se recorre de nuevo para acumular la suma de los cuadrados de las diferencias respecto a la media. Finalmente, se calcula la raíz cuadrada de la varianza.</p>
 <div>
 <div id="pyodide-15" class="exercise-cell">
 
@@ -1164,6 +1187,8 @@ Ejemplo&nbsp;3: Conteo con expresiones generadoras
 <script type="pyodide-15-contents">
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuZGVmIGRlc3ZpYWNpb25fZXN0YW5kYXIoZGF0b3M6IGxpc3RbZmxvYXRdKSAtPiBmbG9hdCB8IE5vbmU6XG4gICAgXCJcIlwiXG4gICAgQ2FsY3VsYSBsYSBkZXN2aWFjacOzbiBlc3TDoW5kYXIgcG9ibGFjaW9uYWwgZGUgdW5hIGxpc3RhIGRlIGRhdG9zLlxuICAgIFByZWNvbmRpY2nDs246IGRhdG9zIG5vIGVzdMOhIHZhY8Otby5cbiAgICBcIlwiXCJcbiAgICBpZiBub3QgZGF0b3M6XG4gICAgICAgIHJldHVybiBOb25lXG5cbiAgICBuID0gbGVuKGRhdG9zKVxuXG4gICAgIyBBY3VtdWxhY2nDs246IGNhbGN1bGFyIGxhIG1lZGlhXG4gICAgc3VtYSA9IDAuMFxuICAgIGZvciB4IGluIGRhdG9zOlxuICAgICAgICBzdW1hICs9IHhcbiAgICBtZWRpYSA9IHN1bWEgLyBuXG5cbiAgICAjIEFjdW11bGFjacOzbjogY2FsY3VsYXIgbGEgdmFyaWFuemFcbiAgICBzdW1hX2N1YWQgPSAwLjBcbiAgICBmb3IgeCBpbiBkYXRvczpcbiAgICAgICAgc3VtYV9jdWFkICs9ICh4IC0gbWVkaWEpICoqIDJcbiAgICB2YXJpYW56YSA9IHN1bWFfY3VhZCAvIG5cblxuICAgIHJldHVybiBtYXRoLnNxcnQodmFyaWFuemEpXG5cbm11ZXN0cmFzID0gWzIuMCwgNC4wLCA0LjAsIDQuMCwgNS4wLCA1LjAsIDcuMCwgOS4wXVxucHJpbnQoZlwiTWVkaWE6IHtzdW0obXVlc3RyYXMpL2xlbihtdWVzdHJhcyk6LjJmfVwiKVxucHJpbnQoZlwiRGVzdmlhY2nDs24gZXN0w6FuZGFyOiB7ZGVzdmlhY2lvbl9lc3RhbmRhcihtdWVzdHJhcyk6LjJmfVwiKSAgIyAyLjAwIn0=
 </script>
+</div>
+</div>
 </div>
 <hr>
 </section>
@@ -1229,7 +1254,7 @@ P(i):\quad \texttt{objetivo} \notin \{v[0], v[1], \ldots, v[i-1]\}
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Ejemplo&nbsp;4: Invariante de bucle e inducción matemática
+Ejemplo&nbsp;6: Invariante de bucle e inducción matemática
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1337,8 +1362,16 @@ Concepto Clave&nbsp;5: <code>assert</code> no sustituye a la validación de entr
 </div>
 <div class="callout-body-container callout-body">
 <p>La instrucción <code>assert</code> puede <strong>desactivarse</strong> completamente ejecutando Python con la opción <code>-O</code> (<em>optimize</em>): <code>python -O mi_programa.py</code>. En ese modo, ningún <code>assert</code> se ejecuta.</p>
-<p>Por esto, <code>assert</code> es adecuado para: - Verificar invariantes y suposiciones del programador durante el desarrollo. - Expresar precondiciones en código “de confianza” (usado por uno mismo o por el equipo).</p>
-<p>No es adecuado para: - Validar entradas del usuario (que pueden ser cualquier cosa). - Gestionar errores recuperables en producción.</p>
+<p>Por esto, <code>assert</code> es adecuado para:</p>
+<ul>
+<li>Verificar invariantes y suposiciones del programador durante el desarrollo.</li>
+<li>Expresar precondiciones en código “de confianza” (usado por uno mismo o por el equipo).</li>
+</ul>
+<p>No es adecuado para:</p>
+<ul>
+<li>Validar entradas del usuario (que pueden ser cualquier cosa).</li>
+<li>Gestionar errores recuperables en producción.</li>
+</ul>
 <p>Para validación robusta de entradas en código de producción, usar <code>if condicion: raise ValueError("...")</code> (véase sección 3.4).</p>
 </div>
 </div>
@@ -1517,7 +1550,7 @@ Concepto Clave&nbsp;6: Tipos de casos de prueba
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Ejemplo&nbsp;5: Desarrollo guiado por pruebas (TDD)
+Ejemplo&nbsp;7: Desarrollo guiado por pruebas (TDD)
 </div>
 </div>
 <div class="callout-body-container callout-body">

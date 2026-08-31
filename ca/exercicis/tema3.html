@@ -640,8 +640,8 @@ window.Quarto = {
 <p>Afegeix les funcions següents al mòdul que s’especifica del paquet <code>t03_paquete</code> contingut en el projecte respectant sempre les regles següents:</p>
 <ul>
 <li>la funció ha de contenir type hints, docstrings i precondicions,</li>
-<li>si la precondició (o alguna de les precondicions) no es compleix la funció ha de retornar <code>None</code>,</li>
-<li>Al bloc <code>if __name__ == "__main__"</code> del mòdul s’han d’afegir proves per validar el comportament de cada funció. S’han de realitzar les proves almenys per a un cas normal i un cas límit (si n’hi ha).</li>
+<li>si la precondició (o alguna de les precondicions) no es compleix la funció ha de llançar <code>ValueError</code> amb un missatge descriptiu (vegeu secció 3.4),</li>
+<li>Al bloc <code>if __name__ == "__main__"</code> del mòdul s’han d’afegir proves per validar el comportament de cada funció. S’han de realitzar les proves almenys per a un cas normal, un cas límit (si n’hi ha) i un cas que violi la precondició (capturant l’excepció amb <code>try/except ValueError</code>).</li>
 </ul>
 <section id="exercici-3.1-mòdul-numeros.py" class="level2">
 <h2 class="anchored" data-anchor-id="exercici-3.1-mòdul-numeros.py">Exercici 3.1: Mòdul <code>numeros.py</code></h2>
