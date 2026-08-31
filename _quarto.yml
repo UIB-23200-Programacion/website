@@ -212,6 +212,7 @@ format:
     include-after-body:
       text: |
         <script src="/logo-href.js"></script>
+        <script src="/live-copy-button.js"></script>
 
 freeze: auto
 editor: source

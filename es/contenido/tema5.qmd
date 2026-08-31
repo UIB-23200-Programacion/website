@@ -28,17 +28,24 @@ Los **algoritmos sobre flujos de datos** (*data stream algorithms*) se utilizan 
 
 ### **5.1.1 La idea de flujo de datos**
 
-Imagina que recibes, de forma continua y desde un sensor, mediciones de temperatura cada 5 minutos. En un día tendrás $24 \times 20 = 480$ valores en total. Quieres determinar la temperatura máxima en las últimas 24 horas. Este problema puede abordarse de dos maneras conceptualmente distintas:
+Imagina que recibes, de forma continua y desde un sensor, mediciones de temperatura cada 3 minutos. En un día tendrás $24 \times 20 = 480$ valores en total pero el flujo de datos es continuo y no se detiene. Quieres determinar la temperatura máxima en las últimas 24 horas. Este problema puede abordarse de dos maneras conceptualmente distintas:
 
-**Enfoque no óptimo**: almacenar todas las últimas $480$ mediciones en una lista y aplicar la función `max()`. Este método requiere conservar toda la colección antes de producir el resultado (batch processing).
+**Enfoque batch**: almacenar todas las últimas $480$ mediciones en una lista y aplicar la función `max()`. Este método requiere conservar toda la colección antes de producir el resultado (batch processing).
 
-**Enfoque óptimo**: procesar cada medición en el momento en que llega y mantener actualizado un registro del valor máximo observado. Al recibir la última medición, ese registro ya contiene la respuesta, sin necesidad de almacenar la secuencia completa (data stream processing).
+**Enfoque stream**: procesar cada medición en el momento en que llega y mantener actualizado un registro del valor máximo observado. Al recibir la última medición, ese registro ya contiene la respuesta, sin necesidad de almacenar la secuencia completa (data stream processing).
 
 El segundo enfoque es preferible porque permite obtener el resultado **en tiempo real** y reduce el **uso de memoria**, lo que lo convierte en una estrategia más adecuada cuando los datos llegan en flujo continuo o cuando la colección es muy grande.
 
-En el siguiente ejemplo se muestran ambas estrategias: la primera usa `max()` sobre la lista completa, y la segunda mantiene un acumulador que se actualiza con cada medición. Para simular el sensor de temperatura, se utiliza una función generadora con una lista de valores predefinidos.
+En el siguiente ejemplo se muestran ambas estrategias: la primera usa `max()` sobre la lista completa, y la segunda mantiene un acumulador que se actualiza con cada medición. 
+
+::: {#nte-strbatch .callout-note title="Temperatura máxima en flujo de datos versus por lotes"}
+Para simular el sensor de temperatura, se utiliza una función generadora con una lista de valores predefinidos. Para simplificar la demostración, se emplean solo 10 valores en lugar de 480 y se ha reducido el tiempo de espera entre lecturas a 1 segundo en lugar de 3 minutos. 
 
 ```{pyodide}
+#| autorun: true
+#| edit: false
+#| output: false
+
 import time
 from typing import Iterator
 
@@ -56,12 +63,13 @@ def sensor_temperatura() -> Iterator[float]:
         yield temp
         
         print("(Esperando para la siguiente lectura...)")
-        # 300 segundos equivalen a 5 minutos. 
-        # time.sleep(300)
+        # 180 segundos equivalen a 3 minutos. 
+        # time.sleep(180)
 		# Se cambia este valor a time.sleep(1) para probar el código rápidamente.
         time.sleep(1)
-		
+```
 
+```{pyodide}
 # Forma óptima sin lista
 # Instanciamos el flujo de datos (el generador no comienza a ejecutarse aquí)
 flujo = sensor_temperatura()
@@ -90,6 +98,7 @@ print(f"\nResumen: La temperatura máxima del día fue {temperatura_maxima}°C")
 ```
 
 La clave está en la variable `maxima_registrada`: es el **estado** del algoritmo en la variante óptima. Antes de cada nueva medición, `maxima_registrada` resume toda la información relevante de las mediciones anteriores. Tras procesar el último valor, ese estado es la respuesta.
+:::
 
 ::: {#tip-estado .callout-tip title="Estado de un algoritmo"}
 El **estado** de un algoritmo en un instante dado es el conjunto de valores de sus variables en ese momento. En los algoritmos de flujo de datos, el estado se actualiza con cada elemento procesado y, al terminar, contiene el resultado.
@@ -103,29 +112,6 @@ Un algoritmo de **una sola pasada** (*one-pass*) examina cada elemento exactamen
 Es posible calcular simultáneamente varias estadísticas sobre una secuencia en una sola pasada, manteniendo varios acumuladores a la vez. Supongamos que queremos calcular el máximo, el mínimo y la media de las mediciones de temperatura. Podemos hacerlo así:
 
 ```{pyodide}
-import time
-from typing import Iterator
-
-def sensor_temperatura() -> Iterator[float]:
-    """
-    Simula un flujo continuo de datos provenientes de un sensor de temperatura.
-    
-    Yields:
-        float: La temperatura registrada en grados Celsius.
-    """
-    lecturas = [18.2, 19.5, 22.1, 24.8, 27.3, 
-	            26.0, 23.4, 21.0, 20.5, 19.8]
-    
-    for temp in lecturas:
-        yield temp
-        
-        print("(Esperando para la siguiente lectura...)")
-        # 300 segundos equivalen a 5 minutos. 
-        # time.sleep(300)
-		# Se cambia este valor a time.sleep(1) para probar el código rápidamente.
-        time.sleep(1)
-		
-
 # Instanciamos el flujo de datos
 flujo = sensor_temperatura()
 
@@ -157,29 +143,6 @@ Cuatro estadísticas distintas con un solo recorrido sobre los datos.
 No todos los algoritmos one-pass necesitan examinar todos los elementos. A veces la respuesta se conoce antes de llegar al final: se ha encontrado lo que se buscaba, o una condición especial permite deducir el resultado. Por ejemplo, si queremos saber si una medición de temperatura supera los 25°C, podemos detenernos en cuanto encontremos la primera.
 
 ```{pyodide}
-import time
-from typing import Iterator
-
-def sensor_temperatura() -> Iterator[float]:
-    """
-    Simula un flujo continuo de datos provenientes de un sensor de temperatura.
-    
-    Yields:
-        float: La temperatura registrada en grados Celsius.
-    """
-    lecturas = [18.2, 19.5, 22.1, 24.8, 27.3, 
-	            26.0, 23.4, 21.0, 20.5, 19.8]
-    
-    for temp in lecturas:
-        yield temp
-        
-        print("(Esperando para la siguiente lectura...)")
-        # 300 segundos equivalen a 5 minutos. 
-        # time.sleep(300)
-		# Se cambia este valor a time.sleep(1) para probar el código rápidamente.
-        time.sleep(1)
-
-
 def supera_25(numeros: Iterator[float]) -> bool:
     """Retorna True si la lista contiene algún número mayor a 25."""
     for x in numeros:
@@ -359,7 +322,7 @@ valor, posicion = maximo_con_indice(notas)
 print(f"Nota máxima: {valor} (primera aparición en posición {posicion})")
 ```
 
-::: {#cau-busqueda-inicio .callout-caution title="Inicializar el máximo con el primer elemento"}
+::: {#cau-busqueda-inicio .callout-caution title="Inicializar el máximo con un valor arbitrario"}
 Una trampa habitual al programar la búsqueda del máximo es inicializar con un valor arbitrario como `maximo = 0` o `maximo = -999`. Esto puede fallar si todos los elementos son menores que ese valor inicial.
 
 La forma correcta es inicializar con el **primer elemento** de la secuencia: `maximo = secuencia[0]`. Después iterar desde el segundo elemento.
