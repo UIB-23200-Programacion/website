@@ -43,8 +43,6 @@ Para simular el sensor de temperatura, se utiliza una función generadora con un
 
 ```{pyodide}
 #| autorun: true
-#| edit: false
-#| output: false
 
 import time
 from typing import Iterator
