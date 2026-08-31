@@ -1544,19 +1544,6 @@ Concepto Clave&nbsp;6: Tipos de casos de prueba
 <span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_son_amigos_mismo_numero():</span>
 <span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Un número no es amigo de sí mismo (la definición exige a ≠ b)</span></span>
 <span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> son_amigos(<span class="dv">6</span>, <span class="dv">6</span>) <span class="kw">is</span> <span class="va">False</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="nte-tdd" class="callout callout-style-default callout-note no-icon callout-titled" title="Desarrollo guiado por pruebas (TDD)">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Ejemplo&nbsp;7: Desarrollo guiado por pruebas (TDD)
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>El <strong>desarrollo guiado por pruebas</strong> (<em>Test-Driven Development</em>, TDD) invierte el orden habitual: primero se escriben las pruebas (que fallarán porque la función aún no existe), y después se implementa la función hasta que las pruebas pasen. Este enfoque obliga a clarificar el comportamiento esperado antes de escribir código y produce funciones con una cobertura de pruebas más completa. Es una práctica estándar en la industria del software.</p>
-</div>
-</div>
 </section>
 <section id="integración-de-assert-y-pytest-en-el-flujo-de-trabajo" class="level3">
 <h3 class="anchored" data-anchor-id="integración-de-assert-y-pytest-en-el-flujo-de-trabajo"><strong>5.5.4 Integración de <code>assert</code> y <code>pytest</code> en el flujo de trabajo</strong></h3>
@@ -1597,12 +1584,12 @@ Ejemplo&nbsp;7: Desarrollo guiado por pruebas (TDD)
 </tr>
 </tbody>
 </table>
-<p>Un flujo de trabajo típico para este curso:</p>
+<p>Un flujo de trabajo típico (se recomienda pero no se exige) para este curso:</p>
 <ol type="1">
 <li>Leer el enunciado del ejercicio e identificar precondiciones, postcondiciones y casos límite.</li>
 <li>Escribir la signatura y el docstring de la función.</li>
-<li>Escribir dos o tres pruebas en <code>test_modulo.py</code> (aún fallarán).</li>
 <li>Implementar la función con <code>assert</code> para las precondiciones.</li>
+<li>Escribir dos o tres pruebas en <code>test_modulo.py</code>.</li>
 <li>Ejecutar <code>pytest</code>: las pruebas deben pasar. Si alguna falla, corregir la implementación.</li>
 <li>Añadir más casos de prueba si se detectan huecos en la cobertura.</li>
 </ol>

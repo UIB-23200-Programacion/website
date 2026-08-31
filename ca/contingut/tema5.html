@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Tema 5: Algorismes Bàsics i Verificació (Testing) – Programación (23200)</title>
+<title>Tema 5: Algorismes Bàsics i Verificació – Programación (23200)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -76,9 +131,38 @@ ul.task-list li input[type="checkbox"] {
 <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Tema 5: Algorismes Bàsics i Verificació (Testing) – Programación (23200)">
+<meta property="og:title" content="Tema 5: Algorismes Bàsics i Verificació – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
 <meta property="og:site_name" content="Programación (23200)">
 </head>
@@ -538,8 +622,45 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En aquesta pàgina</h2>
+   
+  <ul>
+  <li><a href="#algorismes-sobre-fluxos-de-dades" id="toc-algorismes-sobre-fluxos-de-dades" class="nav-link active" data-scroll-target="#algorismes-sobre-fluxos-de-dades">5.1. Algorismes sobre fluxos de dades</a>
+  <ul class="collapse">
+  <li><a href="#la-idea-de-flux-de-dades" id="toc-la-idea-de-flux-de-dades" class="nav-link" data-scroll-target="#la-idea-de-flux-de-dades"><strong>5.1.1 La idea de flux de dades</strong></a></li>
+  <li><a href="#processament-en-una-sola-passada" id="toc-processament-en-una-sola-passada" class="nav-link" data-scroll-target="#processament-en-una-sola-passada"><strong>5.1.2 Processament en una sola passada</strong></a></li>
+  <li><a href="#condicions-de-parada-diferents-del-final-de-la-seqüència" id="toc-condicions-de-parada-diferents-del-final-de-la-seqüència" class="nav-link" data-scroll-target="#condicions-de-parada-diferents-del-final-de-la-seqüència"><strong>5.1.3 Condicions de parada diferents del final de la seqüència</strong></a></li>
+  </ul></li>
+  <li><a href="#algorismes-de-processament-per-lots" id="toc-algorismes-de-processament-per-lots" class="nav-link" data-scroll-target="#algorismes-de-processament-per-lots">5.2. Algorismes de processament per lots</a>
+  <ul class="collapse">
+  <li><a href="#quan-el-processament-per-lots-és-necessari" id="toc-quan-el-processament-per-lots-és-necessari" class="nav-link" data-scroll-target="#quan-el-processament-per-lots-és-necessari"><strong>5.2.1 Quan el processament per lots és necessari</strong></a></li>
+  <li><a href="#comparació-entre-els-dos-enfocaments" id="toc-comparació-entre-els-dos-enfocaments" class="nav-link" data-scroll-target="#comparació-entre-els-dos-enfocaments"><strong>5.2.2 Comparació entre els dos enfocaments</strong></a></li>
+  </ul></li>
+  <li><a href="#patrons-de-recorregut-cerca-acumulació-i-recompte" id="toc-patrons-de-recorregut-cerca-acumulació-i-recompte" class="nav-link" data-scroll-target="#patrons-de-recorregut-cerca-acumulació-i-recompte">5.3. Patrons de recorregut, cerca, acumulació i recompte</a>
+  <ul class="collapse">
+  <li><a href="#recorregut" id="toc-recorregut" class="nav-link" data-scroll-target="#recorregut"><strong>5.3.1 Recorregut</strong></a></li>
+  <li><a href="#cerca" id="toc-cerca" class="nav-link" data-scroll-target="#cerca"><strong>5.3.2 Cerca</strong></a></li>
+  <li><a href="#acumulació" id="toc-acumulació" class="nav-link" data-scroll-target="#acumulació"><strong>5.3.3 Acumulació</strong></a></li>
+  <li><a href="#recompte" id="toc-recompte" class="nav-link" data-scroll-target="#recompte"><strong>5.3.4 Recompte</strong></a></li>
+  <li><a href="#composició-de-patrons" id="toc-composició-de-patrons" class="nav-link" data-scroll-target="#composició-de-patrons"><strong>5.3.5 Composició de patrons</strong></a></li>
+  </ul></li>
+  <li><a href="#nocions-dinvariant-de-bucle-com-a-eina-de-raonament" id="toc-nocions-dinvariant-de-bucle-com-a-eina-de-raonament" class="nav-link" data-scroll-target="#nocions-dinvariant-de-bucle-com-a-eina-de-raonament">5.4. Nocions d’invariant de bucle com a eina de raonament</a>
+  <ul class="collapse">
+  <li><a href="#invariant-de-lacumulació-de-suma" id="toc-invariant-de-lacumulació-de-suma" class="nav-link" data-scroll-target="#invariant-de-lacumulació-de-suma"><strong>5.4.1 Invariant de l’acumulació de suma</strong></a></li>
+  <li><a href="#invariant-de-la-cerca-lineal" id="toc-invariant-de-la-cerca-lineal" class="nav-link" data-scroll-target="#invariant-de-la-cerca-lineal"><strong>5.4.2 Invariant de la cerca lineal</strong></a></li>
+  <li><a href="#ús-informal-de-linvariant" id="toc-ús-informal-de-linvariant" class="nav-link" data-scroll-target="#ús-informal-de-linvariant"><strong>5.4.3 Ús informal de l’invariant</strong></a></li>
+  </ul></li>
+  <li><a href="#ús-de-la-instrucció-assert-i-fonaments-de-pytest" id="toc-ús-de-la-instrucció-assert-i-fonaments-de-pytest" class="nav-link" data-scroll-target="#ús-de-la-instrucció-assert-i-fonaments-de-pytest">5.5. Ús de la instrucció <code>assert</code> i fonaments de <code>pytest</code></a>
+  <ul class="collapse">
+  <li><a href="#la-instrucció-assert" id="toc-la-instrucció-assert" class="nav-link" data-scroll-target="#la-instrucció-assert"><strong>5.5.1 La instrucció <code>assert</code></strong></a></li>
+  <li><a href="#fonaments-de-pytest" id="toc-fonaments-de-pytest" class="nav-link" data-scroll-target="#fonaments-de-pytest"><strong>5.5.2 Fonaments de <code>pytest</code></strong></a></li>
+  <li><a href="#quines-proves-escriure" id="toc-quines-proves-escriure" class="nav-link" data-scroll-target="#quines-proves-escriure"><strong>5.5.3 Quines proves escriure</strong></a></li>
+  <li><a href="#integració-de-assert-i-pytest-en-el-flux-de-treball" id="toc-integració-de-assert-i-pytest-en-el-flux-de-treball" class="nav-link" data-scroll-target="#integració-de-assert-i-pytest-en-el-flux-de-treball"><strong>5.5.4 Integració de <code>assert</code> i <code>pytest</code> en el flux de treball</strong></a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -547,7 +668,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ca/contingut/tema1.html">Temes</a></li><li class="breadcrumb-item"><a href="../../ca/contingut/tema5.html">5. Algorismes Bàsics i Testing</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Tema 5: Algorismes Bàsics i Verificació (Testing)</h1>
+<h1 class="title">Tema 5: Algorismes Bàsics i Verificació</h1>
 </div>
 
 
@@ -564,11 +685,929 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contingut pendent.)</em></p>
+<p>El tema anterior va presentar les estructures de dades (built-in) que Python empra per representar col·leccions. En aquest tema l’enfocament canvia: ja no preguntem <em>què són</em> aquestes estructures, sinó <strong>com podem utilitzar-les per resoldre problemes</strong>. La manera sistemàtica de combinar operacions sobre aquestes estructures per obtenir un resultat és el que denominem <strong>algorisme</strong>.</p>
+<p>Ara bé, un algorisme només és útil si és <strong>correcte</strong>, i aquesta correcció ha de ser justificada o verificada mitjançant mètodes formals o empírics. La combinació —dissenyar i verificar— es tractarà en aquest tema.</p>
+<p>Distingirem dos tipus d’algorismes fonamentalment: els que processen <strong>fluxos de dades</strong> (<em>data stream algorithms</em>) i els que realitzen <strong>processament per lots</strong> (<em>batch processing algorithms</em>). Primer introduirem el concepte d’algorisme.</p>
+<div id="tip-algoritmo" class="callout callout-style-default callout-tip no-icon callout-titled" title="Algorisme">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;1: Algorisme
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>algorisme</strong> és una seqüència finita d’instruccions ben definides que, aplicada a unes dades d’entrada, produeix un resultat en un temps finit. Les propietats essencials són: <strong>correcció</strong> (produeix el resultat esperat), <strong>terminació</strong> (sempre acaba) i <strong>determinisme</strong> (la mateixa entrada produeix sempre el mateix resultat) <span class="citation" data-cites="downey2024">(<a href="#ref-downey2024" role="doc-biblioref">Downey 2024</a>)</span>.</p>
+</div>
+</div>
+<hr>
+<section id="algorismes-sobre-fluxos-de-dades" class="level2">
+<h2 class="anchored" data-anchor-id="algorismes-sobre-fluxos-de-dades">5.1. Algorismes sobre fluxos de dades</h2>
+<p>Els <strong>algorismes sobre fluxos de dades</strong> (<em>data stream algorithms</em>) s’utilitzen principalment per processar grans volums de dades contínues i en temps real fent servir memòria limitada. En aquest entorn, les dades es conceben en moviment, la qual cosa impossibilita el seu emmagatzematge íntegre a causa de restriccions físiques de memòria. Les seves característiques principals són:</p>
+<ul>
+<li><strong>Una sola passada (<em>one-pass</em>):</strong> Les dades es llegeixen una sola vegada i no es poden emmagatzemar completament.</li>
+<li><strong>Memòria sublineal:</strong> Fan servir molta menys memòria que la mida total de les dades.</li>
+<li><strong>Temps real:</strong> Donen respostes ràpides o estimacions exactes en cada instant.</li>
+</ul>
+<section id="la-idea-de-flux-de-dades" class="level3">
+<h3 class="anchored" data-anchor-id="la-idea-de-flux-de-dades"><strong>5.1.1 La idea de flux de dades</strong></h3>
+<p>Imagina que reps, de forma contínua i des d’un sensor, mesures de temperatura cada 3 minuts. En un dia tindràs <span class="math inline">\(24 \times 20 = 480\)</span> valors en total però el flux de dades és continu i no s’atura. Vols determinar la temperatura màxima en les últimes 24 hores. Aquest problema es pot abordar de dues maneres conceptualment diferents:</p>
+<p><strong>Enfocament batch</strong>: emmagatzemar totes les últimes <span class="math inline">\(480\)</span> mesures en una llista i aplicar la funció <code>max()</code>. Aquest mètode requereix conservar tota la col·lecció abans de produir el resultat (batch processing).</p>
+<p><strong>Enfocament stream</strong>: processar cada mesura en el moment en què arriba i mantenir actualitzat un registre del valor màxim observat. En rebre l’última mesura, aquest registre ja conté la resposta, sense necessitat d’emmagatzemar la seqüència completa (data stream processing).</p>
+<p>El segon enfocament és preferible perquè permet obtenir el resultat <strong>en temps real</strong> i redueix l’<strong>ús de memòria</strong>, cosa que el converteix en una estratègia més adequada quan les dades arriben en flux continu o quan la col·lecció és molt gran.</p>
+<p>En el següent exemple es mostren les dues estratègies: la primera usa <code>max()</code> sobre la llista completa, i la segona manté un acumulador que s’actualitza amb cada mesura.</p>
+<div id="nte-strbatch" class="callout callout-style-default callout-note no-icon callout-titled" title="Temperatura màxima en flux de dades versus per lots">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;1: Temperatura màxima en flux de dades versus per lots
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Per simular el sensor de temperatura, s’utilitza una funció generadora amb una llista de valors predefinits. Per simplificar la demostració, s’empren només 10 valors en lloc de 480 i s’ha reduït el temps d’espera entre lectures a 1 segon en lloc de 3 minuts.</p>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IHRpbWVcbmZyb20gdHlwaW5nIGltcG9ydCBJdGVyYXRvclxuXG5kZWYgc2Vuc29yX3RlbXBlcmF0dXJhKCkgLT4gSXRlcmF0b3JbZmxvYXRdOlxuICAgIFwiXCJcIlxuICAgIFNpbXVsYSB1biBmbHVqbyBjb250aW51byBkZSBkYXRvcyBwcm92ZW5pZW50ZXMgZGUgdW4gc2Vuc29yIGRlIHRlbXBlcmF0dXJhLlxuXG4gICAgWWllbGRzOlxuICAgICAgICBmbG9hdDogTGEgdGVtcGVyYXR1cmEgcmVnaXN0cmFkYSBlbiBncmFkb3MgQ2Vsc2l1cy5cbiAgICBcIlwiXCJcbiAgICBsZWN0dXJhcyA9IFsxOC4yLCAxOS41LCAyMi4xLCAyNC44LCAyNy4zLFxuICAgICAgICAgICAgICAgIDI2LjAsIDIzLjQsIDIxLjAsIDIwLjUsIDE5LjhdXG5cbiAgICBmb3IgdGVtcCBpbiBsZWN0dXJhczpcbiAgICAgICAgeWllbGQgdGVtcFxuXG4gICAgICAgIHByaW50KFwiKEVzcGVyYW5kbyBwYXJhIGxhIHNpZ3VpZW50ZSBsZWN0dXJhLi4uKVwiKVxuICAgICAgICAjIDE4MCBzZWd1bmRvcyBlcXVpdmFsZW4gYSAzIG1pbnV0b3MuXG4gICAgICAgICMgdGltZS5zbGVlcCgxODApXG4gICAgICAgICMgU2UgY2FtYmlhIGVzdGUgdmFsb3IgYSB0aW1lLnNsZWVwKDEpIHBhcmEgcHJvYmFyIGVsIGPDs2RpZ28gcsOhcGlkYW1lbnRlLlxuICAgICAgICB0aW1lLnNsZWVwKDEpIn0=
+</script>
+</div>
+<p>Vegem ara els dos enfocaments per calcular la temperatura màxima. Al navegador, tots els <code>print()</code> apareixen alhora en finalitzar l’execució. En un terminal real (Python local, VS Code, Codespace) cada línia apareix en el moment en què s’executa.</p>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBGb3JtYSBzdHJlYW0gc2luIGxpc3RhXG4jIEluc3RhbmNpYW1vcyBlbCBmbHVqbyBkZSBkYXRvcyAoZWwgZ2VuZXJhZG9yIG5vIGNvbWllbnphIGEgZWplY3V0YXJzZSBhcXXDrSlcbmZsdWpvID0gc2Vuc29yX3RlbXBlcmF0dXJhKClcblxubWF4aW1hX3JlZ2lzdHJhZGEgPSBmbG9hdCgnLWluZicpICAjIEluaWNpYWxpemFtb3MgY29uIGVsIG1lbm9yIHZhbG9yIHBvc2libGVcbmZvciB0ZW1wZXJhdHVyYSBpbiBmbHVqbzpcbiAgICBpZiB0ZW1wZXJhdHVyYSA+IG1heGltYV9yZWdpc3RyYWRhOlxuICAgICAgICBtYXhpbWFfcmVnaXN0cmFkYSA9IHRlbXBlcmF0dXJhXG4gICAgICAgIHByaW50KGZcIvCfk4ggTnVldm8gcGljbyBkZXRlY3RhZG86IHttYXhpbWFfcmVnaXN0cmFkYX3CsENcIilcblxucHJpbnQoZlwiXFxuUmVzdW1lbjogTGEgdGVtcGVyYXR1cmEgbcOheGltYSBkZWwgZMOtYSBmdWUge21heGltYV9yZWdpc3RyYWRhfcKwQ1xcblwiKVxuXG4jIEZvcm1hIGJhdGNoIGNvbiBsaXN0YVxuIyBJbnN0YW5jaWFtb3MgbnVldmFtZW50ZSBlbCBmbHVqbyBkZSBkYXRvc1xuZmx1am8gPSBzZW5zb3JfdGVtcGVyYXR1cmEoKVxuXG52YWxvcmVzX2FjdW11bGFkb3MgPSBsaXN0KGZsdWpvKVxuIyBTaSBsYSBsaXN0YSBlc3TDoSB2YWPDrWEsIG1heCgpIGxhbnphcsOhIHVuIFZhbHVlRXJyb3JcbmlmIG5vdCB2YWxvcmVzX2FjdW11bGFkb3M6XG4gICAgdGVtcGVyYXR1cmFfbWF4aW1hID0gZmxvYXQoJy1pbmYnKVxuZWxzZTpcbiAgICAjIEV2YWx1YW1vcyBsYSBsaXN0YSBjb21wbGV0YSBkZSB1bmEgc29sYSB2ZXpcbiAgICB0ZW1wZXJhdHVyYV9tYXhpbWEgPSBtYXgodmFsb3Jlc19hY3VtdWxhZG9zKVxuXG5wcmludChmXCJcXG5SZXN1bWVuOiBMYSB0ZW1wZXJhdHVyYSBtw6F4aW1hIGRlbCBkw61hIGZ1ZSB7dGVtcGVyYXR1cmFfbWF4aW1hfcKwQ1wiKSJ9
+</script>
+</div>
+</div>
+</div>
+<p>La clau està en la variable <code>maxima_registrada</code>: és l’<strong>estat</strong> de l’algorisme en la variant stream. Abans de cada nova mesura, <code>maxima_registrada</code> resumeix tota la informació rellevant de les mesures anteriors. Després de processar l’últim valor, aquest estat és la resposta.</p>
+<div id="tip-estado" class="callout callout-style-default callout-tip no-icon callout-titled" title="Estat d'un algorisme">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;2: Estat d’un algorisme
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>L’<strong>estat</strong> d’un algorisme en un instant donat és el conjunt de valors de les seves variables en aquell moment. En els algorismes de flux de dades, l’estat s’actualitza amb cada element processat i, en acabar, conté el resultat.</p>
+</div>
+</div>
+</section>
+<section id="processament-en-una-sola-passada" class="level3">
+<h3 class="anchored" data-anchor-id="processament-en-una-sola-passada"><strong>5.1.2 Processament en una sola passada</strong></h3>
+<p>Un algorisme d’<strong>una sola passada</strong> (<em>one-pass</em>) examina cada element exactament una vegada. Això té avantatges pràctics importants: és eficient en temps (<span class="math inline">\(O(n)\)</span> operacions per a <span class="math inline">\(n\)</span> elements), consumeix poca memòria (no necessita emmagatzemar tota la seqüència), i pot processar dades que arriben en temps real.</p>
+<div id="imp-una-pasada" class="callout callout-style-default callout-important no-icon callout-titled" title="Diverses estadístiques en una sola passada">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;1: Diverses estadístiques en una sola passada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>És possible calcular simultàniament diverses estadístiques sobre una seqüència en una sola passada, mantenint diversos acumuladors alhora. Suposem que volem calcular el màxim, el mínim i la mitjana de les mesures de temperatura. Ho podem fer així:</p>
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBJbnN0YW5jaWFtb3MgZWwgZmx1am8gZGUgZGF0b3NcbmZsdWpvID0gc2Vuc29yX3RlbXBlcmF0dXJhKClcblxubWF4aW1hX3JlZ2lzdHJhZGEgPSBmbG9hdCgnLWluZicpXG5taW5pbWFfcmVnaXN0cmFkYSA9IGZsb2F0KCdpbmYnKVxuc3VtYSA9IDBcbmNvbnRhZG9yID0gMFxuXG5mb3IgdGVtcGVyYXR1cmEgaW4gZmx1am86XG4gICAgaWYgdGVtcGVyYXR1cmEgPiBtYXhpbWFfcmVnaXN0cmFkYTpcbiAgICAgICAgbWF4aW1hX3JlZ2lzdHJhZGEgPSB0ZW1wZXJhdHVyYVxuICAgICAgICBwcmludChmXCLwn5OIIE51ZXZhIG3DoXhpbWEgZGV0ZWN0YWRhOiB7bWF4aW1hX3JlZ2lzdHJhZGF9wrBDXCIpXG4gICAgaWYgdGVtcGVyYXR1cmEgPCBtaW5pbWFfcmVnaXN0cmFkYTpcbiAgICAgICAgbWluaW1hX3JlZ2lzdHJhZGEgPSB0ZW1wZXJhdHVyYVxuICAgICAgICBwcmludChmXCLwn5OIIE51ZXZhIG3DrW5pbWEgZGV0ZWN0YWRhOiB7bWluaW1hX3JlZ2lzdHJhZGF9wrBDXCIpXG4gICAgc3VtYSArPSB0ZW1wZXJhdHVyYVxuICAgIGNvbnRhZG9yICs9IDFcblxucHJpbnQoZlwiXFxuUmVzdW1lbjogTGEgdGVtcGVyYXR1cmEgbcOheGltYSBkZWwgZMOtYSBmdWUge21heGltYV9yZWdpc3RyYWRhfcKwQ1wiKVxucHJpbnQoZlwiUmVzdW1lbjogTGEgdGVtcGVyYXR1cmEgbcOtbmltYSBkZWwgZMOtYSBmdWUge21pbmltYV9yZWdpc3RyYWRhfcKwQ1wiKVxucHJpbnQoZlwiUmVzdW1lbjogTGEgdGVtcGVyYXR1cmEgbWVkaWEgZGVsIGTDrWEgZnVlIHtzdW1hIC8gY29udGFkb3J9wrBDXCIpIn0=
+</script>
+</div>
+<p>Quatre estadístiques diferents amb un sol recorregut sobre les dades.</p>
+</div>
+</div>
+</section>
+<section id="condicions-de-parada-diferents-del-final-de-la-seqüència" class="level3">
+<h3 class="anchored" data-anchor-id="condicions-de-parada-diferents-del-final-de-la-seqüència"><strong>5.1.3 Condicions de parada diferents del final de la seqüència</strong></h3>
+<p>No tots els algorismes one-pass necessiten examinar tots els elements. De vegades la resposta es coneix abans d’arribar al final: s’ha trobat el que es buscava, o una condició especial permet deduir el resultat. Per exemple, si volem saber si una mesura de temperatura supera els 25°C, podem aturar-nos tan bon punt en trobem la primera.</p>
+<div>
+<div id="pyodide-4" class="exercise-cell">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIHN1cGVyYV8yNShudW1lcm9zOiBJdGVyYXRvcltmbG9hdF0pIC0+IGJvb2w6XG4gICAgXCJcIlwiUmV0b3JuYSBUcnVlIHNpIGxhIGxpc3RhIGNvbnRpZW5lIGFsZ8O6biBuw7ptZXJvIG1heW9yIGEgMjUuXCJcIlwiXG4gICAgZm9yIHggaW4gbnVtZXJvczpcbiAgICAgICAgaWYgeCA+IDI1LjA6XG4gICAgICAgICAgICByZXR1cm4gVHJ1ZSAgICMgcGFyYWRhIGFudGljaXBhZGE6IHlhIHRlbmVtb3MgbGEgcmVzcHVlc3RhXG4gICAgcmV0dXJuIEZhbHNlXG5cblxucHJpbnQoc3VwZXJhXzI1KHNlbnNvcl90ZW1wZXJhdHVyYSgpKSkgICMgVHJ1ZSJ9
+</script>
+</div>
+<p>La instrucció <code>return True</code> dins del bucle atura l’algorisme tan bon punt troba el primer valor major que 25, sense examinar la resta. Això s’anomena <strong>parada anticipada</strong> o <em>early exit</em>.</p>
+<hr>
+</section>
+</section>
+<section id="algorismes-de-processament-per-lots" class="level2">
+<h2 class="anchored" data-anchor-id="algorismes-de-processament-per-lots">5.2. Algorismes de processament per lots</h2>
+<p>Els <strong>algorismes de processament per lots</strong> (<em>batch processing</em>) reben la col·lecció de dades <strong>completa i d’antemà</strong>. A diferència dels algorismes de flux, poden accedir a les dades múltiples vegades, consultar-les en qualsevol ordre i aplicar operacions que requereixen conèixer el conjunt complet abans de produir un resultat.</p>
+<div id="tip-batch" class="callout callout-style-default callout-tip no-icon callout-titled" title="Processament per lots">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;3: Processament per lots
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un algorisme de <strong>processament per lots</strong> (<em>batch processing</em>) opera sobre una col·lecció de dades que ja està emmagatzemada en memòria en la seva totalitat. Pot llegir-la diverses vegades, ordenar-la o accedir a posicions arbitràries mitjançant índexs. A canvi, requereix disposar de tota la col·lecció abans de començar i consumeix memòria proporcional a la mida de les dades.</p>
+</div>
+</div>
+<section id="quan-el-processament-per-lots-és-necessari" class="level3">
+<h3 class="anchored" data-anchor-id="quan-el-processament-per-lots-és-necessari"><strong>5.2.1 Quan el processament per lots és necessari</strong></h3>
+<p>Hi ha càlculs que no poden realitzar-se en una sola passada perquè el resultat depèn de tota la col·lecció. L’exemple més clar és la <strong>mediana</strong>: per saber quin és el valor central cal ordenar les dades, cosa que exigeix tenir-les totes disponibles.</p>
+<div id="nte-mediana" class="callout callout-style-default callout-note no-icon callout-titled" title="El càlcul de la mediana requereix tota la col·lecció">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;2: El càlcul de la mediana requereix tota la col·lecció
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div>
+<div id="pyodide-5" class="exercise-cell">
+
+</div>
+<script type="pyodide-5-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIG1lZGlhbmEoZGF0b3M6IGxpc3RbZmxvYXRdKSAtPiBmbG9hdCB8IE5vbmU6XG4gICAgXCJcIlwiXG4gICAgQ2FsY3VsYSBsYSBtZWRpYW5hIGRlIHVuYSBsaXN0YSBkZSBkYXRvcy5cbiAgICBQcmVjb25kaWNpw7NuOiBkYXRvcyBubyBlc3TDoSB2YWPDrW8uXG4gICAgXCJcIlwiXG4gICAgaWYgbm90IGRhdG9zOlxuICAgICAgICByZXR1cm4gTm9uZVxuICAgIG9yZGVuYWRvcyA9IHNvcnRlZChkYXRvcykgICAjIHJlcXVpZXJlIGxhIGxpc3RhIGNvbXBsZXRhXG4gICAgbiA9IGxlbihvcmRlbmFkb3MpXG4gICAgaWYgbiAlIDIgPT0gMTpcbiAgICAgICAgcmV0dXJuIG9yZGVuYWRvc1tuIC8vIDJdXG4gICAgZWxzZTpcbiAgICAgICAgcmV0dXJuIChvcmRlbmFkb3NbbiAvLyAyIC0gMV0gKyBvcmRlbmFkb3NbbiAvLyAyXSkgLyAyLjBcblxudGVtcGVyYXR1cmFzID0gWzE4LjIsIDE5LjUsIDIyLjEsIDI0LjgsIDI3LjMsIDI2LjAsIDIzLjRdXG5wcmludChmXCJNZWRpYW5hOiB7bWVkaWFuYSh0ZW1wZXJhdHVyYXMpfSDCsENcIikgICAjIDIzLjRcbnByaW50KGZcIk1lZGlhOiAgIHtzdW0odGVtcGVyYXR1cmFzKS9sZW4odGVtcGVyYXR1cmFzKTouMmZ9IMKwQ1wiKSJ9
+</script>
+</div>
+</div>
+</div>
+<p>Cal destacar que la mitjana sí pot calcular-se en una passada (secció 5.1), però la mediana no: <code>sorted()</code> necessita accedir a tots els elements abans de retornar el primer.</p>
+</section>
+<section id="comparació-entre-els-dos-enfocaments" class="level3">
+<h3 class="anchored" data-anchor-id="comparació-entre-els-dos-enfocaments"><strong>5.2.2 Comparació entre els dos enfocaments</strong></h3>
+<p>L’elecció entre processament per flux i per lots depèn del problema i del context:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Flux de dades (<em>stream</em>)</th>
+<th>Per lots (<em>batch</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Dades disponibles</strong></td>
+<td>Arriben una a una, en temps real</td>
+<td>Col·lecció completa disponible d’antemà</td>
+</tr>
+<tr class="even">
+<td><strong>Passades sobre les dades</strong></td>
+<td>Una sola</td>
+<td>Les que calgui</td>
+</tr>
+<tr class="odd">
+<td><strong>Accés per índex</strong></td>
+<td>No</td>
+<td>Sí</td>
+</tr>
+<tr class="even">
+<td><strong>Memòria utilitzada</strong></td>
+<td>Sublineal (sols l’estat)</td>
+<td>Proporcional a la mida de les dades</td>
+</tr>
+<tr class="odd">
+<td><strong>Exemples típics</strong></td>
+<td>màxim, mínim, suma, recompte</td>
+<td>mediana, ordenació, cerca binària</td>
+</tr>
+</tbody>
+</table>
+<div id="imp-stream-vs-batch" class="callout callout-style-default callout-important no-icon callout-titled" title="Flux i lots no són excloents">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;2: Flux i lots no són excloents
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A la pràctica, molts sistemes combinen els dos enfocaments: les dades es reben en flux i s’acumulen en lots periòdics (per hores, per dies) sobre els quals s’apliquen després càlculs més complexos. Per exemple, un sistema meteorològic pot registrar temperatures en temps real (flux) i calcular percentils o tendències cada 24 hores (per lots).</p>
+</div>
+</div>
+<p>Els patrons de la secció següent (recorregut, cerca, acumulació i recompte) funcionen en tots dos modes: amb llistes completes (batch) o amb generadors que produeixen elements un a un (stream).</p>
+<hr>
+</section>
+</section>
+<section id="patrons-de-recorregut-cerca-acumulació-i-recompte" class="level2">
+<h2 class="anchored" data-anchor-id="patrons-de-recorregut-cerca-acumulació-i-recompte">5.3. Patrons de recorregut, cerca, acumulació i recompte</h2>
+<p>Els algorismes sobre fluxos de dades es construeixen combinant quatre <strong>patrons</strong> fonamentals. Reconèixer el patró adequat per a un problema és l’habilitat central d’aquesta secció.</p>
+<section id="recorregut" class="level3">
+<h3 class="anchored" data-anchor-id="recorregut"><strong>5.3.1 Recorregut</strong></h3>
+<div id="tip-recorrido" class="callout callout-style-default callout-tip no-icon callout-titled" title="Patró de recorregut">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;4: Patró de recorregut
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El <strong>recorregut</strong> processa cada element d’una seqüència exactament una vegada, aplicant la mateixa operació a tots. No hi ha condició de parada anticipada: es visiten tots els elements.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> elemento <span class="kw">in</span> secuencia:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    procesar(elemento)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>El recorregut és l’estructura més simple. El seu propòsit és <em>fer alguna cosa</em> amb cada element: imprimir-lo, transformar-lo, acumular-lo en un resultat.</p>
+<div>
+<div id="pyodide-6" class="exercise-cell">
+
+</div>
+<script type="pyodide-6-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBSZWNvcnJpZG8gcGFyYSB0cmFuc2Zvcm1hcjogY29udmVydGlyIGdyYWRvcyBDZWxzaXVzIGEgRmFocmVuaGVpdFxuY2Vsc2l1cyA9IFswLjAsIDIwLjAsIDM3LjAsIDEwMC4wXVxuZmFocmVuaGVpdCA9IFtdXG5mb3IgYyBpbiBjZWxzaXVzOlxuICAgIGZhaHJlbmhlaXQuYXBwZW5kKGMgKiA5LzUgKyAzMilcbnByaW50KGZhaHJlbmhlaXQpICAjIFszMi4wLCA2OC4wLCA5OC42LCAyMTIuMF0ifQ==
+</script>
+</div>
+<p>Quan es necessita tant l’índex com el valor, s’utilitza <code>enumerate</code>:</p>
+<div>
+<div id="pyodide-7" class="exercise-cell">
+
+</div>
+<script type="pyodide-7-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibm90YXMgPSBbOC41LCA2LjAsIDkuNSwgNy4wLCA1LjVdXG5wcmludChcIk5vdGFzIHBvciBlbmNpbWEgZGUgbGEgbWVkaWE6XCIpXG5tZWRpYSA9IHN1bShub3RhcykgLyBsZW4obm90YXMpXG5mb3IgaSwgbm90YSBpbiBlbnVtZXJhdGUobm90YXMpOlxuICAgIGlmIG5vdGEgPj0gbWVkaWE6XG4gICAgICAgIHByaW50KGZcIiAgRXN0dWRpYW50ZSB7aSsxfToge25vdGF9XCIpIn0=
+</script>
+</div>
+<div id="imp-for-vs-while" class="callout callout-style-default callout-important no-icon callout-titled" title="`for` versus `while` en recorreguts">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;3: <code>for</code> versus <code>while</code> en recorreguts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En Python, el bucle <code>for</code> és la forma idiomàtica de recórrer una seqüència quan es visiten tots els seus elements. El bucle <code>while</code> és més adequat quan la condició de parada no depèn d’haver arribat al final d’una col·lecció (per exemple, cerques amb parada anticipada, o algorismes iteratius que convergeixen a una solució).</p>
+<p>Usar <code>while i &lt; len(seq)</code> quan un <code>for</code> seria suficient és un antipatró: més codi, més possibilitat d’error (off-by-one), sense cap avantatge.</p>
+</div>
+</div>
+</section>
+<section id="cerca" class="level3">
+<h3 class="anchored" data-anchor-id="cerca"><strong>5.3.2 Cerca</strong></h3>
+<div id="tip-busqueda" class="callout callout-style-default callout-tip no-icon callout-titled" title="Patró de cerca">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;5: Patró de cerca
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>cerca</strong> recorre una seqüència per localitzar un o més elements que satisfan una condició. Tan bon punt es troba el primer (si només se’n busca un), l’algorisme pot aturar-se.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> elemento <span class="kw">in</span> secuencia:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> condicion(elemento):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> elemento   <span class="co"># o el seu índex, o True</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="va">None</span>               <span class="co"># o False: no s'ha trobat</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<section id="cerca-lineal-amb-enumerate" class="level4">
+<h4 class="anchored" data-anchor-id="cerca-lineal-amb-enumerate">Cerca lineal amb <code>enumerate</code></h4>
+<div>
+<div id="pyodide-8" class="exercise-cell">
+
+</div>
+<script type="pyodide-8-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGJ1c2Nhcl9wcmltZXJvKHNlY3VlbmNpYTogbGlzdCwgb2JqZXRpdm8pIC0+IGludDpcbiAgICBcIlwiXCJcbiAgICBSZXRvcm5hIGVsIMOtbmRpY2UgZGUgbGEgcHJpbWVyYSBhcGFyaWNpw7NuIGRlIG9iamV0aXZvIGVuIHNlY3VlbmNpYSxcbiAgICBvIC0xIHNpIG5vIHNlIGVuY3VlbnRyYS5cbiAgICBcIlwiXCJcbiAgICBmb3IgaSwgeCBpbiBlbnVtZXJhdGUoc2VjdWVuY2lhKTpcbiAgICAgICAgaWYgeCA9PSBvYmpldGl2bzpcbiAgICAgICAgICAgIHJldHVybiBpXG4gICAgcmV0dXJuIC0xXG5cbm5vbWJyZXMgPSBbXCJBbmFcIiwgXCJCb2JcIiwgXCJDYXJsb3NcIiwgXCJBbmFcIiwgXCJEaWFuYVwiXVxucHJpbnQoYnVzY2FyX3ByaW1lcm8obm9tYnJlcywgXCJBbmFcIikpICAgICAjIDBcbnByaW50KGJ1c2Nhcl9wcmltZXJvKG5vbWJyZXMsIFwiRGlhbmFcIikpICAgIyA0XG5wcmludChidXNjYXJfcHJpbWVybyhub21icmVzLCBcIkVsZW5hXCIpKSAgICMgLTEifQ==
+</script>
+</div>
+</section>
+<section id="loperador-in-com-a-cerca-implícita" class="level4">
+<h4 class="anchored" data-anchor-id="loperador-in-com-a-cerca-implícita">L’operador <code>in</code> com a cerca implícita</h4>
+<p>Python proporciona l’operador <code>in</code> per a la cerca booleana més freqüent: ¿és l’element a la col·lecció?</p>
+<div>
+<div id="pyodide-9" class="exercise-cell">
+
+</div>
+<script type="pyodide-9-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbW9zID0gWzIsIDMsIDUsIDcsIDExLCAxM11cbnByaW50KDcgaW4gcHJpbW9zKSAgICAjIFRydWVcbnByaW50KDkgaW4gcHJpbW9zKSAgICAjIEZhbHNlIn0=
+</script>
+</div>
+<p>Internament, <code>x in lista</code> realitza una cerca lineal. Per a llistes llargues, és <span class="math inline">\(O(n)\)</span>. Si l’operació es repeteix moltes vegades, convé convertir la llista en un conjunt (<code>set</code>), on la cerca és <span class="math inline">\(O(1)\)</span>.</p>
+</section>
+<section id="cerca-del-màxim-i-del-mínim" class="level4">
+<h4 class="anchored" data-anchor-id="cerca-del-màxim-i-del-mínim">Cerca del màxim i del mínim</h4>
+<p>Trobar el màxim d’una seqüència és un cas especial de cerca: es busca l’element que supera tots els altres.</p>
+<div>
+<div id="pyodide-10" class="exercise-cell">
+
+</div>
+<script type="pyodide-10-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIG1heGltb19jb25faW5kaWNlKHNlY3VlbmNpYTogbGlzdFtmbG9hdF0pIC0+IHR1cGxlW2Zsb2F0LCBpbnRdOlxuICAgIFwiXCJcIlxuICAgIFJldG9ybmEgKHZhbG9yX21heGltbywgaW5kaWNlKSBkZWwgZWxlbWVudG8gbWF5b3IgZGUgbGEgc2VjdWVuY2lhLlxuICAgIFByZWNvbmRpY2nDs246IHNlY3VlbmNpYSBubyBlc3TDoSB2YWPDrWEuXG4gICAgXCJcIlwiXG4gICAgaWYgbm90IHNlY3VlbmNpYTpcbiAgICAgICAgcmV0dXJuIE5vbmVcbiAgICBpZHhfbWF4ID0gMFxuICAgIGZvciBpIGluIHJhbmdlKDEsIGxlbihzZWN1ZW5jaWEpKTpcbiAgICAgICAgaWYgc2VjdWVuY2lhW2ldID4gc2VjdWVuY2lhW2lkeF9tYXhdOlxuICAgICAgICAgICAgaWR4X21heCA9IGlcbiAgICByZXR1cm4gc2VjdWVuY2lhW2lkeF9tYXhdLCBpZHhfbWF4XG5cbm5vdGFzID0gWzcuNSwgOS4wLCA2LjUsIDkuMCwgOC41XVxudmFsb3IsIHBvc2ljaW9uID0gbWF4aW1vX2Nvbl9pbmRpY2Uobm90YXMpXG5wcmludChmXCJOb3RhIG3DoXhpbWE6IHt2YWxvcn0gKHByaW1lcmEgYXBhcmljacOzbiBlbiBwb3NpY2nDs24ge3Bvc2ljaW9ufSlcIikifQ==
+</script>
+</div>
+<div id="cau-busqueda-inicio" class="callout callout-style-default callout-caution no-icon callout-titled" title="Inicialitzar el màxim amb un valor arbitrari">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;1: Inicialitzar el màxim amb un valor arbitrari
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una trampa habitual en programar la cerca del màxim és inicialitzar amb un valor arbitrari com <code>maximo = 0</code> o <code>maximo = -999</code>. Això pot fallar si tots els elements són menors que aquest valor inicial.</p>
+<p>La forma correcta és inicialitzar amb el <strong>primer element</strong> de la seqüència: <code>maximo = secuencia[0]</code>. Després iterar des del segon element.</p>
+<p>Alternativa robusta: inicialitzar amb <code>float('-inf')</code>, que és menor que qualsevol nombre real.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="acumulació" class="level3">
+<h3 class="anchored" data-anchor-id="acumulació"><strong>5.3.3 Acumulació</strong></h3>
+<div id="tip-acumulacion" class="callout callout-style-default callout-tip no-icon callout-titled" title="Patró d'acumulació">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;6: Patró d’acumulació
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>L’<strong>acumulació</strong> combina tots els elements d’una seqüència en un únic resultat, aplicant una operació binària de forma repetida. El resultat es construeix incrementalment, element a element.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> valor_inicial</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> elemento <span class="kw">in</span> secuencia:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> combinar(resultado, elemento)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>La clau és triar el <code>valor_inicial</code> correcte: ha de ser l’<strong>element neutre</strong> de l’operació <code>combinar</code>. Per a la suma, el neutre és <code>0</code>; per al producte, <code>1</code>; per a la intersecció de conjunts, el conjunt universal; per a la concatenació de llistes, <code>[]</code>.</p>
+<section id="acumulació-numèrica" class="level4">
+<h4 class="anchored" data-anchor-id="acumulació-numèrica">Acumulació numèrica</h4>
+<div>
+<div id="pyodide-11" class="exercise-cell">
+
+</div>
+<script type="pyodide-11-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBTdW1hXG5udW1lcm9zID0gWzEuMCwgMi4wLCAzLjAsIDQuMCwgNS4wXVxuc3VtYSA9IDAuMFxuZm9yIHggaW4gbnVtZXJvczpcbiAgICBzdW1hICs9IHhcbnByaW50KGZcIlN1bWE6IHtzdW1hfVwiKSAgICAgICAgICAgIyAxNS4wXG5cbiMgUHJvZHVjdG8gZmFjdG9yaWFsXG5uID0gN1xuZmFjdG9yaWFsID0gMVxuZm9yIGsgaW4gcmFuZ2UoMSwgbiArIDEpOlxuICAgIGZhY3RvcmlhbCAqPSBrXG5wcmludChmXCJ7bn0hID0ge2ZhY3RvcmlhbH1cIikgICAgICMgNTA0MCJ9
+</script>
+</div>
+<div id="nte-acumulacion-mat" class="callout callout-style-default callout-note no-icon callout-titled" title="Connexió amb la notació matemàtica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;3: Connexió amb la notació matemàtica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El patró d’acumulació per suma és la versió computacional de la notació sigma: <span class="math display">\[
+\sum_{k=1}^{n} f(k) \quad \longleftrightarrow \quad
+\texttt{resultado = 0; for k in range(1, n+1): resultado += f(k)}
+\]</span> I l’acumulació per producte correspon a la notació pi: <span class="math display">\[
+\prod_{k=1}^{n} f(k) \quad \longleftrightarrow \quad
+\texttt{resultado = 1; for k in range(1, n+1): resultado *= f(k)}
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="acumulació-estructural" class="level4">
+<h4 class="anchored" data-anchor-id="acumulació-estructural">Acumulació estructural</h4>
+<p>L’acumulació no és només per a nombres. Pot construir llistes, cadenes o altres estructures:</p>
+<div>
+<div id="pyodide-12" class="exercise-cell">
+
+</div>
+<script type="pyodide-12-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBGaWx0cmFyIHkgYWN1bXVsYXI6IG7Dum1lcm9zIHBhcmVzIGFsIGN1YWRyYWRvXG5udW1lcm9zID0gcmFuZ2UoMSwgMTEpXG5yZXN1bHRhZG8gPSBbXVxuZm9yIHggaW4gbnVtZXJvczpcbiAgICBpZiB4ICUgMiA9PSAwOlxuICAgICAgICByZXN1bHRhZG8uYXBwZW5kKHggKiogMilcbnByaW50KHJlc3VsdGFkbykgICMgWzQsIDE2LCAzNiwgNjQsIDEwMF1cblxuIyBBY3VtdWxhY2nDs24gZGUgY2FkZW5hc1xucGFsYWJyYXMgPSBbXCJsYVwiLCBcIm1hdGVtw6F0aWNhXCIsIFwiZXNcIiwgXCJoZXJtb3NhXCJdXG5mcmFzZSA9IFwiXCJcbmZvciBpLCBwIGluIGVudW1lcmF0ZShwYWxhYnJhcyk6XG4gICAgaWYgaSA+IDA6XG4gICAgICAgIGZyYXNlICs9IFwiIFwiXG4gICAgZnJhc2UgKz0gcFxucHJpbnQoZnJhc2UpICAjIGxhIG1hdGVtw6F0aWNhIGVzIGhlcm1vc2EifQ==
+</script>
+</div>
+<div id="imp-join" class="callout callout-style-default callout-important no-icon callout-titled" title="Concatenació eficient de cadenes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;4: Concatenació eficient de cadenes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El patró <code>frase += p</code> en un bucle crea una nova cadena en cada iteració, cosa que resulta en <span class="math inline">\(O(n^2)\)</span> operacions per a <span class="math inline">\(n\)</span> paraules. La forma eficient en Python és acumular en una llista i usar <code>str.join</code> al final:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>partes <span class="op">=</span> []</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> palabras:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    partes.append(p)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>frase <span class="op">=</span> <span class="st">" "</span>.join(partes)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O directament: <code>" ".join(palabras)</code>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="recompte" class="level3">
+<h3 class="anchored" data-anchor-id="recompte"><strong>5.3.4 Recompte</strong></h3>
+<div id="tip-conteo" class="callout callout-style-default callout-tip no-icon callout-titled" title="Patró de recompte">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;7: Patró de recompte
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El <strong>recompte</strong> és un cas especial d’acumulació on l’operació de combinació és sumar <code>1</code> cada vegada que l’element satisfà una condició. El resultat és el nombre d’elements que compleixen la condició.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>contador <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> elemento <span class="kw">in</span> secuencia:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> condicion(elemento):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        contador <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div>
+<div id="pyodide-13" class="exercise-cell">
+
+</div>
+<script type="pyodide-13-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGNvbnRhcl9hcHJvYmFkb3Mobm90YXM6IGxpc3RbZmxvYXRdLCB1bWJyYWw6IGZsb2F0ID0gNS4wKSAtPiBpbnQ6XG4gICAgXCJcIlwiQ3VlbnRhIGN1w6FudGFzIG5vdGFzIHNvbiBtYXlvcmVzIG8gaWd1YWxlcyBhbCB1bWJyYWwuXCJcIlwiXG4gICAgY29udGFkb3IgPSAwXG4gICAgZm9yIG5vdGEgaW4gbm90YXM6XG4gICAgICAgIGlmIG5vdGEgPj0gdW1icmFsOlxuICAgICAgICAgICAgY29udGFkb3IgKz0gMVxuICAgIHJldHVybiBjb250YWRvclxuXG5ub3RhcyA9IFs0LjUsIDcuMCwgMy41LCA4LjUsIDUuMCwgOS4wLCAyLjAsIDYuNV1cbnByaW50KGZcIkFwcm9iYWRvczoge2NvbnRhcl9hcHJvYmFkb3Mobm90YXMpfVwiKSAgICAgICAjIDVcbnByaW50KGZcIkFwcm9iYWRvcyAo4omlNyk6IHtjb250YXJfYXByb2JhZG9zKG5vdGFzLCA3LjApfVwiKSAgIyAzIn0=
+</script>
+</div>
+<p>El recompte es generalitza de forma natural a <strong>comptar categories diferents</strong> usant un diccionari:</p>
+<div>
+<div id="pyodide-14" class="exercise-cell">
+
+</div>
+<script type="pyodide-14-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGZyZWN1ZW5jaWFfY2FyYWN0ZXJlcyh0ZXh0bzogc3RyKSAtPiBkaWN0W3N0ciwgaW50XTpcbiAgICBcIlwiXCJDdWVudGEgbGEgZnJlY3VlbmNpYSBkZSBjYWRhIGNhcsOhY3RlciBlbiBlbCB0ZXh0by5cIlwiXCJcbiAgICBjb250ZW86IGRpY3Rbc3RyLCBpbnRdID0ge31cbiAgICBmb3IgYyBpbiB0ZXh0bzpcbiAgICAgICAgY29udGVvW2NdID0gY29udGVvLmdldChjLCAwKSArIDFcbiAgICByZXR1cm4gY29udGVvXG5cbnByaW50KGZyZWN1ZW5jaWFfY2FyYWN0ZXJlcyhcImFicmFjYWRhYnJhXCIpKVxuIyB7J2EnOiA1LCAnYic6IDIsICdyJzogMiwgJ2MnOiAxLCAnZCc6IDF9In0=
+</script>
+</div>
+<div id="nte-sum-generator" class="callout callout-style-default callout-note no-icon callout-titled" title="Recompte amb expressions generadores">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;4: Recompte amb expressions generadores
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El patró de recompte pot escriure’s en una línia usant <code>sum</code> amb una expressió generadora:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>contador <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> x <span class="kw">in</span> secuencia <span class="cf">if</span> condicion(x))</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O equivalentment, aprofitant que <code>True</code> val <code>1</code> i <code>False</code> val <code>0</code> en context numèric:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>contador <span class="op">=</span> <span class="bu">sum</span>(condicion(x) <span class="cf">for</span> x <span class="kw">in</span> secuencia)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aquesta forma és idiomàtica en Python quan la condició és simple.</p>
+</div>
+</div>
+</section>
+<section id="composició-de-patrons" class="level3">
+<h3 class="anchored" data-anchor-id="composició-de-patrons"><strong>5.3.5 Composició de patrons</strong></h3>
+<p>Els quatre patrons no són excloents. La majoria dels algorismes reals els combinen. Un exemple: calcular la <strong>desviació estàndard</strong> d’una mostra.</p>
+<p><span class="math display">\[
+\sigma = \sqrt{\frac{1}{n}\sum_{i=0}^{n-1}(x_i - \bar{x})^2}
+\]</span></p>
+<div id="nte-desviacion" class="callout callout-style-default callout-note no-icon callout-titled" title="Càlcul de la desviació estàndard d'una mostra">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;5: Càlcul de la desviació estàndard d’una mostra
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Per calcular la desviació estàndard, primer es necessita la mitjana <span class="math inline">\(\bar{x}\)</span>, que requereix un recorregut i una acumulació. Després es recorre de nou per acumular la suma dels quadrats de les diferències respecte a la mitjana. Finalment, es calcula l’arrel quadrada de la variància.</p>
+<div>
+<div id="pyodide-15" class="exercise-cell">
+
+</div>
+<script type="pyodide-15-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuZGVmIGRlc3ZpYWNpb25fZXN0YW5kYXIoZGF0b3M6IGxpc3RbZmxvYXRdKSAtPiBmbG9hdCB8IE5vbmU6XG4gICAgXCJcIlwiXG4gICAgQ2FsY3VsYSBsYSBkZXN2aWFjacOzbiBlc3TDoW5kYXIgcG9ibGFjaW9uYWwgZGUgdW5hIGxpc3RhIGRlIGRhdG9zLlxuICAgIFByZWNvbmRpY2nDs246IGRhdG9zIG5vIGVzdMOhIHZhY8Otby5cbiAgICBcIlwiXCJcbiAgICBpZiBub3QgZGF0b3M6XG4gICAgICAgIHJldHVybiBOb25lXG5cbiAgICBuID0gbGVuKGRhdG9zKVxuXG4gICAgIyBBY3VtdWxhY2nDs246IGNhbGN1bGFyIGxhIG1lZGlhXG4gICAgc3VtYSA9IDAuMFxuICAgIGZvciB4IGluIGRhdG9zOlxuICAgICAgICBzdW1hICs9IHhcbiAgICBtZWRpYSA9IHN1bWEgLyBuXG5cbiAgICAjIEFjdW11bGFjacOzbjogY2FsY3VsYXIgbGEgdmFyaWFuemFcbiAgICBzdW1hX2N1YWQgPSAwLjBcbiAgICBmb3IgeCBpbiBkYXRvczpcbiAgICAgICAgc3VtYV9jdWFkICs9ICh4IC0gbWVkaWEpICoqIDJcbiAgICB2YXJpYW56YSA9IHN1bWFfY3VhZCAvIG5cblxuICAgIHJldHVybiBtYXRoLnNxcnQodmFyaWFuemEpXG5cbm11ZXN0cmFzID0gWzIuMCwgNC4wLCA0LjAsIDQuMCwgNS4wLCA1LjAsIDcuMCwgOS4wXVxucHJpbnQoZlwiTWVkaWE6IHtzdW0obXVlc3RyYXMpL2xlbihtdWVzdHJhcyk6LjJmfVwiKVxucHJpbnQoZlwiRGVzdmlhY2nDs24gZXN0w6FuZGFyOiB7ZGVzdmlhY2lvbl9lc3RhbmRhcihtdWVzdHJhcyk6LjJmfVwiKSAgIyAyLjAwIn0=
+</script>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="nocions-dinvariant-de-bucle-com-a-eina-de-raonament" class="level2">
+<h2 class="anchored" data-anchor-id="nocions-dinvariant-de-bucle-com-a-eina-de-raonament">5.4. Nocions d’invariant de bucle com a eina de raonament</h2>
+<p>Escriure un bucle que sembla correcte no és el mateix que demostrar que ho és. L’<strong>invariant de bucle</strong> és l’eina formal per raonar sobre la correcció dels algorismes iteratius <span class="citation" data-cites="dijkstra1976 gries1981">(<a href="#ref-dijkstra1976" role="doc-biblioref">Dijkstra 1976</a>; <a href="#ref-gries1981" role="doc-biblioref">Gries 1981</a>)</span>.</p>
+<div id="tip-invariante" class="callout callout-style-default callout-tip no-icon callout-titled" title="Invariant de bucle">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;8: Invariant de bucle
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>invariant de bucle</strong> és una propietat <span class="math inline">\(P\)</span> sobre les variables del programa que es compleix:</p>
+<ol type="1">
+<li><strong>Abans de la primera iteració</strong> (<em>inicialització</em>): <span class="math inline">\(P\)</span> és certa quan el bucle comença.</li>
+<li><strong>A l’inici de cada iteració</strong> (<em>manteniment</em>): si <span class="math inline">\(P\)</span> és certa a l’inici d’una iteració, segueix sent certa al final d’aquesta mateixa iteració (i per tant a l’inici de la següent).</li>
+<li><strong>En acabar el bucle</strong> (<em>terminació</em>): <span class="math inline">\(P\)</span>, juntament amb la condició de sortida del bucle, implica que el resultat és correcte.</li>
+</ol>
+</div>
+</div>
+<p>L’estructura de la demostració és idèntica a la <strong>inducció matemàtica</strong>: el cas base és la inicialització, i el pas inductiu és el manteniment. Els estudiants de matemàtiques ja coneixen aquest raonament; l’invariant de bucle és la seva traducció al món dels algorismes.</p>
+<section id="invariant-de-lacumulació-de-suma" class="level3">
+<h3 class="anchored" data-anchor-id="invariant-de-lacumulació-de-suma"><strong>5.4.1 Invariant de l’acumulació de suma</strong></h3>
+<p>Considerem l’algorisme més simple: sumar els elements d’una llista.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumar(v: <span class="bu">list</span>[<span class="bu">float</span>]) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    acumulado <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(v)):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        acumulado <span class="op">+=</span> v[i]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> acumulado</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Invariant</strong>: a l’inici de la iteració <span class="math inline">\(i\)</span>, la variable <code>acumulado</code> conté la suma dels primers <span class="math inline">\(i\)</span> elements: <span class="math display">\[
+P(i):\quad \texttt{acumulado} = \sum_{k=0}^{i-1} v[k]
+\]</span></p>
+<p><strong>Demostració:</strong></p>
+<ul>
+<li><em>Inicialització</em> (<span class="math inline">\(i = 0\)</span>): abans de la primera iteració, <code>acumulado = 0.0</code>. La suma buida <span class="math inline">\(\sum_{k=0}^{-1} v[k] = 0\)</span>. <span class="math inline">\(P(0)\)</span> és certa. ✓</li>
+<li><em>Manteniment</em>: suposem que <span class="math inline">\(P(i)\)</span> és certa, és a dir, <code>acumulado</code> <span class="math inline">\(= \sum_{k=0}^{i-1} v[k]\)</span>. La iteració executa <code>acumulado += v[i]</code>, de manera que al final <code>acumulado</code> <span class="math inline">\(= \sum_{k=0}^{i-1} v[k] + v[i] = \sum_{k=0}^{i} v[k]\)</span>. Això és <span class="math inline">\(P(i+1)\)</span>. ✓</li>
+<li><em>Terminació</em>: el bucle acaba quan <span class="math inline">\(i = n = \texttt{len(v)}\)</span>. Aleshores <span class="math inline">\(P(n)\)</span> afirma que <code>acumulado</code> <span class="math inline">\(= \sum_{k=0}^{n-1} v[k]\)</span>, que és exactament la suma de tots els elements de <code>v</code>. ✓</li>
+</ul>
+</section>
+<section id="invariant-de-la-cerca-lineal" class="level3">
+<h3 class="anchored" data-anchor-id="invariant-de-la-cerca-lineal"><strong>5.4.2 Invariant de la cerca lineal</strong></h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> buscar(v: <span class="bu">list</span>, objetivo) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(v)):</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> v[i] <span class="op">==</span> objetivo:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> i</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Invariant</strong>: a l’inici de la iteració <span class="math inline">\(i\)</span>, l’objectiu no ha aparegut entre els primers <span class="math inline">\(i\)</span> elements: <span class="math display">\[
+P(i):\quad \texttt{objetivo} \notin \{v[0], v[1], \ldots, v[i-1]\}
+\]</span></p>
+<ul>
+<li><em>Inicialització</em>: abans de la primera iteració (<span class="math inline">\(i = 0\)</span>), el conjunt buit no conté l’objectiu. ✓</li>
+<li><em>Manteniment</em>: si <span class="math inline">\(P(i)\)</span> és certa i <code>v[i] != objetivo</code>, aleshores l’objectiu tampoc és a <span class="math inline">\(\{v[0],\ldots,v[i]\}\)</span>, cosa que estableix <span class="math inline">\(P(i+1)\)</span>. Si <code>v[i] == objetivo</code>, la funció retorna <span class="math inline">\(i\)</span> (correcte). ✓</li>
+<li><em>Terminació</em>: si el bucle arriba fins a <span class="math inline">\(i = n\)</span> sense haver retornat, <span class="math inline">\(P(n)\)</span> garanteix que l’objectiu no és en cap posició <span class="math inline">\(\{0,\ldots,n-1\}\)</span>: la funció retorna <span class="math inline">\(-1\)</span> correctament. ✓</li>
+</ul>
+<div id="nte-invariante-induccion" class="callout callout-style-default callout-note no-icon callout-titled" title="Invariant de bucle i inducció matemàtica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;6: Invariant de bucle i inducció matemàtica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>L’analogia és exacta:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Inducció matemàtica</th>
+<th>Invariant de bucle</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cas base: <span class="math inline">\(P(0)\)</span> és certa</td>
+<td>Inicialització: <span class="math inline">\(P\)</span> és certa abans de la primera iteració</td>
+</tr>
+<tr class="even">
+<td>Pas inductiu: <span class="math inline">\(P(k) \Rightarrow P(k+1)\)</span></td>
+<td>Manteniment: <span class="math inline">\(P\)</span> a l’inici <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(P\)</span> al final de la iteració</td>
+</tr>
+<tr class="odd">
+<td>Conclusió: <span class="math inline">\(P(n)\)</span> és certa per a tot <span class="math inline">\(n\)</span></td>
+<td>Terminació: <span class="math inline">\(P\)</span> juntament amb la condició de sortida dóna el resultat correcte</td>
+</tr>
+</tbody>
+</table>
+<p>Aquesta equivalència no és casual: la correcció dels bucles <em>és</em> inducció matemàtica aplicada a algorismes.</p>
+</div>
+</div>
+</section>
+<section id="ús-informal-de-linvariant" class="level3">
+<h3 class="anchored" data-anchor-id="ús-informal-de-linvariant"><strong>5.4.3 Ús informal de l’invariant</strong></h3>
+<p>Pocs programadors escriuen demostracions formals en el seu treball quotidià. Tanmateix, raonar <em>informalment</em> amb invariants és un hàbit valuós:</p>
+<ul>
+<li>En <strong>dissenyar</strong> un bucle: preguntar-se quina propietat ha de mantenir la variable d’estat.</li>
+<li>En <strong>depurar</strong> un bucle: inserir <code>assert</code> (secció 5.5) per verificar que l’invariant es compleix en cada iteració.</li>
+<li>En <strong>revisar</strong> el codi d’un altre: identificar l’invariant implícit per entendre què fa el bucle.</li>
+</ul>
+<div>
+<div id="pyodide-16" class="exercise-cell">
+
+</div>
+<script type="pyodide-16-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIG1heGltbyh2OiBsaXN0W2Zsb2F0XSkgLT4gZmxvYXQgfCBOb25lOlxuICAgIFwiXCJcIlxuICAgIFJldG9ybmEgZWwgbcOheGltbyBkZSBsYSBsaXN0YSB2LlxuICAgIEludmFyaWFudGU6IGFsIGluaWNpbyBkZSBsYSBpdGVyYWNpw7NuIGksIGBhY3R1YWxfbWF4YCBlcyBlbCBtYXlvclxuICAgIGRlIGxvcyBlbGVtZW50b3MgdlswXSwgLi4uLCB2W2ktMV0uXG4gICAgXCJcIlwiXG4gICAgaWYgbm90IHY6XG4gICAgICAgIHJldHVybiBOb25lXG4gICAgYWN0dWFsX21heCA9IHZbMF1cbiAgICBmb3IgaSBpbiByYW5nZSgxLCBsZW4odikpOlxuICAgICAgICAjIEludmFyaWFudGU6IGFjdHVhbF9tYXggPT0gbWF4KHZbMF0sIC4uLiwgdltpLTFdKVxuICAgICAgICBpZiB2W2ldID4gYWN0dWFsX21heDpcbiAgICAgICAgICAgIGFjdHVhbF9tYXggPSB2W2ldXG4gICAgIyBBbCBzYWxpcjogYWN0dWFsX21heCA9PSBtYXgodlswXSwgLi4uLCB2W24tMV0pXG4gICAgcmV0dXJuIGFjdHVhbF9tYXhcblxucHJpbnQobWF4aW1vKFszLjAsIDEuMCwgNC4wLCAxLjAsIDUuMCwgOS4wLCAyLjAsIDYuMF0pKSAgIyA5LjBcbnByaW50KG1heGltbyhbNy4wXSkpICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjIDcuMFxucHJpbnQobWF4aW1vKFtdKSkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICMgTm9uZSJ9
+</script>
+</div>
+<p>Els comentaris amb l’invariant no són decoració: documenten el <strong>per què</strong> l’algorisme és correcte, no sols el <em>què</em> fa.</p>
+<hr>
+</section>
+</section>
+<section id="ús-de-la-instrucció-assert-i-fonaments-de-pytest" class="level2">
+<h2 class="anchored" data-anchor-id="ús-de-la-instrucció-assert-i-fonaments-de-pytest">5.5. Ús de la instrucció <code>assert</code> i fonaments de <code>pytest</code></h2>
+<p>Dissenyar un algorisme correcte és el primer pas. Verificar que la implementació en Python també ho és requereix <strong>proves</strong>. Python ofereix dos mecanismes complementaris: la instrucció <code>assert</code> per a verificacions dins del codi, i el framework <code>pytest</code> per a proves automatitzades.</p>
+<section id="la-instrucció-assert" class="level3">
+<h3 class="anchored" data-anchor-id="la-instrucció-assert"><strong>5.5.1 La instrucció <code>assert</code></strong></h3>
+<div id="tip-assert" class="callout callout-style-default callout-tip no-icon callout-titled" title="Instrucció `assert`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;9: Instrucció <code>assert</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La instrucció <code>assert</code> avalua una expressió booleana. Si és <code>True</code>, no fa res. Si és <code>False</code>, llança una excepció <code>AssertionError</code> que atura el programa (llevat que es captiri amb <code>try/except</code>).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> expresion</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> expresion, <span class="st">"mensaje de error descriptivo"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div>
+<div id="pyodide-17" class="exercise-cell">
+
+</div>
+<script type="pyodide-17-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIHJhaXpfY3VhZHJhZGEoeDogZmxvYXQpIC0+IGZsb2F0OlxuICAgIFwiXCJcIlxuICAgIENhbGN1bGEgbGEgcmHDrXogY3VhZHJhZGEgZGUgeC5cbiAgICBQcmVjb25kaWNpw7NuOiB4ID49IDAuXG4gICAgXCJcIlwiXG4gICAgYXNzZXJ0IHggPj0gMCwgZlwicmFpel9jdWFkcmFkYSByZXF1aWVyZSB4ID49IDAsIHBlcm8gc2UgcmVjaWJpw7Mge3h9XCJcbiAgICBpbXBvcnQgbWF0aFxuICAgIHJldHVybiBtYXRoLnNxcnQoeClcblxucHJpbnQocmFpel9jdWFkcmFkYSg5LjApKSAgICMgMy4wXG5wcmludChyYWl6X2N1YWRyYWRhKDIuMCkpICAgIyAxLjQxNDIxMzU2MjM3MzA5NTFcbiMgcHJpbnQocmFpel9jdWFkcmFkYSgtMS4wKSkgICMgQXNzZXJ0aW9uRXJyb3I6IHJhaXpfY3VhZHJhZGEgcmVxdWllcmUgeCA+PSAwIn0=
+</script>
+</div>
+<p>Els usos principals de <code>assert</code> són:</p>
+<ul>
+<li><strong>Precondicions</strong>: verificar que els arguments d’una funció compleixen els requisits. Documenten el contracte de la funció de forma executable.</li>
+<li><strong>Postcondicions</strong>: verificar que el resultat és plausible abans de retornar-lo.</li>
+<li><strong>Invariants de bucle</strong>: inserir <code>assert</code> dins d’un bucle per comprovar que la propietat invariant es manté en cada iteració durant el desenvolupament.</li>
+</ul>
+<div>
+<div id="pyodide-18" class="exercise-cell">
+
+</div>
+<script type="pyodide-18-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGJ1c2Nhcl92ZXJpZmljYWRvKHY6IGxpc3RbZmxvYXRdLCBvYmpldGl2bzogZmxvYXQpIC0+IGludDpcbiAgICBcIlwiXCJCw7pzcXVlZGEgbGluZWFsIGNvbiB2ZXJpZmljYWNpw7NuIGRlbCBpbnZhcmlhbnRlLlwiXCJcIlxuICAgICMgUHJlY29uZGljacOzbjogbm8gbGEgdmVyaWZpY2Ftb3MgY29uIGFzc2VydCBhcXXDrSAobGlzdGEgcHVlZGUgc2VyIHZhY8OtYSlcbiAgICBmb3IgaSBpbiByYW5nZShsZW4odikpOlxuICAgICAgICAjIEludmFyaWFudGU6IG9iamV0aXZvIG5vIGVzdMOhIGVuIHZbMC4uaS0xXVxuICAgICAgICBhc3NlcnQgb2JqZXRpdm8gbm90IGluIHZbOmldLCBmXCJJbnZhcmlhbnRlIHZpb2xhZG8gZW4gaT17aX1cIlxuICAgICAgICBpZiB2W2ldID09IG9iamV0aXZvOlxuICAgICAgICAgICAgcmV0dXJuIGlcbiAgICByZXR1cm4gLTFcblxucHJpbnQoYnVzY2FyX3ZlcmlmaWNhZG8oWzMuMCwgNy4wLCAyLjAsIDUuMF0sIDIuMCkpICAgIyAyXG5wcmludChidXNjYXJfdmVyaWZpY2FkbyhbMy4wLCA3LjAsIDIuMCwgNS4wXSwgOS4wKSkgICAjIC0xIn0=
+</script>
+</div>
+<div id="imp-assert-produccion" class="callout callout-style-default callout-important no-icon callout-titled" title="`assert` no substitueix la validació d'entrada">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;5: <code>assert</code> no substitueix la validació d’entrada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La instrucció <code>assert</code> pot <strong>desactivar-se</strong> completament executant Python amb l’opció <code>-O</code> (<em>optimize</em>): <code>python -O mi_programa.py</code>. En aquest mode, cap <code>assert</code> s’executa.</p>
+<p>Per això, <code>assert</code> és adequat per a:</p>
+<ul>
+<li>Verificar invariants i suposicions del programador durant el desenvolupament.</li>
+<li>Expressar precondicions en codi “de confiança” (usat per un mateix o per l’equip).</li>
+</ul>
+<p>No és adequat per a:</p>
+<ul>
+<li>Validar entrades de l’usuari (que poden ser qualsevol cosa).</li>
+<li>Gestionar errors recuperables en producció.</li>
+</ul>
+<p>Per a validació robusta d’entrades en codi de producció, usar <code>if condicion: raise ValueError("...")</code> (vegeu secció 3.4).</p>
+</div>
+</div>
+</section>
+<section id="fonaments-de-pytest" class="level3">
+<h3 class="anchored" data-anchor-id="fonaments-de-pytest"><strong>5.5.2 Fonaments de <code>pytest</code></strong></h3>
+<p>Les verificacions amb <code>assert</code> dins del codi de producció són útils durant el desenvolupament, però tenen un problema: cal llegir la sortida del programa per saber si tot va bé. Les <strong>proves automatitzades</strong> resolen això: són funcions especials que verifiquen el comportament del codi de forma sistemàtica i produeixen un informe clar del que passa i el que falla.</p>
+<p><code>pytest</code> és el framework de proves estàndard en Python <span class="citation" data-cites="pytest">(<a href="#ref-pytest" role="doc-biblioref">pytest contributors 2024</a>)</span>. No requereix importacions especials en els fitxers de prova: n’hi ha prou amb escriure funcions que comencin per <code>test_</code> i usar <code>assert</code>.</p>
+<div id="tip-test-unitario" class="callout callout-style-default callout-tip no-icon callout-titled" title="Prova unitària">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;10: Prova unitària
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>prova unitària</strong> (<em>unit test</em>) és una funció que verifica el comportament correcte d’una unitat petita de codi (típicament una funció) davant entrades concretes. Cada prova ha de ser <strong>independent</strong> (no depèn de l’ordre d’execució), <strong>repetible</strong> (sempre dóna el mateix resultat) i <strong>específica</strong> (prova una sola cosa).</p>
+</div>
+</div>
+<section id="estructura-dun-fitxer-de-proves" class="level4">
+<h4 class="anchored" data-anchor-id="estructura-dun-fitxer-de-proves">Estructura d’un fitxer de proves</h4>
+<p>Per convenció, els fitxers de prova s’anomenen <code>test_nombre_modulo.py</code> i es col·loquen al costat del mòdul que proven o en una carpeta <code>tests/</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test_vectores.py</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> t04_paquete.vectores <span class="im">import</span> producto_escalar, norma, son_ortogonales</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_producto_escalar_basico():</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> producto_escalar([<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>], [<span class="fl">4.0</span>, <span class="fl">5.0</span>, <span class="fl">6.0</span>]) <span class="op">==</span> <span class="fl">32.0</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_producto_escalar_ortogonales():</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> producto_escalar([<span class="fl">1.0</span>, <span class="fl">0.0</span>], [<span class="fl">0.0</span>, <span class="fl">1.0</span>]) <span class="op">==</span> <span class="fl">0.0</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_norma_pitagoras():</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> norma([<span class="fl">3.0</span>, <span class="fl">4.0</span>]) <span class="op">==</span> <span class="fl">5.0</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_norma_unitario():</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> math</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(norma([<span class="fl">1.0</span>, <span class="fl">0.0</span>]) <span class="op">-</span> <span class="fl">1.0</span>) <span class="op">&lt;</span> <span class="fl">1e-12</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_son_ortogonales_true():</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> son_ortogonales([<span class="fl">1.0</span>, <span class="fl">0.0</span>], [<span class="fl">0.0</span>, <span class="fl">1.0</span>]) <span class="kw">is</span> <span class="va">True</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_son_ortogonales_false():</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> son_ortogonales([<span class="fl">1.0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="fl">0.0</span>]) <span class="kw">is</span> <span class="va">False</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_producto_escalar_precondicion_violada():</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Vectores de distinta longitud → precondición no cumplida → None</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> producto_escalar([<span class="fl">1.0</span>, <span class="fl">2.0</span>], [<span class="fl">1.0</span>]) <span class="kw">is</span> <span class="va">None</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="execució-de-pytest" class="level4">
+<h4 class="anchored" data-anchor-id="execució-de-pytest">Execució de pytest</h4>
+<p>Des del terminal, dins del directori del projecte:</p>
+<pre class="text"><code>pytest                        # ejecuta todos los test_*.py del directorio
+pytest test_vectores.py       # ejecuta solo ese fichero
+pytest test_vectores.py -v    # verbose: muestra el nombre de cada prueba
+pytest -x                     # para en el primer fallo</code></pre>
+<p>Sortida típica quan tot passa:</p>
+<pre class="text"><code>========================= test session starts ==========================
+collected 7 items
+
+test_vectores.py .......                                          [100%]
+
+========================== 7 passed in 0.03s ===========================</code></pre>
+<p>Sortida quan una prova falla:</p>
+<pre class="text"><code>========================= test session starts ==========================
+collected 7 items
+
+test_vectores.py .F.....                                          [100%]
+
+============================== FAILURES ================================
+___________________ test_norma_pitagoras ___________________
+
+    def test_norma_pitagoras():
+&gt;       assert norma([3.0, 4.0]) == 5.0
+E       AssertionError: assert 4.999999999 == 5.0
+
+test_vectores.py:12: AssertionError
+====================== 1 failed, 6 passed in 0.04s =====================</code></pre>
+<div id="cau-igualdad-flotante" class="callout callout-style-default callout-caution no-icon callout-titled" title="Comparar nombres de coma flotant en proves">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;2: Comparar nombres de coma flotant en proves
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La igualtat estricta <code>==</code> entre nombres de coma flotant és problemàtica en les proves perquè els errors d’arrodoniment poden fer que dos resultats matemàticament iguals difereixin en l’últim bit. La solució és comparar amb una <strong>tolerància</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mal: puede fallar por errores de redondeo</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> norma([<span class="fl">3.0</span>, <span class="fl">4.0</span>]) <span class="op">==</span> <span class="fl">5.0</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Bien: tolerancia absoluta</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">abs</span>(norma([<span class="fl">3.0</span>, <span class="fl">4.0</span>]) <span class="op">-</span> <span class="fl">5.0</span>) <span class="op">&lt;</span> <span class="fl">1e-10</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Bien: usando pytest.approx (recomendado en pytest)</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> norma([<span class="fl">3.0</span>, <span class="fl">4.0</span>]) <span class="op">==</span> pytest.approx(<span class="fl">5.0</span>)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>pytest.approx</code> usa una tolerància relativa de <span class="math inline">\(10^{-6}\)</span> per defecte, adequada per a la majoria de càlculs numèrics.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="quines-proves-escriure" class="level3">
+<h3 class="anchored" data-anchor-id="quines-proves-escriure"><strong>5.5.3 Quines proves escriure</strong></h3>
+<p>Una prova incompleta pot donar una falsa sensació de seguretat. Per a cada funció, convé cobrir almenys tres tipus de casos:</p>
+<div id="imp-casos-prueba" class="callout callout-style-default callout-important no-icon callout-titled" title="Tipus de casos de prova">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;6: Tipus de casos de prova
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Cas normal</strong>: entrada típica per a la qual la funció ha de funcionar correctament.</li>
+<li><strong>Casos límit</strong> (<em>edge cases</em>): valors als extrems del domini on el comportament pot ser diferent (llista buida, llista d’un element, zero, negatiu, nombre molt gran).</li>
+<li><strong>Precondició violada</strong>: si la funció llança <code>ValueError</code> quan no es compleix la precondició, verificar que efectivament ho fa i no llança una excepció inesperada.</li>
+</ol>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test_conjuntos.py</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> t04_paquete.conjuntos <span class="im">import</span> divisores_propios, primos_hasta, son_amigos</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># --- divisores_propios ---</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_divisores_propios_normal():</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> divisores_propios(<span class="dv">12</span>) <span class="op">==</span> {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>}</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_divisores_propios_primo():</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> divisores_propios(<span class="dv">7</span>) <span class="op">==</span> {<span class="dv">1</span>}</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_divisores_propios_uno():</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1 no tiene divisores propios (ningún divisor positivo &lt; 1)</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> divisores_propios(<span class="dv">1</span>) <span class="op">==</span> <span class="bu">set</span>()</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_divisores_propios_cuadrado_perfecto():</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> divisores_propios(<span class="dv">36</span>) <span class="op">==</span> {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">18</span>}</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_divisores_propios_precondicion():</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># n &lt; 1 viola la precondición → ValueError (sección 3.4)</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>        divisores_propios(<span class="dv">0</span>)</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co"># --- primos_hasta ---</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_primos_hasta_30():</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> primos_hasta(<span class="dv">30</span>) <span class="op">==</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">29</span>]</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_primos_hasta_100_count():</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(primos_hasta(<span class="dv">100</span>)) <span class="op">==</span> <span class="dv">25</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_primos_hasta_2():</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># caso límite: el único primo &lt;= 2 es el 2</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> primos_hasta(<span class="dv">2</span>) <span class="op">==</span> [<span class="dv">2</span>]</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co"># --- son_amigos ---</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_son_amigos_par_clasico():</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> son_amigos(<span class="dv">220</span>, <span class="dv">284</span>) <span class="kw">is</span> <span class="va">True</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_son_amigos_falso():</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> son_amigos(<span class="dv">10</span>, <span class="dv">20</span>) <span class="kw">is</span> <span class="va">False</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_son_amigos_mismo_numero():</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Un número no es amigo de sí mismo (la definición exige a ≠ b)</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> son_amigos(<span class="dv">6</span>, <span class="dv">6</span>) <span class="kw">is</span> <span class="va">False</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="integració-de-assert-i-pytest-en-el-flux-de-treball" class="level3">
+<h3 class="anchored" data-anchor-id="integració-de-assert-i-pytest-en-el-flux-de-treball"><strong>5.5.4 Integració de <code>assert</code> i <code>pytest</code> en el flux de treball</strong></h3>
+<p>Els dos mecanismes són complementaris i tenen rols diferents:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><code>assert</code> al codi</th>
+<th>Funcions <code>test_*</code> en pytest</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>On</strong></td>
+<td>Dins de les funcions del mòdul</td>
+<td>En fitxers <code>test_*.py</code> separats</td>
+</tr>
+<tr class="even">
+<td><strong>Quan s’executa</strong></td>
+<td>Sempre que es crida la funció</td>
+<td>Només en executar <code>pytest</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Propòsit</strong></td>
+<td>Documentar suposicions del programador</td>
+<td>Verificar el contracte de la funció</td>
+</tr>
+<tr class="even">
+<td><strong>En producció</strong></td>
+<td>Desactivable amb <code>-O</code></td>
+<td>No s’inclou en el codi de producció</td>
+</tr>
+</tbody>
+</table>
+<p>Un flux de treball típic (es recomana però no s’exigeix) per a aquest curs:</p>
+<ol type="1">
+<li>Llegir l’enunciat de l’exercici i identificar precondicions, postcondicions i casos límit.</li>
+<li>Escriure la signatura i el docstring de la funció.</li>
+<li>Implementar la funció amb <code>assert</code> per a les precondicions.</li>
+<li>Escriure dues o tres proves en <code>test_modulo.py</code>.</li>
+<li>Executar <code>pytest</code>: les proves han de passar. Si alguna falla, corregir la implementació.</li>
+<li>Afegir més casos de prova si es detecten buits en la cobertura.</li>
+</ol>
+<div>
+<div id="pyodide-19" class="exercise-cell">
+
+</div>
+<script type="pyodide-19-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBFamVtcGxvIGludGVncmFkbzogZnVuY2nDs24gY29uIGFzc2VydCArIHBydWViYXMgZG9jdW1lbnRhZGFzXG5cbmRlZiBtZWRpYV9hcml0bWV0aWNhKGRhdG9zOiBsaXN0W2Zsb2F0XSkgLT4gZmxvYXQgfCBOb25lOlxuICAgIFwiXCJcIlxuICAgIENhbGN1bGEgbGEgbWVkaWEgYXJpdG3DqXRpY2EgZGUgdW5hIGxpc3RhIGRlIGRhdG9zLlxuICAgIFByZWNvbmRpY2nDs246IGRhdG9zIG5vIGVzdMOhIHZhY8Otby5cbiAgICBcIlwiXCJcbiAgICBhc3NlcnQgZGF0b3MgaXMgbm90IE5vbmUsIFwiZGF0b3Mgbm8gcHVlZGUgc2VyIE5vbmVcIlxuICAgIGlmIG5vdCBkYXRvczpcbiAgICAgICAgcmV0dXJuIE5vbmVcbiAgICByZXR1cm4gc3VtKGRhdG9zKSAvIGxlbihkYXRvcylcblxuIyBQcnVlYmFzIGluZm9ybWFsZXMgKGVuIHByb2R1Y2Npw7NuIGlyw61hbiBlbiB0ZXN0X2VzdGFkaXN0aWNhLnB5KVxuYXNzZXJ0IG1lZGlhX2FyaXRtZXRpY2EoWzEuMCwgMi4wLCAzLjBdKSA9PSAyLjBcbmFzc2VydCBtZWRpYV9hcml0bWV0aWNhKFs1LjBdKSA9PSA1LjBcbmFzc2VydCBtZWRpYV9hcml0bWV0aWNhKFtdKSBpcyBOb25lXG5hc3NlcnQgYWJzKG1lZGlhX2FyaXRtZXRpY2EoWzEuMCwgMi4wLCAzLjAsIDQuMF0pIC0gMi41KSA8IDFlLTEyXG5cbnByaW50KFwiVG9kYXMgbGFzIHZlcmlmaWNhY2lvbmVzIHBhc2Fyb24uXCIpIn0=
+</script>
+</div>
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIl19fQ==
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTE5IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTkgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE5LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTktY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTggPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE4LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE3LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTctY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTExIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTExLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTkiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl85ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS05LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzkgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl84ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS04LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzggPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl83ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS03LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzcgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTYiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl82ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS02LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzYgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS01LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzUgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -582,7 +1621,23 @@ eyJjb250ZW50cyI6W119
 W10=
 </script>
 
-</main> <!-- /main -->
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Referències</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-dijkstra1976" class="csl-entry" role="listitem">
+Dijkstra, Edsger W. 1976. <em>A Discipline of Programming</em>. Prentice-Hall.
+</div>
+<div id="ref-downey2024" class="csl-entry" role="listitem">
+Downey, Allen B. 2024. <em>Think Python: How to Think Like a Computer Scientist</em>. 3a ed. O’Reilly Media. <a href="https://greenteapress.com/wp/think-python-3rd-edition/">https://greenteapress.com/wp/think-python-3rd-edition/</a>.
+</div>
+<div id="ref-gries1981" class="csl-entry" role="listitem">
+Gries, David. 1981. <em>The Science of Programming</em>. Springer. <a href="https://doi.org/10.1007/978-1-4612-5983-1">https://doi.org/10.1007/978-1-4612-5983-1</a>.
+</div>
+<div id="ref-pytest" class="csl-entry" role="listitem">
+pytest contributors. 2024. <span>«pytest: helps you write better programs»</span>. <a href="https://docs.pytest.org" class="uri">https://docs.pytest.org</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script type="ojs-module-contents">
 eyJjb250ZW50cyI6W119
 </script>
