@@ -14,12 +14,12 @@
     if (!header) return;
 
     var btn = document.createElement('a');
-    btn.className = 'btn btn-exercise-editor btn-outline-dark qlive-copy-btn';
+    btn.className = 'd-flex align-items-center gap-1 btn btn-exercise-editor btn-outline-dark qlive-copy-btn';
     btn.setAttribute('role', 'button');
     btn.title = 'Copiar código';
     btn.innerHTML =
       '<i class="bi bi-clipboard"></i>' +
-      '<span class="btn-label-exercise-editor ms-1">Copiar</span>';
+      '<span class="btn-label-exercise-editor">Copiar</span>';
 
     btn.addEventListener('click', function (e) {
       e.preventDefault();
@@ -28,11 +28,11 @@
       function showFeedback() {
         btn.innerHTML =
           '<i class="bi bi-check2"></i>' +
-          '<span class="btn-label-exercise-editor ms-1">¡Copiado!</span>';
+          '<span class="btn-label-exercise-editor">¡Copiado!</span>';
         setTimeout(function () {
           btn.innerHTML =
             '<i class="bi bi-clipboard"></i>' +
-            '<span class="btn-label-exercise-editor ms-1">Copiar</span>';
+            '<span class="btn-label-exercise-editor">Copiar</span>';
         }, 1500);
       }
 
@@ -45,9 +45,10 @@
       }
     });
 
-    var firstBtn = header.querySelector('.btn-exercise-editor');
-    if (firstBtn) {
-      firstBtn.parentNode.insertBefore(btn, firstBtn);
+    // Insertar en el primer btn-group del header (junto a "Start Over")
+    var group = header.querySelector('.btn-group');
+    if (group) {
+      group.appendChild(btn);
     } else {
       header.appendChild(btn);
     }
@@ -64,30 +65,24 @@
     document.body.removeChild(ta);
   }
 
-  // Intenta múltiples selectores por si el nombre de clase varía
   function scanAndAdd() {
-    document.querySelectorAll(
-      '.card.exercise-editor, .exercise-editor.card, [class*="exercise-editor"]'
-    ).forEach(function (card) {
-      // Solo añadir si tiene un card-header (descartar wrappers externos)
-      if (card.querySelector('.card-header')) {
-        addCopyButton(card);
-      }
-    });
+    document.querySelectorAll('.card.exercise-editor').forEach(addCopyButton);
   }
 
   // MutationObserver para capturar editores renderizados por OJS
   var observer = new MutationObserver(scanAndAdd);
   observer.observe(document.body, { childList: true, subtree: true });
 
-  // Polling como fallback (10 intentos cada 500ms = 5 segundos)
+  // Polling como fallback (10 intentos × 500ms = 5 segundos)
   var tries = 0;
   var interval = setInterval(function () {
     scanAndAdd();
     if (++tries >= 10) clearInterval(interval);
   }, 500);
 
-  // Intentos en eventos estándar de carga
-  document.addEventListener('DOMContentLoaded', scanAndAdd);
-  window.addEventListener('load', scanAndAdd);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scanAndAdd);
+  } else {
+    scanAndAdd();
+  }
 })();
