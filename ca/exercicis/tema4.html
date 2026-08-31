@@ -680,11 +680,11 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>Afegiu les funcions següents al mòdul que s’especifica respectant sempre les mateixes regles del tema 3:</p>
+<p>Afegeix les funcions següents al mòdul que s’especifica respectant sempre les mateixes regles presentades per als exercicis del tema 3:</p>
 <ul>
 <li>la funció ha de contenir type hints, docstrings i precondicions,</li>
-<li>si la precondició (o alguna de les precondicions) no es compleix, la funció ha de retornar <code>None</code>,</li>
-<li>al bloc <code>if __name__ == "__main__"</code> del mòdul s’han d’afegir proves per validar el comportament de cada funció. S’han de fer proves almenys per a un cas normal i un cas límit (si n’hi ha).</li>
+<li>si la precondició (o alguna de les precondicions) no es compleix la funció ha de llançar <code>ValueError</code> amb un missatge descriptiu (vegeu <a href="https://uib-23200-programacion.github.io/website/ca/contingut/tema3.html#excepcions" target="_blank">secció 3.4 del tema 3</a>),</li>
+<li>Al bloc <code>if __name__ == "__main__"</code> del mòdul s’han d’afegir proves per validar el comportament de cada funció. S’han de realitzar les proves almenys per a un cas normal, un cas límit (si n’hi ha) i un cas que violi la precondició (capturant l’excepció amb <code>try/except ValueError</code>).</li>
 </ul>
 <hr>
 </section>
