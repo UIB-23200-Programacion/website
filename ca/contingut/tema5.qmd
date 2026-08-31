@@ -1,7 +1,890 @@
 ---
-title: "Tema 5: Algorismes Bàsics i Verificació (Testing)"
+title: "Tema 5: Algorismes Bàsics i Verificació"
 lang: ca
 sidebar: barra-ca
+bibliography: tema5.bib
+engine: markdown
 ---
 
-*(Contingut pendent.)*
+El tema anterior va presentar les estructures de dades (built-in) que Python empra per representar col·leccions. En aquest tema l'enfocament canvia: ja no preguntem *què són* aquestes estructures, sinó **com podem utilitzar-les per resoldre problemes**. La manera sistemàtica de combinar operacions sobre aquestes estructures per obtenir un resultat és el que denominem **algorisme**.
+
+Ara bé, un algorisme només és útil si és **correcte**, i aquesta correcció ha de ser justificada o verificada mitjançant mètodes formals o empírics. La combinació —dissenyar i verificar— es tractarà en aquest tema.
+
+Distingirem dos tipus d'algorismes fonamentalment: els que processen **fluxos de dades** (*data stream algorithms*) i els que realitzen **processament per lots** (*batch processing algorithms*). Primer introduirem el concepte d'algorisme.
+
+::: {#tip-algoritmo .callout-tip title="Algorisme"}
+Un **algorisme** és una seqüència finita d'instruccions ben definides que, aplicada a unes dades d'entrada, produeix un resultat en un temps finit. Les propietats essencials són: **correcció** (produeix el resultat esperat), **terminació** (sempre acaba) i **determinisme** (la mateixa entrada produeix sempre el mateix resultat) [@downey2024].
+:::
+
+---
+
+## 5.1. Algorismes sobre fluxos de dades
+
+Els **algorismes sobre fluxos de dades** (*data stream algorithms*) s'utilitzen principalment per processar grans volums de dades contínues i en temps real fent servir memòria limitada. En aquest entorn, les dades es conceben en moviment, la qual cosa impossibilita el seu emmagatzematge íntegre a causa de restriccions físiques de memòria. Les seves característiques principals són:
+
+- **Una sola passada (*one-pass*):** Les dades es llegeixen una sola vegada i no es poden emmagatzemar completament.
+- **Memòria sublineal:** Fan servir molta menys memòria que la mida total de les dades.
+- **Temps real:** Donen respostes ràpides o estimacions exactes en cada instant.
+
+### **5.1.1 La idea de flux de dades**
+
+Imagina que reps, de forma contínua i des d'un sensor, mesures de temperatura cada 3 minuts. En un dia tindràs $24 \times 20 = 480$ valors en total però el flux de dades és continu i no s'atura. Vols determinar la temperatura màxima en les últimes 24 hores. Aquest problema es pot abordar de dues maneres conceptualment diferents:
+
+**Enfocament batch**: emmagatzemar totes les últimes $480$ mesures en una llista i aplicar la funció `max()`. Aquest mètode requereix conservar tota la col·lecció abans de produir el resultat (batch processing).
+
+**Enfocament stream**: processar cada mesura en el moment en què arriba i mantenir actualitzat un registre del valor màxim observat. En rebre l'última mesura, aquest registre ja conté la resposta, sense necessitat d'emmagatzemar la seqüència completa (data stream processing).
+
+El segon enfocament és preferible perquè permet obtenir el resultat **en temps real** i redueix l'**ús de memòria**, cosa que el converteix en una estratègia més adequada quan les dades arriben en flux continu o quan la col·lecció és molt gran.
+
+En el següent exemple es mostren les dues estratègies: la primera usa `max()` sobre la llista completa, i la segona manté un acumulador que s'actualitza amb cada mesura.
+
+::: {#nte-strbatch .callout-note title="Temperatura màxima en flux de dades versus per lots"}
+Per simular el sensor de temperatura, s'utilitza una funció generadora amb una llista de valors predefinits. Per simplificar la demostració, s'empren només 10 valors en lloc de 480 i s'ha reduït el temps d'espera entre lectures a 1 segon en lloc de 3 minuts.
+
+```{pyodide}
+#| autorun: true
+import time
+from typing import Iterator
+
+def sensor_temperatura() -> Iterator[float]:
+    """
+    Simula un flujo continuo de datos provenientes de un sensor de temperatura.
+
+    Yields:
+        float: La temperatura registrada en grados Celsius.
+    """
+    lecturas = [18.2, 19.5, 22.1, 24.8, 27.3,
+	            26.0, 23.4, 21.0, 20.5, 19.8]
+
+    for temp in lecturas:
+        yield temp
+
+        print("(Esperando para la siguiente lectura...)")
+        # 180 segundos equivalen a 3 minutos.
+        # time.sleep(180)
+		# Se cambia este valor a time.sleep(1) para probar el código rápidamente.
+        time.sleep(1)
+```
+
+Vegem ara els dos enfocaments per calcular la temperatura màxima. Al navegador, tots els `print()` apareixen alhora en finalitzar l'execució. En un terminal real (Python local, VS Code, Codespace) cada línia apareix en el moment en què s'executa.
+
+```{pyodide}
+# Forma stream sin lista
+# Instanciamos el flujo de datos (el generador no comienza a ejecutarse aquí)
+flujo = sensor_temperatura()
+
+maxima_registrada = float('-inf')  # Inicializamos con el menor valor posible
+for temperatura in flujo:
+    if temperatura > maxima_registrada:
+        maxima_registrada = temperatura
+        print(f"📈 Nuevo pico detectado: {maxima_registrada}°C")
+
+print(f"\nResumen: La temperatura máxima del día fue {maxima_registrada}°C\n")
+
+# Forma batch con lista
+# Instanciamos nuevamente el flujo de datos
+flujo = sensor_temperatura()
+
+valores_acumulados = list(flujo)
+# Si la lista está vacía, max() lanzará un ValueError
+if not valores_acumulados:
+    temperatura_maxima = float('-inf')
+else:
+    # Evaluamos la lista completa de una sola vez
+    temperatura_maxima = max(valores_acumulados)
+
+print(f"\nResumen: La temperatura máxima del día fue {temperatura_maxima}°C")
+```
+:::
+
+La clau està en la variable `maxima_registrada`: és l'**estat** de l'algorisme en la variant stream. Abans de cada nova mesura, `maxima_registrada` resumeix tota la informació rellevant de les mesures anteriors. Després de processar l'últim valor, aquest estat és la resposta.
+
+::: {#tip-estado .callout-tip title="Estat d'un algorisme"}
+L'**estat** d'un algorisme en un instant donat és el conjunt de valors de les seves variables en aquell moment. En els algorismes de flux de dades, l'estat s'actualitza amb cada element processat i, en acabar, conté el resultat.
+:::
+
+### **5.1.2 Processament en una sola passada**
+
+Un algorisme d'**una sola passada** (*one-pass*) examina cada element exactament una vegada. Això té avantatges pràctics importants: és eficient en temps ($O(n)$ operacions per a $n$ elements), consumeix poca memòria (no necessita emmagatzemar tota la seqüència), i pot processar dades que arriben en temps real.
+
+::: {#imp-una-pasada .callout-important title="Diverses estadístiques en una sola passada"}
+És possible calcular simultàniament diverses estadístiques sobre una seqüència en una sola passada, mantenint diversos acumuladors alhora. Suposem que volem calcular el màxim, el mínim i la mitjana de les mesures de temperatura. Ho podem fer així:
+
+```{pyodide}
+# Instanciamos el flujo de datos
+flujo = sensor_temperatura()
+
+maxima_registrada = float('-inf')
+minima_registrada = float('inf')
+suma = 0
+contador = 0
+
+for temperatura in flujo:
+    if temperatura > maxima_registrada:
+        maxima_registrada = temperatura
+        print(f"📈 Nueva máxima detectada: {maxima_registrada}°C")
+    if temperatura < minima_registrada:
+        minima_registrada = temperatura
+        print(f"📈 Nueva mínima detectada: {minima_registrada}°C")
+    suma += temperatura
+    contador += 1
+
+print(f"\nResumen: La temperatura máxima del día fue {maxima_registrada}°C")
+print(f"Resumen: La temperatura mínima del día fue {minima_registrada}°C")
+print(f"Resumen: La temperatura media del día fue {suma / contador}°C")
+```
+
+Quatre estadístiques diferents amb un sol recorregut sobre les dades.
+:::
+
+### **5.1.3 Condicions de parada diferents del final de la seqüència**
+
+No tots els algorismes one-pass necessiten examinar tots els elements. De vegades la resposta es coneix abans d'arribar al final: s'ha trobat el que es buscava, o una condició especial permet deduir el resultat. Per exemple, si volem saber si una mesura de temperatura supera els 25°C, podem aturar-nos tan bon punt en trobem la primera.
+
+```{pyodide}
+def supera_25(numeros: Iterator[float]) -> bool:
+    """Retorna True si la lista contiene algún número mayor a 25."""
+    for x in numeros:
+        if x > 25.0:
+            return True   # parada anticipada: ya tenemos la respuesta
+    return False
+
+
+print(supera_25(sensor_temperatura()))  # True
+```
+
+La instrucció `return True` dins del bucle atura l'algorisme tan bon punt troba el primer valor major que 25, sense examinar la resta. Això s'anomena **parada anticipada** o *early exit*.
+
+---
+
+## 5.2. Algorismes de processament per lots
+
+Els **algorismes de processament per lots** (*batch processing*) reben la col·lecció de dades **completa i d'antemà**. A diferència dels algorismes de flux, poden accedir a les dades múltiples vegades, consultar-les en qualsevol ordre i aplicar operacions que requereixen conèixer el conjunt complet abans de produir un resultat.
+
+::: {#tip-batch .callout-tip title="Processament per lots"}
+Un algorisme de **processament per lots** (*batch processing*) opera sobre una col·lecció de dades que ja està emmagatzemada en memòria en la seva totalitat. Pot llegir-la diverses vegades, ordenar-la o accedir a posicions arbitràries mitjançant índexs. A canvi, requereix disposar de tota la col·lecció abans de començar i consumeix memòria proporcional a la mida de les dades.
+:::
+
+### **5.2.1 Quan el processament per lots és necessari**
+
+Hi ha càlculs que no poden realitzar-se en una sola passada perquè el resultat depèn de tota la col·lecció. L'exemple més clar és la **mediana**: per saber quin és el valor central cal ordenar les dades, cosa que exigeix tenir-les totes disponibles.
+
+::: {#nte-mediana .callout-note title="El càlcul de la mediana requereix tota la col·lecció"}
+```{pyodide}
+def mediana(datos: list[float]) -> float | None:
+    """
+    Calcula la mediana de una lista de datos.
+    Precondición: datos no está vacío.
+    """
+    if not datos:
+        return None
+    ordenados = sorted(datos)   # requiere la lista completa
+    n = len(ordenados)
+    if n % 2 == 1:
+        return ordenados[n // 2]
+    else:
+        return (ordenados[n // 2 - 1] + ordenados[n // 2]) / 2.0
+
+temperaturas = [18.2, 19.5, 22.1, 24.8, 27.3, 26.0, 23.4]
+print(f"Mediana: {mediana(temperaturas)} °C")   # 23.4
+print(f"Media:   {sum(temperaturas)/len(temperaturas):.2f} °C")
+```
+:::
+
+Cal destacar que la mitjana sí pot calcular-se en una passada (secció 5.1), però la mediana no: `sorted()` necessita accedir a tots els elements abans de retornar el primer.
+
+### **5.2.2 Comparació entre els dos enfocaments**
+
+L'elecció entre processament per flux i per lots depèn del problema i del context:
+
+| | Flux de dades (*stream*) | Per lots (*batch*) |
+|---|---|---|
+| **Dades disponibles** | Arriben una a una, en temps real | Col·lecció completa disponible d'antemà |
+| **Passades sobre les dades** | Una sola | Les que calgui |
+| **Accés per índex** | No | Sí |
+| **Memòria utilitzada** | Sublineal (sols l'estat) | Proporcional a la mida de les dades |
+| **Exemples típics** | màxim, mínim, suma, recompte | mediana, ordenació, cerca binària |
+
+::: {#imp-stream-vs-batch .callout-important title="Flux i lots no són excloents"}
+A la pràctica, molts sistemes combinen els dos enfocaments: les dades es reben en flux i s'acumulen en lots periòdics (per hores, per dies) sobre els quals s'apliquen després càlculs més complexos. Per exemple, un sistema meteorològic pot registrar temperatures en temps real (flux) i calcular percentils o tendències cada 24 hores (per lots).
+:::
+
+Els patrons de la secció següent (recorregut, cerca, acumulació i recompte) funcionen en tots dos modes: amb llistes completes (batch) o amb generadors que produeixen elements un a un (stream).
+
+---
+
+## 5.3. Patrons de recorregut, cerca, acumulació i recompte
+
+Els algorismes sobre fluxos de dades es construeixen combinant quatre **patrons** fonamentals. Reconèixer el patró adequat per a un problema és l'habilitat central d'aquesta secció.
+
+### **5.3.1 Recorregut**
+
+::: {#tip-recorrido .callout-tip title="Patró de recorregut"}
+El **recorregut** processa cada element d'una seqüència exactament una vegada, aplicant la mateixa operació a tots. No hi ha condició de parada anticipada: es visiten tots els elements.
+
+```python
+for elemento in secuencia:
+    procesar(elemento)
+```
+:::
+
+El recorregut és l'estructura més simple. El seu propòsit és *fer alguna cosa* amb cada element: imprimir-lo, transformar-lo, acumular-lo en un resultat.
+
+```{pyodide}
+# Recorrido para transformar: convertir grados Celsius a Fahrenheit
+celsius = [0.0, 20.0, 37.0, 100.0]
+fahrenheit = []
+for c in celsius:
+    fahrenheit.append(c * 9/5 + 32)
+print(fahrenheit)  # [32.0, 68.0, 98.6, 212.0]
+```
+
+Quan es necessita tant l'índex com el valor, s'utilitza `enumerate`:
+
+```{pyodide}
+notas = [8.5, 6.0, 9.5, 7.0, 5.5]
+print("Notas por encima de la media:")
+media = sum(notas) / len(notas)
+for i, nota in enumerate(notas):
+    if nota >= media:
+        print(f"  Estudiante {i+1}: {nota}")
+```
+
+::: {#imp-for-vs-while .callout-important title="`for` versus `while` en recorreguts"}
+En Python, el bucle `for` és la forma idiomàtica de recórrer una seqüència quan es visiten tots els seus elements. El bucle `while` és més adequat quan la condició de parada no depèn d'haver arribat al final d'una col·lecció (per exemple, cerques amb parada anticipada, o algorismes iteratius que convergeixen a una solució).
+
+Usar `while i < len(seq)` quan un `for` seria suficient és un antipatró: més codi, més possibilitat d'error (off-by-one), sense cap avantatge.
+:::
+
+### **5.3.2 Cerca**
+
+::: {#tip-busqueda .callout-tip title="Patró de cerca"}
+La **cerca** recorre una seqüència per localitzar un o més elements que satisfan una condició. Tan bon punt es troba el primer (si només se'n busca un), l'algorisme pot aturar-se.
+
+```python
+for elemento in secuencia:
+    if condicion(elemento):
+        return elemento   # o el seu índex, o True
+return None               # o False: no s'ha trobat
+```
+:::
+
+#### Cerca lineal amb `enumerate`
+
+```{pyodide}
+def buscar_primero(secuencia: list, objetivo) -> int:
+    """
+    Retorna el índice de la primera aparición de objetivo en secuencia,
+    o -1 si no se encuentra.
+    """
+    for i, x in enumerate(secuencia):
+        if x == objetivo:
+            return i
+    return -1
+
+nombres = ["Ana", "Bob", "Carlos", "Ana", "Diana"]
+print(buscar_primero(nombres, "Ana"))     # 0
+print(buscar_primero(nombres, "Diana"))   # 4
+print(buscar_primero(nombres, "Elena"))   # -1
+```
+
+#### L'operador `in` com a cerca implícita
+
+Python proporciona l'operador `in` per a la cerca booleana més freqüent: ¿és l'element a la col·lecció?
+
+```{pyodide}
+primos = [2, 3, 5, 7, 11, 13]
+print(7 in primos)    # True
+print(9 in primos)    # False
+```
+
+Internament, `x in lista` realitza una cerca lineal. Per a llistes llargues, és $O(n)$. Si l'operació es repeteix moltes vegades, convé convertir la llista en un conjunt (`set`), on la cerca és $O(1)$.
+
+#### Cerca del màxim i del mínim
+
+Trobar el màxim d'una seqüència és un cas especial de cerca: es busca l'element que supera tots els altres.
+
+```{pyodide}
+def maximo_con_indice(secuencia: list[float]) -> tuple[float, int]:
+    """
+    Retorna (valor_maximo, indice) del elemento mayor de la secuencia.
+    Precondición: secuencia no está vacía.
+    """
+    if not secuencia:
+        return None
+    idx_max = 0
+    for i in range(1, len(secuencia)):
+        if secuencia[i] > secuencia[idx_max]:
+            idx_max = i
+    return secuencia[idx_max], idx_max
+
+notas = [7.5, 9.0, 6.5, 9.0, 8.5]
+valor, posicion = maximo_con_indice(notas)
+print(f"Nota máxima: {valor} (primera aparición en posición {posicion})")
+```
+
+::: {#cau-busqueda-inicio .callout-caution title="Inicialitzar el màxim amb un valor arbitrari"}
+Una trampa habitual en programar la cerca del màxim és inicialitzar amb un valor arbitrari com `maximo = 0` o `maximo = -999`. Això pot fallar si tots els elements són menors que aquest valor inicial.
+
+La forma correcta és inicialitzar amb el **primer element** de la seqüència: `maximo = secuencia[0]`. Després iterar des del segon element.
+
+Alternativa robusta: inicialitzar amb `float('-inf')`, que és menor que qualsevol nombre real.
+:::
+
+### **5.3.3 Acumulació**
+
+::: {#tip-acumulacion .callout-tip title="Patró d'acumulació"}
+L'**acumulació** combina tots els elements d'una seqüència en un únic resultat, aplicant una operació binària de forma repetida. El resultat es construeix incrementalment, element a element.
+
+```python
+resultado = valor_inicial
+for elemento in secuencia:
+    resultado = combinar(resultado, elemento)
+```
+:::
+
+La clau és triar el `valor_inicial` correcte: ha de ser l'**element neutre** de l'operació `combinar`. Per a la suma, el neutre és `0`; per al producte, `1`; per a la intersecció de conjunts, el conjunt universal; per a la concatenació de llistes, `[]`.
+
+#### Acumulació numèrica
+
+```{pyodide}
+# Suma
+numeros = [1.0, 2.0, 3.0, 4.0, 5.0]
+suma = 0.0
+for x in numeros:
+    suma += x
+print(f"Suma: {suma}")           # 15.0
+
+# Producto factorial
+n = 7
+factorial = 1
+for k in range(1, n + 1):
+    factorial *= k
+print(f"{n}! = {factorial}")     # 5040
+```
+
+::: {#nte-acumulacion-mat .callout-note title="Connexió amb la notació matemàtica"}
+El patró d'acumulació per suma és la versió computacional de la notació sigma:
+$$
+\sum_{k=1}^{n} f(k) \quad \longleftrightarrow \quad
+\texttt{resultado = 0; for k in range(1, n+1): resultado += f(k)}
+$$
+I l'acumulació per producte correspon a la notació pi:
+$$
+\prod_{k=1}^{n} f(k) \quad \longleftrightarrow \quad
+\texttt{resultado = 1; for k in range(1, n+1): resultado *= f(k)}
+$$
+:::
+
+#### Acumulació estructural
+
+L'acumulació no és només per a nombres. Pot construir llistes, cadenes o altres estructures:
+
+```{pyodide}
+# Filtrar y acumular: números pares al cuadrado
+numeros = range(1, 11)
+resultado = []
+for x in numeros:
+    if x % 2 == 0:
+        resultado.append(x ** 2)
+print(resultado)  # [4, 16, 36, 64, 100]
+
+# Acumulación de cadenas
+palabras = ["la", "matemática", "es", "hermosa"]
+frase = ""
+for i, p in enumerate(palabras):
+    if i > 0:
+        frase += " "
+    frase += p
+print(frase)  # la matemática es hermosa
+```
+
+::: {#imp-join .callout-important title="Concatenació eficient de cadenes"}
+El patró `frase += p` en un bucle crea una nova cadena en cada iteració, cosa que resulta en $O(n^2)$ operacions per a $n$ paraules. La forma eficient en Python és acumular en una llista i usar `str.join` al final:
+
+```python
+partes = []
+for p in palabras:
+    partes.append(p)
+frase = " ".join(partes)
+```
+
+O directament: `" ".join(palabras)`.
+:::
+
+### **5.3.4 Recompte**
+
+::: {#tip-conteo .callout-tip title="Patró de recompte"}
+El **recompte** és un cas especial d'acumulació on l'operació de combinació és sumar `1` cada vegada que l'element satisfà una condició. El resultat és el nombre d'elements que compleixen la condició.
+
+```python
+contador = 0
+for elemento in secuencia:
+    if condicion(elemento):
+        contador += 1
+```
+:::
+
+```{pyodide}
+def contar_aprobados(notas: list[float], umbral: float = 5.0) -> int:
+    """Cuenta cuántas notas son mayores o iguales al umbral."""
+    contador = 0
+    for nota in notas:
+        if nota >= umbral:
+            contador += 1
+    return contador
+
+notas = [4.5, 7.0, 3.5, 8.5, 5.0, 9.0, 2.0, 6.5]
+print(f"Aprobados: {contar_aprobados(notas)}")       # 5
+print(f"Aprobados (≥7): {contar_aprobados(notas, 7.0)}")  # 3
+```
+
+El recompte es generalitza de forma natural a **comptar categories diferents** usant un diccionari:
+
+```{pyodide}
+def frecuencia_caracteres(texto: str) -> dict[str, int]:
+    """Cuenta la frecuencia de cada carácter en el texto."""
+    conteo: dict[str, int] = {}
+    for c in texto:
+        conteo[c] = conteo.get(c, 0) + 1
+    return conteo
+
+print(frecuencia_caracteres("abracadabra"))
+# {'a': 5, 'b': 2, 'r': 2, 'c': 1, 'd': 1}
+```
+
+::: {#nte-sum-generator .callout-note title="Recompte amb expressions generadores"}
+El patró de recompte pot escriure's en una línia usant `sum` amb una expressió generadora:
+
+```python
+contador = sum(1 for x in secuencia if condicion(x))
+```
+
+O equivalentment, aprofitant que `True` val `1` i `False` val `0` en context numèric:
+
+```python
+contador = sum(condicion(x) for x in secuencia)
+```
+
+Aquesta forma és idiomàtica en Python quan la condició és simple.
+:::
+
+### **5.3.5 Composició de patrons**
+
+Els quatre patrons no són excloents. La majoria dels algorismes reals els combinen. Un exemple: calcular la **desviació estàndard** d'una mostra.
+
+$$
+\sigma = \sqrt{\frac{1}{n}\sum_{i=0}^{n-1}(x_i - \bar{x})^2}
+$$
+
+::: {#nte-desviacion .callout-note title="Càlcul de la desviació estàndard d'una mostra"}
+
+Per calcular la desviació estàndard, primer es necessita la mitjana $\bar{x}$, que requereix un recorregut i una acumulació. Després es recorre de nou per acumular la suma dels quadrats de les diferències respecte a la mitjana. Finalment, es calcula l'arrel quadrada de la variància.
+
+```{pyodide}
+import math
+
+def desviacion_estandar(datos: list[float]) -> float | None:
+    """
+    Calcula la desviación estándar poblacional de una lista de datos.
+    Precondición: datos no está vacío.
+    """
+    if not datos:
+        return None
+
+    n = len(datos)
+
+    # Acumulación: calcular la media
+    suma = 0.0
+    for x in datos:
+        suma += x
+    media = suma / n
+
+    # Acumulación: calcular la varianza
+    suma_cuad = 0.0
+    for x in datos:
+        suma_cuad += (x - media) ** 2
+    varianza = suma_cuad / n
+
+    return math.sqrt(varianza)
+
+muestras = [2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 7.0, 9.0]
+print(f"Media: {sum(muestras)/len(muestras):.2f}")
+print(f"Desviación estándar: {desviacion_estandar(muestras):.2f}")  # 2.00
+```
+:::
+
+---
+
+## 5.4. Nocions d'invariant de bucle com a eina de raonament
+
+Escriure un bucle que sembla correcte no és el mateix que demostrar que ho és. L'**invariant de bucle** és l'eina formal per raonar sobre la correcció dels algorismes iteratius [@dijkstra1976; @gries1981].
+
+::: {#tip-invariante .callout-tip title="Invariant de bucle"}
+Un **invariant de bucle** és una propietat $P$ sobre les variables del programa que es compleix:
+
+1. **Abans de la primera iteració** (*inicialització*): $P$ és certa quan el bucle comença.
+2. **A l'inici de cada iteració** (*manteniment*): si $P$ és certa a l'inici d'una iteració, segueix sent certa al final d'aquesta mateixa iteració (i per tant a l'inici de la següent).
+3. **En acabar el bucle** (*terminació*): $P$, juntament amb la condició de sortida del bucle, implica que el resultat és correcte.
+:::
+
+L'estructura de la demostració és idèntica a la **inducció matemàtica**: el cas base és la inicialització, i el pas inductiu és el manteniment. Els estudiants de matemàtiques ja coneixen aquest raonament; l'invariant de bucle és la seva traducció al món dels algorismes.
+
+### **5.4.1 Invariant de l'acumulació de suma**
+
+Considerem l'algorisme més simple: sumar els elements d'una llista.
+
+```python
+def sumar(v: list[float]) -> float:
+    acumulado = 0.0
+    for i in range(len(v)):
+        acumulado += v[i]
+    return acumulado
+```
+
+**Invariant**: a l'inici de la iteració $i$, la variable `acumulado` conté la suma dels primers $i$ elements:
+$$
+P(i):\quad \texttt{acumulado} = \sum_{k=0}^{i-1} v[k]
+$$
+
+**Demostració:**
+
+- *Inicialització* ($i = 0$): abans de la primera iteració, `acumulado = 0.0`. La suma buida $\sum_{k=0}^{-1} v[k] = 0$. $P(0)$ és certa. ✓
+- *Manteniment*: suposem que $P(i)$ és certa, és a dir, `acumulado` $= \sum_{k=0}^{i-1} v[k]$. La iteració executa `acumulado += v[i]`, de manera que al final `acumulado` $= \sum_{k=0}^{i-1} v[k] + v[i] = \sum_{k=0}^{i} v[k]$. Això és $P(i+1)$. ✓
+- *Terminació*: el bucle acaba quan $i = n = \texttt{len(v)}$. Aleshores $P(n)$ afirma que `acumulado` $= \sum_{k=0}^{n-1} v[k]$, que és exactament la suma de tots els elements de `v`. ✓
+
+### **5.4.2 Invariant de la cerca lineal**
+
+```python
+def buscar(v: list, objetivo) -> int:
+    for i in range(len(v)):
+        if v[i] == objetivo:
+            return i
+    return -1
+```
+
+**Invariant**: a l'inici de la iteració $i$, l'objectiu no ha aparegut entre els primers $i$ elements:
+$$
+P(i):\quad \texttt{objetivo} \notin \{v[0], v[1], \ldots, v[i-1]\}
+$$
+
+- *Inicialització*: abans de la primera iteració ($i = 0$), el conjunt buit no conté l'objectiu. ✓
+- *Manteniment*: si $P(i)$ és certa i `v[i] != objetivo`, aleshores l'objectiu tampoc és a $\{v[0],\ldots,v[i]\}$, cosa que estableix $P(i+1)$. Si `v[i] == objetivo`, la funció retorna $i$ (correcte). ✓
+- *Terminació*: si el bucle arriba fins a $i = n$ sense haver retornat, $P(n)$ garanteix que l'objectiu no és en cap posició $\{0,\ldots,n-1\}$: la funció retorna $-1$ correctament. ✓
+
+::: {#nte-invariante-induccion .callout-note title="Invariant de bucle i inducció matemàtica"}
+L'analogia és exacta:
+
+| Inducció matemàtica | Invariant de bucle |
+|---|---|
+| Cas base: $P(0)$ és certa | Inicialització: $P$ és certa abans de la primera iteració |
+| Pas inductiu: $P(k) \Rightarrow P(k+1)$ | Manteniment: $P$ a l'inici $\Rightarrow$ $P$ al final de la iteració |
+| Conclusió: $P(n)$ és certa per a tot $n$ | Terminació: $P$ juntament amb la condició de sortida dóna el resultat correcte |
+
+Aquesta equivalència no és casual: la correcció dels bucles *és* inducció matemàtica aplicada a algorismes.
+:::
+
+### **5.4.3 Ús informal de l'invariant**
+
+Pocs programadors escriuen demostracions formals en el seu treball quotidià. Tanmateix, raonar *informalment* amb invariants és un hàbit valuós:
+
+- En **dissenyar** un bucle: preguntar-se quina propietat ha de mantenir la variable d'estat.
+- En **depurar** un bucle: inserir `assert` (secció 5.5) per verificar que l'invariant es compleix en cada iteració.
+- En **revisar** el codi d'un altre: identificar l'invariant implícit per entendre què fa el bucle.
+
+```{pyodide}
+def maximo(v: list[float]) -> float | None:
+    """
+    Retorna el máximo de la lista v.
+    Invariante: al inicio de la iteración i, `actual_max` es el mayor
+    de los elementos v[0], ..., v[i-1].
+    """
+    if not v:
+        return None
+    actual_max = v[0]
+    for i in range(1, len(v)):
+        # Invariante: actual_max == max(v[0], ..., v[i-1])
+        if v[i] > actual_max:
+            actual_max = v[i]
+    # Al salir: actual_max == max(v[0], ..., v[n-1])
+    return actual_max
+
+print(maximo([3.0, 1.0, 4.0, 1.0, 5.0, 9.0, 2.0, 6.0]))  # 9.0
+print(maximo([7.0]))                                         # 7.0
+print(maximo([]))                                            # None
+```
+
+Els comentaris amb l'invariant no són decoració: documenten el **per què** l'algorisme és correcte, no sols el *què* fa.
+
+---
+
+## 5.5. Ús de la instrucció `assert` i fonaments de `pytest`
+
+Dissenyar un algorisme correcte és el primer pas. Verificar que la implementació en Python també ho és requereix **proves**. Python ofereix dos mecanismes complementaris: la instrucció `assert` per a verificacions dins del codi, i el framework `pytest` per a proves automatitzades.
+
+### **5.5.1 La instrucció `assert`**
+
+::: {#tip-assert .callout-tip title="Instrucció `assert`"}
+La instrucció `assert` avalua una expressió booleana. Si és `True`, no fa res. Si és `False`, llança una excepció `AssertionError` que atura el programa (llevat que es captiri amb `try/except`).
+
+```python
+assert expresion
+assert expresion, "mensaje de error descriptivo"
+```
+:::
+
+```{pyodide}
+def raiz_cuadrada(x: float) -> float:
+    """
+    Calcula la raíz cuadrada de x.
+    Precondición: x >= 0.
+    """
+    assert x >= 0, f"raiz_cuadrada requiere x >= 0, pero se recibió {x}"
+    import math
+    return math.sqrt(x)
+
+print(raiz_cuadrada(9.0))   # 3.0
+print(raiz_cuadrada(2.0))   # 1.4142135623730951
+# print(raiz_cuadrada(-1.0))  # AssertionError: raiz_cuadrada requiere x >= 0
+```
+
+Els usos principals de `assert` són:
+
+- **Precondicions**: verificar que els arguments d'una funció compleixen els requisits. Documenten el contracte de la funció de forma executable.
+- **Postcondicions**: verificar que el resultat és plausible abans de retornar-lo.
+- **Invariants de bucle**: inserir `assert` dins d'un bucle per comprovar que la propietat invariant es manté en cada iteració durant el desenvolupament.
+
+```{pyodide}
+def buscar_verificado(v: list[float], objetivo: float) -> int:
+    """Búsqueda lineal con verificación del invariante."""
+    # Precondición: no la verificamos con assert aquí (lista puede ser vacía)
+    for i in range(len(v)):
+        # Invariante: objetivo no está en v[0..i-1]
+        assert objetivo not in v[:i], f"Invariante violado en i={i}"
+        if v[i] == objetivo:
+            return i
+    return -1
+
+print(buscar_verificado([3.0, 7.0, 2.0, 5.0], 2.0))   # 2
+print(buscar_verificado([3.0, 7.0, 2.0, 5.0], 9.0))   # -1
+```
+
+::: {#imp-assert-produccion .callout-important title="`assert` no substitueix la validació d'entrada"}
+La instrucció `assert` pot **desactivar-se** completament executant Python amb l'opció `-O` (*optimize*): `python -O mi_programa.py`. En aquest mode, cap `assert` s'executa.
+
+Per això, `assert` és adequat per a:
+
+- Verificar invariants i suposicions del programador durant el desenvolupament.
+- Expressar precondicions en codi "de confiança" (usat per un mateix o per l'equip).
+
+No és adequat per a:
+
+- Validar entrades de l'usuari (que poden ser qualsevol cosa).
+- Gestionar errors recuperables en producció.
+
+Per a validació robusta d'entrades en codi de producció, usar `if condicion: raise ValueError("...")` (vegeu secció 3.4).
+:::
+
+### **5.5.2 Fonaments de `pytest`**
+
+Les verificacions amb `assert` dins del codi de producció són útils durant el desenvolupament, però tenen un problema: cal llegir la sortida del programa per saber si tot va bé. Les **proves automatitzades** resolen això: són funcions especials que verifiquen el comportament del codi de forma sistemàtica i produeixen un informe clar del que passa i el que falla.
+
+`pytest` és el framework de proves estàndard en Python [@pytest]. No requereix importacions especials en els fitxers de prova: n'hi ha prou amb escriure funcions que comencin per `test_` i usar `assert`.
+
+::: {#tip-test-unitario .callout-tip title="Prova unitària"}
+Una **prova unitària** (*unit test*) és una funció que verifica el comportament correcte d'una unitat petita de codi (típicament una funció) davant entrades concretes. Cada prova ha de ser **independent** (no depèn de l'ordre d'execució), **repetible** (sempre dóna el mateix resultat) i **específica** (prova una sola cosa).
+:::
+
+#### Estructura d'un fitxer de proves
+
+Per convenció, els fitxers de prova s'anomenen `test_nombre_modulo.py` i es col·loquen al costat del mòdul que proven o en una carpeta `tests/`.
+
+```python
+# test_vectores.py
+
+from t04_paquete.vectores import producto_escalar, norma, son_ortogonales
+
+def test_producto_escalar_basico():
+    assert producto_escalar([1.0, 2.0, 3.0], [4.0, 5.0, 6.0]) == 32.0
+
+def test_producto_escalar_ortogonales():
+    assert producto_escalar([1.0, 0.0], [0.0, 1.0]) == 0.0
+
+def test_norma_pitagoras():
+    assert norma([3.0, 4.0]) == 5.0
+
+def test_norma_unitario():
+    import math
+    assert abs(norma([1.0, 0.0]) - 1.0) < 1e-12
+
+def test_son_ortogonales_true():
+    assert son_ortogonales([1.0, 0.0], [0.0, 1.0]) is True
+
+def test_son_ortogonales_false():
+    assert son_ortogonales([1.0, 1.0], [1.0, 0.0]) is False
+
+def test_producto_escalar_precondicion_violada():
+    # Vectores de distinta longitud → precondición no cumplida → None
+    assert producto_escalar([1.0, 2.0], [1.0]) is None
+```
+
+#### Execució de pytest
+
+Des del terminal, dins del directori del projecte:
+
+```text
+pytest                        # ejecuta todos los test_*.py del directorio
+pytest test_vectores.py       # ejecuta solo ese fichero
+pytest test_vectores.py -v    # verbose: muestra el nombre de cada prueba
+pytest -x                     # para en el primer fallo
+```
+
+Sortida típica quan tot passa:
+
+```text
+========================= test session starts ==========================
+collected 7 items
+
+test_vectores.py .......                                          [100%]
+
+========================== 7 passed in 0.03s ===========================
+```
+
+Sortida quan una prova falla:
+
+```text
+========================= test session starts ==========================
+collected 7 items
+
+test_vectores.py .F.....                                          [100%]
+
+============================== FAILURES ================================
+___________________ test_norma_pitagoras ___________________
+
+    def test_norma_pitagoras():
+>       assert norma([3.0, 4.0]) == 5.0
+E       AssertionError: assert 4.999999999 == 5.0
+
+test_vectores.py:12: AssertionError
+====================== 1 failed, 6 passed in 0.04s =====================
+```
+
+::: {#cau-igualdad-flotante .callout-caution title="Comparar nombres de coma flotant en proves"}
+La igualtat estricta `==` entre nombres de coma flotant és problemàtica en les proves perquè els errors d'arrodoniment poden fer que dos resultats matemàticament iguals difereixin en l'últim bit. La solució és comparar amb una **tolerància**:
+
+```python
+# Mal: puede fallar por errores de redondeo
+assert norma([3.0, 4.0]) == 5.0
+
+# Bien: tolerancia absoluta
+assert abs(norma([3.0, 4.0]) - 5.0) < 1e-10
+
+# Bien: usando pytest.approx (recomendado en pytest)
+import pytest
+assert norma([3.0, 4.0]) == pytest.approx(5.0)
+```
+
+`pytest.approx` usa una tolerància relativa de $10^{-6}$ per defecte, adequada per a la majoria de càlculs numèrics.
+:::
+
+### **5.5.3 Quines proves escriure**
+
+Una prova incompleta pot donar una falsa sensació de seguretat. Per a cada funció, convé cobrir almenys tres tipus de casos:
+
+::: {#imp-casos-prueba .callout-important title="Tipus de casos de prova"}
+1. **Cas normal**: entrada típica per a la qual la funció ha de funcionar correctament.
+2. **Casos límit** (*edge cases*): valors als extrems del domini on el comportament pot ser diferent (llista buida, llista d'un element, zero, negatiu, nombre molt gran).
+3. **Precondició violada**: si la funció llança `ValueError` quan no es compleix la precondició, verificar que efectivament ho fa i no llança una excepció inesperada.
+:::
+
+```python
+# test_conjuntos.py
+
+from t04_paquete.conjuntos import divisores_propios, primos_hasta, son_amigos
+
+# --- divisores_propios ---
+
+def test_divisores_propios_normal():
+    assert divisores_propios(12) == {1, 2, 3, 4, 6}
+
+def test_divisores_propios_primo():
+    assert divisores_propios(7) == {1}
+
+def test_divisores_propios_uno():
+    # 1 no tiene divisores propios (ningún divisor positivo < 1)
+    assert divisores_propios(1) == set()
+
+def test_divisores_propios_cuadrado_perfecto():
+    assert divisores_propios(36) == {1, 2, 3, 4, 6, 9, 12, 18}
+
+def test_divisores_propios_precondicion():
+    # n < 1 viola la precondición → ValueError (sección 3.4)
+    with pytest.raises(ValueError):
+        divisores_propios(0)
+
+# --- primos_hasta ---
+
+def test_primos_hasta_30():
+    assert primos_hasta(30) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+
+def test_primos_hasta_100_count():
+    assert len(primos_hasta(100)) == 25
+
+def test_primos_hasta_2():
+    # caso límite: el único primo <= 2 es el 2
+    assert primos_hasta(2) == [2]
+
+# --- son_amigos ---
+
+def test_son_amigos_par_clasico():
+    assert son_amigos(220, 284) is True
+
+def test_son_amigos_falso():
+    assert son_amigos(10, 20) is False
+
+def test_son_amigos_mismo_numero():
+    # Un número no es amigo de sí mismo (la definición exige a ≠ b)
+    assert son_amigos(6, 6) is False
+```
+
+### **5.5.4 Integració de `assert` i `pytest` en el flux de treball**
+
+Els dos mecanismes són complementaris i tenen rols diferents:
+
+| | `assert` al codi | Funcions `test_*` en pytest |
+|---|---|---|
+| **On** | Dins de les funcions del mòdul | En fitxers `test_*.py` separats |
+| **Quan s'executa** | Sempre que es crida la funció | Només en executar `pytest` |
+| **Propòsit** | Documentar suposicions del programador | Verificar el contracte de la funció |
+| **En producció** | Desactivable amb `-O` | No s'inclou en el codi de producció |
+
+Un flux de treball típic (es recomana però no s'exigeix) per a aquest curs:
+
+1. Llegir l'enunciat de l'exercici i identificar precondicions, postcondicions i casos límit.
+2. Escriure la signatura i el docstring de la funció.
+3. Implementar la funció amb `assert` per a les precondicions.
+4. Escriure dues o tres proves en `test_modulo.py`.
+5. Executar `pytest`: les proves han de passar. Si alguna falla, corregir la implementació.
+6. Afegir més casos de prova si es detecten buits en la cobertura.
+
+```{pyodide}
+# Ejemplo integrado: función con assert + pruebas documentadas
+
+def media_aritmetica(datos: list[float]) -> float | None:
+    """
+    Calcula la media aritmética de una lista de datos.
+    Precondición: datos no está vacío.
+    """
+    assert datos is not None, "datos no puede ser None"
+    if not datos:
+        return None
+    return sum(datos) / len(datos)
+
+# Pruebas informales (en producción irían en test_estadistica.py)
+assert media_aritmetica([1.0, 2.0, 3.0]) == 2.0
+assert media_aritmetica([5.0]) == 5.0
+assert media_aritmetica([]) is None
+assert abs(media_aritmetica([1.0, 2.0, 3.0, 4.0]) - 2.5) < 1e-12
+
+print("Todas las verificaciones pasaron.")
+```
