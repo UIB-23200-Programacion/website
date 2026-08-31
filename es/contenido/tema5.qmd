@@ -67,8 +67,10 @@ def sensor_temperatura() -> Iterator[float]:
         time.sleep(1)
 ```
 
+Veamos ahora los dos enfoques para calcular la temperatura máxima.
+
 ```{pyodide}
-# Forma óptima sin lista
+# Forma stream sin lista
 # Instanciamos el flujo de datos (el generador no comienza a ejecutarse aquí)
 flujo = sensor_temperatura()
 
@@ -80,7 +82,7 @@ for temperatura in flujo:
 
 print(f"\nResumen: La temperatura máxima del día fue {maxima_registrada}°C\n")
 
-# Forma no óptima con lista
+# Forma batch con lista
 # Instanciamos nuevamente el flujo de datos
 flujo = sensor_temperatura()
         
