@@ -1,7 +1,558 @@
 ---
-title: "Ejercicios — Tema 5"
+title: "Ejercicios — Tema 5: Algoritmos Básicos y Verificación"
 lang: es
 sidebar: barra-es
 ---
 
-*(Contenido pendiente.)*
+Para la realización de los ejercicios debe utilizar el proyecto `t05_algoritmos` que estará disponible en el repositorio del curso. Navega al sitio y sigue las instrucciones en `README.md` para copiar el repositorio en tu entorno local de GitHub y abrir un Codespace para trabajar en los ejercicios.
+
+## Ejercicios 5.1 a 5.22
+
+Los ejercicios 5.1 al 5.22 se encuentran en los archivos `ejer_t05_01-10_mo.py` y `ejer_t05_11-16_mo.py` contenidos en el directorio `/notebooks`.
+
+Estos ficheros son tanto scripts de Python como notebooks de Marimo que permiten ejecución interactiva. Para resolver los ejercicios, abre cada archivo en el Codespace y sigue las instrucciones proporcionadas en las diferentes celdas de cada notebook. Hay celdas de código y celdas de texto, estas últimas contienen los enunciados de los ejercicios.
+
+**Es necesario abrir los ficheros con Marimo para disponer de la ejecución interactiva en celdas del notebook, para ello (si no ocurre de forma automática) debes hacer clic en el botón "Open in Marimo" (![](../../images/openmarimo.png){width="30px"})**
+
+---
+
+## Ejercicios 5.23 a 5.26
+
+El proyecto `t05_algoritmos` organiza tres módulos en el paquete `t05_paquete`. Cada módulo implementa una familia de funciones algorítmicas aplicando los patrones y técnicas del tema 5:
+
+| Módulo | Patrón dominante | Dominio |
+|---|---|---|
+| `estadistica.py` | acumulación + composición | estadística descriptiva |
+| `cadenas.py` | recorrido + búsqueda + conteo | procesamiento de texto |
+| `busqueda.py` | búsqueda + invariantes con `assert` | algoritmos de búsqueda |
+
+Agrega las siguientes funciones al módulo que se especifica respetando las reglas establecidas en temas anteriores:
+
+- la función debe contener type hints, docstrings y precondiciones,
+- si la precondición (o alguna de las precondiciones) no se cumple la función debe lanzar `ValueError` con un mensaje descriptivo (véase [sección 3.4 del tema 3](https://uib-23200-programacion.github.io/website/es/contenido/tema3.html#excepciones){target="_blank"}).
+
+::: {.callout-important title="Novedad: las pruebas van en pytest"}
+A diferencia de temas anteriores, en este tema **no** se añaden pruebas al bloque `if __name__ == "__main__"`. En su lugar, las pruebas se escriben en ficheros `test_*.py` dentro de la carpeta `tests/` como parte del ejercicio 5.26. El bloque `__main__` puede usarse para exploración manual, pero no se evaluará.
+:::
+
+---
+
+## Ejercicio 5.23: Módulo `estadistica.py`
+
+Las funciones de este módulo operan sobre listas de números reales (`list[float]`). Salvo que se indique lo contrario, la precondición exige que la lista no esté vacía.
+
+::: {.callout-note title="5.23.1 Función `rango(datos)`:" collapse="true"}
+
+Retorna el **rango** de la muestra: la diferencia entre el valor máximo y el valor mínimo.
+$$
+\text{rango}(datos) = \max(datos) - \min(datos)
+$$
+Precondición: `datos` no está vacío.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(rango([3.0, 1.0, 4.0, 1.0, 5.0, 9.0]))   # 8.0
+print(rango([7.0]))                            # 0.0
+```
+:::
+
+::: {.callout-important title="Implementación en una sola pasada"}
+Calcula el máximo y el mínimo simultáneamente en un único recorrido sobre `datos`, sin llamar a las funciones built-in `max()` y `min()`. Esto ilustra el patrón de *una sola pasada* con varios acumuladores.
+:::
+
+:::
+
+::: {.callout-note title="5.23.2 Función `varianza(datos)`:" collapse="true"}
+
+Calcula la **varianza poblacional** de la muestra:
+$$
+\sigma^2 = \frac{1}{n}\sum_{i=0}^{n-1}(x_i - \bar{x})^2
+$$
+Precondición: `datos` no está vacío. Implementa el cálculo mediante dos acumulaciones (primera pasada para la media, segunda para la varianza), como se muestra en la [sección 5.3.5 del tema 5](https://uib-23200-programacion.github.io/website/es/contenido/tema5.html#composici%C3%B3n-de-patrones){target="_blank"}.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(varianza([2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 7.0, 9.0]))  # 4.0
+print(varianza([1.0]))                                     # 0.0
+```
+:::
+
+:::
+
+::: {.callout-note title="5.23.3 Función `moda(datos)`:" collapse="true"}
+
+Retorna la lista de **valores modales** (los valores que aparecen con mayor frecuencia). Si hay varios valores con la misma frecuencia máxima, retorna todos ellos en orden creciente. Precondición: `datos` no está vacío.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(moda([1.0, 2.0, 2.0, 3.0, 3.0, 4.0]))   # [2.0, 3.0]  (empate)
+print(moda([1.0, 1.0, 2.0, 3.0]))              # [1.0]
+print(moda([5.0]))                              # [5.0]
+```
+:::
+
+::: {.callout-important title="Estructura de datos clave"}
+Construye un diccionario `freq: dict[float, int]` que asocia cada valor con su frecuencia (patrón de conteo). A continuación determina la frecuencia máxima y filtra los valores que la alcanzan.
+:::
+
+:::
+
+::: {.callout-note title="5.23.4 Función `percentil(datos, p)`:" collapse="true"}
+
+El percentil $p$-ésimo de una muestra es un valor estadístico que divide un conjunto de datos (ordenados de menor a mayor) de manera que el $p$% de las observaciones son menores o iguales a ese valor, y el $(100-p)$% restante son mayores. Imagina que en una revisión rutinaria, el pediatra pesa a un bebé de 6 meses (8.5 kg) y te informa que se encuentra en el **percentil 75 ($p=75$)** de peso.
+
+Para entender este dato, imagina a 100 bebés de exactamente la misma edad ordenados de menor a mayor peso:
+
+- **75 bebés** pesarán 8.5 kg o menos. El peso de este bebé es igual o superior al 75% de los niños de su edad.
+- **25 bebés** pesarán más de 8.5 kg. Solo un 25% de los niños de su edad son más pesados que él.
+
+Calcula el **percentil** $p$-ésimo de la muestra ($0 \le p \le 100$) usando el método de interpolación lineal:
+
+1. Ordena los datos (batch).
+2. Calcula el índice real $h = p/100 \cdot (n-1)$.
+3. Sea $i = \lfloor h \rfloor$ e $f = h - i$. El percentil es $(1-f)\cdot datos\_ord[i] + f \cdot datos\_ord[i+1]$ (si $i+1 < n$) o $datos\_ord[i]$ si $h$ es entero o $h = n-1$.
+
+Precondiciones: `datos` no está vacío, $0 \le p \le 100$.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+datos = [1.0, 2.0, 3.0, 4.0, 5.0]
+print(percentil(datos, 0))    # 1.0
+print(percentil(datos, 50))   # 3.0
+print(percentil(datos, 100))  # 5.0
+print(percentil(datos, 25))   # 2.0
+```
+:::
+
+::: {.callout-important title="Conexión matemática"}
+El percentil 50 coincide con la mediana. Los percentiles 25, 50 y 75 son los **cuartiles** $Q_1$, $Q_2$ y $Q_3$. El rango intercuartílico $\text{IQR} = Q_3 - Q_1$ es una medida robusta de dispersión, menos sensible a valores extremos que la varianza.
+:::
+
+:::
+
+::: {.callout-note title="5.23.5 Función `media_ponderada(valores, pesos)`:" collapse="true"}
+
+Calcula la **media ponderada**:
+$$
+\bar{x}_w = \frac{\sum_{i=0}^{n-1} v_i \cdot p_i}{\sum_{i=0}^{n-1} p_i}
+$$
+Precondiciones: `valores` y `pesos` tienen la misma longitud y no están vacíos; todos los pesos son estrictamente positivos.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+# Media de notas con distintos créditos
+notas  = [8.0, 6.0, 9.5, 7.0]
+creditos = [6.0, 6.0, 3.0, 9.0]
+print(media_ponderada(notas, creditos))  # 7.3125
+```
+:::
+
+::: {.callout-important title="Aplicación matemática"}
+La media aritmética ordinaria es el caso especial con todos los pesos iguales a 1. La media ponderada aparece en el cálculo de la nota final de una asignatura, en estadística bayesiana y en la definición de la esperanza matemática de una variable aleatoria discreta $E[X] = \sum_i x_i \cdot P(X=x_i)$.
+:::
+
+:::
+
+::: {.callout-note title="5.23.6 Función `normalizar(datos)`:" collapse="true"}
+
+Retorna una nueva lista con los datos **normalizados** (estandarizados):
+$$
+z_i = \frac{x_i - \bar{x}}{\sigma}
+$$
+La lista normalizada tiene media 0 y desviación estándar 1. Precondiciones: `datos` no está vacío; la desviación estándar no es cero (todos los valores son distintos). Reutiliza `varianza`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+datos = [2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 7.0, 9.0]
+z = normalizar(datos)
+print(f"Media: {sum(z)/len(z):.10f}")      # ~0.0
+print(f"Varianza: {varianza(z):.10f}")     # ~1.0
+```
+:::
+
+:::
+
+::: {.callout-note title="5.23.7 Función `media_movil(datos, k)`:" collapse="true"}
+
+Calcula la **media móvil** de ventana $k$: la $i$-ésima salida es la media de `datos[i:i+k]`. Retorna una lista de longitud `len(datos) - k + 1`. Precondiciones: `datos` no está vacío, $1 \le k \le \text{len}(datos)$.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+datos = [1.0, 3.0, 5.0, 7.0, 9.0]
+print(media_movil(datos, 3))   # [3.0, 5.0, 7.0]
+print(media_movil(datos, 1))   # [1.0, 3.0, 5.0, 7.0, 9.0]
+print(media_movil(datos, 5))   # [5.0]
+```
+:::
+
+::: {.callout-important title="Implementación eficiente: ventana deslizante"}
+La implementación ingenua calcula la suma de cada ventana desde cero: $O(n \cdot k)$ operaciones. La **ventana deslizante** (*sliding window*) es más eficiente: calcula la suma de la primera ventana una sola vez, y para cada ventana siguiente suma el elemento nuevo y resta el elemento que sale. Esto reduce el trabajo a $O(n)$.
+
+La idea clave es que la suma de la ventana $[i+1, i+k]$ se obtiene a partir de la suma de $[i, i+k-1]$ en $O(1)$:
+$$
+\text{suma}_{i+1} = \text{suma}_i - \text{datos}[i] + \text{datos}[i+k]
+$$
+:::
+
+:::
+
+---
+
+## Ejercicio 5.24: Módulo `cadenas.py`
+
+Las funciones de este módulo operan sobre cadenas de texto (`str`). Salvo que se indique lo contrario, la precondición exige que las cadenas no estén vacías.
+
+::: {.callout-note title="5.24.1 Función `es_palindromo(s)`:" collapse="true"}
+
+Retorna `True` si la cadena `s` es un **palíndromo** y `False` en caso contrario. La comparación ignora mayúsculas/minúsculas y espacios. Precondición: `s` no es `None`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(es_palindromo("radar"))               # True
+print(es_palindromo("Anita lava la tina"))  # True
+print(es_palindromo("python"))              # False
+print(es_palindromo("A"))                   # True
+```
+:::
+
+::: {.callout-important title="Búsqueda con parada anticipada"}
+Después de normalizar `s` (minúsculas, sin espacios), compara el carácter en la posición `i` con el de la posición `n-1-i` para `i` desde 0 hasta `n//2 - 1`. En cuanto encuentres una discrepancia, retorna `False` (*early exit*). Si el bucle termina sin discrepancias, retorna `True`.
+:::
+
+:::
+
+::: {.callout-note title="5.24.2 Función `anagrama(s, t)`:" collapse="true"}
+
+Retorna `True` si `s` y `t` son **anagramas** (mismos caracteres con las mismas frecuencias, posiblemente en distinto orden), sin distinguir mayúsculas/minúsculas ni espacios. Precondición: `s` y `t` no son `None`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(anagrama("listen", "silent"))      # True
+print(anagrama("Amor", "Roma"))          # True
+print(anagrama("hola", "mundo"))         # False
+print(anagrama("abc", "ab"))             # False
+```
+:::
+
+::: {.callout-important title="Implementación con diccionarios de frecuencias"}
+Construye el diccionario de frecuencias de caracteres de `s` normalizada y el de `t` normalizada (conteo). Dos cadenas son anagramas si y solo si sus diccionarios de frecuencias son iguales.
+:::
+
+:::
+
+::: {.callout-note title="5.24.3 Función `run_length_encoding(s)`:" collapse="true"}
+
+Aplica la **codificación por longitud de racha** (*Run-Length Encoding*, RLE): comprime una cadena representando cada racha de caracteres consecutivos iguales como un par `(carácter, longitud)`. Retorna `list[tuple[str, int]]`. Precondición: `s` no está vacío.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(run_length_encoding("aaabbc"))    # [('a', 3), ('b', 2), ('c', 1)]
+print(run_length_encoding("abcd"))      # [('a', 1), ('b', 1), ('c', 1), ('d', 1)]
+print(run_length_encoding("aaaa"))      # [('a', 4)]
+```
+:::
+
+::: {.callout-important title="Patrón: recorrido con acumulación de racha"}
+Recorre `s` manteniendo dos acumuladores: el carácter actual de la racha y su longitud. Cuando el carácter cambia, añade el par `(carácter_actual, longitud)` a la lista resultado y reinicia los acumuladores.
+:::
+
+::: {.callout-warning title="Conexión con la compresión de datos"}
+RLE es uno de los algoritmos de compresión sin pérdidas más simples. Es efectivo para datos con muchas repeticiones consecutivas (imágenes binarias, mapas de píxeles monocromáticos, secuencias de ADN), pero ineficiente para datos sin rachas. Es la base del formato de compresión de algunas imágenes TIFF.
+:::
+
+:::
+
+::: {.callout-note title="5.24.4 Función `es_balanceado(s)`:" collapse="true"}
+
+Retorna `True` si los delimitadores de apertura y cierre `()`, `[]` y `{}` en la cadena `s` están correctamente **balanceados y anidados**, y `False` en caso contrario. Los demás caracteres se ignoran. Precondición: `s` no es `None`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(es_balanceado("(a + b) * [c - d]"))   # True
+print(es_balanceado("{[()]}"))              # True
+print(es_balanceado("([)]"))                # False  — orden incorrecto
+print(es_balanceado("((("))                 # False  — falta cierre
+print(es_balanceado(""))                    # True   — cadena vacía
+```
+:::
+
+::: {.callout-important title="Algoritmo: pila LIFO"}
+Usa una lista de Python como pila (`list` con `append`/`pop`):
+
+1. Para cada carácter de `s`:
+   - Si es apertura (`(`, `[`, `{`): empuja en la pila (`append`).
+   - Si es cierre (`)`, `]`, `}`): si la pila está vacía o el tope no es la apertura correspondiente, retorna `False` (*early exit*). Caso contrario, elimina el tope (`pop`).
+2. Al terminar el recorrido: retorna `True` si y solo si la pila está vacía.
+:::
+
+:::
+
+---
+
+## Ejercicio 5.25: Módulo `busqueda.py`
+
+Las funciones de este módulo implementan algoritmos de búsqueda sobre listas ordenadas. Para cada función, documenta el **invariante de bucle** con un comentario y, opcionalmente, con `assert` dentro del bucle (véase [sección 5.4.3 del tema 5](https://uib-23200-programacion.github.io/website/es/contenido/tema5.html#uso-informal-del-invariante){target="_blank"}).
+
+::: {.callout-note title="5.25.1 Función `busqueda_binaria(v, objetivo)`:" collapse="true"}
+
+Retorna el **índice** de `objetivo` en la lista ordenada `v`, o $-1$ si no se encuentra. Implementa la búsqueda binaria iterativa. Precondiciones: `v` no está vacío; `v` está ordenado de forma no decreciente.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+v = [1, 3, 5, 7, 9, 11, 13]
+print(busqueda_binaria(v, 7))    # 3
+print(busqueda_binaria(v, 6))    # -1
+print(busqueda_binaria(v, 1))    # 0
+print(busqueda_binaria(v, 13))   # 6
+```
+:::
+
+::: {.callout-important title="Invariante de bucle"}
+Mantén dos índices `izq` y `der` (ambos inclusive). El invariante es:
+
+$$
+P:\quad \text{si } \texttt{objetivo} \in v,\text{ entonces } \texttt{objetivo} \in v[\texttt{izq}..\texttt{der}]
+$$
+
+- *Inicialización*: `izq = 0`, `der = len(v) - 1`. $P$ es cierta porque `objetivo`, de estar en `v`, está en `v[0..n-1]`. ✓
+- *Mantenimiento*: Se calcula `mid = (izq + der) // 2`. Si `v[mid] == objetivo` se retorna `mid`. Si `v[mid] < objetivo`, el objetivo no puede estar en `v[0..mid]`, luego `izq = mid + 1` mantiene $P$. Si `v[mid] > objetivo`, análogamente `der = mid - 1` mantiene $P$. ✓
+- *Terminación*: cuando `izq > der`, el intervalo es vacío y $P$ garantiza que `objetivo` no está en `v`: se retorna $-1$. ✓
+
+Documenta este invariante con un comentario dentro del bucle y, si lo deseas, con `assert objetivo not in v[:izq] and objetivo not in v[der+1:]` (solo durante el desarrollo, no en producción).
+:::
+
+:::
+
+::: {.callout-note title="5.25.2 Función `primera_ocurrencia(v, objetivo)`:" collapse="true"}
+
+Retorna el índice de la **primera aparición** de `objetivo` en la lista ordenada `v` (que puede contener elementos repetidos), o $-1$ si no se encuentra. Precondiciones: `v` no está vacío; `v` está ordenado de forma no decreciente.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+v = [1, 2, 2, 3, 3, 3, 4]
+print(primera_ocurrencia(v, 3))   # 3  — primera posición de 3
+print(primera_ocurrencia(v, 2))   # 1
+print(primera_ocurrencia(v, 5))   # -1
+```
+:::
+
+::: {.callout-important title="Modificación de la búsqueda binaria"}
+En lugar de retornar en cuanto se encuentra `objetivo`, **guarda el índice** y continúa buscando hacia la izquierda (`der = mid - 1`) para hallar una aparición anterior. El índice guardado es el resultado si al final `izq > der`.
+:::
+
+:::
+
+::: {.callout-note title="5.25.3 Función `buscar_insercion(v, x)`:" collapse="true"}
+
+Retorna el **índice de inserción** de `x` en la lista ordenada `v`: la posición en la que se debería insertar `x` para que `v` siga ordenada. El resultado es un entero entre $0$ y `len(v)`. Si `x` ya está en `v`, retorna el índice de su primera aparición. Precondición: `v` está ordenado de forma no decreciente (puede estar vacío).
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(buscar_insercion([1, 3, 5, 7], 4))   # 2  — insertar entre 3 y 5
+print(buscar_insercion([1, 3, 5, 7], 0))   # 0  — insertar al principio
+print(buscar_insercion([1, 3, 5, 7], 9))   # 4  — insertar al final
+print(buscar_insercion([1, 3, 5, 7], 3))   # 1  — ya existe
+print(buscar_insercion([], 5))             # 0
+```
+:::
+
+::: {.callout-important title="Invariante"}
+Mantén `izq` y `der` con la garantía de que todos los elementos en `v[0..izq-1]` son estrictamente menores que `x`, y todos los elementos en `v[der..]` son mayores o iguales que `x`. El resultado es `izq` cuando `izq == der`.
+:::
+
+:::
+
+::: {.callout-note title="5.25.4 Función `pico(v)`:" collapse="true"}
+
+Retorna el **índice de un pico** en `v`: una posición $i$ (con $1 \le i \le n-2$) tal que `v[i-1] < v[i] > v[i+1]`. Se garantiza que `v` es unimodal (primero crece, luego decrece) y que el pico existe. Precondición: `len(v) >= 3`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(pico([1, 3, 5, 4, 2]))    # 2  — v[2] = 5 es el pico
+print(pico([1, 2, 5, 3, 1]))    # 2
+print(pico([1, 4, 3, 2, 1]))    # 1  — v[1] = 4 es el pico
+```
+:::
+
+::: {.callout-important title="Búsqueda binaria en secuencias unimodales"}
+La búsqueda lineal encontraría el pico en $O(n)$. La búsqueda binaria lo encuentra en $O(\log n)$:
+
+- Calcula `mid = (izq + der) // 2`.
+- Si `v[mid] < v[mid + 1]`, el pico está a la derecha de `mid`: `izq = mid + 1`.
+- En caso contrario, el pico está en `mid` o a su izquierda: `der = mid`.
+- El bucle termina cuando `izq == der`: ese índice es el pico.
+
+**Invariante**: el pico está en `v[izq..der]`.
+:::
+
+::: {.callout-warning title="Conexión matemática"}
+Este algoritmo es análogo a la búsqueda del máximo de una función unimodal $f:[a,b]\to\mathbb{R}$ continua. La **búsqueda ternaria** es su generalización para funciones continuas donde no se puede evaluar la derivada.
+:::
+
+:::
+
+---
+
+## Ejercicio 5.26: Tests con `pytest`
+
+En este ejercicio se escriben los ficheros de pruebas para los módulos de los ejercicios 5.23, 5.24 y 5.25. Los ficheros deben estar en la carpeta `tests/` del proyecto:
+
+```
+t05_algoritmos/
+├── t05_paquete/
+│   ├── estadistica.py
+│   ├── cadenas.py
+│   └── busqueda.py
+└── tests/
+    ├── test_estadistica.py
+    ├── test_cadenas.py
+    └── test_busqueda.py
+```
+
+Para ejecutar todas las pruebas desde la raíz del proyecto:
+
+```text
+pytest                   # todas las pruebas
+pytest -v                # verbose: muestra el nombre de cada prueba
+pytest tests/ -v         # solo la carpeta tests/
+pytest -x                # para en el primer fallo
+```
+
+::: {.callout-important title="Requisitos mínimos por función"}
+Para cada función de los módulos 5.23, 5.24 y 5.25, el fichero de prueba correspondiente debe incluir:
+
+1. **Al menos 2 casos normales**: entradas típicas con resultados conocidos.
+2. **Al menos 1 caso límite** (si aplica): lista de un elemento, cadena vacía, valor en el extremo del dominio.
+3. **Al menos 1 test de precondición violada** (si la función tiene precondición): usando `pytest.raises(ValueError)`.
+:::
+
+::: {.callout-note title="5.26.1 Fichero `test_estadistica.py`:" collapse="true"}
+
+Escribe tests para las siete funciones de `estadistica.py`. A continuación se muestran los tests de `rango` y `varianza` como modelo; completa el resto.
+
+```python
+# tests/test_estadistica.py
+import pytest
+from t05_paquete.estadistica import (
+    rango, varianza, moda, percentil,
+    media_ponderada, normalizar, media_movil
+)
+
+# --- rango ---
+
+def test_rango_normal():
+    assert rango([3.0, 1.0, 4.0, 1.0, 5.0, 9.0]) == 8.0
+
+def test_rango_todos_iguales():
+    assert rango([4.0, 4.0, 4.0]) == 0.0
+
+def test_rango_un_elemento():
+    assert rango([7.0]) == 0.0
+
+def test_rango_lista_vacia():
+    with pytest.raises(ValueError):
+        rango([])
+
+# --- varianza ---
+
+def test_varianza_conocida():
+    # Varianza de [2,4,4,4,5,5,7,9] = 4.0  (ejemplo del tema)
+    assert varianza([2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 7.0, 9.0]) == pytest.approx(4.0)
+
+def test_varianza_constante():
+    assert varianza([3.0, 3.0, 3.0]) == pytest.approx(0.0)
+
+def test_varianza_un_elemento():
+    assert varianza([5.0]) == pytest.approx(0.0)
+
+def test_varianza_lista_vacia():
+    with pytest.raises(ValueError):
+        varianza([])
+
+# Añade aquí los tests de moda, percentil, media_ponderada, normalizar y media_movil
+```
+
+:::
+
+::: {.callout-note title="5.26.2 Fichero `test_cadenas.py`:" collapse="true"}
+
+Escribe tests para las 4 funciones de `cadenas.py`. A continuación se muestra el modelo para `es_palindromo` y `es_balanceado`; completa el resto.
+
+```python
+# tests/test_cadenas.py
+import pytest
+from t05_paquete.cadenas import (
+    es_palindromo, palabras_unicas, palabra_mas_frecuente,
+    anagrama, run_length_encoding, es_balanceado
+)
+
+# --- es_palindromo ---
+
+def test_palindromo_simple():
+    assert es_palindromo("radar") is True
+
+def test_palindromo_con_espacios():
+    assert es_palindromo("Anita lava la tina") is True
+
+def test_palindromo_falso():
+    assert es_palindromo("python") is False
+
+def test_palindromo_un_caracter():
+    assert es_palindromo("A") is True
+
+# --- es_balanceado ---
+
+def test_balanceado_mixto():
+    assert es_balanceado("{[()]}") is True
+
+def test_balanceado_orden_incorrecto():
+    assert es_balanceado("([)]") is False
+
+def test_balanceado_vacio():
+    assert es_balanceado("") is True
+
+def test_balanceado_sin_cerrar():
+    assert es_balanceado("(((") is False
+
+# Añade aquí los tests de anagrama y run_length_encoding
+```
+
+:::
+
+::: {.callout-note title="5.26.3 Fichero `test_busqueda.py`:" collapse="true"}
+
+Escribe tests para las cuatro funciones de `busqueda.py`. A continuación se muestra el modelo para `busqueda_binaria`; completa el resto.
+
+```python
+# tests/test_busqueda.py
+import pytest
+from t05_paquete.busqueda import (
+    busqueda_binaria, primera_ocurrencia,
+    buscar_insercion, pico
+)
+
+# --- busqueda_binaria ---
+
+def test_busqueda_binaria_encontrado():
+    assert busqueda_binaria([1, 3, 5, 7, 9], 7) == 3
+
+def test_busqueda_binaria_primero():
+    assert busqueda_binaria([1, 3, 5, 7, 9], 1) == 0
+
+def test_busqueda_binaria_ultimo():
+    assert busqueda_binaria([1, 3, 5, 7, 9], 9) == 4
+
+def test_busqueda_binaria_no_encontrado():
+    assert busqueda_binaria([1, 3, 5, 7, 9], 6) == -1
+
+def test_busqueda_binaria_un_elemento_encontrado():
+    assert busqueda_binaria([42], 42) == 0
+
+def test_busqueda_binaria_lista_vacia():
+    with pytest.raises(ValueError):
+        busqueda_binaria([], 5)
+
+# Añade aquí los tests de primera_ocurrencia, buscar_insercion y pico
+```
+
+:::

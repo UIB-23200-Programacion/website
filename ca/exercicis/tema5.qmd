@@ -1,7 +1,558 @@
 ---
-title: "Exercicis — Tema 5"
+title: "Exercicis — Tema 5: Algorismes Bàsics i Verificació"
 lang: ca
 sidebar: barra-ca
 ---
 
-*(Contingut pendent.)*
+Per a la realització dels exercicis heu d'emprar el projecte `t05_algoritmos` que estarà disponible al repositori del curs. Navegueu al lloc i seguiu les instruccions de `README.md` per copiar el repositori en el vostre entorn local de GitHub i obrir un Codespace per treballar en els exercicis.
+
+## Exercicis 5.1 a 5.22
+
+Els exercicis 5.1 al 5.22 es troben en els arxius `ejer_t05_01-10_mo.py` i `ejer_t05_11-16_mo.py` continguts en el directori `/notebooks`.
+
+Aquests fitxers són tant scripts de Python com notebooks de Marimo que permeten execució interactiva. Per resoldre els exercicis, obriu cada fitxer al Codespace i seguiu les instruccions proporcionades en les diferents cel·les de cada notebook. Hi ha cel·les de codi i cel·les de text; aquestes últimes contenen els enunciats dels exercicis.
+
+**Cal obrir els fitxers amb Marimo per disposar de l'execució interactiva en cel·les del notebook; per a això (si no ocorre de manera automàtica) heu de fer clic al botó "Open in Marimo" (![](../../images/openmarimo.png){width="30px"})**
+
+---
+
+## Exercicis 5.23 a 5.26
+
+El projecte `t05_algoritmos` organitza tres mòduls en el paquet `t05_paquete`. Cada mòdul implementa una família de funcions algorísmiques aplicant els patrons i tècniques del tema 5:
+
+| Mòdul | Patró dominant | Domini |
+|---|---|---|
+| `estadistica.py` | acumulació + composició | estadística descriptiva |
+| `cadenas.py` | recorregut + cerca + recompte | processament de text |
+| `busqueda.py` | cerca + invariants amb `assert` | algorismes de cerca |
+
+Afegiu les funcions següents al mòdul que s'especifica respectant les regles establertes en temes anteriors:
+
+- la funció ha de contenir type hints, docstrings i precondicions,
+- si la precondició (o alguna de les precondicions) no es compleix la funció ha de llançar `ValueError` amb un missatge descriptiu (vegeu [secció 3.4 del tema 3](https://uib-23200-programacion.github.io/website/ca/contingut/tema3.html#excepcions){target="_blank"}).
+
+::: {.callout-important title="Novetat: les proves van en pytest"}
+A diferència de temes anteriors, en aquest tema **no** s'afegeixen proves al bloc `if __name__ == "__main__"`. En el seu lloc, les proves s'escriuen en fitxers `test_*.py` dins la carpeta `tests/` com a part de l'exercici 5.26. El bloc `__main__` pot emprar-se per a exploració manual, però no s'avaluarà.
+:::
+
+---
+
+## Exercici 5.23: Mòdul `estadistica.py`
+
+Les funcions d'aquest mòdul operen sobre llistes de nombres reals (`list[float]`). Tret que s'indiqui el contrari, la precondició exigeix que la llista no estigui buida.
+
+::: {.callout-note title="5.23.1 Funció `rango(datos)`:" collapse="true"}
+
+Retorna el **rang** de la mostra: la diferència entre el valor màxim i el valor mínim.
+$$
+\text{rango}(datos) = \max(datos) - \min(datos)
+$$
+Precondició: `datos` no està buida.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(rango([3.0, 1.0, 4.0, 1.0, 5.0, 9.0]))   # 8.0
+print(rango([7.0]))                            # 0.0
+```
+:::
+
+::: {.callout-important title="Implementació en una sola passada"}
+Calcula el màxim i el mínim simultàniament en un únic recorregut sobre `datos`, sense cridar les funcions built-in `max()` i `min()`. Això il·lustra el patró d'*una sola passada* amb diversos acumuladors.
+:::
+
+:::
+
+::: {.callout-note title="5.23.2 Funció `varianza(datos)`:" collapse="true"}
+
+Calcula la **variància poblacional** de la mostra:
+$$
+\sigma^2 = \frac{1}{n}\sum_{i=0}^{n-1}(x_i - \bar{x})^2
+$$
+Precondició: `datos` no està buida. Implementa el càlcul mitjançant dues acumulacions (primera passada per a la mitjana, segona per a la variància), tal com es mostra a la [secció 5.3.5 del tema 5](https://uib-23200-programacion.github.io/website/ca/contingut/tema5.html#composici%C3%B3-de-patrons){target="_blank"}.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(varianza([2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 7.0, 9.0]))  # 4.0
+print(varianza([1.0]))                                     # 0.0
+```
+:::
+
+:::
+
+::: {.callout-note title="5.23.3 Funció `moda(datos)`:" collapse="true"}
+
+Retorna la llista de **valors modals** (els valors que apareixen amb major freqüència). Si hi ha diversos valors amb la mateixa freqüència màxima, retorna tots en ordre creixent. Precondició: `datos` no està buida.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(moda([1.0, 2.0, 2.0, 3.0, 3.0, 4.0]))   # [2.0, 3.0]  (empat)
+print(moda([1.0, 1.0, 2.0, 3.0]))              # [1.0]
+print(moda([5.0]))                              # [5.0]
+```
+:::
+
+::: {.callout-important title="Estructura de dades clau"}
+Construeix un diccionari `freq: dict[float, int]` que associa cada valor amb la seva freqüència (patró de recompte). A continuació determina la freqüència màxima i filtra els valors que l'assoleixen.
+:::
+
+:::
+
+::: {.callout-note title="5.23.4 Funció `percentil(datos, p)`:" collapse="true"}
+
+El percentil $p$-èsim d'una mostra és un valor estadístic que divideix un conjunt de dades (ordenades de menor a major) de manera que el $p$% de les observacions són menors o iguals a aquest valor, i el $(100-p)$% restant són majors. Imagina que en una revisió rutinària, el pediatre pesa un nadó de 6 mesos (8.5 kg) i t'informa que es troba en el **percentil 75 ($p=75$)** de pes.
+
+Per entendre aquesta dada, imagina 100 nadons exactament de la mateixa edat ordenats de menor a major pes:
+
+- **75 nadons** pesaran 8.5 kg o menys. El pes d'aquest nadó és igual o superior al 75% dels nens de la seva edat.
+- **25 nadons** pesaran més de 8.5 kg. Només un 25% dels nens de la seva edat són més pesants que ell.
+
+Calcula el **percentil** $p$-èsim de la mostra ($0 \le p \le 100$) usant el mètode d'interpolació lineal:
+
+1. Ordena les dades (batch).
+2. Calcula l'índex real $h = p/100 \cdot (n-1)$.
+3. Sigui $i = \lfloor h \rfloor$ i $f = h - i$. El percentil és $(1-f)\cdot datos\_ord[i] + f \cdot datos\_ord[i+1]$ (si $i+1 < n$) o $datos\_ord[i]$ si $h$ és enter o $h = n-1$.
+
+Precondicions: `datos` no està buida, $0 \le p \le 100$.
+
+::: {.callout-tip title="Exemple"}
+```python
+datos = [1.0, 2.0, 3.0, 4.0, 5.0]
+print(percentil(datos, 0))    # 1.0
+print(percentil(datos, 50))   # 3.0
+print(percentil(datos, 100))  # 5.0
+print(percentil(datos, 25))   # 2.0
+```
+:::
+
+::: {.callout-important title="Connexió matemàtica"}
+El percentil 50 coincideix amb la mediana. Els percentils 25, 50 i 75 són els **quartils** $Q_1$, $Q_2$ i $Q_3$. El rang interquartílic $\text{IQR} = Q_3 - Q_1$ és una mesura robusta de dispersió, menys sensible a valors extrems que la variància.
+:::
+
+:::
+
+::: {.callout-note title="5.23.5 Funció `media_ponderada(valores, pesos)`:" collapse="true"}
+
+Calcula la **mitjana ponderada**:
+$$
+\bar{x}_w = \frac{\sum_{i=0}^{n-1} v_i \cdot p_i}{\sum_{i=0}^{n-1} p_i}
+$$
+Precondicions: `valores` i `pesos` tenen la mateixa longitud i no estan buits; tots els pesos són estrictament positius.
+
+::: {.callout-tip title="Exemple"}
+```python
+# Media de notas con distintos créditos
+notas  = [8.0, 6.0, 9.5, 7.0]
+creditos = [6.0, 6.0, 3.0, 9.0]
+print(media_ponderada(notas, creditos))  # 7.3125
+```
+:::
+
+::: {.callout-important title="Aplicació matemàtica"}
+La mitjana aritmètica ordinària és el cas especial amb tots els pesos iguals a 1. La mitjana ponderada apareix en el càlcul de la nota final d'una assignatura, en estadística bayesiana i en la definició de l'esperança matemàtica d'una variable aleatòria discreta $E[X] = \sum_i x_i \cdot P(X=x_i)$.
+:::
+
+:::
+
+::: {.callout-note title="5.23.6 Funció `normalizar(datos)`:" collapse="true"}
+
+Retorna una nova llista amb les dades **normalitzades** (estandarditzades):
+$$
+z_i = \frac{x_i - \bar{x}}{\sigma}
+$$
+La llista normalitzada té mitjana 0 i desviació estàndard 1. Precondicions: `datos` no està buida; la desviació estàndard no és zero (tots els valors són diferents). Reutilitza `varianza`.
+
+::: {.callout-tip title="Exemple"}
+```python
+datos = [2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 7.0, 9.0]
+z = normalizar(datos)
+print(f"Media: {sum(z)/len(z):.10f}")      # ~0.0
+print(f"Varianza: {varianza(z):.10f}")     # ~1.0
+```
+:::
+
+:::
+
+::: {.callout-note title="5.23.7 Funció `media_movil(datos, k)`:" collapse="true"}
+
+Calcula la **mitjana mòbil** de finestra $k$: la $i$-èsima sortida és la mitjana de `datos[i:i+k]`. Retorna una llista de longitud `len(datos) - k + 1`. Precondicions: `datos` no està buida, $1 \le k \le \text{len}(datos)$.
+
+::: {.callout-tip title="Exemple"}
+```python
+datos = [1.0, 3.0, 5.0, 7.0, 9.0]
+print(media_movil(datos, 3))   # [3.0, 5.0, 7.0]
+print(media_movil(datos, 1))   # [1.0, 3.0, 5.0, 7.0, 9.0]
+print(media_movil(datos, 5))   # [5.0]
+```
+:::
+
+::: {.callout-important title="Implementació eficient: finestra lliscant"}
+La implementació ingènua calcula la suma de cada finestra des de zero: $O(n \cdot k)$ operacions. La **finestra lliscant** (*sliding window*) és més eficient: calcula la suma de la primera finestra una sola vegada, i per a cada finestra següent suma l'element nou i resta l'element que surt. Això redueix el treball a $O(n)$.
+
+La idea clau és que la suma de la finestra $[i+1, i+k]$ s'obté a partir de la suma de $[i, i+k-1]$ en $O(1)$:
+$$
+\text{suma}_{i+1} = \text{suma}_i - \text{datos}[i] + \text{datos}[i+k]
+$$
+:::
+
+:::
+
+---
+
+## Exercici 5.24: Mòdul `cadenas.py`
+
+Les funcions d'aquest mòdul operen sobre cadenes de text (`str`). Tret que s'indiqui el contrari, la precondició exigeix que les cadenes no estiguin buides.
+
+::: {.callout-note title="5.24.1 Funció `es_palindromo(s)`:" collapse="true"}
+
+Retorna `True` si la cadena `s` és un **palíndrom** i `False` en cas contrari. La comparació ignora majúscules/minúscules i espais. Precondició: `s` no és `None`.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(es_palindromo("radar"))               # True
+print(es_palindromo("Anita lava la tina"))  # True
+print(es_palindromo("python"))              # False
+print(es_palindromo("A"))                   # True
+```
+:::
+
+::: {.callout-important title="Cerca amb aturada anticipada"}
+Després de normalitzar `s` (minúscules, sense espais), compara el caràcter en la posició `i` amb el de la posició `n-1-i` per a `i` des de 0 fins a `n//2 - 1`. Tan aviat com trobis una discrepància, retorna `False` (*early exit*). Si el bucle acaba sense discrepàncies, retorna `True`.
+:::
+
+:::
+
+::: {.callout-note title="5.24.2 Funció `anagrama(s, t)`:" collapse="true"}
+
+Retorna `True` si `s` i `t` són **anagrames** (mateixos caràcters amb les mateixes freqüències, possiblement en ordre diferent), sense distingir majúscules/minúscules ni espais. Precondició: `s` i `t` no són `None`.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(anagrama("listen", "silent"))      # True
+print(anagrama("Amor", "Roma"))          # True
+print(anagrama("hola", "mundo"))         # False
+print(anagrama("abc", "ab"))             # False
+```
+:::
+
+::: {.callout-important title="Implementació amb diccionaris de freqüències"}
+Construeix el diccionari de freqüències de caràcters de `s` normalitzada i el de `t` normalitzada (recompte). Dues cadenes són anagrames si i només si els seus diccionaris de freqüències són iguals.
+:::
+
+:::
+
+::: {.callout-note title="5.24.3 Funció `run_length_encoding(s)`:" collapse="true"}
+
+Aplica la **codificació per longitud de ratxa** (*Run-Length Encoding*, RLE): comprimeix una cadena representant cada ratxa de caràcters consecutius iguals com un parell `(caràcter, longitud)`. Retorna `list[tuple[str, int]]`. Precondició: `s` no està buida.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(run_length_encoding("aaabbc"))    # [('a', 3), ('b', 2), ('c', 1)]
+print(run_length_encoding("abcd"))      # [('a', 1), ('b', 1), ('c', 1), ('d', 1)]
+print(run_length_encoding("aaaa"))      # [('a', 4)]
+```
+:::
+
+::: {.callout-important title="Patró: recorregut amb acumulació de ratxa"}
+Recorre `s` mantenint dos acumuladors: el caràcter actual de la ratxa i la seva longitud. Quan el caràcter canvia, afegeix el parell `(caràcter_actual, longitud)` a la llista resultat i reinicia els acumuladors.
+:::
+
+::: {.callout-warning title="Connexió amb la compressió de dades"}
+RLE és un dels algorismes de compressió sense pèrdues més simples. És efectiu per a dades amb moltes repeticions consecutives (imatges binàries, mapes de píxels monocromàtics, seqüències d'ADN), però ineficient per a dades sense ratxes. És la base del format de compressió d'algunes imatges TIFF.
+:::
+
+:::
+
+::: {.callout-note title="5.24.4 Funció `es_balanceado(s)`:" collapse="true"}
+
+Retorna `True` si els delimitadors d'obertura i tancament `()`, `[]` i `{}` en la cadena `s` estan correctament **balancejats i aniuats**, i `False` en cas contrari. La resta de caràcters s'ignoren. Precondició: `s` no és `None`.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(es_balanceado("(a + b) * [c - d]"))   # True
+print(es_balanceado("{[()]}"))              # True
+print(es_balanceado("([)]"))                # False  — ordre incorrecte
+print(es_balanceado("((("))                 # False  — falta tancament
+print(es_balanceado(""))                    # True   — cadena buida
+```
+:::
+
+::: {.callout-important title="Algorisme: pila LIFO"}
+Usa una llista de Python com a pila (`list` amb `append`/`pop`):
+
+1. Per a cada caràcter de `s`:
+   - Si és obertura (`(`, `[`, `{`): empeny a la pila (`append`).
+   - Si és tancament (`)`, `]`, `}`): si la pila és buida o el cim no és l'obertura corresponent, retorna `False` (*early exit*). En cas contrari, elimina el cim (`pop`).
+2. En acabar el recorregut: retorna `True` si i només si la pila és buida.
+:::
+
+:::
+
+---
+
+## Exercici 5.25: Mòdul `busqueda.py`
+
+Les funcions d'aquest mòdul implementen algorismes de cerca sobre llistes ordenades. Per a cada funció, documenta l'**invariant de bucle** amb un comentari i, opcionalment, amb `assert` dins del bucle (vegeu [secció 5.4.3 del tema 5](https://uib-23200-programacion.github.io/website/ca/contingut/tema5.html#%C3%BAs-informal-de-linvariant){target="_blank"}).
+
+::: {.callout-note title="5.25.1 Funció `busqueda_binaria(v, objetivo)`:" collapse="true"}
+
+Retorna l'**índex** de `objetivo` en la llista ordenada `v`, o $-1$ si no es troba. Implementa la cerca binària iterativa. Precondicions: `v` no està buida; `v` està ordenada de forma no decreixent.
+
+::: {.callout-tip title="Exemple"}
+```python
+v = [1, 3, 5, 7, 9, 11, 13]
+print(busqueda_binaria(v, 7))    # 3
+print(busqueda_binaria(v, 6))    # -1
+print(busqueda_binaria(v, 1))    # 0
+print(busqueda_binaria(v, 13))   # 6
+```
+:::
+
+::: {.callout-important title="Invariant de bucle"}
+Mantén dos índexs `izq` i `der` (ambdós inclusius). L'invariant és:
+
+$$
+P:\quad \text{si } \texttt{objetivo} \in v,\text{ llavors } \texttt{objetivo} \in v[\texttt{izq}..\texttt{der}]
+$$
+
+- *Inicialització*: `izq = 0`, `der = len(v) - 1`. $P$ és certa perquè `objetivo`, de trobar-se a `v`, és a `v[0..n-1]`. ✓
+- *Manteniment*: Es calcula `mid = (izq + der) // 2`. Si `v[mid] == objetivo` es retorna `mid`. Si `v[mid] < objetivo`, l'objectiu no pot estar a `v[0..mid]`, llavors `izq = mid + 1` manté $P$. Si `v[mid] > objetivo`, anàlogament `der = mid - 1` manté $P$. ✓
+- *Terminació*: quan `izq > der`, l'interval és buit i $P$ garanteix que `objetivo` no és a `v`: es retorna $-1$. ✓
+
+Documenta aquest invariant amb un comentari dins del bucle i, si ho desitges, amb `assert objetivo not in v[:izq] and objetivo not in v[der+1:]` (només durant el desenvolupament, no en producció).
+:::
+
+:::
+
+::: {.callout-note title="5.25.2 Funció `primera_ocurrencia(v, objetivo)`:" collapse="true"}
+
+Retorna l'índex de la **primera aparició** de `objetivo` en la llista ordenada `v` (que pot contenir elements repetits), o $-1$ si no es troba. Precondicions: `v` no està buida; `v` està ordenada de forma no decreixent.
+
+::: {.callout-tip title="Exemple"}
+```python
+v = [1, 2, 2, 3, 3, 3, 4]
+print(primera_ocurrencia(v, 3))   # 3  — primera posición de 3
+print(primera_ocurrencia(v, 2))   # 1
+print(primera_ocurrencia(v, 5))   # -1
+```
+:::
+
+::: {.callout-important title="Modificació de la cerca binària"}
+En lloc de retornar en trobar `objetivo`, **guarda l'índex** i continua cercant cap a l'esquerra (`der = mid - 1`) per trobar una aparició anterior. L'índex guardat és el resultat si al final `izq > der`.
+:::
+
+:::
+
+::: {.callout-note title="5.25.3 Funció `buscar_insercion(v, x)`:" collapse="true"}
+
+Retorna l'**índex d'inserció** de `x` en la llista ordenada `v`: la posició en la qual s'hauria d'inserir `x` perquè `v` continuï ordenada. El resultat és un enter entre $0$ i `len(v)`. Si `x` ja és a `v`, retorna l'índex de la seva primera aparició. Precondició: `v` està ordenada de forma no decreixent (pot estar buida).
+
+::: {.callout-tip title="Exemple"}
+```python
+print(buscar_insercion([1, 3, 5, 7], 4))   # 2  — insertar entre 3 y 5
+print(buscar_insercion([1, 3, 5, 7], 0))   # 0  — insertar al principio
+print(buscar_insercion([1, 3, 5, 7], 9))   # 4  — insertar al final
+print(buscar_insercion([1, 3, 5, 7], 3))   # 1  — ya existe
+print(buscar_insercion([], 5))             # 0
+```
+:::
+
+::: {.callout-important title="Invariant"}
+Mantén `izq` i `der` amb la garantia que tots els elements a `v[0..izq-1]` són estrictament menors que `x`, i tots els elements a `v[der..]` són majors o iguals que `x`. El resultat és `izq` quan `izq == der`.
+:::
+
+:::
+
+::: {.callout-note title="5.25.4 Funció `pico(v)`:" collapse="true"}
+
+Retorna l'**índex d'un pic** a `v`: una posició $i$ (amb $1 \le i \le n-2$) tal que `v[i-1] < v[i] > v[i+1]`. Es garanteix que `v` és unimodal (primer creix, després decreix) i que el pic existeix. Precondició: `len(v) >= 3`.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(pico([1, 3, 5, 4, 2]))    # 2  — v[2] = 5 es el pico
+print(pico([1, 2, 5, 3, 1]))    # 2
+print(pico([1, 4, 3, 2, 1]))    # 1  — v[1] = 4 es el pico
+```
+:::
+
+::: {.callout-important title="Cerca binària en seqüències unimodals"}
+La cerca lineal trobaria el pic en $O(n)$. La cerca binària el troba en $O(\log n)$:
+
+- Calcula `mid = (izq + der) // 2`.
+- Si `v[mid] < v[mid + 1]`, el pic és a la dreta de `mid`: `izq = mid + 1`.
+- En cas contrari, el pic és a `mid` o a la seva esquerra: `der = mid`.
+- El bucle acaba quan `izq == der`: aquest índex és el pic.
+
+**Invariant**: el pic és a `v[izq..der]`.
+:::
+
+::: {.callout-warning title="Connexió matemàtica"}
+Aquest algorisme és anàleg a la cerca del màxim d'una funció unimodal $f:[a,b]\to\mathbb{R}$ contínua. La **cerca ternària** és la seva generalització per a funcions contínues on no es pot avaluar la derivada.
+:::
+
+:::
+
+---
+
+## Exercici 5.26: Proves amb `pytest`
+
+En aquest exercici s'escriuen els fitxers de proves per als mòduls dels exercicis 5.23, 5.24 i 5.25. Els fitxers han d'estar a la carpeta `tests/` del projecte:
+
+```
+t05_algoritmos/
+├── t05_paquete/
+│   ├── estadistica.py
+│   ├── cadenas.py
+│   └── busqueda.py
+└── tests/
+    ├── test_estadistica.py
+    ├── test_cadenas.py
+    └── test_busqueda.py
+```
+
+Per executar totes les proves des de l'arrel del projecte:
+
+```text
+pytest                   # totes les proves
+pytest -v                # verbose: mostra el nom de cada prova
+pytest tests/ -v         # només la carpeta tests/
+pytest -x                # s'atura al primer error
+```
+
+::: {.callout-important title="Requisits mínims per funció"}
+Per a cada funció dels mòduls 5.23, 5.24 i 5.25, el fitxer de proves corresponent ha d'incloure:
+
+1. **Almenys 2 casos normals**: entrades típiques amb resultats coneguts.
+2. **Almenys 1 cas límit** (si aplica): llista d'un element, cadena buida, valor a l'extrem del domini.
+3. **Almenys 1 test de precondició violada** (si la funció té precondició): usant `pytest.raises(ValueError)`.
+:::
+
+::: {.callout-note title="5.26.1 Fitxer `test_estadistica.py`:" collapse="true"}
+
+Escriu proves per a les set funcions de `estadistica.py`. A continuació es mostren les proves de `rango` i `varianza` com a model; completa la resta.
+
+```python
+# tests/test_estadistica.py
+import pytest
+from t05_paquete.estadistica import (
+    rango, varianza, moda, percentil,
+    media_ponderada, normalizar, media_movil
+)
+
+# --- rango ---
+
+def test_rango_normal():
+    assert rango([3.0, 1.0, 4.0, 1.0, 5.0, 9.0]) == 8.0
+
+def test_rango_todos_iguales():
+    assert rango([4.0, 4.0, 4.0]) == 0.0
+
+def test_rango_un_elemento():
+    assert rango([7.0]) == 0.0
+
+def test_rango_lista_vacia():
+    with pytest.raises(ValueError):
+        rango([])
+
+# --- varianza ---
+
+def test_varianza_conocida():
+    # Varianza de [2,4,4,4,5,5,7,9] = 4.0  (ejemplo del tema)
+    assert varianza([2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 7.0, 9.0]) == pytest.approx(4.0)
+
+def test_varianza_constante():
+    assert varianza([3.0, 3.0, 3.0]) == pytest.approx(0.0)
+
+def test_varianza_un_elemento():
+    assert varianza([5.0]) == pytest.approx(0.0)
+
+def test_varianza_lista_vacia():
+    with pytest.raises(ValueError):
+        varianza([])
+
+# Añade aquí los tests de moda, percentil, media_ponderada, normalizar y media_movil
+```
+
+:::
+
+::: {.callout-note title="5.26.2 Fitxer `test_cadenas.py`:" collapse="true"}
+
+Escriu proves per a les 4 funcions de `cadenas.py`. A continuació es mostra el model per a `es_palindromo` i `es_balanceado`; completa la resta.
+
+```python
+# tests/test_cadenas.py
+import pytest
+from t05_paquete.cadenas import (
+    es_palindromo, palabras_unicas, palabra_mas_frecuente,
+    anagrama, run_length_encoding, es_balanceado
+)
+
+# --- es_palindromo ---
+
+def test_palindromo_simple():
+    assert es_palindromo("radar") is True
+
+def test_palindromo_con_espacios():
+    assert es_palindromo("Anita lava la tina") is True
+
+def test_palindromo_falso():
+    assert es_palindromo("python") is False
+
+def test_palindromo_un_caracter():
+    assert es_palindromo("A") is True
+
+# --- es_balanceado ---
+
+def test_balanceado_mixto():
+    assert es_balanceado("{[()]}") is True
+
+def test_balanceado_orden_incorrecto():
+    assert es_balanceado("([)]") is False
+
+def test_balanceado_vacio():
+    assert es_balanceado("") is True
+
+def test_balanceado_sin_cerrar():
+    assert es_balanceado("(((") is False
+
+# Añade aquí los tests de anagrama y run_length_encoding
+```
+
+:::
+
+::: {.callout-note title="5.26.3 Fitxer `test_busqueda.py`:" collapse="true"}
+
+Escriu proves per a les quatre funcions de `busqueda.py`. A continuació es mostra el model per a `busqueda_binaria`; completa la resta.
+
+```python
+# tests/test_busqueda.py
+import pytest
+from t05_paquete.busqueda import (
+    busqueda_binaria, primera_ocurrencia,
+    buscar_insercion, pico
+)
+
+# --- busqueda_binaria ---
+
+def test_busqueda_binaria_encontrado():
+    assert busqueda_binaria([1, 3, 5, 7, 9], 7) == 3
+
+def test_busqueda_binaria_primero():
+    assert busqueda_binaria([1, 3, 5, 7, 9], 1) == 0
+
+def test_busqueda_binaria_ultimo():
+    assert busqueda_binaria([1, 3, 5, 7, 9], 9) == 4
+
+def test_busqueda_binaria_no_encontrado():
+    assert busqueda_binaria([1, 3, 5, 7, 9], 6) == -1
+
+def test_busqueda_binaria_un_elemento_encontrado():
+    assert busqueda_binaria([42], 42) == 0
+
+def test_busqueda_binaria_lista_vacia():
+    with pytest.raises(ValueError):
+        busqueda_binaria([], 5)
+
+# Añade aquí los tests de primera_ocurrencia, buscar_insercion y pico
+```
+
+:::
