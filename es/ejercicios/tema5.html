@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Ejercicios — Tema 5 – Programación (23200)</title>
+<title>Ejercicios — Tema 5: Algoritmos Básicos y Verificación – Programación (23200)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -72,11 +107,43 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Ejercicios — Tema 5 – Programación (23200)">
+<meta property="og:title" content="Ejercicios — Tema 5: Algoritmos Básicos y Verificación – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/openmarimo.png">
 <meta property="og:site_name" content="Programación (23200)">
+<meta property="og:image:height" content="34">
+<meta property="og:image:width" content="34">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -534,8 +601,19 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#ejercicios-5.1-a-5.22" id="toc-ejercicios-5.1-a-5.22" class="nav-link active" data-scroll-target="#ejercicios-5.1-a-5.22">Ejercicios 5.1 a 5.22</a></li>
+  <li><a href="#ejercicios-5.23-a-5.26" id="toc-ejercicios-5.23-a-5.26" class="nav-link" data-scroll-target="#ejercicios-5.23-a-5.26">Ejercicios 5.23 a 5.26</a></li>
+  <li><a href="#ejercicio-5.23-módulo-estadistica.py" id="toc-ejercicio-5.23-módulo-estadistica.py" class="nav-link" data-scroll-target="#ejercicio-5.23-módulo-estadistica.py">Ejercicio 5.23: Módulo <code>estadistica.py</code></a></li>
+  <li><a href="#ejercicio-5.24-módulo-cadenas.py" id="toc-ejercicio-5.24-módulo-cadenas.py" class="nav-link" data-scroll-target="#ejercicio-5.24-módulo-cadenas.py">Ejercicio 5.24: Módulo <code>cadenas.py</code></a></li>
+  <li><a href="#ejercicio-5.25-módulo-busqueda.py" id="toc-ejercicio-5.25-módulo-busqueda.py" class="nav-link" data-scroll-target="#ejercicio-5.25-módulo-busqueda.py">Ejercicio 5.25: Módulo <code>busqueda.py</code></a></li>
+  <li><a href="#ejercicio-5.26-tests-con-pytest" id="toc-ejercicio-5.26-tests-con-pytest" class="nav-link" data-scroll-target="#ejercicio-5.26-tests-con-pytest">Ejercicio 5.26: Tests con <code>pytest</code></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -543,7 +621,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../es/ejercicios/tema1.html">Ejercicios</a></li><li class="breadcrumb-item"><a href="../../es/ejercicios/tema5.html">Ejercicios — Tema 5</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Ejercicios — Tema 5</h1>
+<h1 class="title">Ejercicios — Tema 5: Algoritmos Básicos y Verificación</h1>
 </div>
 
 
@@ -560,9 +638,992 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contenido pendiente.)</em></p>
+<p>Para la realización de los ejercicios debe utilizar el proyecto <code>t05_algoritmos</code> que estará disponible en el repositorio del curso. Navega al sitio y sigue las instrucciones en <code>README.md</code> para copiar el repositorio en tu entorno local de GitHub y abrir un Codespace para trabajar en los ejercicios.</p>
+<section id="ejercicios-5.1-a-5.22" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicios-5.1-a-5.22">Ejercicios 5.1 a 5.22</h2>
+<p>Los ejercicios 5.1 al 5.22 se encuentran en los archivos <code>ejer_t05_01-10_mo.py</code> y <code>ejer_t05_11-16_mo.py</code> contenidos en el directorio <code>/notebooks</code>.</p>
+<p>Estos ficheros son tanto scripts de Python como notebooks de Marimo que permiten ejecución interactiva. Para resolver los ejercicios, abre cada archivo en el Codespace y sigue las instrucciones proporcionadas en las diferentes celdas de cada notebook. Hay celdas de código y celdas de texto, estas últimas contienen los enunciados de los ejercicios.</p>
+<p><strong>Es necesario abrir los ficheros con Marimo para disponer de la ejecución interactiva en celdas del notebook, para ello (si no ocurre de forma automática) debes hacer clic en el botón “Open in Marimo” (<img src="../../images/openmarimo.png" class="img-fluid" width="30">)</strong></p>
+<hr>
+</section>
+<section id="ejercicios-5.23-a-5.26" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicios-5.23-a-5.26">Ejercicios 5.23 a 5.26</h2>
+<p>El proyecto <code>t05_algoritmos</code> organiza tres módulos en el paquete <code>t05_paquete</code>. Cada módulo implementa una familia de funciones algorítmicas aplicando los patrones y técnicas del tema 5:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Módulo</th>
+<th>Patrón dominante</th>
+<th>Dominio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>estadistica.py</code></td>
+<td>acumulación + composición</td>
+<td>estadística descriptiva</td>
+</tr>
+<tr class="even">
+<td><code>cadenas.py</code></td>
+<td>recorrido + búsqueda + conteo</td>
+<td>procesamiento de texto</td>
+</tr>
+<tr class="odd">
+<td><code>busqueda.py</code></td>
+<td>búsqueda + invariantes con <code>assert</code></td>
+<td>algoritmos de búsqueda</td>
+</tr>
+</tbody>
+</table>
+<p>Agrega las siguientes funciones al módulo que se especifica respetando las reglas establecidas en temas anteriores:</p>
+<ul>
+<li>la función debe contener type hints, docstrings y precondiciones,</li>
+<li>si la precondición (o alguna de las precondiciones) no se cumple la función debe lanzar <code>ValueError</code> con un mensaje descriptivo (véase <a href="https://uib-23200-programacion.github.io/website/es/contenido/tema3.html#excepciones" target="_blank">sección 3.4 del tema 3</a>).</li>
+</ul>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Novedad: las pruebas van en pytest">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Novedad: las pruebas van en pytest
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A diferencia de temas anteriores, en este tema <strong>no</strong> se añaden pruebas al bloque <code>if __name__ == "__main__"</code>. En su lugar, las pruebas se escriben en ficheros <code>test_*.py</code> dentro de la carpeta <code>tests/</code> como parte del ejercicio 5.26. El bloque <code>__main__</code> puede usarse para exploración manual, pero no se evaluará.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="ejercicio-5.23-módulo-estadistica.py" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-5.23-módulo-estadistica.py">Ejercicio 5.23: Módulo <code>estadistica.py</code></h2>
+<p>Las funciones de este módulo operan sobre listas de números reales (<code>list[float]</code>). Salvo que se indique lo contrario, la precondición exige que la lista no esté vacía.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.23.1 Función `rango(datos)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.23.1 Función <code>rango(datos)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna el <strong>rango</strong> de la muestra: la diferencia entre el valor máximo y el valor mínimo. <span class="math display">\[
+\text{rango}(datos) = \max(datos) - \min(datos)
+\]</span> Precondición: <code>datos</code> no está vacío.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rango([<span class="fl">3.0</span>, <span class="fl">1.0</span>, <span class="fl">4.0</span>, <span class="fl">1.0</span>, <span class="fl">5.0</span>, <span class="fl">9.0</span>]))   <span class="co"># 8.0</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rango([<span class="fl">7.0</span>]))                            <span class="co"># 0.0</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Implementación en una sola pasada">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Implementación en una sola pasada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Calcula el máximo y el mínimo simultáneamente en un único recorrido sobre <code>datos</code>, sin llamar a las funciones built-in <code>max()</code> y <code>min()</code>. Esto ilustra el patrón de <em>una sola pasada</em> con varios acumuladores.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.23.2 Función `varianza(datos)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.23.2 Función <code>varianza(datos)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula la <strong>varianza poblacional</strong> de la muestra: <span class="math display">\[
+\sigma^2 = \frac{1}{n}\sum_{i=0}^{n-1}(x_i - \bar{x})^2
+\]</span> Precondición: <code>datos</code> no está vacío. Implementa el cálculo mediante dos acumulaciones (primera pasada para la media, segunda para la varianza), como se muestra en la <a href="https://uib-23200-programacion.github.io/website/es/contenido/tema5.html#composici%C3%B3n-de-patrones" target="_blank">sección 5.3.5 del tema 5</a>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(varianza([<span class="fl">2.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">5.0</span>, <span class="fl">5.0</span>, <span class="fl">7.0</span>, <span class="fl">9.0</span>]))  <span class="co"># 4.0</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(varianza([<span class="fl">1.0</span>]))                                     <span class="co"># 0.0</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.23.3 Función `moda(datos)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.23.3 Función <code>moda(datos)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna la lista de <strong>valores modales</strong> (los valores que aparecen con mayor frecuencia). Si hay varios valores con la misma frecuencia máxima, retorna todos ellos en orden creciente. Precondición: <code>datos</code> no está vacío.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(moda([<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="fl">3.0</span>, <span class="fl">4.0</span>]))   <span class="co"># [2.0, 3.0]  (empate)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(moda([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>]))              <span class="co"># [1.0]</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(moda([<span class="fl">5.0</span>]))                              <span class="co"># [5.0]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Estructura de datos clave">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Estructura de datos clave
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Construye un diccionario <code>freq: dict[float, int]</code> que asocia cada valor con su frecuencia (patrón de conteo). A continuación determina la frecuencia máxima y filtra los valores que la alcanzan.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.23.4 Función `percentil(datos, p)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.23.4 Función <code>percentil(datos, p)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>El percentil <span class="math inline">\(p\)</span>-ésimo de una muestra es un valor estadístico que divide un conjunto de datos (ordenados de menor a mayor) de manera que el <span class="math inline">\(p\)</span>% de las observaciones son menores o iguales a ese valor, y el <span class="math inline">\((100-p)\)</span>% restante son mayores. Imagina que en una revisión rutinaria, el pediatra pesa a un bebé de 6 meses (8.5 kg) y te informa que se encuentra en el <strong>percentil 75 (<span class="math inline">\(p=75\)</span>)</strong> de peso.</p>
+<p>Para entender este dato, imagina a 100 bebés de exactamente la misma edad ordenados de menor a mayor peso:</p>
+<ul>
+<li><strong>75 bebés</strong> pesarán 8.5 kg o menos. El peso de este bebé es igual o superior al 75% de los niños de su edad.</li>
+<li><strong>25 bebés</strong> pesarán más de 8.5 kg. Solo un 25% de los niños de su edad son más pesados que él.</li>
+</ul>
+<p>Calcula el <strong>percentil</strong> <span class="math inline">\(p\)</span>-ésimo de la muestra (<span class="math inline">\(0 \le p \le 100\)</span>) usando el método de interpolación lineal:</p>
+<ol type="1">
+<li>Ordena los datos (batch).</li>
+<li>Calcula el índice real <span class="math inline">\(h = p/100 \cdot (n-1)\)</span>.</li>
+<li>Sea <span class="math inline">\(i = \lfloor h \rfloor\)</span> e <span class="math inline">\(f = h - i\)</span>. El percentil es <span class="math inline">\((1-f)\cdot datos\_ord[i] + f \cdot datos\_ord[i+1]\)</span> (si <span class="math inline">\(i+1 &lt; n\)</span>) o <span class="math inline">\(datos\_ord[i]\)</span> si <span class="math inline">\(h\)</span> es entero o <span class="math inline">\(h = n-1\)</span>.</li>
+</ol>
+<p>Precondiciones: <code>datos</code> no está vacío, <span class="math inline">\(0 \le p \le 100\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> [<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="fl">4.0</span>, <span class="fl">5.0</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(percentil(datos, <span class="dv">0</span>))    <span class="co"># 1.0</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(percentil(datos, <span class="dv">50</span>))   <span class="co"># 3.0</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(percentil(datos, <span class="dv">100</span>))  <span class="co"># 5.0</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(percentil(datos, <span class="dv">25</span>))   <span class="co"># 2.0</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Conexión matemática">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Conexión matemática
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El percentil 50 coincide con la mediana. Los percentiles 25, 50 y 75 son los <strong>cuartiles</strong> <span class="math inline">\(Q_1\)</span>, <span class="math inline">\(Q_2\)</span> y <span class="math inline">\(Q_3\)</span>. El rango intercuartílico <span class="math inline">\(\text{IQR} = Q_3 - Q_1\)</span> es una medida robusta de dispersión, menos sensible a valores extremos que la varianza.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.23.5 Función `media_ponderada(valores, pesos)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.23.5 Función <code>media_ponderada(valores, pesos)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula la <strong>media ponderada</strong>: <span class="math display">\[
+\bar{x}_w = \frac{\sum_{i=0}^{n-1} v_i \cdot p_i}{\sum_{i=0}^{n-1} p_i}
+\]</span> Precondiciones: <code>valores</code> y <code>pesos</code> tienen la misma longitud y no están vacíos; todos los pesos son estrictamente positivos.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Media de notas con distintos créditos</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>notas  <span class="op">=</span> [<span class="fl">8.0</span>, <span class="fl">6.0</span>, <span class="fl">9.5</span>, <span class="fl">7.0</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>creditos <span class="op">=</span> [<span class="fl">6.0</span>, <span class="fl">6.0</span>, <span class="fl">3.0</span>, <span class="fl">9.0</span>]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(media_ponderada(notas, creditos))  <span class="co"># 7.3125</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Aplicación matemática">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Aplicación matemática
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La media aritmética ordinaria es el caso especial con todos los pesos iguales a 1. La media ponderada aparece en el cálculo de la nota final de una asignatura, en estadística bayesiana y en la definición de la esperanza matemática de una variable aleatoria discreta <span class="math inline">\(E[X] = \sum_i x_i \cdot P(X=x_i)\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.23.6 Función `normalizar(datos)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.23.6 Función <code>normalizar(datos)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna una nueva lista con los datos <strong>normalizados</strong> (estandarizados): <span class="math display">\[
+z_i = \frac{x_i - \bar{x}}{\sigma}
+\]</span> La lista normalizada tiene media 0 y desviación estándar 1. Precondiciones: <code>datos</code> no está vacío; la desviación estándar no es cero (todos los valores son distintos). Reutiliza <code>varianza</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> [<span class="fl">2.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">5.0</span>, <span class="fl">5.0</span>, <span class="fl">7.0</span>, <span class="fl">9.0</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> normalizar(datos)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Media: </span><span class="sc">{</span><span class="bu">sum</span>(z)<span class="op">/</span><span class="bu">len</span>(z)<span class="sc">:.10f}</span><span class="ss">"</span>)      <span class="co"># ~0.0</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Varianza: </span><span class="sc">{</span>varianza(z)<span class="sc">:.10f}</span><span class="ss">"</span>)     <span class="co"># ~1.0</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.23.7 Función `media_movil(datos, k)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.23.7 Función <code>media_movil(datos, k)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula la <strong>media móvil</strong> de ventana <span class="math inline">\(k\)</span>: la <span class="math inline">\(i\)</span>-ésima salida es la media de <code>datos[i:i+k]</code>. Retorna una lista de longitud <code>len(datos) - k + 1</code>. Precondiciones: <code>datos</code> no está vacío, <span class="math inline">\(1 \le k \le \text{len}(datos)\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> [<span class="fl">1.0</span>, <span class="fl">3.0</span>, <span class="fl">5.0</span>, <span class="fl">7.0</span>, <span class="fl">9.0</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(media_movil(datos, <span class="dv">3</span>))   <span class="co"># [3.0, 5.0, 7.0]</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(media_movil(datos, <span class="dv">1</span>))   <span class="co"># [1.0, 3.0, 5.0, 7.0, 9.0]</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(media_movil(datos, <span class="dv">5</span>))   <span class="co"># [5.0]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Implementación eficiente: ventana deslizante">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Implementación eficiente: ventana deslizante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La implementación ingenua calcula la suma de cada ventana desde cero: <span class="math inline">\(O(n \cdot k)\)</span> operaciones. La <strong>ventana deslizante</strong> (<em>sliding window</em>) es más eficiente: calcula la suma de la primera ventana una sola vez, y para cada ventana siguiente suma el elemento nuevo y resta el elemento que sale. Esto reduce el trabajo a <span class="math inline">\(O(n)\)</span>.</p>
+<p>La idea clave es que la suma de la ventana <span class="math inline">\([i+1, i+k]\)</span> se obtiene a partir de la suma de <span class="math inline">\([i, i+k-1]\)</span> en <span class="math inline">\(O(1)\)</span>: <span class="math display">\[
+\text{suma}_{i+1} = \text{suma}_i - \text{datos}[i] + \text{datos}[i+k]
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="ejercicio-5.24-módulo-cadenas.py" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-5.24-módulo-cadenas.py">Ejercicio 5.24: Módulo <code>cadenas.py</code></h2>
+<p>Las funciones de este módulo operan sobre cadenas de texto (<code>str</code>). Salvo que se indique lo contrario, la precondición exige que las cadenas no estén vacías.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.24.1 Función `es_palindromo(s)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.24.1 Función <code>es_palindromo(s)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna <code>True</code> si la cadena <code>s</code> es un <strong>palíndromo</strong> y <code>False</code> en caso contrario. La comparación ignora mayúsculas/minúsculas y espacios. Precondición: <code>s</code> no es <code>None</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_palindromo(<span class="st">"radar"</span>))               <span class="co"># True</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_palindromo(<span class="st">"Anita lava la tina"</span>))  <span class="co"># True</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_palindromo(<span class="st">"python"</span>))              <span class="co"># False</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_palindromo(<span class="st">"A"</span>))                   <span class="co"># True</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Búsqueda con parada anticipada">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Búsqueda con parada anticipada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Después de normalizar <code>s</code> (minúsculas, sin espacios), compara el carácter en la posición <code>i</code> con el de la posición <code>n-1-i</code> para <code>i</code> desde 0 hasta <code>n//2 - 1</code>. En cuanto encuentres una discrepancia, retorna <code>False</code> (<em>early exit</em>). Si el bucle termina sin discrepancias, retorna <code>True</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.24.2 Función `anagrama(s, t)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.24.2 Función <code>anagrama(s, t)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna <code>True</code> si <code>s</code> y <code>t</code> son <strong>anagramas</strong> (mismos caracteres con las mismas frecuencias, posiblemente en distinto orden), sin distinguir mayúsculas/minúsculas ni espacios. Precondición: <code>s</code> y <code>t</code> no son <code>None</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(anagrama(<span class="st">"listen"</span>, <span class="st">"silent"</span>))      <span class="co"># True</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(anagrama(<span class="st">"Amor"</span>, <span class="st">"Roma"</span>))          <span class="co"># True</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(anagrama(<span class="st">"hola"</span>, <span class="st">"mundo"</span>))         <span class="co"># False</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(anagrama(<span class="st">"abc"</span>, <span class="st">"ab"</span>))             <span class="co"># False</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Implementación con diccionarios de frecuencias">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Implementación con diccionarios de frecuencias
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Construye el diccionario de frecuencias de caracteres de <code>s</code> normalizada y el de <code>t</code> normalizada (conteo). Dos cadenas son anagramas si y solo si sus diccionarios de frecuencias son iguales.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.24.3 Función `run_length_encoding(s)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.24.3 Función <code>run_length_encoding(s)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Aplica la <strong>codificación por longitud de racha</strong> (<em>Run-Length Encoding</em>, RLE): comprime una cadena representando cada racha de caracteres consecutivos iguales como un par <code>(carácter, longitud)</code>. Retorna <code>list[tuple[str, int]]</code>. Precondición: <code>s</code> no está vacío.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(run_length_encoding(<span class="st">"aaabbc"</span>))    <span class="co"># [('a', 3), ('b', 2), ('c', 1)]</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(run_length_encoding(<span class="st">"abcd"</span>))      <span class="co"># [('a', 1), ('b', 1), ('c', 1), ('d', 1)]</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(run_length_encoding(<span class="st">"aaaa"</span>))      <span class="co"># [('a', 4)]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Patrón: recorrido con acumulación de racha">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Patrón: recorrido con acumulación de racha
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Recorre <code>s</code> manteniendo dos acumuladores: el carácter actual de la racha y su longitud. Cuando el carácter cambia, añade el par <code>(carácter_actual, longitud)</code> a la lista resultado y reinicia los acumuladores.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Conexión con la compresión de datos">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Conexión con la compresión de datos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>RLE es uno de los algoritmos de compresión sin pérdidas más simples. Es efectivo para datos con muchas repeticiones consecutivas (imágenes binarias, mapas de píxeles monocromáticos, secuencias de ADN), pero ineficiente para datos sin rachas. Es la base del formato de compresión de algunas imágenes TIFF.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.24.4 Función `es_balanceado(s)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.24.4 Función <code>es_balanceado(s)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna <code>True</code> si los delimitadores de apertura y cierre <code>()</code>, <code>[]</code> y <code>{}</code> en la cadena <code>s</code> están correctamente <strong>balanceados y anidados</strong>, y <code>False</code> en caso contrario. Los demás caracteres se ignoran. Precondición: <code>s</code> no es <code>None</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_balanceado(<span class="st">"(a + b) * [c - d]"</span>))   <span class="co"># True</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_balanceado(<span class="st">"{[()]}"</span>))              <span class="co"># True</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_balanceado(<span class="st">"([)]"</span>))                <span class="co"># False  — orden incorrecto</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_balanceado(<span class="st">"((("</span>))                 <span class="co"># False  — falta cierre</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_balanceado(<span class="st">""</span>))                    <span class="co"># True   — cadena vacía</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Algoritmo: pila LIFO">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Algoritmo: pila LIFO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Usa una lista de Python como pila (<code>list</code> con <code>append</code>/<code>pop</code>):</p>
+<ol type="1">
+<li>Para cada carácter de <code>s</code>:
+<ul>
+<li>Si es apertura (<code>(</code>, <code>[</code>, <code>{</code>): empuja en la pila (<code>append</code>).</li>
+<li>Si es cierre (<code>)</code>, <code>]</code>, <code>}</code>): si la pila está vacía o el tope no es la apertura correspondiente, retorna <code>False</code> (<em>early exit</em>). Caso contrario, elimina el tope (<code>pop</code>).</li>
+</ul></li>
+<li>Al terminar el recorrido: retorna <code>True</code> si y solo si la pila está vacía.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="ejercicio-5.25-módulo-busqueda.py" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-5.25-módulo-busqueda.py">Ejercicio 5.25: Módulo <code>busqueda.py</code></h2>
+<p>Las funciones de este módulo implementan algoritmos de búsqueda sobre listas ordenadas. Para cada función, documenta el <strong>invariante de bucle</strong> con un comentario y, opcionalmente, con <code>assert</code> dentro del bucle (véase <a href="https://uib-23200-programacion.github.io/website/es/contenido/tema5.html#uso-informal-del-invariante" target="_blank">sección 5.4.3 del tema 5</a>).</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.25.1 Función `busqueda_binaria(v, objetivo)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.25.1 Función <code>busqueda_binaria(v, objetivo)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-36" class="callout-36-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna el <strong>índice</strong> de <code>objetivo</code> en la lista ordenada <code>v</code>, o <span class="math inline">\(-1\)</span> si no se encuentra. Implementa la búsqueda binaria iterativa. Precondiciones: <code>v</code> no está vacío; <code>v</code> está ordenado de forma no decreciente.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">13</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(busqueda_binaria(v, <span class="dv">7</span>))    <span class="co"># 3</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(busqueda_binaria(v, <span class="dv">6</span>))    <span class="co"># -1</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(busqueda_binaria(v, <span class="dv">1</span>))    <span class="co"># 0</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(busqueda_binaria(v, <span class="dv">13</span>))   <span class="co"># 6</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Invariante de bucle">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Invariante de bucle
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mantén dos índices <code>izq</code> y <code>der</code> (ambos inclusive). El invariante es:</p>
+<p><span class="math display">\[
+P:\quad \text{si } \texttt{objetivo} \in v,\text{ entonces } \texttt{objetivo} \in v[\texttt{izq}..\texttt{der}]
+\]</span></p>
+<ul>
+<li><em>Inicialización</em>: <code>izq = 0</code>, <code>der = len(v) - 1</code>. <span class="math inline">\(P\)</span> es cierta porque <code>objetivo</code>, de estar en <code>v</code>, está en <code>v[0..n-1]</code>. ✓</li>
+<li><em>Mantenimiento</em>: Se calcula <code>mid = (izq + der) // 2</code>. Si <code>v[mid] == objetivo</code> se retorna <code>mid</code>. Si <code>v[mid] &lt; objetivo</code>, el objetivo no puede estar en <code>v[0..mid]</code>, luego <code>izq = mid + 1</code> mantiene <span class="math inline">\(P\)</span>. Si <code>v[mid] &gt; objetivo</code>, análogamente <code>der = mid - 1</code> mantiene <span class="math inline">\(P\)</span>. ✓</li>
+<li><em>Terminación</em>: cuando <code>izq &gt; der</code>, el intervalo es vacío y <span class="math inline">\(P\)</span> garantiza que <code>objetivo</code> no está en <code>v</code>: se retorna <span class="math inline">\(-1\)</span>. ✓</li>
+</ul>
+<p>Documenta este invariante con un comentario dentro del bucle y, si lo deseas, con <code>assert objetivo not in v[:izq] and objetivo not in v[der+1:]</code> (solo durante el desarrollo, no en producción).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.25.2 Función `primera_ocurrencia(v, objetivo)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.25.2 Función <code>primera_ocurrencia(v, objetivo)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-39" class="callout-39-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna el índice de la <strong>primera aparición</strong> de <code>objetivo</code> en la lista ordenada <code>v</code> (que puede contener elementos repetidos), o <span class="math inline">\(-1\)</span> si no se encuentra. Precondiciones: <code>v</code> no está vacío; <code>v</code> está ordenado de forma no decreciente.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(primera_ocurrencia(v, <span class="dv">3</span>))   <span class="co"># 3  — primera posición de 3</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(primera_ocurrencia(v, <span class="dv">2</span>))   <span class="co"># 1</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(primera_ocurrencia(v, <span class="dv">5</span>))   <span class="co"># -1</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Modificación de la búsqueda binaria">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Modificación de la búsqueda binaria
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En lugar de retornar en cuanto se encuentra <code>objetivo</code>, <strong>guarda el índice</strong> y continúa buscando hacia la izquierda (<code>der = mid - 1</code>) para hallar una aparición anterior. El índice guardado es el resultado si al final <code>izq &gt; der</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.25.3 Función `buscar_insercion(v, x)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.25.3 Función <code>buscar_insercion(v, x)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-42" class="callout-42-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna el <strong>índice de inserción</strong> de <code>x</code> en la lista ordenada <code>v</code>: la posición en la que se debería insertar <code>x</code> para que <code>v</code> siga ordenada. El resultado es un entero entre <span class="math inline">\(0\)</span> y <code>len(v)</code>. Si <code>x</code> ya está en <code>v</code>, retorna el índice de su primera aparición. Precondición: <code>v</code> está ordenado de forma no decreciente (puede estar vacío).</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(buscar_insercion([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>], <span class="dv">4</span>))   <span class="co"># 2  — insertar entre 3 y 5</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(buscar_insercion([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>], <span class="dv">0</span>))   <span class="co"># 0  — insertar al principio</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(buscar_insercion([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>], <span class="dv">9</span>))   <span class="co"># 4  — insertar al final</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(buscar_insercion([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>], <span class="dv">3</span>))   <span class="co"># 1  — ya existe</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(buscar_insercion([], <span class="dv">5</span>))             <span class="co"># 0</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Invariante">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Invariante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mantén <code>izq</code> y <code>der</code> con la garantía de que todos los elementos en <code>v[0..izq-1]</code> son estrictamente menores que <code>x</code>, y todos los elementos en <code>v[der..]</code> son mayores o iguales que <code>x</code>. El resultado es <code>izq</code> cuando <code>izq == der</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.25.4 Función `pico(v)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-46-contents" aria-controls="callout-46" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.25.4 Función <code>pico(v)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-46" class="callout-46-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna el <strong>índice de un pico</strong> en <code>v</code>: una posición <span class="math inline">\(i\)</span> (con <span class="math inline">\(1 \le i \le n-2\)</span>) tal que <code>v[i-1] &lt; v[i] &gt; v[i+1]</code>. Se garantiza que <code>v</code> es unimodal (primero crece, luego decrece) y que el pico existe. Precondición: <code>len(v) &gt;= 3</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pico([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>]))    <span class="co"># 2  — v[2] = 5 es el pico</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pico([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">1</span>]))    <span class="co"># 2</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pico([<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>]))    <span class="co"># 1  — v[1] = 4 es el pico</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Búsqueda binaria en secuencias unimodales">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Búsqueda binaria en secuencias unimodales
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La búsqueda lineal encontraría el pico en <span class="math inline">\(O(n)\)</span>. La búsqueda binaria lo encuentra en <span class="math inline">\(O(\log n)\)</span>:</p>
+<ul>
+<li>Calcula <code>mid = (izq + der) // 2</code>.</li>
+<li>Si <code>v[mid] &lt; v[mid + 1]</code>, el pico está a la derecha de <code>mid</code>: <code>izq = mid + 1</code>.</li>
+<li>En caso contrario, el pico está en <code>mid</code> o a su izquierda: <code>der = mid</code>.</li>
+<li>El bucle termina cuando <code>izq == der</code>: ese índice es el pico.</li>
+</ul>
+<p><strong>Invariante</strong>: el pico está en <code>v[izq..der]</code>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Conexión matemática">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Conexión matemática
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Este algoritmo es análogo a la búsqueda del máximo de una función unimodal <span class="math inline">\(f:[a,b]\to\mathbb{R}\)</span> continua. La <strong>búsqueda ternaria</strong> es su generalización para funciones continuas donde no se puede evaluar la derivada.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="ejercicio-5.26-tests-con-pytest" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-5.26-tests-con-pytest">Ejercicio 5.26: Tests con <code>pytest</code></h2>
+<p>En este ejercicio se escriben los ficheros de pruebas para los módulos de los ejercicios 5.23, 5.24 y 5.25. Los ficheros deben estar en la carpeta <code>tests/</code> del proyecto:</p>
+<pre><code>t05_algoritmos/
+├── t05_paquete/
+│   ├── estadistica.py
+│   ├── cadenas.py
+│   └── busqueda.py
+└── tests/
+    ├── test_estadistica.py
+    ├── test_cadenas.py
+    └── test_busqueda.py</code></pre>
+<p>Para ejecutar todas las pruebas desde la raíz del proyecto:</p>
+<pre class="text"><code>pytest                   # todas las pruebas
+pytest -v                # verbose: muestra el nombre de cada prueba
+pytest tests/ -v         # solo la carpeta tests/
+pytest -x                # para en el primer fallo</code></pre>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Requisitos mínimos por función">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Requisitos mínimos por función
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para cada función de los módulos 5.23, 5.24 y 5.25, el fichero de prueba correspondiente debe incluir:</p>
+<ol type="1">
+<li><strong>Al menos 2 casos normales</strong>: entradas típicas con resultados conocidos.</li>
+<li><strong>Al menos 1 caso límite</strong> (si aplica): lista de un elemento, cadena vacía, valor en el extremo del dominio.</li>
+<li><strong>Al menos 1 test de precondición violada</strong> (si la función tiene precondición): usando <code>pytest.raises(ValueError)</code>.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.26.1 Fichero `test_estadistica.py`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-48-contents" aria-controls="callout-48" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.26.1 Fichero <code>test_estadistica.py</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-48" class="callout-48-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Escribe tests para las siete funciones de <code>estadistica.py</code>. A continuación se muestran los tests de <code>rango</code> y <code>varianza</code> como modelo; completa el resto.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tests/test_estadistica.py</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> t05_paquete.estadistica <span class="im">import</span> (</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    rango, varianza, moda, percentil,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    media_ponderada, normalizar, media_movil</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># --- rango ---</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_rango_normal():</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> rango([<span class="fl">3.0</span>, <span class="fl">1.0</span>, <span class="fl">4.0</span>, <span class="fl">1.0</span>, <span class="fl">5.0</span>, <span class="fl">9.0</span>]) <span class="op">==</span> <span class="fl">8.0</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_rango_todos_iguales():</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> rango([<span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>]) <span class="op">==</span> <span class="fl">0.0</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_rango_un_elemento():</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> rango([<span class="fl">7.0</span>]) <span class="op">==</span> <span class="fl">0.0</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_rango_lista_vacia():</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>        rango([])</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="co"># --- varianza ---</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_varianza_conocida():</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Varianza de [2,4,4,4,5,5,7,9] = 4.0  (ejemplo del tema)</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> varianza([<span class="fl">2.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">5.0</span>, <span class="fl">5.0</span>, <span class="fl">7.0</span>, <span class="fl">9.0</span>]) <span class="op">==</span> pytest.approx(<span class="fl">4.0</span>)</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_varianza_constante():</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> varianza([<span class="fl">3.0</span>, <span class="fl">3.0</span>, <span class="fl">3.0</span>]) <span class="op">==</span> pytest.approx(<span class="fl">0.0</span>)</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_varianza_un_elemento():</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> varianza([<span class="fl">5.0</span>]) <span class="op">==</span> pytest.approx(<span class="fl">0.0</span>)</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_varianza_lista_vacia():</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>        varianza([])</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Añade aquí los tests de moda, percentil, media_ponderada, normalizar y media_movil</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.26.2 Fichero `test_cadenas.py`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-49-contents" aria-controls="callout-49" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.26.2 Fichero <code>test_cadenas.py</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-49" class="callout-49-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Escribe tests para las 4 funciones de <code>cadenas.py</code>. A continuación se muestra el modelo para <code>es_palindromo</code> y <code>es_balanceado</code>; completa el resto.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tests/test_cadenas.py</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> t05_paquete.cadenas <span class="im">import</span> (</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    es_palindromo, palabras_unicas, palabra_mas_frecuente,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    anagrama, run_length_encoding, es_balanceado</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># --- es_palindromo ---</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_palindromo_simple():</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_palindromo(<span class="st">"radar"</span>) <span class="kw">is</span> <span class="va">True</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_palindromo_con_espacios():</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_palindromo(<span class="st">"Anita lava la tina"</span>) <span class="kw">is</span> <span class="va">True</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_palindromo_falso():</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_palindromo(<span class="st">"python"</span>) <span class="kw">is</span> <span class="va">False</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_palindromo_un_caracter():</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_palindromo(<span class="st">"A"</span>) <span class="kw">is</span> <span class="va">True</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co"># --- es_balanceado ---</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_balanceado_mixto():</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_balanceado(<span class="st">"{[()]}"</span>) <span class="kw">is</span> <span class="va">True</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_balanceado_orden_incorrecto():</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_balanceado(<span class="st">"([)]"</span>) <span class="kw">is</span> <span class="va">False</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_balanceado_vacio():</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_balanceado(<span class="st">""</span>) <span class="kw">is</span> <span class="va">True</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_balanceado_sin_cerrar():</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_balanceado(<span class="st">"((("</span>) <span class="kw">is</span> <span class="va">False</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Añade aquí los tests de anagrama y run_length_encoding</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.26.3 Fichero `test_busqueda.py`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-50-contents" aria-controls="callout-50" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.26.3 Fichero <code>test_busqueda.py</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-50" class="callout-50-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Escribe tests para las cuatro funciones de <code>busqueda.py</code>. A continuación se muestra el modelo para <code>busqueda_binaria</code>; completa el resto.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tests/test_busqueda.py</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> t05_paquete.busqueda <span class="im">import</span> (</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    busqueda_binaria, primera_ocurrencia,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    buscar_insercion, pico</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># --- busqueda_binaria ---</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_busqueda_binaria_encontrado():</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> busqueda_binaria([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>], <span class="dv">7</span>) <span class="op">==</span> <span class="dv">3</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_busqueda_binaria_primero():</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> busqueda_binaria([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>], <span class="dv">1</span>) <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_busqueda_binaria_ultimo():</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> busqueda_binaria([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>], <span class="dv">9</span>) <span class="op">==</span> <span class="dv">4</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_busqueda_binaria_no_encontrado():</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> busqueda_binaria([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>], <span class="dv">6</span>) <span class="op">==</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_busqueda_binaria_un_elemento_encontrado():</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> busqueda_binaria([<span class="dv">42</span>], <span class="dv">42</span>) <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_busqueda_binaria_lista_vacia():</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>        busqueda_binaria([], <span class="dv">5</span>)</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Añade aquí los tests de primera_ocurrencia, buscar_insercion y pico</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

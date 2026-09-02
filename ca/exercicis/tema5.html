@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercicis — Tema 5 – Programación (23200)</title>
+<title>Exercicis — Tema 5: Algorismes Bàsics i Verificació – Programación (23200)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -72,11 +107,43 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Exercicis — Tema 5 – Programación (23200)">
+<meta property="og:title" content="Exercicis — Tema 5: Algorismes Bàsics i Verificació – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/openmarimo.png">
 <meta property="og:site_name" content="Programación (23200)">
+<meta property="og:image:height" content="34">
+<meta property="og:image:width" content="34">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -534,8 +601,19 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En aquesta pàgina</h2>
+   
+  <ul>
+  <li><a href="#exercicis-5.1-a-5.22" id="toc-exercicis-5.1-a-5.22" class="nav-link active" data-scroll-target="#exercicis-5.1-a-5.22">Exercicis 5.1 a 5.22</a></li>
+  <li><a href="#exercicis-5.23-a-5.26" id="toc-exercicis-5.23-a-5.26" class="nav-link" data-scroll-target="#exercicis-5.23-a-5.26">Exercicis 5.23 a 5.26</a></li>
+  <li><a href="#exercici-5.23-mòdul-estadistica.py" id="toc-exercici-5.23-mòdul-estadistica.py" class="nav-link" data-scroll-target="#exercici-5.23-mòdul-estadistica.py">Exercici 5.23: Mòdul <code>estadistica.py</code></a></li>
+  <li><a href="#exercici-5.24-mòdul-cadenas.py" id="toc-exercici-5.24-mòdul-cadenas.py" class="nav-link" data-scroll-target="#exercici-5.24-mòdul-cadenas.py">Exercici 5.24: Mòdul <code>cadenas.py</code></a></li>
+  <li><a href="#exercici-5.25-mòdul-busqueda.py" id="toc-exercici-5.25-mòdul-busqueda.py" class="nav-link" data-scroll-target="#exercici-5.25-mòdul-busqueda.py">Exercici 5.25: Mòdul <code>busqueda.py</code></a></li>
+  <li><a href="#exercici-5.26-proves-amb-pytest" id="toc-exercici-5.26-proves-amb-pytest" class="nav-link" data-scroll-target="#exercici-5.26-proves-amb-pytest">Exercici 5.26: Proves amb <code>pytest</code></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -543,7 +621,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ca/exercicis/tema1.html">Exercicis</a></li><li class="breadcrumb-item"><a href="../../ca/exercicis/tema5.html">Exercicis — Tema 5</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercicis — Tema 5</h1>
+<h1 class="title">Exercicis — Tema 5: Algorismes Bàsics i Verificació</h1>
 </div>
 
 
@@ -560,9 +638,992 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contingut pendent.)</em></p>
+<p>Per a la realització dels exercicis heu d’emprar el projecte <code>t05_algoritmos</code> que estarà disponible al repositori del curs. Navegueu al lloc i seguiu les instruccions de <code>README.md</code> per copiar el repositori en el vostre entorn local de GitHub i obrir un Codespace per treballar en els exercicis.</p>
+<section id="exercicis-5.1-a-5.22" class="level2">
+<h2 class="anchored" data-anchor-id="exercicis-5.1-a-5.22">Exercicis 5.1 a 5.22</h2>
+<p>Els exercicis 5.1 al 5.22 es troben en els arxius <code>ejer_t05_01-10_mo.py</code> i <code>ejer_t05_11-16_mo.py</code> continguts en el directori <code>/notebooks</code>.</p>
+<p>Aquests fitxers són tant scripts de Python com notebooks de Marimo que permeten execució interactiva. Per resoldre els exercicis, obriu cada fitxer al Codespace i seguiu les instruccions proporcionades en les diferents cel·les de cada notebook. Hi ha cel·les de codi i cel·les de text; aquestes últimes contenen els enunciats dels exercicis.</p>
+<p><strong>Cal obrir els fitxers amb Marimo per disposar de l’execució interactiva en cel·les del notebook; per a això (si no ocorre de manera automàtica) heu de fer clic al botó “Open in Marimo” (<img src="../../images/openmarimo.png" class="img-fluid" width="30">)</strong></p>
+<hr>
+</section>
+<section id="exercicis-5.23-a-5.26" class="level2">
+<h2 class="anchored" data-anchor-id="exercicis-5.23-a-5.26">Exercicis 5.23 a 5.26</h2>
+<p>El projecte <code>t05_algoritmos</code> organitza tres mòduls en el paquet <code>t05_paquete</code>. Cada mòdul implementa una família de funcions algorísmiques aplicant els patrons i tècniques del tema 5:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mòdul</th>
+<th>Patró dominant</th>
+<th>Domini</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>estadistica.py</code></td>
+<td>acumulació + composició</td>
+<td>estadística descriptiva</td>
+</tr>
+<tr class="even">
+<td><code>cadenas.py</code></td>
+<td>recorregut + cerca + recompte</td>
+<td>processament de text</td>
+</tr>
+<tr class="odd">
+<td><code>busqueda.py</code></td>
+<td>cerca + invariants amb <code>assert</code></td>
+<td>algorismes de cerca</td>
+</tr>
+</tbody>
+</table>
+<p>Afegiu les funcions següents al mòdul que s’especifica respectant les regles establertes en temes anteriors:</p>
+<ul>
+<li>la funció ha de contenir type hints, docstrings i precondicions,</li>
+<li>si la precondició (o alguna de les precondicions) no es compleix la funció ha de llançar <code>ValueError</code> amb un missatge descriptiu (vegeu <a href="https://uib-23200-programacion.github.io/website/ca/contingut/tema3.html#excepcions" target="_blank">secció 3.4 del tema 3</a>).</li>
+</ul>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Novetat: les proves van en pytest">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Novetat: les proves van en pytest
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A diferència de temes anteriors, en aquest tema <strong>no</strong> s’afegeixen proves al bloc <code>if __name__ == "__main__"</code>. En el seu lloc, les proves s’escriuen en fitxers <code>test_*.py</code> dins la carpeta <code>tests/</code> com a part de l’exercici 5.26. El bloc <code>__main__</code> pot emprar-se per a exploració manual, però no s’avaluarà.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercici-5.23-mòdul-estadistica.py" class="level2">
+<h2 class="anchored" data-anchor-id="exercici-5.23-mòdul-estadistica.py">Exercici 5.23: Mòdul <code>estadistica.py</code></h2>
+<p>Les funcions d’aquest mòdul operen sobre llistes de nombres reals (<code>list[float]</code>). Tret que s’indiqui el contrari, la precondició exigeix que la llista no estigui buida.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.23.1 Funció `rango(datos)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.23.1 Funció <code>rango(datos)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna el <strong>rang</strong> de la mostra: la diferència entre el valor màxim i el valor mínim. <span class="math display">\[
+\text{rango}(datos) = \max(datos) - \min(datos)
+\]</span> Precondició: <code>datos</code> no està buida.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rango([<span class="fl">3.0</span>, <span class="fl">1.0</span>, <span class="fl">4.0</span>, <span class="fl">1.0</span>, <span class="fl">5.0</span>, <span class="fl">9.0</span>]))   <span class="co"># 8.0</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rango([<span class="fl">7.0</span>]))                            <span class="co"># 0.0</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Implementació en una sola passada">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Implementació en una sola passada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Calcula el màxim i el mínim simultàniament en un únic recorregut sobre <code>datos</code>, sense cridar les funcions built-in <code>max()</code> i <code>min()</code>. Això il·lustra el patró d’<em>una sola passada</em> amb diversos acumuladors.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.23.2 Funció `varianza(datos)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.23.2 Funció <code>varianza(datos)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula la <strong>variància poblacional</strong> de la mostra: <span class="math display">\[
+\sigma^2 = \frac{1}{n}\sum_{i=0}^{n-1}(x_i - \bar{x})^2
+\]</span> Precondició: <code>datos</code> no està buida. Implementa el càlcul mitjançant dues acumulacions (primera passada per a la mitjana, segona per a la variància), tal com es mostra a la <a href="https://uib-23200-programacion.github.io/website/ca/contingut/tema5.html#composici%C3%B3-de-patrons" target="_blank">secció 5.3.5 del tema 5</a>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(varianza([<span class="fl">2.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">5.0</span>, <span class="fl">5.0</span>, <span class="fl">7.0</span>, <span class="fl">9.0</span>]))  <span class="co"># 4.0</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(varianza([<span class="fl">1.0</span>]))                                     <span class="co"># 0.0</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.23.3 Funció `moda(datos)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.23.3 Funció <code>moda(datos)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna la llista de <strong>valors modals</strong> (els valors que apareixen amb major freqüència). Si hi ha diversos valors amb la mateixa freqüència màxima, retorna tots en ordre creixent. Precondició: <code>datos</code> no està buida.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(moda([<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="fl">3.0</span>, <span class="fl">4.0</span>]))   <span class="co"># [2.0, 3.0]  (empat)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(moda([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>]))              <span class="co"># [1.0]</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(moda([<span class="fl">5.0</span>]))                              <span class="co"># [5.0]</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Estructura de dades clau">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Estructura de dades clau
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Construeix un diccionari <code>freq: dict[float, int]</code> que associa cada valor amb la seva freqüència (patró de recompte). A continuació determina la freqüència màxima i filtra els valors que l’assoleixen.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.23.4 Funció `percentil(datos, p)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.23.4 Funció <code>percentil(datos, p)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>El percentil <span class="math inline">\(p\)</span>-èsim d’una mostra és un valor estadístic que divideix un conjunt de dades (ordenades de menor a major) de manera que el <span class="math inline">\(p\)</span>% de les observacions són menors o iguals a aquest valor, i el <span class="math inline">\((100-p)\)</span>% restant són majors. Imagina que en una revisió rutinària, el pediatre pesa un nadó de 6 mesos (8.5 kg) i t’informa que es troba en el <strong>percentil 75 (<span class="math inline">\(p=75\)</span>)</strong> de pes.</p>
+<p>Per entendre aquesta dada, imagina 100 nadons exactament de la mateixa edat ordenats de menor a major pes:</p>
+<ul>
+<li><strong>75 nadons</strong> pesaran 8.5 kg o menys. El pes d’aquest nadó és igual o superior al 75% dels nens de la seva edat.</li>
+<li><strong>25 nadons</strong> pesaran més de 8.5 kg. Només un 25% dels nens de la seva edat són més pesants que ell.</li>
+</ul>
+<p>Calcula el <strong>percentil</strong> <span class="math inline">\(p\)</span>-èsim de la mostra (<span class="math inline">\(0 \le p \le 100\)</span>) usant el mètode d’interpolació lineal:</p>
+<ol type="1">
+<li>Ordena les dades (batch).</li>
+<li>Calcula l’índex real <span class="math inline">\(h = p/100 \cdot (n-1)\)</span>.</li>
+<li>Sigui <span class="math inline">\(i = \lfloor h \rfloor\)</span> i <span class="math inline">\(f = h - i\)</span>. El percentil és <span class="math inline">\((1-f)\cdot datos\_ord[i] + f \cdot datos\_ord[i+1]\)</span> (si <span class="math inline">\(i+1 &lt; n\)</span>) o <span class="math inline">\(datos\_ord[i]\)</span> si <span class="math inline">\(h\)</span> és enter o <span class="math inline">\(h = n-1\)</span>.</li>
+</ol>
+<p>Precondicions: <code>datos</code> no està buida, <span class="math inline">\(0 \le p \le 100\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> [<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="fl">4.0</span>, <span class="fl">5.0</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(percentil(datos, <span class="dv">0</span>))    <span class="co"># 1.0</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(percentil(datos, <span class="dv">50</span>))   <span class="co"># 3.0</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(percentil(datos, <span class="dv">100</span>))  <span class="co"># 5.0</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(percentil(datos, <span class="dv">25</span>))   <span class="co"># 2.0</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Connexió matemàtica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Connexió matemàtica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El percentil 50 coincideix amb la mediana. Els percentils 25, 50 i 75 són els <strong>quartils</strong> <span class="math inline">\(Q_1\)</span>, <span class="math inline">\(Q_2\)</span> i <span class="math inline">\(Q_3\)</span>. El rang interquartílic <span class="math inline">\(\text{IQR} = Q_3 - Q_1\)</span> és una mesura robusta de dispersió, menys sensible a valors extrems que la variància.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.23.5 Funció `media_ponderada(valores, pesos)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.23.5 Funció <code>media_ponderada(valores, pesos)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula la <strong>mitjana ponderada</strong>: <span class="math display">\[
+\bar{x}_w = \frac{\sum_{i=0}^{n-1} v_i \cdot p_i}{\sum_{i=0}^{n-1} p_i}
+\]</span> Precondicions: <code>valores</code> i <code>pesos</code> tenen la mateixa longitud i no estan buits; tots els pesos són estrictament positius.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Media de notas con distintos créditos</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>notas  <span class="op">=</span> [<span class="fl">8.0</span>, <span class="fl">6.0</span>, <span class="fl">9.5</span>, <span class="fl">7.0</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>creditos <span class="op">=</span> [<span class="fl">6.0</span>, <span class="fl">6.0</span>, <span class="fl">3.0</span>, <span class="fl">9.0</span>]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(media_ponderada(notas, creditos))  <span class="co"># 7.3125</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Aplicació matemàtica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Aplicació matemàtica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La mitjana aritmètica ordinària és el cas especial amb tots els pesos iguals a 1. La mitjana ponderada apareix en el càlcul de la nota final d’una assignatura, en estadística bayesiana i en la definició de l’esperança matemàtica d’una variable aleatòria discreta <span class="math inline">\(E[X] = \sum_i x_i \cdot P(X=x_i)\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.23.6 Funció `normalizar(datos)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.23.6 Funció <code>normalizar(datos)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna una nova llista amb les dades <strong>normalitzades</strong> (estandarditzades): <span class="math display">\[
+z_i = \frac{x_i - \bar{x}}{\sigma}
+\]</span> La llista normalitzada té mitjana 0 i desviació estàndard 1. Precondicions: <code>datos</code> no està buida; la desviació estàndard no és zero (tots els valors són diferents). Reutilitza <code>varianza</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> [<span class="fl">2.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">5.0</span>, <span class="fl">5.0</span>, <span class="fl">7.0</span>, <span class="fl">9.0</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> normalizar(datos)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Media: </span><span class="sc">{</span><span class="bu">sum</span>(z)<span class="op">/</span><span class="bu">len</span>(z)<span class="sc">:.10f}</span><span class="ss">"</span>)      <span class="co"># ~0.0</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Varianza: </span><span class="sc">{</span>varianza(z)<span class="sc">:.10f}</span><span class="ss">"</span>)     <span class="co"># ~1.0</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.23.7 Funció `media_movil(datos, k)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.23.7 Funció <code>media_movil(datos, k)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula la <strong>mitjana mòbil</strong> de finestra <span class="math inline">\(k\)</span>: la <span class="math inline">\(i\)</span>-èsima sortida és la mitjana de <code>datos[i:i+k]</code>. Retorna una llista de longitud <code>len(datos) - k + 1</code>. Precondicions: <code>datos</code> no està buida, <span class="math inline">\(1 \le k \le \text{len}(datos)\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> [<span class="fl">1.0</span>, <span class="fl">3.0</span>, <span class="fl">5.0</span>, <span class="fl">7.0</span>, <span class="fl">9.0</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(media_movil(datos, <span class="dv">3</span>))   <span class="co"># [3.0, 5.0, 7.0]</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(media_movil(datos, <span class="dv">1</span>))   <span class="co"># [1.0, 3.0, 5.0, 7.0, 9.0]</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(media_movil(datos, <span class="dv">5</span>))   <span class="co"># [5.0]</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Implementació eficient: finestra lliscant">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Implementació eficient: finestra lliscant
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La implementació ingènua calcula la suma de cada finestra des de zero: <span class="math inline">\(O(n \cdot k)\)</span> operacions. La <strong>finestra lliscant</strong> (<em>sliding window</em>) és més eficient: calcula la suma de la primera finestra una sola vegada, i per a cada finestra següent suma l’element nou i resta l’element que surt. Això redueix el treball a <span class="math inline">\(O(n)\)</span>.</p>
+<p>La idea clau és que la suma de la finestra <span class="math inline">\([i+1, i+k]\)</span> s’obté a partir de la suma de <span class="math inline">\([i, i+k-1]\)</span> en <span class="math inline">\(O(1)\)</span>: <span class="math display">\[
+\text{suma}_{i+1} = \text{suma}_i - \text{datos}[i] + \text{datos}[i+k]
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercici-5.24-mòdul-cadenas.py" class="level2">
+<h2 class="anchored" data-anchor-id="exercici-5.24-mòdul-cadenas.py">Exercici 5.24: Mòdul <code>cadenas.py</code></h2>
+<p>Les funcions d’aquest mòdul operen sobre cadenes de text (<code>str</code>). Tret que s’indiqui el contrari, la precondició exigeix que les cadenes no estiguin buides.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.24.1 Funció `es_palindromo(s)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.24.1 Funció <code>es_palindromo(s)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna <code>True</code> si la cadena <code>s</code> és un <strong>palíndrom</strong> i <code>False</code> en cas contrari. La comparació ignora majúscules/minúscules i espais. Precondició: <code>s</code> no és <code>None</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_palindromo(<span class="st">"radar"</span>))               <span class="co"># True</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_palindromo(<span class="st">"Anita lava la tina"</span>))  <span class="co"># True</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_palindromo(<span class="st">"python"</span>))              <span class="co"># False</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_palindromo(<span class="st">"A"</span>))                   <span class="co"># True</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Cerca amb aturada anticipada">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Cerca amb aturada anticipada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Després de normalitzar <code>s</code> (minúscules, sense espais), compara el caràcter en la posició <code>i</code> amb el de la posició <code>n-1-i</code> per a <code>i</code> des de 0 fins a <code>n//2 - 1</code>. Tan aviat com trobis una discrepància, retorna <code>False</code> (<em>early exit</em>). Si el bucle acaba sense discrepàncies, retorna <code>True</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.24.2 Funció `anagrama(s, t)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.24.2 Funció <code>anagrama(s, t)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna <code>True</code> si <code>s</code> i <code>t</code> són <strong>anagrames</strong> (mateixos caràcters amb les mateixes freqüències, possiblement en ordre diferent), sense distingir majúscules/minúscules ni espais. Precondició: <code>s</code> i <code>t</code> no són <code>None</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(anagrama(<span class="st">"listen"</span>, <span class="st">"silent"</span>))      <span class="co"># True</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(anagrama(<span class="st">"Amor"</span>, <span class="st">"Roma"</span>))          <span class="co"># True</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(anagrama(<span class="st">"hola"</span>, <span class="st">"mundo"</span>))         <span class="co"># False</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(anagrama(<span class="st">"abc"</span>, <span class="st">"ab"</span>))             <span class="co"># False</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Implementació amb diccionaris de freqüències">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Implementació amb diccionaris de freqüències
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Construeix el diccionari de freqüències de caràcters de <code>s</code> normalitzada i el de <code>t</code> normalitzada (recompte). Dues cadenes són anagrames si i només si els seus diccionaris de freqüències són iguals.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.24.3 Funció `run_length_encoding(s)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.24.3 Funció <code>run_length_encoding(s)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Aplica la <strong>codificació per longitud de ratxa</strong> (<em>Run-Length Encoding</em>, RLE): comprimeix una cadena representant cada ratxa de caràcters consecutius iguals com un parell <code>(caràcter, longitud)</code>. Retorna <code>list[tuple[str, int]]</code>. Precondició: <code>s</code> no està buida.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(run_length_encoding(<span class="st">"aaabbc"</span>))    <span class="co"># [('a', 3), ('b', 2), ('c', 1)]</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(run_length_encoding(<span class="st">"abcd"</span>))      <span class="co"># [('a', 1), ('b', 1), ('c', 1), ('d', 1)]</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(run_length_encoding(<span class="st">"aaaa"</span>))      <span class="co"># [('a', 4)]</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Patró: recorregut amb acumulació de ratxa">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Patró: recorregut amb acumulació de ratxa
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Recorre <code>s</code> mantenint dos acumuladors: el caràcter actual de la ratxa i la seva longitud. Quan el caràcter canvia, afegeix el parell <code>(caràcter_actual, longitud)</code> a la llista resultat i reinicia els acumuladors.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Connexió amb la compressió de dades">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Alerta</span>Connexió amb la compressió de dades
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>RLE és un dels algorismes de compressió sense pèrdues més simples. És efectiu per a dades amb moltes repeticions consecutives (imatges binàries, mapes de píxels monocromàtics, seqüències d’ADN), però ineficient per a dades sense ratxes. És la base del format de compressió d’algunes imatges TIFF.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.24.4 Funció `es_balanceado(s)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.24.4 Funció <code>es_balanceado(s)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna <code>True</code> si els delimitadors d’obertura i tancament <code>()</code>, <code>[]</code> i <code>{}</code> en la cadena <code>s</code> estan correctament <strong>balancejats i aniuats</strong>, i <code>False</code> en cas contrari. La resta de caràcters s’ignoren. Precondició: <code>s</code> no és <code>None</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_balanceado(<span class="st">"(a + b) * [c - d]"</span>))   <span class="co"># True</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_balanceado(<span class="st">"{[()]}"</span>))              <span class="co"># True</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_balanceado(<span class="st">"([)]"</span>))                <span class="co"># False  — ordre incorrecte</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_balanceado(<span class="st">"((("</span>))                 <span class="co"># False  — falta tancament</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es_balanceado(<span class="st">""</span>))                    <span class="co"># True   — cadena buida</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Algorisme: pila LIFO">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Algorisme: pila LIFO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Usa una llista de Python com a pila (<code>list</code> amb <code>append</code>/<code>pop</code>):</p>
+<ol type="1">
+<li>Per a cada caràcter de <code>s</code>:
+<ul>
+<li>Si és obertura (<code>(</code>, <code>[</code>, <code>{</code>): empeny a la pila (<code>append</code>).</li>
+<li>Si és tancament (<code>)</code>, <code>]</code>, <code>}</code>): si la pila és buida o el cim no és l’obertura corresponent, retorna <code>False</code> (<em>early exit</em>). En cas contrari, elimina el cim (<code>pop</code>).</li>
+</ul></li>
+<li>En acabar el recorregut: retorna <code>True</code> si i només si la pila és buida.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercici-5.25-mòdul-busqueda.py" class="level2">
+<h2 class="anchored" data-anchor-id="exercici-5.25-mòdul-busqueda.py">Exercici 5.25: Mòdul <code>busqueda.py</code></h2>
+<p>Les funcions d’aquest mòdul implementen algorismes de cerca sobre llistes ordenades. Per a cada funció, documenta l’<strong>invariant de bucle</strong> amb un comentari i, opcionalment, amb <code>assert</code> dins del bucle (vegeu <a href="https://uib-23200-programacion.github.io/website/ca/contingut/tema5.html#%C3%BAs-informal-de-linvariant" target="_blank">secció 5.4.3 del tema 5</a>).</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.25.1 Funció `busqueda_binaria(v, objetivo)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.25.1 Funció <code>busqueda_binaria(v, objetivo)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-36" class="callout-36-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna l’<strong>índex</strong> de <code>objetivo</code> en la llista ordenada <code>v</code>, o <span class="math inline">\(-1\)</span> si no es troba. Implementa la cerca binària iterativa. Precondicions: <code>v</code> no està buida; <code>v</code> està ordenada de forma no decreixent.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">13</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(busqueda_binaria(v, <span class="dv">7</span>))    <span class="co"># 3</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(busqueda_binaria(v, <span class="dv">6</span>))    <span class="co"># -1</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(busqueda_binaria(v, <span class="dv">1</span>))    <span class="co"># 0</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(busqueda_binaria(v, <span class="dv">13</span>))   <span class="co"># 6</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Invariant de bucle">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Invariant de bucle
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mantén dos índexs <code>izq</code> i <code>der</code> (ambdós inclusius). L’invariant és:</p>
+<p><span class="math display">\[
+P:\quad \text{si } \texttt{objetivo} \in v,\text{ llavors } \texttt{objetivo} \in v[\texttt{izq}..\texttt{der}]
+\]</span></p>
+<ul>
+<li><em>Inicialització</em>: <code>izq = 0</code>, <code>der = len(v) - 1</code>. <span class="math inline">\(P\)</span> és certa perquè <code>objetivo</code>, de trobar-se a <code>v</code>, és a <code>v[0..n-1]</code>. ✓</li>
+<li><em>Manteniment</em>: Es calcula <code>mid = (izq + der) // 2</code>. Si <code>v[mid] == objetivo</code> es retorna <code>mid</code>. Si <code>v[mid] &lt; objetivo</code>, l’objectiu no pot estar a <code>v[0..mid]</code>, llavors <code>izq = mid + 1</code> manté <span class="math inline">\(P\)</span>. Si <code>v[mid] &gt; objetivo</code>, anàlogament <code>der = mid - 1</code> manté <span class="math inline">\(P\)</span>. ✓</li>
+<li><em>Terminació</em>: quan <code>izq &gt; der</code>, l’interval és buit i <span class="math inline">\(P\)</span> garanteix que <code>objetivo</code> no és a <code>v</code>: es retorna <span class="math inline">\(-1\)</span>. ✓</li>
+</ul>
+<p>Documenta aquest invariant amb un comentari dins del bucle i, si ho desitges, amb <code>assert objetivo not in v[:izq] and objetivo not in v[der+1:]</code> (només durant el desenvolupament, no en producció).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.25.2 Funció `primera_ocurrencia(v, objetivo)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.25.2 Funció <code>primera_ocurrencia(v, objetivo)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-39" class="callout-39-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna l’índex de la <strong>primera aparició</strong> de <code>objetivo</code> en la llista ordenada <code>v</code> (que pot contenir elements repetits), o <span class="math inline">\(-1\)</span> si no es troba. Precondicions: <code>v</code> no està buida; <code>v</code> està ordenada de forma no decreixent.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(primera_ocurrencia(v, <span class="dv">3</span>))   <span class="co"># 3  — primera posición de 3</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(primera_ocurrencia(v, <span class="dv">2</span>))   <span class="co"># 1</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(primera_ocurrencia(v, <span class="dv">5</span>))   <span class="co"># -1</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Modificació de la cerca binària">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Modificació de la cerca binària
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En lloc de retornar en trobar <code>objetivo</code>, <strong>guarda l’índex</strong> i continua cercant cap a l’esquerra (<code>der = mid - 1</code>) per trobar una aparició anterior. L’índex guardat és el resultat si al final <code>izq &gt; der</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.25.3 Funció `buscar_insercion(v, x)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.25.3 Funció <code>buscar_insercion(v, x)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-42" class="callout-42-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna l’<strong>índex d’inserció</strong> de <code>x</code> en la llista ordenada <code>v</code>: la posició en la qual s’hauria d’inserir <code>x</code> perquè <code>v</code> continuï ordenada. El resultat és un enter entre <span class="math inline">\(0\)</span> i <code>len(v)</code>. Si <code>x</code> ja és a <code>v</code>, retorna l’índex de la seva primera aparició. Precondició: <code>v</code> està ordenada de forma no decreixent (pot estar buida).</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(buscar_insercion([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>], <span class="dv">4</span>))   <span class="co"># 2  — insertar entre 3 y 5</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(buscar_insercion([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>], <span class="dv">0</span>))   <span class="co"># 0  — insertar al principio</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(buscar_insercion([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>], <span class="dv">9</span>))   <span class="co"># 4  — insertar al final</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(buscar_insercion([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>], <span class="dv">3</span>))   <span class="co"># 1  — ya existe</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(buscar_insercion([], <span class="dv">5</span>))             <span class="co"># 0</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Invariant">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Invariant
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mantén <code>izq</code> i <code>der</code> amb la garantia que tots els elements a <code>v[0..izq-1]</code> són estrictament menors que <code>x</code>, i tots els elements a <code>v[der..]</code> són majors o iguals que <code>x</code>. El resultat és <code>izq</code> quan <code>izq == der</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.25.4 Funció `pico(v)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-46-contents" aria-controls="callout-46" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.25.4 Funció <code>pico(v)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-46" class="callout-46-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna l’<strong>índex d’un pic</strong> a <code>v</code>: una posició <span class="math inline">\(i\)</span> (amb <span class="math inline">\(1 \le i \le n-2\)</span>) tal que <code>v[i-1] &lt; v[i] &gt; v[i+1]</code>. Es garanteix que <code>v</code> és unimodal (primer creix, després decreix) i que el pic existeix. Precondició: <code>len(v) &gt;= 3</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pico([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>]))    <span class="co"># 2  — v[2] = 5 es el pico</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pico([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">1</span>]))    <span class="co"># 2</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pico([<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>]))    <span class="co"># 1  — v[1] = 4 es el pico</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Cerca binària en seqüències unimodals">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Cerca binària en seqüències unimodals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La cerca lineal trobaria el pic en <span class="math inline">\(O(n)\)</span>. La cerca binària el troba en <span class="math inline">\(O(\log n)\)</span>:</p>
+<ul>
+<li>Calcula <code>mid = (izq + der) // 2</code>.</li>
+<li>Si <code>v[mid] &lt; v[mid + 1]</code>, el pic és a la dreta de <code>mid</code>: <code>izq = mid + 1</code>.</li>
+<li>En cas contrari, el pic és a <code>mid</code> o a la seva esquerra: <code>der = mid</code>.</li>
+<li>El bucle acaba quan <code>izq == der</code>: aquest índex és el pic.</li>
+</ul>
+<p><strong>Invariant</strong>: el pic és a <code>v[izq..der]</code>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Connexió matemàtica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Alerta</span>Connexió matemàtica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Aquest algorisme és anàleg a la cerca del màxim d’una funció unimodal <span class="math inline">\(f:[a,b]\to\mathbb{R}\)</span> contínua. La <strong>cerca ternària</strong> és la seva generalització per a funcions contínues on no es pot avaluar la derivada.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercici-5.26-proves-amb-pytest" class="level2">
+<h2 class="anchored" data-anchor-id="exercici-5.26-proves-amb-pytest">Exercici 5.26: Proves amb <code>pytest</code></h2>
+<p>En aquest exercici s’escriuen els fitxers de proves per als mòduls dels exercicis 5.23, 5.24 i 5.25. Els fitxers han d’estar a la carpeta <code>tests/</code> del projecte:</p>
+<pre><code>t05_algoritmos/
+├── t05_paquete/
+│   ├── estadistica.py
+│   ├── cadenas.py
+│   └── busqueda.py
+└── tests/
+    ├── test_estadistica.py
+    ├── test_cadenas.py
+    └── test_busqueda.py</code></pre>
+<p>Per executar totes les proves des de l’arrel del projecte:</p>
+<pre class="text"><code>pytest                   # totes les proves
+pytest -v                # verbose: mostra el nom de cada prova
+pytest tests/ -v         # només la carpeta tests/
+pytest -x                # s'atura al primer error</code></pre>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Requisits mínims per funció">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Requisits mínims per funció
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Per a cada funció dels mòduls 5.23, 5.24 i 5.25, el fitxer de proves corresponent ha d’incloure:</p>
+<ol type="1">
+<li><strong>Almenys 2 casos normals</strong>: entrades típiques amb resultats coneguts.</li>
+<li><strong>Almenys 1 cas límit</strong> (si aplica): llista d’un element, cadena buida, valor a l’extrem del domini.</li>
+<li><strong>Almenys 1 test de precondició violada</strong> (si la funció té precondició): usant <code>pytest.raises(ValueError)</code>.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.26.1 Fitxer `test_estadistica.py`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-48-contents" aria-controls="callout-48" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.26.1 Fitxer <code>test_estadistica.py</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-48" class="callout-48-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Escriu proves per a les set funcions de <code>estadistica.py</code>. A continuació es mostren les proves de <code>rango</code> i <code>varianza</code> com a model; completa la resta.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tests/test_estadistica.py</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> t05_paquete.estadistica <span class="im">import</span> (</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    rango, varianza, moda, percentil,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    media_ponderada, normalizar, media_movil</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># --- rango ---</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_rango_normal():</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> rango([<span class="fl">3.0</span>, <span class="fl">1.0</span>, <span class="fl">4.0</span>, <span class="fl">1.0</span>, <span class="fl">5.0</span>, <span class="fl">9.0</span>]) <span class="op">==</span> <span class="fl">8.0</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_rango_todos_iguales():</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> rango([<span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>]) <span class="op">==</span> <span class="fl">0.0</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_rango_un_elemento():</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> rango([<span class="fl">7.0</span>]) <span class="op">==</span> <span class="fl">0.0</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_rango_lista_vacia():</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>        rango([])</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="co"># --- varianza ---</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_varianza_conocida():</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Varianza de [2,4,4,4,5,5,7,9] = 4.0  (ejemplo del tema)</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> varianza([<span class="fl">2.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">5.0</span>, <span class="fl">5.0</span>, <span class="fl">7.0</span>, <span class="fl">9.0</span>]) <span class="op">==</span> pytest.approx(<span class="fl">4.0</span>)</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_varianza_constante():</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> varianza([<span class="fl">3.0</span>, <span class="fl">3.0</span>, <span class="fl">3.0</span>]) <span class="op">==</span> pytest.approx(<span class="fl">0.0</span>)</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_varianza_un_elemento():</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> varianza([<span class="fl">5.0</span>]) <span class="op">==</span> pytest.approx(<span class="fl">0.0</span>)</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_varianza_lista_vacia():</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>        varianza([])</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Añade aquí los tests de moda, percentil, media_ponderada, normalizar y media_movil</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.26.2 Fitxer `test_cadenas.py`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-49-contents" aria-controls="callout-49" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.26.2 Fitxer <code>test_cadenas.py</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-49" class="callout-49-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Escriu proves per a les 4 funcions de <code>cadenas.py</code>. A continuació es mostra el model per a <code>es_palindromo</code> i <code>es_balanceado</code>; completa la resta.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tests/test_cadenas.py</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> t05_paquete.cadenas <span class="im">import</span> (</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    es_palindromo, palabras_unicas, palabra_mas_frecuente,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    anagrama, run_length_encoding, es_balanceado</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># --- es_palindromo ---</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_palindromo_simple():</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_palindromo(<span class="st">"radar"</span>) <span class="kw">is</span> <span class="va">True</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_palindromo_con_espacios():</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_palindromo(<span class="st">"Anita lava la tina"</span>) <span class="kw">is</span> <span class="va">True</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_palindromo_falso():</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_palindromo(<span class="st">"python"</span>) <span class="kw">is</span> <span class="va">False</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_palindromo_un_caracter():</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_palindromo(<span class="st">"A"</span>) <span class="kw">is</span> <span class="va">True</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co"># --- es_balanceado ---</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_balanceado_mixto():</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_balanceado(<span class="st">"{[()]}"</span>) <span class="kw">is</span> <span class="va">True</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_balanceado_orden_incorrecto():</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_balanceado(<span class="st">"([)]"</span>) <span class="kw">is</span> <span class="va">False</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_balanceado_vacio():</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_balanceado(<span class="st">""</span>) <span class="kw">is</span> <span class="va">True</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_balanceado_sin_cerrar():</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> es_balanceado(<span class="st">"((("</span>) <span class="kw">is</span> <span class="va">False</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Añade aquí los tests de anagrama y run_length_encoding</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="5.26.3 Fitxer `test_busqueda.py`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-50-contents" aria-controls="callout-50" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>5.26.3 Fitxer <code>test_busqueda.py</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-50" class="callout-50-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Escriu proves per a les quatre funcions de <code>busqueda.py</code>. A continuació es mostra el model per a <code>busqueda_binaria</code>; completa la resta.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tests/test_busqueda.py</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> t05_paquete.busqueda <span class="im">import</span> (</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    busqueda_binaria, primera_ocurrencia,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    buscar_insercion, pico</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># --- busqueda_binaria ---</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_busqueda_binaria_encontrado():</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> busqueda_binaria([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>], <span class="dv">7</span>) <span class="op">==</span> <span class="dv">3</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_busqueda_binaria_primero():</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> busqueda_binaria([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>], <span class="dv">1</span>) <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_busqueda_binaria_ultimo():</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> busqueda_binaria([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>], <span class="dv">9</span>) <span class="op">==</span> <span class="dv">4</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_busqueda_binaria_no_encontrado():</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> busqueda_binaria([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>], <span class="dv">6</span>) <span class="op">==</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_busqueda_binaria_un_elemento_encontrado():</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> busqueda_binaria([<span class="dv">42</span>], <span class="dv">42</span>) <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_busqueda_binaria_lista_vacia():</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>        busqueda_binaria([], <span class="dv">5</span>)</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Añade aquí los tests de primera_ocurrencia, buscar_insercion y pico</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
