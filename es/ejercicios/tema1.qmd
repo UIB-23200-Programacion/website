@@ -364,28 +364,33 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
 
 :::
 
-::: {.callout-note title="5 - Reconocer la interfaz del Codespace" collapse="true"}
+::: {.callout-note title="5 - Reconocer la interfaz del Codespace (VS Code)" collapse="true"}
 
 El entorno tendrá:
 
-- **Barra lateral izquierda** con:
+- **`Barra lateral izquierda` (`Activity Bar`)** con:
 
-    - **Explorador**, muestra los archivos del proyecto.
-    - **Buscar**, permite buscar texto en los archivos.
-    - **Control de código fuente**, permite ver los cambios y hacer commits.
-    - **Ejecución y depuración**, permite ejecutar y depurar el código.
-    - **Extensiones**, permite gestionar las extensiones de VS Code. 
-- **Editor de código** en el centro arriba (aparece abierto el README.md).  
-- **Terminal integrada** en el centro abajo.  
-- **Barra lateral derecha** para el **CHAT** con Copilot.
+    - **`Explorador`**, muestra los archivos del proyecto.
+    - **`Buscar`**, permite buscar texto en los archivos.
+    - **`Control de código fuente`**, permite ver los cambios y hacer commits.
+    - **`Ejecución y depuración`**, permite ejecutar y depurar el código.
+    - **`Extensiones`**, permite gestionar las extensiones de VS Code. 
+- **`Editor de código`** en el centro arriba (aparece abierto el README.md).  
+- **`Terminal integrada`** en el centro abajo.  
+- **`Barra lateral derecha`** para el **CHAT** con Copilot.
 
 ![](../../images/codespace.png){width="90%"}
+
+Para más información sobre la interfaz de VS Code, puedes consultar: 
+
+- [Learn Visual Studio Code in 15 minutes: 2026 Official Beginner Tutorial](https://www.youtube.com/watch?v=VqCgcpAypFQ){target="_blank" rel="noopener noreferrer"} 
+- [Visual Studio Code - User Interface](https://code.visualstudio.com/docs/getstarted/userinterface){target="_blank" rel="noopener noreferrer"}.
 
 :::
 
 ::: {.callout-note title="6 - Verificar que Python está configurado" collapse="true"}
 
-En la **TERMINAL** del Codespace tendrás el prompt de la shell, que suele ser algo como:
+En la **`Terminal`** del Codespace tendrás el prompt de la shell, que suele ser algo como:
 
 ```bash
 (programacion23200) @tu_usuario ➜ /workspaces/t01-fundamentos (main) $
@@ -408,7 +413,7 @@ Python 3.13.5
 
 ::: {.callout-note title="7 - Crear un archivo de prueba y ejecutarlo" collapse="true"}
 
-1. En el explorador, pulsar **New File** o **Nuevo archivo** (![](../../images/newfile.png){width="50px"}).  
+1. En el **`Explorador`**, pulsar **New File** o **Nuevo archivo** (![](../../images/newfile.png){width="30px"}).  
 
 2. Nombrarlo:  
    ```text

@@ -363,28 +363,33 @@ Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per us
 
 :::
 
-::: {.callout-note title="5 - Reconèixer la interfície del Codespace" collapse="true"}
+::: {.callout-note title="5 - Reconèixer la interfície del Codespace (VS Code)" collapse="true"}
 
 L'entorn tindrà:
 
-- **Barra lateral esquerra** amb:
+- **`Barra lateral esquerra` (`Activity Bar`)** amb:
 
-    - **Explorador**, mostra els arxius del projecte.
-    - **Cercar**, permet cercar text als arxius.
-    - **Control de codi font**, permet veure els canvis i fer commits.
-    - **Execució i depuració**, permet executar i depurar el codi.
-    - **Extensions**, permet gestionar les extensions de VS Code.
-- **Editor de codi** al centre a dalt (apareix obert el README.md).
-- **Terminal integrada** al centre a baix.
-- **Barra lateral dreta** per al **CHAT** amb Copilot.
+    - **`Explorador`**, mostra els arxius del projecte.
+    - **`Cercar`**, permet cercar text als arxius.
+    - **`Control de codi font`**, permet veure els canvis i fer commits.
+    - **`Execució i depuració`**, permet executar i depurar el codi.
+    - **`Extensions`**, permet gestionar les extensions de VS Code.
+- **`Editor de codi`** al centre a dalt (apareix obert el README.md).
+- **`Terminal integrada`** al centre a baix.
+- **`Barra lateral dreta`** per al **CHAT** amb Copilot.
 
 ![](../../images/codespace.png){width="90%"}
+
+Per a més informació sobre la interfície de VS Code, podeu consultar:
+
+- [Learn Visual Studio Code in 15 minutes: 2026 Official Beginner Tutorial](https://www.youtube.com/watch?v=VqCgcpAypFQ){target="_blank" rel="noopener noreferrer"} 
+- [Visual Studio Code - User Interface](https://code.visualstudio.com/docs/getstarted/userinterface){target="_blank" rel="noopener noreferrer"}.
 
 :::
 
 ::: {.callout-note title="6 - Verificar que Python està configurat" collapse="true"}
 
-A la **TERMINAL** del Codespace tindreu el prompt de la shell, que sol ser quelcom com:
+A la **`Terminal`** del Codespace tindreu el prompt de la shell, que sol ser quelcom com:
 
 ```bash
 (programacion23200) @el_vostre_usuari ➜ /workspaces/t01-fundamentos (main) $
@@ -407,7 +412,7 @@ Python 3.13.5
 
 ::: {.callout-note title="7 - Crear un arxiu de prova i executar-lo" collapse="true"}
 
-1. A l'explorador, prémer **New File** o **Nou arxiu** (![](../../images/newfile.png){width="50px"}).
+1. Al **`Explorador`**, prémer **New File** o **Nou arxiu** (![](../../images/newfile.png){width="30px"}).
 
 2. Anomenar-lo:
    ```text
