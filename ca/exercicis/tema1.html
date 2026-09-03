@@ -783,13 +783,13 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note no-icon callout-titled" title="2 - Crear el repositori test-de-codespaces–tema-1">
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="2 - Crear el repositori `t01-fundamentos`">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>2 - Crear el repositori test-de-codespaces–tema-1
+<span class="screen-reader-only">Nota</span>2 - Crear el repositori <code>t01-fundamentos</code>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -800,7 +800,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 <li><p><strong>Pas 2:</strong> Seleccionar <strong>New repository</strong>.</p></li>
 <li><p><strong>Pas 3:</strong> Apareixerà un formulari amb diversos camps per configurar el repositori:</p>
 <ul>
-<li><strong>Repository name</strong> → <code>test-de-codespaces–tema-1</code></li>
+<li><strong>Repository name</strong> → <code>t01-fundamentos</code></li>
 <li><strong>Description</strong> → <code>Repositori de prova per a Codespaces</code></li>
 <li><strong>Visibility</strong> → <code>Private</code> (privat)</li>
 <li><strong>Initialize this repository with a README</strong> → marcar aquesta opció a On.</li>
@@ -816,13 +816,13 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note no-icon callout-titled" title="3 - Crear un Codespace preconfigurado per a Python">
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="3 - Crear un Codespace preconfigurat per a Python">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>3 - Crear un Codespace preconfigurado per a Python
+<span class="screen-reader-only">Nota</span>3 - Crear un Codespace preconfigurat per a Python
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -831,49 +831,172 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 <ul>
 <li><p><strong>Pas 1:</strong> Crear la carpeta <code>.devcontainer</code> i el fitxer <code>devcontainer.json</code></p>
 <ol type="1">
-<li><p>Al repositori creat (<code>test-de-codespaces–tema-1</code>), fer clic al botó <strong>Add file → Create new file</strong>.</p></li>
+<li><p>Al repositori creat (<code>t01-fundamentos</code>), fer clic al botó <strong>Add file → Create new file</strong>.</p></li>
 <li><p>Al camp <strong>Name your file</strong> escriure:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="er">.devcontainer/devcontainer.json</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Dins de l’arxiu, enganxeu aquest contingut:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Curso Programación 23200, Python 3.12"</span><span class="fu">,</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"image"</span><span class="fu">:</span> <span class="st">"mcr.microsoft.com/devcontainers/python:3.12"</span><span class="fu">,</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"customizations"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"vscode"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"extensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">"ms-python.python"</span><span class="ot">,</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">"ms-python.vscode-pylance"</span><span class="ot">,</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">"charliermarsh.ruff"</span><span class="ot">,</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">"ms-python.black-formatter"</span><span class="ot">,</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                <span class="st">"oderwat.indent-rainbow"</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"settings"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"editor.formatOnSave"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"editor.defaultFormatter"</span><span class="fu">:</span> <span class="st">"ms-python.black-formatter"</span><span class="fu">,</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"python.analysis.typeCheckingMode"</span><span class="fu">:</span> <span class="st">"basic"</span><span class="fu">,</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"ruff.enable"</span><span class="fu">:</span> <span class="kw">true</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            <span class="fu">}</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"UIB 23200 - Plantilla de ejercicios (Python 3.13)"</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"image"</span><span class="fu">:</span> <span class="st">"mcr.microsoft.com/devcontainers/python:1-3.13-bookworm"</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"features"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"ghcr.io/devcontainers-extra/features/uv:1"</span><span class="fu">:</span> <span class="fu">{},</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"ghcr.io/devcontainers/features/github-cli:1"</span><span class="fu">:</span> <span class="fu">{}</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"customizations"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"vscode"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"extensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                <span class="st">"ms-python.python"</span><span class="ot">,</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                <span class="st">"ms-python.vscode-pylance"</span><span class="ot">,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                <span class="st">"charliermarsh.ruff"</span><span class="ot">,</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                <span class="st">"GitHub.copilot"</span><span class="ot">,</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                <span class="st">"GitHub.copilot-chat"</span><span class="ot">,</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                <span class="st">"marimo-team.vscode-marimo"</span><span class="ot">,</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                <span class="st">"oderwat.indent-rainbow"</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            <span class="ot">]</span><span class="fu">,</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"postCreateCommand"</span><span class="fu">:</span> <span class="st">"pip install --upgrade pip &amp;&amp; pip install -r requirements.txt || true"</span><span class="fu">,</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"postStartCommand"</span><span class="fu">:</span> <span class="st">"echo 'Entorno listo para Programación 23200'"</span><span class="fu">,</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"forwardPorts"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">8000</span><span class="ot">,</span> <span class="dv">8080</span><span class="ot">]</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"settings"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"python.defaultInterpreterPath"</span><span class="fu">:</span> <span class="st">"${containerWorkspaceFolder}/.venv/bin/python"</span><span class="fu">,</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"marimo.pythonPath"</span><span class="fu">:</span> <span class="st">"${containerWorkspaceFolder}/.venv/bin/python"</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            <span class="fu">}</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"postCreateCommand"</span><span class="fu">:</span> <span class="st">"uv sync"</span><span class="fu">,</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"updateContentCommand"</span><span class="fu">:</span> <span class="st">"uv sync"</span><span class="fu">,</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"containerEnv"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"UV_CACHE_DIR"</span><span class="fu">:</span> <span class="st">"/home/vscode/.cache/uv"</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"forwardPorts"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">2718</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"portsAttributes"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"2718"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"label"</span><span class="fu">:</span> <span class="st">"Marimo"</span><span class="fu">,</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"onAutoForward"</span><span class="fu">:</span> <span class="st">"openPreview"</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"remoteUser"</span><span class="fu">:</span> <span class="st">"vscode"</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Desar l’arxiu: Feu clic a <strong>Commit changes…</strong>.</p></li>
 <li><p>Accepteu el missatge per defecte sobre els canvis i feu clic a <strong>Commit changes</strong>.</p></li>
 </ol></li>
-<li><p><strong>Pas 2:</strong> Crear el fitxer <code>requirements.txt</code> al directori arrel del repositori</p>
+<li><p><strong>Pas 2:</strong> Crear el fitxer <code>pyproject.toml</code> al directori arrel del repositori</p>
 <ol type="1">
 <li><p>Donat el pas anterior pot ocórrer que us trobeu al directori <code>.devcontainer</code>, <strong>heu d’anar al directori arrel del repositori</strong>, no romandre dins de <code>.devcontainer</code>. Per fer-ho feu clic a <code>..</code> (a dalt a l’esquerra) per tornar al directori arrel.</p></li>
-<li><p>Al directori arrel del repositori (<code>test-de-codespaces–tema-1</code>), fer clic al botó <strong>Add file → Create new file</strong>.</p></li>
+<li><p>Al directori arrel del repositori (<code>t01-fundamentos</code>), fer clic al botó <strong>Add file → Create new file</strong>.</p></li>
 <li><p>Al camp <strong>Name your file</strong> escriure:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="er">requirements.txt</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="er">pyproject.toml</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Dins de l’arxiu, enganxeu aquest contingut:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="er">ruff</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="er">black</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span><span class="er">project</span><span class="ot">]</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="er">name</span> <span class="er">=</span> <span class="er">"programacion23200"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="er">version</span> <span class="er">=</span> <span class="er">"1.0.0"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="er">description</span> <span class="er">=</span> <span class="er">"Repositorio</span> <span class="er">plantilla</span> <span class="er">para</span> <span class="er">la</span> <span class="er">asignatura</span> <span class="er">Programación</span> <span class="er">23200"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="er">readme</span> <span class="er">=</span> <span class="er">"README.md"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="er">requires-python</span> <span class="er">=</span> <span class="er">"&gt;=3.13,&lt;3.14"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="er">license</span> <span class="er">=</span> <span class="er">"MIT"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="er">authors</span> <span class="er">=</span> <span class="ot">[</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="er">name</span> <span class="er">=</span> <span class="dt">"Universitat de les Illes Balears"</span> <span class="fu">}</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="er">dependencies</span> <span class="er">=</span> <span class="ot">[</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"marimo&gt;=0.16"</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="er">###############################################################################</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">uv</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="er">###############################################################################</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="er">#</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">El</span> <span class="er">repositorio</span> <span class="er">no</span> <span class="er">es</span> <span class="er">un</span> <span class="er">paquete</span> <span class="er">instalable:</span> <span class="er">`uv</span> <span class="er">sync`</span> <span class="er">solo</span> <span class="er">instala</span> <span class="er">las</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">dependencias</span> <span class="er">y</span> <span class="er">no</span> <span class="er">intenta</span> <span class="er">construir</span> <span class="er">el</span> <span class="er">proyecto.</span> <span class="er">Por</span> <span class="er">eso</span> <span class="er">no</span> <span class="er">hay</span> <span class="er">sección</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="ot">[</span><span class="er">build-system</span><span class="ot">]</span> <span class="er">ni</span> <span class="er">configuración</span> <span class="er">de</span> <span class="er">setuptools.</span> <span class="er">El</span> <span class="er">código</span> <span class="er">de</span> <span class="er">src/</span> <span class="er">es</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">accesible</span> <span class="er">desde</span> <span class="er">los</span> <span class="er">tests</span> <span class="er">gracias</span> <span class="er">a</span> <span class="er">`pythonpath</span> <span class="er">=</span> <span class="ot">[</span><span class="st">"src"</span><span class="ot">]</span><span class="er">`</span> <span class="er">en</span> <span class="er">pytest.</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span><span class="er">tool.uv</span><span class="ot">]</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="er">package</span> <span class="er">=</span> <span class="er">false</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="er">###############################################################################</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">Dependency</span> <span class="er">groups</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="er">###############################################################################</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span><span class="er">dependency-groups</span><span class="ot">]</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="er">#</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">Herramientas</span> <span class="er">de</span> <span class="er">desarrollo</span> <span class="er">(se</span> <span class="er">instalan</span> <span class="er">con</span> <span class="er">`uv</span> <span class="er">sync`)</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="er">#</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="er">dev</span> <span class="er">=</span> <span class="ot">[</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pytest&gt;=8.4"</span><span class="ot">,</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pytest-cov&gt;=6.2"</span><span class="ot">,</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ruff&gt;=0.12"</span><span class="ot">,</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="er">#</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">Ecosistema</span> <span class="er">científico</span> <span class="er">(se</span> <span class="er">instalan</span> <span class="er">con</span> <span class="er">`uv</span> <span class="er">sync</span> <span class="er">--group</span> <span class="er">scientific`)</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="er">#</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="er">scientific</span> <span class="er">=</span> <span class="ot">[</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numpy&gt;=2.3"</span><span class="ot">,</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="st">"scipy&gt;=1.16"</span><span class="ot">,</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sympy&gt;=1.14"</span><span class="ot">,</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    <span class="st">"matplotlib&gt;=3.10"</span><span class="ot">,</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="er">#</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">Manipulación</span> <span class="er">de</span> <span class="er">datos</span> <span class="er">(se</span> <span class="er">instalan</span> <span class="er">con</span> <span class="er">`uv</span> <span class="er">sync</span> <span class="er">--all-groups`)</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="er">#</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="er">data</span> <span class="er">=</span> <span class="ot">[</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pandas&gt;=2.3"</span><span class="ot">,</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="er">###############################################################################</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">Pytest</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="er">###############################################################################</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span><span class="er">tool.pytest.ini_options</span><span class="ot">]</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="er">minversion</span> <span class="er">=</span> <span class="er">"8.0"</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="er">testpaths</span> <span class="er">=</span> <span class="ot">[</span><span class="st">"tests"</span><span class="ot">]</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="er">pythonpath</span> <span class="er">=</span> <span class="ot">[</span><span class="st">"src"</span><span class="ot">]</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="er">addopts</span> <span class="er">=</span> <span class="ot">[</span></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>    <span class="st">"-ra"</span><span class="ot">,</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="er">###############################################################################</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">Ruff</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="er">###############################################################################</span></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span><span class="er">tool.ruff</span><span class="ot">]</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="er">target-version</span> <span class="er">=</span> <span class="er">"py313"</span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="er">line-length</span> <span class="er">=</span> <span class="er">88</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">notebooks/</span> <span class="er">y</span> <span class="er">ejercicios_simples/</span> <span class="er">contienen</span> <span class="er">prosa</span> <span class="er">pedagógica</span> <span class="er">(enunciados</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">largos)</span> <span class="er">y</span> <span class="er">variables/código</span> <span class="er">intencionalmente</span> <span class="er">"sueltos"</span> <span class="er">(sin</span> <span class="er">relación</span> <span class="er">de</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">imports,</span> <span class="er">sin</span> <span class="er">uso</span> <span class="er">posterior).</span> <span class="er">Ruff</span> <span class="er">está</span> <span class="er">pensado</span> <span class="er">para</span> <span class="er">src/,</span> <span class="er">no</span> <span class="er">para</span> <span class="er">eso.</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="er">extend-exclude</span> <span class="er">=</span> <span class="ot">[</span><span class="st">"notebooks"</span><span class="ot">,</span> <span class="st">"ejercicios_simples"</span><span class="ot">]</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span><span class="er">tool.ruff.lint</span><span class="ot">]</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a><span class="er">select</span> <span class="er">=</span> <span class="ot">[</span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>    <span class="st">"E"</span><span class="ot">,</span>   <span class="er">#</span> <span class="er">pycodestyle</span> <span class="er">errores</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>    <span class="st">"F"</span><span class="ot">,</span>   <span class="er">#</span> <span class="er">pyflakes</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I"</span><span class="ot">,</span>   <span class="er">#</span> <span class="er">isort</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>    <span class="st">"W"</span><span class="ot">,</span>   <span class="er">#</span> <span class="er">pycodestyle</span> <span class="er">advertencias</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span><span class="er">tool.ruff.format</span><span class="ot">]</span></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="er">quote-style</span> <span class="er">=</span> <span class="er">"double"</span></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="er">indent-style</span> <span class="er">=</span> <span class="er">"space"</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="er">line-ending</span> <span class="er">=</span> <span class="er">"lf"</span></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="er">###############################################################################</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="er">#</span> <span class="er">Coverage</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="er">###############################################################################</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span><span class="er">tool.coverage.run</span><span class="ot">]</span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="er">source</span> <span class="er">=</span> <span class="ot">[</span><span class="st">"src"</span><span class="ot">]</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span><span class="er">tool.coverage.report</span><span class="ot">]</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="er">show_missing</span> <span class="er">=</span> <span class="er">true</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="er">skip_covered</span> <span class="er">=</span> <span class="er">false</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Desar l’arxiu: Feu clic a <strong>Commit changes…</strong>.</p></li>
 <li><p>Accepteu el missatge per defecte sobre els canvis i feu clic a <strong>Commit changes</strong>.</p></li>
 </ol></li>
@@ -903,12 +1026,19 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 <li>configurarà l’entorn,</li>
 <li>obrirà VS Code amb suport complet per a Python.</li>
 </ul></li>
-<li><p><strong>Pas 3:</strong> Espereu que el Codespace estigui llest. Això pot trigar uns minuts. Veureu missatges com:</p>
+<li><p><strong>Pas 3:</strong> Espereu que el Codespace estigui llest. <strong>Aquest és un procés que pot trigar uns minuts.</strong> Veureu missatges com:</p>
 <ul>
 <li><em>Setting up remote connection: [Building codespace…]</em></li>
 <li><em>Installing dependencies…</em></li>
+</ul></li>
+<li><p><strong>Pas 4:</strong> Un cop llest, es carregarà a l’editor de VS Code el <code>README.md</code> que es crea per defecte.</p>
+<ul>
+<li>S’obrirà una finestra on heu de fer clic a <strong>Confiar en la carpeta i continuar</strong>.</li>
+<li>S’ha d’obrir la <strong>TERMINAL</strong> integrada a la part inferior de l’editor de VS Code. Hi han d’aparèixer diversos missatges, possiblement com:</li>
 </ul>
-<p>Un cop llest, veureu un missatge a la part inferior dreta de VS Code indicant que l’entorn està llest.</p></li>
+<pre class="text"><code>👋 Welcome to Codespaces! You are on a custom image defined in your devcontainer.json file.
+
+🔍 To explore VS Code to its fullest, search using the Command Palette (Cmd/Ctrl + Shift + P)</code></pre></li>
 </ul>
 </div>
 </div>
@@ -937,7 +1067,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </ul></li>
 <li><p><strong>Editor de codi</strong> al centre a dalt (apareix obert el README.md).</p></li>
 <li><p><strong>Terminal integrada</strong> al centre a baix.</p></li>
-<li><p><strong>Barra lateral dreta</strong> per al <strong>XATS</strong> amb Copilot.</p></li>
+<li><p><strong>Barra lateral dreta</strong> per al <strong>CHAT</strong> amb Copilot.</p></li>
 </ul>
 <p><img src="../../images/codespace.png" class="img-fluid" style="width:90.0%"></p>
 </div>
@@ -955,10 +1085,13 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A la <strong>TERMINAL</strong> del Codespace escriviu l’ordre següent per comprovar la versió de Python instal·lada (si copieu i enganxeu l’ordre, probablement haureu de donar permís a la finestra emergent del navegador per poder enganxar text al terminal):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="er">python</span> <span class="er">--version</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A la <strong>TERMINAL</strong> del Codespace tindreu el prompt de la shell, que sol ser quelcom com:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">programacion23200</span><span class="kw">)</span> <span class="ex">@el_vostre_usuari</span> ➜ /workspaces/t01-fundamentos <span class="er">(</span><span class="ex">main</span><span class="kw">)</span> <span class="ex">$</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>on <code>el_vostre_usuari</code> és el vostre nom d’usuari de GitHub.</p>
+<p>Escriviu l’ordre següent després del signe <code>$</code> per comprovar la versió de Python instal·lada (si copieu i enganxeu l’ordre, probablement haureu de donar permís a la finestra emergent del navegador per poder enganxar text al terminal):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="er">python</span> <span class="er">--version</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Ha d’aparèixer:</p>
-<pre class="text"><code>Python 3.12.x</code></pre>
+<pre class="text"><code>Python 3.13.5</code></pre>
 </div>
 </div>
 </div>
@@ -975,11 +1108,11 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p>A l’explorador, prémer <strong>New File</strong> o <strong>Nou arxiu</strong>.</p></li>
+<li><p>A l’explorador, prémer <strong>New File</strong> o <strong>Nou arxiu</strong> (<img src="../../images/newfile.png" class="img-fluid" width="50">).</p></li>
 <li><p>Anomenar-lo:</p>
 <pre class="text"><code>prova.py</code></pre></li>
 <li><p>Escriure a dins:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"El meu primer Codespace funciona correctament"</span>)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"El meu primer Codespace funciona correctament"</span>)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Desar (<code>Ctrl + S</code>).</p></li>
 <li><p>Executar l’arxiu.</p>
 <ul>
