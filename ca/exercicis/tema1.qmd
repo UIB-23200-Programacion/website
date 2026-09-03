@@ -115,7 +115,7 @@ Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per us
 
 :::
 
-::: {.callout-note title="2 - Crear el repositori test-de-codespaces–tema-1" collapse="true"}
+::: {.callout-note title="2 - Crear el repositori `t01-fundamentos`" collapse="true"}
 
 - **Pas 1:** A la part superior esquerra, fer clic a `+` (![](../../images/signomas.png){width="50px"}).
 
@@ -123,7 +123,7 @@ Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per us
 
 - **Pas 3:** Apareixerà un formulari amb diversos camps per configurar el repositori:
 
-    - **Repository name** → `test-de-codespaces–tema-1`
+    - **Repository name** → `t01-fundamentos`
     - **Description** → `Repositori de prova per a Codespaces`
     - **Visibility** → `Private` (privat)
     - **Initialize this repository with a README** → marcar aquesta opció a On.
@@ -138,11 +138,11 @@ Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per us
 
 :::
 
-::: {.callout-note title="3 - Crear un Codespace preconfigurado per a Python" collapse="true"}
+::: {.callout-note title="3 - Crear un Codespace preconfigurat per a Python" collapse="true"}
 
 - **Pas 1:** Crear la carpeta `.devcontainer` i el fitxer `devcontainer.json`
 
-    1. Al repositori creat (`test-de-codespaces–tema-1`), fer clic al botó **Add file → Create new file**.
+    1. Al repositori creat (`t01-fundamentos`), fer clic al botó **Add file → Create new file**.
 
     2. Al camp **Name your file** escriure:
 
@@ -153,8 +153,14 @@ Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per us
 
         ```json
         {
-            "name": "Curso Programación 23200, Python 3.12",
-            "image": "mcr.microsoft.com/devcontainers/python:3.12",
+            "name": "UIB 23200 - Plantilla de ejercicios (Python 3.13)",
+
+            "image": "mcr.microsoft.com/devcontainers/python:1-3.13-bookworm",
+
+            "features": {
+                "ghcr.io/devcontainers-extra/features/uv:1": {},
+                "ghcr.io/devcontainers/features/github-cli:1": {}
+            },
 
             "customizations": {
                 "vscode": {
@@ -162,22 +168,35 @@ Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per us
                         "ms-python.python",
                         "ms-python.vscode-pylance",
                         "charliermarsh.ruff",
-                        "ms-python.black-formatter",
+                        "GitHub.copilot",
+                        "GitHub.copilot-chat",
+                        "marimo-team.vscode-marimo",
                         "oderwat.indent-rainbow"
                     ],
+
                     "settings": {
-                        "editor.formatOnSave": true,
-                        "editor.defaultFormatter": "ms-python.black-formatter",
-                        "python.analysis.typeCheckingMode": "basic",
-                        "ruff.enable": true
+                        "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python",
+                        "marimo.pythonPath": "${containerWorkspaceFolder}/.venv/bin/python"
                     }
                 }
             },
 
-            "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt || true",
-            "postStartCommand": "echo 'Entorno listo para Programación 23200'",
+            "postCreateCommand": "uv sync",
+            "updateContentCommand": "uv sync",
 
-            "forwardPorts": [8000, 8080]
+            "containerEnv": {
+                "UV_CACHE_DIR": "/home/vscode/.cache/uv"
+            },
+
+            "forwardPorts": [2718],
+            "portsAttributes": {
+                "2718": {
+                    "label": "Marimo",
+                    "onAutoForward": "openPreview"
+                }
+            },
+
+            "remoteUser": "vscode"
         }
 
         ```
@@ -186,22 +205,126 @@ Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per us
 
     5. Accepteu el missatge per defecte sobre els canvis i feu clic a **Commit changes**.
 
-- **Pas 2:** Crear el fitxer `requirements.txt` al directori arrel del repositori
+- **Pas 2:** Crear el fitxer `pyproject.toml` al directori arrel del repositori
 
     1. Donat el pas anterior pot ocórrer que us trobeu al directori `.devcontainer`, **heu d'anar al directori arrel del repositori**, no romandre dins de `.devcontainer`. Per fer-ho feu clic a `..` (a dalt a l'esquerra) per tornar al directori arrel.
 
-    2. Al directori arrel del repositori (`test-de-codespaces–tema-1`), fer clic al botó **Add file → Create new file**.
+    2. Al directori arrel del repositori (`t01-fundamentos`), fer clic al botó **Add file → Create new file**.
 
     2. Al camp **Name your file** escriure:
 
         ```json
-        requirements.txt
+        pyproject.toml
         ```
     3. Dins de l'arxiu, enganxeu aquest contingut:
 
         ```json
-        ruff
-        black
+        [project]
+        name = "programacion23200"
+        version = "1.0.0"
+        description = "Repositorio plantilla para la asignatura Programación 23200"
+        readme = "README.md"
+        requires-python = ">=3.13,<3.14"
+        license = "MIT"
+        authors = [
+            { name = "Universitat de les Illes Balears" }
+        ]
+
+        dependencies = [
+            "marimo>=0.16"
+        ]
+
+        ###############################################################################
+        # uv
+        ###############################################################################
+        #
+        # El repositorio no es un paquete instalable: `uv sync` solo instala las
+        # dependencias y no intenta construir el proyecto. Por eso no hay sección
+        # [build-system] ni configuración de setuptools. El código de src/ es
+        # accesible desde los tests gracias a `pythonpath = ["src"]` en pytest.
+
+        [tool.uv]
+        package = false
+
+        ###############################################################################
+        # Dependency groups
+        ###############################################################################
+
+        [dependency-groups]
+
+        #
+        # Herramientas de desarrollo (se instalan con `uv sync`)
+        #
+        dev = [
+            "pytest>=8.4",
+            "pytest-cov>=6.2",
+            "ruff>=0.12",
+        ]
+
+        #
+        # Ecosistema científico (se instalan con `uv sync --group scientific`)
+        #
+        scientific = [
+            "numpy>=2.3",
+            "scipy>=1.16",
+            "sympy>=1.14",
+            "matplotlib>=3.10",
+        ]
+
+        #
+        # Manipulación de datos (se instalan con `uv sync --all-groups`)
+        #
+        data = [
+            "pandas>=2.3",
+        ]
+
+        ###############################################################################
+        # Pytest
+        ###############################################################################
+
+        [tool.pytest.ini_options]
+        minversion = "8.0"
+        testpaths = ["tests"]
+        pythonpath = ["src"]
+        addopts = [
+            "-ra",
+        ]
+
+        ###############################################################################
+        # Ruff
+        ###############################################################################
+
+        [tool.ruff]
+        target-version = "py313"
+        line-length = 88
+        # notebooks/ y ejercicios_simples/ contienen prosa pedagógica (enunciados
+        # largos) y variables/código intencionalmente "sueltos" (sin relación de
+        # imports, sin uso posterior). Ruff está pensado para src/, no para eso.
+        extend-exclude = ["notebooks", "ejercicios_simples"]
+
+        [tool.ruff.lint]
+        select = [
+            "E",   # pycodestyle errores
+            "F",   # pyflakes
+            "I",   # isort
+            "W",   # pycodestyle advertencias
+        ]
+
+        [tool.ruff.format]
+        quote-style = "double"
+        indent-style = "space"
+        line-ending = "lf"
+
+        ###############################################################################
+        # Coverage
+        ###############################################################################
+
+        [tool.coverage.run]
+        source = ["src"]
+
+        [tool.coverage.report]
+        show_missing = true
+        skip_covered = false
         ```
     4. Desar l'arxiu: Feu clic a **Commit changes...**.
 
@@ -222,12 +345,21 @@ Un **GitHub Codespace** és un entorn de desenvolupament al núvol, llest per us
     - configurarà l'entorn,
     - obrirà VS Code amb suport complet per a Python.
 
-- **Pas 3:** Espereu que el Codespace estigui llest. Això pot trigar uns minuts. Veureu missatges com:
+- **Pas 3:** Espereu que el Codespace estigui llest. **Aquest és un procés que pot trigar uns minuts.** Veureu missatges com:
 
     - *Setting up remote connection: [Building codespace...]*
     - *Installing dependencies…*
 
-    Un cop llest, veureu un missatge a la part inferior dreta de VS Code indicant que l'entorn està llest.
+- **Pas 4:** Un cop llest, es carregarà a l'editor de VS Code el `README.md` que es crea per defecte.
+
+    - S'obrirà una finestra on heu de fer clic a **Confiar en la carpeta i continuar**.
+    - S'ha d'obrir la **TERMINAL** integrada a la part inferior de l'editor de VS Code. Hi han d'aparèixer diversos missatges, possiblement com:
+
+    ```text
+    👋 Welcome to Codespaces! You are on a custom image defined in your devcontainer.json file.
+
+    🔍 To explore VS Code to its fullest, search using the Command Palette (Cmd/Ctrl + Shift + P)
+    ```
 
 :::
 
@@ -244,7 +376,7 @@ L'entorn tindrà:
     - **Extensions**, permet gestionar les extensions de VS Code.
 - **Editor de codi** al centre a dalt (apareix obert el README.md).
 - **Terminal integrada** al centre a baix.
-- **Barra lateral dreta** per al **XATS** amb Copilot.
+- **Barra lateral dreta** per al **CHAT** amb Copilot.
 
 ![](../../images/codespace.png){width="90%"}
 
@@ -252,7 +384,14 @@ L'entorn tindrà:
 
 ::: {.callout-note title="6 - Verificar que Python està configurat" collapse="true"}
 
-A la **TERMINAL** del Codespace escriviu l'ordre següent per comprovar la versió de Python instal·lada (si copieu i enganxeu l'ordre, probablement haureu de donar permís a la finestra emergent del navegador per poder enganxar text al terminal):
+A la **TERMINAL** del Codespace tindreu el prompt de la shell, que sol ser quelcom com:
+
+```bash
+(programacion23200) @el_vostre_usuari ➜ /workspaces/t01-fundamentos (main) $
+```
+on `el_vostre_usuari` és el vostre nom d'usuari de GitHub.
+
+Escriviu l'ordre següent després del signe `$` per comprovar la versió de Python instal·lada (si copieu i enganxeu l'ordre, probablement haureu de donar permís a la finestra emergent del navegador per poder enganxar text al terminal):
 
 ```json
 python --version
@@ -261,14 +400,14 @@ python --version
 Ha d'aparèixer:
 
 ```text
-Python 3.12.x
+Python 3.13.5
 ```
 
 :::
 
 ::: {.callout-note title="7 - Crear un arxiu de prova i executar-lo" collapse="true"}
 
-1. A l'explorador, prémer **New File** o **Nou arxiu**.
+1. A l'explorador, prémer **New File** o **Nou arxiu** (![](../../images/newfile.png){width="50px"}).
 
 2. Anomenar-lo:
    ```text
