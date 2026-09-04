@@ -23,3 +23,174 @@ Els exercicis 2.36 a 2.40 es troben als arxius `ejer_t02_36.py` al `ejer_t02_40.
 - executant la comanda `python <nom_de_l_arxiu>.py` a la **terminal integrada** del Codespace.
 
 Aquests exercicis són per comprendre l'ús de la funció `input()` de Python. La seva execució requereix que l'usuari introdueixi dades per teclat des de la **terminal integrada** del Codespace.
+
+::: {.callout-note title="2.36 L'error clàssic amb `input()`:" collapse="true"}
+
+El codi següent produeix un `TypeError`. Identifica la línia exacta de l'error, explica per què ocorre i corregeix-lo amb el canvi mínim necessari:
+
+```python
+base = input("Base del triángulo: ")
+altura = input("Altura del triángulo: ")
+area = (base * altura) / 2
+print(f"El área es {area}")
+```
+
+**Nota:** Completa l'exercici en el fitxer `ejer_t02_36.py` del teu repositori.
+:::
+
+::: {.callout-note title="2.37 Validació d'entrada amb `while`:" collapse="true"}
+
+Demana a l'usuari un enter positiu `n`. Si l'usuari introdueix un valor menor o igual a 0, mostra el missatge "Debe ser un entero positivo. Inténtalo de nuevo." i torna a demanar el dato. Repeteix fins obtenir una entrada vàlida.
+
+Un cop obtingut `n` (entrada vàlida), imprimeix els primers `n` nombres de la successió de Fibonacci.
+
+**Nota:** Completa l'exercici en el fitxer `ejer_t02_37.py` del teu repositori.
+:::
+
+::: {.callout-note title="2.38 Nombres enters i estadístiques:" collapse="true"}
+
+Demana a l'usuari enters un a un en un bucle `while`. El bucle acaba quan l'usuari introdueix `q`. Al final imprimeix:
+
+- quants nombres va introduir,
+- la seva suma,
+- la seva mitjana aritmètica i
+- el major i el menor dels valors introduïts.
+
+Si l'usuari introdueix `q` d'entrada sense haver introduït cap nombre, informa "No se han introducido datos."
+
+**Nota:** Completa l'exercici en el fitxer `ejer_t02_38.py` del teu repositori.
+:::
+
+::: {.callout-note title="2.39 Calculadora estesa:" collapse="true"}
+
+A continuació es mostra el codi de la calculadora bàsica vista a classe. Amplia la calculadora afegint:
+
+- L'operació `**` (potència).
+- L'operació `%` (mòdul), amb avís si el segon operand és 0.
+- L'operació `//` (divisió entera), amb avís si el segon operand és 0.
+- Un missatge `"Operación no reconocida"` per a qualsevol altra entrada.
+
+Per a `//` i `%` converteix els operands a `int` abans de l'operació.
+
+```python
+print("=== Calculadora extendida ===")
+a = float(input("Primer número: "))
+b = float(input("Segundo número: "))
+op = input("Operación (+, -, *, /): ")
+
+if op == "+":
+    resultado = a + b
+elif op == "-":
+    resultado = a - b
+elif op == "*":
+    resultado = a * b
+elif op == "/":
+    if b != 0:
+        resultado = a / b
+    else:
+        print("Error: división por cero.")
+        resultado = None
+else:
+    print(f"Operación '{op}' no reconocida.")
+    resultado = None
+
+if resultado is not None:
+    print(f"{a} {op} {b} = {resultado:.6g}")
+```
+
+**Nota:** Completa l'exercici en el fitxer `ejer_t02_39.py` del teu repositori.
+:::
+
+::: {.callout-note title="2.40 Menú interactiu d'eines matemàtiques:" collapse="true"}
+
+Implementa un programa que mostri repetidament un menú d'opcions fins que l'usuari triï sortir. L'esquelet del programa segueix el patró de **bucle de menú** amb `while True` i `break`.
+
+El menú a mostrar és el següent:
+
+```text
+========================================
+  Herramientas matemáticas — Tema 2
+========================================
+  1. Test de primalidad
+  2. Sucesión de Collatz
+  3. Ecuación cuadrática
+  4. Suma de serie 1/k²  (problema de Basilea)
+  0. Salir
+----------------------------------------
+Elige una opción:
+```
+
+Algorisme general del bucle de menú:
+
+```python
+while True:
+    # mostrar menú
+    # leer opción con input()
+    # if-elif-else sobre la opción
+    # si opción == "0": break
+    # si opción no válida: aviso y continúa
+```
+
+Cada opció ha de:
+
+- **Opció 1 — Test de primalitat:** Demana un enter n > 2. Informa si és primer o, si no ho és, mostra el seu menor divisor propi. Valida que n > 2; si l'usuari introdueix un valor menor, demana de nou (bucle `while` intern).
+
+- **Opció 2 — Successió de Collatz:** Demana un enter n > 0 i mostra la successió de Collatz per a aquest valor. Valida que n > 0; si l'usuari introdueix un valor menor o igual a 0, demana de nou (bucle `while` intern).
+
+- **Opció 3 — Equació quadràtica:** Demana els coeficients a, b i c (float) d'una equació quadràtica ax² + bx + c = 0. Detecta $a = 0$ abans de calcular. Mostra les arrels reals o complexes segons el discriminant.
+
+- **Opció 4 — Suma de la sèrie 1/k²:** Demana un enter $n > 0$ i mostra la suma dels primers $n$ termes de la sèrie $1/k^2$. Mostra també el valor exacte $(\pi^2)/6$ i l'error absolut en notació científica. Valida que $n > 0$; si l'usuari introdueix un valor menor o igual a 0, demana de nou (bucle `while` intern).
+
+- **Opció 0 — Sortir:** Imprimeix `"Hasta luego."` i acaba el programa.
+
+Requisit addicional: en entrar a qualsevol opció numèrica, si l'usuari escriu quelcom que no pot convertir-se a `int` o `float` (per exemple, lletres), el programa no ha de petar. Per a això, envolta la conversió amb un bloc `try-except ValueError` i imprimeix "Entrada no válida, de vuelta al menú." abans de continuar el bucle principal. Aquest últim punt introdueix `try-except`, que s'estudiarà en detall més endavant, però la sintaxi bàsica del qual és:
+
+```python
+try:
+    n = int(input("Introduce n: "))
+except ValueError:
+    print("Entrada no válida, de vuelta al menú.")
+```
+
+Aquí tens un exemple de com podria ser l'estructura del bucle principal del menú:
+
+```python
+while True:
+    print("========================================")
+    print("  Herramientas matemáticas — Tema 2")
+    print("========================================")
+    print("  1. Test de primalidad")
+    print("  2. Sucesión de Collatz")
+    print("  3. Ecuación cuadrática")
+    print("  4. Suma de serie 1/k²  (problema de Basilea)")
+    print("  0. Salir")
+    print("----------------------------------------")
+    opcion = input("Elige una opción: ")
+
+    if opcion == "0":
+        print("Hasta luego.")
+        break
+    elif opcion == "1":
+        # Implementar test de primalidad
+        try:
+            n = int(input("Introduce un entero n > 2: "))
+        except ValueError:
+            print("Entrada no válida, de vuelta al menú.")
+        # Aquí la lógica para el test de primalidad
+    elif opcion == "2":
+        # Implementar sucesión de Collatz
+        pass
+    elif opcion == "3":
+        # Implementar ecuación cuadrática
+        pass
+    elif opcion == "4":
+        # Implementar suma de serie 1/k²
+        pass
+    else:
+        print(f"Opción '{opcion}' no reconocida, de vuelta al menú.")
+```
+
+La instrucció `pass` en Python és una operació nul·la; no fa absolutament res quan s'executa. S'utilitza com a marcador de posició (placeholder) perquè la sintaxi de Python exigeix que hi hagi com a mínim una línia de codi dins de blocs indentats, fins i tot si encara no vols que s'executi cap acció. Has de substituir `pass` per la implementació de cada opció segons les instruccions anteriors.
+
+**Nota:** Completa l'exercici en el fitxer `ejer_t02_40.py` del teu repositori.
+:::

@@ -23,3 +23,174 @@ Los ejercicios 2.36 a 2.40 se encuentran en los archivos `ejer_t02_36.py` al `ej
 - ejecutando el comando `python <nombre_del_archivo>.py` en la **terminal integrada** del Codespace.
 
 Estos ejercicios son para comprender el uso de la función `input()` de Python. Su ejecución requiere que el usuario introduzca datos por teclado desde la **terminal integrada** del Codespace.
+
+::: {.callout-note title="2.36 El error clásico con `input()`:" collapse="true"}
+
+El siguiente código produce un `TypeError`. Identifica la línea exacta del error, explica por qué ocurre y corrígelo con el cambio mínimo necesario:
+
+```python
+base = input("Base del triángulo: ")
+altura = input("Altura del triángulo: ")
+area = (base * altura) / 2
+print(f"El área es {area}")
+```
+
+**Nota:** Completa el ejercicio en el fichero `ejer_t02_36.py` de tu repositorio.
+:::
+
+::: {.callout-note title="2.37 Validación de entrada con `while`:" collapse="true"}
+
+Pide al usuario un entero positivo `n`. Si el usuario introduce un valor menor o igual a 0, muestra el mensaje "Debe ser un entero positivo. Inténtalo de nuevo." y vuelve a pedir el dato. Repite hasta obtener una entrada válida.
+
+Una vez obtenido `n` (entrada válida), imprime los primeros `n` números de la sucesión de Fibonacci.
+
+**Nota:** Completa el ejercicio en el fichero `ejer_t02_37.py` de tu repositorio.
+:::
+
+::: {.callout-note title="2.38 Números enteros y estadísticas:" collapse="true"}
+
+Pide al usuario enteros uno a uno en un bucle `while`. El bucle termina cuando el usuario introduce `q`. Al final imprime:
+
+- cuántos números introdujo,
+- su suma,
+- su media aritmética y
+- el mayor y el menor de los valores introducidos.
+
+Si el usuario introduce `q` de entrada sin haber introducido ningún número, informa "No se han introducido datos."
+
+**Nota:** Completa el ejercicio en el fichero `ejer_t02_38.py` de tu repositorio.
+:::
+
+::: {.callout-note title="2.39 Calculadora extendida:" collapse="true"}
+
+A continuación se muestra el código de la calculadora básica vista en clase. Amplía la calculadora añadiendo:
+
+- La operación `**` (potencia).
+- La operación `%` (módulo), con aviso si el segundo operando es 0.
+- La operación `//` (división entera), con aviso si el segundo operando es 0.
+- Un mensaje `"Operación no reconocida"` para cualquier otra entrada.
+
+Para `//` y `%` convierte los operandos a `int` antes de la operación.
+
+```python
+print("=== Calculadora extendida ===")
+a = float(input("Primer número: "))
+b = float(input("Segundo número: "))
+op = input("Operación (+, -, *, /): ")
+
+if op == "+":
+    resultado = a + b
+elif op == "-":
+    resultado = a - b
+elif op == "*":
+    resultado = a * b
+elif op == "/":
+    if b != 0:
+        resultado = a / b
+    else:
+        print("Error: división por cero.")
+        resultado = None
+else:
+    print(f"Operación '{op}' no reconocida.")
+    resultado = None
+
+if resultado is not None:
+    print(f"{a} {op} {b} = {resultado:.6g}")
+```
+
+**Nota:** Completa el ejercicio en el fichero `ejer_t02_39.py` de tu repositorio.
+:::
+
+::: {.callout-note title="2.40 Menú interactivo de herramientas matemáticas:" collapse="true"}
+
+Implementa un programa que muestre repetidamente un menú de opciones hasta que el usuario elija salir. El esqueleto del programa sigue el patrón de **bucle de menú** con `while True` y `break`.
+
+El menú a a mostrar es el siguiente:
+
+```text
+========================================
+  Herramientas matemáticas — Tema 2
+========================================
+  1. Test de primalidad
+  2. Sucesión de Collatz
+  3. Ecuación cuadrática
+  4. Suma de serie 1/k²  (problema de Basilea)
+  0. Salir
+----------------------------------------
+Elige una opción:
+```
+
+Algoritmo general del bucle de menú:
+
+```python
+while True:
+    # mostrar menú
+    # leer opción con input()
+    # if-elif-else sobre la opción
+    # si opción == "0": break
+    # si opción no válida: aviso y continúa
+```
+
+Cada opción debe:
+
+- **Opción 1 — Test de primalidad:** Pide un entero n > 2. Informa si es primo o, si no lo es, muestra su menor divisor propio. Valida que n > 2; si el usuario introduce un valor menor, pide de nuevo (bucle `while` interno).
+
+- **Opción 2 — Sucesión de Collatz:** Pide un entero n > 0 y muestra la sucesión de Collatz para ese valor. Valida que n > 0; si el usuario introduce un valor menor o igual a 0, pide de nuevo (bucle `while` interno).
+
+- **Opción 3 — Ecuación cuadrática:** Pide los coeficientes a, b y c (float) de una ecuación cuadrática ax² + bx + c = 0. Detecta $a = 0$ antes de calcular. Muestra las raíces reales o complejas según el discriminante.
+
+- **Opción 4 — Suma de serie 1/k²:** Pide un entero $n > 0$ y muestra la suma de los primeros $n$ términos de la serie $1/k^2$. Muestra además el valor exacto $(\pi^2)/6$ y el error absoluto en notación científica. Valida que  $n > 0$; si el usuario introduce un valor menor o igual a 0, pide de nuevo (bucle `while` interno).
+
+- **Opción 0 — Salir:** Imprime `"Hasta luego."` y termina el programa.
+
+Requisito adicional: al entrar en cualquier opción numérica, si el usuario escribe # algo que no puede convertirse a `int` o `float` (por ejemplo, letras), el programa no debe crashear. Para esto, rodea la conversión con un bloque `try-except ValueError` e imprime "Entrada no válida, de vuelta al menú." antes de continuar el bucle principal. Este último punto introduce `try-except`, que se estudiará en detalle más adelante, pero cuya sintaxis básica es:
+
+```python
+try:
+    n = int(input("Introduce n: "))
+except ValueError:
+    print("Entrada no válida, de vuelta al menú.")
+```
+
+Aquí tienes un ejemplo de cómo podría ser la estructura del bucle principal del menú:
+
+```python
+while True:
+    print("========================================")
+    print("  Herramientas matemáticas — Tema 2")
+    print("========================================")
+    print("  1. Test de primalidad")
+    print("  2. Sucesión de Collatz")
+    print("  3. Ecuación cuadrática")
+    print("  4. Suma de serie 1/k²  (problema de Basilea)")
+    print("  0. Salir")
+    print("----------------------------------------")
+    opcion = input("Elige una opción: ")
+
+    if opcion == "0":
+        print("Hasta luego.")
+        break
+    elif opcion == "1":
+        # Implementar test de primalidad
+        try:
+            n = int(input("Introduce un entero n > 2: "))
+        except ValueError:
+            print("Entrada no válida, de vuelta al menú.")
+        # Aquí la lógica para el test de primalidad
+    elif opcion == "2":
+        # Implementar sucesión de Collatz
+        pass
+    elif opcion == "3":
+        # Implementar ecuación cuadrática
+        pass
+    elif opcion == "4":
+        # Implementar suma de serie 1/k²
+        pass
+    else:
+        print(f"Opción '{opcion}' no reconocida, de vuelta al menú.")
+```
+
+La instrucción `pass` en Python es una operación nula; no hace absolutamente nada cuando se ejecuta. Se utiliza como un marcador de posición (placeholder) porque la sintaxis de Python exige que haya al menos una línea de código dentro de bloques indentados, incluso si aún no quieres que se ejecute ninguna acción. Debes sustituir `pass` por la implementación de cada opción según las instrucciones anteriores.
+
+**Nota:** Completa el ejercicio en el fichero `ejer_t02_40.py` de tu repositorio.
+:::
