@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -72,6 +107,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Ejercicios — Tema 2: Componentes del Lenguaje y Control de Flujo – Programación (23200)">
@@ -322,7 +386,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../es/informaciones/horarios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Horarios</span></a>
+ <span class="menu-text">Calendario y Horario</span></a>
   </div>
 </li>
       </ul>
@@ -586,6 +650,199 @@ ul.task-list li input[type="checkbox"] {
 <li>ejecutando el comando <code>python &lt;nombre_del_archivo&gt;.py</code> en la <strong>terminal integrada</strong> del Codespace.</li>
 </ul>
 <p>Estos ejercicios son para comprender el uso de la función <code>input()</code> de Python. Su ejecución requiere que el usuario introduzca datos por teclado desde la <strong>terminal integrada</strong> del Codespace.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="2.36 El error clásico con `input()`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>2.36 El error clásico con <code>input()</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>El siguiente código produce un <code>TypeError</code>. Identifica la línea exacta del error, explica por qué ocurre y corrígelo con el cambio mínimo necesario:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Base del triángulo: "</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>altura <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Altura del triángulo: "</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>area <span class="op">=</span> (base <span class="op">*</span> altura) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El área es </span><span class="sc">{</span>area<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Nota:</strong> Completa el ejercicio en el fichero <code>ejer_t02_36.py</code> de tu repositorio.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="2.37 Validación de entrada con `while`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>2.37 Validación de entrada con <code>while</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Pide al usuario un entero positivo <code>n</code>. Si el usuario introduce un valor menor o igual a 0, muestra el mensaje “Debe ser un entero positivo. Inténtalo de nuevo.” y vuelve a pedir el dato. Repite hasta obtener una entrada válida.</p>
+<p>Una vez obtenido <code>n</code> (entrada válida), imprime los primeros <code>n</code> números de la sucesión de Fibonacci.</p>
+<p><strong>Nota:</strong> Completa el ejercicio en el fichero <code>ejer_t02_37.py</code> de tu repositorio.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="2.38 Números enteros y estadísticas:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>2.38 Números enteros y estadísticas:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Pide al usuario enteros uno a uno en un bucle <code>while</code>. El bucle termina cuando el usuario introduce <code>q</code>. Al final imprime:</p>
+<ul>
+<li>cuántos números introdujo,</li>
+<li>su suma,</li>
+<li>su media aritmética y</li>
+<li>el mayor y el menor de los valores introducidos.</li>
+</ul>
+<p>Si el usuario introduce <code>q</code> de entrada sin haber introducido ningún número, informa “No se han introducido datos.”</p>
+<p><strong>Nota:</strong> Completa el ejercicio en el fichero <code>ejer_t02_38.py</code> de tu repositorio.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="2.39 Calculadora extendida:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>2.39 Calculadora extendida:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A continuación se muestra el código de la calculadora básica vista en clase. Amplía la calculadora añadiendo:</p>
+<ul>
+<li>La operación <code>**</code> (potencia).</li>
+<li>La operación <code>%</code> (módulo), con aviso si el segundo operando es 0.</li>
+<li>La operación <code>//</code> (división entera), con aviso si el segundo operando es 0.</li>
+<li>Un mensaje <code>"Operación no reconocida"</code> para cualquier otra entrada.</li>
+</ul>
+<p>Para <code>//</code> y <code>%</code> convierte los operandos a <code>int</code> antes de la operación.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Calculadora extendida ==="</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Primer número: "</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Segundo número: "</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>op <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Operación (+, -, *, /): "</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> op <span class="op">==</span> <span class="st">"+"</span>:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> op <span class="op">==</span> <span class="st">"-"</span>:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> a <span class="op">-</span> b</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> op <span class="op">==</span> <span class="st">"*"</span>:</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> a <span class="op">*</span> b</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> op <span class="op">==</span> <span class="st">"/"</span>:</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> b <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        resultado <span class="op">=</span> a <span class="op">/</span> b</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Error: división por cero."</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        resultado <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Operación '</span><span class="sc">{</span>op<span class="sc">}</span><span class="ss">' no reconocida."</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> resultado <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>op<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultado<span class="sc">:.6g}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Nota:</strong> Completa el ejercicio en el fichero <code>ejer_t02_39.py</code> de tu repositorio.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="2.40 Menú interactivo de herramientas matemáticas:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>2.40 Menú interactivo de herramientas matemáticas:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Implementa un programa que muestre repetidamente un menú de opciones hasta que el usuario elija salir. El esqueleto del programa sigue el patrón de <strong>bucle de menú</strong> con <code>while True</code> y <code>break</code>.</p>
+<p>El menú a a mostrar es el siguiente:</p>
+<pre class="text"><code>========================================
+  Herramientas matemáticas — Tema 2
+========================================
+  1. Test de primalidad
+  2. Sucesión de Collatz
+  3. Ecuación cuadrática
+  4. Suma de serie 1/k²  (problema de Basilea)
+  0. Salir
+----------------------------------------
+Elige una opción:</code></pre>
+<p>Algoritmo general del bucle de menú:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># mostrar menú</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># leer opción con input()</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if-elif-else sobre la opción</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># si opción == "0": break</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># si opción no válida: aviso y continúa</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Cada opción debe:</p>
+<ul>
+<li><p><strong>Opción 1 — Test de primalidad:</strong> Pide un entero n &gt; 2. Informa si es primo o, si no lo es, muestra su menor divisor propio. Valida que n &gt; 2; si el usuario introduce un valor menor, pide de nuevo (bucle <code>while</code> interno).</p></li>
+<li><p><strong>Opción 2 — Sucesión de Collatz:</strong> Pide un entero n &gt; 0 y muestra la sucesión de Collatz para ese valor. Valida que n &gt; 0; si el usuario introduce un valor menor o igual a 0, pide de nuevo (bucle <code>while</code> interno).</p></li>
+<li><p><strong>Opción 3 — Ecuación cuadrática:</strong> Pide los coeficientes a, b y c (float) de una ecuación cuadrática ax² + bx + c = 0. Detecta <span class="math inline">\(a = 0\)</span> antes de calcular. Muestra las raíces reales o complejas según el discriminante.</p></li>
+<li><p><strong>Opción 4 — Suma de serie 1/k²:</strong> Pide un entero <span class="math inline">\(n &gt; 0\)</span> y muestra la suma de los primeros <span class="math inline">\(n\)</span> términos de la serie <span class="math inline">\(1/k^2\)</span>. Muestra además el valor exacto <span class="math inline">\((\pi^2)/6\)</span> y el error absoluto en notación científica. Valida que <span class="math inline">\(n &gt; 0\)</span>; si el usuario introduce un valor menor o igual a 0, pide de nuevo (bucle <code>while</code> interno).</p></li>
+<li><p><strong>Opción 0 — Salir:</strong> Imprime <code>"Hasta luego."</code> y termina el programa.</p></li>
+</ul>
+<p>Requisito adicional: al entrar en cualquier opción numérica, si el usuario escribe # algo que no puede convertirse a <code>int</code> o <code>float</code> (por ejemplo, letras), el programa no debe crashear. Para esto, rodea la conversión con un bloque <code>try-except ValueError</code> e imprime “Entrada no válida, de vuelta al menú.” antes de continuar el bucle principal. Este último punto introduce <code>try-except</code>, que se estudiará en detalle más adelante, pero cuya sintaxis básica es:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introduce n: "</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Entrada no válida, de vuelta al menú."</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aquí tienes un ejemplo de cómo podría ser la estructura del bucle principal del menú:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"========================================"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  Herramientas matemáticas — Tema 2"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"========================================"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  1. Test de primalidad"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  2. Sucesión de Collatz"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  3. Ecuación cuadrática"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  4. Suma de serie 1/k²  (problema de Basilea)"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  0. Salir"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"----------------------------------------"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    opcion <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Elige una opción: "</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> opcion <span class="op">==</span> <span class="st">"0"</span>:</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Hasta luego."</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> opcion <span class="op">==</span> <span class="st">"1"</span>:</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Implementar test de primalidad</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>            n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Introduce un entero n &gt; 2: "</span>))</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Entrada no válida, de vuelta al menú."</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Aquí la lógica para el test de primalidad</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> opcion <span class="op">==</span> <span class="st">"2"</span>:</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Implementar sucesión de Collatz</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> opcion <span class="op">==</span> <span class="st">"3"</span>:</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Implementar ecuación cuadrática</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> opcion <span class="op">==</span> <span class="st">"4"</span>:</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Implementar suma de serie 1/k²</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Opción '</span><span class="sc">{</span>opcion<span class="sc">}</span><span class="ss">' no reconocida, de vuelta al menú."</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La instrucción <code>pass</code> en Python es una operación nula; no hace absolutamente nada cuando se ejecuta. Se utiliza como un marcador de posición (placeholder) porque la sintaxis de Python exige que haya al menos una línea de código dentro de bloques indentados, incluso si aún no quieres que se ejecute ninguna acción. Debes sustituir <code>pass</code> por la implementación de cada opción según las instrucciones anteriores.</p>
+<p><strong>Nota:</strong> Completa el ejercicio en el fichero <code>ejer_t02_40.py</code> de tu repositorio.</p>
+</div>
+</div>
+</div>
 
 
 </section>
