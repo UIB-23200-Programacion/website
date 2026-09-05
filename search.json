@@ -62,6 +62,17 @@
     ]
   },
   {
+    "objectID": "es/informaciones/horarios.html#horario-de-tutorías",
+    "href": "es/informaciones/horarios.html#horario-de-tutorías",
+    "title": "Calendario y Horario",
+    "section": "Horario de tutorías",
+    "text": "Horario de tutorías\nSolicitar por correo electrónico a través del servicio de correo del Aula Digital.",
+    "crumbs": [
+      "Informaciones",
+      "Calendario y Horario"
+    ]
+  },
+  {
     "objectID": "es/informaciones/horarios.html#calendario-por-temas",
     "href": "es/informaciones/horarios.html#calendario-por-temas",
     "title": "Calendario y Horario",
@@ -548,6 +559,17 @@
     "title": "Calendari i Horari",
     "section": "Horario de clases",
     "text": "Horario de clases",
+    "crumbs": [
+      "Informacions",
+      "Calendari i Horari"
+    ]
+  },
+  {
+    "objectID": "ca/informacions/horaris.html#horari-de-tutories",
+    "href": "ca/informacions/horaris.html#horari-de-tutories",
+    "title": "Calendari i Horari",
+    "section": "Horari de tutories",
+    "text": "Horari de tutories\nSol·licitar per correu electrònic a través del servei de correu de l’Aula Digital.",
     "crumbs": [
       "Informacions",
       "Calendari i Horari"
@@ -1413,7 +1435,7 @@
     "href": "ca/informacions/guia-docent.html#professor-responsable",
     "title": "Guia docent",
     "section": "Professor Responsable",
-    "text": "Professor Responsable\nJosé Alejandro Mesejo Chiong (fitxa UIB)\nCorreu de contacte: alejandro.mesejo@uib.es\nDespatx 171, Edifici Anselm Turmeda, 1a planta",
+    "text": "Professor Responsable\nJosé Alejandro Mesejo Chiong (fitxa UIB)\nCorreu de contacte: alejandro.mesejo@uib.es\nDespatx 186, Edifici Anselm Turmeda, 1a planta",
     "crumbs": [
       "Informacions",
       "Guia docent"
@@ -1941,7 +1963,7 @@
     "href": "es/informaciones/guia-docente.html#profesor-responsable",
     "title": "Guía docente",
     "section": "Profesor Responsable",
-    "text": "Profesor Responsable\nJosé Alejandro Mesejo Chiong (ficha UIB)\nCorreo de contacto: alejandro.mesejo@uib.es\nDespacho 171, Edificio Anselm Turmeda, 1era planta",
+    "text": "Profesor Responsable\nJosé Alejandro Mesejo Chiong (ficha UIB)\nCorreo de contacto: alejandro.mesejo@uib.es\nDespacho 186, Edificio Anselm Turmeda, 1era planta",
     "crumbs": [
       "Informaciones",
       "Guía docente"
