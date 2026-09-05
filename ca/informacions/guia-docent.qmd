@@ -6,7 +6,7 @@ sidebar: barra-ca
 
 ## Introducció
 
-A continuació un resum de la Guia Docent de l'assignatura. La versió completa es pot accedir aquí. Es recomana consultar la versió completa.
+A continuació un resum de la Guia Docent de l'assignatura. [**La versió completa es pot accedir aquí**](https://academic.uib.es/doa/consultaPublica/look%5bconpub%5dMostrarPubGuiaDocAs?entradaPublica=true&idiomaPais=ca.ES&_anoAcademico=2026&_codAsignatura=23200){target="_blank" rel="noopener noreferrer"}. Es recomana consultar la versió completa.
 
 ## Professor Responsable
 
