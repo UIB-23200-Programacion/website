@@ -8,17 +8,13 @@ sidebar: barra-es
 
 El calendario académico de la Escuela Politécnica Superior (EPS) de la Universidad de las Islas Baleares (UIB) para el curso académico 2026-2027 se puede consultar en el siguiente enlace: [https://eps.uib.es/curs-2026-27/](https://eps.uib.es/curs-2026-27/).
 
-
 ---
-
 
 ## Horario de clases
 
 ![](../../images/horario.png)
 
-
 ---
-
 
 ## Calendario por temas
 

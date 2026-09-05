@@ -4,4 +4,32 @@ lang: ca
 sidebar: barra-ca
 ---
 
-*(Contenido pendiente.)*
+## Calendari de l'EPS
+
+El calendari acadèmic de l'Escola Politècnica Superior (EPS) de la Universitat de les Illes Balears (UIB) per al curs acadèmic 2026-2027 es pot consultar al següent enllaç: [https://eps.uib.es/curs-2026-27/](https://eps.uib.es/curs-2026-27/).
+
+
+---
+
+## Horario de clases
+
+![](../../images/horario.png)
+
+---
+
+## Calendario por temas
+
+![](../../images/caltemas.png)
+
+---
+
+## Activitats d'avaluació
+
+| Activitat | Grup | Data | Pes (\%) | Nota de validació |
+| :--- | :--- | :--- | :--- | :--- |
+| Examen | GG9 | Gener 2027 | 45\% | 4.5 |
+| Primer Taller | GM91 | 20/10/2026 | 12.5\% | - |
+| Primer Taller | GM92 | 23/10/2026 | 12.5\% | - |
+| Segon Taller | GM91 | 08/12/2026 | 12.5\% | - |
+| Segon Taller | GM91 | 11/12/2026 | 12.5\% | - |
+| Pràctica | GG9 | 22/12/2026 | 30\% | 5 |
