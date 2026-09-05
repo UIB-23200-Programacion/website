@@ -7,7 +7,7 @@ toc: false
 
 ## Bienvenidos
 
-Este sitio recoge el material docente de la asignatura [**Programación (23200) del Grado de Matemáticas de la Universitat de les Illes Balears**](https://estudis.uib.es/estudis-de-grau/grau/matematiques/GMA3-P/23200/index.html). La asignatura introduce la programación en Python asumiendo que el estudiante no tiene experiencia previa.
+Este sitio recoge el material docente de la asignatura [**Programación (23200) del Grado de Matemáticas de la Universitat de les Illes Balears**](https://estudis.uib.es/estudis-de-grau/grau/matematiques/GMA3-P/23200/index.html){target="_blank" rel="noopener noreferrer"}. La asignatura introduce la programación en Python asumiendo que el estudiante no tiene experiencia previa.
 
 ---
 
@@ -15,11 +15,14 @@ Este sitio recoge el material docente de la asignatura [**Programación (23200) 
 
 **Informaciones:** 
 
-Documentos administrativos del curso: un resumen de la guía docente oficial, el calendario y los horarios de clase.
+Documentos informativos del curso: 
+
+- un resumen de la guía docente oficial, 
+- el calendario y los horarios de clase.
 
 **Temas:** 
 
-El contenido teórico-práctico del curso, organizado en 8 temas que van desde los fundamentos del lenguaje hasta el diseño algorítmico y el ecosistema científico de Python.
+El contenido teórico-práctico del curso, organizado en 9 temas que van desde los fundamentos del lenguaje hasta el diseño algorítmico y el ecosistema científico de Python.
 
 **Ejercicios:** 
 
@@ -27,7 +30,7 @@ Colección de ejercicios propuestos para cada tema, pensados para consolidar los
 
 **Práctica del Curso:** 
 
-Elemento de evaluación continua: enunciado, plazo y entrega de la práctica del curso.
+Elemento de evaluación complementaria: enunciado, plazo y entrega de la práctica del curso.
 
 **Recursos:** 
 
@@ -42,7 +45,7 @@ Referencias bibliográficas del curso, divididas en bibliografía principal (lec
 ::: {.callout-important}
 ## **MUY IMPORTANTE**
 
-Este sitio es un complemento del Aula Digital de la asignatura.
+Este sitio es un complemento del [**Aula Digital de la asignatura**](https://ad.uib.es/estudis2627/course/view.php?id=4033){target="_blank" rel="noopener noreferrer"}.
 
 El Aula Digital es la plataforma oficial de teleeducación y aprendizaje en línea de la UIB. Basada en el software Moodle, funciona como el espacio virtual de apoyo para la gran mayoría de asignaturas presenciales y semipresenciales.
 
@@ -53,6 +56,6 @@ Es el entorno centralizado donde los estudiantes pueden:
 - Entregar trabajos, realizar cuestionarios y participar en foros.
 - Revisar las calificaciones y notas finales.
 
-El acceso a esa plataforma se gestiona a través del [Portal del Alumnado](https://alu.uib.cat/), y también cuenta con soporte para dispositivos móviles.
+El acceso a esa plataforma se gestiona a través del [Portal del Alumnado](https://alu.uib.cat/){target="_blank" rel="noopener noreferrer"}, y también cuenta con soporte para dispositivos móviles.
 
 :::
