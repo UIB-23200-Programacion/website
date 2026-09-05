@@ -17,6 +17,12 @@ El calendari acadèmic de l'Escola Politècnica Superior (EPS) de la Universitat
 
 ---
 
+## Horari de tutories
+
+Sol·licitar per correu electrònic a través del servei de correu [**de l'Aula Digital**](https://ad.uib.es/estudis2627/course/view.php?id=4033).
+
+---
+
 ## Calendario por temas
 
 ![](../../images/caltemas.png)

@@ -16,6 +16,12 @@ El calendario académico de la Escuela Politécnica Superior (EPS) de la Univers
 
 ---
 
+## Horario de tutorías
+
+Solicitar por correo electrónico a través del servicio de correo [**del Aula Digital**](https://ad.uib.es/estudis2627/course/view.php?id=4033).
+
+---
+
 ## Calendario por temas
 
 ![](../../images/caltemas.png)
