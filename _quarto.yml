@@ -42,7 +42,7 @@ website:
             - href: es/informaciones/guia-docente.qmd
               text: "Guía docente"
             - href: es/informaciones/horarios.qmd
-              text: "Horarios"
+              text: "Calendario y Horario"
 
         - section: "Temas"
           contents:
@@ -118,7 +118,7 @@ website:
             - href: ca/informacions/guia-docent.qmd
               text: "Guia docent"
             - href: ca/informacions/horaris.qmd
-              text: "Horaris"
+              text: "Calendari i Horari"
 
         - section: "Temes"
           contents:
