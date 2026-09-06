@@ -95,10 +95,6 @@ website:
           contents:
             - href: es/recursos/examenes-anteriores.qmd
               text: "Exámenes anteriores"
-            - href: es/recursos/tutoriales.qmd
-              text: "Tutoriales"
-            - href: es/recursos/manuales-guias.qmd
-              text: "Manuales y guías"
             - href: es/recursos/herramientas-software.qmd
               text: "Herramientas de software"
 
@@ -171,10 +167,6 @@ website:
           contents:
             - href: ca/recursos/examens-anteriors.qmd
               text: "Exàmens anteriors"
-            - href: ca/recursos/tutorials.qmd
-              text: "Tutorials"
-            - href: ca/recursos/manuals-guies.qmd
-              text: "Manuals i guies"
             - href: ca/recursos/eines-programari.qmd
               text: "Eines de programari"
 

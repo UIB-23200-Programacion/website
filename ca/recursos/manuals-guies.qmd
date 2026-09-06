@@ -1,7 +1,0 @@
----
-title: "Manuals i guies"
-lang: ca
-sidebar: barra-ca
----
-
-*(Contingut pendent.)*

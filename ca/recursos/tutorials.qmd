@@ -1,7 +1,0 @@
----
-title: "Tutorials"
-lang: ca
-sidebar: barra-ca
----
-
-*(Contingut pendent.)*
