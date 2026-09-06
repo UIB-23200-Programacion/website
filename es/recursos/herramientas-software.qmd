@@ -12,22 +12,22 @@ Utilizaremos el IDE [**Visual Studio Code (VS Code)**](https://code.visualstudio
 
 Hay un sinnúmero de tutoriales disponibles para VS Code que facilitan el aprendizaje de esta herramienta. A continuación, se presentan algunos recomendados:
 
-- [Tutorial: Get started with Visual Studio Code](https://code.visualstudio.com/docs/editing/getting-started/editor-tutorial){target="_blank" rel="noopener noreferrer"}
-- [User interface](https://code.visualstudio.com/docs/editing/getting-started/userinterface){target="_blank" rel="noopener noreferrer"}
-- [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial){target="_blank" rel="noopener noreferrer"}
+- [**Tutorial: Get started with Visual Studio Code**](https://code.visualstudio.com/docs/editing/getting-started/editor-tutorial){target="_blank" rel="noopener noreferrer"}
+- [**User interface**](https://code.visualstudio.com/docs/editing/getting-started/userinterface){target="_blank" rel="noopener noreferrer"}
+- [**Getting Started with Python in VS Code**](https://code.visualstudio.com/docs/python/python-tutorial){target="_blank" rel="noopener noreferrer"}
 
 ## GitHub Codespaces
 
 Un Codespace de GitHub es un entorno de desarrollo preconfigurado y alojado en la nube que permite escribir, ejecutar y depurar código directamente desde un navegador. Funciona como un espacio de trabajo desechable y bajo demanda, asociado a un repositorio específico y listo para usar en minutos.
 
 - **Configuración como código:** Utiliza un archivo de configuración (típicamente `devcontainer.json`) para definir el sistema operativo, las dependencias instaladas y las extensiones del editor necesarias, asegurando que el entorno sea exactamente igual cada vez que se inicie.
-- **Adiós al "en mi máquina funciona":** Como cualquier persona que colabore en el repositorio utiliza la misma infraestructura en la nube, se eliminan por completo los problemas de compatibilidad con sistemas operativos locales.
+- **Adiós al "en mi máquina NO funciona":** Como cualquier persona que colabore en el repositorio utiliza la misma infraestructura en la nube, se eliminan por completo los problemas de compatibilidad con sistemas operativos locales.
 - **Acceso flexible:** Se puede utilizar directamente en la web a través de una versión de Visual Studio Code, o conectarse de forma nativa desde un VS Code de escritorio.
 - **Potencia escalable:** El procesamiento, la memoria y el almacenamiento dependen de los servidores de GitHub, lo que permite compilar proyectos pesados o entrenar modelos desde un equipo de bajos recursos.
 
 **En este curso, se utilizan de forma primaria los servicios de GitHub Codespaces para ejecutar código Python, por lo que no es necesario instalar VS Code en tu ordenador.**
 
-Para más información sobre GitHub Codespaces, consulta [Quickstart for GitHub Codespaces](https://docs.github.com/en/codespaces/quickstart){target="_blank" rel="noopener noreferrer"}.
+Para más información sobre GitHub Codespaces, consulta [**Quickstart for GitHub Codespaces**](https://docs.github.com/en/codespaces/quickstart){target="_blank" rel="noopener noreferrer"}.
 
 ## Instalación local de Visual Studio Code
 
@@ -43,13 +43,12 @@ Para ejecutar devcontainers localmente, tu equipo necesita de software que gesti
 	- *En Windows y macOS:* Instala **Docker Desktop**. Si utilizas Windows, es necesario tener habilitado el Subsistema de Windows para Linux (WSL 2) para garantizar un buen rendimiento y compatibilidad.
 	- *En Linux:* Instala **Docker Engine** y el plugin de Docker Compose. (Alternativas de código abierto como Podman también son compatibles con VS Code, aunque requieren una configuración adicional).
 
-
 - **Extensión "Dev Containers":** Es el puente oficial (desarrollado por Microsoft) entre VS Code y Docker. Se instala desde el mercado de extensiones del propio editor y es la que añade comandos clave como "Reabrir en contenedor".
 - **Git (Altamente recomendado):** Aunque el contenedor puede arrancar sin él, es esencial en el equipo local para clonar los repositorios que contienen los archivos de configuración y gestionar el control de versiones desde el editor.
 
 Una vez instalados estos componentes, VS Code detectará automáticamente cualquier carpeta que contenga un archivo `devcontainer.json` o un Dockerfile, y te ofrecerá levantar el entorno con un solo clic.
 
-Un excelente recurso para aprender a configurar y utilizar devcontainers en VS Code es el [Dev Containers tutorial](https://code.visualstudio.com/docs/devcontainers/tutorial){target="_blank" rel="noopener noreferrer"}.
+Un excelente recurso para aprender a configurar y utilizar devcontainers en VS Code es el [**Dev Containers tutorial**](https://code.visualstudio.com/docs/devcontainers/tutorial){target="_blank" rel="noopener noreferrer"}.
 
 
 
