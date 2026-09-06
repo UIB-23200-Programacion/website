@@ -488,18 +488,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../es/recursos/tutoriales.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutoriales</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../es/recursos/manuales-guias.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Manuales y guías</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../es/recursos/herramientas-software.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Herramientas de software</span></a>
   </div>
@@ -534,8 +522,16 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#entorno-de-desarrollo-integrado-ide" id="toc-entorno-de-desarrollo-integrado-ide" class="nav-link active" data-scroll-target="#entorno-de-desarrollo-integrado-ide">Entorno de desarrollo integrado (IDE)</a></li>
+  <li><a href="#github-codespaces" id="toc-github-codespaces" class="nav-link" data-scroll-target="#github-codespaces">GitHub Codespaces</a></li>
+  <li><a href="#instalación-local-de-visual-studio-code" id="toc-instalación-local-de-visual-studio-code" class="nav-link" data-scroll-target="#instalación-local-de-visual-studio-code">Instalación local de Visual Studio Code</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -560,9 +556,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contenido pendiente.)</em></p>
+<section id="entorno-de-desarrollo-integrado-ide" class="level2">
+<h2 class="anchored" data-anchor-id="entorno-de-desarrollo-integrado-ide">Entorno de desarrollo integrado (IDE)</h2>
+<p>Un entorno de desarrollo integrado (IDE) es un software que proporciona un entorno completo para el desarrollo de aplicaciones, incluyendo un editor de código, un compilador, un depurador y otras herramientas útiles.</p>
+<p>Utilizaremos el IDE <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer"><strong>Visual Studio Code (VS Code)</strong></a>, que es gratuito y ampliamente utilizado en la industria del software.</p>
+<p>Hay un sinnúmero de tutoriales disponibles para VS Code que facilitan el aprendizaje de esta herramienta. A continuación, se presentan algunos recomendados:</p>
+<ul>
+<li><a href="https://code.visualstudio.com/docs/editing/getting-started/editor-tutorial" target="_blank" rel="noopener noreferrer">Tutorial: Get started with Visual Studio Code</a></li>
+<li><a href="https://code.visualstudio.com/docs/editing/getting-started/userinterface" target="_blank" rel="noopener noreferrer">User interface</a></li>
+<li><a href="https://code.visualstudio.com/docs/python/python-tutorial" target="_blank" rel="noopener noreferrer">Getting Started with Python in VS Code</a></li>
+</ul>
+</section>
+<section id="github-codespaces" class="level2">
+<h2 class="anchored" data-anchor-id="github-codespaces">GitHub Codespaces</h2>
+<p>Un Codespace de GitHub es un entorno de desarrollo preconfigurado y alojado en la nube que permite escribir, ejecutar y depurar código directamente desde un navegador. Funciona como un espacio de trabajo desechable y bajo demanda, asociado a un repositorio específico y listo para usar en minutos.</p>
+<ul>
+<li><strong>Configuración como código:</strong> Utiliza un archivo de configuración (típicamente <code>devcontainer.json</code>) para definir el sistema operativo, las dependencias instaladas y las extensiones del editor necesarias, asegurando que el entorno sea exactamente igual cada vez que se inicie.</li>
+<li><strong>Adiós al “en mi máquina funciona”:</strong> Como cualquier persona que colabore en el repositorio utiliza la misma infraestructura en la nube, se eliminan por completo los problemas de compatibilidad con sistemas operativos locales.</li>
+<li><strong>Acceso flexible:</strong> Se puede utilizar directamente en la web a través de una versión de Visual Studio Code, o conectarse de forma nativa desde un VS Code de escritorio.</li>
+<li><strong>Potencia escalable:</strong> El procesamiento, la memoria y el almacenamiento dependen de los servidores de GitHub, lo que permite compilar proyectos pesados o entrenar modelos desde un equipo de bajos recursos.</li>
+</ul>
+<p><strong>En este curso, se utilizan de forma primaria los servicios de GitHub Codespaces para ejecutar código Python, por lo que no es necesario instalar VS Code en tu ordenador.</strong></p>
+<p>Para más información sobre GitHub Codespaces, consulta <a href="https://docs.github.com/en/codespaces/quickstart" target="_blank" rel="noopener noreferrer">Quickstart for GitHub Codespaces</a>.</p>
+</section>
+<section id="instalación-local-de-visual-studio-code" class="level2">
+<h2 class="anchored" data-anchor-id="instalación-local-de-visual-studio-code">Instalación local de Visual Studio Code</h2>
+<p>Utilizando un <em>devcontainer</em>, se puede replicar el entorno de desarrollo de GitHub Codespaces en un ordenador personal. Esto permite trabajar con el mismo entorno que los demás, evitando problemas de compatibilidad. El desarrollo en un entorno local puede ser más rápido y no requiere conexión a internet.</p>
+<p>Si deseas instalar Visual Studio Code en tu ordenador de forma tal que puedas ejecutar el mismo entorno que en GitHub Codespaces, sigue las instrucciones de instalación y configuración que se detallan a continuación.</p>
+<p>Para ejecutar devcontainers localmente, tu equipo necesita de software que gestione tanto la edición de código como la virtualización. Por ello, es necesario instalar los siguientes componentes:</p>
+<ul>
+<li><p><strong>Visual Studio Code:</strong> El editor base donde trabajarás.</p></li>
+<li><p><strong>Docker:</strong> El motor encargado de crear, gestionar y ejecutar los contenedores de forma aislada.</p>
+<ul>
+<li><em>En Windows y macOS:</em> Instala <strong>Docker Desktop</strong>. Si utilizas Windows, es necesario tener habilitado el Subsistema de Windows para Linux (WSL 2) para garantizar un buen rendimiento y compatibilidad.</li>
+<li><em>En Linux:</em> Instala <strong>Docker Engine</strong> y el plugin de Docker Compose. (Alternativas de código abierto como Podman también son compatibles con VS Code, aunque requieren una configuración adicional).</li>
+</ul></li>
+<li><p><strong>Extensión “Dev Containers”:</strong> Es el puente oficial (desarrollado por Microsoft) entre VS Code y Docker. Se instala desde el mercado de extensiones del propio editor y es la que añade comandos clave como “Reabrir en contenedor”.</p></li>
+<li><p><strong>Git (Altamente recomendado):</strong> Aunque el contenedor puede arrancar sin él, es esencial en el equipo local para clonar los repositorios que contienen los archivos de configuración y gestionar el control de versiones desde el editor.</p></li>
+</ul>
+<p>Una vez instalados estos componentes, VS Code detectará automáticamente cualquier carpeta que contenga un archivo <code>devcontainer.json</code> o un Dockerfile, y te ofrecerá levantar el entorno con un solo clic.</p>
+<p>Un excelente recurso para aprender a configurar y utilizar devcontainers en VS Code es el <a href="https://code.visualstudio.com/docs/devcontainers/tutorial" target="_blank" rel="noopener noreferrer">Dev Containers tutorial</a>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

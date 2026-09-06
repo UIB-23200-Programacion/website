@@ -7,17 +7,6 @@
     "text": "Redirigiendo a la página de inicio en español…"
   },
   {
-    "objectID": "es/recursos/manuales-guias.html",
-    "href": "es/recursos/manuales-guias.html",
-    "title": "Manuales y guías",
-    "section": "",
-    "text": "(Contenido pendiente.)",
-    "crumbs": [
-      "Recursos",
-      "Manuales y guías"
-    ]
-  },
-  {
     "objectID": "es/recursos/examenes-anteriores.html",
     "href": "es/recursos/examenes-anteriores.html",
     "title": "Exámenes anteriores",
@@ -510,22 +499,44 @@
     ]
   },
   {
-    "objectID": "ca/recursos/manuals-guies.html",
-    "href": "ca/recursos/manuals-guies.html",
-    "title": "Manuals i guies",
-    "section": "",
-    "text": "(Contingut pendent.)",
-    "crumbs": [
-      "Recursos",
-      "Manuals i guies"
-    ]
-  },
-  {
     "objectID": "ca/recursos/eines-programari.html",
     "href": "ca/recursos/eines-programari.html",
     "title": "Eines de programari",
     "section": "",
-    "text": "(Contingut pendent.)",
+    "text": "Un entorn de desenvolupament integrat (IDE) és un programari que proporciona un entorn complet per al desenvolupament d’aplicacions, incloent-hi un editor de codi, un compilador, un depurador i altres eines útils.\nUtilitzarem l’IDE Visual Studio Code (VS Code), que és gratuït i àmpliament utilitzat a la indústria del programari.\nHi ha innombrables tutorials disponibles per a VS Code que faciliten l’aprenentatge d’aquesta eina. A continuació, se’n presenten alguns de recomanats:\n\nTutorial: Get started with Visual Studio Code\nUser interface\nGetting Started with Python in VS Code",
+    "crumbs": [
+      "Recursos",
+      "Eines de programari"
+    ]
+  },
+  {
+    "objectID": "ca/recursos/eines-programari.html#entorn-de-desenvolupament-integrat-ide",
+    "href": "ca/recursos/eines-programari.html#entorn-de-desenvolupament-integrat-ide",
+    "title": "Eines de programari",
+    "section": "",
+    "text": "Un entorn de desenvolupament integrat (IDE) és un programari que proporciona un entorn complet per al desenvolupament d’aplicacions, incloent-hi un editor de codi, un compilador, un depurador i altres eines útils.\nUtilitzarem l’IDE Visual Studio Code (VS Code), que és gratuït i àmpliament utilitzat a la indústria del programari.\nHi ha innombrables tutorials disponibles per a VS Code que faciliten l’aprenentatge d’aquesta eina. A continuació, se’n presenten alguns de recomanats:\n\nTutorial: Get started with Visual Studio Code\nUser interface\nGetting Started with Python in VS Code",
+    "crumbs": [
+      "Recursos",
+      "Eines de programari"
+    ]
+  },
+  {
+    "objectID": "ca/recursos/eines-programari.html#github-codespaces",
+    "href": "ca/recursos/eines-programari.html#github-codespaces",
+    "title": "Eines de programari",
+    "section": "GitHub Codespaces",
+    "text": "GitHub Codespaces\nUn Codespace de GitHub és un entorn de desenvolupament preconfigurar i allotjat al núvol que permet escriure, executar i depurar codi directament des d’un navegador. Funciona com un espai de treball desechable i a demanda, associat a un repositori específic i llest per usar en minuts.\n\nConfiguració com a codi: Utilitza un fitxer de configuració (típicament devcontainer.json) per definir el sistema operatiu, les dependències instal·lades i les extensions de l’editor necessàries, assegurant que l’entorn sigui exactament igual cada vegada que s’iniciï.\nAdéu al “a la meva màquina funciona”: Com que qualsevol persona que col·labori en el repositori utilitza la mateixa infraestructura al núvol, s’eliminen completament els problemes de compatibilitat amb sistemes operatius locals.\nAccés flexible: Es pot utilitzar directament al web a través d’una versió de Visual Studio Code, o connectar-se de forma nativa des d’un VS Code d’escriptori.\nPotència escalable: El processament, la memòria i l’emmagatzematge depenen dels servidors de GitHub, la qual cosa permet compilar projectes pesats o entrenar models des d’un equip de baixos recursos.\n\nEn aquest curs, s’utilitzen de forma primària els serveis de GitHub Codespaces per executar codi Python, de manera que no és necessari instal·lar VS Code al teu ordinador.\nPer a més informació sobre GitHub Codespaces, consulta Quickstart for GitHub Codespaces.",
+    "crumbs": [
+      "Recursos",
+      "Eines de programari"
+    ]
+  },
+  {
+    "objectID": "ca/recursos/eines-programari.html#installació-local-de-visual-studio-code",
+    "href": "ca/recursos/eines-programari.html#installació-local-de-visual-studio-code",
+    "title": "Eines de programari",
+    "section": "Instal·lació local de Visual Studio Code",
+    "text": "Instal·lació local de Visual Studio Code\nUtilitzant un devcontainer, es pot replicar l’entorn de desenvolupament de GitHub Codespaces en un ordinador personal. Això permet treballar amb el mateix entorn que els altres, evitant problemes de compatibilitat. El desenvolupament en un entorn local pot ser més ràpid i no requereix connexió a internet.\nSi vols instal·lar Visual Studio Code al teu ordinador de manera que puguis executar el mateix entorn que a GitHub Codespaces, segueix les instruccions d’instal·lació i configuració que es detallen a continuació.\nPer executar devcontainers localment, el teu equip necessita programari que gestioni tant l’edició de codi com la virtualització. Per això, és necessari instal·lar els components següents:\n\nVisual Studio Code: L’editor base on treballaràs.\nDocker: El motor encarregat de crear, gestionar i executar els contenidors de forma aïllada.\n\nA Windows i macOS: Instal·la Docker Desktop. Si utilitzes Windows, és necessari tenir habilitat el Subsistema de Windows per a Linux (WSL 2) per garantir un bon rendiment i compatibilitat.\nA Linux: Instal·la Docker Engine i el plugin de Docker Compose. (Alternatives de codi obert com Podman també són compatibles amb VS Code, tot i que requereixen una configuració addicional).\n\nExtensió “Dev Containers”: És el pont oficial (desenvolupat per Microsoft) entre VS Code i Docker. S’instal·la des del mercat d’extensions del propi editor i és la que afegeix ordres clau com “Reobrir en contenidor”.\nGit (Altament recomanat): Encara que el contenidor pot arrencar sense ell, és essencial a l’equip local per clonar els repositoris que contenen els fitxers de configuració i gestionar el control de versions des de l’editor.\n\nUn cop instal·lats aquests components, VS Code detectarà automàticament qualsevol carpeta que contingui un fitxer devcontainer.json o un Dockerfile, i t’oferirà aixecar l’entorn amb un sol clic.\nUn excel·lent recurs per aprendre a configurar i utilitzar devcontainers a VS Code és el Dev Containers tutorial.",
     "crumbs": [
       "Recursos",
       "Eines de programari"
@@ -1530,17 +1541,6 @@
     ]
   },
   {
-    "objectID": "ca/recursos/tutorials.html",
-    "href": "ca/recursos/tutorials.html",
-    "title": "Tutorials",
-    "section": "",
-    "text": "(Contingut pendent.)",
-    "crumbs": [
-      "Recursos",
-      "Tutorials"
-    ]
-  },
-  {
     "objectID": "es/bibliografia/principal.html",
     "href": "es/bibliografia/principal.html",
     "title": "Bibliografía principal",
@@ -2051,21 +2051,43 @@
     "href": "es/recursos/herramientas-software.html",
     "title": "Herramientas de software",
     "section": "",
-    "text": "(Contenido pendiente.)",
+    "text": "Un entorno de desarrollo integrado (IDE) es un software que proporciona un entorno completo para el desarrollo de aplicaciones, incluyendo un editor de código, un compilador, un depurador y otras herramientas útiles.\nUtilizaremos el IDE Visual Studio Code (VS Code), que es gratuito y ampliamente utilizado en la industria del software.\nHay un sinnúmero de tutoriales disponibles para VS Code que facilitan el aprendizaje de esta herramienta. A continuación, se presentan algunos recomendados:\n\nTutorial: Get started with Visual Studio Code\nUser interface\nGetting Started with Python in VS Code",
     "crumbs": [
       "Recursos",
       "Herramientas de software"
     ]
   },
   {
-    "objectID": "es/recursos/tutoriales.html",
-    "href": "es/recursos/tutoriales.html",
-    "title": "Tutoriales",
+    "objectID": "es/recursos/herramientas-software.html#entorno-de-desarrollo-integrado-ide",
+    "href": "es/recursos/herramientas-software.html#entorno-de-desarrollo-integrado-ide",
+    "title": "Herramientas de software",
     "section": "",
-    "text": "(Contenido pendiente.)",
+    "text": "Un entorno de desarrollo integrado (IDE) es un software que proporciona un entorno completo para el desarrollo de aplicaciones, incluyendo un editor de código, un compilador, un depurador y otras herramientas útiles.\nUtilizaremos el IDE Visual Studio Code (VS Code), que es gratuito y ampliamente utilizado en la industria del software.\nHay un sinnúmero de tutoriales disponibles para VS Code que facilitan el aprendizaje de esta herramienta. A continuación, se presentan algunos recomendados:\n\nTutorial: Get started with Visual Studio Code\nUser interface\nGetting Started with Python in VS Code",
     "crumbs": [
       "Recursos",
-      "Tutoriales"
+      "Herramientas de software"
+    ]
+  },
+  {
+    "objectID": "es/recursos/herramientas-software.html#github-codespaces",
+    "href": "es/recursos/herramientas-software.html#github-codespaces",
+    "title": "Herramientas de software",
+    "section": "GitHub Codespaces",
+    "text": "GitHub Codespaces\nUn Codespace de GitHub es un entorno de desarrollo preconfigurado y alojado en la nube que permite escribir, ejecutar y depurar código directamente desde un navegador. Funciona como un espacio de trabajo desechable y bajo demanda, asociado a un repositorio específico y listo para usar en minutos.\n\nConfiguración como código: Utiliza un archivo de configuración (típicamente devcontainer.json) para definir el sistema operativo, las dependencias instaladas y las extensiones del editor necesarias, asegurando que el entorno sea exactamente igual cada vez que se inicie.\nAdiós al “en mi máquina funciona”: Como cualquier persona que colabore en el repositorio utiliza la misma infraestructura en la nube, se eliminan por completo los problemas de compatibilidad con sistemas operativos locales.\nAcceso flexible: Se puede utilizar directamente en la web a través de una versión de Visual Studio Code, o conectarse de forma nativa desde un VS Code de escritorio.\nPotencia escalable: El procesamiento, la memoria y el almacenamiento dependen de los servidores de GitHub, lo que permite compilar proyectos pesados o entrenar modelos desde un equipo de bajos recursos.\n\nEn este curso, se utilizan de forma primaria los servicios de GitHub Codespaces para ejecutar código Python, por lo que no es necesario instalar VS Code en tu ordenador.\nPara más información sobre GitHub Codespaces, consulta Quickstart for GitHub Codespaces.",
+    "crumbs": [
+      "Recursos",
+      "Herramientas de software"
+    ]
+  },
+  {
+    "objectID": "es/recursos/herramientas-software.html#instalación-local-de-visual-studio-code",
+    "href": "es/recursos/herramientas-software.html#instalación-local-de-visual-studio-code",
+    "title": "Herramientas de software",
+    "section": "Instalación local de Visual Studio Code",
+    "text": "Instalación local de Visual Studio Code\nUtilizando un devcontainer, se puede replicar el entorno de desarrollo de GitHub Codespaces en un ordenador personal. Esto permite trabajar con el mismo entorno que los demás, evitando problemas de compatibilidad. El desarrollo en un entorno local puede ser más rápido y no requiere conexión a internet.\nSi deseas instalar Visual Studio Code en tu ordenador de forma tal que puedas ejecutar el mismo entorno que en GitHub Codespaces, sigue las instrucciones de instalación y configuración que se detallan a continuación.\nPara ejecutar devcontainers localmente, tu equipo necesita de software que gestione tanto la edición de código como la virtualización. Por ello, es necesario instalar los siguientes componentes:\n\nVisual Studio Code: El editor base donde trabajarás.\nDocker: El motor encargado de crear, gestionar y ejecutar los contenedores de forma aislada.\n\nEn Windows y macOS: Instala Docker Desktop. Si utilizas Windows, es necesario tener habilitado el Subsistema de Windows para Linux (WSL 2) para garantizar un buen rendimiento y compatibilidad.\nEn Linux: Instala Docker Engine y el plugin de Docker Compose. (Alternativas de código abierto como Podman también son compatibles con VS Code, aunque requieren una configuración adicional).\n\nExtensión “Dev Containers”: Es el puente oficial (desarrollado por Microsoft) entre VS Code y Docker. Se instala desde el mercado de extensiones del propio editor y es la que añade comandos clave como “Reabrir en contenedor”.\nGit (Altamente recomendado): Aunque el contenedor puede arrancar sin él, es esencial en el equipo local para clonar los repositorios que contienen los archivos de configuración y gestionar el control de versiones desde el editor.\n\nUna vez instalados estos componentes, VS Code detectará automáticamente cualquier carpeta que contenga un archivo devcontainer.json o un Dockerfile, y te ofrecerá levantar el entorno con un solo clic.\nUn excelente recurso para aprender a configurar y utilizar devcontainers en VS Code es el Dev Containers tutorial.",
+    "crumbs": [
+      "Recursos",
+      "Herramientas de software"
     ]
   }
 ]
