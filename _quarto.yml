@@ -30,6 +30,9 @@ website:
               url: es/index.qmd
             - text: "Català"
               url: ca/index.qmd
+        - icon: fullscreen
+          href: "#full-view"
+          text: "Modo presentación"
 
       style: "docked"
       search: true
@@ -205,6 +208,7 @@ format:
       text: |
         <script src="/logo-href.js"></script>
         <script src="/live-copy-button.js"></script>
+        <script src="/full-view.js"></script>
 
 freeze: auto
 editor: source
