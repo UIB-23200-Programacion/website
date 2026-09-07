@@ -31,7 +31,7 @@ website:
             - text: "Català"
               url: ca/index.qmd
         - icon: fullscreen
-          href: "#full-view"
+          href: "#"
           text: "Modo presentación"
 
       style: "docked"
