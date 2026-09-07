@@ -67,18 +67,21 @@
       display: none !important;
     }
 
-    /* Expandir el contenido al ancho completo */
+    /* Expandir el contenido al ancho completo.
+       Usamos px (no rem/em) para que el padding NO escale con Ctrl++. */
     #quarto-content,
     .quarto-container {
       max-width: 100% !important;
-      padding-left: 2rem !important;
-      padding-right: 2rem !important;
+      padding-left: 24px !important;
+      padding-right: 24px !important;
     }
 
-    /* Asegurar que el área principal use todo el espacio disponible */
+    /* El área principal y sus posibles paddings heredados también en px */
     main#quarto-document-content,
     .content.column-body {
       max-width: 100% !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
 
     /* Variables CSS de Quarto para el grid de columnas */
