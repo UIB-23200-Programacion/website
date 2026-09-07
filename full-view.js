@@ -67,19 +67,33 @@
       display: none !important;
     }
 
-    /* Expandir el contenido al ancho completo.
-       Usamos px (no rem/em) para que el padding NO escale con Ctrl++. */
+    /* Eliminar todos los max-width que generan márgenes laterales.
+       Con max-width en em/px, al hacer zoom (el viewport CSS se estrecha)
+       los márgenes laterales crecen. La solución es quitarlos. */
     #quarto-content,
-    .quarto-container {
-      max-width: 100% !important;
-      padding-left: 24px !important;
-      padding-right: 24px !important;
+    .quarto-container,
+    .page-columns,
+    main#quarto-document-content,
+    .content,
+    .content.column-body,
+    #quarto-document-content > section,
+    #quarto-document-content > div {
+      max-width: none !important;
+      width: 100% !important;
     }
 
-    /* El área principal y sus posibles paddings heredados también en px */
+    /* Padding exterior fijo: solo en el wrapper más externo */
+    #quarto-content,
+    .quarto-container {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Sin padding adicional en el área principal (ya lo tiene el wrapper) */
     main#quarto-document-content,
-    .content.column-body {
-      max-width: 100% !important;
+    .content.column-body,
+    .page-columns {
       padding-left: 0 !important;
       padding-right: 0 !important;
     }
