@@ -6,18 +6,28 @@
  */
 (function () {
   // 1. Actualizar el enlace del botón de sidebar para apuntar a la URL actual + ?full=1
-  //    El botón tiene href="#full-view" en el YAML; aquí lo corregimos dinámicamente.
-  document.querySelectorAll('a[href="#full-view"], a[href$="#full-view"]').forEach(function (a) {
-    const url = new URL(window.location.href);
-    url.searchParams.set('full', '1');
-    a.href = url.toString();
-    a.title = 'Modo presentación (sin sidebar)';
-    // Evitar que el hash llegue a la URL de destino
-    a.addEventListener('click', function (e) {
-      e.preventDefault();
-      window.location.href = a.href;
+  //    Se localiza por el icono Bootstrap "bi-fullscreen" que Quarto renderiza.
+  //    (Quarto resuelve href: "#" relativo a la raíz, por eso lo sobreescribimos aquí.)
+  function updateFullscreenLink() {
+    document.querySelectorAll('a').forEach(function (a) {
+      if (a.querySelector('i.bi-fullscreen, .bi-fullscreen')) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('full', '1');
+        a.href = url.toString();
+        a.title = 'Modo presentación (sin sidebar)';
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.location.href = a.href;
+        });
+      }
     });
-  });
+  }
+  // Ejecutar cuando el DOM esté listo (el sidebar se renderiza tras DOMContentLoaded)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateFullscreenLink);
+  } else {
+    updateFullscreenLink();
+  }
 
   // 2. Si no estamos en modo full, nada más que hacer
   if (new URLSearchParams(window.location.search).get('full') !== '1') return;
