@@ -32,7 +32,7 @@ D'altra banda, l'assignatura està estretament relacionada amb les matèries que
 
 ## Continguts
 
-Tema 1: Fonaments, Entorns Moderns i Assistents d'IA (2 hores presencials, 3 hores no presencials)
+Tema 1: Fonaments, Entorns Moderns i Assistents d'IA (4 hores presencials, 6 hores no presencials)
 
 - 1.1. Concepte de programa, llenguatges d'alt nivell (Python) i el procés d'interpretació.
 - 1.2. Introducció a Visual Studio Code (VS Code).
@@ -92,7 +92,7 @@ Tema 8: Ecosistema Científic de Python (12 hores presencials, 18 hores no prese
 - 8.4. SymPy: càlcul simbòlic, simplificació i resolució d'equacions.
 - 8.5. SymPy: derivació i integració.
 
-Tema 9: Disseny Algorítmic i Resolució de Problemes (6 hores presencials, 9 hores no presencials)
+Tema 9: Disseny Algorítmic i Resolució de Problemes (4 hores presencials, 6 hores no presencials)
 
 - 9.1. Estratègies per dividir un problema en subrutines independents.
 - 9.2. Disseny descendent (Top-Down) i disseny ascendent (Bottom-Up).

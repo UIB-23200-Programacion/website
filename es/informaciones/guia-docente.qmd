@@ -32,7 +32,7 @@ Es recomendable que el estudiantado tenga conocimientos previos de uso de los or
 
 ## Contenidos
 
-Tema 1: Fundamentos, Entornos Modernos y Asistentes IA (2 horas presenciales, 3 horas no presenciales)
+Tema 1: Fundamentos, Entornos Modernos y Asistentes IA (4 horas presenciales, 6 horas no presenciales)
 
 - 1.1. Concepto de programa, lenguajes de alto nivel (Python) y el proceso de interpretación.
 - 1.2. Introducción a Visual Studio Code (VS Code).
@@ -92,7 +92,7 @@ Tema 8: Ecosistema Científico de Python (12 horas presenciales, 18 horas no pre
 - 8.4. SymPy: cálculo simbólico, simplificación y resolución de ecuaciones. 
 - 8.5. SymPy: derivación e integración.
 
-Tema 9: Diseño Algorítmico y Resolución de Problemas (6 horas presenciales, 9 horas no presenciales)
+Tema 9: Diseño Algorítmico y Resolución de Problemas (4 horas presenciales, 6 horas no presenciales)
 
 - 9.1. Estrategias para dividir un problema en subrutinas independientes.
 - 9.2. Diseño descendente (Top-Down) y diseño ascendente (Bottom-Up).

@@ -1,0 +1,14 @@
+# ─── GitHub Linguist overrides ────────────────────────────────────────────────
+#
+# La extensión quarto-live incluye archivos .lua de terceros bajo _extensions/.
+# Se marcan como "vendored" para que GitHub no los cuente en las estadísticas
+# de lenguaje del repositorio.
+
+_extensions/**   linguist-vendored
+
+# Los archivos .qmd son fuente Quarto (Markdown extendido), no código ejecutable.
+# Se declaran explícitamente para repos con versiones antiguas de Linguist.
+*.qmd            linguist-language=Quarto
+
+# Los archivos de freeze generados automáticamente por Quarto no son código fuente.
+_freeze/**       linguist-generated
