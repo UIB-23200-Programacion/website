@@ -67,6 +67,12 @@ Després de completar aquests passos, tindreu un **perfil acadèmic bàsic i cor
 
 ::: {.callout-note title="4 - Reportar el compte de GitHub a l'Aula Digital" collapse="true"}
 
+Un cop creat el compte de GitHub i completat el perfil, has de **reportar el teu compte de GitHub a l'Aula Digital**. Això permetrà afegir el vostre compte a la llista d'estudiants autoritzats a l'organització del curs a GitHub.
+
+Per això s'ha generat una [**tasca a l'Aula Digital**](https://ad.uib.es/estudis2627/mod/assign/view.php?id=318505). Deus:
+1. Accedir a l'Aula Digital i localitzar la tasca **"Reportar su cuenta de GitHub en el Aula Digital"**.
+2. Introduir el teu **nom d'usuari de GitHub** (el que vas triar en crear el compte) al camp de lliurament de la tasca.
+
 :::
 
 ::: {.callout-note title="5 - Sol·licitar el GitHub Student Developer Pack" collapse="true"}

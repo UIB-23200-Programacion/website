@@ -67,6 +67,11 @@ Tras completar estos pasos, tendrás un **perfil académico básico y correcto**
 
 ::: {.callout-note title="4 - Reportar la cuenta de GitHub en el Aula Digital" collapse="true"}
 
+Una vez creada la cuenta de GitHub y completado el perfil, debes **reportar tu cuenta de GitHub en el Aula Digital**. Esto permitirá agregar tu cuenta a la lista de estudiantes autorizados en la organización del curso en GitHub.
+
+Para esto se ha generado una [**tarea en el Aula Digital**](https://ad.uib.es/estudis2627/mod/assign/view.php?id=318505). Debes:
+1. Acceder al Aula Digital y localizar la tarea **"Reportar su cuenta de GitHub en el Aula Digital"**.
+2. Introducir tu **nombre de usuario de GitHub** (el que elegiste al crear la cuenta) en el campo de entrega de la tarea.
 
 :::
 
