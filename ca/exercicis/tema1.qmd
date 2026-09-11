@@ -99,9 +99,21 @@ GitHub sol tardar entre **1 i 5 dies** a revisar la sol·licitud. Rebreu un corr
 
 Aquest exercici té com a objectiu que aprengueu a:
 
-1. Crear un repositori a GitHub.
+1. Crear un repositori a **GitHub**.
 2. Configurar-lo mínimament.
-3. Aixecar un Codespace associat a aquest repositori.
+3. Aixecar un **Codespace** associat a aquest repositori.
+4. Familiaritzar-vos amb la interfície de **VS Code** (l'**IDE** a utilitzar) i el terminal integrat.
+5. Desar canvis al vostre repositori mitjançant el **Sistema de Control de Versions Git**.
+
+::: {#imp-codespace .callout-important title="IDE"}
+Un **IDE** (Integrated Development Environment, per les seves sigles en anglès) és una aplicació de programari que concentra totes les eines que un programador necessita per crear programes en una única interfície. En la seva forma més bàsica, un IDE combina tres eines fonamentals en una mateixa finestra perquè no hàgiu de canviar de programa constantment:
+
+1. **Un editor de codi intel·ligent:** Un processador de text dissenyat específicament per programar. Acoloreix les paraules clau, autocompleta el codi i us avisa d'errors tipogràfics en temps real.
+2. **Un motor d'execució (Compilador/Intèrpret):** Us permet executar i provar el vostre programa directament fent clic en un botó (com el botó "Play"), traduint el vostre codi al llenguatge que entén la màquina.
+3. **Un depurador (Debugger):** Una eina de diagnòstic que us permet "pausar" el programa mentre està funcionant, analitzar-lo pas a pas i trobar on us heu equivocat en la lògica.
+
+En resum, un IDE (com Visual Studio Code) existeix per eliminar el treball mecànic i repetitiu, permetent a l'usuari centrar-se purament en resoldre el problema abstracte. Actualment escriure programes sense un IDE és com confeccionar un moble només amb un martell i claus.
+:::
 
 ::: {#imp-codespace .callout-important title="Repositori i Codespace"}
 Un **repositori de GitHub** és un espai on es desa un projecte: conté el codi, arxius del projecte i l'historial de revisions (commits) que permeten seguir i recuperar canvis al llarg del temps.
@@ -388,7 +400,7 @@ L'entorn tindrà:
 
 Per a més informació sobre la interfície de VS Code, podeu consultar:
 
-- [Learn Visual Studio Code in 15 minutes: 2026 Official Beginner Tutorial](https://www.youtube.com/watch?v=VqCgcpAypFQ){target="_blank" rel="noopener noreferrer"} 
+- [Learn Visual Studio Code in 15 minutes: 2026 Official Beginner Tutorial](https://www.youtube.com/watch?v=VqCgcpAypFQ){target="_blank" rel="noopener noreferrer"}
 - [Visual Studio Code - User Interface](https://code.visualstudio.com/docs/getstarted/userinterface){target="_blank" rel="noopener noreferrer"}.
 
 :::
@@ -445,7 +457,69 @@ Python 3.13.5
 
 :::
 
-::: {.callout-note title="8 - Tancar el Codespace" collapse="true"}
+::: {#imp-codespace .callout-important title="Sistema de Control de Versions (Git)"}
+Un **Sistema de Control de Versions** és una eina que elimina el caos de treballar amb múltiples versions d'un mateix arxiu. Actua com una màquina del temps fotogràfica per al vostre codi. Els seus tres avantatges principals són:
+
+- **Historial absolut:** Registra quina línia de codi s'ha canviat, quan s'ha canviat i qui ho ha fet (acompanyat d'una nota explicativa).
+- **Viatge en el temps:** Si avui escriviu quelcom que trenca el programa que ahir funcionava perfectament, podeu prémer un "desfer màgic" i tornar a la fotografia exacta d'ahir.
+- **Col·laboració coordinada:** Permet que diversos usuaris treballin en el mateix arxiu al mateix temps. El sistema és prou intel·ligent per fusionar la feina de tots sense esborrar la del company.
+:::
+
+::: {.callout-note title="8 - Desar els canvis al vostre repositori" collapse="true"}
+
+Per desar els canvis de forma permanent al vostre repositori `t01-fundamentos` a GitHub, fem servir el sistema de control de versions anomenat **Git** que ja està instal·lat al vostre Codespace. Aquest procés consta de tres passos obligatoris que segueixen l'**"Analogia de l'Enviament per Correu"**:
+
+1. **Stage (Preparar):** Posar l'arxiu a la caixa de cartró.
+2. **Commit (Confirmar):** Tancar la caixa i enganxar-hi una etiqueta que diu què hi ha dins.
+3. **Push (Empènyer):** Lliurar la caixa al carter perquè la porti al servidor de GitHub.
+
+A continuació les instruccions precises per complir aquests passos de dues maneres diferents: usant la **interfície gràfica de VS Code** o usant el **terminal**.
+
+::: {.callout-tip appearance="simple" title="Variant 1: Usant la Interfície Visual (Source Control)"}
+1. **Obriu el panell de Source Control:** (la tercera icona a la barra lateral esquerra sembla un petit graf o branca). En fer clic, veureu el vostre arxiu `prova.py` llistat sota la secció **Changes** (Canvis).
+
+2. **Poseu l'arxiu a la caixa (Stage Changes):** Passeu el ratolí per sobre del nom `prova.py`. Veureu que apareix una icona amb el símbol més (**`+`**). Feu-hi clic. El vostre arxiu passarà a una nova llista anomenada **Staged Changes** (Canvis preparats).
+
+3. **Poseu l'etiqueta i tanqueu la caixa (Commit):** Just a sobre de la llista d'arxius hi ha un quadre de text que diu *Message*. Escriviu-hi un resum clar del que heu fet, per exemple: `Afegit programa de prova que funciona correctament` (si Copilot està activat, pot suggerir-vos un missatge automàticament fent clic a les estrelles al final de *Message* (Generate Commit Message)). A continuació, feu clic al botó blau que diu **Commit**.
+
+4. **Envieu el paquet a GitHub (Push / Sync):** El botó blau canviarà i ara dirà **Sync Changes** (Sincronitzar canvis). Feu clic en aquest botó blau. En uns segons, el vostre codi estarà segur i desat al vostre repositori `t01-fundamentos`.
+:::
+
+::: {.callout-tip appearance="simple" title="Variant 2: Usant Ordres (el `Terminal`)"}
+1. **Obriu el `Terminal` integrat:** Si no teniu el terminal (consola) obert a la part inferior del vostre Codespace, aneu al menú hamburguesa a la part superior de la pantalla (les tres línies horitzontals), feu clic i seleccioneu **Terminal > New Terminal**.
+
+2. Escriviu l'ordre següent i premeu **Enter**:
+
+    ```bash
+    git status
+    ```
+
+    El sistema us respondrà en vermell que `prova.py` ha estat modificat o és un arxiu nou, indicant que encara no està desat al repositori.
+
+3. **Poseu l'arxiu a la caixa (Stage Changes):** Escriviu l'ordre següent i premeu **Enter**:
+
+    ```bash
+    git add prova.py
+    ```
+
+4. **Poseu l'etiqueta i tanqueu la caixa (Commit):** Escriviu l'ordre següent (les cometes són obligatòries) i premeu **Enter**:
+
+    ```bash
+    git commit -m "Afegit programa de prova que funciona correctament"
+    ```
+
+5. **Envieu el paquet a GitHub (Push):** Escriviu l'ordre següent i premeu **Enter**:
+
+    ```bash
+    git push
+    ```
+:::
+
+Qualsevol dels dos mètodes aconsegueix exactament el mateix. Es recomana començar per la variant 1 per entendre el flux conceptual (Stage -> Commit -> Push) visualment, i després transicionar a la Variant 2 en pràctiques posteriors.
+
+:::
+
+::: {.callout-note title="9 - Tancar el Codespace" collapse="true"}
 
 **Aquest és un pas summament important**. Quan acabeu de treballar al Codespace, l'heu de tancar per alliberar recursos i evitar que s'acumulin càrrecs al vostre compte de GitHub. **Principalment perquè el nombre d'hores de Codespaces gratuïtes és limitat.**
 

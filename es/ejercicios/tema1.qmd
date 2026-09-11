@@ -112,7 +112,7 @@ Un **IDE** (Integrated Development Environment, por sus siglas en inglés) es un
 2. **Un motor de ejecución (Compilador/Intérprete):** Te permite ejecutar y probar tu programa directamente haciendo clic en un botón (como el botón "Play"), traduciendo tu código al lenguaje que entiende la máquina.
 3. **Un depurador (Debugger):** Una herramienta de diagnóstico que te permite "pausar" el programa mientras está funcionando, analizarlo paso a paso y encontrar dónde te has equivocado en la lógica.
 
-En resumen, un IDE (como Visual Studio Code) existe para eliminar el trabajo mecánico y repetitivo, permitiendo al usuario centrarse puramente en resolver el problema abstracto. Actualmente escribir programas sin un IDE es como confeccionar un mueble solo con un martillo y clavoss.
+En resumen, un IDE (como Visual Studio Code) existe para eliminar el trabajo mecánico y repetitivo, permitiendo al usuario centrarse puramente en resolver el problema abstracto. Actualmente escribir programas sin un IDE es como confeccionar un mueble solo con un martillo y clavos.
 :::
 
 ::: {#imp-codespace .callout-important title="Repositorio y Codespace"}
