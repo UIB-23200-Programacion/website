@@ -1153,7 +1153,7 @@ Concepto Clave&nbsp;2: Sistema de Control de Versiones (Git)
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="8 - Guardar los cambios en tu repositorio">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1162,7 +1162,7 @@ Concepto Clave&nbsp;2: Sistema de Control de Versiones (Git)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Para guardar los cambios de forma permanente en tu repositorio <code>t01-fundamentos</code> en GitHub, usamos el sistema de control de versiones llamado <strong>Git</strong> que ya está instalado en tu Codespace. Este proceso consta de tres pasos obligatorios que siguen la <strong>“Analogía del Envío por Correo”</strong>:</p>
 <ol type="1">
@@ -1171,14 +1171,34 @@ Concepto Clave&nbsp;2: Sistema de Control de Versiones (Git)
 <li><strong>Push (Empujar):</strong> Entregar la caja al cartero para que la lleve al servidor de GitHub.</li>
 </ol>
 <p>A continuación las instrucciones precisas para cumplir con estos pasos de dos maneras diferentes: usando la <strong>interfaz gráfica de VS Code</strong> o usando la <strong>terminal</strong>.</p>
-<p><strong>Variante 1: Usando la Interfaz Visual (Source Control)</strong></p>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled" title="Variante 1: Usando la Interfaz Visual (Source Control)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Variante 1: Usando la Interfaz Visual (Source Control)
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>Abre el panel de Source Control:</strong> (el tercer icono en la barra lateral izquierda parece un pequeño grafo o rama). Al hacer clic, verás tu archivo <code>prueba.py</code> listado bajo la sección <strong>Changes</strong> (Cambios).</p></li>
 <li><p><strong>Mete el archivo en la caja (Stage Changes):</strong> Pasa el ratón por encima del nombre <code>prueba.py</code>. Verás que aparece un icono con el símbolo más (<strong><code>+</code></strong>). Haz clic en él. Tu archivo pasará a una nueva lista llamada <strong>Staged Changes</strong> (Cambios preparados).</p></li>
 <li><p><strong>Pon la etiqueta y cierra la caja (Commit):</strong> Justo encima de la lista de archivos hay un cuadro de texto que dice <em>Message</em>. Escribe ahí un resumen claro de lo que has hecho, por ejemplo: <code>Añadido programa de prueba que funciona correctamente</code> (si Copilot está activado, puede sugerirte un mensaje automáticamente haciendo clic en las estrellas al final de <em>Message</em> (Generate Commit Message)). A continuación, haz clic en el botón azul que dice <strong>Commit</strong>.</p></li>
 <li><p><strong>Envía el paquete a GitHub (Push / Sync):</strong> El botón azul cambiará y ahora dirá <strong>Sync Changes</strong> (Sincronizar cambios). Haz clic en ese botón azul. En unos segundos, tu código estará seguro y guardado en tu repositorio <code>t01-fundamentos</code>.</p></li>
 </ol>
-<p><strong>Variante 2: Usando Comandos (la <code>Terminal</code>)</strong></p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled" title="Variante 2: Usando Comandos (la `Terminal`)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Variante 2: Usando Comandos (la <code>Terminal</code>)
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>Abre la <code>Terminal</code> integrada:</strong> Si no tienes la terminal (consola) abierta en la parte inferior de tu Codespace, ve al menú hamburguesa en la parte superior de la pantalla (las tres líneas horizontales), has clic y selecciona <strong>Terminal &gt; New Terminal</strong>.</p></li>
 <li><p>Escribe el siguiente comando y pulsa <strong>Enter</strong>:</p>
@@ -1191,12 +1211,14 @@ Concepto Clave&nbsp;2: Sistema de Control de Versiones (Git)
 <li><p><strong>Envía el paquete a GitHub (Push):</strong> Escribe el siguiente comando y pulsa <strong>Enter</strong>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
+</div>
+</div>
 <p>Cualquiera de los dos métodos logra exactamente lo mismo. Recomiendo empezar por la variante 1 para entender el flujo conceptual (Stage -&gt; Commit -&gt; Push) visualmente, y luego transicionar a la Variante 2 en prácticas posteriores.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="9 - Cerrar el Codespace">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1205,7 +1227,7 @@ Concepto Clave&nbsp;2: Sistema de Control de Versiones (Git)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>Este es un paso sumamente importante</strong>. Cuando termines de trabajar en el Codespace, debes cerrarlo para liberar recursos y evitar que se acumulen cargos en tu cuenta de GitHub. <strong>Principalmente ya que el número de horas de Codespaces gratuitas es limitado.</strong></p>
 <ol type="1">
