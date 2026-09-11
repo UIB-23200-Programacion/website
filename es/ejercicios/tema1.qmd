@@ -366,7 +366,6 @@ Un **GitHub Codespace** es un entorno de desarrollo en la nube, listo para usar,
     🔍 To explore VS Code to its fullest, search using the Command Palette (Cmd/Ctrl + Shift + P)
     ```
 
-
 :::
 
 ::: {.callout-note title="5 - Reconocer la interfaz del Codespace (VS Code)" collapse="true"}
@@ -445,7 +444,69 @@ Python 3.13.5
 
 :::
 
-::: {.callout-note title="8 - Cerrar el Codespace" collapse="true"}
+::: {#imp-codespace .callout-important title="Sistema de Control de Versiones (Git)"}
+Un **Sistema de Control de Versiones** es una herramienta que elimina el caos de trabajar con múltiples versiones de un mismo archivo. Actúa como una máquina del tiempo fotográfica para tu código. Sus tres ventajas principales son:
+
+- **Historial absoluto:** Registra qué línea de código se cambió, cuándo se cambió y quién lo hizo (acompañado de una nota explicativa).
+- **Viaje en el tiempo:** Si hoy escribes algo que rompe el programa que ayer funcionaba perfectamente, puedes presionar un "deshacer mágico" y volver a la fotografía exacta de ayer.
+- **Colaboración coordinada:** Permite que varios usuarios trabajen en el mismo archivo al mismo tiempo. El sistema es lo bastante inteligente para fusionar el trabajo de todos sin borrar lo del compañero.
+:::
+
+::: {.callout-note title="8 - Guardar los cambios en tu repositorio" collapse="true"}
+
+Para guardar los cambios de forma permanente en tu repositorio `t01-fundamentos` en GitHub, usamos el sistema de control de versiones llamado **Git** que ya está instalado en tu Codespace. Este proceso consta de tres pasos obligatorios que siguen la **"Analogía del Envío por Correo"**:
+
+1. **Stage (Preparar):** Meter el archivo en la caja de cartón.
+2. **Commit (Confirmar):** Cerrar la caja y pegarle una etiqueta que dice qué hay dentro.
+3. **Push (Empujar):** Entregar la caja al cartero para que la lleve al servidor de GitHub. 
+
+A continuación las instrucciones precisas para cumplir con estos pasos de dos maneras diferentes: usando la **interfaz gráfica de VS Code** o usando la **terminal**.
+
+**Variante 1: Usando la Interfaz Visual (Source Control)**
+
+1. **Abre el panel de Source Control:** (el tercer icono en la barra lateral izquierda parece un pequeño grafo o rama). Al hacer clic, verás tu archivo `prueba.py` listado bajo la sección **Changes** (Cambios).
+
+2. **Mete el archivo en la caja (Stage Changes):** Pasa el ratón por encima del nombre `prueba.py`. Verás que aparece un icono con el símbolo más (**`+`**). Haz clic en él. Tu archivo pasará a una nueva lista llamada **Staged Changes** (Cambios preparados).
+
+3. **Pon la etiqueta y cierra la caja (Commit):** Justo encima de la lista de archivos hay un cuadro de texto que dice *Message*. Escribe ahí un resumen claro de lo que has hecho, por ejemplo: `Añadido programa de prueba que funciona correctamente` (si Copilot está activado, puede sugerirte un mensaje automáticamente haciendo clic en las estrellas al final de *Message* (Generate Commit Message)). A continuación, haz clic en el botón azul que dice **Commit**.
+
+4. **Envía el paquete a GitHub (Push / Sync):** El botón azul cambiará y ahora dirá **Sync Changes** (Sincronizar cambios). Haz clic en ese botón azul. En unos segundos, tu código estará seguro y guardado en tu repositorio `t01-fundamentos`.
+
+**Variante 2: Usando Comandos (la `Terminal`)**
+
+1. **Abre la `Terminal` integrada:** Si no tienes la terminal (consola) abierta en la parte inferior de tu Codespace, ve al menú hamburguesa en la parte superior de la pantalla (las tres líneas horizontales), has clic y selecciona **Terminal > New Terminal**.
+
+2. Escribe el siguiente comando y pulsa **Enter**:
+
+    ```bash
+    git status
+    ```
+
+    El sistema te responderá en rojo que `prueba.py` ha sido modificado o es un archivo nuevo, indicando que aún no está guardado en el repositorio.
+
+3. **Mete el archivo en la caja (Stage Changes):** Escribe el siguiente comando y pulsa **Enter**:
+
+    ```bash
+    git add prueba.py
+    ```
+
+4. **Pon la etiqueta y cierra la caja (Commit):** Escribe el siguiente comando (las comillas son obligatorias) y pulsa **Enter**:
+
+    ```bash
+    git commit -m "Añadido programa de prueba que funciona correctamente"
+    ```
+
+5. **Envía el paquete a GitHub (Push):** Escribe el siguiente comando y pulsa **Enter**:
+
+    ```bash
+    git push
+    ```
+
+Cualquiera de los dos métodos logra exactamente lo mismo. Recomiendo empezar por la variante 1 para entender el flujo conceptual (Stage -> Commit -> Push) visualmente, y luego transicionar a la Variante 2 en prácticas posteriores.
+
+:::
+
+::: {.callout-note title="9 - Cerrar el Codespace" collapse="true"}
 
 **Este es un paso sumamente importante**. Cuando termines de trabajar en el Codespace, debes cerrarlo para liberar recursos y evitar que se acumulen cargos en tu cuenta de GitHub. **Principalmente ya que el número de horas de Codespaces gratuitas es limitado.**
 
