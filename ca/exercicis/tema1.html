@@ -733,17 +733,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="exercici-1.2">Exercici 1.2</h2>
 <p>Aquest exercici té com a objectiu que aprengueu a:</p>
 <ol type="1">
-<li>Crear un repositori a GitHub.</li>
+<li>Crear un repositori a <strong>GitHub</strong>.</li>
 <li>Configurar-lo mínimament.</li>
-<li>Aixecar un Codespace associat a aquest repositori.</li>
+<li>Aixecar un <strong>Codespace</strong> associat a aquest repositori.</li>
+<li>Familiaritzar-vos amb la interfície de <strong>VS Code</strong> (l’<strong>IDE</strong> a utilitzar) i el terminal integrat.</li>
+<li>Desar canvis al vostre repositori mitjançant el <strong>Sistema de Control de Versions Git</strong>.</li>
 </ol>
+<div id="imp-codespace" class="callout callout-style-default callout-important no-icon callout-titled" title="IDE">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;1: IDE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>IDE</strong> (Integrated Development Environment, per les seves sigles en anglès) és una aplicació de programari que concentra totes les eines que un programador necessita per crear programes en una única interfície. En la seva forma més bàsica, un IDE combina tres eines fonamentals en una mateixa finestra perquè no hàgiu de canviar de programa constantment:</p>
+<ol type="1">
+<li><strong>Un editor de codi intel·ligent:</strong> Un processador de text dissenyat específicament per programar. Acoloreix les paraules clau, autocompleta el codi i us avisa d’errors tipogràfics en temps real.</li>
+<li><strong>Un motor d’execució (Compilador/Intèrpret):</strong> Us permet executar i provar el vostre programa directament fent clic en un botó (com el botó “Play”), traduint el vostre codi al llenguatge que entén la màquina.</li>
+<li><strong>Un depurador (Debugger):</strong> Una eina de diagnòstic que us permet “pausar” el programa mentre està funcionant, analitzar-lo pas a pas i trobar on us heu equivocat en la lògica.</li>
+</ol>
+<p>En resum, un IDE (com Visual Studio Code) existeix per eliminar el treball mecànic i repetitiu, permetent a l’usuari centrar-se purament en resoldre el problema abstracte. Actualment escriure programes sense un IDE és com confeccionar un moble només amb un martell i claus.</p>
+</div>
+</div>
 <div id="imp-codespace" class="callout callout-style-default callout-important no-icon callout-titled" title="Repositori i Codespace">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Concepte Clau&nbsp;1: Repositori i Codespace
+Concepte Clau&nbsp;2: Repositori i Codespace
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -753,7 +774,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="1 - Accedir al vostre compte de GitHub (si no ho heu fet ja)">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -762,7 +783,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>Obrir el navegador.</li>
@@ -774,7 +795,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="2 - Crear el repositori `t01-fundamentos`">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -783,7 +804,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><p><strong>Pas 1:</strong> A la part superior esquerra, fer clic a <code>+</code> (<img src="../../images/signomas.png" class="img-fluid" width="50">).</p></li>
@@ -807,7 +828,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="3 - Crear un Codespace preconfigurat per a Python">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -816,7 +837,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><p><strong>Pas 1:</strong> Crear la carpeta <code>.devcontainer</code> i el fitxer <code>devcontainer.json</code></p>
@@ -995,7 +1016,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="4 - Arrancar el Codespace">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1004,7 +1025,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><p><strong>Pas 1:</strong> Feu clic a <strong>Code → Codespaces</strong>.</p></li>
@@ -1034,7 +1055,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="5 - Reconèixer la interfície del Codespace (VS Code)">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1043,7 +1064,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>L’entorn tindrà:</p>
 <ul>
@@ -1069,7 +1090,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="6 - Verificar que Python està configurat">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1078,7 +1099,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>A la <strong><code>Terminal</code></strong> del Codespace tindreu el prompt de la shell, que sol ser quelcom com:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">programacion23200</span><span class="kw">)</span> <span class="ex">@el_vostre_usuari</span> ➜ /workspaces/t01-fundamentos <span class="er">(</span><span class="ex">main</span><span class="kw">)</span> <span class="ex">$</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1091,7 +1112,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="7 - Crear un arxiu de prova i executar-lo">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1100,7 +1121,7 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p>Al <strong><code>Explorador</code></strong>, prémer <strong>New File</strong> o <strong>Nou arxiu</strong> (<img src="../../images/newfile.png" class="img-fluid" width="30">).</p></li>
@@ -1121,17 +1142,100 @@ Concepte Clau&nbsp;1: Repositori i Codespace
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note no-icon callout-titled" title="8 - Tancar el Codespace">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div id="imp-codespace" class="callout callout-style-default callout-important no-icon callout-titled" title="Sistema de Control de Versions (Git)">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>8 - Tancar el Codespace
+Concepte Clau&nbsp;3: Sistema de Control de Versions (Git)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>Sistema de Control de Versions</strong> és una eina que elimina el caos de treballar amb múltiples versions d’un mateix arxiu. Actua com una màquina del temps fotogràfica per al vostre codi. Els seus tres avantatges principals són:</p>
+<ul>
+<li><strong>Historial absolut:</strong> Registra quina línia de codi s’ha canviat, quan s’ha canviat i qui ho ha fet (acompanyat d’una nota explicativa).</li>
+<li><strong>Viatge en el temps:</strong> Si avui escriviu quelcom que trenca el programa que ahir funcionava perfectament, podeu prémer un “desfer màgic” i tornar a la fotografia exacta d’ahir.</li>
+<li><strong>Col·laboració coordinada:</strong> Permet que diversos usuaris treballin en el mateix arxiu al mateix temps. El sistema és prou intel·ligent per fusionar la feina de tots sense esborrar la del company.</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="8 - Desar els canvis al vostre repositori">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>8 - Desar els canvis al vostre repositori
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Per desar els canvis de forma permanent al vostre repositori <code>t01-fundamentos</code> a GitHub, fem servir el sistema de control de versions anomenat <strong>Git</strong> que ja està instal·lat al vostre Codespace. Aquest procés consta de tres passos obligatoris que segueixen l’<strong>“Analogia de l’Enviament per Correu”</strong>:</p>
+<ol type="1">
+<li><strong>Stage (Preparar):</strong> Posar l’arxiu a la caixa de cartró.</li>
+<li><strong>Commit (Confirmar):</strong> Tancar la caixa i enganxar-hi una etiqueta que diu què hi ha dins.</li>
+<li><strong>Push (Empènyer):</strong> Lliurar la caixa al carter perquè la porti al servidor de GitHub.</li>
+</ol>
+<p>A continuació les instruccions precises per complir aquests passos de dues maneres diferents: usant la <strong>interfície gràfica de VS Code</strong> o usant el <strong>terminal</strong>.</p>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled" title="Variant 1: Usant la Interfície Visual (Source Control)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Variant 1: Usant la Interfície Visual (Source Control)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>Obriu el panell de Source Control:</strong> (la tercera icona a la barra lateral esquerra sembla un petit graf o branca). En fer clic, veureu el vostre arxiu <code>prova.py</code> llistat sota la secció <strong>Changes</strong> (Canvis).</p></li>
+<li><p><strong>Poseu l’arxiu a la caixa (Stage Changes):</strong> Passeu el ratolí per sobre del nom <code>prova.py</code>. Veureu que apareix una icona amb el símbol més (<strong><code>+</code></strong>). Feu-hi clic. El vostre arxiu passarà a una nova llista anomenada <strong>Staged Changes</strong> (Canvis preparats).</p></li>
+<li><p><strong>Poseu l’etiqueta i tanqueu la caixa (Commit):</strong> Just a sobre de la llista d’arxius hi ha un quadre de text que diu <em>Message</em>. Escriviu-hi un resum clar del que heu fet, per exemple: <code>Afegit programa de prova que funciona correctament</code> (si Copilot està activat, pot suggerir-vos un missatge automàticament fent clic a les estrelles al final de <em>Message</em> (Generate Commit Message)). A continuació, feu clic al botó blau que diu <strong>Commit</strong>.</p></li>
+<li><p><strong>Envieu el paquet a GitHub (Push / Sync):</strong> El botó blau canviarà i ara dirà <strong>Sync Changes</strong> (Sincronitzar canvis). Feu clic en aquest botó blau. En uns segons, el vostre codi estarà segur i desat al vostre repositori <code>t01-fundamentos</code>.</p></li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled" title="Variant 2: Usant Ordres (el `Terminal`)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Variant 2: Usant Ordres (el <code>Terminal</code>)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>Obriu el <code>Terminal</code> integrat:</strong> Si no teniu el terminal (consola) obert a la part inferior del vostre Codespace, aneu al menú hamburguesa a la part superior de la pantalla (les tres línies horitzontals), feu clic i seleccioneu <strong>Terminal &gt; New Terminal</strong>.</p></li>
+<li><p>Escriviu l’ordre següent i premeu <strong>Enter</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El sistema us respondrà en vermell que <code>prova.py</code> ha estat modificat o és un arxiu nou, indicant que encara no està desat al repositori.</p></li>
+<li><p><strong>Poseu l’arxiu a la caixa (Stage Changes):</strong> Escriviu l’ordre següent i premeu <strong>Enter</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add prova.py</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Poseu l’etiqueta i tanqueu la caixa (Commit):</strong> Escriviu l’ordre següent (les cometes són obligatòries) i premeu <strong>Enter</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Afegit programa de prova que funciona correctament"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Envieu el paquet a GitHub (Push):</strong> Escriviu l’ordre següent i premeu <strong>Enter</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ol>
+</div>
+</div>
+<p>Qualsevol dels dos mètodes aconsegueix exactament el mateix. Es recomana començar per la variant 1 per entendre el flux conceptual (Stage -&gt; Commit -&gt; Push) visualment, i després transicionar a la Variant 2 en pràctiques posteriors.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="9 - Tancar el Codespace">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>9 - Tancar el Codespace
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>Aquest és un pas summament important</strong>. Quan acabeu de treballar al Codespace, l’heu de tancar per alliberar recursos i evitar que s’acumulin càrrecs al vostre compte de GitHub. <strong>Principalment perquè el nombre d’hores de Codespaces gratuïtes és limitat.</strong></p>
 <ol type="1">
