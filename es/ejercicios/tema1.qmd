@@ -99,9 +99,21 @@ GitHub suele tardar entre **1 y 5 días** en revisar la solicitud. Recibirás un
 
 Este ejercicio tiene como objetivo que aprendas a:
 
-1. Crear un repositorio en GitHub.  
+1. Crear un repositorio en **GitHub**.  
 2. Configurarlo mínimamente.  
-3. Levantar un Codespace asociado a ese repositorio.
+3. Levantar un **Codespace** asociado a ese repositorio.
+4. Familiarizarte con la interfaz de **VS Code** (el **IDE** a utilizar) y la terminal integrada.
+5. Guardar cambios en tu repositorio usando el **Sistema de Control de Versiones Git** .
+
+::: {#imp-codespace .callout-important title="IDE"}
+Un **IDE** (Integrated Development Environment, por sus siglas en inglés) es una aplicación de software que concentra todas las herramientas que un programador necesita para crear programas en una única interfaz. En su forma más básica, un IDE combina tres herramientas fundamentales en una misma ventana para que no tengas que cambiar de programa constantemente:
+
+1. **Un editor de código inteligente:** Un procesador de texto diseñado específicamente para programar. Colorea las palabras clave, autocompleta el código y te avisa de errores tipográficos en tiempo real.
+2. **Un motor de ejecución (Compilador/Intérprete):** Te permite ejecutar y probar tu programa directamente haciendo clic en un botón (como el botón "Play"), traduciendo tu código al lenguaje que entiende la máquina.
+3. **Un depurador (Debugger):** Una herramienta de diagnóstico que te permite "pausar" el programa mientras está funcionando, analizarlo paso a paso y encontrar dónde te has equivocado en la lógica.
+
+En resumen, un IDE (como Visual Studio Code) existe para eliminar el trabajo mecánico y repetitivo, permitiendo al usuario centrarse puramente en resolver el problema abstracto. Actualmente escribir programas sin un IDE es como confeccionar un mueble solo con un martillo y clavoss.
+:::
 
 ::: {#imp-codespace .callout-important title="Repositorio y Codespace"}
 Un **repositorio de GitHub** es un espacio donde se guarda un proyecto: contiene el código, archivos del proyecto y el historial de revisiones (commits) que permiten seguir y recuperar cambios a lo largo del tiempo.
