@@ -733,19 +733,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="ejercicio-1.2">Ejercicio 1.2</h2>
 <p>Este ejercicio tiene como objetivo que aprendas a:</p>
 <ol type="1">
-<li>Crear un repositorio en GitHub.<br>
+<li>Crear un repositorio en <strong>GitHub</strong>.<br>
 </li>
 <li>Configurarlo mínimamente.<br>
 </li>
-<li>Levantar un Codespace asociado a ese repositorio.</li>
+<li>Levantar un <strong>Codespace</strong> asociado a ese repositorio.</li>
+<li>Familiarizarte con la interfaz de <strong>VS Code</strong> (el <strong>IDE</strong> a utilizar) y la terminal integrada.</li>
+<li>Guardar cambios en tu repositorio usando el <strong>Sistema de Control de Versiones Git</strong> .</li>
 </ol>
+<div id="imp-codespace" class="callout callout-style-default callout-important no-icon callout-titled" title="IDE">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;1: IDE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>IDE</strong> (Integrated Development Environment, por sus siglas en inglés) es una aplicación de software que concentra todas las herramientas que un programador necesita para crear programas en una única interfaz. En su forma más básica, un IDE combina tres herramientas fundamentales en una misma ventana para que no tengas que cambiar de programa constantemente:</p>
+<ol type="1">
+<li><strong>Un editor de código inteligente:</strong> Un procesador de texto diseñado específicamente para programar. Colorea las palabras clave, autocompleta el código y te avisa de errores tipográficos en tiempo real.</li>
+<li><strong>Un motor de ejecución (Compilador/Intérprete):</strong> Te permite ejecutar y probar tu programa directamente haciendo clic en un botón (como el botón “Play”), traduciendo tu código al lenguaje que entiende la máquina.</li>
+<li><strong>Un depurador (Debugger):</strong> Una herramienta de diagnóstico que te permite “pausar” el programa mientras está funcionando, analizarlo paso a paso y encontrar dónde te has equivocado en la lógica.</li>
+</ol>
+<p>En resumen, un IDE (como Visual Studio Code) existe para eliminar el trabajo mecánico y repetitivo, permitiendo al usuario centrarse puramente en resolver el problema abstracto. Actualmente escribir programas sin un IDE es como confeccionar un mueble solo con un martillo y clavoss.</p>
+</div>
+</div>
 <div id="imp-codespace" class="callout callout-style-default callout-important no-icon callout-titled" title="Repositorio y Codespace">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Concepto Clave&nbsp;1: Repositorio y Codespace
+Concepto Clave&nbsp;2: Repositorio y Codespace
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -755,7 +776,7 @@ Concepto Clave&nbsp;1: Repositorio y Codespace
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="1 - Acceder a tu cuenta de GitHub (si no lo has hecho ya)">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -764,7 +785,7 @@ Concepto Clave&nbsp;1: Repositorio y Codespace
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>Abrir el navegador.<br>
@@ -779,7 +800,7 @@ Concepto Clave&nbsp;1: Repositorio y Codespace
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="2 - Crear el repositorio `t01-fundamentos`">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -788,7 +809,7 @@ Concepto Clave&nbsp;1: Repositorio y Codespace
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><p><strong>Paso 1:</strong> En la parte superior izquierda, hacer clic en <code>+</code> (<img src="../../images/signomas.png" class="img-fluid" width="50">).</p></li>
@@ -814,7 +835,7 @@ Concepto Clave&nbsp;1: Repositorio y Codespace
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="3 - Crear un Codespace preconfigurado para Python">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -823,7 +844,7 @@ Concepto Clave&nbsp;1: Repositorio y Codespace
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><p><strong>Paso 1:</strong> Crear la carpeta <code>.devcontainer</code> y el fichero <code>devcontainer.json</code></p>
@@ -1002,7 +1023,7 @@ Concepto Clave&nbsp;1: Repositorio y Codespace
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="4 - Arrancar el Codespace">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1011,7 +1032,7 @@ Concepto Clave&nbsp;1: Repositorio y Codespace
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><p><strong>Paso 1:</strong> Has clic en <strong>Code → Codespaces</strong>.</p></li>
@@ -1045,7 +1066,7 @@ Concepto Clave&nbsp;1: Repositorio y Codespace
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="5 - Reconocer la interfaz del Codespace (VS Code)">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1054,7 +1075,7 @@ Concepto Clave&nbsp;1: Repositorio y Codespace
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>El entorno tendrá:</p>
 <ul>
@@ -1082,7 +1103,7 @@ Concepto Clave&nbsp;1: Repositorio y Codespace
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="6 - Verificar que Python está configurado">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1091,7 +1112,7 @@ Concepto Clave&nbsp;1: Repositorio y Codespace
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>En la <strong><code>Terminal</code></strong> del Codespace tendrás el prompt de la shell, que suele ser algo como:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">programacion23200</span><span class="kw">)</span> <span class="ex">@tu_usuario</span> ➜ /workspaces/t01-fundamentos <span class="er">(</span><span class="ex">main</span><span class="kw">)</span> <span class="ex">$</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1104,7 +1125,7 @@ Concepto Clave&nbsp;1: Repositorio y Codespace
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="7 - Crear un archivo de prueba y ejecutarlo">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1113,7 +1134,7 @@ Concepto Clave&nbsp;1: Repositorio y Codespace
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p>En el <strong><code>Explorador</code></strong>, pulsar <strong>New File</strong> o <strong>Nuevo archivo</strong> (<img src="../../images/newfile.png" class="img-fluid" width="30">).</p></li>
@@ -1140,7 +1161,7 @@ Concepto Clave&nbsp;1: Repositorio y Codespace
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Concepto Clave&nbsp;2: Sistema de Control de Versiones (Git)
+Concepto Clave&nbsp;3: Sistema de Control de Versiones (Git)
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1153,7 +1174,7 @@ Concepto Clave&nbsp;2: Sistema de Control de Versiones (Git)
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="8 - Guardar los cambios en tu repositorio">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1162,7 +1183,7 @@ Concepto Clave&nbsp;2: Sistema de Control de Versiones (Git)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Para guardar los cambios de forma permanente en tu repositorio <code>t01-fundamentos</code> en GitHub, usamos el sistema de control de versiones llamado <strong>Git</strong> que ya está instalado en tu Codespace. Este proceso consta de tres pasos obligatorios que siguen la <strong>“Analogía del Envío por Correo”</strong>:</p>
 <ol type="1">
@@ -1218,7 +1239,7 @@ Concepto Clave&nbsp;2: Sistema de Control de Versiones (Git)
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="9 - Cerrar el Codespace">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1227,7 +1248,7 @@ Concepto Clave&nbsp;2: Sistema de Control de Versiones (Git)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>Este es un paso sumamente importante</strong>. Cuando termines de trabajar en el Codespace, debes cerrarlo para liberar recursos y evitar que se acumulen cargos en tu cuenta de GitHub. <strong>Principalmente ya que el número de horas de Codespaces gratuitas es limitado.</strong></p>
 <ol type="1">
