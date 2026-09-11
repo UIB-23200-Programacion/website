@@ -462,8 +462,7 @@ Para guardar los cambios de forma permanente en tu repositorio `t01-fundamentos`
 
 A continuación las instrucciones precisas para cumplir con estos pasos de dos maneras diferentes: usando la **interfaz gráfica de VS Code** o usando la **terminal**.
 
-**Variante 1: Usando la Interfaz Visual (Source Control)**
-
+::: {.callout-tip appearance="simple" title="Variante 1: Usando la Interfaz Visual (Source Control)"}
 1. **Abre el panel de Source Control:** (el tercer icono en la barra lateral izquierda parece un pequeño grafo o rama). Al hacer clic, verás tu archivo `prueba.py` listado bajo la sección **Changes** (Cambios).
 
 2. **Mete el archivo en la caja (Stage Changes):** Pasa el ratón por encima del nombre `prueba.py`. Verás que aparece un icono con el símbolo más (**`+`**). Haz clic en él. Tu archivo pasará a una nueva lista llamada **Staged Changes** (Cambios preparados).
@@ -471,9 +470,9 @@ A continuación las instrucciones precisas para cumplir con estos pasos de dos m
 3. **Pon la etiqueta y cierra la caja (Commit):** Justo encima de la lista de archivos hay un cuadro de texto que dice *Message*. Escribe ahí un resumen claro de lo que has hecho, por ejemplo: `Añadido programa de prueba que funciona correctamente` (si Copilot está activado, puede sugerirte un mensaje automáticamente haciendo clic en las estrellas al final de *Message* (Generate Commit Message)). A continuación, haz clic en el botón azul que dice **Commit**.
 
 4. **Envía el paquete a GitHub (Push / Sync):** El botón azul cambiará y ahora dirá **Sync Changes** (Sincronizar cambios). Haz clic en ese botón azul. En unos segundos, tu código estará seguro y guardado en tu repositorio `t01-fundamentos`.
+:::
 
-**Variante 2: Usando Comandos (la `Terminal`)**
-
+::: {.callout-tip appearance="simple" title="Variante 2: Usando Comandos (la `Terminal`)"}
 1. **Abre la `Terminal` integrada:** Si no tienes la terminal (consola) abierta en la parte inferior de tu Codespace, ve al menú hamburguesa en la parte superior de la pantalla (las tres líneas horizontales), has clic y selecciona **Terminal > New Terminal**.
 
 2. Escribe el siguiente comando y pulsa **Enter**:
@@ -501,6 +500,7 @@ A continuación las instrucciones precisas para cumplir con estos pasos de dos m
     ```bash
     git push
     ```
+:::
 
 Cualquiera de los dos métodos logra exactamente lo mismo. Recomiendo empezar por la variante 1 para entender el flujo conceptual (Stage -> Commit -> Push) visualmente, y luego transicionar a la Variante 2 en prácticas posteriores.
 
