@@ -1,4 +1,4 @@
-# Programación (23200) — UIB
+# 23200 - Programación — UIB
 
 Material docente de la asignatura **Programación (23200)** del Grado de Matemáticas
 de la [Universitat de les Illes Balears](https://www.uib.es).
