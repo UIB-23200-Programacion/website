@@ -70,6 +70,13 @@ El curso se gestiona a través de la organización
 [UIB-23200-Programacion](https://github.com/UIB-23200-Programacion),
 donde se alojan las plantillas para ejercicios y otras actividades.
 
----
+## Licencia
+
+El material docente se publica bajo
+[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es) y el código de los
+ejemplos y ejercicios bajo licencia [MIT](https://opensource.org/license/mit). Puedes reutilizarlo
+en tu docencia citando la fuente.
+
+## Contacto
 
 © 2026 Alejandro Mesejo · [UIB-EPS](https://eps.uib.es/)

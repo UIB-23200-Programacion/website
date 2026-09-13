@@ -12,6 +12,7 @@ website:
   page-footer:
     right: "Esta página está construida con [sta210-s22](https://github.com/sta210-s22) y [Quarto](https://quarto.org/)."
     left: "&copy; Copyright 2026, Alejandro Mesejo, [UIB-EPS](https://eps.uib.es/)"
+    center: "Material publicado bajo licencia [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)"
     background: "#0060A8"
 
   sidebar:
