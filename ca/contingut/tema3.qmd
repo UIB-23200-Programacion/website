@@ -447,6 +447,7 @@ gen = primos()
 for _ in range(10):
     print(next(gen), end=", ")
 # 2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
+print()
 
 # Primer primo mayor que 1000
 gen = primos()
