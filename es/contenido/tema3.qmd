@@ -401,11 +401,12 @@ def fibonacci():
 
 # Primeros 10 términos
 gen = fibonacci()
-print([next(gen) for _ in range(10)])
-# [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+for _ in range(10):
+    print(next(gen), end=", ")
+# 0, 1, 1, 2, 3, 5, 8, 13, 21, 34,
 ```
 
-El generador **no termina por sí solo**: es responsabilidad del código que lo usa decidir cuándo parar. Intentar convertirlo en lista con `list(fibonacci())` agotaría la memoria.
+El generador **no termina por sí solo**: es responsabilidad del código que lo usa decidir cuándo parar.
 :::
 
 ::: {#nte-primos-gen .callout-note title="Generador de números primos"}
@@ -443,8 +444,9 @@ def primos():
 
 # Primeros 10 primos
 gen = primos()
-print([next(gen) for _ in range(10)])
-# [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+for _ in range(10):
+    print(next(gen), end=", ")
+# 2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
 
 # Primer primo mayor que 1000
 gen = primos()
@@ -1072,7 +1074,7 @@ A medida que un proyecto crece, dividir el código en módulos con responsabilid
 
 ### **3.6.1 Estructura de ficheros**
 
-La estructura más recomendada por la [Python Packaging Authority (PyPA)](https://packaging.python.org/en/latest/){target="_blank"} utiliza una carpeta `src/` para contener el código fuente, separando así el código de los tests y de la documentación. La organización de un ejemplo de proyecto, titulado `t03_ejemplo`, sería:
+La estructura más recomendada por la [Python Packaging Authority (PyPA)](https://packaging.python.org/en/latest/){target="_blank"} utiliza una carpeta `src/` para contener el código fuente, separando así el código de los tests y de la documentación. La organización de un ejemplo de proyecto, titulado `t03_paquete`, sería:
 
 ```text
 t03_ejemplo/
@@ -1111,9 +1113,9 @@ Una guía práctica:
 No es una regla estricta, pero ayuda a mantener el código manejable.
 :::
 
-### **3.6.2 Ejemplo de módulos del proyecto `t03_ejemplo`**
+### **3.6.2 Ejemplo de módulos del proyecto `t03_paquete`**
 
-El proyecto `t03_ejemplo`, con la estructura presentada anteriormente, incluye además de `numeros.py`, otros tres módulos `geometria.py`, `conversor.py` y `main.py` con responsabilidades distintas que se presentan a continuación.
+El proyecto `t03_paquete`, con la estructura presentada anteriormente, incluye además de `numeros.py`, otros tres módulos `geometria.py`, `conversor.py` y `main.py` con responsabilidades distintas que se presentan a continuación.
 
 ::: {#nte-eje9 .callout-note title="Módulo `geometria` en fichero `geometria.py`"}
 
