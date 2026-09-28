@@ -653,7 +653,7 @@ window.Quarto = {
   <li><a href="#organización-de-proyectos" id="toc-organización-de-proyectos" class="nav-link" data-scroll-target="#organización-de-proyectos">3.6. Organización de proyectos</a>
   <ul class="collapse">
   <li><a href="#estructura-de-ficheros" id="toc-estructura-de-ficheros" class="nav-link" data-scroll-target="#estructura-de-ficheros"><strong>3.6.1 Estructura de ficheros</strong></a></li>
-  <li><a href="#ejemplo-de-módulos-del-proyecto-t03_ejemplo" id="toc-ejemplo-de-módulos-del-proyecto-t03_ejemplo" class="nav-link" data-scroll-target="#ejemplo-de-módulos-del-proyecto-t03_ejemplo"><strong>3.6.2 Ejemplo de módulos del proyecto <code>t03_ejemplo</code></strong></a></li>
+  <li><a href="#ejemplo-de-módulos-del-proyecto-t03_paquete" id="toc-ejemplo-de-módulos-del-proyecto-t03_paquete" class="nav-link" data-scroll-target="#ejemplo-de-módulos-del-proyecto-t03_paquete"><strong>3.6.2 Ejemplo de módulos del proyecto <code>t03_paquete</code></strong></a></li>
   </ul></li>
   <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía">Bibliografía</a></li>
   </ul>
@@ -1113,10 +1113,10 @@ Ejemplo&nbsp;6: Generador de la sucesión de Fibonacci
 
 </div>
 <script type="pyodide-14-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGZpYm9uYWNjaSgpOlxuICAgIFwiXCJcIlxuICAgIEdlbmVyYSBsb3MgdMOpcm1pbm9zIGRlIGxhIHN1Y2VzacOzbiBkZSBGaWJvbmFjY2kgaW5kZWZpbmlkYW1lbnRlLlxuICAgIFwiXCJcIlxuICAgIGEsIGIgPSAwLCAxXG4gICAgd2hpbGUgVHJ1ZTogICAgICAgICAgIyBzZWN1ZW5jaWEgaW5maW5pdGE6IGVsIGdlbmVyYWRvciBudW5jYSBsYW56YSBTdG9wSXRlcmF0aW9uXG4gICAgICAgIHlpZWxkIGFcbiAgICAgICAgYSwgYiA9IGIsIGEgKyBiXG5cbiMgUHJpbWVyb3MgMTAgdMOpcm1pbm9zXG5nZW4gPSBmaWJvbmFjY2koKVxucHJpbnQoW25leHQoZ2VuKSBmb3IgXyBpbiByYW5nZSgxMCldKVxuIyBbMCwgMSwgMSwgMiwgMywgNSwgOCwgMTMsIDIxLCAzNF0ifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGZpYm9uYWNjaSgpOlxuICAgIFwiXCJcIlxuICAgIEdlbmVyYSBsb3MgdMOpcm1pbm9zIGRlIGxhIHN1Y2VzacOzbiBkZSBGaWJvbmFjY2kgaW5kZWZpbmlkYW1lbnRlLlxuICAgIFwiXCJcIlxuICAgIGEsIGIgPSAwLCAxXG4gICAgd2hpbGUgVHJ1ZTogICAgICAgICAgIyBzZWN1ZW5jaWEgaW5maW5pdGE6IGVsIGdlbmVyYWRvciBudW5jYSBsYW56YSBTdG9wSXRlcmF0aW9uXG4gICAgICAgIHlpZWxkIGFcbiAgICAgICAgYSwgYiA9IGIsIGEgKyBiXG5cbiMgUHJpbWVyb3MgMTAgdMOpcm1pbm9zXG5nZW4gPSBmaWJvbmFjY2koKVxuZm9yIF8gaW4gcmFuZ2UoMTApOlxuICAgIHByaW50KG5leHQoZ2VuKSwgZW5kPVwiLCBcIilcbiMgMCwgMSwgMSwgMiwgMywgNSwgOCwgMTMsIDIxLCAzNCwifQ==
 </script>
 </div>
-<p>El generador <strong>no termina por sí solo</strong>: es responsabilidad del código que lo usa decidir cuándo parar. Intentar convertirlo en lista con <code>list(fibonacci())</code> agotaría la memoria.</p>
+<p>El generador <strong>no termina por sí solo</strong>: es responsabilidad del código que lo usa decidir cuándo parar.</p>
 </div>
 </div>
 <div id="nte-primos-gen" class="callout callout-style-default callout-note no-icon callout-titled" title="Generador de números primos">
@@ -1135,7 +1135,7 @@ Ejemplo&nbsp;7: Generador de números primos
 
 </div>
 <script type="pyodide-15-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGVzX3ByaW1vKG46IGludCkgLT4gYm9vbDpcbiAgICBcIlwiXCJcbiAgICBSZXRvcm5hIFRydWUgc2kgbiBlcyBwcmltbyB5IEZhbHNlIGVuIGNhc28gY29udHJhcmlvLlxuICAgIFwiXCJcIlxuICAgIGlmIG4gPCAyOlxuICAgICAgICByZXR1cm4gTm9uZVxuICAgIGlmIG4gPT0gMjpcbiAgICAgICAgcmV0dXJuIFRydWVcbiAgICBpZiBuICUgMiA9PSAwOlxuICAgICAgICByZXR1cm4gRmFsc2VcbiAgICBpID0gM1xuICAgIHdoaWxlIGkgKiBpIDw9IG46XG4gICAgICAgIGlmIG4gJSBpID09IDA6XG4gICAgICAgICAgICByZXR1cm4gRmFsc2VcbiAgICAgICAgaSArPSAyXG4gICAgcmV0dXJuIFRydWVcblxuXG5kZWYgcHJpbW9zKCk6XG4gICAgXCJcIlwiXG4gICAgR2VuZXJhIGxvcyBuw7ptZXJvcyBwcmltb3MgZW4gb3JkZW4gY3JlY2llbnRlLCBpbmRlZmluaWRhbWVudGUuXG4gICAgXCJcIlwiXG4gICAgbiA9IDJcbiAgICB3aGlsZSBUcnVlOlxuICAgICAgICBpZiBlc19wcmltbyhuKTpcbiAgICAgICAgICAgIHlpZWxkIG5cbiAgICAgICAgbiArPSAxXG5cblxuIyBQcmltZXJvcyAxMCBwcmltb3NcbmdlbiA9IHByaW1vcygpXG5wcmludChbbmV4dChnZW4pIGZvciBfIGluIHJhbmdlKDEwKV0pXG4jIFsyLCAzLCA1LCA3LCAxMSwgMTMsIDE3LCAxOSwgMjMsIDI5XVxuXG4jIFByaW1lciBwcmltbyBtYXlvciBxdWUgMTAwMFxuZ2VuID0gcHJpbW9zKClcbnAgPSBuZXh0KGdlbilcbndoaWxlIHAgPD0gMTAwMDpcbiAgICBwID0gbmV4dChnZW4pXG5wcmludChwKSAgICAjIDEwMDkifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGVzX3ByaW1vKG46IGludCkgLT4gYm9vbDpcbiAgICBcIlwiXCJcbiAgICBSZXRvcm5hIFRydWUgc2kgbiBlcyBwcmltbyB5IEZhbHNlIGVuIGNhc28gY29udHJhcmlvLlxuICAgIFwiXCJcIlxuICAgIGlmIG4gPCAyOlxuICAgICAgICByZXR1cm4gTm9uZVxuICAgIGlmIG4gPT0gMjpcbiAgICAgICAgcmV0dXJuIFRydWVcbiAgICBpZiBuICUgMiA9PSAwOlxuICAgICAgICByZXR1cm4gRmFsc2VcbiAgICBpID0gM1xuICAgIHdoaWxlIGkgKiBpIDw9IG46XG4gICAgICAgIGlmIG4gJSBpID09IDA6XG4gICAgICAgICAgICByZXR1cm4gRmFsc2VcbiAgICAgICAgaSArPSAyXG4gICAgcmV0dXJuIFRydWVcblxuXG5kZWYgcHJpbW9zKCk6XG4gICAgXCJcIlwiXG4gICAgR2VuZXJhIGxvcyBuw7ptZXJvcyBwcmltb3MgZW4gb3JkZW4gY3JlY2llbnRlLCBpbmRlZmluaWRhbWVudGUuXG4gICAgXCJcIlwiXG4gICAgbiA9IDJcbiAgICB3aGlsZSBUcnVlOlxuICAgICAgICBpZiBlc19wcmltbyhuKTpcbiAgICAgICAgICAgIHlpZWxkIG5cbiAgICAgICAgbiArPSAxXG5cblxuIyBQcmltZXJvcyAxMCBwcmltb3NcbmdlbiA9IHByaW1vcygpXG5mb3IgXyBpbiByYW5nZSgxMCk6XG4gICAgcHJpbnQobmV4dChnZW4pLCBlbmQ9XCIsIFwiKVxuIyAyLCAzLCA1LCA3LCAxMSwgMTMsIDE3LCAxOSwgMjMsIDI5LFxuXG4jIFByaW1lciBwcmltbyBtYXlvciBxdWUgMTAwMFxuZ2VuID0gcHJpbW9zKClcbnAgPSBuZXh0KGdlbilcbndoaWxlIHAgPD0gMTAwMDpcbiAgICBwID0gbmV4dChnZW4pXG5wcmludChwKSAgICAjIDEwMDkifQ==
 </script>
 </div>
 </div>
@@ -1844,7 +1844,7 @@ Concepto Clave&nbsp;8: El bloque <code>if __name__ == "__main__"</code>
 <p>A medida que un proyecto crece, dividir el código en módulos con responsabilidades bien definidas facilita el mantenimiento, la detección de errores y la colaboración. Organizar un proyecto en Python correctamente desde el principio es fundamental para asegurar que el código sea escalable, reproducible y fácil de mantener. Actualmente, la comunidad de Python ha convergido en un conjunto de estándares muy claros, alejándose de los scripts sueltos y adoptando herramientas modernas.</p>
 <section id="estructura-de-ficheros" class="level3">
 <h3 class="anchored" data-anchor-id="estructura-de-ficheros"><strong>3.6.1 Estructura de ficheros</strong></h3>
-<p>La estructura más recomendada por la <a href="https://packaging.python.org/en/latest/" target="_blank">Python Packaging Authority (PyPA)</a> utiliza una carpeta <code>src/</code> para contener el código fuente, separando así el código de los tests y de la documentación. La organización de un ejemplo de proyecto, titulado <code>t03_ejemplo</code>, sería:</p>
+<p>La estructura más recomendada por la <a href="https://packaging.python.org/en/latest/" target="_blank">Python Packaging Authority (PyPA)</a> utiliza una carpeta <code>src/</code> para contener el código fuente, separando así el código de los tests y de la documentación. La organización de un ejemplo de proyecto, titulado <code>t03_paquete</code>, sería:</p>
 <pre class="text"><code>t03_ejemplo/
 ├── .gitignore             # Archivos que Git no debe rastrear
 ├── pyproject.toml         # Configuración central del proyecto y dependencias
@@ -1885,9 +1885,9 @@ Concepto Clave&nbsp;9: Módulos con una sola responsabilidad
 </div>
 </div>
 </section>
-<section id="ejemplo-de-módulos-del-proyecto-t03_ejemplo" class="level3">
-<h3 class="anchored" data-anchor-id="ejemplo-de-módulos-del-proyecto-t03_ejemplo"><strong>3.6.2 Ejemplo de módulos del proyecto <code>t03_ejemplo</code></strong></h3>
-<p>El proyecto <code>t03_ejemplo</code>, con la estructura presentada anteriormente, incluye además de <code>numeros.py</code>, otros tres módulos <code>geometria.py</code>, <code>conversor.py</code> y <code>main.py</code> con responsabilidades distintas que se presentan a continuación.</p>
+<section id="ejemplo-de-módulos-del-proyecto-t03_paquete" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-de-módulos-del-proyecto-t03_paquete"><strong>3.6.2 Ejemplo de módulos del proyecto <code>t03_paquete</code></strong></h3>
+<p>El proyecto <code>t03_paquete</code>, con la estructura presentada anteriormente, incluye además de <code>numeros.py</code>, otros tres módulos <code>geometria.py</code>, <code>conversor.py</code> y <code>main.py</code> con responsabilidades distintas que se presentan a continuación.</p>
 <div id="nte-eje9" class="callout callout-style-default callout-note no-icon callout-titled" title="Módulo `geometria` en fichero `geometria.py`">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
