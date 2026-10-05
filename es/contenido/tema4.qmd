@@ -88,7 +88,37 @@ notas = [8.5, 7.0, 9.5]
 print(notas[5])    # IndexError: list index out of range
 ```
 
-Usa `a[-1]` para el último elemento sin necesidad de conocer `len(a)`. Para iterar sobre todos los elementos, usa un bucle `for` directamente sobre la lista en lugar de iterar sobre índices: `for nota in notas:`.
+Usa `a[-1]` para el último elemento sin necesidad de conocer `len(a)`. 
+:::
+
+::: {#imp-recorrer .callout-important title="Recorrer listas"}
+Una de las operaciones más frecuentes con listas es **recorrerlas** para procesar cada elemento. La manera más sencilla y eficiente de hacerlo es con un bucle `for`. Existen dos formas fundamentales de hacerlo: iterando sobre los índices de cada elemento o iterando sobre los elementos directamente. 
+
+La primera forma se consigue con un `for i in range(len(lista)):` que permite acceder a cada elemento con `lista[i]`. La segunda forma es más directa y "pitónica": `for elemento in lista:` itera directamente sobre los elementos de la lista sin necesidad de usar índices.
+
+```{pyodide}
+notas = [8.5, 7.0, 9.5, 6.0, 8.0]
+# Iterando sobre los índices
+print("Iterando sobre los índices:")
+for i in range(len(notas)):
+    print(f"Nota: {notas[i]}")
+print()  # línea en blanco
+
+# Iterando sobre los elementos
+print("Iterando sobre los elementos:")
+for nota in notas:
+    print(f"Nota: {nota}")
+```
+
+Puede ocurrir que sea necesario conocer tanto el índice como el valor del elemento. En ese caso, la función built-in `enumerate()` devuelve pares `(índice, elemento)` que se pueden emplear en el bucle `for`:
+
+```{pyodide}
+notas = [8.5, 7.0, 9.5, 6.0, 8.0]
+print("Iterando con enumerate():")
+# Aquí i es el índice y nota es el valor del elemento
+for i, nota in enumerate(notas):
+    print(f"Índice: {i}, Nota: {nota}")
+```
 :::
 
 ### **4.1.2 Sublistas (*slicing*)**
