@@ -54,14 +54,19 @@ notas = [8.5, 7.0, 9.5, 6.0, 8.0]
 primos = [2, 3, 5, 7, 11, 13]
 vacia = []
 print(notas)
-print(len(notas))      # 5
+print(primos)
+print(vacia)
+print(f"La lista notas tiene {len(notas)} elementos.")  # La lista notas tiene 5 elementos.
+print(f"La lista vacia tiene {len(vacia)} elementos.")  # La lista vacia tiene 0 elementos.
 print(type(notas))     # <class 'list'>
 
 print(list(range(1, 8)))    # [1, 2, 3, 4, 5, 6, 7]
 print(list("Python"))       # ['P', 'y', 't', 'h', 'o', 'n']
 ```
 
-Cada elemento tiene un **índice** entero que indica su posición y permite acceder a él. Python admite índices positivos (desde el inicio) y negativos (desde el final):
+La función `len()` devuelve el número de elementos de la lista. La función `type()` permite comprobar que el objeto es de tipo `list`.
+
+Cada elemento de una lista tiene un **índice** entero que indica su posición y permite acceder a él. Python admite índices positivos (desde el inicio) y negativos (desde el final):
 
 ::: {#imp-indexacion .callout-important title="Indexación positiva y negativa"}
 Dada una lista `a` con `n` elementos, el índice positivo `i` (con $0 \leq i < n$) accede al elemento `a[i]`, y el índice negativo `-k` (con $1 \leq k \leq n$) accede al elemento `a[n-k]`:
@@ -94,7 +99,8 @@ Usa `a[-1]` para el último elemento sin necesidad de conocer `len(a)`.
 ::: {#imp-recorrer .callout-important title="Recorrer listas"}
 Una de las operaciones más frecuentes con listas es **recorrerlas** para procesar cada elemento. La manera más sencilla y eficiente de hacerlo es con un bucle `for`. Existen dos formas fundamentales de hacerlo: iterando sobre los índices de cada elemento o iterando sobre los elementos directamente. 
 
-La primera forma se consigue con un `for i in range(len(lista)):` que permite acceder a cada elemento con `lista[i]`. La segunda forma es más directa y "pitónica": `for elemento in lista:` itera directamente sobre los elementos de la lista sin necesidad de usar índices.
+- La primera forma se consigue con un `for i in range(len(lista)):` que permite acceder a cada elemento con `lista[i]`. 
+- La segunda forma es más directa y "pitónica": `for elemento in lista:` itera directamente sobre los elementos de la lista sin necesidad de usar índices.
 
 ```{pyodide}
 notas = [8.5, 7.0, 9.5, 6.0, 8.0]
@@ -135,12 +141,24 @@ print(p[::-1])     # [19, 17, ..., 2] — invertida
 print(p[-3:])      # [13, 17, 19]     — los tres últimos
 ```
 
-El resultado es siempre una **nueva lista** (copia superficial): modificar la sublista no altera la original.
+El resultado es siempre una **nueva lista** (copia superficial).
 
 ::: {#imp-shalow .callout-important title="Copia superficial vs. copia profunda"}
-Una **copia superficial** (shallow copy en inglés) de una lista es una nueva lista que contiene *referencias* a los mismos objetos que la original. Si alguno de los elementos en la copia son mutables, modificarlos en la copia afectará a la original.
+Una **copia superficial** (shallow copy en inglés) de una lista es una nueva lista que contiene *referencias* a los mismos objetos que la original. Si alguno de los elementos en la copia son mutables, modificarlos en la copia afectará a la original. Para crear una copia superficial se puede usar el método `copy()`, la función `list()` o un *slice* completo `[:]`:
 
-Una **copia profunda** (deep copy en inglés) crea una nueva lista y también copia los objetos mutables contenidos en ella, de modo que la copia y la original son completamente independientes. 
+```{pyodide}
+original = [1, [2, 3], 4]
+copia = original.copy()  # o list(original) o copia = original[:]
+```
+
+Una **copia profunda** (deep copy en inglés) crea una nueva lista y también copia los objetos mutables contenidos en ella, de modo que la copia y la original son completamente independientes. Para crear una copia profunda se puede usar el módulo `copy` de la biblioteca estándar:
+
+```{pyodide}    
+import copy
+
+original = [1, [2, 3], 4]
+copia = copy.deepcopy(original)
+```
 :::
 
 ### **4.1.3 Mutabilidad: modificar listas**
