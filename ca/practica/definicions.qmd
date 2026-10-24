@@ -1,0 +1,7 @@
+---
+title: "Definicions i Notació"
+lang: ca
+sidebar: barra-ca
+---
+
+*(Contenido pendiente.)*
