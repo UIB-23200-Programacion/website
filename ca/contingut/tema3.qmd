@@ -401,8 +401,9 @@ def fibonacci():
 
 # Primeros 10 términos
 gen = fibonacci()
-print([next(gen) for _ in range(10)])
-# [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+for _ in range(10):
+    print(next(gen), end=", ")
+# 0, 1, 1, 2, 3, 5, 8, 13, 21, 34,
 ```
 
 El generador **no acaba per si sol**: és responsabilitat del codi que l'usa decidir quan aturar-se. Intentar convertir-lo en llista amb `list(fibonacci())` esgotaria la memòria.
@@ -443,8 +444,10 @@ def primos():
 
 # Primeros 10 primos
 gen = primos()
-print([next(gen) for _ in range(10)])
-# [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+for _ in range(10):
+    print(next(gen), end=", ")
+# 2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
+print()
 
 # Primer primo mayor que 1000
 gen = primos()
