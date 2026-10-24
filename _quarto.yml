@@ -93,7 +93,9 @@ website:
         - section: "Práctica"
           contents:
             - href: es/practica/practica.qmd
-              text: "Práctica del Curso"
+              text: "Práctica de la Asignatura"
+            - href: es/practica/definiciones.qmd
+              text: "Definiciones y Notación"
 
         - section: "Recursos"
           contents:
@@ -165,7 +167,7 @@ website:
         - section: "Pràctica"
           contents:
             - href: ca/practica/practica.qmd
-              text: "Pràctica del Curs"
+              text: "Pràctica de l'Assignatura"
 
         - section: "Recursos"
           contents:

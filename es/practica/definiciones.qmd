@@ -1,0 +1,323 @@
+---
+title: "Práctica: definiciones y notación"
+lang: es
+sidebar: barra-es
+---
+
+Este documento reúne, en orden alfabético, los términos y los símbolos que usan el [enunciado de la práctica](practica.qmd), tu bot (`src/pong/bot.py`) y el notebook de análisis (`notebook/analisis_mo.py`). Cada entrada dice qué significa el término, cómo aparece en el código y dónde se usa. Cuando una palabra del enunciado tenga aquí su definición, el enlace te traerá a ella.
+
+::: {.callout-important title="Lo esencial en una frase"}
+Una **partida** se juega a sets; cada **set**, a puntos; cada punto se disputa en un **intercambio**; un intercambio se compone de varios **vuelos**, uno por golpe más el que sale del saque; y todo avanza en **ticks**. La jerarquía es: partida → sets → intercambios → vuelos → ticks.
+:::
+
+---
+
+## Símbolos y constantes {#simbolos}
+
+Todas las longitudes están en píxeles (px) y el tiempo, en ticks. El origen del campo está en la esquina superior izquierda y el eje $y$ **crece hacia abajo**. Las constantes no hace falta escribirlas a mano: tu bot las recibe en `state["field"]` y el notebook las tiene en su primera celda.
+
+| Símbolo | Significado | Valor | En `state["field"]` | En el notebook |
+| :--- | :--- | :--- | :--- | :--- |
+| $W$ | Ancho del campo | 800 | `width` | — |
+| $H$ | Alto del campo | 600 | `height` | `H` |
+| $R$ | Radio de la bola | 6 | `ball_radius` | `R` |
+| $L$ | Recorrido vertical del centro de la bola: $H - 2R$ | 588 | — | `L` |
+| $h$ | Alto de la raqueta | 80 | `paddle_height` | — |
+| — | Grosor de la raqueta | 10 | `paddle_thickness` | — |
+| $X_L$ | Cara frontal de la raqueta izquierda | 30 | `my_face_x` | — |
+| $X_R$ | Cara frontal de la raqueta derecha | 770 | `opp_face_x` | — |
+| $X_{\text{izq}}$, $X_{\text{der}}$ | [Planos de impacto](#plano-de-impacto): $X_L + R$ y $X_R - R$ | 36 y 764 | — | `X_IZQ`, `X_DER` |
+| $h/2 + R$ | Semiancho de la [franja de impacto](#alcance) | 46 | — | `ALCANCE` |
+| $v_p$ | Velocidad de la raqueta | 8 px/tick | `paddle_speed` | — |
+| $s_0$ | [Velocidad de intercambio](#velocidad-de-intercambio) en el saque | 6 px/tick | `initial_speed` | — |
+| $m_{\max}$, $m_{\min}$ | Pendientes máxima y mínima de salida de un golpe ($\tan 60°$ y $\tan 5°$) | 1,7321 y 0,0875 | `slope_max`, `slope_min` | — |
+| — | Aceleración por golpe y velocidad extra en los extremos | 1,05 y 0,05 | `speedup`, `edge_speedup` | — |
+| $\kappa$ | Constante del [efecto](#efecto) | 0,005 px/tick² | `spin_kappa` | `KAPPA` |
+| — | Duración de la [pausa del saque](#pausa-del-saque) | 60 ticks | `serve_pause` | — |
+| $R_{\max}$ | Golpes que anulan un intercambio ([nulo](#nulo)) | 100 | `max_rally_hits` | — |
+| — | Nulos que acaban la partida en [empate técnico](#empate-tecnico) | 20 | `max_lets` | — |
+
+Otros símbolos que usan el enunciado y el notebook:
+
+| Símbolo | Significado | Entrada |
+| :--- | :--- | :--- |
+| $x_n$, $y_n$ | Posición del centro de la bola al final del tick $n$; $y_n$ es la ordenada **plegada** | [Ordenada plegada y desplegada](#ordenada-plegada-y-desplegada) |
+| $Y_n$ | Ordenada **desplegada** al final del tick $n$ de un vuelo | [Ordenada plegada y desplegada](#ordenada-plegada-y-desplegada) |
+| $F$ | Onda triangular que pliega $Y$ en $y$ | [Onda triangular](#onda-triangular) |
+| $p$ | Posición (ordenada del centro) de una raqueta | [Raqueta](#raqueta) |
+| $c$ | Comando: $-1$ (`UP`), $0$ (`STAY`), $+1$ (`DOWN`) | [Comando](#comando) |
+| $v_{x,n}$, $v_{y,n}$ | Componentes de la velocidad de la bola al final del tick $n$ | [Velocidad de la bola](#velocidad-de-la-bola) |
+| $a_{x,n}$, $a_{y,n}$ | Componentes de la aceleración: $a_{x,n} = 0$ para todo $n$; $a_{y,n}$ es el efecto | [Efecto](#efecto) |
+| $v_{x,0}$, $v_{y,0}$, $a_{y,0}$ | Velocidad y efecto al empezar un vuelo ($n = 0$) | [Vuelo](#vuelo) |
+| $\Delta y_n$, $\Delta Y_n$ | Diferencias entre ticks consecutivos: $y_n - y_{n-1}$ e $Y_n - Y_{n-1}$ | [Velocidad de la bola](#velocidad-de-la-bola) |
+| $s$ | Velocidad de intercambio | [Velocidad de intercambio](#velocidad-de-intercambio) |
+| $n$ | Índice de tick: en las leyes del movimiento, cualquier tick en juego; en las fórmulas de un vuelo, los ticks desde su inicio | [Vuelo](#vuelo) |
+| $y^*$ | Ordenada de impacto | [Ordenada de impacto](#ordenada-de-impacto) |
+| $u$ | Punto de impacto relativo en la raqueta | [Punto de impacto](#punto-de-impacto) |
+| $m$ | Pendiente de salida de un golpe o del saque, $v_{y,0} / |v_{x,0}|$ | [Pendiente de salida](#pendiente-de-salida) |
+| $n^*$, $\tau$ | Tick del cruce con el plano de impacto y fracción del tick en que ocurre | [Plano de impacto](#plano-de-impacto) |
+| $k$ | Paridad del número de rebotes ($0$ o $1$) | [Rebote](#rebote) |
+
+---
+
+## Términos {#terminos}
+
+### Abandono {#abandono}
+
+Partida que no llega a jugarse porque el constructor `Bot(seed)` de uno de los bots lanza una excepción. Cuenta como derrota de ese bot, con 0 puntos. En el registro JSON, la clave `abandono` indica el lado del bot que falló; el registro no tiene ticks ni intercambios. Tu notebook tiene que funcionar también con una partida así: tienes una en `notebook/raras/abandono.json`.
+
+*Se usa en:* [normas del bot](practica.qmd#normas-bot), [registros](practica.qmd#registros), notebook (L1).
+
+### Alcance (franja de impacto) {#alcance}
+
+La raqueta devuelve la bola si, cuando el centro de la bola cruza el [plano de impacto](#plano-de-impacto), su [ordenada de impacto](#ordenada-de-impacto) $y^*$ cumple $|y^* - p| \le h/2 + R = 46$. Ese intervalo de 92 px centrado en la raqueta es la franja de impacto, y 46 es su semiancho, `ALCANCE` en el notebook. Los extremos de la raqueta no rebotan la bola: fuera de la franja, el punto se pierde.
+
+*Se usa en:* [golpe](practica.qmd#golpe), notebook (P3).
+
+### Bot {#bot}
+
+Programa que juega uno de los lados de la partida: una clase `Bot` con un constructor `Bot(seed)` y un método `decide(state)` que, en cada [tick](#tick), recibe el [estado](#estado-del-bot) y devuelve un [comando](#comando). El tuyo está en `src/pong/bot.py`. El mismo objeto `Bot` dura toda la partida, así que puede recordar lo que ha visto en sus atributos.
+
+*Se usa en:* [tu bot](practica.qmd#bot).
+
+### Bots de referencia {#bots-de-referencia}
+
+Los tres rivales contra los que se mide el [rendimiento](practica.qmd#rendimiento) de tu bot: **Fácil** (`easy`), **Medio** (`medium`) y **Difícil** (`hard`). Fácil tiene el código a la vista en `src/pong/bots_ref/easy.py`; Medio y Difícil se distribuyen compilados.
+
+*Se usa en:* [bots de referencia](practica.qmd#referencia), [evaluación](practica.qmd#rendimiento).
+
+### Comando {#comando}
+
+Lo que devuelve `decide` en cada tick: `"UP"` (la raqueta sube 8 px), `"DOWN"` (baja 8 px) o `"STAY"` (no se mueve). En las fórmulas se escribe $c \in \{-1, 0, +1\}$: `UP` es $-1$ porque el eje $y$ crece hacia abajo. Cualquier otro valor, o una excepción, cuenta como `"STAY"`. El comando del tick de un golpe decide además el [efecto](#efecto) de la bola. En el CSV, columnas `cmd_left` y `cmd_right`.
+
+*Se usa en:* [estados de una partida y movimientos de las raquetas](practica.qmd#tick), [normas del bot](practica.qmd#normas-bot), notebook (S7).
+
+### Corte por tiempo {#corte-por-tiempo}
+
+Final anticipado de una partida porque un bot supera el tiempo medio permitido por llamada a `decide` (2 ms). Desde la llamada 5 000 se vigila la media, y la partida se corta en cuanto la supera. El bot que lo supera pierde la partida con 0 puntos. En el registro JSON, la clave `tiempo_excedido` indica su lado; la partida se graba hasta el tick del corte, y el intercambio que estaba en juego no figura en la lista de intercambios. Tienes una partida así en `notebook/raras/tiempo.json`.
+
+*Se usa en:* [normas del bot](practica.qmd#normas-bot), notebook (L3).
+
+### CSV de la partida (CSV observable) {#csv}
+
+Fichero `partida_<semilla>.csv` con una fila por tick y lo mismo que ven los bots: `tick`, `state`, `ball_x`, `ball_y`, `p_left`, `p_right`, `cmd_left`, `cmd_right`, `server` y `rally_hits`. Usa coordenadas globales, no normalizadas. La fila $t$ es el estado **antes** de ejecutar el tick $t$, con los comandos que se aplican en él. No contiene velocidades ni efecto: hay que estimarlos (ver [verdad del motor](#verdad-del-motor)). Se obtiene de cualquier [registro JSON](#registro-json) con `uv run python -m pong.registro <json>`.
+
+*Se usa en:* [registros](practica.qmd#registros), notebook (L2).
+
+### Efecto {#efecto}
+
+Aceleración vertical $a_{y,0} = \kappa\,c$ que recibe la bola en un golpe, con $\kappa = 0{,}005$ px/tick² y $c$ el [comando](#comando) de la raqueta que golpea en ese mismo tick (aunque la raqueta esté en su tope y no se mueva). `DOWN` curva la bola hacia abajo, `UP` hacia arriba y `STAY` no le da efecto. Se mantiene hasta el golpe siguiente ($a_{y,n+1} = a_{y,n}$ en un tick normal) y cambia de signo en cada [rebote](#rebote). La aceleración horizontal es siempre nula, $a_{x,n} = 0$. En un vuelo de 100 ticks desvía la bola unos 25 px. El estado no lo incluye: tu bot tiene que estimarlo. En el notebook se escribe $a$; en la [verdad del motor](#verdad-del-motor), `ball_ay`.
+
+*Se usa en:* [leyes del movimiento](practica.qmd#leyes), [golpe](practica.qmd#golpe), [estimación cinemática](practica.qmd#estimacion), notebook (P1, P2, P4).
+
+### Empate técnico {#empate-tecnico}
+
+Resultado de una partida que llega al [nulo](#nulo) número 20 sin terminar. En el registro JSON, `resultado` vale `"draw"`.
+
+*Se usa en:* [nulos y final de la partida](practica.qmd#nulos).
+
+### Estado del bot (`state`) {#estado-del-bot}
+
+Diccionario que recibe `decide` en cada tick, con la situación **al inicio** de ese tick, **normalizada**: cada bot se ve siempre en el lado izquierdo, con la cara frontal de su raqueta en $x = 30$. Para el bot derecho, el motor transforma $x \to W - x$; $y$ no cambia. Así, la bola se acerca a tu raqueta cuando `ball_x` decrece. Sus claves están en el [enunciado](practica.qmd#estado). No incluye velocidades ni efecto.
+
+*Se usa en:* [tu bot](practica.qmd#estado).
+
+### Fallo {#fallo}
+
+Final de un vuelo en el que la bola cruza el [plano de impacto](#plano-de-impacto) fuera de la [franja de impacto](#alcance): el [receptor](#receptor) pierde el punto. En la tabla de vuelos del notebook, `final == "fallo"`. Un intercambio terminado en punto acaba siempre en un fallo.
+
+*Se usa en:* notebook (L4, P3, S4, S5).
+
+### Golpe {#golpe}
+
+Contacto de la bola con una raqueta: la bola cruza el [plano de impacto](#plano-de-impacto) dentro de la [franja de impacto](#alcance). El motor la deja exactamente en el plano, a la [ordenada de impacto](#ordenada-de-impacto), descarta el resto de ese tick y la lanza de vuelta con una nueva [pendiente](#pendiente-de-salida), una [velocidad de intercambio](#velocidad-de-intercambio) mayor y un [efecto](#efecto). Cada golpe incrementa `rally_hits`, y así es como se detecta en el estado y en el CSV.
+
+*Se usa en:* [golpe](practica.qmd#golpe), notebook (L4, P3, S2, S3).
+
+### Golpeador {#golpeador}
+
+El bot que da un golpe, es decir, el [receptor](#receptor) del vuelo que termina. En el notebook, columna `golpeador` de `golpes(d)`.
+
+*Se usa en:* notebook (S2, S3).
+
+### Intercambio {#intercambio}
+
+La disputa de un punto (en el JSON, *rally*). Empieza con la [pausa del saque](#pausa-del-saque) (filas `serving` del CSV) y termina cuando se decide el punto (un [fallo](#fallo)) o se declara [nulo](#nulo). Se compone de varios [vuelos](#vuelo): uno por golpe más el inicial desde el saque, es decir, `hits + 1` vuelos si termina en punto y `hits` si es nulo. En el registro JSON, cada intercambio tiene `start_tick` (primer tick de la pausa del saque), `end_tick` (tick en que se decide el punto o se declara el nulo), `hits`, `outcome` (`"point"` o `"let"`) y `winner`.
+
+::: {.callout-note title="Ejemplo"}
+En `notebook/ejemplo.json`, el intercambio 1 va del tick 0 al 1936: los ticks 0–59 son la pausa del saque, tiene 24 golpes y, por tanto, 25 vuelos. La partida completa tiene 27 intercambios y 716 vuelos.
+:::
+
+*Se usa en:* [puntuación](practica.qmd#puntuacion), [registros](practica.qmd#registros), notebook (L1, L3, S1, S6, S8).
+
+### Motor {#motor}
+
+`src/pong/pong_engine.py`, el módulo que simula el juego: aplica los comandos, mueve la bola, resuelve rebotes y golpes y lleva el marcador. Es el mismo en tu Codespace, en `pong.html` y en la evaluación oficial. No lo modifiques: un test comprueba que no ha cambiado.
+
+*Se usa en:* [reglas del juego](practica.qmd#reglas).
+
+### Nulo {#nulo}
+
+Intercambio anulado (en el JSON, `outcome == "let"`) porque llega a $R_{\max} = 100$ golpes. Se declara en el mismo tick del golpe número 100, que no abre un vuelo nuevo, y se repite el saque con el mismo jugador. Nadie gana el punto (`winner` es `null`). Al llegar al nulo número 20, la partida acaba en [empate técnico](#empate-tecnico). En la práctica son muy raros; tienes una partida con uno en `notebook/raras/nulo.json`.
+
+*Se usa en:* [nulos y final de la partida](practica.qmd#nulos), notebook (L1, L3, L4).
+
+### Onda triangular {#onda-triangular}
+
+La función $F$ que pliega la [ordenada desplegada](#ordenada-plegada-y-desplegada) $Y$ en la plegada $y$. Con $m = (Y - R) \bmod 2L$:
+
+$$
+F(Y) = \begin{cases} R + m & \text{si } m \le L,\\ R + 2L - m & \text{si } m > L. \end{cases}
+$$
+
+Su gráfica es un zigzag: sube con pendiente 1 de $R$ a $R + L$, baja con pendiente $-1$ y se repite con **periodo** $2L = 1176$, es decir, $F(Y + 2L) = F(Y)$. Siempre toma valores en $[R, H - R] = [6, 594]$. Dentro del campo, $F(Y) = Y$; cada pico o valle es un [rebote](#rebote). $F$ no es inyectiva: cada $y$ proviene de infinitas $Y$. El motor la aplica en cada tick (`pe.fold`) a la ordenada recién avanzada, sin buscar antes los rebotes, y en el notebook la programas como `plegar`.
+
+![La onda triangular $F$. Cada vez que $Y$ cruza una frontera $R + kL$ (líneas punteadas) la bola rebota.](imagenes/onda_triangular.svg){fig-alt="Gráfica en zigzag de la ordenada plegada frente a la desplegada, entre 6 y 594 px, con periodo 1176 px." width="100%"}
+
+::: {.callout-note title="Ejemplo"}
+$F(300) = 300$ (dentro del campo); $F(700) = 488$ (sobrepasa la pared de abajo, $y = 594$, en 106 y rebota a $594 - 106$); $F(1300) = 124$ (rebota abajo y arriba); $F(-100) = 112$ (sobrepasa la pared de arriba en 106 y rebota a $6 + 106$).
+:::
+
+*Se usa en:* [paredes y plegado](practica.qmd#paredes), notebook (P2).
+
+### Ordenada de impacto {#ordenada-de-impacto}
+
+$y^*$: la ordenada del centro de la bola en el instante en que cruza el [plano de impacto](#plano-de-impacto), calculada por el motor con la fracción exacta del tick. Si hay golpe, la bola queda en ese punto y es la primera fila del vuelo siguiente ($y_0 = y^*$). Si hay fallo, no aparece en el CSV.
+
+*Se usa en:* [golpe](practica.qmd#golpe), notebook (P3, S4).
+
+### Ordenada plegada y desplegada {#ordenada-plegada-y-desplegada}
+
+- **Plegada**, $y$ ($y_n$ al final del tick $n$): la ordenada real del centro de la bola, siempre en $[R, H - R]$. Es `ball_y` en el estado del bot y en el CSV. Es la única que se observa.
+- **Desplegada**, $Y$ ($Y_n$ al final del tick $n$ de un vuelo): la que tendría la bola en un vuelo si las paredes no la reflejaran y siguiera su trayectoria, aunque saliera del campo. Dentro de un vuelo es una parábola, $Y_n = y_0 + n\,v_{y,0} + a_{y,0}\,n(n+1)/2$, y la plegada es $y_n = F(Y_n)$. No está en ningún fichero y el motor tampoco la guarda: avanza tick a tick la plegada y, en cada rebote, cambia el signo de $v_{y,n}$ y de $a_{y,n}$, lo que da el mismo resultado. Se reconstruye a partir de la plegada (`desplegar` en el notebook).
+
+Desplegar solo tiene sentido **dentro de un vuelo**: cada golpe cambia $v_{y,0}$ y $a_{y,0}$, así que no hay una $Y$ común a dos vuelos.
+
+*Se usa en:* [paredes y plegado](practica.qmd#paredes), [estimación cinemática](practica.qmd#estimacion), notebook (P1, P2, P3, P4).
+
+### Partida {#partida}
+
+Enfrentamiento entre dos bots al mejor de 3 [sets](#set). Se identifica por su [semilla](#semilla) y queda grabada en un [registro JSON](#registro-json). Termina cuando un bot gana 2 sets, en [empate técnico](#empate-tecnico), por [abandono](#abandono) o por [corte por tiempo](#corte-por-tiempo).
+
+*Se usa en:* [puntuación](practica.qmd#puntuacion).
+
+### Pared {#pared}
+
+Cada uno de los dos bordes **horizontales** del campo, el de arriba y el de abajo. La bola rebota en ellas: su centro se refleja en $y = R$ y en $y = H - R$. A los lados verticales están las raquetas: allí no hay rebote, el vuelo termina en [golpe](#golpe) o en [fallo](#fallo).
+
+*Se usa en:* [paredes y plegado](practica.qmd#paredes), notebook (P1, P2).
+
+### Pausa del saque {#pausa-del-saque}
+
+Los 60 ticks en estado `serving` antes de cada saque, con la bola quieta en el centro, $(400, 300)$. Las raquetas se pueden mover. Durante la pausa, `serve_ticks_left` vale 60, 59, …, 1; después el estado pasa a `playing` y la bola se mueve por primera vez en el tick siguiente. Forma parte del intercambio, pero no de ningún vuelo.
+
+*Se usa en:* [saque](practica.qmd#saque), notebook (L3).
+
+### Pendiente de salida {#pendiente-de-salida}
+
+$m = v_{y,0} / |v_{x,0}|$, la dirección con que sale la bola de un golpe o del saque, con $v_{x,0}$ y $v_{y,0}$ las componentes de su velocidad al empezar el vuelo. Si $m > 0$, la bola sale hacia abajo. En un golpe depende del [punto de impacto](#punto-de-impacto): $m(u) = \operatorname{sgn}(u)\,\max(m_{\min},\, m_{\max}\,|u|)$, entre 5° y 60° respecto a la horizontal. En el saque es aleatoria, entre 20° y 45°.
+
+*Se usa en:* [golpe](practica.qmd#golpe), [saque](practica.qmd#saque).
+
+### Plano de impacto {#plano-de-impacto}
+
+Recta vertical por la que pasa el **centro** de la bola cuando toca la cara frontal de una raqueta: $x = X_L + R = 36$ a la izquierda (`X_IZQ`) y $x = X_R - R = 764$ a la derecha (`X_DER`). Como $v_{x,n} = v_{x,0}$ es constante en un vuelo, el primer tick con cruce del plano $X$ es $n^* = \lfloor (X - x_0)/v_{x,0} \rfloor + 1$, en los dos sentidos, y la fracción del tick en que cruza es $\tau$.
+
+![El campo, en píxeles. La bola rebota en las paredes de arriba y abajo; a los lados están las raquetas y sus planos de impacto.](imagenes/campo.svg){fig-alt="Esquema del campo de 800 por 600 píxeles con las dos raquetas, la bola, las paredes y los planos de impacto." width="100%"}
+
+*Se usa en:* [golpe](practica.qmd#golpe), notebook (P3).
+
+### Porcentaje de puntos {#porcentaje-de-puntos}
+
+La medida del [rendimiento](practica.qmd#rendimiento) de tu bot contra un rival: la media, sobre las partidas jugadas, de la fracción de puntos que ganas en cada una (puntos ganados entre puntos jugados). Una partida perdida por abandono o por corte por tiempo cuenta 0.
+
+*Se usa en:* [rendimiento](practica.qmd#rendimiento).
+
+### Punto {#punto}
+
+Unidad del marcador de un [set](#set). Lo gana el rival del bot que comete un [fallo](#fallo). Cada punto se disputa en un [intercambio](#intercambio).
+
+*Se usa en:* [puntuación](practica.qmd#puntuacion).
+
+### Punto de impacto {#punto-de-impacto}
+
+$u = (y^* - p)/46 \in [-1, 1]$: dónde golpea la bola en la raqueta, relativo a su centro. $u = 0$ es el centro, $u = -1$ el extremo de arriba y $u = 1$ el de abajo. Decide la [pendiente de salida](#pendiente-de-salida) (golpear con el extremo de arriba manda la bola hacia arriba con un ángulo cerrado) y la [velocidad de intercambio](#velocidad-de-intercambio) siguiente. En el notebook, columna `u` de `golpes(d)`.
+
+*Se usa en:* [golpe](practica.qmd#golpe), notebook (S2, S3).
+
+### Raqueta {#raqueta}
+
+Rectángulo de 10 × 80 px a cada lado del campo. Su posición $p$ es la ordenada de su **centro**, con $p \in [h/2, H - h/2] = [40, 560]$. Se mueve 8 px por tick según el [comando](#comando) y se detiene en los topes. Las dos empiezan la partida en $p = 300$. En el estado, `my_paddle_y` y `opp_paddle_y`; en el CSV, `p_left` y `p_right`.
+
+*Se usa en:* [campo](practica.qmd#campo), [estados de una partida y movimientos de las raquetas](practica.qmd#tick).
+
+### Rebote {#rebote}
+
+La reflexión de la bola en una [pared](#pared). **No corta el vuelo**: un vuelo puede tener varios (en `ejemplo.json`, de 0 a 3). En coordenadas plegadas, cada rebote invierte el signo de $v_{y,n}$ y del efecto $a_{y,n}$; en la ordenada desplegada, un rebote es un cruce de una frontera $R + kL$, con $k$ entero, y la paridad $k$ del número de rebotes dice si los signos están invertidos. El **rebote inicial** es el que ocurre entre las tres primeras observaciones de un vuelo: obliga a reflejarlas antes de estimar $v_{y,0}$ y $a_{y,0}$.
+
+*Se usa en:* [leyes del movimiento](practica.qmd#leyes), [paredes y plegado](practica.qmd#paredes), [estimación cinemática](practica.qmd#estimacion), notebook (P1, P2, P4).
+
+### Receptor {#receptor}
+
+El bot hacia el que va la bola en un vuelo: es quien tiene que devolverla. En el saque, el receptor es el rival de quien saca. En la tabla de vuelos del notebook, columna `receptor`.
+
+*Se usa en:* [saque](practica.qmd#saque), notebook (L4, P3, S4).
+
+### Registro JSON {#registro-json}
+
+Fichero `partida_<semilla>.json` que graba una partida completa: versión del motor, semilla, nombres de los bots, sets, resultado, `abandono` y `tiempo_excedido`, la lista de intercambios y los comandos de cada tick. Con la semilla y los comandos, el motor reproduce la partida exactamente, así que de él se obtienen el [CSV](#csv) y la [verdad del motor](#verdad-del-motor). Ocupa poco y se sube al repositorio.
+
+*Se usa en:* [registros](practica.qmd#registros), notebook (L1).
+
+### Saque {#saque}
+
+Inicio de un intercambio: tras la [pausa del saque](#pausa-del-saque), la bola sale del centro hacia el [receptor](#receptor) con la velocidad inicial $s_0 = 6$ y una pendiente aleatoria. Saca quien ganó el punto anterior; el primer saque de la partida se sortea y el de los sets 2 y 3 es para quien perdió el set anterior. En el CSV, columna `server`; en el estado, `serving`.
+
+*Se usa en:* [saque](practica.qmd#saque), notebook (S6).
+
+### Semilla {#semilla}
+
+Número entero que fija todo el azar de una partida (quién saca primero y la dirección de cada saque). Misma semilla y mismos comandos dan exactamente la misma partida en cualquier ordenador. Cada bot recibe además su propia semilla en `Bot(seed)` para un `random.Random` propio, si usa azar. Las semillas de la evaluación oficial son secretas hasta después de la entrega.
+
+*Se usa en:* [azar y reproducibilidad](practica.qmd#azar).
+
+### Set {#set}
+
+Parte de una partida. Lo gana el bot que llega a 11 puntos con 2 de ventaja; desde 10-10 se juega a ventaja de 2, y en 14-14 el siguiente punto gana el set (15-14). La partida es al mejor de 3 sets.
+
+*Se usa en:* [puntuación](practica.qmd#puntuacion), notebook (S8).
+
+### Tick {#tick}
+
+La unidad de tiempo del juego: un paso del motor. En cada tick, los bots deciden, las raquetas se mueven y la bola avanza. Los ticks se numeran desde 0; `state["tick"]` es el índice del tick que está a punto de ejecutarse. La visualización los muestra a 60 por segundo, pero eso no afecta a la física. Las velocidades se miden en px/tick y el efecto, en px/tick². No confundas este índice absoluto con el $n$ de las fórmulas de un vuelo, que cuenta los ticks desde su inicio.
+
+*Se usa en:* [leyes del movimiento](practica.qmd#leyes), [estados de una partida y movimientos de las raquetas](practica.qmd#tick).
+
+### Velocidad de la bola {#velocidad-de-la-bola}
+
+Sus componentes al final del tick $n$, $v_{x,n}$ (horizontal) y $v_{y,n}$ (vertical), en px/tick. En cada tick normal, $v_{x,n+1} = v_{x,n}$ y $v_{y,n+1} = v_{y,n} + a_{y,n}$ ([leyes del movimiento](practica.qmd#leyes)). Dentro de un vuelo, $v_{x,n} = v_{x,0}$ es **constante** y la velocidad vertical cambia por el efecto: en coordenadas desplegadas, $\Delta Y_n = Y_n - Y_{n-1} = v_{y,0} + n\,a_{y,0}$; en coordenadas plegadas, $v_{y,n}$ es ese valor con el signo cambiado tras cada rebote. El estado no las incluye: se estiman con diferencias de posiciones sucesivas, que en este juego son **exactas** (salvo redondeo). En el notebook se escriben $v_0$ por $v_{y,0}$ y $v_n$ por $\Delta Y_n$; en la [verdad del motor](#verdad-del-motor), `ball_vx` y `ball_vy`.
+
+*Se usa en:* [leyes del movimiento](practica.qmd#leyes), [movimiento entre golpes](practica.qmd#entre-golpes), [estimación cinemática](practica.qmd#estimacion), notebook (P1, P4).
+
+### Velocidad de intercambio {#velocidad-de-intercambio}
+
+$s$, el escalar que el motor fija en cada golpe y que determina el módulo de la velocidad con que sale la bola: $v_{x,0}$ y $v_{y,0}$ se calculan a partir de $s$ y de la [pendiente](#pendiente-de-salida). Empieza en $s_0 = 6$ en cada saque y en cada golpe se multiplica por $1{,}05\,(1 + 0{,}05\,|u|)$, así que crece a lo largo del intercambio. Durante un vuelo no cambia; con efecto, en cambio, el módulo real de la velocidad, $\sqrt{v_{x,n}^2 + v_{y,n}^2}$, sí cambia, porque cambia $v_{y,n}$. En el notebook se estima como $\sqrt{v_{x,0}^2 + v_{y,0}^2}$ (columna `s`); en la verdad del motor, `ball_speed`.
+
+*Se usa en:* [golpe](practica.qmd#golpe), [saque](practica.qmd#saque), notebook (P3, S3, S5).
+
+### Verdad del motor {#verdad-del-motor}
+
+Las magnitudes internas del motor que ni los bots ni el CSV ven, tick a tick: `ball_vx`, `ball_vy`, `ball_ay` y `ball_speed`. Se obtienen rejugando el registro JSON con `pong.registro.verdad(ruta)` o con `uv run python -m pong.registro <json> --verdad`. Sirven para comprobar tus estimaciones, no para jugar.
+
+*Se usa en:* [registros](practica.qmd#registros), notebook (P4, `d.verdad`).
+
+### Vuelo {#vuelo}
+
+El tramo de la trayectoria de la bola entre dos golpes consecutivos, desde el saque hasta el primer golpe o desde el último golpe hasta el final del intercambio. Los [rebotes](#rebote) en las paredes no lo cortan. En el CSV, son las filas `playing` consecutivas de un intercambio con el mismo `rally_hits`. $n$ cuenta los ticks desde el inicio del vuelo: $n = 0$ es su primera fila.
+
+- **Primera fila:** en el primer vuelo de un intercambio, la primera fila `playing` tras la pausa del saque, con la bola en el centro; en los demás, la fila del golpe, con la bola en el plano de impacto y `rally_hits` ya incrementado, de modo que $y_0 = y^*$.
+- **Última fila:** la anterior a la del golpe siguiente o, si el vuelo termina en fallo o nulo, la última fila `playing` del intercambio (`end_tick`); el cruce ocurre en ese tick y no aparece en el CSV.
+
+Un intercambio terminado en punto tiene `hits + 1` vuelos y uno nulo, `hits`. En el notebook, la tabla `d.vuelos` (L4) tiene una fila por vuelo.
+
+*Se usa en:* [movimiento entre golpes](practica.qmd#entre-golpes), notebook (L4 y casi todos los apartados).
