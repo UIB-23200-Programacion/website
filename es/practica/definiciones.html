@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Práctica: definiciones y notación – Programación (23200)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-fe839f7715ebcdbad7a07c709ae06b28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-bac4d22b2bca5ca58db192775c64c60d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-fe839f7715ebcdbad7a07c709ae06b28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Práctica: definiciones y notación – Programación (23200)">
+<meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/onda_triangular.svg">
+<meta property="og:site_name" content="Programación (23200)">
+<meta property="og:image:alt" content="Gráfica en zigzag de la ordenada plegada, con el eje vertical hacia abajo entre 6 y 594 px, frente a la desplegada, con periodo 1176 px; marca los puntos F(−100) = 112, F(300) = 300, F(700) = 488 y F(1300) = 124.">
+</head>
+
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../es/practica/practica.html">Práctica</a></li><li class="breadcrumb-item"><a href="../../es/practica/definiciones.html">Definiciones y Notación</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/UIB-23200-Programacion" title="GitHub Organization" class="quarto-navigation-tool px-1" aria-label="GitHub Organization"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Idioma / Llengua" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Idioma / Llengua"><i class="bi bi-globe"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../../es/index.html">
+            Español
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../../ca/index.html">
+            Català
+            </a>
+          </li>
+      </ul>
+    </div>
+    <a href="../../#" title="Modo presentación" class="quarto-navigation-tool px-1" aria-label="Modo presentación"><i class="bi bi-fullscreen"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inicio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Informaciones</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/informaciones/guia-docente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Guía docente</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/informaciones/horarios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calendario y Horario</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Temas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/contenido/tema1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Fundamentos, Entornos y Asistentes IA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/contenido/tema2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Componentes y Control de Flujo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/contenido/tema3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Funciones, Módulos y Organización</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/contenido/tema4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Estructuras de Datos de Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/contenido/tema5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Algoritmos Básicos y Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/contenido/tema6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Programación Orientada a Objetos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/contenido/tema7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Gestión de Datos y Ficheros</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/contenido/tema8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Ecosistema Científico de Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/contenido/tema9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Diseño Algorítmico y Resolución de Problemas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Ejercicios</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/ejercicios/tema1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ejercicios — Tema 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/ejercicios/tema2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ejercicios — Tema 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/ejercicios/tema3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ejercicios — Tema 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/ejercicios/tema4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ejercicios — Tema 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/ejercicios/tema5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ejercicios — Tema 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/ejercicios/tema6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ejercicios — Tema 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/ejercicios/tema7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ejercicios — Tema 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/ejercicios/tema8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ejercicios — Tema 8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/ejercicios/tema9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ejercicios — Tema 9</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Práctica</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/practica/practica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Práctica de la Asignatura</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/practica/definiciones.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Definiciones y Notación</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Recursos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/recursos/examenes-anteriores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exámenes anteriores</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/recursos/herramientas-software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Herramientas de software</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Bibliografía</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/bibliografia/principal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Principal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/bibliografia/complementaria.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementaria</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#simbolos" id="toc-simbolos" class="nav-link active" data-scroll-target="#simbolos">Símbolos y constantes</a></li>
+  <li><a href="#terminos" id="toc-terminos" class="nav-link" data-scroll-target="#terminos">Términos</a>
+  <ul class="collapse">
+  <li><a href="#abandono" id="toc-abandono" class="nav-link" data-scroll-target="#abandono">Abandono</a></li>
+  <li><a href="#alcance" id="toc-alcance" class="nav-link" data-scroll-target="#alcance">Alcance (franja de impacto)</a></li>
+  <li><a href="#bot" id="toc-bot" class="nav-link" data-scroll-target="#bot">Bot</a></li>
+  <li><a href="#bots-de-referencia" id="toc-bots-de-referencia" class="nav-link" data-scroll-target="#bots-de-referencia">Bots de referencia</a></li>
+  <li><a href="#comando" id="toc-comando" class="nav-link" data-scroll-target="#comando">Comando</a></li>
+  <li><a href="#corte-por-tiempo" id="toc-corte-por-tiempo" class="nav-link" data-scroll-target="#corte-por-tiempo">Corte por tiempo</a></li>
+  <li><a href="#csv" id="toc-csv" class="nav-link" data-scroll-target="#csv">CSV de la partida (CSV observable)</a></li>
+  <li><a href="#efecto" id="toc-efecto" class="nav-link" data-scroll-target="#efecto">Efecto</a></li>
+  <li><a href="#empate-tecnico" id="toc-empate-tecnico" class="nav-link" data-scroll-target="#empate-tecnico">Empate técnico</a></li>
+  <li><a href="#estado-del-bot" id="toc-estado-del-bot" class="nav-link" data-scroll-target="#estado-del-bot">Estado del bot (<code>state</code>)</a></li>
+  <li><a href="#fallo" id="toc-fallo" class="nav-link" data-scroll-target="#fallo">Fallo</a></li>
+  <li><a href="#golpe" id="toc-golpe" class="nav-link" data-scroll-target="#golpe">Golpe</a></li>
+  <li><a href="#golpeador" id="toc-golpeador" class="nav-link" data-scroll-target="#golpeador">Golpeador</a></li>
+  <li><a href="#intercambio" id="toc-intercambio" class="nav-link" data-scroll-target="#intercambio">Intercambio</a></li>
+  <li><a href="#motor" id="toc-motor" class="nav-link" data-scroll-target="#motor">Motor</a></li>
+  <li><a href="#nulo" id="toc-nulo" class="nav-link" data-scroll-target="#nulo">Nulo</a></li>
+  <li><a href="#onda-triangular" id="toc-onda-triangular" class="nav-link" data-scroll-target="#onda-triangular">Onda triangular</a></li>
+  <li><a href="#ordenada-de-impacto" id="toc-ordenada-de-impacto" class="nav-link" data-scroll-target="#ordenada-de-impacto">Ordenada de impacto</a></li>
+  <li><a href="#ordenada-plegada-y-desplegada" id="toc-ordenada-plegada-y-desplegada" class="nav-link" data-scroll-target="#ordenada-plegada-y-desplegada">Ordenada plegada y desplegada</a></li>
+  <li><a href="#partida" id="toc-partida" class="nav-link" data-scroll-target="#partida">Partida</a></li>
+  <li><a href="#pared" id="toc-pared" class="nav-link" data-scroll-target="#pared">Pared</a></li>
+  <li><a href="#pausa-del-saque" id="toc-pausa-del-saque" class="nav-link" data-scroll-target="#pausa-del-saque">Pausa del saque</a></li>
+  <li><a href="#pendiente-de-salida" id="toc-pendiente-de-salida" class="nav-link" data-scroll-target="#pendiente-de-salida">Pendiente de salida</a></li>
+  <li><a href="#plano-de-impacto" id="toc-plano-de-impacto" class="nav-link" data-scroll-target="#plano-de-impacto">Plano de impacto</a></li>
+  <li><a href="#porcentaje-de-puntos" id="toc-porcentaje-de-puntos" class="nav-link" data-scroll-target="#porcentaje-de-puntos">Porcentaje de puntos</a></li>
+  <li><a href="#punto" id="toc-punto" class="nav-link" data-scroll-target="#punto">Punto</a></li>
+  <li><a href="#punto-de-impacto" id="toc-punto-de-impacto" class="nav-link" data-scroll-target="#punto-de-impacto">Punto de impacto</a></li>
+  <li><a href="#raqueta" id="toc-raqueta" class="nav-link" data-scroll-target="#raqueta">Raqueta</a></li>
+  <li><a href="#rebote" id="toc-rebote" class="nav-link" data-scroll-target="#rebote">Rebote</a></li>
+  <li><a href="#receptor" id="toc-receptor" class="nav-link" data-scroll-target="#receptor">Receptor</a></li>
+  <li><a href="#registro-json" id="toc-registro-json" class="nav-link" data-scroll-target="#registro-json">Registro JSON</a></li>
+  <li><a href="#saque" id="toc-saque" class="nav-link" data-scroll-target="#saque">Saque</a></li>
+  <li><a href="#semilla" id="toc-semilla" class="nav-link" data-scroll-target="#semilla">Semilla</a></li>
+  <li><a href="#set" id="toc-set" class="nav-link" data-scroll-target="#set">Set</a></li>
+  <li><a href="#tick" id="toc-tick" class="nav-link" data-scroll-target="#tick">Tick</a></li>
+  <li><a href="#velocidad-de-la-bola" id="toc-velocidad-de-la-bola" class="nav-link" data-scroll-target="#velocidad-de-la-bola">Velocidad de la bola</a></li>
+  <li><a href="#velocidad-de-intercambio" id="toc-velocidad-de-intercambio" class="nav-link" data-scroll-target="#velocidad-de-intercambio">Velocidad de intercambio</a></li>
+  <li><a href="#verdad-del-motor" id="toc-verdad-del-motor" class="nav-link" data-scroll-target="#verdad-del-motor">Verdad del motor</a></li>
+  <li><a href="#vuelo" id="toc-vuelo" class="nav-link" data-scroll-target="#vuelo">Vuelo</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../es/practica/practica.html">Práctica</a></li><li class="breadcrumb-item"><a href="../../es/practica/definiciones.html">Definiciones y Notación</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Práctica: definiciones y notación</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Este documento reúne, en orden alfabético, los términos y los símbolos que usan el <a href="../../es/practica/practica.html">enunciado de la práctica</a>, tu bot (<code>src/pong/bot.py</code>) y el notebook de análisis (<code>notebook/analisis_mo.py</code>). Cada entrada dice qué significa el término, cómo aparece en el código y dónde se usa. Cuando una palabra del enunciado tenga aquí su definición, el enlace te traerá a ella.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Lo esencial en una frase">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Lo esencial en una frase
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>partida</strong> se juega a sets; cada <strong>set</strong>, a puntos; cada punto se disputa en un <strong>intercambio</strong>; un intercambio se compone de varios <strong>vuelos</strong>, uno por golpe más el que sale del saque; y todo avanza en <strong>ticks</strong>. La jerarquía es: partida → sets → intercambios → vuelos → ticks.</p>
+</div>
+</div>
+<hr>
+<section id="simbolos" class="level2">
+<h2 class="anchored" data-anchor-id="simbolos">Símbolos y constantes</h2>
+<p>Todas las longitudes están en píxeles (px) y el tiempo, en ticks. El origen del campo está en la esquina superior izquierda y el eje <span class="math inline">\(y\)</span> <strong>crece hacia abajo</strong>. Las constantes no hace falta escribirlas a mano: tu bot las recibe en <code>state["field"]</code> y el notebook las tiene en su primera celda.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Símbolo</th>
+<th style="text-align: left;">Significado</th>
+<th style="text-align: left;">Valor</th>
+<th style="text-align: left;">En <code>state["field"]</code></th>
+<th style="text-align: left;">En el notebook</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(W\)</span></td>
+<td style="text-align: left;">Ancho del campo</td>
+<td style="text-align: left;">800</td>
+<td style="text-align: left;"><code>width</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(H\)</span></td>
+<td style="text-align: left;">Alto del campo</td>
+<td style="text-align: left;">600</td>
+<td style="text-align: left;"><code>height</code></td>
+<td style="text-align: left;"><code>H</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(R\)</span></td>
+<td style="text-align: left;">Radio de la bola</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;"><code>ball_radius</code></td>
+<td style="text-align: left;"><code>R</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(L\)</span></td>
+<td style="text-align: left;">Recorrido vertical del centro de la bola: <span class="math inline">\(H - 2R\)</span></td>
+<td style="text-align: left;">588</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><code>L</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(h\)</span></td>
+<td style="text-align: left;">Alto de la raqueta</td>
+<td style="text-align: left;">80</td>
+<td style="text-align: left;"><code>paddle_height</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Grosor de la raqueta</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;"><code>paddle_thickness</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(X_L\)</span></td>
+<td style="text-align: left;">Cara frontal de la raqueta izquierda</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;"><code>my_face_x</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(X_R\)</span></td>
+<td style="text-align: left;">Cara frontal de la raqueta derecha</td>
+<td style="text-align: left;">770</td>
+<td style="text-align: left;"><code>opp_face_x</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(X_{\text{izq}}\)</span>, <span class="math inline">\(X_{\text{der}}\)</span></td>
+<td style="text-align: left;"><a href="#plano-de-impacto">Planos de impacto</a>: <span class="math inline">\(X_L + R\)</span> y <span class="math inline">\(X_R - R\)</span></td>
+<td style="text-align: left;">36 y 764</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><code>X_IZQ</code>, <code>X_DER</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(h/2 + R\)</span></td>
+<td style="text-align: left;">Semiancho de la <a href="#alcance">franja de impacto</a></td>
+<td style="text-align: left;">46</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><code>ALCANCE</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(v_p\)</span></td>
+<td style="text-align: left;">Velocidad de la raqueta</td>
+<td style="text-align: left;">8 px/tick</td>
+<td style="text-align: left;"><code>paddle_speed</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(s_0\)</span></td>
+<td style="text-align: left;"><a href="#velocidad-de-intercambio">Velocidad de intercambio</a> en el saque</td>
+<td style="text-align: left;">6 px/tick</td>
+<td style="text-align: left;"><code>initial_speed</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(m_{\max}\)</span>, <span class="math inline">\(m_{\min}\)</span></td>
+<td style="text-align: left;">Pendientes máxima y mínima de salida de un golpe (<span class="math inline">\(\tan 60°\)</span> y <span class="math inline">\(\tan 5°\)</span>)</td>
+<td style="text-align: left;">1,7321 y 0,0875</td>
+<td style="text-align: left;"><code>slope_max</code>, <code>slope_min</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Aceleración por golpe y velocidad extra en los extremos</td>
+<td style="text-align: left;">1,05 y 0,05</td>
+<td style="text-align: left;"><code>speedup</code>, <code>edge_speedup</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\kappa\)</span></td>
+<td style="text-align: left;">Constante del <a href="#efecto">efecto</a></td>
+<td style="text-align: left;">0,005 px/tick²</td>
+<td style="text-align: left;"><code>spin_kappa</code></td>
+<td style="text-align: left;"><code>KAPPA</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Duración de la <a href="#pausa-del-saque">pausa del saque</a></td>
+<td style="text-align: left;">60 ticks</td>
+<td style="text-align: left;"><code>serve_pause</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(R_{\max}\)</span></td>
+<td style="text-align: left;">Golpes que anulan un intercambio (<a href="#nulo">nulo</a>)</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;"><code>max_rally_hits</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Nulos que acaban la partida en <a href="#empate-tecnico">empate técnico</a></td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;"><code>max_lets</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+</tbody>
+</table>
+<p>Otros símbolos que usan el enunciado y el notebook:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Símbolo</th>
+<th style="text-align: left;">Significado</th>
+<th style="text-align: left;">Entrada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(x_n\)</span>, <span class="math inline">\(y_n\)</span></td>
+<td style="text-align: left;">Posición del centro de la bola al final del tick <span class="math inline">\(n\)</span>; <span class="math inline">\(y_n\)</span> es la ordenada <strong>plegada</strong></td>
+<td style="text-align: left;"><a href="#ordenada-plegada-y-desplegada">Ordenada plegada y desplegada</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(Y_n\)</span></td>
+<td style="text-align: left;">Ordenada <strong>desplegada</strong> al final del tick <span class="math inline">\(n\)</span> de un vuelo</td>
+<td style="text-align: left;"><a href="#ordenada-plegada-y-desplegada">Ordenada plegada y desplegada</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(F\)</span></td>
+<td style="text-align: left;">Onda triangular que pliega <span class="math inline">\(Y\)</span> en <span class="math inline">\(y\)</span></td>
+<td style="text-align: left;"><a href="#onda-triangular">Onda triangular</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(p\)</span></td>
+<td style="text-align: left;">Posición (ordenada del centro) de una raqueta</td>
+<td style="text-align: left;"><a href="#raqueta">Raqueta</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(c\)</span></td>
+<td style="text-align: left;">Comando: <span class="math inline">\(-1\)</span> (<code>UP</code>), <span class="math inline">\(0\)</span> (<code>STAY</code>), <span class="math inline">\(+1\)</span> (<code>DOWN</code>)</td>
+<td style="text-align: left;"><a href="#comando">Comando</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(v_{x,n}\)</span>, <span class="math inline">\(v_{y,n}\)</span></td>
+<td style="text-align: left;">Componentes de la velocidad de la bola al final del tick <span class="math inline">\(n\)</span></td>
+<td style="text-align: left;"><a href="#velocidad-de-la-bola">Velocidad de la bola</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(a_{x,n}\)</span>, <span class="math inline">\(a_{y,n}\)</span></td>
+<td style="text-align: left;">Componentes de la aceleración: <span class="math inline">\(a_{x,n} = 0\)</span> para todo <span class="math inline">\(n\)</span>; <span class="math inline">\(a_{y,n}\)</span> es el efecto</td>
+<td style="text-align: left;"><a href="#efecto">Efecto</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(v_{x,0}\)</span>, <span class="math inline">\(v_{y,0}\)</span>, <span class="math inline">\(a_{y,0}\)</span></td>
+<td style="text-align: left;">Velocidad y efecto al empezar un vuelo (<span class="math inline">\(n = 0\)</span>)</td>
+<td style="text-align: left;"><a href="#vuelo">Vuelo</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\Delta y_n\)</span>, <span class="math inline">\(\Delta Y_n\)</span></td>
+<td style="text-align: left;">Diferencias entre ticks consecutivos: <span class="math inline">\(y_n - y_{n-1}\)</span> e <span class="math inline">\(Y_n - Y_{n-1}\)</span></td>
+<td style="text-align: left;"><a href="#velocidad-de-la-bola">Velocidad de la bola</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(s\)</span></td>
+<td style="text-align: left;">Velocidad de intercambio</td>
+<td style="text-align: left;"><a href="#velocidad-de-intercambio">Velocidad de intercambio</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(n\)</span></td>
+<td style="text-align: left;">Índice de tick: en las leyes del movimiento, cualquier tick en juego; en las fórmulas de un vuelo, los ticks desde su inicio</td>
+<td style="text-align: left;"><a href="#vuelo">Vuelo</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(y^*\)</span></td>
+<td style="text-align: left;">Ordenada de impacto</td>
+<td style="text-align: left;"><a href="#ordenada-de-impacto">Ordenada de impacto</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(u\)</span></td>
+<td style="text-align: left;">Punto de impacto relativo en la raqueta</td>
+<td style="text-align: left;"><a href="#punto-de-impacto">Punto de impacto</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(m\)</span></td>
+<td style="text-align: left;">Pendiente de salida de un golpe o del saque, <span class="math inline">\(v_{y,0} / |v_{x,0}|\)</span></td>
+<td style="text-align: left;"><a href="#pendiente-de-salida">Pendiente de salida</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(n^*\)</span>, <span class="math inline">\(\tau\)</span></td>
+<td style="text-align: left;">Tick del cruce con el plano de impacto y fracción del tick en que ocurre</td>
+<td style="text-align: left;"><a href="#plano-de-impacto">Plano de impacto</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(k\)</span></td>
+<td style="text-align: left;">Paridad del número de rebotes (<span class="math inline">\(0\)</span> o <span class="math inline">\(1\)</span>)</td>
+<td style="text-align: left;"><a href="#rebote">Rebote</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="terminos" class="level2">
+<h2 class="anchored" data-anchor-id="terminos">Términos</h2>
+<section id="abandono" class="level3">
+<h3 class="anchored" data-anchor-id="abandono">Abandono</h3>
+<p>Partida que no llega a jugarse porque el constructor <code>Bot(seed)</code> de uno de los bots lanza una excepción. Cuenta como derrota de ese bot, con 0 puntos. En el registro JSON, la clave <code>abandono</code> indica el lado del bot que falló; el registro no tiene ticks ni intercambios. Tu notebook tiene que funcionar también con una partida así: tienes una en <code>notebook/raras/abandono.json</code>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#normas-bot">normas del bot</a>, <a href="../../es/practica/practica.html#registros">registros</a>, notebook (L1).</p>
+</section>
+<section id="alcance" class="level3">
+<h3 class="anchored" data-anchor-id="alcance">Alcance (franja de impacto)</h3>
+<p>La raqueta devuelve la bola si, cuando el centro de la bola cruza el <a href="#plano-de-impacto">plano de impacto</a>, su <a href="#ordenada-de-impacto">ordenada de impacto</a> <span class="math inline">\(y^*\)</span> cumple <span class="math inline">\(|y^* - p| \le h/2 + R = 46\)</span>. Ese intervalo de 92 px centrado en la raqueta es la franja de impacto, y 46 es su semiancho, <code>ALCANCE</code> en el notebook. Los extremos de la raqueta no rebotan la bola: fuera de la franja, el punto se pierde.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#golpe">golpe</a>, notebook (P3).</p>
+</section>
+<section id="bot" class="level3">
+<h3 class="anchored" data-anchor-id="bot">Bot</h3>
+<p>Programa que juega uno de los lados de la partida: una clase <code>Bot</code> con un constructor <code>Bot(seed)</code> y un método <code>decide(state)</code> que, en cada <a href="#tick">tick</a>, recibe el <a href="#estado-del-bot">estado</a> y devuelve un <a href="#comando">comando</a>. El tuyo está en <code>src/pong/bot.py</code>. El mismo objeto <code>Bot</code> dura toda la partida, así que puede recordar lo que ha visto en sus atributos.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#bot">tu bot</a>.</p>
+</section>
+<section id="bots-de-referencia" class="level3">
+<h3 class="anchored" data-anchor-id="bots-de-referencia">Bots de referencia</h3>
+<p>Los tres rivales contra los que se mide el <a href="../../es/practica/practica.html#rendimiento">rendimiento</a> de tu bot: <strong>Fácil</strong> (<code>easy</code>), <strong>Medio</strong> (<code>medium</code>) y <strong>Difícil</strong> (<code>hard</code>). Fácil tiene el código a la vista en <code>src/pong/bots_ref/easy.py</code>; Medio y Difícil se distribuyen compilados.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#referencia">bots de referencia</a>, <a href="../../es/practica/practica.html#rendimiento">evaluación</a>.</p>
+</section>
+<section id="comando" class="level3">
+<h3 class="anchored" data-anchor-id="comando">Comando</h3>
+<p>Lo que devuelve <code>decide</code> en cada tick: <code>"UP"</code> (la raqueta sube 8 px), <code>"DOWN"</code> (baja 8 px) o <code>"STAY"</code> (no se mueve). En las fórmulas se escribe <span class="math inline">\(c \in \{-1, 0, +1\}\)</span>: <code>UP</code> es <span class="math inline">\(-1\)</span> porque el eje <span class="math inline">\(y\)</span> crece hacia abajo. Cualquier otro valor, o una excepción, cuenta como <code>"STAY"</code>. El comando del tick de un golpe decide además el <a href="#efecto">efecto</a> de la bola. En el CSV, columnas <code>cmd_left</code> y <code>cmd_right</code>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#tick">estados de una partida y movimientos de las raquetas</a>, <a href="../../es/practica/practica.html#normas-bot">normas del bot</a>, notebook (S7).</p>
+</section>
+<section id="corte-por-tiempo" class="level3">
+<h3 class="anchored" data-anchor-id="corte-por-tiempo">Corte por tiempo</h3>
+<p>Final anticipado de una partida porque un bot supera el tiempo medio permitido por llamada a <code>decide</code> (2 ms). Desde la llamada 5 000 se vigila la media, y la partida se corta en cuanto la supera. El bot que lo supera pierde la partida con 0 puntos. En el registro JSON, la clave <code>tiempo_excedido</code> indica su lado; la partida se graba hasta el tick del corte, y el intercambio que estaba en juego no figura en la lista de intercambios. Tienes una partida así en <code>notebook/raras/tiempo.json</code>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#normas-bot">normas del bot</a>, notebook (L3).</p>
+</section>
+<section id="csv" class="level3">
+<h3 class="anchored" data-anchor-id="csv">CSV de la partida (CSV observable)</h3>
+<p>Fichero <code>partida_&lt;semilla&gt;.csv</code> con una fila por tick y lo mismo que ven los bots: <code>tick</code>, <code>state</code>, <code>ball_x</code>, <code>ball_y</code>, <code>p_left</code>, <code>p_right</code>, <code>cmd_left</code>, <code>cmd_right</code>, <code>server</code> y <code>rally_hits</code>. Usa coordenadas globales, no normalizadas. La fila <span class="math inline">\(t\)</span> es el estado <strong>antes</strong> de ejecutar el tick <span class="math inline">\(t\)</span>, con los comandos que se aplican en él. No contiene velocidades ni efecto: hay que estimarlos (ver <a href="#verdad-del-motor">verdad del motor</a>). Se obtiene de cualquier <a href="#registro-json">registro JSON</a> con <code>uv run python -m pong.registro &lt;json&gt;</code>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#registros">registros</a>, notebook (L2).</p>
+</section>
+<section id="efecto" class="level3">
+<h3 class="anchored" data-anchor-id="efecto">Efecto</h3>
+<p>Aceleración vertical <span class="math inline">\(a_{y,0} = \kappa\,c\)</span> que recibe la bola en un golpe, con <span class="math inline">\(\kappa = 0{,}005\)</span> px/tick² y <span class="math inline">\(c\)</span> el <a href="#comando">comando</a> de la raqueta que golpea en ese mismo tick (aunque la raqueta esté en su tope y no se mueva). <code>DOWN</code> curva la bola hacia abajo, <code>UP</code> hacia arriba y <code>STAY</code> no le da efecto. Se mantiene hasta el golpe siguiente (<span class="math inline">\(a_{y,n+1} = a_{y,n}\)</span> en un tick normal) y cambia de signo en cada <a href="#rebote">rebote</a>. La aceleración horizontal es siempre nula, <span class="math inline">\(a_{x,n} = 0\)</span>. En un vuelo de 100 ticks desvía la bola unos 25 px. El estado no lo incluye: tu bot tiene que estimarlo. En el notebook se escribe <span class="math inline">\(a\)</span>; en la <a href="#verdad-del-motor">verdad del motor</a>, <code>ball_ay</code>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#leyes">leyes del movimiento</a>, <a href="../../es/practica/practica.html#golpe">golpe</a>, <a href="../../es/practica/practica.html#estimacion">estimación cinemática</a>, notebook (P1, P2, P4).</p>
+</section>
+<section id="empate-tecnico" class="level3">
+<h3 class="anchored" data-anchor-id="empate-tecnico">Empate técnico</h3>
+<p>Resultado de una partida que llega al <a href="#nulo">nulo</a> número 20 sin terminar. En el registro JSON, <code>resultado</code> vale <code>"draw"</code>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#nulos">nulos y final de la partida</a>.</p>
+</section>
+<section id="estado-del-bot" class="level3">
+<h3 class="anchored" data-anchor-id="estado-del-bot">Estado del bot (<code>state</code>)</h3>
+<p>Diccionario que recibe <code>decide</code> en cada tick, con la situación <strong>al inicio</strong> de ese tick, <strong>normalizada</strong>: cada bot se ve siempre en el lado izquierdo, con la cara frontal de su raqueta en <span class="math inline">\(x = 30\)</span>. Para el bot derecho, el motor transforma <span class="math inline">\(x \to W - x\)</span>; <span class="math inline">\(y\)</span> no cambia. Así, la bola se acerca a tu raqueta cuando <code>ball_x</code> decrece. Sus claves están en el <a href="../../es/practica/practica.html#estado">enunciado</a>. No incluye velocidades ni efecto.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#estado">tu bot</a>.</p>
+</section>
+<section id="fallo" class="level3">
+<h3 class="anchored" data-anchor-id="fallo">Fallo</h3>
+<p>Final de un vuelo en el que la bola cruza el <a href="#plano-de-impacto">plano de impacto</a> fuera de la <a href="#alcance">franja de impacto</a>: el <a href="#receptor">receptor</a> pierde el punto. En la tabla de vuelos del notebook, <code>final == "fallo"</code>. Un intercambio terminado en punto acaba siempre en un fallo.</p>
+<p><em>Se usa en:</em> notebook (L4, P3, S4, S5).</p>
+</section>
+<section id="golpe" class="level3">
+<h3 class="anchored" data-anchor-id="golpe">Golpe</h3>
+<p>Contacto de la bola con una raqueta: la bola cruza el <a href="#plano-de-impacto">plano de impacto</a> dentro de la <a href="#alcance">franja de impacto</a>. El motor la deja exactamente en el plano, a la <a href="#ordenada-de-impacto">ordenada de impacto</a>, descarta el resto de ese tick y la lanza de vuelta con una nueva <a href="#pendiente-de-salida">pendiente</a>, una <a href="#velocidad-de-intercambio">velocidad de intercambio</a> mayor y un <a href="#efecto">efecto</a>. Cada golpe incrementa <code>rally_hits</code>, y así es como se detecta en el estado y en el CSV.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#golpe">golpe</a>, notebook (L4, P3, S2, S3).</p>
+</section>
+<section id="golpeador" class="level3">
+<h3 class="anchored" data-anchor-id="golpeador">Golpeador</h3>
+<p>El bot que da un golpe, es decir, el <a href="#receptor">receptor</a> del vuelo que termina. En el notebook, columna <code>golpeador</code> de <code>golpes(d)</code>.</p>
+<p><em>Se usa en:</em> notebook (S2, S3).</p>
+</section>
+<section id="intercambio" class="level3">
+<h3 class="anchored" data-anchor-id="intercambio">Intercambio</h3>
+<p>La disputa de un punto (en el JSON, <em>rally</em>). Empieza con la <a href="#pausa-del-saque">pausa del saque</a> (filas <code>serving</code> del CSV) y termina cuando se decide el punto (un <a href="#fallo">fallo</a>) o se declara <a href="#nulo">nulo</a>. Se compone de varios <a href="#vuelo">vuelos</a>: uno por golpe más el inicial desde el saque, es decir, <code>hits + 1</code> vuelos si termina en punto y <code>hits</code> si es nulo. En el registro JSON, cada intercambio tiene <code>start_tick</code> (primer tick de la pausa del saque), <code>end_tick</code> (tick en que se decide el punto o se declara el nulo), <code>hits</code>, <code>outcome</code> (<code>"point"</code> o <code>"let"</code>) y <code>winner</code>.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En <code>notebook/ejemplo.json</code>, el intercambio 1 va del tick 0 al 1936: los ticks 0–59 son la pausa del saque, tiene 24 golpes y, por tanto, 25 vuelos. La partida completa tiene 27 intercambios y 716 vuelos.</p>
+</div>
+</div>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#puntuacion">puntuación</a>, <a href="../../es/practica/practica.html#registros">registros</a>, notebook (L1, L3, S1, S6, S8).</p>
+</section>
+<section id="motor" class="level3">
+<h3 class="anchored" data-anchor-id="motor">Motor</h3>
+<p><code>src/pong/pong_engine.py</code>, el módulo que simula el juego: aplica los comandos, mueve la bola, resuelve rebotes y golpes y lleva el marcador. Es el mismo en tu Codespace, en <code>pong.html</code> y en la evaluación oficial. No lo modifiques: un test comprueba que no ha cambiado.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#reglas">reglas del juego</a>.</p>
+</section>
+<section id="nulo" class="level3">
+<h3 class="anchored" data-anchor-id="nulo">Nulo</h3>
+<p>Intercambio anulado (en el JSON, <code>outcome == "let"</code>) porque llega a <span class="math inline">\(R_{\max} = 100\)</span> golpes. Se declara en el mismo tick del golpe número 100, que no abre un vuelo nuevo, y se repite el saque con el mismo jugador. Nadie gana el punto (<code>winner</code> es <code>null</code>). Al llegar al nulo número 20, la partida acaba en <a href="#empate-tecnico">empate técnico</a>. En la práctica son muy raros; tienes una partida con uno en <code>notebook/raras/nulo.json</code>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#nulos">nulos y final de la partida</a>, notebook (L1, L3, L4).</p>
+</section>
+<section id="onda-triangular" class="level3">
+<h3 class="anchored" data-anchor-id="onda-triangular">Onda triangular</h3>
+<p>La función <span class="math inline">\(F\)</span> que pliega la <a href="#ordenada-plegada-y-desplegada">ordenada desplegada</a> <span class="math inline">\(Y\)</span> en la plegada <span class="math inline">\(y\)</span>. Con <span class="math inline">\(m = (Y - R) \bmod 2L\)</span>:</p>
+<p><span class="math display">\[
+F(Y) = \begin{cases} R + m &amp; \text{si } m \le L,\\ R + 2L - m &amp; \text{si } m &gt; L. \end{cases}
+\]</span></p>
+<p>Su gráfica es un zigzag: sube con pendiente 1 de <span class="math inline">\(R\)</span> a <span class="math inline">\(R + L\)</span>, baja con pendiente <span class="math inline">\(-1\)</span> y se repite con <strong>periodo</strong> <span class="math inline">\(2L = 1176\)</span>, es decir, <span class="math inline">\(F(Y + 2L) = F(Y)\)</span>. Siempre toma valores en <span class="math inline">\([R, H - R] = [6, 594]\)</span>. Dentro del campo, <span class="math inline">\(F(Y) = Y\)</span>; cada pico o valle es un <a href="#rebote">rebote</a>. <span class="math inline">\(F\)</span> no es inyectiva: cada <span class="math inline">\(y\)</span> proviene de infinitas <span class="math inline">\(Y\)</span>. El motor la aplica en cada tick (<code>pe.fold</code>) a la ordenada recién avanzada, sin buscar antes los rebotes, y en el notebook la programas como <code>plegar</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/onda_triangular.svg" class="img-fluid figure-img" style="width:100.0%" alt="Gráfica en zigzag de la ordenada plegada, con el eje vertical hacia abajo entre 6 y 594 px, frente a la desplegada, con periodo 1176 px; marca los puntos F(−100) = 112, F(300) = 300, F(700) = 488 y F(1300) = 124."></p>
+<figcaption>La onda triangular <span class="math inline">\(F\)</span>. El eje vertical crece hacia abajo, como en el campo: la pared de arriba es <span class="math inline">\(y = 6\)</span> y la de abajo, <span class="math inline">\(y = 594\)</span>. Las líneas punteadas son las fronteras <span class="math inline">\(R + kL\)</span>: cada vez que <span class="math inline">\(Y\)</span> cruza una, la bola rebota. Dentro del campo, <span class="math inline">\(F(Y) = Y\)</span> (línea naranja). Los puntos son los del ejemplo de abajo.</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(F(300) = 300\)</span> (dentro del campo); <span class="math inline">\(F(700) = 488\)</span> (sobrepasa la pared de abajo, <span class="math inline">\(y = 594\)</span>, en 106 y rebota a <span class="math inline">\(594 - 106\)</span>); <span class="math inline">\(F(1300) = 124\)</span> (rebota abajo y arriba); <span class="math inline">\(F(-100) = 112\)</span> (sobrepasa la pared de arriba en 106 y rebota a <span class="math inline">\(6 + 106\)</span>).</p>
+</div>
+</div>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#paredes">paredes y plegado</a>, notebook (P2).</p>
+</section>
+<section id="ordenada-de-impacto" class="level3">
+<h3 class="anchored" data-anchor-id="ordenada-de-impacto">Ordenada de impacto</h3>
+<p><span class="math inline">\(y^*\)</span>: la ordenada del centro de la bola en el instante en que cruza el <a href="#plano-de-impacto">plano de impacto</a>, calculada por el motor con la fracción exacta del tick. Si hay golpe, la bola queda en ese punto y es la primera fila del vuelo siguiente (<span class="math inline">\(y_0 = y^*\)</span>). Si hay fallo, no aparece en el CSV.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#golpe">golpe</a>, notebook (P3, S4).</p>
+</section>
+<section id="ordenada-plegada-y-desplegada" class="level3">
+<h3 class="anchored" data-anchor-id="ordenada-plegada-y-desplegada">Ordenada plegada y desplegada</h3>
+<ul>
+<li><strong>Plegada</strong>, <span class="math inline">\(y\)</span> (<span class="math inline">\(y_n\)</span> al final del tick <span class="math inline">\(n\)</span>): la ordenada real del centro de la bola, siempre en <span class="math inline">\([R, H - R]\)</span>. Es <code>ball_y</code> en el estado del bot y en el CSV. Es la única que se observa.</li>
+<li><strong>Desplegada</strong>, <span class="math inline">\(Y\)</span> (<span class="math inline">\(Y_n\)</span> al final del tick <span class="math inline">\(n\)</span> de un vuelo): la que tendría la bola en un vuelo si las paredes no la reflejaran y siguiera su trayectoria, aunque saliera del campo. Dentro de un vuelo es una parábola, <span class="math inline">\(Y_n = y_0 + n\,v_{y,0} + a_{y,0}\,n(n+1)/2\)</span>, y la plegada es <span class="math inline">\(y_n = F(Y_n)\)</span>. No está en ningún fichero y el motor tampoco la guarda: avanza tick a tick la plegada y, en cada rebote, cambia el signo de <span class="math inline">\(v_{y,n}\)</span> y de <span class="math inline">\(a_{y,n}\)</span>, lo que da el mismo resultado. Se reconstruye a partir de la plegada (<code>desplegar</code> en el notebook).</li>
+</ul>
+<p>Desplegar solo tiene sentido <strong>dentro de un vuelo</strong>: cada golpe cambia <span class="math inline">\(v_{y,0}\)</span> y <span class="math inline">\(a_{y,0}\)</span>, así que no hay una <span class="math inline">\(Y\)</span> común a dos vuelos.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#paredes">paredes y plegado</a>, <a href="../../es/practica/practica.html#estimacion">estimación cinemática</a>, notebook (P1, P2, P3, P4).</p>
+</section>
+<section id="partida" class="level3">
+<h3 class="anchored" data-anchor-id="partida">Partida</h3>
+<p>Enfrentamiento entre dos bots al mejor de 3 <a href="#set">sets</a>. Se identifica por su <a href="#semilla">semilla</a> y queda grabada en un <a href="#registro-json">registro JSON</a>. Termina cuando un bot gana 2 sets, en <a href="#empate-tecnico">empate técnico</a>, por <a href="#abandono">abandono</a> o por <a href="#corte-por-tiempo">corte por tiempo</a>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#puntuacion">puntuación</a>.</p>
+</section>
+<section id="pared" class="level3">
+<h3 class="anchored" data-anchor-id="pared">Pared</h3>
+<p>Cada uno de los dos bordes <strong>horizontales</strong> del campo, el de arriba y el de abajo. La bola rebota en ellas: su centro se refleja en <span class="math inline">\(y = R\)</span> y en <span class="math inline">\(y = H - R\)</span>. A los lados verticales están las raquetas: allí no hay rebote, el vuelo termina en <a href="#golpe">golpe</a> o en <a href="#fallo">fallo</a>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#paredes">paredes y plegado</a>, notebook (P1, P2).</p>
+</section>
+<section id="pausa-del-saque" class="level3">
+<h3 class="anchored" data-anchor-id="pausa-del-saque">Pausa del saque</h3>
+<p>Los 60 ticks en estado <code>serving</code> antes de cada saque, con la bola quieta en el centro, <span class="math inline">\((400, 300)\)</span>. Las raquetas se pueden mover. Durante la pausa, <code>serve_ticks_left</code> vale 60, 59, …, 1; después el estado pasa a <code>playing</code> y la bola se mueve por primera vez en el tick siguiente. Forma parte del intercambio, pero no de ningún vuelo.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#saque">saque</a>, notebook (L3).</p>
+</section>
+<section id="pendiente-de-salida" class="level3">
+<h3 class="anchored" data-anchor-id="pendiente-de-salida">Pendiente de salida</h3>
+<p><span class="math inline">\(m = v_{y,0} / |v_{x,0}|\)</span>, la dirección con que sale la bola de un golpe o del saque, con <span class="math inline">\(v_{x,0}\)</span> y <span class="math inline">\(v_{y,0}\)</span> las componentes de su velocidad al empezar el vuelo. Si <span class="math inline">\(m &gt; 0\)</span>, la bola sale hacia abajo. En un golpe depende del <a href="#punto-de-impacto">punto de impacto</a>: <span class="math inline">\(m(u) = \operatorname{sgn}(u)\,\max(m_{\min},\, m_{\max}\,|u|)\)</span>, entre 5° y 60° respecto a la horizontal. En el saque es aleatoria, entre 20° y 45°.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#golpe">golpe</a>, <a href="../../es/practica/practica.html#saque">saque</a>.</p>
+</section>
+<section id="plano-de-impacto" class="level3">
+<h3 class="anchored" data-anchor-id="plano-de-impacto">Plano de impacto</h3>
+<p>Recta vertical por la que pasa el <strong>centro</strong> de la bola cuando toca la cara frontal de una raqueta: <span class="math inline">\(x = X_L + R = 36\)</span> a la izquierda (<code>X_IZQ</code>) y <span class="math inline">\(x = X_R - R = 764\)</span> a la derecha (<code>X_DER</code>). Como <span class="math inline">\(v_{x,n} = v_{x,0}\)</span> es constante en un vuelo, el primer tick con cruce del plano <span class="math inline">\(X\)</span> es <span class="math inline">\(n^* = \lfloor (X - x_0)/v_{x,0} \rfloor + 1\)</span>, en los dos sentidos, y la fracción del tick en que cruza es <span class="math inline">\(\tau\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imagenes/campo.svg" class="img-fluid figure-img" style="width:100.0%" alt="Esquema del campo de 800 por 600 píxeles con las dos raquetas, la bola, las paredes y los planos de impacto."></p>
+<figcaption>El campo, en píxeles. La bola rebota en las paredes de arriba y abajo; a los lados están las raquetas y sus planos de impacto.</figcaption>
+</figure>
+</div>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#golpe">golpe</a>, notebook (P3).</p>
+</section>
+<section id="porcentaje-de-puntos" class="level3">
+<h3 class="anchored" data-anchor-id="porcentaje-de-puntos">Porcentaje de puntos</h3>
+<p>La medida del <a href="../../es/practica/practica.html#rendimiento">rendimiento</a> de tu bot contra un rival: la media, sobre las partidas jugadas, de la fracción de puntos que ganas en cada una (puntos ganados entre puntos jugados). Una partida perdida por abandono o por corte por tiempo cuenta 0.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#rendimiento">rendimiento</a>.</p>
+</section>
+<section id="punto" class="level3">
+<h3 class="anchored" data-anchor-id="punto">Punto</h3>
+<p>Unidad del marcador de un <a href="#set">set</a>. Lo gana el rival del bot que comete un <a href="#fallo">fallo</a>. Cada punto se disputa en un <a href="#intercambio">intercambio</a>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#puntuacion">puntuación</a>.</p>
+</section>
+<section id="punto-de-impacto" class="level3">
+<h3 class="anchored" data-anchor-id="punto-de-impacto">Punto de impacto</h3>
+<p><span class="math inline">\(u = (y^* - p)/46 \in [-1, 1]\)</span>: dónde golpea la bola en la raqueta, relativo a su centro. <span class="math inline">\(u = 0\)</span> es el centro, <span class="math inline">\(u = -1\)</span> el extremo de arriba y <span class="math inline">\(u = 1\)</span> el de abajo. Decide la <a href="#pendiente-de-salida">pendiente de salida</a> (golpear con el extremo de arriba manda la bola hacia arriba con un ángulo cerrado) y la <a href="#velocidad-de-intercambio">velocidad de intercambio</a> siguiente. En el notebook, columna <code>u</code> de <code>golpes(d)</code>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#golpe">golpe</a>, notebook (S2, S3).</p>
+</section>
+<section id="raqueta" class="level3">
+<h3 class="anchored" data-anchor-id="raqueta">Raqueta</h3>
+<p>Rectángulo de 10 × 80 px a cada lado del campo. Su posición <span class="math inline">\(p\)</span> es la ordenada de su <strong>centro</strong>, con <span class="math inline">\(p \in [h/2, H - h/2] = [40, 560]\)</span>. Se mueve 8 px por tick según el <a href="#comando">comando</a> y se detiene en los topes. Las dos empiezan la partida en <span class="math inline">\(p = 300\)</span>. En el estado, <code>my_paddle_y</code> y <code>opp_paddle_y</code>; en el CSV, <code>p_left</code> y <code>p_right</code>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#campo">campo</a>, <a href="../../es/practica/practica.html#tick">estados de una partida y movimientos de las raquetas</a>.</p>
+</section>
+<section id="rebote" class="level3">
+<h3 class="anchored" data-anchor-id="rebote">Rebote</h3>
+<p>La reflexión de la bola en una <a href="#pared">pared</a>. <strong>No corta el vuelo</strong>: un vuelo puede tener varios (en <code>ejemplo.json</code>, de 0 a 3). En coordenadas plegadas, cada rebote invierte el signo de <span class="math inline">\(v_{y,n}\)</span> y del efecto <span class="math inline">\(a_{y,n}\)</span>; en la ordenada desplegada, un rebote es un cruce de una frontera <span class="math inline">\(R + kL\)</span>, con <span class="math inline">\(k\)</span> entero, y la paridad <span class="math inline">\(k\)</span> del número de rebotes dice si los signos están invertidos. El <strong>rebote inicial</strong> es el que ocurre entre las tres primeras observaciones de un vuelo: obliga a reflejarlas antes de estimar <span class="math inline">\(v_{y,0}\)</span> y <span class="math inline">\(a_{y,0}\)</span>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#leyes">leyes del movimiento</a>, <a href="../../es/practica/practica.html#paredes">paredes y plegado</a>, <a href="../../es/practica/practica.html#estimacion">estimación cinemática</a>, notebook (P1, P2, P4).</p>
+</section>
+<section id="receptor" class="level3">
+<h3 class="anchored" data-anchor-id="receptor">Receptor</h3>
+<p>El bot hacia el que va la bola en un vuelo: es quien tiene que devolverla. En el saque, el receptor es el rival de quien saca. En la tabla de vuelos del notebook, columna <code>receptor</code>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#saque">saque</a>, notebook (L4, P3, S4).</p>
+</section>
+<section id="registro-json" class="level3">
+<h3 class="anchored" data-anchor-id="registro-json">Registro JSON</h3>
+<p>Fichero <code>partida_&lt;semilla&gt;.json</code> que graba una partida completa: versión del motor, semilla, nombres de los bots, sets, resultado, <code>abandono</code> y <code>tiempo_excedido</code>, la lista de intercambios y los comandos de cada tick. Con la semilla y los comandos, el motor reproduce la partida exactamente, así que de él se obtienen el <a href="#csv">CSV</a> y la <a href="#verdad-del-motor">verdad del motor</a>. Ocupa poco y se sube al repositorio.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#registros">registros</a>, notebook (L1).</p>
+</section>
+<section id="saque" class="level3">
+<h3 class="anchored" data-anchor-id="saque">Saque</h3>
+<p>Inicio de un intercambio: tras la <a href="#pausa-del-saque">pausa del saque</a>, la bola sale del centro hacia el <a href="#receptor">receptor</a> con la velocidad inicial <span class="math inline">\(s_0 = 6\)</span> y una pendiente aleatoria. Saca quien ganó el punto anterior; el primer saque de la partida se sortea y el de los sets 2 y 3 es para quien perdió el set anterior. En el CSV, columna <code>server</code>; en el estado, <code>serving</code>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#saque">saque</a>, notebook (S6).</p>
+</section>
+<section id="semilla" class="level3">
+<h3 class="anchored" data-anchor-id="semilla">Semilla</h3>
+<p>Número entero que fija todo el azar de una partida (quién saca primero y la dirección de cada saque). Misma semilla y mismos comandos dan exactamente la misma partida en cualquier ordenador. Cada bot recibe además su propia semilla en <code>Bot(seed)</code> para un <code>random.Random</code> propio, si usa azar. Las semillas de la evaluación oficial son secretas hasta después de la entrega.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#azar">azar y reproducibilidad</a>.</p>
+</section>
+<section id="set" class="level3">
+<h3 class="anchored" data-anchor-id="set">Set</h3>
+<p>Parte de una partida. Lo gana el bot que llega a 11 puntos con 2 de ventaja; desde 10-10 se juega a ventaja de 2, y en 14-14 el siguiente punto gana el set (15-14). La partida es al mejor de 3 sets.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#puntuacion">puntuación</a>, notebook (S8).</p>
+</section>
+<section id="tick" class="level3">
+<h3 class="anchored" data-anchor-id="tick">Tick</h3>
+<p>La unidad de tiempo del juego: un paso del motor. En cada tick, los bots deciden, las raquetas se mueven y la bola avanza. Los ticks se numeran desde 0; <code>state["tick"]</code> es el índice del tick que está a punto de ejecutarse. La visualización los muestra a 60 por segundo, pero eso no afecta a la física. Las velocidades se miden en px/tick y el efecto, en px/tick². No confundas este índice absoluto con el <span class="math inline">\(n\)</span> de las fórmulas de un vuelo, que cuenta los ticks desde su inicio.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#leyes">leyes del movimiento</a>, <a href="../../es/practica/practica.html#tick">estados de una partida y movimientos de las raquetas</a>.</p>
+</section>
+<section id="velocidad-de-la-bola" class="level3">
+<h3 class="anchored" data-anchor-id="velocidad-de-la-bola">Velocidad de la bola</h3>
+<p>Sus componentes al final del tick <span class="math inline">\(n\)</span>, <span class="math inline">\(v_{x,n}\)</span> (horizontal) y <span class="math inline">\(v_{y,n}\)</span> (vertical), en px/tick. En cada tick normal, <span class="math inline">\(v_{x,n+1} = v_{x,n}\)</span> y <span class="math inline">\(v_{y,n+1} = v_{y,n} + a_{y,n}\)</span> (<a href="../../es/practica/practica.html#leyes">leyes del movimiento</a>). Dentro de un vuelo, <span class="math inline">\(v_{x,n} = v_{x,0}\)</span> es <strong>constante</strong> y la velocidad vertical cambia por el efecto: en coordenadas desplegadas, <span class="math inline">\(\Delta Y_n = Y_n - Y_{n-1} = v_{y,0} + n\,a_{y,0}\)</span>; en coordenadas plegadas, <span class="math inline">\(v_{y,n}\)</span> es ese valor con el signo cambiado tras cada rebote. El estado no las incluye: se estiman con diferencias de posiciones sucesivas, que en este juego son <strong>exactas</strong> (salvo redondeo). En el notebook se escriben <span class="math inline">\(v_0\)</span> por <span class="math inline">\(v_{y,0}\)</span> y <span class="math inline">\(v_n\)</span> por <span class="math inline">\(\Delta Y_n\)</span>; en la <a href="#verdad-del-motor">verdad del motor</a>, <code>ball_vx</code> y <code>ball_vy</code>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#leyes">leyes del movimiento</a>, <a href="../../es/practica/practica.html#entre-golpes">movimiento entre golpes</a>, <a href="../../es/practica/practica.html#estimacion">estimación cinemática</a>, notebook (P1, P4).</p>
+</section>
+<section id="velocidad-de-intercambio" class="level3">
+<h3 class="anchored" data-anchor-id="velocidad-de-intercambio">Velocidad de intercambio</h3>
+<p><span class="math inline">\(s\)</span>, el escalar que el motor fija en cada golpe y que determina el módulo de la velocidad con que sale la bola: <span class="math inline">\(v_{x,0}\)</span> y <span class="math inline">\(v_{y,0}\)</span> se calculan a partir de <span class="math inline">\(s\)</span> y de la <a href="#pendiente-de-salida">pendiente</a>. Empieza en <span class="math inline">\(s_0 = 6\)</span> en cada saque y en cada golpe se multiplica por <span class="math inline">\(1{,}05\,(1 + 0{,}05\,|u|)\)</span>, así que crece a lo largo del intercambio. Durante un vuelo no cambia; con efecto, en cambio, el módulo real de la velocidad, <span class="math inline">\(\sqrt{v_{x,n}^2 + v_{y,n}^2}\)</span>, sí cambia, porque cambia <span class="math inline">\(v_{y,n}\)</span>. En el notebook se estima como <span class="math inline">\(\sqrt{v_{x,0}^2 + v_{y,0}^2}\)</span> (columna <code>s</code>); en la verdad del motor, <code>ball_speed</code>.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#golpe">golpe</a>, <a href="../../es/practica/practica.html#saque">saque</a>, notebook (P3, S3, S5).</p>
+</section>
+<section id="verdad-del-motor" class="level3">
+<h3 class="anchored" data-anchor-id="verdad-del-motor">Verdad del motor</h3>
+<p>Las magnitudes internas del motor que ni los bots ni el CSV ven, tick a tick: <code>ball_vx</code>, <code>ball_vy</code>, <code>ball_ay</code> y <code>ball_speed</code>. Se obtienen rejugando el registro JSON con <code>pong.registro.verdad(ruta)</code> o con <code>uv run python -m pong.registro &lt;json&gt; --verdad</code>. Sirven para comprobar tus estimaciones, no para jugar.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#registros">registros</a>, notebook (P4, <code>d.verdad</code>).</p>
+</section>
+<section id="vuelo" class="level3">
+<h3 class="anchored" data-anchor-id="vuelo">Vuelo</h3>
+<p>El tramo de la trayectoria de la bola entre dos golpes consecutivos, desde el saque hasta el primer golpe o desde el último golpe hasta el final del intercambio. Los <a href="#rebote">rebotes</a> en las paredes no lo cortan. En el CSV, son las filas <code>playing</code> consecutivas de un intercambio con el mismo <code>rally_hits</code>. <span class="math inline">\(n\)</span> cuenta los ticks desde el inicio del vuelo: <span class="math inline">\(n = 0\)</span> es su primera fila.</p>
+<ul>
+<li><strong>Primera fila:</strong> en el primer vuelo de un intercambio, la primera fila <code>playing</code> tras la pausa del saque, con la bola en el centro; en los demás, la fila del golpe, con la bola en el plano de impacto y <code>rally_hits</code> ya incrementado, de modo que <span class="math inline">\(y_0 = y^*\)</span>.</li>
+<li><strong>Última fila:</strong> la anterior a la del golpe siguiente o, si el vuelo termina en fallo o nulo, la última fila <code>playing</code> del intercambio (<code>end_tick</code>); el cruce ocurre en ese tick y no aparece en el CSV.</li>
+</ul>
+<p>Un intercambio terminado en punto tiene <code>hits + 1</code> vuelos y uno nulo, <code>hits</code>. En el notebook, la tabla <code>d.vuelos</code> (L4) tiene una fila por vuelo.</p>
+<p><em>Se usa en:</em> <a href="../../es/practica/practica.html#entre-golpes">movimiento entre golpes</a>, notebook (L4 y casi todos los apartados).</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/uib-23200-programacion\.github\.io\/website\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2026, Alejandro Mesejo, <a href="https://eps.uib.es/">UIB-EPS</a></p>
+</div>   
+    <div class="nav-footer-center">
+<p>Material publicado bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">CC BY-NC-SA 4.0</a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Esta página está construida con <a href="https://github.com/sta210-s22">sta210-s22</a> y <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+<script src="../../logo-href.js"></script>
+<script src="../../live-copy-button.js"></script>
+<script src="../../full-view.js"></script>
+
+
+
+
+</body></html>

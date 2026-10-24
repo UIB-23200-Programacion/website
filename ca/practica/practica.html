@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Pràctica del Curs – Programación (23200)</title>
+<title>Pràctica de l’assignatura 23200 - Programació – Programación (23200)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -72,11 +127,42 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Pràctica del Curs – Programación (23200)">
+<meta property="og:title" content="Pràctica de l’assignatura 23200 - Programació – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/campo.svg">
 <meta property="og:site_name" content="Programación (23200)">
+<meta property="og:image:alt" content="Esquema del camp de 800 per 600 píxels amb les dues raquetes, la bola, les parets i els plans d'impacte.">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -250,7 +336,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ca/practica/practica.html">Pràctica</a></li><li class="breadcrumb-item"><a href="../../ca/practica/practica.html">Pràctica del Curs</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ca/practica/practica.html">Pràctica</a></li><li class="breadcrumb-item"><a href="../../ca/practica/practica.html">Pràctica de l’Assignatura</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Cerca" onclick="window.quartoOpenSearch();">
@@ -467,7 +553,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../ca/practica/practica.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Pràctica del Curs</span></a>
+ <span class="menu-text">Pràctica de l’Assignatura</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/practica/definicions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Definicions i Notació</span></a>
   </div>
 </li>
       </ul>
@@ -523,16 +615,61 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En aquesta pàgina</h2>
+   
+  <ul>
+  <li><a href="#introducció" id="toc-introducció" class="nav-link active" data-scroll-target="#introducció">Introducció</a></li>
+  <li><a href="#la-pràctica" id="toc-la-pràctica" class="nav-link" data-scroll-target="#la-pràctica">La Pràctica</a></li>
+  <li><a href="#puesta-en-marcha" id="toc-puesta-en-marcha" class="nav-link" data-scroll-target="#puesta-en-marcha">1. Posada en marxa</a>
+  <ul class="collapse">
+  <li><a href="#la-teva-còpia-de-la-plantilla" id="toc-la-teva-còpia-de-la-plantilla" class="nav-link" data-scroll-target="#la-teva-còpia-de-la-plantilla"><strong>1.1 La teva còpia de la plantilla</strong></a></li>
+  <li><a href="#lentorn-de-treball" id="toc-lentorn-de-treball" class="nav-link" data-scroll-target="#lentorn-de-treball"><strong>1.2 L’entorn de treball</strong></a></li>
+  </ul></li>
+  <li><a href="#reglas" id="toc-reglas" class="nav-link" data-scroll-target="#reglas">2. Regles del joc</a>
+  <ul class="collapse">
+  <li><a href="#campo" id="toc-campo" class="nav-link" data-scroll-target="#campo"><strong>2.1 Camp i unitats</strong></a></li>
+  <li><a href="#leyes" id="toc-leyes" class="nav-link" data-scroll-target="#leyes"><strong>2.2 Lleis del moviment de la bola</strong></a></li>
+  <li><a href="#tick" id="toc-tick" class="nav-link" data-scroll-target="#tick"><strong>2.3 Estats d’una partida i moviments de les raquetes</strong></a></li>
+  <li><a href="#paredes" id="toc-paredes" class="nav-link" data-scroll-target="#paredes"><strong>2.4 Parets i plegament</strong></a></li>
+  <li><a href="#golpe" id="toc-golpe" class="nav-link" data-scroll-target="#golpe"><strong>2.5 El cop</strong></a></li>
+  <li><a href="#entre-golpes" id="toc-entre-golpes" class="nav-link" data-scroll-target="#entre-golpes"><strong>2.6 Moviment entre cops</strong></a></li>
+  <li><a href="#saque" id="toc-saque" class="nav-link" data-scroll-target="#saque"><strong>2.7 Servei</strong></a></li>
+  <li><a href="#puntuacion" id="toc-puntuacion" class="nav-link" data-scroll-target="#puntuacion"><strong>2.8 Puntuació</strong></a></li>
+  <li><a href="#nulos" id="toc-nulos" class="nav-link" data-scroll-target="#nulos"><strong>2.9 Nuls i final de la partida</strong></a></li>
+  <li><a href="#azar" id="toc-azar" class="nav-link" data-scroll-target="#azar"><strong>2.10 Atzar i reproductibilitat</strong></a></li>
+  </ul></li>
+  <li><a href="#bot" id="toc-bot" class="nav-link" data-scroll-target="#bot">3. El teu bot</a>
+  <ul class="collapse">
+  <li><a href="#la-interfície" id="toc-la-interfície" class="nav-link" data-scroll-target="#la-interfície"><strong>3.1 La interfície</strong></a></li>
+  <li><a href="#estado" id="toc-estado" class="nav-link" data-scroll-target="#estado"><strong>3.2 L’estat</strong></a></li>
+  <li><a href="#estimacion" id="toc-estimacion" class="nav-link" data-scroll-target="#estimacion"><strong>3.3 Estimació cinemàtica</strong></a></li>
+  <li><a href="#normas-bot" id="toc-normas-bot" class="nav-link" data-scroll-target="#normas-bot"><strong>3.4 Normes</strong></a></li>
+  <li><a href="#referencia" id="toc-referencia" class="nav-link" data-scroll-target="#referencia"><strong>3.5 Els bots de referència</strong></a></li>
+  <li><a href="#veure-i-depurar-les-teves-partides" id="toc-veure-i-depurar-les-teves-partides" class="nav-link" data-scroll-target="#veure-i-depurar-les-teves-partides"><strong>3.6 Veure i depurar les teves partides</strong></a></li>
+  </ul></li>
+  <li><a href="#registros" id="toc-registros" class="nav-link" data-scroll-target="#registros">4. Registres de les partides</a></li>
+  <li><a href="#tests" id="toc-tests" class="nav-link" data-scroll-target="#tests">5. Els teus tests</a></li>
+  <li><a href="#notebook" id="toc-notebook" class="nav-link" data-scroll-target="#notebook">6. El notebook d’anàlisi</a></li>
+  <li><a href="#evaluacion" id="toc-evaluacion" class="nav-link" data-scroll-target="#evaluacion">7. Avaluació</a>
+  <ul class="collapse">
+  <li><a href="#rendimiento" id="toc-rendimiento" class="nav-link" data-scroll-target="#rendimiento"><strong>7.1 Rendiment del bot (3,5 punts)</strong></a></li>
+  <li><a href="#calidad" id="toc-calidad" class="nav-link" data-scroll-target="#calidad"><strong>7.2 Qualitat del codi (1 punt)</strong></a></li>
+  <li><a href="#defensa" id="toc-defensa" class="nav-link" data-scroll-target="#defensa"><strong>7.3 Defensa oral</strong></a></li>
+  <li><a href="#ia" id="toc-ia" class="nav-link" data-scroll-target="#ia"><strong>7.4 Ús de la intel·ligència artificial</strong></a></li>
+  </ul></li>
+  <li><a href="#referències" id="toc-referències" class="nav-link" data-scroll-target="#referències">Referències</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ca/practica/practica.html">Pràctica</a></li><li class="breadcrumb-item"><a href="../../ca/practica/practica.html">Pràctica del Curs</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ca/practica/practica.html">Pràctica</a></li><li class="breadcrumb-item"><a href="../../ca/practica/practica.html">Pràctica de l’Assignatura</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Pràctica del Curs</h1>
+<h1 class="title">Pràctica de l’assignatura 23200 - Programació</h1>
 </div>
 
 
@@ -549,9 +686,989 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contenido pendiente.)</em></p>
+<section id="introducció" class="level2">
+<h2 class="anchored" data-anchor-id="introducció">Introducció</h2>
+<p><em>Pong</em>, d’Atari, va ser el primer videojoc amb èxit comercial. <a href="https://en.wikipedia.org/wiki/Allan_Alcorn" target="_blank" rel="noopener noreferrer">Allan Alcorn</a> el va dissenyar el 1972 com a exercici de pràctica que li va encarregar <a href="https://en.wikipedia.org/wiki/Nolan_Bushnell" target="_blank" rel="noopener noreferrer">Nolan Bushnell</a>, inspirat en el tennis de taula de la consola Magnavox Odyssey; el primer prototip, un circuit de lògica digital sense programari connectat a un televisor en blanc i negre, es va instal·lar l’agost de 1972 en un bar de Sunnyvale, i a finals de 1974 Atari havia venut més de 8 000 màquines <span class="citation" data-cites="wikipedia_pong">(<a href="#ref-wikipedia_pong" role="doc-biblioref">Col·laboradors de Wikipedia 2026</a>)</span>. Les seves regles eren senzilles i han arribat gairebé intactes fins avui:</p>
+<ul>
+<li>cada raqueta estava dividida en vuit segments, de manera que el punt de cop decidia l’angle de sortida,</li>
+<li>la bola s’accelerava a mesura que s’allargava l’intercanvi i recuperava la seva velocitat després de cada punt,</li>
+<li>guanyava el primer a arribar a 11 punts <span class="citation" data-cites="edwards2012 wikipedia_pong">(<a href="#ref-edwards2012" role="doc-biblioref">Edwards 2012</a>; <a href="#ref-wikipedia_pong" role="doc-biblioref">Col·laboradors de Wikipedia 2026</a>)</span>.</li>
+</ul>
+<p>Hi ha a més un detall curiós: per un defecte del circuit, les raquetes no arribaven a la vora superior de la pantalla. Alcorn ho va deixar així perquè afegia dificultat i escurçava les partides.</p>
+<p><strong>Importància.</strong> Es considera el joc que va posar en marxa la indústria del videojoc. Forma part de la col·lecció permanent de l’Smithsonian i va entrar al World Video Game Hall of Fame el 2015.</p>
+</section>
+<section id="la-pràctica" class="level2">
+<h2 class="anchored" data-anchor-id="la-pràctica">La Pràctica</h2>
+<p>En aquesta pràctica programaràs un <strong><a href="../../ca/practica/definicions.html#bot">bot</a> que juga al Pong</strong> contra altres bots i <strong>analitzaràs les partides</strong> que juga el teu bot amb dades d’aquestes. Les regles del joc les fixa un motor escrit en Python que es troba al projecte (repositori de GitHub) <a href="https://github.com/UIB-23200-Programacion/practica-programacion-23200" target="_blank" rel="noopener noreferrer"><strong>practica-programacion-23200</strong></a> de l’organització de l’assignatura. Aquest motor serà el mateix que s’executa en el teu entorn de treball i en l’avaluació. Totes les partides queden enregistrades en registres que podràs estudiar amb Pandas, NumPy i Matplotlib. La pràctica recorre així gairebé tot el temari de l’assignatura: funcions i mòduls, estructures de dades, algorismes, tests, classes, fitxers i l’ecosistema científic de Python.</p>
+<p>El motor d’aquesta pràctica (script <code>src/pong/pong_engine.py</code> del projecte) conserva les regles del Pong original:</p>
+<ul>
+<li>l’angle de sortida depèn de forma contínua del <a href="../../ca/practica/definicions.html#punto-de-impacto">punt d’impacte</a>,</li>
+<li>cada cop multiplica la velocitat per un factor fix,</li>
+<li>els sets es juguen a 11 punts amb avantatge de 2,</li>
+</ul>
+<p>però a més, afegeix l’<a href="../../ca/practica/definicions.html#efecto">efecte</a>, que l’original no tenia.</p>
+<p>Els termes i símbols del joc (vol, intercanvi, ordenada plegada, punt d’impacte…) estan definits al document <a href="../../ca/practica/definicions.html"><strong>Definicions i notació</strong></a>. Quan una paraula d’aquest enunciat hi tingui la seva definició, apareix enllaçada.</p>
+<div id="imp-entregables" class="callout callout-style-default callout-important no-icon callout-titled" title="Què lliures">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;1: Què lliures
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tot es lliura en <strong>una còpia (.zip) del teu repositori privat</strong> de GitHub que has de crear a partir de la plantilla de la pràctica (vegeu més avall). S’avaluen tres fitxers:</p>
+<ol type="1">
+<li><strong>El teu bot</strong>, <code>src/pong/bot.py</code> (4,5 punts).</li>
+<li><strong>Els teus tests</strong>, <code>tests/test_bot.py</code> (1 punt).</li>
+<li><strong>El teu notebook d’anàlisi</strong>, <code>notebook/analisis_mo.py</code> (4,5 punts).</li>
+</ol>
+<p>La pràctica es qualifica sobre 10 punts i s’aprova amb un <strong>5</strong>, sense mínims per apartat. Pesa un <strong>30 %</strong> de la nota de l’assignatura, amb nota de validació 5 (vegeu la <a href="../../ca/informacions/guia-docent.html">guia docent</a>).</p>
+<p><strong>Data límit: 22 de desembre de 2026 a les 23:59.</strong></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="puesta-en-marcha" class="level2">
+<h2 class="anchored" data-anchor-id="puesta-en-marcha">1. Posada en marxa</h2>
+<section id="la-teva-còpia-de-la-plantilla" class="level3">
+<h3 class="anchored" data-anchor-id="la-teva-còpia-de-la-plantilla"><strong>1.1 La teva còpia de la plantilla</strong></h3>
+<p>La plantilla és el repositori <a href="https://github.com/UIB-23200-Programacion/practica-programacion-23200" target="_blank" rel="noopener noreferrer"><code>practica-programacion-23200</code></a> de l’organització de l’assignatura. Conté el motor, els bots de referència, les eines, l’esquelet del teu bot i dels teus tests i el notebook d’anàlisi.</p>
+<ol type="1">
+<li>A la plantilla, prem <strong>Use this template → Create a new repository</strong>.</li>
+<li>Tria la visibilitat <strong>Private</strong>. <strong>És obligatori</strong>: en un repositori públic els teus companys veurien el teu bot abans de l’avaluació.</li>
+</ol>
+</section>
+<section id="lentorn-de-treball" class="level3">
+<h3 class="anchored" data-anchor-id="lentorn-de-treball"><strong>1.2 L’entorn de treball</strong></h3>
+<p>Pots treballar a <strong>GitHub Codespaces</strong> (recomanat; no cal instal·lar res: <strong>Code → Codespaces → Create codespace on main</strong>) o al teu ordinador amb <strong>VS Code, Docker i l’extensió <em>Dev Containers</em></strong> (<strong>Reopen in Container</strong>), amb la mateixa configuració. La instal·lació directa de Python, sense Docker, no està suportada: els bots Mitjà i Difícil van compilats per als entorns anteriors. En obrir-se l’entorn s’instal·len Python 3.13 i totes les biblioteques.</p>
+<p>El <code>README.md</code> de la plantilla explica en detall cada eina. Les ordres bàsiques són:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Què</th>
+<th style="text-align: left;">Ordre</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Executar tots els tests</td>
+<td style="text-align: left;"><code>uv run pytest</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jugar una partida contra Fàcil i desar-ne el registre</td>
+<td style="text-align: left;"><code>uv run python -m pong.runner --rival easy</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Jugar contra el teu propi bot</td>
+<td style="text-align: left;"><code>uv run python -m pong.runner --rival mi_bot</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estimar la teva nota de rendiment contra Difícil</td>
+<td style="text-align: left;"><code>uv run python -m pong.evaluate --rival hard --partidas 100</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">El mateix, desant les partides i un resum de la pitjor a la millor</td>
+<td style="text-align: left;"><code>uv run python -m pong.evaluate --rival hard --partidas 100 --guardar</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Obtenir el CSV d’una partida desada</td>
+<td style="text-align: left;"><code>uv run python -m pong.registro partidas/partida_&lt;semilla&gt;.json</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veure partides al navegador (<code>pong.html</code>)</td>
+<td style="text-align: left;"><code>uv run python -m http.server 8000</code> i obrir <code>/pong.html</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Obrir el notebook d’anàlisi</td>
+<td style="text-align: left;"><code>uv run marimo edit --no-token notebook/analisis_mo.py</code></td>
+</tr>
+</tbody>
+</table>
+<p>Puja a GitHub sovint la teva feina i els registres de <code>partidas/</code>: GitHub esborra els Codespaces que fa temps que no s’utilitzen.</p>
+<hr>
+</section>
+</section>
+<section id="reglas" class="level2">
+<h2 class="anchored" data-anchor-id="reglas">2. Regles del joc</h2>
+<p>Les regles les defineix el <a href="../../ca/practica/definicions.html#motor">motor</a>, <code>src/pong/pong_engine.py</code>. <strong>No el modifiquis</strong>: un test comprova que no ha canviat, i l’avaluació fa servir sempre l’original. El que segueix descriu amb exactitud el que fa; davant de qualsevol dubte, el codi del motor és la referència.</p>
+<section id="campo" class="level3">
+<h3 class="anchored" data-anchor-id="campo"><strong>2.1 Camp i unitats</strong></h3>
+<p>El camp mesura <span class="math inline">\(W \times H = 800 \times 600\)</span> px, amb l’origen a la cantonada superior esquerra i l’<strong>eix <span class="math inline">\(y\)</span> creixent cap avall</strong>. El temps es mesura en <a href="../../ca/practica/definicions.html#tick">ticks</a>. El tick és una unitat de temps discreta i abstracta, un pas de la simulació, sense equivalència en segons. Les velocitats es mesuren en px/tick i l’efecte en px/tick².</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/campo.svg" class="img-fluid figure-img" style="width:100.0%" alt="Esquema del camp de 800 per 600 píxels amb les dues raquetes, la bola, les parets i els plans d'impacte."></p>
+<figcaption>El camp. La bola rebota a les <a href="../../ca/practica/definicions.html#pared">parets</a> de dalt i de baix; als costats hi ha les raquetes i els seus <a href="../../ca/practica/definicions.html#plano-de-impacto">plans d’impacte</a>.</figcaption>
+</figure>
+</div>
+<p>La visualització mostra 60 ticks per segon, però això no afecta la física. Fora del navegador, les partides van tan ràpid com permet l’ordinador. El motor tarda uns 7 µs per tick, així que una partida sencera es juga en una fracció de segon.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Element</th>
+<th style="text-align: left;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Bola</td>
+<td style="text-align: left;">Cercle de radi <span class="math inline">\(R = 6\)</span>; el seu centre <span class="math inline">\((x, y)\)</span> compleix <span class="math inline">\(y \in [R, H - R] = [6, 594]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="../../ca/practica/definicions.html#raqueta">Raquetes</a></td>
+<td style="text-align: left;"><span class="math inline">\(10 \times 80\)</span> px (<span class="math inline">\(h = 80\)</span>). La seva posició <span class="math inline">\(p\)</span> és l’ordenada del seu centre, <span class="math inline">\(p \in [40, 560]\)</span>. Comencen a <span class="math inline">\(p = 300\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cara frontal de la raqueta esquerra</td>
+<td style="text-align: left;"><span class="math inline">\(x = X_L = 30\)</span> (la raqueta ocupa <span class="math inline">\(x \in [20, 30]\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cara frontal de la raqueta dreta</td>
+<td style="text-align: left;"><span class="math inline">\(x = X_R = 770\)</span> (ocupa <span class="math inline">\(x \in [770, 780]\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Velocitat de la raqueta</td>
+<td style="text-align: left;"><span class="math inline">\(v_p = 8\)</span> px/tick</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="../../ca/practica/definicions.html#velocidad-de-intercambio">Velocitat d’intercanvi</a> en el servei</td>
+<td style="text-align: left;"><span class="math inline">\(s_0 = 6\)</span> px/tick</td>
+</tr>
+</tbody>
+</table>
+<p>Totes les constants, amb el seu nom al codi, són a la taula de <a href="../../ca/practica/definicions.html#simbolos">símbols i constants</a>.</p>
+</section>
+<section id="leyes" class="level3">
+<h3 class="anchored" data-anchor-id="leyes"><strong>2.2 Lleis del moviment de la bola</strong></h3>
+<p>Numerem amb <span class="math inline">\(n = 0, 1, 2, \dots\)</span> els ticks en què la bola està en joc. Al final del tick <span class="math inline">\(n\)</span>, la bola té:</p>
+<ul>
+<li>posició <span class="math inline">\((x_n, y_n)\)</span>, en px: les coordenades del seu centre;</li>
+<li>velocitat <span class="math inline">\((v_{x,n},\ v_{y,n})\)</span>, en px/tick;</li>
+<li>acceleració <span class="math inline">\((a_{x,n},\ a_{y,n})\)</span>, en px/tick².</li>
+</ul>
+<p>L’acceleració horitzontal és sempre nul·la, <span class="math inline">\(a_{x,n} = 0\)</span> per a tot <span class="math inline">\(n\)</span>. La vertical és l’<a href="../../ca/practica/definicions.html#efecto">efecte</a>.</p>
+<p>En un tick, primer la velocitat augmenta d’acord amb l’acceleració i després la posició augmenta d’acord amb la <strong>nova</strong> velocitat:</p>
+<p><span class="math display">\[
+\begin{aligned}
+v_{x,n+1} &amp;= v_{x,n} + a_{x,n} = v_{x,n}, &amp; \qquad x_{n+1} &amp;= x_n + v_{x,n+1},\\
+v_{y,n+1} &amp;= v_{y,n} + a_{y,n}, &amp; \qquad y_{n+1} &amp;= y_n + v_{y,n+1}.
+\end{aligned}
+\]</span></p>
+<p>L’acceleració vertical no canvia en un tick normal: <span class="math inline">\(a_{y,n+1} = a_{y,n}\)</span>. Per tant, en un tick normal només canvien la velocitat vertical i la posició. Aquestes igualtats valen a cada tick excepte en tres situacions, les úniques en què també pot canviar l’acceleració, que s’expliquen als apartats següents:</p>
+<ul>
+<li><strong>Rebot en una paret</strong> (apartat <a href="#paredes">2.4</a>). Si <span class="math inline">\(y_{n+1}\)</span> surt de l’interval <span class="math inline">\([6, 594]\)</span>, la bola es reflecteix a la paret: torna cap a dins tants píxels com s’havia passat, i <span class="math inline">\(v_{y,n+1}\)</span> i <span class="math inline">\(a_{y,n+1}\)</span> canvien de signe. <span class="math inline">\(v_{x,n+1}\)</span> no canvia.</li>
+<li><strong>Creuament amb un pla d’impacte</strong> (apartat <a href="#golpe">2.5</a>). La bola queda al pla i la resta del tick es descarta. Si hi ha cop, surt amb una velocitat nova, que depèn del <a href="../../ca/practica/definicions.html#punto-de-impacto">punt d’impacte</a> i és més gran que l’anterior, i amb efecte <span class="math inline">\(a_{y,n+1} = 0{,}005\,c\)</span>, on <span class="math inline">\(c\)</span> és l’ordre amb què es mou la raqueta que colpeja (apartat <a href="#tick">2.3</a>). Si no hi ha cop, el punt s’acaba.</li>
+<li><strong>Servei</strong> (apartat <a href="#saque">2.7</a>). Després de cada punt, la bola torna al centre i no es mou durant la pausa del servei. Després surt cap al receptor amb la velocitat d’intercanvi <span class="math inline">\(s_0 = 6\)</span>, una inclinació aleatòria i sense efecte.</li>
+</ul>
+<p>Entre dos cops, per tant, la bola es mou amb velocitat horitzontal constant i acceleració vertical constant, excepte el canvi de signe a cada rebot. L’apartat <a href="#entre-golpes">2.6</a> dona la posició després de <span class="math inline">\(n\)</span> ticks sense haver de recórrer-los un a un.</p>
+</section>
+<section id="tick" class="level3">
+<h3 class="anchored" data-anchor-id="tick"><strong>2.3 Estats d’una partida i moviments de les raquetes</strong></h3>
+<p>El motor recorre un cicle de tres estats visibles. Aquests tres estats són pels quals passa una partida: <code>serving</code> (pausa del servei), <code>playing</code> (bola en joc) i <code>match_over</code> (final).</p>
+<p>Cada raqueta es mou només en vertical, a cada tick i segons l’<a href="../../ca/practica/definicions.html#comando">ordre</a> del seu bot. Les úniques tres ordres que retorna un bot són <code>UP</code>, <code>STAY</code> i <code>DOWN</code>. L’ordre:</p>
+<ul>
+<li><code>UP</code> puja la raqueta 8 px,</li>
+<li><code>DOWN</code> la baixa 8 px i</li>
+<li><code>STAY</code> la deixa quieta (al seu lloc).</li>
+</ul>
+<p>Sigui <span class="math inline">\(c \in \{-1, 0, +1\}\)</span> i fem l’associació:</p>
+<ul>
+<li><span class="math inline">\(c = -1\)</span> per a <code>UP</code>,</li>
+<li><span class="math inline">\(c = 0\)</span> per a <code>STAY</code> i</li>
+<li><span class="math inline">\(c = 1\)</span> per a <code>DOWN</code>.</li>
+</ul>
+<p>Sigui <span class="math inline">\(p\)</span> l’ordenada del centre de la raqueta en píxels, aleshores la fórmula per al moviment de <span class="math inline">\(p\)</span> en una ordre és:</p>
+<p><span class="math display">\[
+p \leftarrow \min(\max(p + 8c,\ 40),\ 560).
+\]</span></p>
+<p>Observa que <code>UP</code> és <span class="math inline">\(-1\)</span> perquè l’eix <span class="math inline">\(y\)</span> creix cap avall: pujar és restar. No hi ha inèrcia ni acceleració: es mou a velocitat fixa o s’atura a l’acte, i s’atura als topalls, <span class="math inline">\(p = 40\)</span> a dalt i <span class="math inline">\(p = 560\)</span> a baix. Les dues raquetes comencen la partida a <span class="math inline">\(p = 300\)</span>, i el motor no les recol·loca mai: ni després d’un punt ni en començar un set. És a dir, un cop començada una partida les raquetes només es mouen per ordres del bot respectiu.</p>
+<p>En estat <code>playing</code>, per a cada tick s’executen els passos següents, en aquest ordre:</p>
+<ol type="1">
+<li>Cada bot rep l’<a href="#estado">estat</a> a l’<strong>inici</strong> del tick i retorna la seva ordre (internament es converteix en <span class="math inline">\(c\)</span>).</li>
+<li>Cada raqueta es mou: <span class="math inline">\(p \leftarrow \min(\max(p + 8c,\ 40),\ 560)\)</span>.</li>
+<li>L’<a href="../../ca/practica/definicions.html#efecto">efecte</a> canvia la velocitat vertical: <span class="math inline">\(v_y \leftarrow v_y + a_y\)</span>.</li>
+<li>La bola avança en línia recta: <span class="math inline">\(x \leftarrow x + v_x\)</span>, <span class="math inline">\(y \leftarrow y + v_y\)</span>, sense tenir en compte les parets de moment.</li>
+<li>Si en aquest avanç la vora de la bola arriba a la cara frontal de la raqueta cap a la qual va, es resol el <strong>creuament</strong> (apartat <a href="#golpe">2.5</a>): cop o punt perdut. La resta del tick es descarta.</li>
+<li>Si no, l’ordenada es <strong>plega</strong> sobre el camp (apartat <a href="#paredes">2.4</a>), cosa que resol tots els rebots del tick.</li>
+</ol>
+<p>Els passos 3 i 4 són les lleis de l’apartat <a href="#leyes">2.2</a> escrites com a assignacions, sense índexs: el motor desa un sol valor de cada magnitud i el substitueix pel nou.</p>
+<p>Durant la <a href="../../ca/practica/definicions.html#pausa-del-saque">pausa del servei</a>, en estat <code>serving</code>, només s’executen els passos 1 i 2: les raquetes es mouen, la bola no.</p>
+</section>
+<section id="paredes" class="level3">
+<h3 class="anchored" data-anchor-id="paredes"><strong>2.4 Parets i plegament</strong></h3>
+<p>La bola rebota a les <a href="../../ca/practica/definicions.html#pared">parets</a> de dalt i de baix com la llum en un mirall: en xocar, la component vertical de la seva velocitat canvia de signe i l’horitzontal no canvia. Per explicar com implementa el motor els rebots necessitem dues ordenades <span class="math inline">\(y\)</span> i <span class="math inline">\(Y\)</span>:</p>
+<ul>
+<li><strong><span class="math inline">\(y\)</span>, l’<a href="../../ca/practica/definicions.html#ordenada-plegada-y-desplegada">ordenada plegada</a>.</strong> És l’ordenada real del centre de la bola en coordenades de pantalla. És <code>ball_y</code> a l’estat (<code>state</code>) i al CSV. La bola té radi <span class="math inline">\(R = 6\)</span> i no pot travessar les parets, així que el seu centre és sempre a <span class="math inline">\([R,\ H - R] = [6, 594]\)</span>. Aquest interval mesura <span class="math inline">\(L = H - 2R = 588\)</span> px.</li>
+<li><strong><span class="math inline">\(Y\)</span>, l’<a href="../../ca/practica/definicions.html#ordenada-plegada-y-desplegada">ordenada desplegada</a>.</strong> Dins d’un <a href="../../ca/practica/definicions.html#vuelo">vol</a>, és l’ordenada que tindria el centre de la bola si les parets no existissin i seguís el mateix moviment, amb la mateixa velocitat vertical i el mateix efecte. Pot sortir del camp i prendre qualsevol valor real. En començar el vol, totes dues coincideixen: <span class="math inline">\(Y_0 = y_0\)</span>. L’ordenada <span class="math inline">\(Y\)</span> no s’observa ni el motor la desa: és una eina matemàtica per descriure i predir el moviment.</li>
+</ul>
+<p>Totes dues es relacionen mitjançant una funció <span class="math inline">\(F\)</span>, l’<a href="../../ca/practica/definicions.html#onda-triangular">ona triangular</a>: <span class="math inline">\(y = F(Y)\)</span>. Més avall en donem la fórmula; primer, la idea.</p>
+<p><strong>Què fa el motor a cada tick.</strong> El motor no cerca els rebots. Al pas 4 del tick (apartat <a href="#tick">2.3</a>) avança la bola sense tenir en compte les parets, i al pas 6 <strong>plega</strong> l’ordenada obtinguda:</p>
+<ul>
+<li>Si ha quedat dins de <span class="math inline">\([6, 594]\)</span>, la deixa com està.</li>
+<li>Si ha quedat fora, la reflecteix a la paret que ha sobrepassat: la bola torna cap a dins tants píxels com s’havia passat. A més, <span class="math inline">\(v_y\)</span> i l’efecte <span class="math inline">\(a_y\)</span> canvien de signe.</li>
+</ul>
+<p>Dins d’un tick la bola avança en línia recta, així que reflectir el punt final dona exactament la posició que tindria la bola després de rebotar a meitat del tick.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Exemple 1: un rebot sense efecte">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Exemple 1: un rebot sense efecte
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La bola és a <span class="math inline">\(y = 580\)</span>, baixa amb <span class="math inline">\(v_y = 10\)</span> i no té efecte (<span class="math inline">\(a_y = 0\)</span>).</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tick</th>
+<th>Avanç sense parets</th>
+<th>Fora?</th>
+<th><span class="math inline">\(y\)</span> després de plegar</th>
+<th><span class="math inline">\(v_y\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><span class="math inline">\(580 + 10 = 590\)</span></td>
+<td>no</td>
+<td><span class="math inline">\(590\)</span></td>
+<td><span class="math inline">\(10\)</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><span class="math inline">\(590 + 10 = 600\)</span></td>
+<td>es passa 6 de 594</td>
+<td><span class="math inline">\(594 - 6 = 588\)</span></td>
+<td><span class="math inline">\(-10\)</span></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><span class="math inline">\(588 - 10 = 578\)</span></td>
+<td>no</td>
+<td><span class="math inline">\(578\)</span></td>
+<td><span class="math inline">\(-10\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Si no hi hagués paret, la bola continuaria baixant: <span class="math inline">\(Y = 590, 600, 610\)</span>. Les ordenades reals són el reflex d’aquestes a la paret <span class="math inline">\(y = 594\)</span>: <span class="math inline">\(600 \mapsto 588\)</span> i <span class="math inline">\(610 \mapsto 578\)</span>. És a dir, <span class="math inline">\(y = F(Y)\)</span>.</p>
+</div>
+</div>
+<p><strong>L’ona triangular <span class="math inline">\(F\)</span>.</strong> Imagina el camp com un passadís de miralls: a sobre i a sota del camp real hi ha còpies d’altura <span class="math inline">\(L\)</span>, cadascuna reflectida respecte de l’anterior. La bola desplegada es mou per aquest passadís sense xocar amb res. La bola real és la seva imatge al camp original: si és en una còpia parella, n’hi ha prou de traslladar-la; si és en una de senar, cal reflectir-la. Amb <span class="math inline">\(m = (Y - R) \bmod 2L\)</span>, això és</p>
+<p><span class="math display">\[
+F(Y) = \begin{cases} R + m &amp; \text{si } m \le L,\\ R + 2L - m &amp; \text{si } m &gt; L, \end{cases}
+\]</span></p>
+<p>una funció en ziga-zaga de període <span class="math inline">\(2L = 1176\)</span> amb valors a <span class="math inline">\([6, 594]\)</span>. Els seus pics i valls són els rebots.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/onda_triangular.svg" class="img-fluid figure-img" style="width:100.0%" alt="Gràfica en ziga-zaga de l'ordenada plegada respecte de la desplegada, entre 6 i 594 px, amb període 1176 px i quatre punts d'exemple."></p>
+<figcaption>L’ona triangular <span class="math inline">\(F\)</span>. L’eix vertical creix cap avall, com al camp. Les línies puntejades són les fronteres <span class="math inline">\(R + kL\)</span>: cada vegada que l’ordenada desplegada <span class="math inline">\(Y\)</span> en creua una, la bola rebota. Dins del camp, <span class="math inline">\(F(Y) = Y\)</span> (línia taronja).</figcaption>
+</figure>
+</div>
+<p><strong>Per què també canvia de signe l’efecte.</strong> Si en un tick hi ha un rebot, el motor canvia el signe de <span class="math inline">\(v_y\)</span>, com en un mirall, i <strong>també el d’<span class="math inline">\(a_y\)</span></strong>. Això darrer no és física realista: és una decisió de disseny. Amb ella, la bola real és a cada tick el reflex de la desplegada, i la desplegada segueix sense interrupcions el mateix moviment d’abans del rebot.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Exemple 2: un rebot amb efecte">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Exemple 2: un rebot amb efecte
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La bola és a <span class="math inline">\(y = 580\)</span>, amb <span class="math inline">\(v_y = 6\)</span> i un efecte exagerat, <span class="math inline">\(a_y = 1\)</span>, perquè es vegi (al motor, <span class="math inline">\(|a_y| \le 0{,}005\)</span>). Recorda que a cada tick primer <span class="math inline">\(v_y \leftarrow v_y + a_y\)</span> i després la bola avança (apartat <a href="#leyes">2.2</a>).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tick</th>
+<th><span class="math inline">\(Y\)</span> (sense parets)</th>
+<th><span class="math inline">\(F(Y)\)</span></th>
+<th><span class="math inline">\(y\)</span> del motor</th>
+<th><span class="math inline">\(y\)</span> si <span class="math inline">\(a_y\)</span> no canviés de signe</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><span class="math inline">\(587\)</span></td>
+<td><span class="math inline">\(587\)</span></td>
+<td><span class="math inline">\(587\)</span></td>
+<td><span class="math inline">\(587\)</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><span class="math inline">\(595\)</span></td>
+<td><span class="math inline">\(593\)</span></td>
+<td><span class="math inline">\(593\)</span> (rebot)</td>
+<td><span class="math inline">\(593\)</span> (rebot)</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><span class="math inline">\(604\)</span></td>
+<td><span class="math inline">\(584\)</span></td>
+<td><span class="math inline">\(584\)</span></td>
+<td><span class="math inline">\(586\)</span></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><span class="math inline">\(614\)</span></td>
+<td><span class="math inline">\(574\)</span></td>
+<td><span class="math inline">\(574\)</span></td>
+<td><span class="math inline">\(580\)</span></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><span class="math inline">\(625\)</span></td>
+<td><span class="math inline">\(563\)</span></td>
+<td><span class="math inline">\(563\)</span></td>
+<td><span class="math inline">\(575\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>El motor reprodueix exactament <span class="math inline">\(F(Y)\)</span> a cada tick. Si <span class="math inline">\(a_y\)</span> no canviés de signe, l’efecte, que abans empenyia la bola cap avall, la continuaria empenyent cap avall després de rebotar. La bola real deixaria de ser el reflex de la desplegada, i caldria calcular cada rebot per separat.</p>
+</div>
+</div>
+<p><strong>La conseqüència, i per què importa.</strong> Gràcies a aquesta regla, tot un vol, amb tots els seus rebots, es descriu amb <strong>una sola</strong> corba desplegada <span class="math inline">\(Y_n\)</span> (apartat <a href="#entre-golpes">2.6</a>), i la bola real és <span class="math inline">\(y_n = F(Y_n)\)</span>. Per predir on serà la bola d’aquí a molts ticks no cal simular rebot a rebot: n’hi ha prou de calcular <span class="math inline">\(Y_n\)</span> i plegar-lo una vegada. A l’inrevés, per estimar la velocitat a partir del que observes, primer cal <strong>desplegar</strong> les observacions (apartat <a href="#estimacion">3.3</a>).</p>
+<p>Les dues maneres de calcular coincideixen en matemàtiques exactes; en coma flotant difereixen en un error d’arrodoniment negligible, que no canvia cap decisió.</p>
+</section>
+<section id="golpe" class="level3">
+<h3 class="anchored" data-anchor-id="golpe"><strong>2.5 El cop</strong></h3>
+<p>Quan el centre de la bola creua el <a href="../../ca/practica/definicions.html#plano-de-impacto">pla d’impacte</a> de la raqueta que rep (<span class="math inline">\(x = 36\)</span> a l’esquerra, <span class="math inline">\(x = 764\)</span> a la dreta), el motor calcula amb la fracció exacta del tick l’<a href="../../ca/practica/definicions.html#ordenada-de-impacto">ordenada d’impacte</a> <span class="math inline">\(y^*\)</span>.</p>
+<ul>
+<li>Si <span class="math inline">\(|y^* - p| \le h/2 + R = 46\)</span> (la <a href="../../ca/practica/definicions.html#alcance">franja d’impacte</a>), hi ha <strong>cop</strong>. La bola queda exactament al pla, a l’altura <span class="math inline">\(y^*\)</span>, la resta del tick es descarta i el comptador <code>rally_hits</code> augmenta en 1.</li>
+<li>Si no, el receptor <strong>perd el punt</strong>. Els extrems de la raqueta no fan rebotar la bola.</li>
+</ul>
+<p>En un cop, el <a href="../../ca/practica/definicions.html#punto-de-impacto">punt d’impacte</a> <span class="math inline">\(u = (y^* - p)/46 \in [-1, 1]\)</span> decideix la sortida (<span class="math inline">\(u = 0\)</span> és el centre de la raqueta, <span class="math inline">\(u = -1\)</span> l’extrem de dalt i <span class="math inline">\(u = 1\)</span> el de baix):</p>
+<ul>
+<li><strong>Pendent de sortida</strong> <span class="math inline">\(m = v_{y,0}/|v_{x,0}|\)</span>, on <span class="math inline">\(v_{x,0}\)</span> i <span class="math inline">\(v_{y,0}\)</span> són les components de la velocitat amb què surt la bola, en començar el <a href="../../ca/practica/definicions.html#vuelo">vol</a> nou: <span class="math inline">\(m(u) = \operatorname{sgn}(u)\,\max(m_{\min},\ m_{\max}\,|u|)\)</span>, amb <span class="math inline">\(m_{\max} = \tan 60°\)</span> i <span class="math inline">\(m_{\min} = \tan 5°\)</span>. Colpejar amb el centre retorna la bola gairebé horitzontal; amb els extrems, amb un angle tancat cap a aquell costat. Si <span class="math inline">\(u = 0\)</span> exactament, el signe se sorteja.</li>
+<li><strong>Velocitat</strong>: la <a href="../../ca/practica/definicions.html#velocidad-de-intercambio">velocitat d’intercanvi</a> <span class="math inline">\(s\)</span> es multiplica per <span class="math inline">\(1{,}05\,(1 + 0{,}05\,|u|)\)</span>: cada cop accelera la bola, i més si es colpeja amb l’extrem. Després, <span class="math inline">\(v_{x,0} = \pm s/\sqrt{1 + m^2}\)</span> (cap al rival) i <span class="math inline">\(v_{y,0} = s\,m/\sqrt{1 + m^2}\)</span>.</li>
+<li><strong>Efecte</strong>: <span class="math inline">\(a_{y,0} = \kappa\,c\)</span>, amb <span class="math inline">\(\kappa = 0{,}005\)</span> px/tick² i <span class="math inline">\(c\)</span> l’ordre de la raqueta que colpeja <strong>en aquell mateix tick</strong>. <code>DOWN</code> corba la bola cap avall, <code>UP</code> cap amunt i <code>STAY</code> no la corba. Es manté fins al cop següent, excepte el signe, que canvia a cada rebot.</li>
+</ul>
+</section>
+<section id="entre-golpes" class="level3">
+<h3 class="anchored" data-anchor-id="entre-golpes"><strong>2.6 Moviment entre cops</strong></h3>
+<p>Entre dos cops, en un <a href="../../ca/practica/definicions.html#vuelo">vol</a>, comptem els ticks des del seu inici: <span class="math inline">\(n = 0\)</span> és la primera posició del vol, amb velocitat <span class="math inline">\((v_{x,0}, v_{y,0})\)</span> i efecte <span class="math inline">\(a_{y,0}\)</span>. Aplicant <span class="math inline">\(n\)</span> vegades les lleis de l’apartat <a href="#leyes">2.2</a> i desplegant els rebots (apartat <a href="#paredes">2.4</a>), la bola compleix exactament, després de <span class="math inline">\(n\)</span> ticks complets:</p>
+<p><span class="math display">\[
+x_n = x_0 + n\,v_{x,0}, \qquad Y_n = y_0 + n\,v_{y,0} + a_{y,0}\,\frac{n(n+1)}{2}, \qquad y_n = F(Y_n).
+\]</span></p>
+<p>És a dir, <span class="math inline">\(v_{x,n} = v_{x,0}\)</span> és constant i la velocitat vertical desplegada creix en <span class="math inline">\(a_{y,0}\)</span> cada tick: <span class="math inline">\(Y_n - Y_{n-1} = v_{y,0} + n\,a_{y,0}\)</span>. En coordenades plegades, <span class="math inline">\(v_{y,n}\)</span> i <span class="math inline">\(a_{y,n}\)</span> són aquests mateixos valors amb el signe canviat després de cada rebot. Fixa’t que és la fórmula <strong>discreta</strong>, no la contínua <span class="math inline">\(y_0 + v_{y,0}\,t + \tfrac12 a_{y,0}\,t^2\)</span>, que comet un error d’<span class="math inline">\(a_{y,0}\,n/2\)</span>: el <span class="math inline">\(n(n+1)/2\)</span> surt del fet que la posició avança amb la velocitat <strong>nova</strong>.</p>
+</section>
+<section id="saque" class="level3">
+<h3 class="anchored" data-anchor-id="saque"><strong>2.7 Servei</strong></h3>
+<p>Abans de cada servei (en començar la partida i cada set, i després de cada punt o nul) hi ha una <strong>pausa de 60 ticks</strong> en estat <code>serving</code>: la bola està quieta al centre, <span class="math inline">\((400, 300)\)</span>, i les raquetes es poden moure (no es recol·loquen). Després:</p>
+<ul>
+<li>La bola surt del centre cap al <a href="../../ca/practica/definicions.html#receptor">receptor</a>, el rival de qui serveix, amb la <a href="../../ca/practica/definicions.html#velocidad-de-intercambio">velocitat d’intercanvi</a> <span class="math inline">\(s_0 = 6\)</span>, sense efecte (<span class="math inline">\(a_{y,0} = 0\)</span>) i amb <code>rally_hits</code> a 0.</li>
+<li>El pendent <span class="math inline">\(m\)</span> se sorteja entre <span class="math inline">\(\tan 20°\)</span> i <span class="math inline">\(\tan 45°\)</span>, i també si va cap amunt o cap avall.</li>
+<li><strong>Qui serveix</strong>: el primer servei de la partida se sorteja. Després serveix qui guanya el punt. El primer servei dels sets 2 i 3 és per a qui va perdre el set anterior.</li>
+</ul>
+<p>Les components de la velocitat de sortida es calculen amb les mateixes fórmules que en un cop (apartat <a href="#golpe">2.5</a>), amb <span class="math inline">\(s = s_0\)</span>:</p>
+<p><span class="math display">\[
+v_{x,0} = \pm\frac{s_0}{\sqrt{1+m^2}}, \qquad v_{y,0} = \frac{s_0\,m}{\sqrt{1+m^2}}, \qquad \sqrt{v_{x,0}^2 + v_{y,0}^2} = s_0,
+\]</span></p>
+<p>amb el signe de <span class="math inline">\(v_{x,0}\)</span> cap al receptor. Com que <span class="math inline">\(|m|\)</span> és entre <span class="math inline">\(\tan 20°\)</span> i <span class="math inline">\(\tan 45°\)</span>, <span class="math inline">\(|v_{y,0}|\)</span> és entre <span class="math inline">\(6 \sin 20° \approx 2{,}05\)</span> i <span class="math inline">\(6 \sin 45° \approx 4{,}24\)</span> px/tick, i <span class="math inline">\(|v_{x,0}|\)</span> entre <span class="math inline">\(6 \cos 45° \approx 4{,}24\)</span> i <span class="math inline">\(6 \cos 20° \approx 5{,}64\)</span> px/tick. Com que no hi ha efecte, el mòdul de la velocitat és <span class="math inline">\(s_0\)</span> durant tot el primer vol, encara que hi hagi rebots: un rebot només canvia el signe de <span class="math inline">\(v_{y,n}\)</span>. No confonguis <span class="math inline">\(s_0\)</span>, el mòdul de la velocitat, amb <span class="math inline">\(v_{y,0}\)</span>, la seva component vertical.</p>
+</section>
+<section id="puntuacion" class="level3">
+<h3 class="anchored" data-anchor-id="puntuacion"><strong>2.8 Puntuació</strong></h3>
+<p>La <a href="../../ca/practica/definicions.html#partida">partida</a> és al millor de 3 <a href="../../ca/practica/definicions.html#set">sets</a>. Un set el guanya el bot que té <span class="math inline">\(a\)</span> punts davant <span class="math inline">\(b\)</span> del rival quan</p>
+<p><span class="math display">\[
+(a \ge 11 \ \text{i}\ a - b \ge 2) \quad \text{o} \quad a = 15,
+\]</span></p>
+<p>és a dir: a 11 punts amb 2 d’avantatge; des de 10-10, a avantatge de 2; i a 14-14 el punt següent guanya el set (15-14). Els bots no canvien de costat entre sets.</p>
+</section>
+<section id="nulos" class="level3">
+<h3 class="anchored" data-anchor-id="nulos"><strong>2.9 Nuls i final de la partida</strong></h3>
+<p>Perquè tota partida acabi, hi ha dues regles de seguretat:</p>
+<ul>
+<li>Si un <a href="../../ca/practica/definicions.html#intercambio">intercanvi</a> arriba a <strong>100 cops</strong>, s’anul·la en el tick del cop 100: és un <a href="../../ca/practica/definicions.html#nulo">nul</a>. Ningú no guanya el punt i es repeteix el servei amb el mateix jugador.</li>
+<li>En arribar al <strong>nul número 20</strong>, la partida acaba en <a href="../../ca/practica/definicions.html#empate-tecnico">empat tècnic</a>.</li>
+</ul>
+<p>A la pràctica, els nuls són raríssims: només apareixen entre bots que es retornen la bola gairebé horitzontal sense moure’s.</p>
+</section>
+<section id="azar" class="level3">
+<h3 class="anchored" data-anchor-id="azar"><strong>2.10 Atzar i reproductibilitat</strong></h3>
+<p>Tot l’atzar del joc (qui serveix primer, la direcció de cada servei i el signe del pendent si <span class="math inline">\(u = 0\)</span>) surt d’un generador <code>random.Random(semilla)</code> del motor. Per això <strong>mateixa <a href="../../ca/practica/definicions.html#semilla">llavor</a> i mateixes ordres donen exactament la mateixa partida</strong> en qualsevol ordinador, i una partida es pot enregistrar com la seva llavor més la llista d’ordres. Cada bot rep la seva pròpia llavor a <code>Bot(seed)</code> (<span class="math inline">\(2s + 1\)</span> l’esquerre i <span class="math inline">\(2s + 2\)</span> el dret, si <span class="math inline">\(s\)</span> és la de la partida), per si vol fer servir atzar amb el seu propi <code>random.Random</code>.</p>
+<hr>
+</section>
+</section>
+<section id="bot" class="level2">
+<h2 class="anchored" data-anchor-id="bot">3. El teu bot</h2>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Què ha de fer el teu bot, en poques paraules">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Què ha de fer el teu bot, en poques paraules
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El teu bot controla una de les dues raquetes, però el motor sempre et presenta el camp com si juguessis a l’esquerra, així que només has de programar aquest cas. <strong>L’única feina del teu bot ha de ser posar la raqueta al lloc per on passarà la bola, abans que arribi.</strong></p>
+<p><strong>El que passa a cada tick</strong></p>
+<p>El motor crida <code>decide(state)</code>. El teu bot mira l’estat (on és la bola, on és la seva raqueta) i respon amb una de tres ordres:</p>
+<ul>
+<li><code>"UP"</code>: la raqueta puja 8 píxels;</li>
+<li><code>"DOWN"</code>: la raqueta baixa 8 píxels;</li>
+<li><code>"STAY"</code>: la raqueta es queda quieta.</li>
+</ul>
+<p>Això és tot el que pot fer el bot. No mou la bola ni sap res més.</p>
+<p><strong>Com decideix, en tres passos</strong></p>
+<ol type="1">
+<li><strong>Recordar.</strong> Desa les últimes posicions de la bola. Amb una sola foto no se sap cap on va. Amb tres de seguides se’n pot calcular la velocitat i com es corba.</li>
+<li><strong>Predir.</strong> Calcula a quina altura creuarà la bola la línia de la teva raqueta. Cal tenir en compte que la bola rebota a les parets de dalt i de baix, i que es pot anar corbant per l’efecte.</li>
+<li><strong>Moure’s.</strong> Compara aquesta altura amb el centre de la teva raqueta. Si la bola arribarà més amunt, <code>"UP"</code>; si arribarà més avall, <code>"DOWN"</code>; si ja hi ets bé, <code>"STAY"</code>. La bola es retorna si el seu centre creua la línia de la teva raqueta a menys de 46 píxels del centre d’aquesta.</li>
+</ol>
+<p>Mentre la bola s’allunya o s’espera el servei, el més assenyat és tornar cap al centre.</p>
+<p><strong>Com millorar-lo a poc a poc.</strong> Comença per un bot que només segueixi la bola i afegeix una capacitat cada vegada. El requadre <a href="#tip-etapas">Com abordar el teu bot</a> de l’apartat <a href="#referencia">3.5</a> en dona les etapes. Els detalls exactes (fórmules, camps de <code>state</code>, normes) són als apartats següents i al <a href="../../ca/practica/definicions.html">glossari</a>.</p>
+</div>
+</div>
+<section id="la-interfície" class="level3">
+<h3 class="anchored" data-anchor-id="la-interfície"><strong>3.1 La interfície</strong></h3>
+<p>El teu <a href="../../ca/practica/definicions.html#bot">bot</a> és la classe <code>Bot</code> de <code>src/pong/bot.py</code>. El motor la crea una vegada per partida amb <code>Bot(seed)</code> i crida <code>decide(state)</code> una vegada per tick:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Bot:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, seed: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""seed: semilla para un random.Random propio, si el bot usa azar."""</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> decide(<span class="va">self</span>, state: <span class="bu">dict</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Devuelve "UP", "DOWN" o "STAY"."""</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El mateix objecte dura tota la partida, així que pots desar als seus atributs el que necessitis recordar: posicions anteriors de la bola, la teva predicció, en quin intercanvi ets…</p>
+</section>
+<section id="estado" class="level3">
+<h3 class="anchored" data-anchor-id="estado"><strong>3.2 L’estat</strong></h3>
+<p><code>state</code> és un diccionari amb la situació a l’inici del tick, <strong>normalitzat</strong>: el teu bot es veu sempre a l’esquerra, amb la cara frontal de la seva raqueta a <span class="math inline">\(x = 30\)</span>, jugui al costat que jugui. Per al bot dret, el motor transforma <span class="math inline">\(x \to 800 - x\)</span>; <span class="math inline">\(y\)</span> no canvia. En conseqüència, <span class="math inline">\(v_{x,n}\)</span> canvia de signe i <span class="math inline">\(v_{y,n}\)</span> i <span class="math inline">\(a_{y,n}\)</span> no canvien. Així, la bola s’acosta a tu quan <code>ball_x</code> decreix.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Clau</th>
+<th style="text-align: left;">Tipus</th>
+<th style="text-align: left;">Significat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>protocol_version</code></td>
+<td style="text-align: left;"><code>str</code></td>
+<td style="text-align: left;"><code>"1.0"</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>tick</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;">Índex, des de 0, del tick que s’executarà</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>state</code></td>
+<td style="text-align: left;"><code>str</code></td>
+<td style="text-align: left;"><code>"serving"</code>, <code>"playing"</code> o <code>"match_over"</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ball_x</code>, <code>ball_y</code></td>
+<td style="text-align: left;"><code>float</code></td>
+<td style="text-align: left;">Centre de la bola (px): la posició <span class="math inline">\((x_n, y_n)\)</span> al final del tick anterior</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>my_paddle_y</code>, <code>opp_paddle_y</code></td>
+<td style="text-align: left;"><code>float</code></td>
+<td style="text-align: left;">Centre de la teva raqueta i de la del rival (px)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>my_points</code>, <code>opp_points</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;">Punts del set en curs</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>my_sets</code>, <code>opp_sets</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;">Sets guanyats</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>serving</code></td>
+<td style="text-align: left;"><code>str</code></td>
+<td style="text-align: left;"><code>"me"</code> o <code>"opp"</code>: qui serveix</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>serve_ticks_left</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;">Ticks de pausa que queden: 60, 59, …, 1 durant la pausa; 0 en joc</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>rally_hits</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;">Cops de l’intercanvi en curs</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>lets</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;">Nuls acumulats a la partida</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>field</code></td>
+<td style="text-align: left;"><code>dict</code></td>
+<td style="text-align: left;">Les constants del joc (vegeu la <a href="../../ca/practica/definicions.html#simbolos">taula de constants</a>), per no haver-les d’escriure a mà</td>
+</tr>
+</tbody>
+</table>
+<p>El diccionari és una còpia: modificar-lo no afecta el motor. <strong>No inclou la velocitat <span class="math inline">\((v_{x,n}, v_{y,n})\)</span> ni l’efecte <span class="math inline">\(a_{y,n}\)</span></strong>: el teu bot els ha d’estimar.</p>
+</section>
+<section id="estimacion" class="level3">
+<h3 class="anchored" data-anchor-id="estimacion"><strong>3.3 Estimació cinemàtica</strong></h3>
+<p>Amb les posicions de ticks successius d’un mateix <a href="../../ca/practica/definicions.html#vuelo">vol</a>, les diferències finites donen la velocitat i l’efecte <strong>exactament</strong> (excepte un error d’arrodoniment negligible), perquè el moviment és discret (apartat <a href="#entre-golpes">2.6</a>). Comptant <span class="math inline">\(n\)</span> des de l’inici del vol, per a <span class="math inline">\(n \ge 1\)</span> (i <span class="math inline">\(n \ge 2\)</span> en la segona diferència):</p>
+<p><span class="math display">\[
+\Delta x_n = x_n - x_{n-1} = v_{x,0}, \qquad \Delta Y_n = Y_n - Y_{n-1} = v_{y,0} + n\,a_{y,0}, \qquad \Delta^2 Y_n = \Delta Y_n - \Delta Y_{n-1} = a_{y,0}.
+\]</span></p>
+<p>Així que el teu bot ha de desar almenys les tres últimes posicions observades. Hi ha tres dificultats, i resoldre-les és part de l’exercici:</p>
+<ol type="1">
+<li><strong>Latència.</strong> Dues posicions seguides d’un vol donen <span class="math inline">\(v_{x,0}\)</span> i <span class="math inline">\(v_{y,n}\)</span>; en calen tres per a l’efecte <span class="math inline">\(a_{y,0}\)</span>. Just després d’un servei o d’un cop, el teu bot encara no coneix la trajectòria.</li>
+<li><strong>Rebots.</strong> L’ordenada observada ja està <a href="../../ca/practica/definicions.html#ordenada-plegada-y-desplegada">plegada</a>. Si entre dues observacions hi va haver un <a href="../../ca/practica/definicions.html#rebote">rebot</a>, <span class="math inline">\(\Delta y_n = y_n - y_{n-1}\)</span> no és <span class="math inline">\(v_{y,n}\)</span>: cal desplegar. Un canvi de signe de <span class="math inline">\(\Delta y_n\)</span> no basta per detectar-lo, perquè també passa al vèrtex d’una paràbola amb efecte.</li>
+<li><strong>Ticks amb cop.</strong> En el tick d’un cop, el motor col·loca la bola al pla d’impacte i descarta la resta del moviment, així que la diferència entre l’observació anterior al cop i la del cop no val. L’observació en què augmenta <code>rally_hits</code> és la <strong>primera del vol nou</strong>, i l’estimació comença de nou des d’ella.</li>
+</ol>
+</section>
+<section id="normas-bot" class="level3">
+<h3 class="anchored" data-anchor-id="normas-bot"><strong>3.4 Normes</strong></h3>
+<ul>
+<li><strong>El teu bot ha de ser teu.</strong> Només pot importar <code>math</code>, <code>random</code> (amb un generador propi), <code>collections</code>, <code>itertools</code>, <code>functools</code>, <code>heapq</code>, <code>bisect</code>, <code>copy</code>, <code>dataclasses</code>, <code>enum</code>, <code>typing</code> i <code>numpy</code>. No pot importar el paquet <code>pong</code> (ni el motor ni els bots de referència) ni <code>pong_ref_bots</code>, ni fer servir fitxers, xarxa, subprocessos, <code>eval</code> o <code>exec</code>. <code>src/pong/normas.py</code> ho comprova sense executar el teu bot: <code>runner</code>, <code>evaluate</code> i els tests no juguen amb un bot que no compleix i et diuen en quina línia és el problema. L’avaluació oficial fa la mateixa comprovació.</li>
+<li><strong>Ordres.</strong> Només valen les cadenes exactes <code>"UP"</code>, <code>"DOWN"</code> i <code>"STAY"</code>. Si <code>decide</code> llança una excepció o retorna una altra cosa, aquell tick compta com a <code>"STAY"</code>. Si <code>Bot(seed)</code> llança una excepció, la partida no es juga i la perds (<a href="../../ca/practica/definicions.html#abandono">abandonament</a>).</li>
+<li><strong>Temps.</strong>
+<ul>
+<li>50 ms per crida: si se supera, aquell tick compta com a <code>"STAY"</code>.</li>
+<li>2 ms de mitjana per crida en tota la partida: si se supera, perds la partida amb 0 punts. La mitjana es vigila des de la crida 5 000 i la partida es talla tan bon punt la supera (<a href="../../ca/practica/definicions.html#corte-por-tiempo">tall per temps</a>).</li>
+<li>1 s sense respondre: perds la partida.</li>
+</ul>
+Procura no passar d’<strong>1 ms de mitjana</strong> a <code>evaluate</code>, perquè la màquina de l’avaluació oficial pot ser més lenta que el teu Codespace. Un bot raonable tarda entre 0,005 i 0,05 ms.</li>
+<li><strong>NumPy</strong> fa servir rutines diferents en PC i en Mac: un bot que l’utilitzi pot decidir diferent en casos límit, i el seu percentatge local pot diferir lleugerament de l’oficial.</li>
+</ul>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Un bot que no és teu invalida la pràctica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Un bot que no és teu invalida la pràctica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si el teu <code>bot.py</code> no supera la comprovació de <code>normas.py</code> (la primera norma de la llista), <strong>la pràctica queda suspesa i l’hauràs de recuperar</strong>. Abans de lliurar, comprova que <code>uv run pytest tests/test_normas.py</code> passa.</p>
+</div>
+</div>
+</section>
+<section id="referencia" class="level3">
+<h3 class="anchored" data-anchor-id="referencia"><strong>3.5 Els bots de referència</strong></h3>
+<p>El teu bot es mesura contra tres <a href="../../ca/practica/definicions.html#bots-de-referencia">bots de referència</a>, cadascun d’un nivell:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Bot</th>
+<th style="text-align: left;">Nom a les ordres</th>
+<th style="text-align: left;">Com juga</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Fàcil</td>
+<td style="text-align: left;"><code>easy</code></td>
+<td style="text-align: left;">Segueix la bola amb la seva raqueta, sense predir. El seu codi és a <code>src/pong/bots_ref/easy.py</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mitjà</td>
+<td style="text-align: left;"><code>medium</code></td>
+<td style="text-align: left;">Prediu on arribarà la bola i apunta les seves devolucions</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Difícil</td>
+<td style="text-align: left;"><code>hard</code></td>
+<td style="text-align: left;">Domina el model complet del joc, inclòs l’efecte, i l’utilitza per atacar</td>
+</tr>
+</tbody>
+</table>
+<p>Mitjà i Difícil es distribueixen compilats: hi pots jugar en contra, però no en pots veure el codi.</p>
+<div id="tip-etapas" class="callout callout-style-default callout-tip no-icon callout-titled" title="Com abordar el teu bot">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;1: Com abordar el teu bot
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Avança per etapes i mesura cadascuna amb <code>evaluate</code>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Etapa</th>
+<th style="text-align: left;">Què fa el teu bot</th>
+<th style="text-align: left;">Què necessita</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1. Seguir la bola</td>
+<td style="text-align: left;">Mou la raqueta cap a l’altura actual de la bola, com Fàcil</td>
+<td style="text-align: left;">Només <code>state</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2. Predir sense rebots</td>
+<td style="text-align: left;">Va allà on la bola creuarà el teu <a href="../../ca/practica/definicions.html#plano-de-impacto">pla d’impacte</a></td>
+<td style="text-align: left;">Velocitat estimada amb dues observacions (apartat <a href="#estimacion">3.3</a>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3. Desplegar els rebots</td>
+<td style="text-align: left;">Prediu encara que la bola reboti a les parets</td>
+<td style="text-align: left;">L’ona triangular <span class="math inline">\(F\)</span> (apartat <a href="#paredes">2.4</a>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4. Estimar l’efecte</td>
+<td style="text-align: left;">Prediu la corba de la bola</td>
+<td style="text-align: left;">Tres observacions i la paràbola de l’apartat <a href="#entre-golpes">2.6</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5. Apuntar</td>
+<td style="text-align: left;">Tria amb quin punt de la raqueta colpejar (<span class="math inline">\(u\)</span>) per enviar la bola lluny del rival</td>
+<td style="text-align: left;">La regla del cop (apartat <a href="#golpe">2.5</a>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6. Fer servir l’efecte</td>
+<td style="text-align: left;">Tria l’ordre del tick del cop per corbar la devolució</td>
+<td style="text-align: left;">L’efecte <span class="math inline">\(a_{y,0} = \kappa\,c\)</span> (apartat <a href="#golpe">2.5</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Superar Fàcil exigeix predir i desviar la bola; Mitjà, apuntar amb criteri; Difícil, dominar tot el model.</p>
+</div>
+</div>
+</section>
+<section id="veure-i-depurar-les-teves-partides" class="level3">
+<h3 class="anchored" data-anchor-id="veure-i-depurar-les-teves-partides"><strong>3.6 Veure i depurar les teves partides</strong></h3>
+<p><code>pong.html</code> executa el motor al navegador i té dos modes: <strong>en directe</strong> (el teu bot contra Fàcil, contra si mateix o contra una versió anterior desada a <code>mis_bots/</code>, amb pausa i avanç tick a tick) i <strong>reproducció</strong> de qualsevol registre de <code>partidas/</code>, incloses les teves partides contra Mitjà i Difícil. Els seus panells mostren l’<code>state</code> que rep cada bot, els valors reals del motor (les velocitats i l’efecte que el teu bot ha d’estimar) i els <code>print</code> i excepcions del teu bot.</p>
+<p>Si el teu bot desa a <code>self.depuracion</code> un diccionari amb les claus <code>objetivo_y</code> (un nombre), <code>trayectoria</code> o <code>puntos</code> (llistes de punts <span class="math inline">\((x, y)\)</span>) o <code>texto</code>, en les coordenades del seu <code>state</code>, la pàgina el dibuixa sobre el camp. És opcional i no afecta el joc.</p>
+<hr>
+</section>
+</section>
+<section id="registros" class="level2">
+<h2 class="anchored" data-anchor-id="registros">4. Registres de les partides</h2>
+<p><code>runner</code> i <code>evaluate --guardar</code> enregistren cada partida a <code>partidas/</code>. Hi ha dos fitxers possibles:</p>
+<ul>
+<li><strong><a href="../../ca/practica/definicions.html#registro-json">Registre JSON</a></strong>, <code>partida_&lt;semilla&gt;.json</code>: la llavor, els noms dels bots, els sets, el resultat (<code>"left"</code>, <code>"right"</code> o <code>"draw"</code>), <code>abandono</code> i <code>tiempo_excedido</code>, la llista d’<a href="../../ca/practica/definicions.html#intercambio">intercanvis</a> (cadascun amb <code>start_tick</code>, <code>end_tick</code>, <code>hits</code>, <code>outcome</code> i <code>winner</code>) i les ordres de cada tick. Amb la llavor i les ordres, el motor reprodueix la partida. Ocupa poc: <strong>puja’l a GitHub</strong>.</li>
+<li><strong><a href="../../ca/practica/definicions.html#csv">CSV</a></strong>, <code>partida_&lt;semilla&gt;.csv</code>: una fila per tick amb <strong>el mateix que veuen els bots</strong>, en coordenades globals: <code>tick</code>, <code>state</code>, <code>ball_x</code>, <code>ball_y</code>, <code>p_left</code>, <code>p_right</code>, <code>cmd_left</code>, <code>cmd_right</code>, <code>server</code> i <code>rally_hits</code>. La fila <span class="math inline">\(t\)</span> és l’estat abans d’executar el tick <span class="math inline">\(t\)</span>. Ocupa diversos MB i no es puja: s’obté en qualsevol moment del JSON amb <code>uv run python -m pong.registro &lt;json&gt;</code>.</li>
+</ul>
+<p>Les velocitats i l’efecte no són al CSV. Per comprovar les teves estimacions, la <a href="../../ca/practica/definicions.html#verdad-del-motor">veritat del motor</a> (<code>ball_vx</code>, <code>ball_vy</code>, <code>ball_ay</code> i <code>ball_speed</code> a cada tick) s’obté rejugant el JSON amb <code>pong.registro.verdad(ruta)</code> o amb <code>uv run python -m pong.registro &lt;json&gt; --verdad</code>.</p>
+<hr>
+</section>
+<section id="tests" class="level2">
+<h2 class="anchored" data-anchor-id="tests">5. Els teus tests</h2>
+<p>A <code>tests/test_bot.py</code> escriuràs amb <code>pytest</code> els tests del teu bot. La plantilla porta dos tests de partida (que el bot retorna ordres vàlides als dos costats); amplia’ls amb tests del teu predictor <strong>contra el motor</strong>: que l’ordenada de creuament que predius coincideix amb la del motor, també en els casos límit (cantonades, diversos rebots en un mateix tick, efecte, bola gairebé horitzontal…). Pots fer servir el motor als tests (<code>pong.pong_engine</code>) encara que el teu bot no el pugui importar.</p>
+<p>Aquest punt es qualifica així:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Criteri</th>
+<th style="text-align: left;">Punts</th>
+<th style="text-align: left;">Com es mesura</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Passen i cobreixen el teu bot</td>
+<td style="text-align: left;">0,4</td>
+<td style="text-align: left;">Tots els teus tests passen i executen almenys el 80 % de les línies de <code>bot.py</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Detecten errors</td>
+<td style="text-align: left;">0,4</td>
+<td style="text-align: left;">S’introdueixen a propòsit petits errors a <code>bot.py</code> (canviar un signe, un <code>&lt;</code> per un <code>&lt;=</code>, una constant…) i es compta la fracció que els teus tests detecten, és a dir, que fan fallar algun test: la <strong>puntuació de mutació</strong>. Reps 0,4 multiplicat per aquesta fracció</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Revisió del professor</td>
+<td style="text-align: left;">0,2</td>
+<td style="text-align: left;">Es resta si els tests són trivials (per exemple, si només comproven que <code>decide</code> retorna una cadena)</td>
+</tr>
+</tbody>
+</table>
+<p>Pots veure la teva cobertura amb <code>uv run pytest tests/test_bot.py --cov=pong.bot</code>. Per detectar errors, el que més ajuda són els tests que comparen la teva predicció amb el motor en casos concrets: un error en la predicció canvia el resultat i el test falla.</p>
+<hr>
+</section>
+<section id="notebook" class="level2">
+<h2 class="anchored" data-anchor-id="notebook">6. El notebook d’anàlisi</h2>
+<p>El notebook <code>notebook/analisis_mo.py</code>, de <a href="https://marimo.io" target="_blank" rel="noopener noreferrer">Marimo</a>, analitza <strong>una partida qualsevol</strong> a partir del seu registre JSON. Ja porta l’enunciat de cada apartat, amb exemples i el tipus de gràfic de cada figura, i les funcions que has d’escriure, amb el seu nom, els seus paràmetres i la seva docstring. No canviïs aquests noms ni paràmetres: les teves funcions es corregeixen amb tests del professor. No hi ha text a redactar. <code>notebook/ejemplo.html</code> és el mateix notebook amb les figures de la solució, sense codi: compara-hi les teves figures.</p>
+<p>Té tres parts:</p>
+<ol type="1">
+<li><strong>Lectura i neteja de dades</strong> (L1–L4): llegir el JSON i el CSV amb <code>json</code> i pandas, quedar-se amb els ticks en joc, assignar cadascun al seu intercanvi i construir la taula de <a href="../../ca/practica/definicions.html#vuelo">vols</a>.</li>
+<li><strong>Anàlisi de la partida</strong> (P1–P4): quatre proposicions sobre el moviment de la bola (moviment entre cops, plegament, creuament amb la raqueta i velocitats plegades), que comproves amb les dades i representes en una figura.</li>
+<li><strong>Anàlisi estadística</strong> (S1–S8): vuit figures sobre el joc dels dos bots. Per a les proporcions es fan servir intervals de confiança de Wilson, que el notebook explica.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Figura</th>
+<th style="text-align: left;">Què mostra</th>
+<th style="text-align: left;">Tipus de gràfic</th>
+<th style="text-align: left;">Punts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">Cops per intercanvi segons qui va guanyar el punt</td>
+<td style="text-align: left;">Diagrama de caixes</td>
+<td style="text-align: left;">0,25 (base)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">Punt d’impacte <span class="math inline">\(u\)</span> de cada bot</td>
+<td style="text-align: left;">Histogrames, un panell per bot</td>
+<td style="text-align: left;">0,25 (base)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">S3</td>
+<td style="text-align: left;">Llei d’acceleració del cop, per regressió lineal</td>
+<td style="text-align: left;">Dispersió amb rectes i panell de residus</td>
+<td style="text-align: left;">0,5 (ampliació)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">Ordenada d’arribada de cops i errades, per bot</td>
+<td style="text-align: left;">Histogrames apilats</td>
+<td style="text-align: left;">0,3 (ampliació)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">Proporció d’errades segons la velocitat de la bola</td>
+<td style="text-align: left;">Barres amb barres d’error</td>
+<td style="text-align: left;">0,25 (base)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S6</td>
+<td style="text-align: left;">Avantatge del servei</td>
+<td style="text-align: left;">Barres amb barres d’error i línia de referència</td>
+<td style="text-align: left;">0,4 (ampliació)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">S7</td>
+<td style="text-align: left;">Ordres de cada bot i recorregut de la seva raqueta</td>
+<td style="text-align: left;">Barres agrupades i diagrama de violí</td>
+<td style="text-align: left;">0,25 (base)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S8</td>
+<td style="text-align: left;">Evolució del marcador</td>
+<td style="text-align: left;">Línia esglaonada</td>
+<td style="text-align: left;">0,3 (ampliació)</td>
+</tr>
+</tbody>
+</table>
+<div id="imp-requisito" class="callout callout-style-default callout-important no-icon callout-titled" title="Requisit: L1–L4 carreguen qualsevol partida">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;2: Requisit: L1–L4 carreguen qualsevol partida
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les funcions de lectura i neteja (L1–L4) són el primer que has de fer: amb elles es carrega la partida i, sense elles, el notebook no dibuixa cap figura. Abans de carregar-la es comprova que el que retornen és coherent. <strong>Si amb la partida del professor o amb alguna de les partides dels seus tests (normals, amb nul, amb abandonament o tallades per temps) alguna de L1–L4 falla o la partida no es pot carregar, el notebook es qualifica amb 0.</strong> Comprova-ho amb <code>uv run pytest tests/test_notebook.py</code>, que carrega amb les teves funcions <code>notebook/ejemplo.json</code> i les partides rares de <code>notebook/raras/</code>.</p>
+</div>
+</div>
+<p><strong>Correcció.</strong> El professor executa el teu notebook sobre una partida seva que no has vist: corregeix les teves funcions amb tests propis i revisa les figures amb una rúbrica (títol, eixos amb nom i unitats, i el tipus de gràfic demanat). El teu notebook ha de funcionar amb qualsevol partida, també amb les rares.</p>
+<hr>
+</section>
+<section id="evaluacion" class="level2">
+<h2 class="anchored" data-anchor-id="evaluacion">7. Avaluació</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Lliurable</th>
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Punts</th>
+<th style="text-align: left;">Com es qualifica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>bot.py</code> (4,5)</td>
+<td style="text-align: left;">Rendiment</td>
+<td style="text-align: left;">3,5</td>
+<td style="text-align: left;">Automàticament, amb partides contra els tres bots de referència</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Qualitat del codi</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Automàticament, amb una revisió acotada del professor</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>tests/test_bot.py</code> (1)</td>
+<td style="text-align: left;">Tests</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Vegeu l’<a href="#tests">apartat 5</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>notebook/analisis_mo.py</code> (4,5)</td>
+<td style="text-align: left;">Lectura i neteja (L1–L4)</td>
+<td style="text-align: left;">0,4</td>
+<td style="text-align: left;">Tests del professor; a més, requisit de tot el notebook</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">P1–P4</td>
+<td style="text-align: left;">1,6</td>
+<td style="text-align: left;">0,4 cadascuna: tests de les seves funcions i rúbrica de la seva figura</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">S1, S2, S5 i S7 (base)</td>
+<td style="text-align: left;">1,0</td>
+<td style="text-align: left;">0,25 cadascuna</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">S3, S4, S6 i S8 (ampliació)</td>
+<td style="text-align: left;">1,5</td>
+<td style="text-align: left;">0,5, 0,3, 0,4 i 0,3</td>
+</tr>
+</tbody>
+</table>
+<section id="rendimiento" class="level3">
+<h3 class="anchored" data-anchor-id="rendimiento"><strong>7.1 Rendiment del bot (3,5 punts)</strong></h3>
+<p>El teu bot juga <strong>100 partides contra cada bot de referència</strong>, la meitat a cada costat, amb llavors que no es publiquen fins després del lliurament. La mesura és el teu <a href="../../ca/practica/definicions.html#porcentaje-de-puntos">percentatge de punts</a> <span class="math inline">\(q\)</span>: la mitjana, sobre les partides, de la fracció de punts que guanyes a cadascuna. Una partida perduda per abandonament o per temps compta 0.</p>
+<p>Cada rival dona els seus punts de forma lineal entre dues cotes: <span class="math inline">\(w \cdot \min\!\big(1, \max\big(0, \tfrac{q - q_0}{q_1 - q_0}\big)\big)\)</span>, amb <span class="math inline">\(w\)</span> el pes del rival.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Rival</th>
+<th style="text-align: left;">Pes <span class="math inline">\(w\)</span></th>
+<th style="text-align: left;">0 punts amb <span class="math inline">\(q \le q_0\)</span></th>
+<th style="text-align: left;">Tots amb <span class="math inline">\(q \ge q_1\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Fàcil</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">50 %</td>
+<td style="text-align: left;">90 %</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mitjà</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">45 %</td>
+<td style="text-align: left;">70 %</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Difícil</td>
+<td style="text-align: left;">1,5</td>
+<td style="text-align: left;">35 %</td>
+<td style="text-align: left;">48 %</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Amb <span class="math inline">\(q = 85\,\%\)</span> contra Fàcil, <span class="math inline">\(55\,\%\)</span> contra Mitjà i <span class="math inline">\(40\,\%\)</span> contra Difícil obtens <span class="math inline">\(1 \cdot \tfrac{0{,}35}{0{,}40} + 1 \cdot \tfrac{0{,}10}{0{,}25} + 1{,}5 \cdot \tfrac{0{,}05}{0{,}13} = 0{,}875 + 0{,}4 + 0{,}58 \approx 1{,}85\)</span> punts de 3,5.</p>
+</div>
+</div>
+<p><code>evaluate</code> juga igual que l’avaluació oficial (alterna costats, aplica el límit de temps i fa servir aquestes cotes) i et dona la teva nota estimada. El teu resultat oficial només variarà per l’atzar de les llavors: amb 100 partides, uns dos punts percentuals.</p>
+</section>
+<section id="calidad" class="level3">
+<h3 class="anchored" data-anchor-id="calidad"><strong>7.2 Qualitat del codi (1 punt)</strong></h3>
+<p>Es mesura automàticament sobre <code>bot.py</code>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Criteri</th>
+<th style="text-align: left;">Punts</th>
+<th style="text-align: left;">Nota completa si…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Docstrings</td>
+<td style="text-align: left;">0,3</td>
+<td style="text-align: left;">totes les funcions, classes i mètodes tenen docstring (0 amb la meitat o menys)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Anotacions de tipus</td>
+<td style="text-align: left;">0,3</td>
+<td style="text-align: left;">tot està anotat (0,2) i mypy no dona errors (0,1)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Estil</td>
+<td style="text-align: left;">0,2</td>
+<td style="text-align: left;">Ruff no dona avisos (0 amb 10 o més)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estructura</td>
+<td style="text-align: left;">0,2</td>
+<td style="text-align: left;">cap funció supera complexitat 10 ni 50 línies</td>
+</tr>
+</tbody>
+</table>
+<p>El professor pot restar fins a 0,3 punts si les docstrings o els noms són de farciment.</p>
+</section>
+<section id="defensa" class="level3">
+<h3 class="anchored" data-anchor-id="defensa"><strong>7.3 Defensa oral</strong></h3>
+<p>La defensa oral no és obligatòria per a tothom. Si hi ha dubtes sobre l’autoria del que lliures, el professor et pot convocar a una defensa oral breu, en què explicaràs com prediu el teu bot i el modificaràs en directe.</p>
+</section>
+<section id="ia" class="level3">
+<h3 class="anchored" data-anchor-id="ia"><strong>7.4 Ús de la intel·ligència artificial</strong></h3>
+<p>La <a href="../../ca/informacions/guia-docent.html">guia docent</a> autoritza l’ús d’eines d’IA a la pràctica, amb les seves condicions: les pots fer servir per entendre, revisar, documentar o provar el teu codi, però no per lliurar com a teu el que no entens. Has de poder explicar, justificar i modificar qualsevol part del que lliures, i declarar quines eines vas fer servir, per a què i en quines parts. Tingues en compte la defensa oral (apartat <a href="#defensa">7.3</a>).</p>
+<hr>
+</section>
+</section>
+<section id="referències" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="referències">Referències</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-wikipedia_pong" class="csl-entry" role="listitem">
+Col·laboradors de Wikipedia. 2026. <span>«Pong»</span>. Wikipedia, The Free Encyclopedia. <a href="https://en.wikipedia.org/wiki/Pong">https://en.wikipedia.org/wiki/Pong</a>.
+</div>
+<div id="ref-edwards2012" class="csl-entry" role="listitem">
+Edwards, Benj. 2012. <span>«The Making of <span>Pong</span>»</span>. Edge, núm. 248 (2012); reeditat a Vintage Computing and Gaming (2022). <a href="https://www.vintagecomputing.com/index.php/archives/3183/vcg-anthology-the-making-of-pong-2012">https://www.vintagecomputing.com/index.php/archives/3183/vcg-anthology-the-making-of-pong-2012</a>.
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

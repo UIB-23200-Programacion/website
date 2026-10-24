@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Práctica del Curso – Programación (23200)</title>
+<title>Práctica de la asignatura 23200 - Programación – Programación (23200)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -72,11 +127,42 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Práctica del Curso – Programación (23200)">
+<meta property="og:title" content="Práctica de la asignatura 23200 - Programación – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/campo.svg">
 <meta property="og:site_name" content="Programación (23200)">
+<meta property="og:image:alt" content="Esquema del campo de 800 por 600 píxeles con las dos raquetas, la bola, las paredes y los planos de impacto.">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -250,7 +336,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../es/practica/practica.html">Práctica</a></li><li class="breadcrumb-item"><a href="../../es/practica/practica.html">Práctica del Curso</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../es/practica/practica.html">Práctica</a></li><li class="breadcrumb-item"><a href="../../es/practica/practica.html">Práctica de la Asignatura</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -467,7 +553,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../es/practica/practica.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Práctica del Curso</span></a>
+ <span class="menu-text">Práctica de la Asignatura</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../es/practica/definiciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Definiciones y Notación</span></a>
   </div>
 </li>
       </ul>
@@ -523,16 +615,61 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#la-práctica" id="toc-la-práctica" class="nav-link" data-scroll-target="#la-práctica">La Práctica</a></li>
+  <li><a href="#puesta-en-marcha" id="toc-puesta-en-marcha" class="nav-link" data-scroll-target="#puesta-en-marcha">1. Puesta en marcha</a>
+  <ul class="collapse">
+  <li><a href="#tu-copia-de-la-plantilla" id="toc-tu-copia-de-la-plantilla" class="nav-link" data-scroll-target="#tu-copia-de-la-plantilla"><strong>1.1 Tu copia de la plantilla</strong></a></li>
+  <li><a href="#el-entorno-de-trabajo" id="toc-el-entorno-de-trabajo" class="nav-link" data-scroll-target="#el-entorno-de-trabajo"><strong>1.2 El entorno de trabajo</strong></a></li>
+  </ul></li>
+  <li><a href="#reglas" id="toc-reglas" class="nav-link" data-scroll-target="#reglas">2. Reglas del juego</a>
+  <ul class="collapse">
+  <li><a href="#campo" id="toc-campo" class="nav-link" data-scroll-target="#campo"><strong>2.1 Campo y unidades</strong></a></li>
+  <li><a href="#leyes" id="toc-leyes" class="nav-link" data-scroll-target="#leyes"><strong>2.2 Leyes del movimiento de la bola</strong></a></li>
+  <li><a href="#tick" id="toc-tick" class="nav-link" data-scroll-target="#tick"><strong>2.3 Estados de una partida y movimientos de las raquetas</strong></a></li>
+  <li><a href="#paredes" id="toc-paredes" class="nav-link" data-scroll-target="#paredes"><strong>2.4 Paredes y plegado</strong></a></li>
+  <li><a href="#golpe" id="toc-golpe" class="nav-link" data-scroll-target="#golpe"><strong>2.5 El golpe</strong></a></li>
+  <li><a href="#entre-golpes" id="toc-entre-golpes" class="nav-link" data-scroll-target="#entre-golpes"><strong>2.6 Movimiento entre golpes</strong></a></li>
+  <li><a href="#saque" id="toc-saque" class="nav-link" data-scroll-target="#saque"><strong>2.7 Saque</strong></a></li>
+  <li><a href="#puntuacion" id="toc-puntuacion" class="nav-link" data-scroll-target="#puntuacion"><strong>2.8 Puntuación</strong></a></li>
+  <li><a href="#nulos" id="toc-nulos" class="nav-link" data-scroll-target="#nulos"><strong>2.9 Nulos y final de la partida</strong></a></li>
+  <li><a href="#azar" id="toc-azar" class="nav-link" data-scroll-target="#azar"><strong>2.10 Azar y reproducibilidad</strong></a></li>
+  </ul></li>
+  <li><a href="#bot" id="toc-bot" class="nav-link" data-scroll-target="#bot">3. Tu bot</a>
+  <ul class="collapse">
+  <li><a href="#la-interfaz" id="toc-la-interfaz" class="nav-link" data-scroll-target="#la-interfaz"><strong>3.1 La interfaz</strong></a></li>
+  <li><a href="#estado" id="toc-estado" class="nav-link" data-scroll-target="#estado"><strong>3.2 El estado</strong></a></li>
+  <li><a href="#estimacion" id="toc-estimacion" class="nav-link" data-scroll-target="#estimacion"><strong>3.3 Estimación cinemática</strong></a></li>
+  <li><a href="#normas-bot" id="toc-normas-bot" class="nav-link" data-scroll-target="#normas-bot"><strong>3.4 Normas</strong></a></li>
+  <li><a href="#referencia" id="toc-referencia" class="nav-link" data-scroll-target="#referencia"><strong>3.5 Los bots de referencia</strong></a></li>
+  <li><a href="#ver-y-depurar-tus-partidas" id="toc-ver-y-depurar-tus-partidas" class="nav-link" data-scroll-target="#ver-y-depurar-tus-partidas"><strong>3.6 Ver y depurar tus partidas</strong></a></li>
+  </ul></li>
+  <li><a href="#registros" id="toc-registros" class="nav-link" data-scroll-target="#registros">4. Registros de las partidas</a></li>
+  <li><a href="#tests" id="toc-tests" class="nav-link" data-scroll-target="#tests">5. Tus tests</a></li>
+  <li><a href="#notebook" id="toc-notebook" class="nav-link" data-scroll-target="#notebook">6. El notebook de análisis</a></li>
+  <li><a href="#evaluacion" id="toc-evaluacion" class="nav-link" data-scroll-target="#evaluacion">7. Evaluación</a>
+  <ul class="collapse">
+  <li><a href="#rendimiento" id="toc-rendimiento" class="nav-link" data-scroll-target="#rendimiento"><strong>7.1 Rendimiento del bot (3,5 puntos)</strong></a></li>
+  <li><a href="#calidad" id="toc-calidad" class="nav-link" data-scroll-target="#calidad"><strong>7.2 Calidad del código (1 punto)</strong></a></li>
+  <li><a href="#defensa" id="toc-defensa" class="nav-link" data-scroll-target="#defensa"><strong>7.3 Defensa oral</strong></a></li>
+  <li><a href="#ia" id="toc-ia" class="nav-link" data-scroll-target="#ia"><strong>7.4 Uso de la inteligencia artificial</strong></a></li>
+  </ul></li>
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias">Referencias</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../es/practica/practica.html">Práctica</a></li><li class="breadcrumb-item"><a href="../../es/practica/practica.html">Práctica del Curso</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../es/practica/practica.html">Práctica</a></li><li class="breadcrumb-item"><a href="../../es/practica/practica.html">Práctica de la Asignatura</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Práctica del Curso</h1>
+<h1 class="title">Práctica de la asignatura 23200 - Programación</h1>
 </div>
 
 
@@ -549,9 +686,989 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contenido pendiente.)</em></p>
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p><em>Pong</em>, de Atari, fue el primer videojuego con éxito comercial. <a href="https://en.wikipedia.org/wiki/Allan_Alcorn" target="_blank" rel="noopener noreferrer">Allan Alcorn</a> lo diseñó en 1972 como ejercicio de práctica que le encargó <a href="https://en.wikipedia.org/wiki/Nolan_Bushnell" target="_blank" rel="noopener noreferrer">Nolan Bushnell</a>, inspirado en el tenis de mesa de la consola Magnavox Odyssey; el primer prototipo, un circuito de lógica digital sin software conectado a un televisor en blanco y negro, se instaló en agosto de 1972 en un bar de Sunnyvale, y a finales de 1974 Atari había vendido más de 8 000 máquinas <span class="citation" data-cites="wikipedia_pong">(<a href="#ref-wikipedia_pong" role="doc-biblioref">Colaboradores de Wikipedia 2026</a>)</span>. Sus reglas eran sencillas y han llegado casi intactas hasta hoy:</p>
+<ul>
+<li>cada raqueta estaba dividida en ocho segmentos, de modo que el punto de golpeo decidía el ángulo de salida,</li>
+<li>la bola se aceleraba a medida que se alargaba el intercambio y recuperaba su velocidad tras cada punto,</li>
+<li>ganaba el primero en llegar a 11 puntos <span class="citation" data-cites="edwards2012 wikipedia_pong">(<a href="#ref-edwards2012" role="doc-biblioref">Edwards 2012</a>; <a href="#ref-wikipedia_pong" role="doc-biblioref">Colaboradores de Wikipedia 2026</a>)</span>.</li>
+</ul>
+<p>Hay además un detalle curioso: por un defecto del circuito, las raquetas no llegaban al borde superior de la pantalla. Alcorn lo dejó así porque añadía dificultad y acortaba las partidas.</p>
+<p><strong>Importancia.</strong> Se considera el juego que puso en marcha la industria del videojuego. Forma parte de la colección permanente del Smithsonian y entró en el World Video Game Hall of Fame en 2015.</p>
+</section>
+<section id="la-práctica" class="level2">
+<h2 class="anchored" data-anchor-id="la-práctica">La Práctica</h2>
+<p>En esta práctica programarás un <strong><a href="../../es/practica/definiciones.html#bot">bot</a> que juega al Pong</strong> contra otros bots y <strong>analizarás las partidas</strong> que juega tu bot con datos de las mismas. Las reglas del juego las fija un motor escrito en Python que se encuentra en el proyecto (repositorio de GitHub) <a href="https://github.com/UIB-23200-Programacion/practica-programacion-23200" target="_blank" rel="noopener noreferrer"><strong>practica-programacion-23200</strong></a> en la organización de la asignatura. Este motor será el mismo que se ejecuta en tu entorno de trabajo como en la evaluación. Todas las partidas quedan grabadas en registros que podrás estudiar con Pandas, NumPy y Matplotlib. La práctica recorre así casi todo el temario de la asignatura: funciones y módulos, estructuras de datos, algoritmos, tests, clases, ficheros y el ecosistema científico de Python.</p>
+<p>El motor de esta práctica (script <code>src/pong/pong_engine.py</code> en el proyecto) conserva las reglas del Pong original:</p>
+<ul>
+<li>el ángulo de salida depende de forma continua del <a href="../../es/practica/definiciones.html#punto-de-impacto">punto de impacto</a>,</li>
+<li>cada golpe multiplica la velocidad por un factor fijo,</li>
+<li>los sets se juegan a 11 puntos con ventaja de 2,</li>
+</ul>
+<p>pero además, añade el <a href="../../es/practica/definiciones.html#efecto">efecto</a>, que el original no tenía.</p>
+<p>Los términos y símbolos del juego (vuelo, intercambio, ordenada plegada, punto de impacto…) están definidos en el documento <a href="../../es/practica/definiciones.html"><strong>Definiciones y notación</strong></a>. Cuando una palabra de este enunciado tenga allí su definición, aparece enlazada.</p>
+<div id="imp-entregables" class="callout callout-style-default callout-important no-icon callout-titled" title="Qué entregas">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;1: Qué entregas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Todo se entrega en <strong>una copia (.zip) de tu repositorio privado</strong> de GitHub que debes crear a partir de la plantilla de la práctica (ver abajo). Se evalúan tres ficheros:</p>
+<ol type="1">
+<li><strong>Tu bot</strong>, <code>src/pong/bot.py</code> (4,5 puntos).</li>
+<li><strong>Tus tests</strong>, <code>tests/test_bot.py</code> (1 punto).</li>
+<li><strong>Tu notebook de análisis</strong>, <code>notebook/analisis_mo.py</code> (4,5 puntos).</li>
+</ol>
+<p>La práctica se califica sobre 10 puntos y se aprueba con un <strong>5</strong>, sin mínimos por apartado. Pesa un <strong>30 %</strong> de la nota de la asignatura, con nota de validación 5 (véase la <a href="../../es/informaciones/guia-docente.html">guía docente</a>).</p>
+<p><strong>Fecha límite: 22 de diciembre de 2026 a las 23:59.</strong></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="puesta-en-marcha" class="level2">
+<h2 class="anchored" data-anchor-id="puesta-en-marcha">1. Puesta en marcha</h2>
+<section id="tu-copia-de-la-plantilla" class="level3">
+<h3 class="anchored" data-anchor-id="tu-copia-de-la-plantilla"><strong>1.1 Tu copia de la plantilla</strong></h3>
+<p>La plantilla es el repositorio <a href="https://github.com/UIB-23200-Programacion/practica-programacion-23200" target="_blank" rel="noopener noreferrer"><code>practica-programacion-23200</code></a> de la organización de la asignatura. Contiene el motor, los bots de referencia, las herramientas, el esqueleto de tu bot y de tus tests y el notebook de análisis.</p>
+<ol type="1">
+<li>En la plantilla, pulsa <strong>Use this template → Create a new repository</strong>.</li>
+<li>Elige visibilidad <strong>Private</strong>. <strong>Es obligatorio</strong>: en un repositorio público tus compañeros verían tu bot antes de la evaluación.</li>
+</ol>
+</section>
+<section id="el-entorno-de-trabajo" class="level3">
+<h3 class="anchored" data-anchor-id="el-entorno-de-trabajo"><strong>1.2 El entorno de trabajo</strong></h3>
+<p>Puedes trabajar en <strong>GitHub Codespaces</strong> (recomendado; no hay que instalar nada: <strong>Code → Codespaces → Create codespace on main</strong>) o en tu ordenador con <strong>VS Code, Docker y la extensión <em>Dev Containers</em></strong> (<strong>Reopen in Container</strong>), con la misma configuración. La instalación directa de Python, sin Docker, no está soportada: los bots Medio y Difícil van compilados para los entornos anteriores. Al abrirse el entorno se instalan Python 3.13 y todas las bibliotecas.</p>
+<p>El <code>README.md</code> de la plantilla explica en detalle cada herramienta. Las órdenes básicas son:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Qué</th>
+<th style="text-align: left;">Orden</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ejecutar todos los tests</td>
+<td style="text-align: left;"><code>uv run pytest</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jugar una partida contra Fácil y guardar su registro</td>
+<td style="text-align: left;"><code>uv run python -m pong.runner --rival easy</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Jugar contra tu propio bot</td>
+<td style="text-align: left;"><code>uv run python -m pong.runner --rival mi_bot</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estimar tu nota de rendimiento contra Difícil</td>
+<td style="text-align: left;"><code>uv run python -m pong.evaluate --rival hard --partidas 100</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lo mismo, guardando las partidas y un resumen de la peor a la mejor</td>
+<td style="text-align: left;"><code>uv run python -m pong.evaluate --rival hard --partidas 100 --guardar</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Obtener el CSV de una partida guardada</td>
+<td style="text-align: left;"><code>uv run python -m pong.registro partidas/partida_&lt;semilla&gt;.json</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ver partidas en el navegador (<code>pong.html</code>)</td>
+<td style="text-align: left;"><code>uv run python -m http.server 8000</code> y abrir <code>/pong.html</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Abrir el notebook de análisis</td>
+<td style="text-align: left;"><code>uv run marimo edit --no-token notebook/analisis_mo.py</code></td>
+</tr>
+</tbody>
+</table>
+<p>Sube a GitHub con frecuencia tu trabajo y los registros de <code>partidas/</code>: GitHub borra los Codespaces que llevan tiempo sin usarse.</p>
+<hr>
+</section>
+</section>
+<section id="reglas" class="level2">
+<h2 class="anchored" data-anchor-id="reglas">2. Reglas del juego</h2>
+<p>Las reglas las define el <a href="../../es/practica/definiciones.html#motor">motor</a>, <code>src/pong/pong_engine.py</code>. <strong>No lo modifiques</strong>: un test comprueba que no ha cambiado, y la evaluación usa siempre el original. Lo que sigue describe con exactitud lo que hace; ante cualquier duda, el código del motor es la referencia.</p>
+<section id="campo" class="level3">
+<h3 class="anchored" data-anchor-id="campo"><strong>2.1 Campo y unidades</strong></h3>
+<p>El campo mide <span class="math inline">\(W \times H = 800 \times 600\)</span> px, con el origen en la esquina superior izquierda y el <strong>eje <span class="math inline">\(y\)</span> creciendo hacia abajo</strong>. El tiempo se mide en <a href="../../es/practica/definiciones.html#tick">ticks</a>. El tick es una unidad de tiempo discreta y abstracta, un paso de la simulación, sin equivalencia en segundos. Las velocidades se miden en px/tick y el efecto en px/tick².</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/campo.svg" class="img-fluid figure-img" style="width:100.0%" alt="Esquema del campo de 800 por 600 píxeles con las dos raquetas, la bola, las paredes y los planos de impacto."></p>
+<figcaption>El campo. La bola rebota en las <a href="../../es/practica/definiciones.html#pared">paredes</a> de arriba y abajo; a los lados están las raquetas y sus <a href="../../es/practica/definiciones.html#plano-de-impacto">planos de impacto</a>.</figcaption>
+</figure>
+</div>
+<p>La visualización muestra 60 ticks por segundo, pero eso no afecta a la física. Fuera del navegador, las partidas van tan rápido como permite el ordenador. El motor tarda unos 7 µs por tick, así que una partida entera se juega en una fracción de segundo.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Elemento</th>
+<th style="text-align: left;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Bola</td>
+<td style="text-align: left;">Círculo de radio <span class="math inline">\(R = 6\)</span>; su centro <span class="math inline">\((x, y)\)</span> cumple <span class="math inline">\(y \in [R, H - R] = [6, 594]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="../../es/practica/definiciones.html#raqueta">Raquetas</a></td>
+<td style="text-align: left;"><span class="math inline">\(10 \times 80\)</span> px (<span class="math inline">\(h = 80\)</span>). Su posición <span class="math inline">\(p\)</span> es la ordenada de su centro, <span class="math inline">\(p \in [40, 560]\)</span>. Empiezan en <span class="math inline">\(p = 300\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cara frontal de la raqueta izquierda</td>
+<td style="text-align: left;"><span class="math inline">\(x = X_L = 30\)</span> (la raqueta ocupa <span class="math inline">\(x \in [20, 30]\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cara frontal de la raqueta derecha</td>
+<td style="text-align: left;"><span class="math inline">\(x = X_R = 770\)</span> (ocupa <span class="math inline">\(x \in [770, 780]\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Velocidad de la raqueta</td>
+<td style="text-align: left;"><span class="math inline">\(v_p = 8\)</span> px/tick</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="../../es/practica/definiciones.html#velocidad-de-intercambio">Velocidad de intercambio</a> en el saque</td>
+<td style="text-align: left;"><span class="math inline">\(s_0 = 6\)</span> px/tick</td>
+</tr>
+</tbody>
+</table>
+<p>Todas las constantes, con su nombre en el código, están en la tabla de <a href="../../es/practica/definiciones.html#simbolos">símbolos y constantes</a>.</p>
+</section>
+<section id="leyes" class="level3">
+<h3 class="anchored" data-anchor-id="leyes"><strong>2.2 Leyes del movimiento de la bola</strong></h3>
+<p>Numeramos con <span class="math inline">\(n = 0, 1, 2, \dots\)</span> los ticks en que la bola está en juego. Al final del tick <span class="math inline">\(n\)</span>, la bola tiene:</p>
+<ul>
+<li>posición <span class="math inline">\((x_n, y_n)\)</span>, en px: las coordenadas de su centro;</li>
+<li>velocidad <span class="math inline">\((v_{x,n},\ v_{y,n})\)</span>, en px/tick;</li>
+<li>aceleración <span class="math inline">\((a_{x,n},\ a_{y,n})\)</span>, en px/tick².</li>
+</ul>
+<p>La aceleración horizontal es siempre nula, <span class="math inline">\(a_{x,n} = 0\)</span> para todo <span class="math inline">\(n\)</span>. La vertical es el <a href="../../es/practica/definiciones.html#efecto">efecto</a>.</p>
+<p>En un tick, primero la velocidad aumenta de acuerdo a la aceleración y después la posición aumenta de acuerdo a la <strong>nueva</strong> velocidad:</p>
+<p><span class="math display">\[
+\begin{aligned}
+v_{x,n+1} &amp;= v_{x,n} + a_{x,n} = v_{x,n}, &amp; \qquad x_{n+1} &amp;= x_n + v_{x,n+1},\\
+v_{y,n+1} &amp;= v_{y,n} + a_{y,n}, &amp; \qquad y_{n+1} &amp;= y_n + v_{y,n+1}.
+\end{aligned}
+\]</span></p>
+<p>La aceleración vertical no cambia en un tick normal: <span class="math inline">\(a_{y,n+1} = a_{y,n}\)</span>. Por tanto, en un tick normal solo cambian la velocidad vertical y la posición. Estas igualdades valen en cada tick salvo en tres situaciones, las únicas en las que también puede cambiar la aceleración, que se explican en los apartados siguientes:</p>
+<ul>
+<li><strong>Rebote en una pared</strong> (apartado <a href="#paredes">2.4</a>). Si <span class="math inline">\(y_{n+1}\)</span> sale del intervalo <span class="math inline">\([6, 594]\)</span>, la bola se refleja en la pared: vuelve hacia dentro tantos píxeles como se había pasado, y <span class="math inline">\(v_{y,n+1}\)</span> y <span class="math inline">\(a_{y,n+1}\)</span> cambian de signo. <span class="math inline">\(v_{x,n+1}\)</span> no cambia.</li>
+<li><strong>Cruce con un plano de impacto</strong> (apartado <a href="#golpe">2.5</a>). La bola queda en el plano y el resto del tick se descarta. Si hay golpe, sale con una velocidad nueva, que depende del <a href="../../es/practica/definiciones.html#punto-de-impacto">punto de impacto</a> y es mayor que la anterior, y con efecto <span class="math inline">\(a_{y,n+1} = 0{,}005\,c\)</span>, donde <span class="math inline">\(c\)</span> es el comando con que se mueve la raqueta que golpea (apartado <a href="#tick">2.3</a>). Si no hay golpe, el punto termina.</li>
+<li><strong>Saque</strong> (apartado <a href="#saque">2.7</a>). Tras cada punto, la bola vuelve al centro y no se mueve durante la pausa del saque. Después sale hacia el receptor con la velocidad de intercambio <span class="math inline">\(s_0 = 6\)</span>, una inclinación aleatoria y sin efecto.</li>
+</ul>
+<p>Entre dos golpes, por tanto, la bola se mueve con velocidad horizontal constante y aceleración vertical constante, salvo el cambio de signo en cada rebote. El apartado <a href="#entre-golpes">2.6</a> da la posición tras <span class="math inline">\(n\)</span> ticks sin tener que recorrerlos uno a uno.</p>
+</section>
+<section id="tick" class="level3">
+<h3 class="anchored" data-anchor-id="tick"><strong>2.3 Estados de una partida y movimientos de las raquetas</strong></h3>
+<p>El motor recorre un ciclo de tres estados visibles. Esos tres estados son por los que pasa una partida: <code>serving</code> (pausa del saque), <code>playing</code> (bola en juego) y <code>match_over</code> (fin).</p>
+<p>Cada raqueta se mueve solo en vertical, en cada tick y según el <a href="../../es/practica/definiciones.html#comando">comando</a> de su bot. Los únicos tres comandos que devuelve un bot son <code>UP</code>, <code>STAY</code> y <code>DOWN</code>. El comando:</p>
+<ul>
+<li><code>UP</code> sube la raqueta 8 px,</li>
+<li><code>DOWN</code> la baja 8 px y</li>
+<li><code>STAY</code> la deja quieta (en su lugar).</li>
+</ul>
+<p>Sea <span class="math inline">\(c \in \{-1, 0, +1\}\)</span> y hagamos la asociación:</p>
+<ul>
+<li><span class="math inline">\(c = -1\)</span> para <code>UP</code>,</li>
+<li><span class="math inline">\(c = 0\)</span> para <code>STAY</code> y</li>
+<li><span class="math inline">\(c = 1\)</span> para <code>DOWN</code>.</li>
+</ul>
+<p>Sea <span class="math inline">\(p\)</span> la ordenada del centro de la raqueta en píxeles, entonces la fórmula para el movimiento de <span class="math inline">\(p\)</span> en un comando es:</p>
+<p><span class="math display">\[
+p \leftarrow \min(\max(p + 8c,\ 40),\ 560).
+\]</span></p>
+<p>Observa que <code>UP</code> es <span class="math inline">\(-1\)</span> porque el eje <span class="math inline">\(y\)</span> crece hacia abajo, subir es restar. No hay inercia ni aceleración: se mueve a velocidad fija o se para en el acto, y se detiene en los topes, <span class="math inline">\(p = 40\)</span> arriba y <span class="math inline">\(p = 560\)</span> abajo. Las dos raquetas empiezan la partida en <span class="math inline">\(p = 300\)</span>, y el motor no las recoloca nunca: ni tras un punto ni al empezar un set. Es decir, después de empezada una partida las raquetas solo se mueven por comandos del bot respectivo.</p>
+<p>En estado <code>playing</code>, para cada tick se ejecutan los siguientes pasos, en este orden:</p>
+<ol type="1">
+<li>Cada bot recibe el <a href="#estado">estado</a> al <strong>inicio</strong> del tick y devuelve su comando (internamente se convierte a <span class="math inline">\(c\)</span>).</li>
+<li>Cada raqueta se mueve: <span class="math inline">\(p \leftarrow \min(\max(p + 8c,\ 40),\ 560)\)</span>.</li>
+<li>El <a href="../../es/practica/definiciones.html#efecto">efecto</a> cambia la velocidad vertical: <span class="math inline">\(v_y \leftarrow v_y + a_y\)</span>.</li>
+<li>La bola avanza en línea recta: <span class="math inline">\(x \leftarrow x + v_x\)</span>, <span class="math inline">\(y \leftarrow y + v_y\)</span>, sin tener en cuenta las paredes por ahora.</li>
+<li>Si en ese avance el borde de la bola alcanza la cara frontal de la raqueta hacia la que va, se resuelve el <strong>cruce</strong> (apartado <a href="#golpe">2.5</a>): golpe o punto perdido. El resto del tick se descarta.</li>
+<li>Si no, la ordenada se <strong>pliega</strong> sobre el campo (apartado <a href="#paredes">2.4</a>), lo que resuelve todos los rebotes del tick.</li>
+</ol>
+<p>Los pasos 3 y 4 son las leyes del apartado <a href="#leyes">2.2</a> escritas como asignaciones, sin índices: el motor guarda un solo valor de cada magnitud y lo sustituye por el nuevo.</p>
+<p>Durante la <a href="../../es/practica/definiciones.html#pausa-del-saque">pausa del saque</a>, en estado <code>serving</code>, solo se ejecutan los pasos 1 y 2: las raquetas se mueven, la bola no.</p>
+</section>
+<section id="paredes" class="level3">
+<h3 class="anchored" data-anchor-id="paredes"><strong>2.4 Paredes y plegado</strong></h3>
+<p>La bola rebota en las <a href="../../es/practica/definiciones.html#pared">paredes</a> de arriba y abajo como la luz en un espejo: al chocar, la componente vertical de su velocidad cambia de signo y la horizontal no cambia. Para explicar cómo el motor implementa los rebotes necesitamos dos ordenadas <span class="math inline">\(y\)</span> e <span class="math inline">\(Y\)</span>:</p>
+<ul>
+<li><strong><span class="math inline">\(y\)</span>, la <a href="../../es/practica/definiciones.html#ordenada-plegada-y-desplegada">ordenada plegada</a>.</strong> Es la ordenada real del centro de la bola en coordenadas de pantalla. Es <code>ball_y</code> en el estado (<code>state</code>) y en el CSV. La bola tiene radio <span class="math inline">\(R = 6\)</span> y no puede atravesar las paredes, así que su centro está siempre en <span class="math inline">\([R,\ H - R] = [6, 594]\)</span>. Ese intervalo mide <span class="math inline">\(L = H - 2R = 588\)</span> px.</li>
+<li><strong><span class="math inline">\(Y\)</span>, la <a href="../../es/practica/definiciones.html#ordenada-plegada-y-desplegada">ordenada desplegada</a>.</strong> Dentro de un <a href="../../es/practica/definiciones.html#vuelo">vuelo</a>, es la ordenada que tendría el centro de la bola si las paredes no existieran y siguiera el mismo movimiento, con la misma velocidad vertical y el mismo efecto. Puede salir del campo y tomar cualquier valor real. Al empezar el vuelo, las dos coinciden: <span class="math inline">\(Y_0 = y_0\)</span>. La ordenada <span class="math inline">\(Y\)</span> no se observa ni el motor la guarda: es una herramienta matemática para describir y predecir el movimiento.</li>
+</ul>
+<p>Las dos se relacionan mediante una función <span class="math inline">\(F\)</span>, la <a href="../../es/practica/definiciones.html#onda-triangular">onda triangular</a>: <span class="math inline">\(y = F(Y)\)</span>. Más abajo damos su fórmula; primero, la idea.</p>
+<p><strong>Qué hace el motor en cada tick.</strong> El motor no busca los rebotes. En el paso 4 del tick (apartado <a href="#tick">2.3</a>) avanza la bola sin tener en cuenta las paredes, y en el paso 6 <strong>pliega</strong> la ordenada obtenida:</p>
+<ul>
+<li>Si ha quedado dentro de <span class="math inline">\([6, 594]\)</span>, la deja como está.</li>
+<li>Si ha quedado fuera, la refleja en la pared que ha sobrepasado: la bola vuelve hacia dentro tantos píxeles como se había pasado. Además, <span class="math inline">\(v_y\)</span> y el efecto <span class="math inline">\(a_y\)</span> cambian de signo.</li>
+</ul>
+<p>Dentro de un tick la bola avanza en línea recta, así que reflejar el punto final da exactamente la posición que tendría la bola tras rebotar a mitad del tick.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Ejemplo 1: un rebote sin efecto">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Ejemplo 1: un rebote sin efecto
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La bola está en <span class="math inline">\(y = 580\)</span>, baja con <span class="math inline">\(v_y = 10\)</span> y no tiene efecto (<span class="math inline">\(a_y = 0\)</span>).</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tick</th>
+<th>Avance sin paredes</th>
+<th>¿Fuera?</th>
+<th><span class="math inline">\(y\)</span> tras plegar</th>
+<th><span class="math inline">\(v_y\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><span class="math inline">\(580 + 10 = 590\)</span></td>
+<td>no</td>
+<td><span class="math inline">\(590\)</span></td>
+<td><span class="math inline">\(10\)</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><span class="math inline">\(590 + 10 = 600\)</span></td>
+<td>se pasa 6 de 594</td>
+<td><span class="math inline">\(594 - 6 = 588\)</span></td>
+<td><span class="math inline">\(-10\)</span></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><span class="math inline">\(588 - 10 = 578\)</span></td>
+<td>no</td>
+<td><span class="math inline">\(578\)</span></td>
+<td><span class="math inline">\(-10\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Si no hubiera pared, la bola seguiría bajando: <span class="math inline">\(Y = 590, 600, 610\)</span>. Las ordenadas reales son el reflejo de esas en la pared <span class="math inline">\(y = 594\)</span>: <span class="math inline">\(600 \mapsto 588\)</span> y <span class="math inline">\(610 \mapsto 578\)</span>. Es decir, <span class="math inline">\(y = F(Y)\)</span>.</p>
+</div>
+</div>
+<p><strong>La onda triangular <span class="math inline">\(F\)</span>.</strong> Imagina el campo como un pasillo de espejos: encima y debajo del campo real hay copias de altura <span class="math inline">\(L\)</span>, cada una reflejada respecto de la anterior. La bola desplegada se mueve por ese pasillo sin chocar con nada. La bola real es su imagen en el campo original: si está en una copia par, basta trasladarla; si está en una impar, hay que reflejarla. Con <span class="math inline">\(m = (Y - R) \bmod 2L\)</span>, esto es</p>
+<p><span class="math display">\[
+F(Y) = \begin{cases} R + m &amp; \text{si } m \le L,\\ R + 2L - m &amp; \text{si } m &gt; L, \end{cases}
+\]</span></p>
+<p>una función en zigzag de periodo <span class="math inline">\(2L = 1176\)</span> con valores en <span class="math inline">\([6, 594]\)</span>. Sus picos y valles son los rebotes.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/onda_triangular.svg" class="img-fluid figure-img" style="width:100.0%" alt="Gráfica en zigzag de la ordenada plegada frente a la desplegada, entre 6 y 594 px, con periodo 1176 px y cuatro puntos de ejemplo."></p>
+<figcaption>La onda triangular <span class="math inline">\(F\)</span>. El eje vertical crece hacia abajo, como en el campo. Las líneas punteadas son las fronteras <span class="math inline">\(R + kL\)</span>: cada vez que la ordenada desplegada <span class="math inline">\(Y\)</span> cruza una, la bola rebota. Dentro del campo, <span class="math inline">\(F(Y) = Y\)</span> (línea naranja).</figcaption>
+</figure>
+</div>
+<p><strong>Por qué también cambia de signo el efecto.</strong> Si en un tick hay un rebote, el motor cambia el signo de <span class="math inline">\(v_y\)</span>, como en un espejo, y <strong>también el de <span class="math inline">\(a_y\)</span></strong>. Esto último no es física realista: es una decisión de diseño. Con ella, la bola real es en cada tick el reflejo de la desplegada, y la desplegada sigue sin interrupciones el mismo movimiento de antes del rebote.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Ejemplo 2: un rebote con efecto">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Ejemplo 2: un rebote con efecto
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La bola está en <span class="math inline">\(y = 580\)</span>, con <span class="math inline">\(v_y = 6\)</span> y un efecto exagerado, <span class="math inline">\(a_y = 1\)</span>, para que se vea (en el motor, <span class="math inline">\(|a_y| \le 0{,}005\)</span>). Recuerda que en cada tick primero <span class="math inline">\(v_y \leftarrow v_y + a_y\)</span> y después la bola avanza (apartado <a href="#leyes">2.2</a>).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tick</th>
+<th><span class="math inline">\(Y\)</span> (sin paredes)</th>
+<th><span class="math inline">\(F(Y)\)</span></th>
+<th><span class="math inline">\(y\)</span> del motor</th>
+<th><span class="math inline">\(y\)</span> si <span class="math inline">\(a_y\)</span> no cambiara de signo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><span class="math inline">\(587\)</span></td>
+<td><span class="math inline">\(587\)</span></td>
+<td><span class="math inline">\(587\)</span></td>
+<td><span class="math inline">\(587\)</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><span class="math inline">\(595\)</span></td>
+<td><span class="math inline">\(593\)</span></td>
+<td><span class="math inline">\(593\)</span> (rebote)</td>
+<td><span class="math inline">\(593\)</span> (rebote)</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><span class="math inline">\(604\)</span></td>
+<td><span class="math inline">\(584\)</span></td>
+<td><span class="math inline">\(584\)</span></td>
+<td><span class="math inline">\(586\)</span></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><span class="math inline">\(614\)</span></td>
+<td><span class="math inline">\(574\)</span></td>
+<td><span class="math inline">\(574\)</span></td>
+<td><span class="math inline">\(580\)</span></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><span class="math inline">\(625\)</span></td>
+<td><span class="math inline">\(563\)</span></td>
+<td><span class="math inline">\(563\)</span></td>
+<td><span class="math inline">\(575\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>El motor reproduce exactamente <span class="math inline">\(F(Y)\)</span> en cada tick. Si <span class="math inline">\(a_y\)</span> no cambiara de signo, el efecto, que antes empujaba la bola hacia abajo, la seguiría empujando hacia abajo tras rebotar. La bola real dejaría de ser el reflejo de la desplegada, y habría que calcular cada rebote por separado.</p>
+</div>
+</div>
+<p><strong>La consecuencia, y por qué importa.</strong> Gracias a esta regla, todo un vuelo, con todos sus rebotes, se describe con <strong>una sola</strong> curva desplegada <span class="math inline">\(Y_n\)</span> (apartado <a href="#entre-golpes">2.6</a>), y la bola real es <span class="math inline">\(y_n = F(Y_n)\)</span>. Para predecir dónde estará la bola dentro de muchos ticks no hace falta simular rebote a rebote: basta calcular <span class="math inline">\(Y_n\)</span> y plegarlo una vez. Al revés, para estimar la velocidad a partir de lo que observas, primero hay que <strong>desplegar</strong> las observaciones (apartado <a href="#estimacion">3.3</a>).</p>
+<p>Las dos formas de calcular coinciden en exactas matemáticas; en coma flotante difieren en un error de redondeo despreciable, que no cambia ninguna decisión.</p>
+</section>
+<section id="golpe" class="level3">
+<h3 class="anchored" data-anchor-id="golpe"><strong>2.5 El golpe</strong></h3>
+<p>Cuando el centro de la bola cruza el <a href="../../es/practica/definiciones.html#plano-de-impacto">plano de impacto</a> de la raqueta que recibe (<span class="math inline">\(x = 36\)</span> a la izquierda, <span class="math inline">\(x = 764\)</span> a la derecha), el motor calcula con la fracción exacta del tick la <a href="../../es/practica/definiciones.html#ordenada-de-impacto">ordenada de impacto</a> <span class="math inline">\(y^*\)</span>.</p>
+<ul>
+<li>Si <span class="math inline">\(|y^* - p| \le h/2 + R = 46\)</span> (la <a href="../../es/practica/definiciones.html#alcance">franja de impacto</a>), hay <strong>golpe</strong>. La bola queda exactamente en el plano, a la altura <span class="math inline">\(y^*\)</span>, el resto del tick se descarta y el contador <code>rally_hits</code> aumenta en 1.</li>
+<li>Si no, el receptor <strong>pierde el punto</strong>. Los extremos de la raqueta no rebotan la bola.</li>
+</ul>
+<p>En un golpe, el <a href="../../es/practica/definiciones.html#punto-de-impacto">punto de impacto</a> <span class="math inline">\(u = (y^* - p)/46 \in [-1, 1]\)</span> decide la salida (<span class="math inline">\(u = 0\)</span> es el centro de la raqueta, <span class="math inline">\(u = -1\)</span> el extremo de arriba y <span class="math inline">\(u = 1\)</span> el de abajo):</p>
+<ul>
+<li><strong>Pendiente de salida</strong> <span class="math inline">\(m = v_{y,0}/|v_{x,0}|\)</span>, donde <span class="math inline">\(v_{x,0}\)</span> y <span class="math inline">\(v_{y,0}\)</span> son las componentes de la velocidad con que sale la bola, al empezar el <a href="../../es/practica/definiciones.html#vuelo">vuelo</a> nuevo: <span class="math inline">\(m(u) = \operatorname{sgn}(u)\,\max(m_{\min},\ m_{\max}\,|u|)\)</span>, con <span class="math inline">\(m_{\max} = \tan 60°\)</span> y <span class="math inline">\(m_{\min} = \tan 5°\)</span>. Golpear con el centro devuelve la bola casi horizontal; con los extremos, con un ángulo cerrado hacia ese lado. Si <span class="math inline">\(u = 0\)</span> exactamente, el signo se sortea.</li>
+<li><strong>Velocidad</strong>: la <a href="../../es/practica/definiciones.html#velocidad-de-intercambio">velocidad de intercambio</a> <span class="math inline">\(s\)</span> se multiplica por <span class="math inline">\(1{,}05\,(1 + 0{,}05\,|u|)\)</span>: cada golpe acelera la bola, y más si se golpea con el extremo. Después, <span class="math inline">\(v_{x,0} = \pm s/\sqrt{1 + m^2}\)</span> (hacia el rival) y <span class="math inline">\(v_{y,0} = s\,m/\sqrt{1 + m^2}\)</span>.</li>
+<li><strong>Efecto</strong>: <span class="math inline">\(a_{y,0} = \kappa\,c\)</span>, con <span class="math inline">\(\kappa = 0{,}005\)</span> px/tick² y <span class="math inline">\(c\)</span> el comando de la raqueta que golpea <strong>en ese mismo tick</strong>. <code>DOWN</code> curva la bola hacia abajo, <code>UP</code> hacia arriba y <code>STAY</code> no la curva. Se mantiene hasta el golpe siguiente, salvo el signo, que cambia en cada rebote.</li>
+</ul>
+</section>
+<section id="entre-golpes" class="level3">
+<h3 class="anchored" data-anchor-id="entre-golpes"><strong>2.6 Movimiento entre golpes</strong></h3>
+<p>Entre dos golpes, en un <a href="../../es/practica/definiciones.html#vuelo">vuelo</a>, contamos los ticks desde su inicio: <span class="math inline">\(n = 0\)</span> es la primera posición del vuelo, con velocidad <span class="math inline">\((v_{x,0}, v_{y,0})\)</span> y efecto <span class="math inline">\(a_{y,0}\)</span>. Aplicando <span class="math inline">\(n\)</span> veces las leyes del apartado <a href="#leyes">2.2</a> y desplegando los rebotes (apartado <a href="#paredes">2.4</a>), la bola cumple exactamente, tras <span class="math inline">\(n\)</span> ticks completos:</p>
+<p><span class="math display">\[
+x_n = x_0 + n\,v_{x,0}, \qquad Y_n = y_0 + n\,v_{y,0} + a_{y,0}\,\frac{n(n+1)}{2}, \qquad y_n = F(Y_n).
+\]</span></p>
+<p>Es decir, <span class="math inline">\(v_{x,n} = v_{x,0}\)</span> es constante y la velocidad vertical desplegada crece en <span class="math inline">\(a_{y,0}\)</span> cada tick: <span class="math inline">\(Y_n - Y_{n-1} = v_{y,0} + n\,a_{y,0}\)</span>. En coordenadas plegadas, <span class="math inline">\(v_{y,n}\)</span> y <span class="math inline">\(a_{y,n}\)</span> son estos mismos valores con el signo cambiado tras cada rebote. Fíjate en que es la fórmula <strong>discreta</strong>, no la continua <span class="math inline">\(y_0 + v_{y,0}\,t + \tfrac12 a_{y,0}\,t^2\)</span>, que comete un error de <span class="math inline">\(a_{y,0}\,n/2\)</span>: el <span class="math inline">\(n(n+1)/2\)</span> sale de que la posición avanza con la velocidad <strong>nueva</strong>.</p>
+</section>
+<section id="saque" class="level3">
+<h3 class="anchored" data-anchor-id="saque"><strong>2.7 Saque</strong></h3>
+<p>Antes de cada saque (al empezar la partida y cada set, y tras cada punto o nulo) hay una <strong>pausa de 60 ticks</strong> en estado <code>serving</code>: la bola está quieta en el centro, <span class="math inline">\((400, 300)\)</span>, y las raquetas se pueden mover (no se recolocan). Después:</p>
+<ul>
+<li>La bola sale del centro hacia el <a href="../../es/practica/definiciones.html#receptor">receptor</a>, el rival de quien saca, con la <a href="../../es/practica/definiciones.html#velocidad-de-intercambio">velocidad de intercambio</a> <span class="math inline">\(s_0 = 6\)</span>, sin efecto (<span class="math inline">\(a_{y,0} = 0\)</span>) y con <code>rally_hits</code> a 0.</li>
+<li>La pendiente <span class="math inline">\(m\)</span> se sortea entre <span class="math inline">\(\tan 20°\)</span> y <span class="math inline">\(\tan 45°\)</span>, y también si va hacia arriba o hacia abajo.</li>
+<li><strong>Quién saca</strong>: el primer saque de la partida se sortea. Después saca quien gana el punto. El primer saque de los sets 2 y 3 es para quien perdió el set anterior.</li>
+</ul>
+<p>Las componentes de la velocidad de salida se calculan con las mismas fórmulas que en un golpe (apartado <a href="#golpe">2.5</a>), con <span class="math inline">\(s = s_0\)</span>:</p>
+<p><span class="math display">\[
+v_{x,0} = \pm\frac{s_0}{\sqrt{1+m^2}}, \qquad v_{y,0} = \frac{s_0\,m}{\sqrt{1+m^2}}, \qquad \sqrt{v_{x,0}^2 + v_{y,0}^2} = s_0,
+\]</span></p>
+<p>con el signo de <span class="math inline">\(v_{x,0}\)</span> hacia el receptor. Como <span class="math inline">\(|m|\)</span> está entre <span class="math inline">\(\tan 20°\)</span> y <span class="math inline">\(\tan 45°\)</span>, <span class="math inline">\(|v_{y,0}|\)</span> está entre <span class="math inline">\(6 \sin 20° \approx 2{,}05\)</span> y <span class="math inline">\(6 \sin 45° \approx 4{,}24\)</span> px/tick, y <span class="math inline">\(|v_{x,0}|\)</span> entre <span class="math inline">\(6 \cos 45° \approx 4{,}24\)</span> y <span class="math inline">\(6 \cos 20° \approx 5{,}64\)</span> px/tick. Como no hay efecto, el módulo de la velocidad es <span class="math inline">\(s_0\)</span> durante todo el primer vuelo, aunque haya rebotes: un rebote solo cambia el signo de <span class="math inline">\(v_{y,n}\)</span>. No confundas <span class="math inline">\(s_0\)</span>, el módulo de la velocidad, con <span class="math inline">\(v_{y,0}\)</span>, su componente vertical.</p>
+</section>
+<section id="puntuacion" class="level3">
+<h3 class="anchored" data-anchor-id="puntuacion"><strong>2.8 Puntuación</strong></h3>
+<p>La <a href="../../es/practica/definiciones.html#partida">partida</a> es al mejor de 3 <a href="../../es/practica/definiciones.html#set">sets</a>. Un set lo gana el bot que tiene <span class="math inline">\(a\)</span> puntos frente a <span class="math inline">\(b\)</span> del rival cuando</p>
+<p><span class="math display">\[
+(a \ge 11 \ \text{y}\ a - b \ge 2) \quad \text{o} \quad a = 15,
+\]</span></p>
+<p>es decir: a 11 puntos con 2 de ventaja; desde 10-10, a ventaja de 2; y en 14-14 el siguiente punto gana el set (15-14). Los bots no cambian de lado entre sets.</p>
+</section>
+<section id="nulos" class="level3">
+<h3 class="anchored" data-anchor-id="nulos"><strong>2.9 Nulos y final de la partida</strong></h3>
+<p>Para que toda partida termine, hay dos reglas de seguridad:</p>
+<ul>
+<li>Si un <a href="../../es/practica/definiciones.html#intercambio">intercambio</a> llega a <strong>100 golpes</strong>, se anula en el tick del golpe 100: es un <a href="../../es/practica/definiciones.html#nulo">nulo</a>. Nadie gana el punto y se repite el saque con el mismo jugador.</li>
+<li>Al llegar al <strong>nulo número 20</strong>, la partida acaba en <a href="../../es/practica/definiciones.html#empate-tecnico">empate técnico</a>.</li>
+</ul>
+<p>En la práctica, los nulos son rarísimos: solo aparecen entre bots que se devuelven la bola casi horizontal sin moverse.</p>
+</section>
+<section id="azar" class="level3">
+<h3 class="anchored" data-anchor-id="azar"><strong>2.10 Azar y reproducibilidad</strong></h3>
+<p>Todo el azar del juego (quién saca primero, la dirección de cada saque y el signo de la pendiente si <span class="math inline">\(u = 0\)</span>) sale de un generador <code>random.Random(semilla)</code> del motor. Por eso <strong>misma <a href="../../es/practica/definiciones.html#semilla">semilla</a> y mismos comandos dan exactamente la misma partida</strong> en cualquier ordenador, y una partida se puede grabar como su semilla más la lista de comandos. Cada bot recibe su propia semilla en <code>Bot(seed)</code> (<span class="math inline">\(2s + 1\)</span> el izquierdo y <span class="math inline">\(2s + 2\)</span> el derecho, si <span class="math inline">\(s\)</span> es la de la partida), por si quiere usar azar con su propio <code>random.Random</code>.</p>
+<hr>
+</section>
+</section>
+<section id="bot" class="level2">
+<h2 class="anchored" data-anchor-id="bot">3. Tu bot</h2>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Qué tiene que hacer tu bot, en pocas palabras">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Qué tiene que hacer tu bot, en pocas palabras
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tu bot controla una de las dos raquetas, pero el motor siempre te presenta el campo como si jugaras a la izquierda, así que solo tienes que programar ese caso. <strong>El único trabajo de tu bot debe ser poner la raqueta en el sitio por donde va a pasar la bola, antes de que llegue.</strong></p>
+<p><strong>Lo que pasa en cada tick</strong></p>
+<p>El motor llama a <code>decide(state)</code>. Tu bot mira el estado (dónde está la bola, dónde está su raqueta) y responde con una de tres órdenes:</p>
+<ul>
+<li><code>"UP"</code>: la raqueta sube 8 píxeles;</li>
+<li><code>"DOWN"</code>: la raqueta baja 8 píxeles;</li>
+<li><code>"STAY"</code>: la raqueta se queda quieta.</li>
+</ul>
+<p>Eso es todo lo que el bot puede hacer. No mueve la bola ni sabe nada más.</p>
+<p><strong>Cómo decide, en tres pasos</strong></p>
+<ol type="1">
+<li><strong>Recordar.</strong> Guarda las últimas posiciones de la bola. Con una sola foto no se sabe hacia dónde va. Con tres seguidas se puede calcular su velocidad y cómo se curva.</li>
+<li><strong>Predecir.</strong> Calcula a qué altura cruzará la bola la línea de tu raqueta. Hay que tener en cuenta que la bola rebota en las paredes de arriba y abajo, y que puede ir curvándose por el efecto.</li>
+<li><strong>Moverse.</strong> Compara esa altura con el centro de tu raqueta. Si la bola llegará más arriba, <code>"UP"</code>; si llegará más abajo, <code>"DOWN"</code>; si ya estás bien, <code>"STAY"</code>. La bola se devuelve si su centro cruza la línea de tu raqueta a menos de 46 píxeles del centro de esta.</li>
+</ol>
+<p>Mientras la bola se aleja o se espera el saque, lo sensato es volver hacia el centro.</p>
+<p><strong>Cómo mejorarlo poco a poco.</strong> Empieza por un bot que solo siga la bola y añade una capacidad cada vez. El recuadro <a href="#tip-etapas">Cómo abordar tu bot</a> del apartado <a href="#referencia">3.5</a> da las etapas. Los detalles exactos (fórmulas, campos de <code>state</code>, normas) están en los apartados siguientes y en el <a href="../../es/practica/definiciones.html">glosario</a>.</p>
+</div>
+</div>
+<section id="la-interfaz" class="level3">
+<h3 class="anchored" data-anchor-id="la-interfaz"><strong>3.1 La interfaz</strong></h3>
+<p>Tu <a href="../../es/practica/definiciones.html#bot">bot</a> es la clase <code>Bot</code> de <code>src/pong/bot.py</code>. El motor la crea una vez por partida con <code>Bot(seed)</code> y llama a <code>decide(state)</code> una vez por tick:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Bot:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, seed: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""seed: semilla para un random.Random propio, si el bot usa azar."""</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> decide(<span class="va">self</span>, state: <span class="bu">dict</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Devuelve "UP", "DOWN" o "STAY"."""</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El mismo objeto dura toda la partida, así que puedes guardar en sus atributos lo que necesites recordar: posiciones anteriores de la bola, tu predicción, en qué intercambio estás…</p>
+</section>
+<section id="estado" class="level3">
+<h3 class="anchored" data-anchor-id="estado"><strong>3.2 El estado</strong></h3>
+<p><code>state</code> es un diccionario con la situación al inicio del tick, <strong>normalizado</strong>: tu bot se ve siempre a la izquierda, con la cara frontal de su raqueta en <span class="math inline">\(x = 30\)</span>, juegue en el lado que juegue. Para el bot derecho, el motor transforma <span class="math inline">\(x \to 800 - x\)</span>; <span class="math inline">\(y\)</span> no cambia. En consecuencia, <span class="math inline">\(v_{x,n}\)</span> cambia de signo y <span class="math inline">\(v_{y,n}\)</span> y <span class="math inline">\(a_{y,n}\)</span> no cambian. Así, la bola se acerca a ti cuando <code>ball_x</code> decrece.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Clave</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>protocol_version</code></td>
+<td style="text-align: left;"><code>str</code></td>
+<td style="text-align: left;"><code>"1.0"</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>tick</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;">Índice, desde 0, del tick que se va a ejecutar</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>state</code></td>
+<td style="text-align: left;"><code>str</code></td>
+<td style="text-align: left;"><code>"serving"</code>, <code>"playing"</code> o <code>"match_over"</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ball_x</code>, <code>ball_y</code></td>
+<td style="text-align: left;"><code>float</code></td>
+<td style="text-align: left;">Centro de la bola (px): la posición <span class="math inline">\((x_n, y_n)\)</span> al final del tick anterior</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>my_paddle_y</code>, <code>opp_paddle_y</code></td>
+<td style="text-align: left;"><code>float</code></td>
+<td style="text-align: left;">Centro de tu raqueta y de la del rival (px)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>my_points</code>, <code>opp_points</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;">Puntos del set en curso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>my_sets</code>, <code>opp_sets</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;">Sets ganados</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>serving</code></td>
+<td style="text-align: left;"><code>str</code></td>
+<td style="text-align: left;"><code>"me"</code> u <code>"opp"</code>: quién saca</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>serve_ticks_left</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;">Ticks de pausa que quedan: 60, 59, …, 1 durante la pausa; 0 en juego</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>rally_hits</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;">Golpes del intercambio en curso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>lets</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;">Nulos acumulados en la partida</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>field</code></td>
+<td style="text-align: left;"><code>dict</code></td>
+<td style="text-align: left;">Las constantes del juego (véase la <a href="../../es/practica/definiciones.html#simbolos">tabla de constantes</a>), para no escribirlas a mano</td>
+</tr>
+</tbody>
+</table>
+<p>El diccionario es una copia: modificarlo no afecta al motor. <strong>No incluye la velocidad <span class="math inline">\((v_{x,n}, v_{y,n})\)</span> ni el efecto <span class="math inline">\(a_{y,n}\)</span></strong>: tu bot tiene que estimarlos.</p>
+</section>
+<section id="estimacion" class="level3">
+<h3 class="anchored" data-anchor-id="estimacion"><strong>3.3 Estimación cinemática</strong></h3>
+<p>Con las posiciones de ticks sucesivos de un mismo <a href="../../es/practica/definiciones.html#vuelo">vuelo</a>, las diferencias finitas dan la velocidad y el efecto <strong>exactamente</strong> (salvo un error de redondeo despreciable), porque el movimiento es discreto (apartado <a href="#entre-golpes">2.6</a>). Contando <span class="math inline">\(n\)</span> desde el inicio del vuelo, para <span class="math inline">\(n \ge 1\)</span> (y <span class="math inline">\(n \ge 2\)</span> en la segunda diferencia):</p>
+<p><span class="math display">\[
+\Delta x_n = x_n - x_{n-1} = v_{x,0}, \qquad \Delta Y_n = Y_n - Y_{n-1} = v_{y,0} + n\,a_{y,0}, \qquad \Delta^2 Y_n = \Delta Y_n - \Delta Y_{n-1} = a_{y,0}.
+\]</span></p>
+<p>Así que tu bot debe guardar al menos las tres últimas posiciones observadas. Hay tres dificultades, y resolverlas es parte del ejercicio:</p>
+<ol type="1">
+<li><strong>Latencia.</strong> Dos posiciones seguidas de un vuelo dan <span class="math inline">\(v_{x,0}\)</span> y <span class="math inline">\(v_{y,n}\)</span>; hacen falta tres para el efecto <span class="math inline">\(a_{y,0}\)</span>. Justo después de un saque o de un golpe, tu bot todavía no conoce la trayectoria.</li>
+<li><strong>Rebotes.</strong> La ordenada observada ya está <a href="../../es/practica/definiciones.html#ordenada-plegada-y-desplegada">plegada</a>. Si entre dos observaciones hubo un <a href="../../es/practica/definiciones.html#rebote">rebote</a>, <span class="math inline">\(\Delta y_n = y_n - y_{n-1}\)</span> no es <span class="math inline">\(v_{y,n}\)</span>: hay que desplegar. Un cambio de signo de <span class="math inline">\(\Delta y_n\)</span> no basta para detectarlo, porque también ocurre en el vértice de una parábola con efecto.</li>
+<li><strong>Ticks con golpe.</strong> En el tick de un golpe, el motor coloca la bola en el plano de impacto y descarta el resto del movimiento, así que la diferencia entre la observación anterior al golpe y la del golpe no vale. La observación en la que aumenta <code>rally_hits</code> es la <strong>primera del vuelo nuevo</strong>, y la estimación empieza de nuevo desde ella.</li>
+</ol>
+</section>
+<section id="normas-bot" class="level3">
+<h3 class="anchored" data-anchor-id="normas-bot"><strong>3.4 Normas</strong></h3>
+<ul>
+<li><strong>Tu bot debe ser tuyo.</strong> Solo puede importar <code>math</code>, <code>random</code> (con un generador propio), <code>collections</code>, <code>itertools</code>, <code>functools</code>, <code>heapq</code>, <code>bisect</code>, <code>copy</code>, <code>dataclasses</code>, <code>enum</code>, <code>typing</code> y <code>numpy</code>. No puede importar el paquete <code>pong</code> (ni el motor ni los bots de referencia) ni <code>pong_ref_bots</code>, ni usar ficheros, red, subprocesos, <code>eval</code> o <code>exec</code>. <code>src/pong/normas.py</code> lo comprueba sin ejecutar tu bot: <code>runner</code>, <code>evaluate</code> y los tests no juegan con un bot que no cumple y te dicen en qué línea está el problema. La evaluación oficial hace la misma comprobación.</li>
+<li><strong>Comandos.</strong> Solo valen las cadenas exactas <code>"UP"</code>, <code>"DOWN"</code> y <code>"STAY"</code>. Si <code>decide</code> lanza una excepción o devuelve otra cosa, ese tick cuenta como <code>"STAY"</code>. Si <code>Bot(seed)</code> lanza una excepción, la partida no se juega y la pierdes (<a href="../../es/practica/definiciones.html#abandono">abandono</a>).</li>
+<li><strong>Tiempo.</strong>
+<ul>
+<li>50 ms por llamada: si se supera, ese tick cuenta como <code>"STAY"</code>.</li>
+<li>2 ms de media por llamada en toda la partida: si se supera, pierdes la partida con 0 puntos. La media se vigila desde la llamada 5 000 y la partida se corta en cuanto la supera (<a href="../../es/practica/definiciones.html#corte-por-tiempo">corte por tiempo</a>).</li>
+<li>1 s sin responder: pierdes la partida.</li>
+</ul>
+Procura no pasar de <strong>1 ms de media</strong> en <code>evaluate</code>, porque la máquina de la evaluación oficial puede ser más lenta que tu Codespace. Un bot razonable tarda entre 0,005 y 0,05 ms.</li>
+<li><strong>NumPy</strong> usa rutinas distintas en PC y en Mac: un bot que lo use puede decidir distinto en casos límite, y su porcentaje local puede diferir ligeramente del oficial.</li>
+</ul>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Un bot que no es tuyo invalida la práctica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Un bot que no es tuyo invalida la práctica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si tu <code>bot.py</code> no supera la comprobación de <code>normas.py</code> (la primera norma de la lista), <strong>la práctica queda suspensa y tendrás que recuperarla</strong>. Antes de entregar, comprueba que <code>uv run pytest tests/test_normas.py</code> pasa.</p>
+</div>
+</div>
+</section>
+<section id="referencia" class="level3">
+<h3 class="anchored" data-anchor-id="referencia"><strong>3.5 Los bots de referencia</strong></h3>
+<p>Tu bot se mide contra tres <a href="../../es/practica/definiciones.html#bots-de-referencia">bots de referencia</a>, cada uno de un nivel:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Bot</th>
+<th style="text-align: left;">Nombre en las órdenes</th>
+<th style="text-align: left;">Cómo juega</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Fácil</td>
+<td style="text-align: left;"><code>easy</code></td>
+<td style="text-align: left;">Sigue la bola con su raqueta, sin predecir. Su código está en <code>src/pong/bots_ref/easy.py</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Medio</td>
+<td style="text-align: left;"><code>medium</code></td>
+<td style="text-align: left;">Predice dónde llegará la bola y apunta sus devoluciones</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Difícil</td>
+<td style="text-align: left;"><code>hard</code></td>
+<td style="text-align: left;">Domina el modelo completo del juego, incluido el efecto, y lo usa para atacar</td>
+</tr>
+</tbody>
+</table>
+<p>Medio y Difícil se distribuyen compilados: puedes jugar contra ellos, pero no ver su código.</p>
+<div id="tip-etapas" class="callout callout-style-default callout-tip no-icon callout-titled" title="Cómo abordar tu bot">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fundamento Teórico&nbsp;1: Cómo abordar tu bot
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Avanza por etapas y mide cada una con <code>evaluate</code>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Etapa</th>
+<th style="text-align: left;">Qué hace tu bot</th>
+<th style="text-align: left;">Qué necesita</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1. Seguir la bola</td>
+<td style="text-align: left;">Mueve la raqueta hacia la altura actual de la bola, como Fácil</td>
+<td style="text-align: left;">Solo <code>state</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2. Predecir sin rebotes</td>
+<td style="text-align: left;">Va adonde la bola cruzará tu <a href="../../es/practica/definiciones.html#plano-de-impacto">plano de impacto</a></td>
+<td style="text-align: left;">Velocidad estimada con dos observaciones (apartado <a href="#estimacion">3.3</a>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3. Desplegar los rebotes</td>
+<td style="text-align: left;">Predice aunque la bola rebote en las paredes</td>
+<td style="text-align: left;">La onda triangular <span class="math inline">\(F\)</span> (apartado <a href="#paredes">2.4</a>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4. Estimar el efecto</td>
+<td style="text-align: left;">Predice la curva de la bola</td>
+<td style="text-align: left;">Tres observaciones y la parábola del apartado <a href="#entre-golpes">2.6</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5. Apuntar</td>
+<td style="text-align: left;">Elige con qué punto de la raqueta golpear (<span class="math inline">\(u\)</span>) para mandar la bola lejos del rival</td>
+<td style="text-align: left;">La regla del golpe (apartado <a href="#golpe">2.5</a>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6. Usar el efecto</td>
+<td style="text-align: left;">Elige el comando del tick del golpe para curvar la devolución</td>
+<td style="text-align: left;">El efecto <span class="math inline">\(a_{y,0} = \kappa\,c\)</span> (apartado <a href="#golpe">2.5</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Superar a Fácil exige predecir y desviar la bola; a Medio, apuntar con criterio; a Difícil, dominar todo el modelo.</p>
+</div>
+</div>
+</section>
+<section id="ver-y-depurar-tus-partidas" class="level3">
+<h3 class="anchored" data-anchor-id="ver-y-depurar-tus-partidas"><strong>3.6 Ver y depurar tus partidas</strong></h3>
+<p><code>pong.html</code> ejecuta el motor en el navegador y tiene dos modos: <strong>en directo</strong> (tu bot contra Fácil, contra sí mismo o contra una versión anterior guardada en <code>mis_bots/</code>, con pausa y avance tick a tick) y <strong>reproducción</strong> de cualquier registro de <code>partidas/</code>, incluidas tus partidas contra Medio y Difícil. Sus paneles muestran el <code>state</code> que recibe cada bot, los valores reales del motor (las velocidades y el efecto que tu bot tiene que estimar) y los <code>print</code> y excepciones de tu bot.</p>
+<p>Si tu bot guarda en <code>self.depuracion</code> un diccionario con las claves <code>objetivo_y</code> (un número), <code>trayectoria</code> o <code>puntos</code> (listas de puntos <span class="math inline">\((x, y)\)</span>) o <code>texto</code>, en las coordenadas de su <code>state</code>, la página lo dibuja sobre el campo. Es opcional y no afecta al juego.</p>
+<hr>
+</section>
+</section>
+<section id="registros" class="level2">
+<h2 class="anchored" data-anchor-id="registros">4. Registros de las partidas</h2>
+<p><code>runner</code> y <code>evaluate --guardar</code> graban cada partida en <code>partidas/</code>. Hay dos ficheros posibles:</p>
+<ul>
+<li><strong><a href="../../es/practica/definiciones.html#registro-json">Registro JSON</a></strong>, <code>partida_&lt;semilla&gt;.json</code>: la semilla, los nombres de los bots, los sets, el resultado (<code>"left"</code>, <code>"right"</code> o <code>"draw"</code>), <code>abandono</code> y <code>tiempo_excedido</code>, la lista de <a href="../../es/practica/definiciones.html#intercambio">intercambios</a> (cada uno con <code>start_tick</code>, <code>end_tick</code>, <code>hits</code>, <code>outcome</code> y <code>winner</code>) y los comandos de cada tick. Con la semilla y los comandos, el motor reproduce la partida. Ocupa poco: <strong>súbelo a GitHub</strong>.</li>
+<li><strong><a href="../../es/practica/definiciones.html#csv">CSV</a></strong>, <code>partida_&lt;semilla&gt;.csv</code>: una fila por tick con <strong>lo mismo que ven los bots</strong>, en coordenadas globales: <code>tick</code>, <code>state</code>, <code>ball_x</code>, <code>ball_y</code>, <code>p_left</code>, <code>p_right</code>, <code>cmd_left</code>, <code>cmd_right</code>, <code>server</code> y <code>rally_hits</code>. La fila <span class="math inline">\(t\)</span> es el estado antes de ejecutar el tick <span class="math inline">\(t\)</span>. Ocupa varios MB y no se sube: se obtiene en cualquier momento del JSON con <code>uv run python -m pong.registro &lt;json&gt;</code>.</li>
+</ul>
+<p>Las velocidades y el efecto no están en el CSV. Para comprobar tus estimaciones, la <a href="../../es/practica/definiciones.html#verdad-del-motor">verdad del motor</a> (<code>ball_vx</code>, <code>ball_vy</code>, <code>ball_ay</code> y <code>ball_speed</code> en cada tick) se obtiene rejugando el JSON con <code>pong.registro.verdad(ruta)</code> o con <code>uv run python -m pong.registro &lt;json&gt; --verdad</code>.</p>
+<hr>
+</section>
+<section id="tests" class="level2">
+<h2 class="anchored" data-anchor-id="tests">5. Tus tests</h2>
+<p>En <code>tests/test_bot.py</code> escribirás con <code>pytest</code> los tests de tu bot. La plantilla trae dos tests de partida (que el bot devuelve comandos válidos en los dos lados); amplíalos con tests de tu predictor <strong>contra el motor</strong>: que la ordenada de cruce que predices coincide con la del motor, también en los casos límite (esquinas, varios rebotes en un mismo tick, efecto, bola casi horizontal…). Puedes usar el motor en los tests (<code>pong.pong_engine</code>) aunque tu bot no pueda importarlo.</p>
+<p>Este punto se califica así:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Criterio</th>
+<th style="text-align: left;">Puntos</th>
+<th style="text-align: left;">Cómo se mide</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Pasan y cubren tu bot</td>
+<td style="text-align: left;">0,4</td>
+<td style="text-align: left;">Todos tus tests pasan y ejecutan al menos el 80 % de las líneas de <code>bot.py</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Detectan errores</td>
+<td style="text-align: left;">0,4</td>
+<td style="text-align: left;">Se introducen a propósito pequeños errores en <code>bot.py</code> (cambiar un signo, un <code>&lt;</code> por un <code>&lt;=</code>, una constante…) y se cuenta la fracción que tus tests detectan, es decir, que hacen fallar algún test: la <strong>puntuación de mutación</strong>. Recibes 0,4 multiplicado por esa fracción</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Revisión del profesor</td>
+<td style="text-align: left;">0,2</td>
+<td style="text-align: left;">Se resta si los tests son triviales (por ejemplo, si solo comprueban que <code>decide</code> devuelve una cadena)</td>
+</tr>
+</tbody>
+</table>
+<p>Puedes ver tu cobertura con <code>uv run pytest tests/test_bot.py --cov=pong.bot</code>. Para detectar errores, lo que más ayuda son los tests que comparan tu predicción con el motor en casos concretos: un error en la predicción cambia el resultado y el test falla.</p>
+<hr>
+</section>
+<section id="notebook" class="level2">
+<h2 class="anchored" data-anchor-id="notebook">6. El notebook de análisis</h2>
+<p>El notebook <code>notebook/analisis_mo.py</code>, de <a href="https://marimo.io" target="_blank" rel="noopener noreferrer">Marimo</a>, analiza <strong>una partida cualquiera</strong> a partir de su registro JSON. Ya trae el enunciado de cada apartado, con ejemplos y el tipo de gráfico de cada figura, y las funciones que tienes que escribir, con su nombre, sus parámetros y su docstring. No cambies esos nombres ni parámetros: tus funciones se corrigen con tests del profesor. No hay texto que redactar. <code>notebook/ejemplo.html</code> es el mismo notebook con las figuras de la solución, sin código: compara tus figuras con ellas.</p>
+<p>Tiene tres partes:</p>
+<ol type="1">
+<li><strong>Lectura y limpieza de datos</strong> (L1–L4): leer el JSON y el CSV con <code>json</code> y pandas, quedarse con los ticks en juego, asignar cada uno a su intercambio y construir la tabla de <a href="../../es/practica/definiciones.html#vuelo">vuelos</a>.</li>
+<li><strong>Análisis de la partida</strong> (P1–P4): cuatro proposiciones sobre el movimiento de la bola (movimiento entre golpes, plegado, cruce con la raqueta y velocidades plegadas), que compruebas con los datos y representas en una figura.</li>
+<li><strong>Análisis estadístico</strong> (S1–S8): ocho figuras sobre el juego de los dos bots. Para las proporciones se usan intervalos de confianza de Wilson, que el notebook explica.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Figura</th>
+<th style="text-align: left;">Qué muestra</th>
+<th style="text-align: left;">Tipo de gráfico</th>
+<th style="text-align: left;">Puntos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">Golpes por intercambio según quién ganó el punto</td>
+<td style="text-align: left;">Diagrama de cajas</td>
+<td style="text-align: left;">0,25 (base)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">Punto de impacto <span class="math inline">\(u\)</span> de cada bot</td>
+<td style="text-align: left;">Histogramas, un panel por bot</td>
+<td style="text-align: left;">0,25 (base)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">S3</td>
+<td style="text-align: left;">Ley de aceleración del golpe, por regresión lineal</td>
+<td style="text-align: left;">Dispersión con rectas y panel de residuos</td>
+<td style="text-align: left;">0,5 (ampliación)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">Ordenada de llegada de golpes y fallos, por bot</td>
+<td style="text-align: left;">Histogramas apilados</td>
+<td style="text-align: left;">0,3 (ampliación)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">Proporción de fallos según la velocidad de la bola</td>
+<td style="text-align: left;">Barras con barras de error</td>
+<td style="text-align: left;">0,25 (base)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S6</td>
+<td style="text-align: left;">Ventaja del saque</td>
+<td style="text-align: left;">Barras con barras de error y línea de referencia</td>
+<td style="text-align: left;">0,4 (ampliación)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">S7</td>
+<td style="text-align: left;">Comandos de cada bot y recorrido de su raqueta</td>
+<td style="text-align: left;">Barras agrupadas y diagrama de violín</td>
+<td style="text-align: left;">0,25 (base)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S8</td>
+<td style="text-align: left;">Evolución del marcador</td>
+<td style="text-align: left;">Línea escalonada</td>
+<td style="text-align: left;">0,3 (ampliación)</td>
+</tr>
+</tbody>
+</table>
+<div id="imp-requisito" class="callout callout-style-default callout-important no-icon callout-titled" title="Requisito: L1–L4 cargan cualquier partida">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;2: Requisito: L1–L4 cargan cualquier partida
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Las funciones de lectura y limpieza (L1–L4) son lo primero que debes hacer: con ellas se carga la partida y, sin ellas, el notebook no dibuja ninguna figura. Antes de cargarla se comprueba que lo que devuelven es coherente. <strong>Si con la partida del profesor o con alguna de las partidas de sus tests (normales, con nulo, con abandono o cortadas por tiempo) alguna de L1–L4 falla o la partida no se puede cargar, el notebook se califica con 0.</strong> Compruébalo con <code>uv run pytest tests/test_notebook.py</code>, que carga con tus funciones <code>notebook/ejemplo.json</code> y las partidas raras de <code>notebook/raras/</code>.</p>
+</div>
+</div>
+<p><strong>Corrección.</strong> El profesor ejecuta tu notebook sobre una partida suya que no has visto: corrige tus funciones con tests propios y revisa las figuras con una rúbrica (título, ejes con nombre y unidades, y el tipo de gráfico pedido). Tu notebook tiene que funcionar con cualquier partida, también con las raras.</p>
+<hr>
+</section>
+<section id="evaluacion" class="level2">
+<h2 class="anchored" data-anchor-id="evaluacion">7. Evaluación</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Entregable</th>
+<th style="text-align: left;">Componente</th>
+<th style="text-align: left;">Puntos</th>
+<th style="text-align: left;">Cómo se califica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>bot.py</code> (4,5)</td>
+<td style="text-align: left;">Rendimiento</td>
+<td style="text-align: left;">3,5</td>
+<td style="text-align: left;">Automáticamente, con partidas contra los tres bots de referencia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Calidad del código</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Automáticamente, con una revisión acotada del profesor</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>tests/test_bot.py</code> (1)</td>
+<td style="text-align: left;">Tests</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Véase el <a href="#tests">apartado 5</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>notebook/analisis_mo.py</code> (4,5)</td>
+<td style="text-align: left;">Lectura y limpieza (L1–L4)</td>
+<td style="text-align: left;">0,4</td>
+<td style="text-align: left;">Tests del profesor; además, requisito de todo el notebook</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">P1–P4</td>
+<td style="text-align: left;">1,6</td>
+<td style="text-align: left;">0,4 cada una: tests de sus funciones y rúbrica de su figura</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">S1, S2, S5 y S7 (base)</td>
+<td style="text-align: left;">1,0</td>
+<td style="text-align: left;">0,25 cada una</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">S3, S4, S6 y S8 (ampliación)</td>
+<td style="text-align: left;">1,5</td>
+<td style="text-align: left;">0,5, 0,3, 0,4 y 0,3</td>
+</tr>
+</tbody>
+</table>
+<section id="rendimiento" class="level3">
+<h3 class="anchored" data-anchor-id="rendimiento"><strong>7.1 Rendimiento del bot (3,5 puntos)</strong></h3>
+<p>Tu bot juega <strong>100 partidas contra cada bot de referencia</strong>, la mitad en cada lado, con semillas que no se publican hasta después de la entrega. La medida es tu <a href="../../es/practica/definiciones.html#porcentaje-de-puntos">porcentaje de puntos</a> <span class="math inline">\(q\)</span>: la media, sobre las partidas, de la fracción de puntos que ganas en cada una. Una partida perdida por abandono o por tiempo cuenta 0.</p>
+<p>Cada rival da sus puntos de forma lineal entre dos cotas: <span class="math inline">\(w \cdot \min\!\big(1, \max\big(0, \tfrac{q - q_0}{q_1 - q_0}\big)\big)\)</span>, con <span class="math inline">\(w\)</span> el peso del rival.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Rival</th>
+<th style="text-align: left;">Peso <span class="math inline">\(w\)</span></th>
+<th style="text-align: left;">0 puntos con <span class="math inline">\(q \le q_0\)</span></th>
+<th style="text-align: left;">Todos con <span class="math inline">\(q \ge q_1\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Fácil</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">50 %</td>
+<td style="text-align: left;">90 %</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Medio</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">45 %</td>
+<td style="text-align: left;">70 %</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Difícil</td>
+<td style="text-align: left;">1,5</td>
+<td style="text-align: left;">35 %</td>
+<td style="text-align: left;">48 %</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Con <span class="math inline">\(q = 85\,\%\)</span> contra Fácil, <span class="math inline">\(55\,\%\)</span> contra Medio y <span class="math inline">\(40\,\%\)</span> contra Difícil obtienes <span class="math inline">\(1 \cdot \tfrac{0{,}35}{0{,}40} + 1 \cdot \tfrac{0{,}10}{0{,}25} + 1{,}5 \cdot \tfrac{0{,}05}{0{,}13} = 0{,}875 + 0{,}4 + 0{,}58 \approx 1{,}85\)</span> puntos de 3,5.</p>
+</div>
+</div>
+<p><code>evaluate</code> juega igual que la evaluación oficial (alterna lados, aplica el límite de tiempo y usa estas cotas) y te da tu nota estimada. Tu resultado oficial solo variará por el azar de las semillas: con 100 partidas, unos dos puntos porcentuales.</p>
+</section>
+<section id="calidad" class="level3">
+<h3 class="anchored" data-anchor-id="calidad"><strong>7.2 Calidad del código (1 punto)</strong></h3>
+<p>Se mide automáticamente sobre <code>bot.py</code>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Criterio</th>
+<th style="text-align: left;">Puntos</th>
+<th style="text-align: left;">Nota completa si…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Docstrings</td>
+<td style="text-align: left;">0,3</td>
+<td style="text-align: left;">todas las funciones, clases y métodos tienen docstring (0 con la mitad o menos)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Anotaciones de tipo</td>
+<td style="text-align: left;">0,3</td>
+<td style="text-align: left;">todo está anotado (0,2) y mypy no da errores (0,1)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Estilo</td>
+<td style="text-align: left;">0,2</td>
+<td style="text-align: left;">Ruff no da avisos (0 con 10 o más)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estructura</td>
+<td style="text-align: left;">0,2</td>
+<td style="text-align: left;">ninguna función supera complejidad 10 ni 50 líneas</td>
+</tr>
+</tbody>
+</table>
+<p>El profesor puede restar hasta 0,3 puntos si los docstrings o los nombres son de relleno.</p>
+</section>
+<section id="defensa" class="level3">
+<h3 class="anchored" data-anchor-id="defensa"><strong>7.3 Defensa oral</strong></h3>
+<p>La defensa oral no es obligatoria para todos. Si hay dudas sobre la autoría de lo que entregas, el profesor puede convocarte a una defensa oral breve, en la que explicarás cómo predice tu bot y lo modificarás en directo.</p>
+</section>
+<section id="ia" class="level3">
+<h3 class="anchored" data-anchor-id="ia"><strong>7.4 Uso de la inteligencia artificial</strong></h3>
+<p>La <a href="../../es/informaciones/guia-docente.html">guía docente</a> autoriza el uso de herramientas de IA en la práctica, con sus condiciones: puedes usarlas para entender, revisar, documentar o probar tu código, pero no para entregar como tuyo lo que no entiendes. Tienes que poder explicar, justificar y modificar cualquier parte de lo que entregas, y declarar qué herramientas usaste, para qué y en qué partes. Ten en cuenta la defensa oral (apartado <a href="#defensa">7.3</a>).</p>
+<hr>
+</section>
+</section>
+<section id="referencias" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="referencias">Referencias</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-wikipedia_pong" class="csl-entry" role="listitem">
+Colaboradores de Wikipedia. 2026. <span>«Pong»</span>. Wikipedia, The Free Encyclopedia. <a href="https://en.wikipedia.org/wiki/Pong">https://en.wikipedia.org/wiki/Pong</a>.
+</div>
+<div id="ref-edwards2012" class="csl-entry" role="listitem">
+Edwards, Benj. 2012. <span>«The Making of <span>Pong</span>»</span>. Edge, n.º 248 (2012); reeditado en Vintage Computing and Gaming (2022). <a href="https://www.vintagecomputing.com/index.php/archives/3183/vcg-anthology-the-making-of-pong-2012">https://www.vintagecomputing.com/index.php/archives/3183/vcg-anthology-the-making-of-pong-2012</a>.
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

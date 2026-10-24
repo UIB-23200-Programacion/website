@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ca" xml:lang="ca"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Pràctica: definicions i notació – Programación (23200)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-fe839f7715ebcdbad7a07c709ae06b28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-bac4d22b2bca5ca58db192775c64c60d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-fe839f7715ebcdbad7a07c709ae06b28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Cap resultat",
+    "search-matching-documents-text": "documents que coincideixen",
+    "search-copy-link-title": "Copia l'enllaç a la cerca",
+    "search-hide-matches-text": "Amaga les coincidències addicionals",
+    "search-more-match-text": "altra coincidència en aquest document",
+    "search-more-matches-text": "altres coincidències en aquest document",
+    "search-clear-button-title": "Neteja",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel·la",
+    "search-submit-button-title": "Envia",
+    "search-label": "Cerca"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Pràctica: definicions i notació – Programación (23200)">
+<meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/onda_triangular.svg">
+<meta property="og:site_name" content="Programación (23200)">
+<meta property="og:image:alt" content="Gràfica en ziga-zaga de l'ordenada plegada, amb l'eix vertical cap avall entre 6 i 594 px, respecte de la desplegada, amb període 1176 px; marca els punts F(−100) = 112, F(300) = 300, F(700) = 488 i F(1300) = 124.">
+</head>
+
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ca/practica/practica.html">Pràctica</a></li><li class="breadcrumb-item"><a href="../../ca/practica/definicions.html">Definicions i Notació</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Commuta la navegació de la barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Cerca" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/UIB-23200-Programacion" title="GitHub Organization" class="quarto-navigation-tool px-1" aria-label="GitHub Organization"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Idioma / Llengua" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Idioma / Llengua"><i class="bi bi-globe"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../../es/index.html">
+            Español
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../../ca/index.html">
+            Català
+            </a>
+          </li>
+      </ul>
+    </div>
+    <a href="../../#" title="Modo presentación" class="quarto-navigation-tool px-1" aria-label="Modo presentación"><i class="bi bi-fullscreen"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Commuta el mode fosc"><i class="bi"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Cerca"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inici</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Informacions</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/informacions/guia-docent.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Guia docent</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/informacions/horaris.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calendari i Horari</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Temes</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Fonaments, Entorns i Assistents IA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Components i Control de Flux</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Funcions, Mòduls i Organització</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Estructures de Dades de Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Algorismes Bàsics i Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Programació Orientada a Objectes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Gestió de Dades i Fitxers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Ecosistema Científic de Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/contingut/tema9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Disseny Algorítmic i Resolució de Problemes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Exercicis</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/exercicis/tema9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercicis — Tema 9</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Pràctica</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/practica/practica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pràctica de l’Assignatura</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/practica/definicions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Definicions i Notació</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Recursos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/recursos/examens-anteriors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exàmens anteriors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/recursos/eines-programari.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Eines de programari</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Bibliografia</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Commuta la secció">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/bibliografia/principal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Principal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ca/bibliografia/complementaria.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementària</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En aquesta pàgina</h2>
+   
+  <ul>
+  <li><a href="#simbolos" id="toc-simbolos" class="nav-link active" data-scroll-target="#simbolos">Símbols i constants</a></li>
+  <li><a href="#terminos" id="toc-terminos" class="nav-link" data-scroll-target="#terminos">Termes</a>
+  <ul class="collapse">
+  <li><a href="#abandono" id="toc-abandono" class="nav-link" data-scroll-target="#abandono">Abandonament</a></li>
+  <li><a href="#alcance" id="toc-alcance" class="nav-link" data-scroll-target="#alcance">Abast (franja d’impacte)</a></li>
+  <li><a href="#bot" id="toc-bot" class="nav-link" data-scroll-target="#bot">Bot</a></li>
+  <li><a href="#bots-de-referencia" id="toc-bots-de-referencia" class="nav-link" data-scroll-target="#bots-de-referencia">Bots de referència</a></li>
+  <li><a href="#golpeador" id="toc-golpeador" class="nav-link" data-scroll-target="#golpeador">Colpejador</a></li>
+  <li><a href="#golpe" id="toc-golpe" class="nav-link" data-scroll-target="#golpe">Cop</a></li>
+  <li><a href="#csv" id="toc-csv" class="nav-link" data-scroll-target="#csv">CSV de la partida (CSV observable)</a></li>
+  <li><a href="#efecto" id="toc-efecto" class="nav-link" data-scroll-target="#efecto">Efecte</a></li>
+  <li><a href="#empate-tecnico" id="toc-empate-tecnico" class="nav-link" data-scroll-target="#empate-tecnico">Empat tècnic</a></li>
+  <li><a href="#fallo" id="toc-fallo" class="nav-link" data-scroll-target="#fallo">Errada</a></li>
+  <li><a href="#estado-del-bot" id="toc-estado-del-bot" class="nav-link" data-scroll-target="#estado-del-bot">Estat del bot (<code>state</code>)</a></li>
+  <li><a href="#intercambio" id="toc-intercambio" class="nav-link" data-scroll-target="#intercambio">Intercanvi</a></li>
+  <li><a href="#semilla" id="toc-semilla" class="nav-link" data-scroll-target="#semilla">Llavor</a></li>
+  <li><a href="#motor" id="toc-motor" class="nav-link" data-scroll-target="#motor">Motor</a></li>
+  <li><a href="#nulo" id="toc-nulo" class="nav-link" data-scroll-target="#nulo">Nul</a></li>
+  <li><a href="#onda-triangular" id="toc-onda-triangular" class="nav-link" data-scroll-target="#onda-triangular">Ona triangular</a></li>
+  <li><a href="#ordenada-de-impacto" id="toc-ordenada-de-impacto" class="nav-link" data-scroll-target="#ordenada-de-impacto">Ordenada d’impacte</a></li>
+  <li><a href="#ordenada-plegada-y-desplegada" id="toc-ordenada-plegada-y-desplegada" class="nav-link" data-scroll-target="#ordenada-plegada-y-desplegada">Ordenada plegada i desplegada</a></li>
+  <li><a href="#comando" id="toc-comando" class="nav-link" data-scroll-target="#comando">Ordre</a></li>
+  <li><a href="#pared" id="toc-pared" class="nav-link" data-scroll-target="#pared">Paret</a></li>
+  <li><a href="#partida" id="toc-partida" class="nav-link" data-scroll-target="#partida">Partida</a></li>
+  <li><a href="#pausa-del-saque" id="toc-pausa-del-saque" class="nav-link" data-scroll-target="#pausa-del-saque">Pausa del servei</a></li>
+  <li><a href="#pendiente-de-salida" id="toc-pendiente-de-salida" class="nav-link" data-scroll-target="#pendiente-de-salida">Pendent de sortida</a></li>
+  <li><a href="#porcentaje-de-puntos" id="toc-porcentaje-de-puntos" class="nav-link" data-scroll-target="#porcentaje-de-puntos">Percentatge de punts</a></li>
+  <li><a href="#plano-de-impacto" id="toc-plano-de-impacto" class="nav-link" data-scroll-target="#plano-de-impacto">Pla d’impacte</a></li>
+  <li><a href="#punto" id="toc-punto" class="nav-link" data-scroll-target="#punto">Punt</a></li>
+  <li><a href="#punto-de-impacto" id="toc-punto-de-impacto" class="nav-link" data-scroll-target="#punto-de-impacto">Punt d’impacte</a></li>
+  <li><a href="#raqueta" id="toc-raqueta" class="nav-link" data-scroll-target="#raqueta">Raqueta</a></li>
+  <li><a href="#rebote" id="toc-rebote" class="nav-link" data-scroll-target="#rebote">Rebot</a></li>
+  <li><a href="#receptor" id="toc-receptor" class="nav-link" data-scroll-target="#receptor">Receptor</a></li>
+  <li><a href="#registro-json" id="toc-registro-json" class="nav-link" data-scroll-target="#registro-json">Registre JSON</a></li>
+  <li><a href="#saque" id="toc-saque" class="nav-link" data-scroll-target="#saque">Servei</a></li>
+  <li><a href="#set" id="toc-set" class="nav-link" data-scroll-target="#set">Set</a></li>
+  <li><a href="#corte-por-tiempo" id="toc-corte-por-tiempo" class="nav-link" data-scroll-target="#corte-por-tiempo">Tall per temps</a></li>
+  <li><a href="#tick" id="toc-tick" class="nav-link" data-scroll-target="#tick">Tick</a></li>
+  <li><a href="#velocidad-de-la-bola" id="toc-velocidad-de-la-bola" class="nav-link" data-scroll-target="#velocidad-de-la-bola">Velocitat de la bola</a></li>
+  <li><a href="#velocidad-de-intercambio" id="toc-velocidad-de-intercambio" class="nav-link" data-scroll-target="#velocidad-de-intercambio">Velocitat d’intercanvi</a></li>
+  <li><a href="#verdad-del-motor" id="toc-verdad-del-motor" class="nav-link" data-scroll-target="#verdad-del-motor">Veritat del motor</a></li>
+  <li><a href="#vuelo" id="toc-vuelo" class="nav-link" data-scroll-target="#vuelo">Vol</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ca/practica/practica.html">Pràctica</a></li><li class="breadcrumb-item"><a href="../../ca/practica/definicions.html">Definicions i Notació</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Pràctica: definicions i notació</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Aquest document recull, en ordre alfabètic, els termes i els símbols que fan servir l’<a href="../../ca/practica/practica.html">enunciat de la pràctica</a>, el teu bot (<code>src/pong/bot.py</code>) i el notebook d’anàlisi (<code>notebook/analisis_mo.py</code>). Cada entrada diu què significa el terme, com apareix al codi i on s’utilitza. Quan una paraula de l’enunciat tingui aquí la seva definició, l’enllaç et portarà fins aquí.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="L'essencial en una frase">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>L’essencial en una frase
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>partida</strong> es juga a sets; cada <strong>set</strong>, a punts; cada punt es disputa en un <strong>intercanvi</strong>; un intercanvi es compon de diversos <strong>vols</strong>, un per cop més el que surt del servei; i tot avança en <strong>ticks</strong>. La jerarquia és: partida → sets → intercanvis → vols → ticks.</p>
+</div>
+</div>
+<hr>
+<section id="simbolos" class="level2">
+<h2 class="anchored" data-anchor-id="simbolos">Símbols i constants</h2>
+<p>Totes les longituds són en píxels (px) i el temps, en ticks. L’origen del camp és a la cantonada superior esquerra i l’eix <span class="math inline">\(y\)</span> <strong>creix cap avall</strong>. Les constants no cal escriure-les a mà: el teu bot les rep a <code>state["field"]</code> i el notebook les té a la seva primera cel·la.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Símbol</th>
+<th style="text-align: left;">Significat</th>
+<th style="text-align: left;">Valor</th>
+<th style="text-align: left;">A <code>state["field"]</code></th>
+<th style="text-align: left;">Al notebook</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(W\)</span></td>
+<td style="text-align: left;">Amplada del camp</td>
+<td style="text-align: left;">800</td>
+<td style="text-align: left;"><code>width</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(H\)</span></td>
+<td style="text-align: left;">Alçada del camp</td>
+<td style="text-align: left;">600</td>
+<td style="text-align: left;"><code>height</code></td>
+<td style="text-align: left;"><code>H</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(R\)</span></td>
+<td style="text-align: left;">Radi de la bola</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;"><code>ball_radius</code></td>
+<td style="text-align: left;"><code>R</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(L\)</span></td>
+<td style="text-align: left;">Recorregut vertical del centre de la bola: <span class="math inline">\(H - 2R\)</span></td>
+<td style="text-align: left;">588</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><code>L</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(h\)</span></td>
+<td style="text-align: left;">Alçada de la raqueta</td>
+<td style="text-align: left;">80</td>
+<td style="text-align: left;"><code>paddle_height</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Gruix de la raqueta</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;"><code>paddle_thickness</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(X_L\)</span></td>
+<td style="text-align: left;">Cara frontal de la raqueta esquerra</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;"><code>my_face_x</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(X_R\)</span></td>
+<td style="text-align: left;">Cara frontal de la raqueta dreta</td>
+<td style="text-align: left;">770</td>
+<td style="text-align: left;"><code>opp_face_x</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(X_{\text{izq}}\)</span>, <span class="math inline">\(X_{\text{der}}\)</span></td>
+<td style="text-align: left;"><a href="#plano-de-impacto">Plans d’impacte</a>: <span class="math inline">\(X_L + R\)</span> i <span class="math inline">\(X_R - R\)</span></td>
+<td style="text-align: left;">36 i 764</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><code>X_IZQ</code>, <code>X_DER</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(h/2 + R\)</span></td>
+<td style="text-align: left;">Semiamplada de la <a href="#alcance">franja d’impacte</a></td>
+<td style="text-align: left;">46</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><code>ALCANCE</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(v_p\)</span></td>
+<td style="text-align: left;">Velocitat de la raqueta</td>
+<td style="text-align: left;">8 px/tick</td>
+<td style="text-align: left;"><code>paddle_speed</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(s_0\)</span></td>
+<td style="text-align: left;"><a href="#velocidad-de-intercambio">Velocitat d’intercanvi</a> en el servei</td>
+<td style="text-align: left;">6 px/tick</td>
+<td style="text-align: left;"><code>initial_speed</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(m_{\max}\)</span>, <span class="math inline">\(m_{\min}\)</span></td>
+<td style="text-align: left;">Pendents màxim i mínim de sortida d’un cop (<span class="math inline">\(\tan 60°\)</span> i <span class="math inline">\(\tan 5°\)</span>)</td>
+<td style="text-align: left;">1,7321 i 0,0875</td>
+<td style="text-align: left;"><code>slope_max</code>, <code>slope_min</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Acceleració per cop i velocitat extra als extrems</td>
+<td style="text-align: left;">1,05 i 0,05</td>
+<td style="text-align: left;"><code>speedup</code>, <code>edge_speedup</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\kappa\)</span></td>
+<td style="text-align: left;">Constant de l’<a href="#efecto">efecte</a></td>
+<td style="text-align: left;">0,005 px/tick²</td>
+<td style="text-align: left;"><code>spin_kappa</code></td>
+<td style="text-align: left;"><code>KAPPA</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Durada de la <a href="#pausa-del-saque">pausa del servei</a></td>
+<td style="text-align: left;">60 ticks</td>
+<td style="text-align: left;"><code>serve_pause</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(R_{\max}\)</span></td>
+<td style="text-align: left;">Cops que anul·len un intercanvi (<a href="#nulo">nul</a>)</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;"><code>max_rally_hits</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Nuls que acaben la partida en <a href="#empate-tecnico">empat tècnic</a></td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;"><code>max_lets</code></td>
+<td style="text-align: left;">—</td>
+</tr>
+</tbody>
+</table>
+<p>Altres símbols que fan servir l’enunciat i el notebook:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Símbol</th>
+<th style="text-align: left;">Significat</th>
+<th style="text-align: left;">Entrada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(x_n\)</span>, <span class="math inline">\(y_n\)</span></td>
+<td style="text-align: left;">Posició del centre de la bola al final del tick <span class="math inline">\(n\)</span>; <span class="math inline">\(y_n\)</span> és l’ordenada <strong>plegada</strong></td>
+<td style="text-align: left;"><a href="#ordenada-plegada-y-desplegada">Ordenada plegada i desplegada</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(Y_n\)</span></td>
+<td style="text-align: left;">Ordenada <strong>desplegada</strong> al final del tick <span class="math inline">\(n\)</span> d’un vol</td>
+<td style="text-align: left;"><a href="#ordenada-plegada-y-desplegada">Ordenada plegada i desplegada</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(F\)</span></td>
+<td style="text-align: left;">Ona triangular que plega <span class="math inline">\(Y\)</span> en <span class="math inline">\(y\)</span></td>
+<td style="text-align: left;"><a href="#onda-triangular">Ona triangular</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(p\)</span></td>
+<td style="text-align: left;">Posició (ordenada del centre) d’una raqueta</td>
+<td style="text-align: left;"><a href="#raqueta">Raqueta</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(c\)</span></td>
+<td style="text-align: left;">Ordre: <span class="math inline">\(-1\)</span> (<code>UP</code>), <span class="math inline">\(0\)</span> (<code>STAY</code>), <span class="math inline">\(+1\)</span> (<code>DOWN</code>)</td>
+<td style="text-align: left;"><a href="#comando">Ordre</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(v_{x,n}\)</span>, <span class="math inline">\(v_{y,n}\)</span></td>
+<td style="text-align: left;">Components de la velocitat de la bola al final del tick <span class="math inline">\(n\)</span></td>
+<td style="text-align: left;"><a href="#velocidad-de-la-bola">Velocitat de la bola</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(a_{x,n}\)</span>, <span class="math inline">\(a_{y,n}\)</span></td>
+<td style="text-align: left;">Components de l’acceleració: <span class="math inline">\(a_{x,n} = 0\)</span> per a tot <span class="math inline">\(n\)</span>; <span class="math inline">\(a_{y,n}\)</span> és l’efecte</td>
+<td style="text-align: left;"><a href="#efecto">Efecte</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(v_{x,0}\)</span>, <span class="math inline">\(v_{y,0}\)</span>, <span class="math inline">\(a_{y,0}\)</span></td>
+<td style="text-align: left;">Velocitat i efecte en començar un vol (<span class="math inline">\(n = 0\)</span>)</td>
+<td style="text-align: left;"><a href="#vuelo">Vol</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\Delta y_n\)</span>, <span class="math inline">\(\Delta Y_n\)</span></td>
+<td style="text-align: left;">Diferències entre ticks consecutius: <span class="math inline">\(y_n - y_{n-1}\)</span> i <span class="math inline">\(Y_n - Y_{n-1}\)</span></td>
+<td style="text-align: left;"><a href="#velocidad-de-la-bola">Velocitat de la bola</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(s\)</span></td>
+<td style="text-align: left;">Velocitat d’intercanvi</td>
+<td style="text-align: left;"><a href="#velocidad-de-intercambio">Velocitat d’intercanvi</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(n\)</span></td>
+<td style="text-align: left;">Índex de tick: a les lleis del moviment, qualsevol tick en joc; a les fórmules d’un vol, els ticks des del seu inici</td>
+<td style="text-align: left;"><a href="#vuelo">Vol</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(y^*\)</span></td>
+<td style="text-align: left;">Ordenada d’impacte</td>
+<td style="text-align: left;"><a href="#ordenada-de-impacto">Ordenada d’impacte</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(u\)</span></td>
+<td style="text-align: left;">Punt d’impacte relatiu a la raqueta</td>
+<td style="text-align: left;"><a href="#punto-de-impacto">Punt d’impacte</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(m\)</span></td>
+<td style="text-align: left;">Pendent de sortida d’un cop o del servei, <span class="math inline">\(v_{y,0} / |v_{x,0}|\)</span></td>
+<td style="text-align: left;"><a href="#pendiente-de-salida">Pendent de sortida</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(n^*\)</span>, <span class="math inline">\(\tau\)</span></td>
+<td style="text-align: left;">Tick del creuament amb el pla d’impacte i fracció del tick en què passa</td>
+<td style="text-align: left;"><a href="#plano-de-impacto">Pla d’impacte</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(k\)</span></td>
+<td style="text-align: left;">Paritat del nombre de rebots (<span class="math inline">\(0\)</span> o <span class="math inline">\(1\)</span>)</td>
+<td style="text-align: left;"><a href="#rebote">Rebot</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="terminos" class="level2">
+<h2 class="anchored" data-anchor-id="terminos">Termes</h2>
+<section id="abandono" class="level3">
+<h3 class="anchored" data-anchor-id="abandono">Abandonament</h3>
+<p>Partida que no s’arriba a jugar perquè el constructor <code>Bot(seed)</code> d’un dels bots llança una excepció. Compta com a derrota d’aquest bot, amb 0 punts. Al registre JSON, la clau <code>abandono</code> indica el costat del bot que ha fallat; el registre no té ticks ni intercanvis. El teu notebook ha de funcionar també amb una partida així: en tens una a <code>notebook/raras/abandono.json</code>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#normas-bot">normes del bot</a>, <a href="../../ca/practica/practica.html#registros">registres</a>, notebook (L1).</p>
+</section>
+<section id="alcance" class="level3">
+<h3 class="anchored" data-anchor-id="alcance">Abast (franja d’impacte)</h3>
+<p>La raqueta retorna la bola si, quan el centre de la bola creua el <a href="#plano-de-impacto">pla d’impacte</a>, la seva <a href="#ordenada-de-impacto">ordenada d’impacte</a> <span class="math inline">\(y^*\)</span> compleix <span class="math inline">\(|y^* - p| \le h/2 + R = 46\)</span>. Aquest interval de 92 px centrat a la raqueta és la franja d’impacte, i 46 és la seva semiamplada, <code>ALCANCE</code> al notebook. Els extrems de la raqueta no fan rebotar la bola: fora de la franja, el punt es perd.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#golpe">cop</a>, notebook (P3).</p>
+</section>
+<section id="bot" class="level3">
+<h3 class="anchored" data-anchor-id="bot">Bot</h3>
+<p>Programa que juga un dels costats de la partida: una classe <code>Bot</code> amb un constructor <code>Bot(seed)</code> i un mètode <code>decide(state)</code> que, a cada <a href="#tick">tick</a>, rep l’<a href="#estado-del-bot">estat</a> i retorna una <a href="#comando">ordre</a>. El teu és a <code>src/pong/bot.py</code>. El mateix objecte <code>Bot</code> dura tota la partida, així que pot recordar el que ha vist als seus atributs.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#bot">el teu bot</a>.</p>
+</section>
+<section id="bots-de-referencia" class="level3">
+<h3 class="anchored" data-anchor-id="bots-de-referencia">Bots de referència</h3>
+<p>Els tres rivals contra els quals es mesura el <a href="../../ca/practica/practica.html#rendimiento">rendiment</a> del teu bot: <strong>Fàcil</strong> (<code>easy</code>), <strong>Mitjà</strong> (<code>medium</code>) i <strong>Difícil</strong> (<code>hard</code>). Fàcil té el codi a la vista a <code>src/pong/bots_ref/easy.py</code>; Mitjà i Difícil es distribueixen compilats.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#referencia">bots de referència</a>, <a href="../../ca/practica/practica.html#rendimiento">avaluació</a>.</p>
+</section>
+<section id="golpeador" class="level3">
+<h3 class="anchored" data-anchor-id="golpeador">Colpejador</h3>
+<p>El bot que fa un cop, és a dir, el <a href="#receptor">receptor</a> del vol que s’acaba. Al notebook, columna <code>golpeador</code> de <code>golpes(d)</code>.</p>
+<p><em>S’utilitza a:</em> notebook (S2, S3).</p>
+</section>
+<section id="golpe" class="level3">
+<h3 class="anchored" data-anchor-id="golpe">Cop</h3>
+<p>Contacte de la bola amb una raqueta: la bola creua el <a href="#plano-de-impacto">pla d’impacte</a> dins de la <a href="#alcance">franja d’impacte</a>. El motor la deixa exactament al pla, a l’<a href="#ordenada-de-impacto">ordenada d’impacte</a>, descarta la resta d’aquell tick i la llança de tornada amb un nou <a href="#pendiente-de-salida">pendent</a>, una <a href="#velocidad-de-intercambio">velocitat d’intercanvi</a> més gran i un <a href="#efecto">efecte</a>. Cada cop incrementa <code>rally_hits</code>, i així és com es detecta a l’estat i al CSV.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#golpe">cop</a>, notebook (L4, P3, S2, S3).</p>
+</section>
+<section id="csv" class="level3">
+<h3 class="anchored" data-anchor-id="csv">CSV de la partida (CSV observable)</h3>
+<p>Fitxer <code>partida_&lt;semilla&gt;.csv</code> amb una fila per tick i el mateix que veuen els bots: <code>tick</code>, <code>state</code>, <code>ball_x</code>, <code>ball_y</code>, <code>p_left</code>, <code>p_right</code>, <code>cmd_left</code>, <code>cmd_right</code>, <code>server</code> i <code>rally_hits</code>. Fa servir coordenades globals, no normalitzades. La fila <span class="math inline">\(t\)</span> és l’estat <strong>abans</strong> d’executar el tick <span class="math inline">\(t\)</span>, amb les ordres que s’hi apliquen. No conté velocitats ni efecte: cal estimar-los (vegeu <a href="#verdad-del-motor">veritat del motor</a>). S’obté de qualsevol <a href="#registro-json">registre JSON</a> amb <code>uv run python -m pong.registro &lt;json&gt;</code>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#registros">registres</a>, notebook (L2).</p>
+</section>
+<section id="efecto" class="level3">
+<h3 class="anchored" data-anchor-id="efecto">Efecte</h3>
+<p>Acceleració vertical <span class="math inline">\(a_{y,0} = \kappa\,c\)</span> que rep la bola en un cop, amb <span class="math inline">\(\kappa = 0{,}005\)</span> px/tick² i <span class="math inline">\(c\)</span> l’<a href="#comando">ordre</a> de la raqueta que colpeja en aquell mateix tick (encara que la raqueta sigui al seu topall i no es mogui). <code>DOWN</code> corba la bola cap avall, <code>UP</code> cap amunt i <code>STAY</code> no li dona efecte. Es manté fins al cop següent (<span class="math inline">\(a_{y,n+1} = a_{y,n}\)</span> en un tick normal) i canvia de signe a cada <a href="#rebote">rebot</a>. L’acceleració horitzontal és sempre nul·la, <span class="math inline">\(a_{x,n} = 0\)</span>. En un vol de 100 ticks desvia la bola uns 25 px. L’estat no l’inclou: el teu bot l’ha d’estimar. Al notebook s’escriu <span class="math inline">\(a\)</span>; a la <a href="#verdad-del-motor">veritat del motor</a>, <code>ball_ay</code>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#leyes">lleis del moviment</a>, <a href="../../ca/practica/practica.html#golpe">cop</a>, <a href="../../ca/practica/practica.html#estimacion">estimació cinemàtica</a>, notebook (P1, P2, P4).</p>
+</section>
+<section id="empate-tecnico" class="level3">
+<h3 class="anchored" data-anchor-id="empate-tecnico">Empat tècnic</h3>
+<p>Resultat d’una partida que arriba al <a href="#nulo">nul</a> número 20 sense acabar. Al registre JSON, <code>resultado</code> val <code>"draw"</code>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#nulos">nuls i final de la partida</a>.</p>
+</section>
+<section id="fallo" class="level3">
+<h3 class="anchored" data-anchor-id="fallo">Errada</h3>
+<p>Final d’un vol en què la bola creua el <a href="#plano-de-impacto">pla d’impacte</a> fora de la <a href="#alcance">franja d’impacte</a>: el <a href="#receptor">receptor</a> perd el punt. A la taula de vols del notebook, <code>final == "fallo"</code>. Un intercanvi acabat en punt acaba sempre en una errada.</p>
+<p><em>S’utilitza a:</em> notebook (L4, P3, S4, S5).</p>
+</section>
+<section id="estado-del-bot" class="level3">
+<h3 class="anchored" data-anchor-id="estado-del-bot">Estat del bot (<code>state</code>)</h3>
+<p>Diccionari que rep <code>decide</code> a cada tick, amb la situació <strong>a l’inici</strong> d’aquell tick, <strong>normalitzada</strong>: cada bot es veu sempre al costat esquerre, amb la cara frontal de la seva raqueta a <span class="math inline">\(x = 30\)</span>. Per al bot dret, el motor transforma <span class="math inline">\(x \to W - x\)</span>; <span class="math inline">\(y\)</span> no canvia. Així, la bola s’acosta a la teva raqueta quan <code>ball_x</code> decreix. Les seves claus són a l’<a href="../../ca/practica/practica.html#estado">enunciat</a>. No inclou velocitats ni efecte.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#estado">el teu bot</a>.</p>
+</section>
+<section id="intercambio" class="level3">
+<h3 class="anchored" data-anchor-id="intercambio">Intercanvi</h3>
+<p>La disputa d’un punt (al JSON, <em>rally</em>). Comença amb la <a href="#pausa-del-saque">pausa del servei</a> (files <code>serving</code> del CSV) i acaba quan es decideix el punt (una <a href="#fallo">errada</a>) o es declara <a href="#nulo">nul</a>. Es compon de diversos <a href="#vuelo">vols</a>: un per cop més l’inicial des del servei, és a dir, <code>hits + 1</code> vols si acaba en punt i <code>hits</code> si és nul. Al registre JSON, cada intercanvi té <code>start_tick</code> (primer tick de la pausa del servei), <code>end_tick</code> (tick en què es decideix el punt o es declara el nul), <code>hits</code>, <code>outcome</code> (<code>"point"</code> o <code>"let"</code>) i <code>winner</code>.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <code>notebook/ejemplo.json</code>, l’intercanvi 1 va del tick 0 al 1936: els ticks 0–59 són la pausa del servei, té 24 cops i, per tant, 25 vols. La partida completa té 27 intercanvis i 716 vols.</p>
+</div>
+</div>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#puntuacion">puntuació</a>, <a href="../../ca/practica/practica.html#registros">registres</a>, notebook (L1, L3, S1, S6, S8).</p>
+</section>
+<section id="semilla" class="level3">
+<h3 class="anchored" data-anchor-id="semilla">Llavor</h3>
+<p>Nombre enter que fixa tot l’atzar d’una partida (qui serveix primer i la direcció de cada servei). Mateixa llavor i mateixes ordres donen exactament la mateixa partida en qualsevol ordinador. Cada bot rep a més la seva pròpia llavor a <code>Bot(seed)</code> per a un <code>random.Random</code> propi, si fa servir atzar. Les llavors de l’avaluació oficial són secretes fins després del lliurament.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#azar">atzar i reproductibilitat</a>.</p>
+</section>
+<section id="motor" class="level3">
+<h3 class="anchored" data-anchor-id="motor">Motor</h3>
+<p><code>src/pong/pong_engine.py</code>, el mòdul que simula el joc: aplica les ordres, mou la bola, resol rebots i cops i porta el marcador. És el mateix al teu Codespace, a <code>pong.html</code> i a l’avaluació oficial. No el modifiquis: un test comprova que no ha canviat.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#reglas">regles del joc</a>.</p>
+</section>
+<section id="nulo" class="level3">
+<h3 class="anchored" data-anchor-id="nulo">Nul</h3>
+<p>Intercanvi anul·lat (al JSON, <code>outcome == "let"</code>) perquè arriba a <span class="math inline">\(R_{\max} = 100\)</span> cops. Es declara en el mateix tick del cop número 100, que no obre un vol nou, i es repeteix el servei amb el mateix jugador. Ningú no guanya el punt (<code>winner</code> és <code>null</code>). En arribar al nul número 20, la partida acaba en <a href="#empate-tecnico">empat tècnic</a>. A la pràctica són molt rars; en tens una partida amb un a <code>notebook/raras/nulo.json</code>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#nulos">nuls i final de la partida</a>, notebook (L1, L3, L4).</p>
+</section>
+<section id="onda-triangular" class="level3">
+<h3 class="anchored" data-anchor-id="onda-triangular">Ona triangular</h3>
+<p>La funció <span class="math inline">\(F\)</span> que plega l’<a href="#ordenada-plegada-y-desplegada">ordenada desplegada</a> <span class="math inline">\(Y\)</span> en la plegada <span class="math inline">\(y\)</span>. Amb <span class="math inline">\(m = (Y - R) \bmod 2L\)</span>:</p>
+<p><span class="math display">\[
+F(Y) = \begin{cases} R + m &amp; \text{si } m \le L,\\ R + 2L - m &amp; \text{si } m &gt; L. \end{cases}
+\]</span></p>
+<p>La seva gràfica és una ziga-zaga: puja amb pendent 1 de <span class="math inline">\(R\)</span> a <span class="math inline">\(R + L\)</span>, baixa amb pendent <span class="math inline">\(-1\)</span> i es repeteix amb <strong>període</strong> <span class="math inline">\(2L = 1176\)</span>, és a dir, <span class="math inline">\(F(Y + 2L) = F(Y)\)</span>. Sempre pren valors a <span class="math inline">\([R, H - R] = [6, 594]\)</span>. Dins del camp, <span class="math inline">\(F(Y) = Y\)</span>; cada pic o vall és un <a href="#rebote">rebot</a>. <span class="math inline">\(F\)</span> no és injectiva: cada <span class="math inline">\(y\)</span> prové d’infinites <span class="math inline">\(Y\)</span>. El motor l’aplica a cada tick (<code>pe.fold</code>) a l’ordenada acabada d’avançar, sense cercar abans els rebots, i al notebook la programes com a <code>plegar</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/onda_triangular.svg" class="img-fluid figure-img" style="width:100.0%" alt="Gràfica en ziga-zaga de l'ordenada plegada, amb l'eix vertical cap avall entre 6 i 594 px, respecte de la desplegada, amb període 1176 px; marca els punts F(−100) = 112, F(300) = 300, F(700) = 488 i F(1300) = 124."></p>
+<figcaption>L’ona triangular <span class="math inline">\(F\)</span>. L’eix vertical creix cap avall, com al camp: la paret de dalt és <span class="math inline">\(y = 6\)</span> i la de baix, <span class="math inline">\(y = 594\)</span>. Les línies puntejades són les fronteres <span class="math inline">\(R + kL\)</span>: cada vegada que <span class="math inline">\(Y\)</span> en creua una, la bola rebota. Dins del camp, <span class="math inline">\(F(Y) = Y\)</span> (línia taronja). Els punts són els de l’exemple de més avall.</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(F(300) = 300\)</span> (dins del camp); <span class="math inline">\(F(700) = 488\)</span> (sobrepassa la paret de baix, <span class="math inline">\(y = 594\)</span>, en 106 i rebota a <span class="math inline">\(594 - 106\)</span>); <span class="math inline">\(F(1300) = 124\)</span> (rebota a baix i a dalt); <span class="math inline">\(F(-100) = 112\)</span> (sobrepassa la paret de dalt en 106 i rebota a <span class="math inline">\(6 + 106\)</span>).</p>
+</div>
+</div>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#paredes">parets i plegament</a>, notebook (P2).</p>
+</section>
+<section id="ordenada-de-impacto" class="level3">
+<h3 class="anchored" data-anchor-id="ordenada-de-impacto">Ordenada d’impacte</h3>
+<p><span class="math inline">\(y^*\)</span>: l’ordenada del centre de la bola en l’instant en què creua el <a href="#plano-de-impacto">pla d’impacte</a>, calculada pel motor amb la fracció exacta del tick. Si hi ha cop, la bola queda en aquest punt i és la primera fila del vol següent (<span class="math inline">\(y_0 = y^*\)</span>). Si hi ha errada, no apareix al CSV.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#golpe">cop</a>, notebook (P3, S4).</p>
+</section>
+<section id="ordenada-plegada-y-desplegada" class="level3">
+<h3 class="anchored" data-anchor-id="ordenada-plegada-y-desplegada">Ordenada plegada i desplegada</h3>
+<ul>
+<li><strong>Plegada</strong>, <span class="math inline">\(y\)</span> (<span class="math inline">\(y_n\)</span> al final del tick <span class="math inline">\(n\)</span>): l’ordenada real del centre de la bola, sempre a <span class="math inline">\([R, H - R]\)</span>. És <code>ball_y</code> a l’estat del bot i al CSV. És l’única que s’observa.</li>
+<li><strong>Desplegada</strong>, <span class="math inline">\(Y\)</span> (<span class="math inline">\(Y_n\)</span> al final del tick <span class="math inline">\(n\)</span> d’un vol): la que tindria la bola en un vol si les parets no la reflectissin i seguís la seva trajectòria, encara que sortís del camp. Dins d’un vol és una paràbola, <span class="math inline">\(Y_n = y_0 + n\,v_{y,0} + a_{y,0}\,n(n+1)/2\)</span>, i la plegada és <span class="math inline">\(y_n = F(Y_n)\)</span>. No és a cap fitxer i el motor tampoc la desa: avança tick a tick la plegada i, a cada rebot, canvia el signe de <span class="math inline">\(v_{y,n}\)</span> i d’<span class="math inline">\(a_{y,n}\)</span>, cosa que dona el mateix resultat. Es reconstrueix a partir de la plegada (<code>desplegar</code> al notebook).</li>
+</ul>
+<p>Desplegar només té sentit <strong>dins d’un vol</strong>: cada cop canvia <span class="math inline">\(v_{y,0}\)</span> i <span class="math inline">\(a_{y,0}\)</span>, així que no hi ha una <span class="math inline">\(Y\)</span> comuna a dos vols.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#paredes">parets i plegament</a>, <a href="../../ca/practica/practica.html#estimacion">estimació cinemàtica</a>, notebook (P1, P2, P3, P4).</p>
+</section>
+<section id="comando" class="level3">
+<h3 class="anchored" data-anchor-id="comando">Ordre</h3>
+<p>El que retorna <code>decide</code> a cada tick: <code>"UP"</code> (la raqueta puja 8 px), <code>"DOWN"</code> (baixa 8 px) o <code>"STAY"</code> (no es mou). A les fórmules s’escriu <span class="math inline">\(c \in \{-1, 0, +1\}\)</span>: <code>UP</code> és <span class="math inline">\(-1\)</span> perquè l’eix <span class="math inline">\(y\)</span> creix cap avall. Qualsevol altre valor, o una excepció, compta com a <code>"STAY"</code>. L’ordre del tick d’un cop decideix a més l’<a href="#efecto">efecte</a> de la bola. Al CSV, columnes <code>cmd_left</code> i <code>cmd_right</code>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#tick">estats d’una partida i moviments de les raquetes</a>, <a href="../../ca/practica/practica.html#normas-bot">normes del bot</a>, notebook (S7).</p>
+</section>
+<section id="pared" class="level3">
+<h3 class="anchored" data-anchor-id="pared">Paret</h3>
+<p>Cadascuna de les dues vores <strong>horitzontals</strong> del camp, la de dalt i la de baix. La bola hi rebota: el seu centre es reflecteix a <span class="math inline">\(y = R\)</span> i a <span class="math inline">\(y = H - R\)</span>. Als costats verticals hi ha les raquetes: allà no hi ha rebot, el vol acaba en <a href="#golpe">cop</a> o en <a href="#fallo">errada</a>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#paredes">parets i plegament</a>, notebook (P1, P2).</p>
+</section>
+<section id="partida" class="level3">
+<h3 class="anchored" data-anchor-id="partida">Partida</h3>
+<p>Enfrontament entre dos bots al millor de 3 <a href="#set">sets</a>. S’identifica per la seva <a href="#semilla">llavor</a> i queda enregistrada en un <a href="#registro-json">registre JSON</a>. S’acaba quan un bot guanya 2 sets, en <a href="#empate-tecnico">empat tècnic</a>, per <a href="#abandono">abandonament</a> o per <a href="#corte-por-tiempo">tall per temps</a>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#puntuacion">puntuació</a>.</p>
+</section>
+<section id="pausa-del-saque" class="level3">
+<h3 class="anchored" data-anchor-id="pausa-del-saque">Pausa del servei</h3>
+<p>Els 60 ticks en estat <code>serving</code> abans de cada servei, amb la bola quieta al centre, <span class="math inline">\((400, 300)\)</span>. Les raquetes es poden moure. Durant la pausa, <code>serve_ticks_left</code> val 60, 59, …, 1; després l’estat passa a <code>playing</code> i la bola es mou per primera vegada en el tick següent. Forma part de l’intercanvi, però no de cap vol.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#saque">servei</a>, notebook (L3).</p>
+</section>
+<section id="pendiente-de-salida" class="level3">
+<h3 class="anchored" data-anchor-id="pendiente-de-salida">Pendent de sortida</h3>
+<p><span class="math inline">\(m = v_{y,0} / |v_{x,0}|\)</span>, la direcció amb què surt la bola d’un cop o del servei, amb <span class="math inline">\(v_{x,0}\)</span> i <span class="math inline">\(v_{y,0}\)</span> les components de la seva velocitat en començar el vol.&nbsp;Si <span class="math inline">\(m &gt; 0\)</span>, la bola surt cap avall. En un cop depèn del <a href="#punto-de-impacto">punt d’impacte</a>: <span class="math inline">\(m(u) = \operatorname{sgn}(u)\,\max(m_{\min},\, m_{\max}\,|u|)\)</span>, entre 5° i 60° respecte de l’horitzontal. En el servei és aleatori, entre 20° i 45°.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#golpe">cop</a>, <a href="../../ca/practica/practica.html#saque">servei</a>.</p>
+</section>
+<section id="porcentaje-de-puntos" class="level3">
+<h3 class="anchored" data-anchor-id="porcentaje-de-puntos">Percentatge de punts</h3>
+<p>La mesura del <a href="../../ca/practica/practica.html#rendimiento">rendiment</a> del teu bot contra un rival: la mitjana, sobre les partides jugades, de la fracció de punts que guanyes a cadascuna (punts guanyats entre punts jugats). Una partida perduda per abandonament o per tall per temps compta 0.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#rendimiento">rendiment</a>.</p>
+</section>
+<section id="plano-de-impacto" class="level3">
+<h3 class="anchored" data-anchor-id="plano-de-impacto">Pla d’impacte</h3>
+<p>Recta vertical per la qual passa el <strong>centre</strong> de la bola quan toca la cara frontal d’una raqueta: <span class="math inline">\(x = X_L + R = 36\)</span> a l’esquerra (<code>X_IZQ</code>) i <span class="math inline">\(x = X_R - R = 764\)</span> a la dreta (<code>X_DER</code>). Com que <span class="math inline">\(v_{x,n} = v_{x,0}\)</span> és constant en un vol, el primer tick amb creuament del pla <span class="math inline">\(X\)</span> és <span class="math inline">\(n^* = \lfloor (X - x_0)/v_{x,0} \rfloor + 1\)</span>, en els dos sentits, i la fracció del tick en què creua és <span class="math inline">\(\tau\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/campo.svg" class="img-fluid figure-img" style="width:100.0%" alt="Esquema del camp de 800 per 600 píxels amb les dues raquetes, la bola, les parets i els plans d'impacte."></p>
+<figcaption>El camp, en píxels. La bola rebota a les parets de dalt i de baix; als costats hi ha les raquetes i els seus plans d’impacte.</figcaption>
+</figure>
+</div>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#golpe">cop</a>, notebook (P3).</p>
+</section>
+<section id="punto" class="level3">
+<h3 class="anchored" data-anchor-id="punto">Punt</h3>
+<p>Unitat del marcador d’un <a href="#set">set</a>. El guanya el rival del bot que comet una <a href="#fallo">errada</a>. Cada punt es disputa en un <a href="#intercambio">intercanvi</a>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#puntuacion">puntuació</a>.</p>
+</section>
+<section id="punto-de-impacto" class="level3">
+<h3 class="anchored" data-anchor-id="punto-de-impacto">Punt d’impacte</h3>
+<p><span class="math inline">\(u = (y^* - p)/46 \in [-1, 1]\)</span>: on colpeja la bola a la raqueta, relatiu al seu centre. <span class="math inline">\(u = 0\)</span> és el centre, <span class="math inline">\(u = -1\)</span> l’extrem de dalt i <span class="math inline">\(u = 1\)</span> el de baix. Decideix el <a href="#pendiente-de-salida">pendent de sortida</a> (colpejar amb l’extrem de dalt envia la bola cap amunt amb un angle tancat) i la <a href="#velocidad-de-intercambio">velocitat d’intercanvi</a> següent. Al notebook, columna <code>u</code> de <code>golpes(d)</code>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#golpe">cop</a>, notebook (S2, S3).</p>
+</section>
+<section id="raqueta" class="level3">
+<h3 class="anchored" data-anchor-id="raqueta">Raqueta</h3>
+<p>Rectangle de 10 × 80 px a cada costat del camp. La seva posició <span class="math inline">\(p\)</span> és l’ordenada del seu <strong>centre</strong>, amb <span class="math inline">\(p \in [h/2, H - h/2] = [40, 560]\)</span>. Es mou 8 px per tick segons l’<a href="#comando">ordre</a> i s’atura als topalls. Totes dues comencen la partida a <span class="math inline">\(p = 300\)</span>. A l’estat, <code>my_paddle_y</code> i <code>opp_paddle_y</code>; al CSV, <code>p_left</code> i <code>p_right</code>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#campo">camp</a>, <a href="../../ca/practica/practica.html#tick">estats d’una partida i moviments de les raquetes</a>.</p>
+</section>
+<section id="rebote" class="level3">
+<h3 class="anchored" data-anchor-id="rebote">Rebot</h3>
+<p>La reflexió de la bola en una <a href="#pared">paret</a>. <strong>No talla el vol</strong>: un vol en pot tenir diversos (a <code>ejemplo.json</code>, de 0 a 3). En coordenades plegades, cada rebot inverteix el signe de <span class="math inline">\(v_{y,n}\)</span> i de l’efecte <span class="math inline">\(a_{y,n}\)</span>; en l’ordenada desplegada, un rebot és un creuament d’una frontera <span class="math inline">\(R + kL\)</span>, amb <span class="math inline">\(k\)</span> enter, i la paritat <span class="math inline">\(k\)</span> del nombre de rebots diu si els signes estan invertits. El <strong>rebot inicial</strong> és el que passa entre les tres primeres observacions d’un vol: obliga a reflectir-les abans d’estimar <span class="math inline">\(v_{y,0}\)</span> i <span class="math inline">\(a_{y,0}\)</span>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#leyes">lleis del moviment</a>, <a href="../../ca/practica/practica.html#paredes">parets i plegament</a>, <a href="../../ca/practica/practica.html#estimacion">estimació cinemàtica</a>, notebook (P1, P2, P4).</p>
+</section>
+<section id="receptor" class="level3">
+<h3 class="anchored" data-anchor-id="receptor">Receptor</h3>
+<p>El bot cap al qual va la bola en un vol: és qui l’ha de retornar. En el servei, el receptor és el rival de qui serveix. A la taula de vols del notebook, columna <code>receptor</code>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#saque">servei</a>, notebook (L4, P3, S4).</p>
+</section>
+<section id="registro-json" class="level3">
+<h3 class="anchored" data-anchor-id="registro-json">Registre JSON</h3>
+<p>Fitxer <code>partida_&lt;semilla&gt;.json</code> que enregistra una partida completa: versió del motor, llavor, noms dels bots, sets, resultat, <code>abandono</code> i <code>tiempo_excedido</code>, la llista d’intercanvis i les ordres de cada tick. Amb la llavor i les ordres, el motor reprodueix la partida exactament, així que se n’obtenen el <a href="#csv">CSV</a> i la <a href="#verdad-del-motor">veritat del motor</a>. Ocupa poc i es puja al repositori.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#registros">registres</a>, notebook (L1).</p>
+</section>
+<section id="saque" class="level3">
+<h3 class="anchored" data-anchor-id="saque">Servei</h3>
+<p>Inici d’un intercanvi: després de la <a href="#pausa-del-saque">pausa del servei</a>, la bola surt del centre cap al <a href="#receptor">receptor</a> amb la velocitat inicial <span class="math inline">\(s_0 = 6\)</span> i un pendent aleatori. Serveix qui va guanyar el punt anterior; el primer servei de la partida se sorteja i el dels sets 2 i 3 és per a qui va perdre el set anterior. Al CSV, columna <code>server</code>; a l’estat, <code>serving</code>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#saque">servei</a>, notebook (S6).</p>
+</section>
+<section id="set" class="level3">
+<h3 class="anchored" data-anchor-id="set">Set</h3>
+<p>Part d’una partida. El guanya el bot que arriba a 11 punts amb 2 d’avantatge; des de 10-10 es juga a avantatge de 2, i a 14-14 el punt següent guanya el set (15-14). La partida és al millor de 3 sets.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#puntuacion">puntuació</a>, notebook (S8).</p>
+</section>
+<section id="corte-por-tiempo" class="level3">
+<h3 class="anchored" data-anchor-id="corte-por-tiempo">Tall per temps</h3>
+<p>Final anticipat d’una partida perquè un bot supera el temps mitjà permès per crida a <code>decide</code> (2 ms). Des de la crida 5 000 es vigila la mitjana, i la partida es talla tan bon punt la supera. El bot que la supera perd la partida amb 0 punts. Al registre JSON, la clau <code>tiempo_excedido</code> indica el seu costat; la partida s’enregistra fins al tick del tall, i l’intercanvi que estava en joc no figura a la llista d’intercanvis. En tens una partida així a <code>notebook/raras/tiempo.json</code>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#normas-bot">normes del bot</a>, notebook (L3).</p>
+</section>
+<section id="tick" class="level3">
+<h3 class="anchored" data-anchor-id="tick">Tick</h3>
+<p>La unitat de temps del joc: un pas del motor. A cada tick, els bots decideixen, les raquetes es mouen i la bola avança. Els ticks es numeren des de 0; <code>state["tick"]</code> és l’índex del tick que està a punt d’executar-se. La visualització els mostra a 60 per segon, però això no afecta la física. Les velocitats es mesuren en px/tick i l’efecte, en px/tick². No confonguis aquest índex absolut amb l’<span class="math inline">\(n\)</span> de les fórmules d’un vol, que compta els ticks des del seu inici.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#leyes">lleis del moviment</a>, <a href="../../ca/practica/practica.html#tick">estats d’una partida i moviments de les raquetes</a>.</p>
+</section>
+<section id="velocidad-de-la-bola" class="level3">
+<h3 class="anchored" data-anchor-id="velocidad-de-la-bola">Velocitat de la bola</h3>
+<p>Les seves components al final del tick <span class="math inline">\(n\)</span>, <span class="math inline">\(v_{x,n}\)</span> (horitzontal) i <span class="math inline">\(v_{y,n}\)</span> (vertical), en px/tick. A cada tick normal, <span class="math inline">\(v_{x,n+1} = v_{x,n}\)</span> i <span class="math inline">\(v_{y,n+1} = v_{y,n} + a_{y,n}\)</span> (<a href="../../ca/practica/practica.html#leyes">lleis del moviment</a>). Dins d’un vol, <span class="math inline">\(v_{x,n} = v_{x,0}\)</span> és <strong>constant</strong> i la velocitat vertical canvia per l’efecte: en coordenades desplegades, <span class="math inline">\(\Delta Y_n = Y_n - Y_{n-1} = v_{y,0} + n\,a_{y,0}\)</span>; en coordenades plegades, <span class="math inline">\(v_{y,n}\)</span> és aquest valor amb el signe canviat després de cada rebot. L’estat no les inclou: s’estimen amb diferències de posicions successives, que en aquest joc són <strong>exactes</strong> (excepte arrodoniment). Al notebook s’escriuen <span class="math inline">\(v_0\)</span> per <span class="math inline">\(v_{y,0}\)</span> i <span class="math inline">\(v_n\)</span> per <span class="math inline">\(\Delta Y_n\)</span>; a la <a href="#verdad-del-motor">veritat del motor</a>, <code>ball_vx</code> i <code>ball_vy</code>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#leyes">lleis del moviment</a>, <a href="../../ca/practica/practica.html#entre-golpes">moviment entre cops</a>, <a href="../../ca/practica/practica.html#estimacion">estimació cinemàtica</a>, notebook (P1, P4).</p>
+</section>
+<section id="velocidad-de-intercambio" class="level3">
+<h3 class="anchored" data-anchor-id="velocidad-de-intercambio">Velocitat d’intercanvi</h3>
+<p><span class="math inline">\(s\)</span>, l’escalar que el motor fixa a cada cop i que determina el mòdul de la velocitat amb què surt la bola: <span class="math inline">\(v_{x,0}\)</span> i <span class="math inline">\(v_{y,0}\)</span> es calculen a partir de <span class="math inline">\(s\)</span> i del <a href="#pendiente-de-salida">pendent</a>. Comença a <span class="math inline">\(s_0 = 6\)</span> a cada servei i a cada cop es multiplica per <span class="math inline">\(1{,}05\,(1 + 0{,}05\,|u|)\)</span>, així que creix al llarg de l’intercanvi. Durant un vol no canvia; amb efecte, en canvi, el mòdul real de la velocitat, <span class="math inline">\(\sqrt{v_{x,n}^2 + v_{y,n}^2}\)</span>, sí que canvia, perquè canvia <span class="math inline">\(v_{y,n}\)</span>. Al notebook s’estima com <span class="math inline">\(\sqrt{v_{x,0}^2 + v_{y,0}^2}\)</span> (columna <code>s</code>); a la veritat del motor, <code>ball_speed</code>.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#golpe">cop</a>, <a href="../../ca/practica/practica.html#saque">servei</a>, notebook (P3, S3, S5).</p>
+</section>
+<section id="verdad-del-motor" class="level3">
+<h3 class="anchored" data-anchor-id="verdad-del-motor">Veritat del motor</h3>
+<p>Les magnituds internes del motor que ni els bots ni el CSV veuen, tick a tick: <code>ball_vx</code>, <code>ball_vy</code>, <code>ball_ay</code> i <code>ball_speed</code>. S’obtenen rejugant el registre JSON amb <code>pong.registro.verdad(ruta)</code> o amb <code>uv run python -m pong.registro &lt;json&gt; --verdad</code>. Serveixen per comprovar les teves estimacions, no per jugar.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#registros">registres</a>, notebook (P4, <code>d.verdad</code>).</p>
+</section>
+<section id="vuelo" class="level3">
+<h3 class="anchored" data-anchor-id="vuelo">Vol</h3>
+<p>El tram de la trajectòria de la bola entre dos cops consecutius, des del servei fins al primer cop o des de l’últim cop fins al final de l’intercanvi. Els <a href="#rebote">rebots</a> a les parets no el tallen. Al CSV, són les files <code>playing</code> consecutives d’un intercanvi amb el mateix <code>rally_hits</code>. <span class="math inline">\(n\)</span> compta els ticks des de l’inici del vol: <span class="math inline">\(n = 0\)</span> és la seva primera fila.</p>
+<ul>
+<li><strong>Primera fila:</strong> en el primer vol d’un intercanvi, la primera fila <code>playing</code> després de la pausa del servei, amb la bola al centre; en els altres, la fila del cop, amb la bola al pla d’impacte i <code>rally_hits</code> ja incrementat, de manera que <span class="math inline">\(y_0 = y^*\)</span>.</li>
+<li><strong>Última fila:</strong> l’anterior a la del cop següent o, si el vol acaba en errada o nul, l’última fila <code>playing</code> de l’intercanvi (<code>end_tick</code>); el creuament passa en aquell tick i no apareix al CSV.</li>
+</ul>
+<p>Un intercanvi acabat en punt té <code>hits + 1</code> vols i un de nul, <code>hits</code>. Al notebook, la taula <code>d.vuelos</code> (L4) té una fila per vol.</p>
+<p><em>S’utilitza a:</em> <a href="../../ca/practica/practica.html#entre-golpes">moviment entre cops</a>, notebook (L4 i gairebé tots els apartats).</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiat!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiat!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/uib-23200-programacion\.github\.io\/website\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2026, Alejandro Mesejo, <a href="https://eps.uib.es/">UIB-EPS</a></p>
+</div>   
+    <div class="nav-footer-center">
+<p>Material publicado bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">CC BY-NC-SA 4.0</a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Esta página está construida con <a href="https://github.com/sta210-s22">sta210-s22</a> y <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+<script src="../../logo-href.js"></script>
+<script src="../../live-copy-button.js"></script>
+<script src="../../full-view.js"></script>
+
+
+
+
+</body></html>
