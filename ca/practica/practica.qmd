@@ -1,7 +1,526 @@
 ---
-title: "Pràctica del Curs"
+title: "Pràctica de l'assignatura 23200 - Programació"
 lang: ca
 sidebar: barra-ca
+bibliography: practica.bib
 ---
 
-*(Contenido pendiente.)*
+## Introducció
+
+*Pong*, d'Atari, va ser el primer videojoc amb èxit comercial. [Allan Alcorn](https://en.wikipedia.org/wiki/Allan_Alcorn){target="_blank" rel="noopener noreferrer"} el va dissenyar el 1972 com a exercici de pràctica que li va encarregar [Nolan Bushnell](https://en.wikipedia.org/wiki/Nolan_Bushnell){target="_blank" rel="noopener noreferrer"}, inspirat en el tennis de taula de la consola Magnavox Odyssey; el primer prototip, un circuit de lògica digital sense programari connectat a un televisor en blanc i negre, es va instal·lar l'agost de 1972 en un bar de Sunnyvale, i a finals de 1974 Atari havia venut més de 8 000 màquines [@wikipedia_pong]. Les seves regles eren senzilles i han arribat gairebé intactes fins avui:
+
+- cada raqueta estava dividida en vuit segments, de manera que el punt de cop decidia l'angle de sortida,
+- la bola s'accelerava a mesura que s'allargava l'intercanvi i recuperava la seva velocitat després de cada punt,
+- guanyava el primer a arribar a 11 punts [@edwards2012; @wikipedia_pong].
+
+Hi ha a més un detall curiós: per un defecte del circuit, les raquetes no arribaven a la vora superior de la pantalla. Alcorn ho va deixar així perquè afegia dificultat i escurçava les partides.
+
+**Importància.** Es considera el joc que va posar en marxa la indústria del videojoc. Forma part de la col·lecció permanent de l'Smithsonian i va entrar al World Video Game Hall of Fame el 2015.
+
+## La Pràctica
+
+En aquesta pràctica programaràs un **[bot](definicions.qmd#bot) que juga al Pong** contra altres bots i **analitzaràs les partides** que juga el teu bot amb dades d'aquestes. Les regles del joc les fixa un motor escrit en Python que es troba al projecte (repositori de GitHub) [**practica-programacion-23200**](https://github.com/UIB-23200-Programacion/practica-programacion-23200){target="_blank" rel="noopener noreferrer"} de l'organització de l'assignatura. Aquest motor serà el mateix que s'executa en el teu entorn de treball i en l'avaluació. Totes les partides queden enregistrades en registres que podràs estudiar amb Pandas, NumPy i Matplotlib. La pràctica recorre així gairebé tot el temari de l'assignatura: funcions i mòduls, estructures de dades, algorismes, tests, classes, fitxers i l'ecosistema científic de Python.
+
+El motor d'aquesta pràctica (script `src/pong/pong_engine.py` del projecte) conserva les regles del Pong original:
+
+- l'angle de sortida depèn de forma contínua del [punt d'impacte](definicions.qmd#punto-de-impacto),
+- cada cop multiplica la velocitat per un factor fix,
+- els sets es juguen a 11 punts amb avantatge de 2,
+
+però a més, afegeix l'[efecte](definicions.qmd#efecto), que l'original no tenia.
+
+Els termes i símbols del joc (vol, intercanvi, ordenada plegada, punt d'impacte…) estan definits al document [**Definicions i notació**](definicions.qmd). Quan una paraula d'aquest enunciat hi tingui la seva definició, apareix enllaçada.
+
+::: {#imp-entregables .callout-important title="Què lliures"}
+Tot es lliura en **una còpia (.zip) del teu repositori privat** de GitHub que has de crear a partir de la plantilla de la pràctica (vegeu més avall). S'avaluen tres fitxers:
+
+1. **El teu bot**, `src/pong/bot.py` (4,5 punts).
+2. **Els teus tests**, `tests/test_bot.py` (1 punt).
+3. **El teu notebook d'anàlisi**, `notebook/analisis_mo.py` (4,5 punts).
+
+La pràctica es qualifica sobre 10 punts i s'aprova amb un **5**, sense mínims per apartat. Pesa un **30 %** de la nota de l'assignatura, amb nota de validació 5 (vegeu la [guia docent](../informacions/guia-docent.qmd)).
+
+**Data límit: 22 de desembre de 2026 a les 23:59.**
+:::
+
+---
+
+## 1. Posada en marxa {#puesta-en-marcha}
+
+### **1.1 La teva còpia de la plantilla**
+
+La plantilla és el repositori [`practica-programacion-23200`](https://github.com/UIB-23200-Programacion/practica-programacion-23200){target="_blank" rel="noopener noreferrer"} de l'organització de l'assignatura. Conté el motor, els bots de referència, les eines, l'esquelet del teu bot i dels teus tests i el notebook d'anàlisi.
+
+1. A la plantilla, prem **Use this template → Create a new repository**.
+2. Tria la visibilitat **Private**. **És obligatori**: en un repositori públic els teus companys veurien el teu bot abans de l'avaluació.
+
+### **1.2 L'entorn de treball**
+
+Pots treballar a **GitHub Codespaces** (recomanat; no cal instal·lar res: **Code → Codespaces → Create codespace on main**) o al teu ordinador amb **VS Code, Docker i l'extensió *Dev Containers*** (**Reopen in Container**), amb la mateixa configuració. La instal·lació directa de Python, sense Docker, no està suportada: els bots Mitjà i Difícil van compilats per als entorns anteriors. En obrir-se l'entorn s'instal·len Python 3.13 i totes les biblioteques.
+
+El `README.md` de la plantilla explica en detall cada eina. Les ordres bàsiques són:
+
+| Què | Ordre |
+| :--- | :--- |
+| Executar tots els tests | `uv run pytest` |
+| Jugar una partida contra Fàcil i desar-ne el registre | `uv run python -m pong.runner --rival easy` |
+| Jugar contra el teu propi bot | `uv run python -m pong.runner --rival mi_bot` |
+| Estimar la teva nota de rendiment contra Difícil | `uv run python -m pong.evaluate --rival hard --partidas 100` |
+| El mateix, desant les partides i un resum de la pitjor a la millor | `uv run python -m pong.evaluate --rival hard --partidas 100 --guardar` |
+| Obtenir el CSV d'una partida desada | `uv run python -m pong.registro partidas/partida_<semilla>.json` |
+| Veure partides al navegador (`pong.html`) | `uv run python -m http.server 8000` i obrir `/pong.html` |
+| Obrir el notebook d'anàlisi | `uv run marimo edit --no-token notebook/analisis_mo.py` |
+
+Puja a GitHub sovint la teva feina i els registres de `partidas/`: GitHub esborra els Codespaces que fa temps que no s'utilitzen.
+
+---
+
+## 2. Regles del joc {#reglas}
+
+Les regles les defineix el [motor](definicions.qmd#motor), `src/pong/pong_engine.py`. **No el modifiquis**: un test comprova que no ha canviat, i l'avaluació fa servir sempre l'original. El que segueix descriu amb exactitud el que fa; davant de qualsevol dubte, el codi del motor és la referència.
+
+### **2.1 Camp i unitats** {#campo}
+
+El camp mesura $W \times H = 800 \times 600$ px, amb l'origen a la cantonada superior esquerra i l'**eix $y$ creixent cap avall**. El temps es mesura en [ticks](definicions.qmd#tick). El tick és una unitat de temps discreta i abstracta, un pas de la simulació, sense equivalència en segons. Les velocitats es mesuren en px/tick i l'efecte en px/tick².
+
+![El camp. La bola rebota a les [parets](definicions.qmd#pared) de dalt i de baix; als costats hi ha les raquetes i els seus [plans d'impacte](definicions.qmd#plano-de-impacto).](../../images/campo.svg){fig-alt="Esquema del camp de 800 per 600 píxels amb les dues raquetes, la bola, les parets i els plans d'impacte." width="100%"}
+
+La visualització mostra 60 ticks per segon, però això no afecta la física. Fora del navegador, les partides van tan ràpid com permet l'ordinador. El motor tarda uns 7 µs per tick, així que una partida sencera es juga en una fracció de segon.
+
+| Element | Valor |
+| :--- | :--- |
+| Bola | Cercle de radi $R = 6$; el seu centre $(x, y)$ compleix $y \in [R, H - R] = [6, 594]$ |
+| [Raquetes](definicions.qmd#raqueta) | $10 \times 80$ px ($h = 80$). La seva posició $p$ és l'ordenada del seu centre, $p \in [40, 560]$. Comencen a $p = 300$ |
+| Cara frontal de la raqueta esquerra | $x = X_L = 30$ (la raqueta ocupa $x \in [20, 30]$) |
+| Cara frontal de la raqueta dreta | $x = X_R = 770$ (ocupa $x \in [770, 780]$) |
+| Velocitat de la raqueta | $v_p = 8$ px/tick |
+| [Velocitat d'intercanvi](definicions.qmd#velocidad-de-intercambio) en el servei | $s_0 = 6$ px/tick |
+
+Totes les constants, amb el seu nom al codi, són a la taula de [símbols i constants](definicions.qmd#simbolos).
+
+### **2.2 Lleis del moviment de la bola** {#leyes}
+
+Numerem amb $n = 0, 1, 2, \dots$ els ticks en què la bola està en joc. Al final del tick $n$, la bola té:
+
+- posició $(x_n, y_n)$, en px: les coordenades del seu centre;
+- velocitat $(v_{x,n},\ v_{y,n})$, en px/tick;
+- acceleració $(a_{x,n},\ a_{y,n})$, en px/tick².
+
+L'acceleració horitzontal és sempre nul·la, $a_{x,n} = 0$ per a tot $n$. La vertical és l'[efecte](definicions.qmd#efecto).
+
+En un tick, primer la velocitat augmenta d'acord amb l'acceleració i després la posició augmenta d'acord amb la **nova** velocitat:
+
+$$
+\begin{aligned}
+v_{x,n+1} &= v_{x,n} + a_{x,n} = v_{x,n}, & \qquad x_{n+1} &= x_n + v_{x,n+1},\\
+v_{y,n+1} &= v_{y,n} + a_{y,n}, & \qquad y_{n+1} &= y_n + v_{y,n+1}.
+\end{aligned}
+$$
+
+L'acceleració vertical no canvia en un tick normal: $a_{y,n+1} = a_{y,n}$. Per tant, en un tick normal només canvien la velocitat vertical i la posició. Aquestes igualtats valen a cada tick excepte en tres situacions, les úniques en què també pot canviar l'acceleració, que s'expliquen als apartats següents:
+
+- **Rebot en una paret** (apartat [2.4](#paredes)). Si $y_{n+1}$ surt de l'interval $[6, 594]$, la bola es reflecteix a la paret: torna cap a dins tants píxels com s'havia passat, i $v_{y,n+1}$ i $a_{y,n+1}$ canvien de signe. $v_{x,n+1}$ no canvia.
+- **Creuament amb un pla d'impacte** (apartat [2.5](#golpe)). La bola queda al pla i la resta del tick es descarta. Si hi ha cop, surt amb una velocitat nova, que depèn del [punt d'impacte](definicions.qmd#punto-de-impacto) i és més gran que l'anterior, i amb efecte $a_{y,n+1} = 0{,}005\,c$, on $c$ és l'ordre amb què es mou la raqueta que colpeja (apartat [2.3](#tick)). Si no hi ha cop, el punt s'acaba.
+- **Servei** (apartat [2.7](#saque)). Després de cada punt, la bola torna al centre i no es mou durant la pausa del servei. Després surt cap al receptor amb la velocitat d'intercanvi $s_0 = 6$, una inclinació aleatòria i sense efecte.
+
+Entre dos cops, per tant, la bola es mou amb velocitat horitzontal constant i acceleració vertical constant, excepte el canvi de signe a cada rebot. L'apartat [2.6](#entre-golpes) dona la posició després de $n$ ticks sense haver de recórrer-los un a un.
+
+### **2.3 Estats d'una partida i moviments de les raquetes** {#tick}
+
+El motor recorre un cicle de tres estats visibles. Aquests tres estats són pels quals passa una partida: `serving` (pausa del servei), `playing` (bola en joc) i `match_over` (final).
+
+Cada raqueta es mou només en vertical, a cada tick i segons l'[ordre](definicions.qmd#comando) del seu bot. Les úniques tres ordres que retorna un bot són `UP`, `STAY` i `DOWN`. L'ordre:
+
+- `UP` puja la raqueta 8 px,
+- `DOWN` la baixa 8 px i
+- `STAY` la deixa quieta (al seu lloc).
+
+Sigui $c \in \{-1, 0, +1\}$ i fem l'associació:
+
+- $c = -1$ per a `UP`,
+- $c = 0$ per a `STAY` i
+- $c = 1$ per a `DOWN`.
+
+Sigui $p$ l'ordenada del centre de la raqueta en píxels, aleshores la fórmula per al moviment de $p$ en una ordre és:
+
+$$
+p \leftarrow \min(\max(p + 8c,\ 40),\ 560).
+$$
+
+Observa que `UP` és $-1$ perquè l'eix $y$ creix cap avall: pujar és restar. No hi ha inèrcia ni acceleració: es mou a velocitat fixa o s'atura a l'acte, i s'atura als topalls, $p = 40$ a dalt i $p = 560$ a baix. Les dues raquetes comencen la partida a $p = 300$, i el motor no les recol·loca mai: ni després d'un punt ni en començar un set. És a dir, un cop començada una partida les raquetes només es mouen per ordres del bot respectiu.
+
+En estat `playing`, per a cada tick s'executen els passos següents, en aquest ordre:
+
+1. Cada bot rep l'[estat](#estado) a l'**inici** del tick i retorna la seva ordre (internament es converteix en $c$).
+2. Cada raqueta es mou: $p \leftarrow \min(\max(p + 8c,\ 40),\ 560)$.
+3. L'[efecte](definicions.qmd#efecto) canvia la velocitat vertical: $v_y \leftarrow v_y + a_y$.
+4. La bola avança en línia recta: $x \leftarrow x + v_x$, $y \leftarrow y + v_y$, sense tenir en compte les parets de moment.
+5. Si en aquest avanç la vora de la bola arriba a la cara frontal de la raqueta cap a la qual va, es resol el **creuament** (apartat [2.5](#golpe)): cop o punt perdut. La resta del tick es descarta.
+6. Si no, l'ordenada es **plega** sobre el camp (apartat [2.4](#paredes)), cosa que resol tots els rebots del tick.
+
+Els passos 3 i 4 són les lleis de l'apartat [2.2](#leyes) escrites com a assignacions, sense índexs: el motor desa un sol valor de cada magnitud i el substitueix pel nou.
+
+Durant la [pausa del servei](definicions.qmd#pausa-del-saque), en estat `serving`, només s'executen els passos 1 i 2: les raquetes es mouen, la bola no.
+
+### **2.4 Parets i plegament** {#paredes}
+
+La bola rebota a les [parets](definicions.qmd#pared) de dalt i de baix com la llum en un mirall: en xocar, la component vertical de la seva velocitat canvia de signe i l'horitzontal no canvia. Per explicar com implementa el motor els rebots necessitem dues ordenades $y$ i $Y$:
+
+- **$y$, l'[ordenada plegada](definicions.qmd#ordenada-plegada-y-desplegada).** És l'ordenada real del centre de la bola en coordenades de pantalla. És `ball_y` a l'estat (`state`) i al CSV. La bola té radi $R = 6$ i no pot travessar les parets, així que el seu centre és sempre a $[R,\ H - R] = [6, 594]$. Aquest interval mesura $L = H - 2R = 588$ px.
+- **$Y$, l'[ordenada desplegada](definicions.qmd#ordenada-plegada-y-desplegada).** Dins d'un [vol](definicions.qmd#vuelo), és l'ordenada que tindria el centre de la bola si les parets no existissin i seguís el mateix moviment, amb la mateixa velocitat vertical i el mateix efecte. Pot sortir del camp i prendre qualsevol valor real. En començar el vol, totes dues coincideixen: $Y_0 = y_0$. L'ordenada $Y$ no s'observa ni el motor la desa: és una eina matemàtica per descriure i predir el moviment.
+
+Totes dues es relacionen mitjançant una funció $F$, l'[ona triangular](definicions.qmd#onda-triangular): $y = F(Y)$. Més avall en donem la fórmula; primer, la idea.
+
+**Què fa el motor a cada tick.** El motor no cerca els rebots. Al pas 4 del tick (apartat [2.3](#tick)) avança la bola sense tenir en compte les parets, i al pas 6 **plega** l'ordenada obtinguda:
+
+- Si ha quedat dins de $[6, 594]$, la deixa com està.
+- Si ha quedat fora, la reflecteix a la paret que ha sobrepassat: la bola torna cap a dins tants píxels com s'havia passat. A més, $v_y$ i l'efecte $a_y$ canvien de signe.
+
+Dins d'un tick la bola avança en línia recta, així que reflectir el punt final dona exactament la posició que tindria la bola després de rebotar a meitat del tick.
+
+::: {.callout-note title="Exemple 1: un rebot sense efecte"}
+La bola és a $y = 580$, baixa amb $v_y = 10$ i no té efecte ($a_y = 0$).
+
+| Tick | Avanç sense parets | Fora? | $y$ després de plegar | $v_y$ |
+|---|---|---|---|---|
+| 1 | $580 + 10 = 590$ | no | $590$ | $10$ |
+| 2 | $590 + 10 = 600$ | es passa 6 de 594 | $594 - 6 = 588$ | $-10$ |
+| 3 | $588 - 10 = 578$ | no | $578$ | $-10$ |
+
+Si no hi hagués paret, la bola continuaria baixant: $Y = 590, 600, 610$. Les ordenades reals són el reflex d'aquestes a la paret $y = 594$: $600 \mapsto 588$ i $610 \mapsto 578$. És a dir, $y = F(Y)$.
+:::
+
+**L'ona triangular $F$.** Imagina el camp com un passadís de miralls: a sobre i a sota del camp real hi ha còpies d'altura $L$, cadascuna reflectida respecte de l'anterior. La bola desplegada es mou per aquest passadís sense xocar amb res. La bola real és la seva imatge al camp original: si és en una còpia parella, n'hi ha prou de traslladar-la; si és en una de senar, cal reflectir-la. Amb $m = (Y - R) \bmod 2L$, això és
+
+$$
+F(Y) = \begin{cases} R + m & \text{si } m \le L,\\ R + 2L - m & \text{si } m > L, \end{cases}
+$$
+
+una funció en ziga-zaga de període $2L = 1176$ amb valors a $[6, 594]$. Els seus pics i valls són els rebots.
+
+![L'ona triangular $F$. L'eix vertical creix cap avall, com al camp. Les línies puntejades són les fronteres $R + kL$: cada vegada que l'ordenada desplegada $Y$ en creua una, la bola rebota. Dins del camp, $F(Y) = Y$ (línia taronja).](../../images/onda_triangular.svg){fig-alt="Gràfica en ziga-zaga de l'ordenada plegada respecte de la desplegada, entre 6 i 594 px, amb període 1176 px i quatre punts d'exemple." width="100%"}
+
+**Per què també canvia de signe l'efecte.** Si en un tick hi ha un rebot, el motor canvia el signe de $v_y$, com en un mirall, i **també el d'$a_y$**. Això darrer no és física realista: és una decisió de disseny. Amb ella, la bola real és a cada tick el reflex de la desplegada, i la desplegada segueix sense interrupcions el mateix moviment d'abans del rebot.
+
+::: {.callout-note title="Exemple 2: un rebot amb efecte"}
+La bola és a $y = 580$, amb $v_y = 6$ i un efecte exagerat, $a_y = 1$, perquè es vegi (al motor, $|a_y| \le 0{,}005$). Recorda que a cada tick primer $v_y \leftarrow v_y + a_y$ i després la bola avança (apartat [2.2](#leyes)).
+
+| Tick | $Y$ (sense parets) | $F(Y)$ | $y$ del motor | $y$ si $a_y$ no canviés de signe |
+|---|---|---|---|---|
+| 1 | $587$ | $587$ | $587$ | $587$ |
+| 2 | $595$ | $593$ | $593$ (rebot) | $593$ (rebot) |
+| 3 | $604$ | $584$ | $584$ | $586$ |
+| 4 | $614$ | $574$ | $574$ | $580$ |
+| 5 | $625$ | $563$ | $563$ | $575$ |
+
+El motor reprodueix exactament $F(Y)$ a cada tick. Si $a_y$ no canviés de signe, l'efecte, que abans empenyia la bola cap avall, la continuaria empenyent cap avall després de rebotar. La bola real deixaria de ser el reflex de la desplegada, i caldria calcular cada rebot per separat.
+:::
+
+**La conseqüència, i per què importa.** Gràcies a aquesta regla, tot un vol, amb tots els seus rebots, es descriu amb **una sola** corba desplegada $Y_n$ (apartat [2.6](#entre-golpes)), i la bola real és $y_n = F(Y_n)$. Per predir on serà la bola d'aquí a molts ticks no cal simular rebot a rebot: n'hi ha prou de calcular $Y_n$ i plegar-lo una vegada. A l'inrevés, per estimar la velocitat a partir del que observes, primer cal **desplegar** les observacions (apartat [3.3](#estimacion)).
+
+Les dues maneres de calcular coincideixen en matemàtiques exactes; en coma flotant difereixen en un error d'arrodoniment negligible, que no canvia cap decisió.
+
+### **2.5 El cop** {#golpe}
+
+Quan el centre de la bola creua el [pla d'impacte](definicions.qmd#plano-de-impacto) de la raqueta que rep ($x = 36$ a l'esquerra, $x = 764$ a la dreta), el motor calcula amb la fracció exacta del tick l'[ordenada d'impacte](definicions.qmd#ordenada-de-impacto) $y^*$.
+
+- Si $|y^* - p| \le h/2 + R = 46$ (la [franja d'impacte](definicions.qmd#alcance)), hi ha **cop**. La bola queda exactament al pla, a l'altura $y^*$, la resta del tick es descarta i el comptador `rally_hits` augmenta en 1.
+- Si no, el receptor **perd el punt**. Els extrems de la raqueta no fan rebotar la bola.
+
+En un cop, el [punt d'impacte](definicions.qmd#punto-de-impacto) $u = (y^* - p)/46 \in [-1, 1]$ decideix la sortida ($u = 0$ és el centre de la raqueta, $u = -1$ l'extrem de dalt i $u = 1$ el de baix):
+
+- **Pendent de sortida** $m = v_{y,0}/|v_{x,0}|$, on $v_{x,0}$ i $v_{y,0}$ són les components de la velocitat amb què surt la bola, en començar el [vol](definicions.qmd#vuelo) nou: $m(u) = \operatorname{sgn}(u)\,\max(m_{\min},\ m_{\max}\,|u|)$, amb $m_{\max} = \tan 60°$ i $m_{\min} = \tan 5°$. Colpejar amb el centre retorna la bola gairebé horitzontal; amb els extrems, amb un angle tancat cap a aquell costat. Si $u = 0$ exactament, el signe se sorteja.
+- **Velocitat**: la [velocitat d'intercanvi](definicions.qmd#velocidad-de-intercambio) $s$ es multiplica per $1{,}05\,(1 + 0{,}05\,|u|)$: cada cop accelera la bola, i més si es colpeja amb l'extrem. Després, $v_{x,0} = \pm s/\sqrt{1 + m^2}$ (cap al rival) i $v_{y,0} = s\,m/\sqrt{1 + m^2}$.
+- **Efecte**: $a_{y,0} = \kappa\,c$, amb $\kappa = 0{,}005$ px/tick² i $c$ l'ordre de la raqueta que colpeja **en aquell mateix tick**. `DOWN` corba la bola cap avall, `UP` cap amunt i `STAY` no la corba. Es manté fins al cop següent, excepte el signe, que canvia a cada rebot.
+
+### **2.6 Moviment entre cops** {#entre-golpes}
+
+Entre dos cops, en un [vol](definicions.qmd#vuelo), comptem els ticks des del seu inici: $n = 0$ és la primera posició del vol, amb velocitat $(v_{x,0}, v_{y,0})$ i efecte $a_{y,0}$. Aplicant $n$ vegades les lleis de l'apartat [2.2](#leyes) i desplegant els rebots (apartat [2.4](#paredes)), la bola compleix exactament, després de $n$ ticks complets:
+
+$$
+x_n = x_0 + n\,v_{x,0}, \qquad Y_n = y_0 + n\,v_{y,0} + a_{y,0}\,\frac{n(n+1)}{2}, \qquad y_n = F(Y_n).
+$$
+
+És a dir, $v_{x,n} = v_{x,0}$ és constant i la velocitat vertical desplegada creix en $a_{y,0}$ cada tick: $Y_n - Y_{n-1} = v_{y,0} + n\,a_{y,0}$. En coordenades plegades, $v_{y,n}$ i $a_{y,n}$ són aquests mateixos valors amb el signe canviat després de cada rebot. Fixa't que és la fórmula **discreta**, no la contínua $y_0 + v_{y,0}\,t + \tfrac12 a_{y,0}\,t^2$, que comet un error d'$a_{y,0}\,n/2$: el $n(n+1)/2$ surt del fet que la posició avança amb la velocitat **nova**.
+
+### **2.7 Servei** {#saque}
+
+Abans de cada servei (en començar la partida i cada set, i després de cada punt o nul) hi ha una **pausa de 60 ticks** en estat `serving`: la bola està quieta al centre, $(400, 300)$, i les raquetes es poden moure (no es recol·loquen). Després:
+
+- La bola surt del centre cap al [receptor](definicions.qmd#receptor), el rival de qui serveix, amb la [velocitat d'intercanvi](definicions.qmd#velocidad-de-intercambio) $s_0 = 6$, sense efecte ($a_{y,0} = 0$) i amb `rally_hits` a 0.
+- El pendent $m$ se sorteja entre $\tan 20°$ i $\tan 45°$, i també si va cap amunt o cap avall.
+- **Qui serveix**: el primer servei de la partida se sorteja. Després serveix qui guanya el punt. El primer servei dels sets 2 i 3 és per a qui va perdre el set anterior.
+
+Les components de la velocitat de sortida es calculen amb les mateixes fórmules que en un cop (apartat [2.5](#golpe)), amb $s = s_0$:
+
+$$
+v_{x,0} = \pm\frac{s_0}{\sqrt{1+m^2}}, \qquad v_{y,0} = \frac{s_0\,m}{\sqrt{1+m^2}}, \qquad \sqrt{v_{x,0}^2 + v_{y,0}^2} = s_0,
+$$
+
+amb el signe de $v_{x,0}$ cap al receptor. Com que $|m|$ és entre $\tan 20°$ i $\tan 45°$, $|v_{y,0}|$ és entre $6 \sin 20° \approx 2{,}05$ i $6 \sin 45° \approx 4{,}24$ px/tick, i $|v_{x,0}|$ entre $6 \cos 45° \approx 4{,}24$ i $6 \cos 20° \approx 5{,}64$ px/tick. Com que no hi ha efecte, el mòdul de la velocitat és $s_0$ durant tot el primer vol, encara que hi hagi rebots: un rebot només canvia el signe de $v_{y,n}$. No confonguis $s_0$, el mòdul de la velocitat, amb $v_{y,0}$, la seva component vertical.
+
+### **2.8 Puntuació** {#puntuacion}
+
+La [partida](definicions.qmd#partida) és al millor de 3 [sets](definicions.qmd#set). Un set el guanya el bot que té $a$ punts davant $b$ del rival quan
+
+$$
+(a \ge 11 \ \text{i}\ a - b \ge 2) \quad \text{o} \quad a = 15,
+$$
+
+és a dir: a 11 punts amb 2 d'avantatge; des de 10-10, a avantatge de 2; i a 14-14 el punt següent guanya el set (15-14). Els bots no canvien de costat entre sets.
+
+### **2.9 Nuls i final de la partida** {#nulos}
+
+Perquè tota partida acabi, hi ha dues regles de seguretat:
+
+- Si un [intercanvi](definicions.qmd#intercambio) arriba a **100 cops**, s'anul·la en el tick del cop 100: és un [nul](definicions.qmd#nulo). Ningú no guanya el punt i es repeteix el servei amb el mateix jugador.
+- En arribar al **nul número 20**, la partida acaba en [empat tècnic](definicions.qmd#empate-tecnico).
+
+A la pràctica, els nuls són raríssims: només apareixen entre bots que es retornen la bola gairebé horitzontal sense moure's.
+
+### **2.10 Atzar i reproductibilitat** {#azar}
+
+Tot l'atzar del joc (qui serveix primer, la direcció de cada servei i el signe del pendent si $u = 0$) surt d'un generador `random.Random(semilla)` del motor. Per això **mateixa [llavor](definicions.qmd#semilla) i mateixes ordres donen exactament la mateixa partida** en qualsevol ordinador, i una partida es pot enregistrar com la seva llavor més la llista d'ordres. Cada bot rep la seva pròpia llavor a `Bot(seed)` ($2s + 1$ l'esquerre i $2s + 2$ el dret, si $s$ és la de la partida), per si vol fer servir atzar amb el seu propi `random.Random`.
+
+---
+
+## 3. El teu bot {#bot}
+
+::: {.callout-tip title="Què ha de fer el teu bot, en poques paraules"}
+El teu bot controla una de les dues raquetes, però el motor sempre et presenta el camp com si juguessis a l'esquerra, així que només has de programar aquest cas. **L'única feina del teu bot ha de ser posar la raqueta al lloc per on passarà la bola, abans que arribi.**
+
+**El que passa a cada tick**
+
+El motor crida `decide(state)`. El teu bot mira l'estat (on és la bola, on és la seva raqueta) i respon amb una de tres ordres:
+
+- `"UP"`: la raqueta puja 8 píxels;
+- `"DOWN"`: la raqueta baixa 8 píxels;
+- `"STAY"`: la raqueta es queda quieta.
+
+Això és tot el que pot fer el bot. No mou la bola ni sap res més.
+
+**Com decideix, en tres passos**
+
+1. **Recordar.** Desa les últimes posicions de la bola. Amb una sola foto no se sap cap on va. Amb tres de seguides se'n pot calcular la velocitat i com es corba.
+2. **Predir.** Calcula a quina altura creuarà la bola la línia de la teva raqueta. Cal tenir en compte que la bola rebota a les parets de dalt i de baix, i que es pot anar corbant per l'efecte.
+3. **Moure's.** Compara aquesta altura amb el centre de la teva raqueta. Si la bola arribarà més amunt, `"UP"`; si arribarà més avall, `"DOWN"`; si ja hi ets bé, `"STAY"`. La bola es retorna si el seu centre creua la línia de la teva raqueta a menys de 46 píxels del centre d'aquesta.
+
+Mentre la bola s'allunya o s'espera el servei, el més assenyat és tornar cap al centre.
+
+**Com millorar-lo a poc a poc.** Comença per un bot que només segueixi la bola i afegeix una capacitat cada vegada. El requadre [Com abordar el teu bot](#tip-etapas) de l'apartat [3.5](#referencia) en dona les etapes. Els detalls exactes (fórmules, camps de `state`, normes) són als apartats següents i al [glossari](definicions.qmd).
+:::
+
+### **3.1 La interfície**
+
+El teu [bot](definicions.qmd#bot) és la classe `Bot` de `src/pong/bot.py`. El motor la crea una vegada per partida amb `Bot(seed)` i crida `decide(state)` una vegada per tick:
+
+```python
+class Bot:
+    def __init__(self, seed: int) -> None:
+        """seed: semilla para un random.Random propio, si el bot usa azar."""
+
+    def decide(self, state: dict) -> str:
+        """Devuelve "UP", "DOWN" o "STAY"."""
+```
+
+El mateix objecte dura tota la partida, així que pots desar als seus atributs el que necessitis recordar: posicions anteriors de la bola, la teva predicció, en quin intercanvi ets…
+
+### **3.2 L'estat** {#estado}
+
+`state` és un diccionari amb la situació a l'inici del tick, **normalitzat**: el teu bot es veu sempre a l'esquerra, amb la cara frontal de la seva raqueta a $x = 30$, jugui al costat que jugui. Per al bot dret, el motor transforma $x \to 800 - x$; $y$ no canvia. En conseqüència, $v_{x,n}$ canvia de signe i $v_{y,n}$ i $a_{y,n}$ no canvien. Així, la bola s'acosta a tu quan `ball_x` decreix.
+
+| Clau | Tipus | Significat |
+| :--- | :--- | :--- |
+| `protocol_version` | `str` | `"1.0"` |
+| `tick` | `int` | Índex, des de 0, del tick que s'executarà |
+| `state` | `str` | `"serving"`, `"playing"` o `"match_over"` |
+| `ball_x`, `ball_y` | `float` | Centre de la bola (px): la posició $(x_n, y_n)$ al final del tick anterior |
+| `my_paddle_y`, `opp_paddle_y` | `float` | Centre de la teva raqueta i de la del rival (px) |
+| `my_points`, `opp_points` | `int` | Punts del set en curs |
+| `my_sets`, `opp_sets` | `int` | Sets guanyats |
+| `serving` | `str` | `"me"` o `"opp"`: qui serveix |
+| `serve_ticks_left` | `int` | Ticks de pausa que queden: 60, 59, …, 1 durant la pausa; 0 en joc |
+| `rally_hits` | `int` | Cops de l'intercanvi en curs |
+| `lets` | `int` | Nuls acumulats a la partida |
+| `field` | `dict` | Les constants del joc (vegeu la [taula de constants](definicions.qmd#simbolos)), per no haver-les d'escriure a mà |
+
+El diccionari és una còpia: modificar-lo no afecta el motor. **No inclou la velocitat $(v_{x,n}, v_{y,n})$ ni l'efecte $a_{y,n}$**: el teu bot els ha d'estimar.
+
+### **3.3 Estimació cinemàtica** {#estimacion}
+
+Amb les posicions de ticks successius d'un mateix [vol](definicions.qmd#vuelo), les diferències finites donen la velocitat i l'efecte **exactament** (excepte un error d'arrodoniment negligible), perquè el moviment és discret (apartat [2.6](#entre-golpes)). Comptant $n$ des de l'inici del vol, per a $n \ge 1$ (i $n \ge 2$ en la segona diferència):
+
+$$
+\Delta x_n = x_n - x_{n-1} = v_{x,0}, \qquad \Delta Y_n = Y_n - Y_{n-1} = v_{y,0} + n\,a_{y,0}, \qquad \Delta^2 Y_n = \Delta Y_n - \Delta Y_{n-1} = a_{y,0}.
+$$
+
+Així que el teu bot ha de desar almenys les tres últimes posicions observades. Hi ha tres dificultats, i resoldre-les és part de l'exercici:
+
+1. **Latència.** Dues posicions seguides d'un vol donen $v_{x,0}$ i $v_{y,n}$; en calen tres per a l'efecte $a_{y,0}$. Just després d'un servei o d'un cop, el teu bot encara no coneix la trajectòria.
+2. **Rebots.** L'ordenada observada ja està [plegada](definicions.qmd#ordenada-plegada-y-desplegada). Si entre dues observacions hi va haver un [rebot](definicions.qmd#rebote), $\Delta y_n = y_n - y_{n-1}$ no és $v_{y,n}$: cal desplegar. Un canvi de signe de $\Delta y_n$ no basta per detectar-lo, perquè també passa al vèrtex d'una paràbola amb efecte.
+3. **Ticks amb cop.** En el tick d'un cop, el motor col·loca la bola al pla d'impacte i descarta la resta del moviment, així que la diferència entre l'observació anterior al cop i la del cop no val. L'observació en què augmenta `rally_hits` és la **primera del vol nou**, i l'estimació comença de nou des d'ella.
+
+### **3.4 Normes** {#normas-bot}
+
+- **El teu bot ha de ser teu.** Només pot importar `math`, `random` (amb un generador propi), `collections`, `itertools`, `functools`, `heapq`, `bisect`, `copy`, `dataclasses`, `enum`, `typing` i `numpy`. No pot importar el paquet `pong` (ni el motor ni els bots de referència) ni `pong_ref_bots`, ni fer servir fitxers, xarxa, subprocessos, `eval` o `exec`. `src/pong/normas.py` ho comprova sense executar el teu bot: `runner`, `evaluate` i els tests no juguen amb un bot que no compleix i et diuen en quina línia és el problema. L'avaluació oficial fa la mateixa comprovació.
+- **Ordres.** Només valen les cadenes exactes `"UP"`, `"DOWN"` i `"STAY"`. Si `decide` llança una excepció o retorna una altra cosa, aquell tick compta com a `"STAY"`. Si `Bot(seed)` llança una excepció, la partida no es juga i la perds ([abandonament](definicions.qmd#abandono)).
+- **Temps.**
+  - 50 ms per crida: si se supera, aquell tick compta com a `"STAY"`.
+  - 2 ms de mitjana per crida en tota la partida: si se supera, perds la partida amb 0 punts. La mitjana es vigila des de la crida 5 000 i la partida es talla tan bon punt la supera ([tall per temps](definicions.qmd#corte-por-tiempo)).
+  - 1 s sense respondre: perds la partida.
+
+  Procura no passar d'**1 ms de mitjana** a `evaluate`, perquè la màquina de l'avaluació oficial pot ser més lenta que el teu Codespace. Un bot raonable tarda entre 0,005 i 0,05 ms.
+- **NumPy** fa servir rutines diferents en PC i en Mac: un bot que l'utilitzi pot decidir diferent en casos límit, i el seu percentatge local pot diferir lleugerament de l'oficial.
+
+::: {.callout-important title="Un bot que no és teu invalida la pràctica"}
+Si el teu `bot.py` no supera la comprovació de `normas.py` (la primera norma de la llista), **la pràctica queda suspesa i l'hauràs de recuperar**. Abans de lliurar, comprova que `uv run pytest tests/test_normas.py` passa.
+:::
+
+### **3.5 Els bots de referència** {#referencia}
+
+El teu bot es mesura contra tres [bots de referència](definicions.qmd#bots-de-referencia), cadascun d'un nivell:
+
+| Bot | Nom a les ordres | Com juga |
+| :--- | :--- | :--- |
+| Fàcil | `easy` | Segueix la bola amb la seva raqueta, sense predir. El seu codi és a `src/pong/bots_ref/easy.py` |
+| Mitjà | `medium` | Prediu on arribarà la bola i apunta les seves devolucions |
+| Difícil | `hard` | Domina el model complet del joc, inclòs l'efecte, i l'utilitza per atacar |
+
+Mitjà i Difícil es distribueixen compilats: hi pots jugar en contra, però no en pots veure el codi.
+
+::: {#tip-etapas .callout-tip title="Com abordar el teu bot"}
+Avança per etapes i mesura cadascuna amb `evaluate`:
+
+| Etapa | Què fa el teu bot | Què necessita |
+| :--- | :--- | :--- |
+| 1. Seguir la bola | Mou la raqueta cap a l'altura actual de la bola, com Fàcil | Només `state` |
+| 2. Predir sense rebots | Va allà on la bola creuarà el teu [pla d'impacte](definicions.qmd#plano-de-impacto) | Velocitat estimada amb dues observacions (apartat [3.3](#estimacion)) |
+| 3. Desplegar els rebots | Prediu encara que la bola reboti a les parets | L'ona triangular $F$ (apartat [2.4](#paredes)) |
+| 4. Estimar l'efecte | Prediu la corba de la bola | Tres observacions i la paràbola de l'apartat [2.6](#entre-golpes) |
+| 5. Apuntar | Tria amb quin punt de la raqueta colpejar ($u$) per enviar la bola lluny del rival | La regla del cop (apartat [2.5](#golpe)) |
+| 6. Fer servir l'efecte | Tria l'ordre del tick del cop per corbar la devolució | L'efecte $a_{y,0} = \kappa\,c$ (apartat [2.5](#golpe)) |
+
+Superar Fàcil exigeix predir i desviar la bola; Mitjà, apuntar amb criteri; Difícil, dominar tot el model.
+:::
+
+### **3.6 Veure i depurar les teves partides**
+
+`pong.html` executa el motor al navegador i té dos modes: **en directe** (el teu bot contra Fàcil, contra si mateix o contra una versió anterior desada a `mis_bots/`, amb pausa i avanç tick a tick) i **reproducció** de qualsevol registre de `partidas/`, incloses les teves partides contra Mitjà i Difícil. Els seus panells mostren l'`state` que rep cada bot, els valors reals del motor (les velocitats i l'efecte que el teu bot ha d'estimar) i els `print` i excepcions del teu bot.
+
+Si el teu bot desa a `self.depuracion` un diccionari amb les claus `objetivo_y` (un nombre), `trayectoria` o `puntos` (llistes de punts $(x, y)$) o `texto`, en les coordenades del seu `state`, la pàgina el dibuixa sobre el camp. És opcional i no afecta el joc.
+
+---
+
+## 4. Registres de les partides {#registros}
+
+`runner` i `evaluate --guardar` enregistren cada partida a `partidas/`. Hi ha dos fitxers possibles:
+
+- **[Registre JSON](definicions.qmd#registro-json)**, `partida_<semilla>.json`: la llavor, els noms dels bots, els sets, el resultat (`"left"`, `"right"` o `"draw"`), `abandono` i `tiempo_excedido`, la llista d'[intercanvis](definicions.qmd#intercambio) (cadascun amb `start_tick`, `end_tick`, `hits`, `outcome` i `winner`) i les ordres de cada tick. Amb la llavor i les ordres, el motor reprodueix la partida. Ocupa poc: **puja'l a GitHub**.
+- **[CSV](definicions.qmd#csv)**, `partida_<semilla>.csv`: una fila per tick amb **el mateix que veuen els bots**, en coordenades globals: `tick`, `state`, `ball_x`, `ball_y`, `p_left`, `p_right`, `cmd_left`, `cmd_right`, `server` i `rally_hits`. La fila $t$ és l'estat abans d'executar el tick $t$. Ocupa diversos MB i no es puja: s'obté en qualsevol moment del JSON amb `uv run python -m pong.registro <json>`.
+
+Les velocitats i l'efecte no són al CSV. Per comprovar les teves estimacions, la [veritat del motor](definicions.qmd#verdad-del-motor) (`ball_vx`, `ball_vy`, `ball_ay` i `ball_speed` a cada tick) s'obté rejugant el JSON amb `pong.registro.verdad(ruta)` o amb `uv run python -m pong.registro <json> --verdad`.
+
+---
+
+## 5. Els teus tests {#tests}
+
+A `tests/test_bot.py` escriuràs amb `pytest` els tests del teu bot. La plantilla porta dos tests de partida (que el bot retorna ordres vàlides als dos costats); amplia'ls amb tests del teu predictor **contra el motor**: que l'ordenada de creuament que predius coincideix amb la del motor, també en els casos límit (cantonades, diversos rebots en un mateix tick, efecte, bola gairebé horitzontal…). Pots fer servir el motor als tests (`pong.pong_engine`) encara que el teu bot no el pugui importar.
+
+Aquest punt es qualifica així:
+
+| Criteri | Punts | Com es mesura |
+| :--- | :--- | :--- |
+| Passen i cobreixen el teu bot | 0,4 | Tots els teus tests passen i executen almenys el 80 % de les línies de `bot.py` |
+| Detecten errors | 0,4 | S'introdueixen a propòsit petits errors a `bot.py` (canviar un signe, un `<` per un `<=`, una constant…) i es compta la fracció que els teus tests detecten, és a dir, que fan fallar algun test: la **puntuació de mutació**. Reps 0,4 multiplicat per aquesta fracció |
+| Revisió del professor | 0,2 | Es resta si els tests són trivials (per exemple, si només comproven que `decide` retorna una cadena) |
+
+Pots veure la teva cobertura amb `uv run pytest tests/test_bot.py --cov=pong.bot`. Per detectar errors, el que més ajuda són els tests que comparen la teva predicció amb el motor en casos concrets: un error en la predicció canvia el resultat i el test falla.
+
+---
+
+## 6. El notebook d'anàlisi {#notebook}
+
+El notebook `notebook/analisis_mo.py`, de [Marimo](https://marimo.io){target="_blank" rel="noopener noreferrer"}, analitza **una partida qualsevol** a partir del seu registre JSON. Ja porta l'enunciat de cada apartat, amb exemples i el tipus de gràfic de cada figura, i les funcions que has d'escriure, amb el seu nom, els seus paràmetres i la seva docstring. No canviïs aquests noms ni paràmetres: les teves funcions es corregeixen amb tests del professor. No hi ha text a redactar. `notebook/ejemplo.html` és el mateix notebook amb les figures de la solució, sense codi: compara-hi les teves figures.
+
+Té tres parts:
+
+1. **Lectura i neteja de dades** (L1–L4): llegir el JSON i el CSV amb `json` i pandas, quedar-se amb els ticks en joc, assignar cadascun al seu intercanvi i construir la taula de [vols](definicions.qmd#vuelo).
+2. **Anàlisi de la partida** (P1–P4): quatre proposicions sobre el moviment de la bola (moviment entre cops, plegament, creuament amb la raqueta i velocitats plegades), que comproves amb les dades i representes en una figura.
+3. **Anàlisi estadística** (S1–S8): vuit figures sobre el joc dels dos bots. Per a les proporcions es fan servir intervals de confiança de Wilson, que el notebook explica.
+
+| Figura | Què mostra | Tipus de gràfic | Punts |
+| :--- | :--- | :--- | :--- |
+| S1 | Cops per intercanvi segons qui va guanyar el punt | Diagrama de caixes | 0,25 (base) |
+| S2 | Punt d'impacte $u$ de cada bot | Histogrames, un panell per bot | 0,25 (base) |
+| S3 | Llei d'acceleració del cop, per regressió lineal | Dispersió amb rectes i panell de residus | 0,5 (ampliació) |
+| S4 | Ordenada d'arribada de cops i errades, per bot | Histogrames apilats | 0,3 (ampliació) |
+| S5 | Proporció d'errades segons la velocitat de la bola | Barres amb barres d'error | 0,25 (base) |
+| S6 | Avantatge del servei | Barres amb barres d'error i línia de referència | 0,4 (ampliació) |
+| S7 | Ordres de cada bot i recorregut de la seva raqueta | Barres agrupades i diagrama de violí | 0,25 (base) |
+| S8 | Evolució del marcador | Línia esglaonada | 0,3 (ampliació) |
+
+::: {#imp-requisito .callout-important title="Requisit: L1–L4 carreguen qualsevol partida"}
+Les funcions de lectura i neteja (L1–L4) són el primer que has de fer: amb elles es carrega la partida i, sense elles, el notebook no dibuixa cap figura. Abans de carregar-la es comprova que el que retornen és coherent. **Si amb la partida del professor o amb alguna de les partides dels seus tests (normals, amb nul, amb abandonament o tallades per temps) alguna de L1–L4 falla o la partida no es pot carregar, el notebook es qualifica amb 0.** Comprova-ho amb `uv run pytest tests/test_notebook.py`, que carrega amb les teves funcions `notebook/ejemplo.json` i les partides rares de `notebook/raras/`.
+:::
+
+**Correcció.** El professor executa el teu notebook sobre una partida seva que no has vist: corregeix les teves funcions amb tests propis i revisa les figures amb una rúbrica (títol, eixos amb nom i unitats, i el tipus de gràfic demanat). El teu notebook ha de funcionar amb qualsevol partida, també amb les rares.
+
+---
+
+## 7. Avaluació {#evaluacion}
+
+| Lliurable | Component | Punts | Com es qualifica |
+| :--- | :--- | :--- | :--- |
+| `bot.py` (4,5) | Rendiment | 3,5 | Automàticament, amb partides contra els tres bots de referència |
+| | Qualitat del codi | 1 | Automàticament, amb una revisió acotada del professor |
+| `tests/test_bot.py` (1) | Tests | 1 | Vegeu l'[apartat 5](#tests) |
+| `notebook/analisis_mo.py` (4,5) | Lectura i neteja (L1–L4) | 0,4 | Tests del professor; a més, requisit de tot el notebook |
+| | P1–P4 | 1,6 | 0,4 cadascuna: tests de les seves funcions i rúbrica de la seva figura |
+| | S1, S2, S5 i S7 (base) | 1,0 | 0,25 cadascuna |
+| | S3, S4, S6 i S8 (ampliació) | 1,5 | 0,5, 0,3, 0,4 i 0,3 |
+
+### **7.1 Rendiment del bot (3,5 punts)** {#rendimiento}
+
+El teu bot juga **100 partides contra cada bot de referència**, la meitat a cada costat, amb llavors que no es publiquen fins després del lliurament. La mesura és el teu [percentatge de punts](definicions.qmd#porcentaje-de-puntos) $q$: la mitjana, sobre les partides, de la fracció de punts que guanyes a cadascuna. Una partida perduda per abandonament o per temps compta 0.
+
+Cada rival dona els seus punts de forma lineal entre dues cotes: $w \cdot \min\!\big(1, \max\big(0, \tfrac{q - q_0}{q_1 - q_0}\big)\big)$, amb $w$ el pes del rival.
+
+| Rival | Pes $w$ | 0 punts amb $q \le q_0$ | Tots amb $q \ge q_1$ |
+| :--- | :--- | :--- | :--- |
+| Fàcil | 1 | 50 % | 90 % |
+| Mitjà | 1 | 45 % | 70 % |
+| Difícil | 1,5 | 35 % | 48 % |
+
+::: {.callout-note title="Exemple"}
+Amb $q = 85\,\%$ contra Fàcil, $55\,\%$ contra Mitjà i $40\,\%$ contra Difícil obtens $1 \cdot \tfrac{0{,}35}{0{,}40} + 1 \cdot \tfrac{0{,}10}{0{,}25} + 1{,}5 \cdot \tfrac{0{,}05}{0{,}13} = 0{,}875 + 0{,}4 + 0{,}58 \approx 1{,}85$ punts de 3,5.
+:::
+
+`evaluate` juga igual que l'avaluació oficial (alterna costats, aplica el límit de temps i fa servir aquestes cotes) i et dona la teva nota estimada. El teu resultat oficial només variarà per l'atzar de les llavors: amb 100 partides, uns dos punts percentuals.
+
+### **7.2 Qualitat del codi (1 punt)** {#calidad}
+
+Es mesura automàticament sobre `bot.py`:
+
+| Criteri | Punts | Nota completa si… |
+| :--- | :--- | :--- |
+| Docstrings | 0,3 | totes les funcions, classes i mètodes tenen docstring (0 amb la meitat o menys) |
+| Anotacions de tipus | 0,3 | tot està anotat (0,2) i mypy no dona errors (0,1) |
+| Estil | 0,2 | Ruff no dona avisos (0 amb 10 o més) |
+| Estructura | 0,2 | cap funció supera complexitat 10 ni 50 línies |
+
+El professor pot restar fins a 0,3 punts si les docstrings o els noms són de farciment.
+
+### **7.3 Defensa oral** {#defensa}
+
+La defensa oral no és obligatòria per a tothom. Si hi ha dubtes sobre l'autoria del que lliures, el professor et pot convocar a una defensa oral breu, en què explicaràs com prediu el teu bot i el modificaràs en directe.
+
+### **7.4 Ús de la intel·ligència artificial** {#ia}
+
+La [guia docent](../informacions/guia-docent.qmd) autoritza l'ús d'eines d'IA a la pràctica, amb les seves condicions: les pots fer servir per entendre, revisar, documentar o provar el teu codi, però no per lliurar com a teu el que no entens. Has de poder explicar, justificar i modificar qualsevol part del que lliures, i declarar quines eines vas fer servir, per a què i en quines parts. Tingues en compte la defensa oral (apartat [7.3](#defensa)).
+
+---
+
+## Referències {.unnumbered}
+
+::: {#refs}
+:::
