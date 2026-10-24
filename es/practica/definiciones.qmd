@@ -172,7 +172,7 @@ $$
 
 Su gráfica es un zigzag: sube con pendiente 1 de $R$ a $R + L$, baja con pendiente $-1$ y se repite con **periodo** $2L = 1176$, es decir, $F(Y + 2L) = F(Y)$. Siempre toma valores en $[R, H - R] = [6, 594]$. Dentro del campo, $F(Y) = Y$; cada pico o valle es un [rebote](#rebote). $F$ no es inyectiva: cada $y$ proviene de infinitas $Y$. El motor la aplica en cada tick (`pe.fold`) a la ordenada recién avanzada, sin buscar antes los rebotes, y en el notebook la programas como `plegar`.
 
-![La onda triangular $F$. Cada vez que $Y$ cruza una frontera $R + kL$ (líneas punteadas) la bola rebota.](imagenes/onda_triangular.svg){fig-alt="Gráfica en zigzag de la ordenada plegada frente a la desplegada, entre 6 y 594 px, con periodo 1176 px." width="100%"}
+![La onda triangular $F$. El eje vertical crece hacia abajo, como en el campo: la pared de arriba es $y = 6$ y la de abajo, $y = 594$. Las líneas punteadas son las fronteras $R + kL$: cada vez que $Y$ cruza una, la bola rebota. Dentro del campo, $F(Y) = Y$ (línea naranja). Los puntos son los del ejemplo de abajo.](../../images/onda_triangular.svg){fig-alt="Gráfica en zigzag de la ordenada plegada, con el eje vertical hacia abajo entre 6 y 594 px, frente a la desplegada, con periodo 1176 px; marca los puntos F(−100) = 112, F(300) = 300, F(700) = 488 y F(1300) = 124." width="100%"}
 
 ::: {.callout-note title="Ejemplo"}
 $F(300) = 300$ (dentro del campo); $F(700) = 488$ (sobrepasa la pared de abajo, $y = 594$, en 106 y rebota a $594 - 106$); $F(1300) = 124$ (rebota abajo y arriba); $F(-100) = 112$ (sobrepasa la pared de arriba en 106 y rebota a $6 + 106$).

@@ -83,7 +83,7 @@ Las reglas las define el [motor](definiciones.qmd#motor), `src/pong/pong_engine.
 
 El campo mide $W \times H = 800 \times 600$ px, con el origen en la esquina superior izquierda y el **eje $y$ creciendo hacia abajo**. El tiempo se mide en [ticks](definiciones.qmd#tick). El tick es una unidad de tiempo discreta y abstracta, un paso de la simulación, sin equivalencia en segundos. Las velocidades se miden en px/tick y el efecto en px/tick².
 
-![El campo. La bola rebota en las [paredes](definiciones.qmd#pared) de arriba y abajo; a los lados están las raquetas y sus [planos de impacto](definiciones.qmd#plano-de-impacto).](imagenes/campo.svg){fig-alt="Esquema del campo de 800 por 600 píxeles con las dos raquetas, la bola, las paredes y los planos de impacto." width="100%"}
+![El campo. La bola rebota en las [paredes](definiciones.qmd#pared) de arriba y abajo; a los lados están las raquetas y sus [planos de impacto](definiciones.qmd#plano-de-impacto).](../../images/campo.svg){fig-alt="Esquema del campo de 800 por 600 píxeles con las dos raquetas, la bola, las paredes y los planos de impacto." width="100%"}
 
 La visualización muestra 60 ticks por segundo, pero eso no afecta a la física. Fuera del navegador, las partidas van tan rápido como permite el ordenador. El motor tarda unos 7 µs por tick, así que una partida entera se juega en una fracción de segundo. 
 
@@ -197,6 +197,8 @@ F(Y) = \begin{cases} R + m & \text{si } m \le L,\\ R + 2L - m & \text{si } m > L
 $$
 
 una función en zigzag de periodo $2L = 1176$ con valores en $[6, 594]$. Sus picos y valles son los rebotes.
+
+![La onda triangular $F$. El eje vertical crece hacia abajo, como en el campo. Las líneas punteadas son las fronteras $R + kL$: cada vez que la ordenada desplegada $Y$ cruza una, la bola rebota. Dentro del campo, $F(Y) = Y$ (línea naranja).](../../images/onda_triangular.svg){fig-alt="Gráfica en zigzag de la ordenada plegada frente a la desplegada, entre 6 y 594 px, con periodo 1176 px y cuatro puntos de ejemplo." width="100%"}
 
 **Por qué también cambia de signo el efecto.** Si en un tick hay un rebote, el motor cambia el signo de $v_y$, como en un espejo, y **también el de $a_y$**. Esto último no es física realista: es una decisión de diseño. Con ella, la bola real es en cada tick el reflejo de la desplegada, y la desplegada sigue sin interrupciones el mismo movimiento de antes del rebote.
 
