@@ -168,6 +168,8 @@ website:
           contents:
             - href: ca/practica/practica.qmd
               text: "Pràctica de l'Assignatura"
+            - href: ca/practica/definicions.qmd
+              text: "Definicions i Notació"  
 
         - section: "Recursos"
           contents:
