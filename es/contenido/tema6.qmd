@@ -2,6 +2,966 @@
 title: "Tema 6: Programación Orientada a Objetos"
 lang: es
 sidebar: barra-es
+bibliography: tema6.bib
+engine: markdown
 ---
 
-*(Contenido pendiente.)*
+En el tema 4 representamos objetos matemáticos con las estructuras nativas de Python: un vector como una lista, un polinomio como una lista de coeficientes o un diccionario, y un número racional podría guardarse como una tupla `(p, q)`. Esto funciona, pero tiene un inconveniente: los **datos** y las **operaciones** que actúan sobre ellos viven separados. Una tupla `(3, 4)` puede ser un racional, un punto del plano o un intervalo; Python no lo sabe, y nada impide construir la tupla `(1, 0)` aunque no represente ningún número racional.
+
+La **Programación Orientada a Objetos** (POO) resuelve este problema permitiendo definir **tipos nuevos** que agrupan los datos y las operaciones en una sola unidad. Es la misma idea que usamos en matemáticas: $\mathbb{Q}$ no es solo un conjunto de pares de enteros, es un conjunto **con operaciones** (suma, producto, orden) que cumplen ciertas propiedades.
+
+::: {#tip-objeto .callout-tip title="En Python todo es un objeto"}
+Cada valor de Python es un **objeto**: tiene un **tipo** (su clase), un **estado** (los datos que guarda) y un conjunto de **métodos** (operaciones que se le pueden aplicar con la notación `objeto.metodo()`). Los enteros, las cadenas y las listas que ya conocemos son objetos de clases predefinidas: `int`, `str` y `list`. En este tema aprenderemos a definir nuestras propias clases.
+:::
+
+```{pyodide}
+print(type(3), type(3.5), type("hola"), type([1, 2]))
+
+lista = [3, 1, 2]
+lista.sort()                       # método de la clase list
+print(lista)                       # [1, 2, 3]
+
+print((5).bit_length())            # 3: hasta los enteros tienen métodos
+print((2.5).as_integer_ratio())    # (5, 2): 2.5 = 5/2
+```
+
+::: {.callout-tip appearance="simple"}
+Las celdas de código de este tema comparten el mismo entorno de Python: algunas usan clases definidas en celdas anteriores. **Ejecútalas en orden.**
+:::
+
+---
+
+## 6.1. Tipos Abstractos de Datos (TADs)
+
+Antes de escribir una sola línea de código orientado a objetos conviene separar dos preguntas: *qué* operaciones ofrece un tipo de datos y *cómo* están implementadas. Esta separación es la idea central de los tipos abstractos de datos [@liskov1974].
+
+::: {#tip-tad .callout-tip title="Tipo Abstracto de Datos"}
+Un **Tipo Abstracto de Datos** (TAD) es un conjunto de valores junto con un conjunto de operaciones sobre ellos, especificadas por su **comportamiento** (qué hacen, qué precondiciones exigen, qué devuelven) y no por su **representación** (cómo se guardan los datos en memoria ni cómo se programan las operaciones).
+
+La definición es muy cercana a la de estructura algebraica: un grupo $(G, \cdot)$ o un cuerpo $(\mathbb{K}, +, \cdot)$ se definen por las propiedades de sus operaciones, no por la naturaleza concreta de sus elementos.
+:::
+
+::: {#imp-especificacion .callout-important title="Especificación e implementación"}
+Un TAD tiene dos niveles:
+
+- **Especificación** (o **interfaz**): el nombre de cada operación, sus parámetros, sus precondiciones y su resultado. Es lo único que necesita conocer quien *usa* el tipo.
+- **Implementación**: la **representación** interna de los datos y el código de cada operación. Es asunto de quien *programa* el tipo.
+
+La frontera entre ambos niveles se llama **barrera de abstracción**. Si el usuario solo utiliza la interfaz, la implementación puede cambiarse (por ejemplo, para hacerla más eficiente) sin modificar ni una línea del código que usa el tipo.
+:::
+
+### **6.1.1 Especificación de un TAD: los números racionales**
+
+Especifiquemos el TAD *Racional*. Sus valores son los números racionales $p/q$ con $p, q \in \mathbb{Z}$ y $q \neq 0$, y sus operaciones son:
+
+| Operación | Resultado | Precondición |
+| :--- | :--- | :--- |
+| `crear(p, q)` | el racional $p/q$ | $q \neq 0$ |
+| `numerador(r)`, `denominador(r)` | numerador y denominador de $r$ en forma irreducible | — |
+| `suma(r, s)`, `producto(r, s)` | $r + s$, $r \cdot s$ | — |
+| `inverso(r)` | $1/r$ | $r \neq 0$ |
+| `iguales(r, s)` | `True` si $r = s$ | — |
+
+Fíjate en que la especificación no dice nada de tuplas, listas ni variables: solo describe el comportamiento.
+
+::: {#tip-racionales .callout-tip title="Los racionales como clases de equivalencia"}
+Formalmente, $\mathbb{Q}$ se construye como el conjunto de clases de equivalencia de pares $(p, q) \in \mathbb{Z} \times (\mathbb{Z} \setminus \{0\})$ con la relación
+$$
+(p, q) \sim (p', q') \iff p\,q' = p'\,q.
+$$
+Los pares $(1, 2)$, $(2, 4)$ y $(-3, -6)$ representan el mismo racional. Para trabajar con un único representante por clase se elige la **forma canónica**: denominador positivo y $\gcd(p, q) = 1$. Con esa elección, dos racionales son iguales si y solo si sus formas canónicas coinciden.
+:::
+
+La condición «la representación está en forma canónica» es un ejemplo de **invariante de representación**: una propiedad que todo valor del tipo debe cumplir siempre. Toda la corrección del TAD depende de que se mantenga.
+
+### **6.1.2 Una implementación con tuplas**
+
+Con lo visto hasta ahora podemos implementar el TAD con tuplas `(p, q)` y funciones:
+
+```{pyodide}
+from math import gcd
+
+def crear_racional(p: int, q: int) -> tuple[int, int]:
+    """Crea el racional p/q en forma canónica (q > 0, mcd(p, q) = 1)."""
+    if q == 0:
+        raise ValueError("el denominador no puede ser 0")
+    if q < 0:
+        p, q = -p, -q
+    m = gcd(p, q)
+    return (p // m, q // m)
+
+def suma_racional(r: tuple[int, int], s: tuple[int, int]) -> tuple[int, int]:
+    """Devuelve r + s."""
+    return crear_racional(r[0] * s[1] + s[0] * r[1], r[1] * s[1])
+
+def producto_racional(r: tuple[int, int], s: tuple[int, int]) -> tuple[int, int]:
+    """Devuelve r * s."""
+    return crear_racional(r[0] * s[0], r[1] * s[1])
+
+def iguales_racional(r: tuple[int, int], s: tuple[int, int]) -> bool:
+    """Devuelve True si r = s (ambos deben estar en forma canónica)."""
+    return r == s
+
+a = crear_racional(1, 2)
+b = crear_racional(1, 3)
+print(suma_racional(a, b))        # (5, 6)
+print(producto_racional(a, b))    # (1, 6)
+print(crear_racional(6, -8))      # (-3, 4)
+```
+
+Mientras todo racional se cree con `crear_racional`, el invariante se cumple. Pero nada obliga a hacerlo así.
+
+::: {#cau-tuplas-tad .callout-caution title="Una tupla no protege el invariante"}
+```{pyodide}
+c = (2, 4)                        # nadie impide construir una tupla no canónica
+print(iguales_racional(a, c))     # False, ¡aunque 1/2 = 2/4!
+
+d = (1, 0)                        # ni un «racional» con denominador cero
+print(type(a).__name__)           # tuple: el tipo no dice que sea un racional
+```
+
+Con tuplas y funciones sueltas:
+
+- el invariante depende de la disciplina de cada usuario;
+- el tipo de los datos (`tuple`) no informa de lo que representan;
+- las operaciones no están ligadas a los datos: hay que recordar que `suma_racional` existe y en qué módulo está.
+
+Las clases resuelven los tres problemas.
+:::
+
+### **6.1.3 La barrera de abstracción: dos representaciones del mismo TAD**
+
+Un mismo TAD admite varias representaciones. Un polinomio $p(x) = a_0 + a_1 x + \cdots + a_n x^n$ puede guardarse como una **lista densa** de coeficientes `[a0, a1, ..., an]` o como un **diccionario disperso** `{k: ak}` con solo los coeficientes no nulos (como en el tema 4). Para $1 + x^{10}$, la lista guarda once números y el diccionario solo dos.
+
+```{pyodide}
+p_denso = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]   # 1 + x^10 como lista
+p_disperso = {0: 1, 10: 1}                     # 1 + x^10 como diccionario
+
+def evaluar_denso(p: list[float], x: float) -> float:
+    """Evalúa p(x) con el esquema de Horner."""
+    resultado = 0
+    for a in reversed(p):
+        resultado = resultado * x + a
+    return resultado
+
+def evaluar_disperso(p: dict[int, float], x: float) -> float:
+    """Evalúa p(x) sumando solo los términos no nulos."""
+    return sum(a * x**k for k, a in p.items())
+
+print(evaluar_denso(p_denso, 2))         # 1025
+print(evaluar_disperso(p_disperso, 2))   # 1025
+```
+
+Las dos funciones calculan lo mismo, pero quien las usa tiene que saber qué representación tiene entre manos y elegir la función correcta. Lo que queremos es una única operación *evaluar* que funcione sea cual sea la representación interna. Eso es exactamente lo que proporciona una clase.
+
+---
+
+## 6.2. Clases, objetos, atributos y métodos
+
+::: {#tip-clase .callout-tip title="Clase, objeto, atributo y método"}
+- Una **clase** es la definición de un tipo nuevo: describe qué datos guardan sus valores y qué operaciones admiten.
+- Un **objeto** (o **instancia**) es un valor concreto de una clase.
+- Los **atributos** son los datos que guarda cada objeto; en conjunto forman su **estado**.
+- Los **métodos** son las funciones definidas dentro de la clase; operan sobre el objeto.
+
+La analogía matemática: la clase es el conjunto con su estructura ($\mathbb{Q}$ con $+$ y $\cdot$); un objeto es un elemento concreto ($3/4$); los atributos son su numerador y su denominador; los métodos, las operaciones.
+:::
+
+### **6.2.1 Definir una clase**
+
+Una clase se define con la palabra reservada `class`. Por convención, los nombres de clase se escriben en *CamelCase* (cada palabra empieza por mayúscula y no hay guiones bajos) [@pep8].
+
+```{pyodide}
+class Fraccion:
+    """Número racional num/den."""
+
+    def __init__(self, num: int, den: int) -> None:
+        """Crea la fracción num/den."""
+        self.num = num
+        self.den = den
+
+r = Fraccion(3, 4)               # crea un objeto: Python llama a __init__
+print(r.num, r.den)              # 3 4
+print(type(r).__name__)          # Fraccion
+print(isinstance(r, Fraccion))   # True
+```
+
+Al escribir `Fraccion(3, 4)` Python hace dos cosas: crea un objeto vacío de la clase `Fraccion` y llama al método especial `__init__` (el **inicializador** o **constructor**) pasándole ese objeto como primer argumento, seguido de `3` y `4`. Dentro de `__init__`, la instrucción `self.num = num` crea en el objeto un atributo llamado `num`.
+
+::: {#imp-self .callout-important title="El parámetro `self`"}
+Todo método recibe como primer parámetro el objeto sobre el que actúa. Por convención se llama `self` («sí mismo»). La llamada
+
+```python
+r.metodo(x)
+```
+
+es equivalente a
+
+```python
+Fraccion.metodo(r, x)
+```
+
+Python pasa `r` automáticamente como `self`. Dentro del método, `self.num` es el atributo `num` **de ese objeto concreto**.
+:::
+
+::: {#cau-self .callout-caution title="Olvidar `self`"}
+Dos errores muy frecuentes al empezar con clases:
+
+1. **Olvidar `self` en la lista de parámetros**: `def valor():` en lugar de `def valor(self):`. Al llamar `r.valor()`, Python pasa `r` igualmente y se obtiene `TypeError: valor() takes 0 positional arguments but 1 was given`.
+2. **Olvidar `self.` al asignar un atributo**: escribir `num = num` en lugar de `self.num = num` dentro de `__init__` crea una variable local que desaparece al terminar el método. El objeto se queda sin atributo y más adelante aparece `AttributeError: 'Fraccion' object has no attribute 'num'`.
+:::
+
+### **6.2.2 Atributos de instancia y estado**
+
+Cada objeto tiene sus propios atributos: modificar los de uno no afecta a los demás.
+
+```{pyodide}
+r = Fraccion(3, 4)
+s = Fraccion(5, 7)
+s.num = 6
+print(r.num, s.num)    # 3 6: cada objeto guarda su propio estado
+print(vars(r))         # {'num': 3, 'den': 4}
+```
+
+::: {#wrn-vars .callout-warning title="Inspeccionar el estado de un objeto"}
+La función `vars(objeto)` devuelve un diccionario con todos sus atributos y sus valores. Es la forma más rápida de ver el estado de un objeto mientras se depura. En VS Code, el panel *Variables* del depurador muestra la misma información al detenerse en un punto de ruptura.
+:::
+
+::: {.callout-note collapse="true" title="Profundización: atributos de clase"}
+Además de los atributos de instancia, una clase puede tener **atributos de clase**, definidos fuera de los métodos y compartidos por todos sus objetos:
+
+```python
+class Polinomio:
+    variable = "x"      # atributo de clase: común a todos los polinomios
+
+    def __init__(self, coefs):
+        self.coefs = coefs   # atributo de instancia: propio de cada polinomio
+```
+
+Se acceden con `Polinomio.variable` o desde cualquier objeto (`p.variable`). Son útiles para constantes ligadas a la clase. Evita usar como atributo de clase una lista o un diccionario que luego se modifique: todos los objetos compartirían el mismo.
+:::
+
+### **6.2.3 Métodos**
+
+Los métodos son funciones definidas dentro de la clase. Añadamos a `Fraccion` tres operaciones:
+
+```{pyodide}
+from math import gcd
+
+class Fraccion:
+    """Número racional num/den."""
+
+    def __init__(self, num: int, den: int) -> None:
+        """Crea la fracción num/den."""
+        self.num = num
+        self.den = den
+
+    def valor(self) -> float:
+        """Devuelve la aproximación decimal de la fracción."""
+        return self.num / self.den
+
+    def simplificar(self) -> None:
+        """Reduce la fracción a su forma irreducible (modifica el objeto)."""
+        m = gcd(self.num, self.den)
+        self.num //= m
+        self.den //= m
+
+    def suma(self, otra: "Fraccion") -> "Fraccion":
+        """Devuelve una fracción NUEVA igual a self + otra."""
+        return Fraccion(self.num * otra.den + otra.num * self.den,
+                        self.den * otra.den)
+
+a = Fraccion(1, 6)
+b = Fraccion(1, 3)
+c = a.suma(b)            # equivale a Fraccion.suma(a, b)
+print(c.num, c.den)      # 9 18
+c.simplificar()
+print(c.num, c.den)      # 1 2
+print(c.valor())         # 0.5
+```
+
+La anotación de tipo `"Fraccion"` va entre comillas porque, mientras se define la clase, el nombre `Fraccion` todavía no existe.
+
+::: {#imp-mutar-o-devolver .callout-important title="Métodos que modifican y métodos que devuelven un objeto nuevo"}
+`simplificar` y `suma` ilustran los dos estilos de método:
+
+- `c.simplificar()` **modifica** el objeto `c` y devuelve `None`.
+- `a.suma(b)` **no modifica** ni `a` ni `b`: devuelve un objeto nuevo.
+
+Es la misma distinción que entre `lista.sort()`, que ordena la lista, y `sorted(lista)`, que devuelve una lista nueva (tema 4). Para objetos que representan valores matemáticos (números, vectores, polinomios) se prefiere el segundo estilo: que $a + b$ cambiara el valor de $a$ sería muy sorprendente.
+:::
+
+### **6.2.4 Ejemplo: la clase `Polinomio` y el método de Newton**
+
+Agrupemos en una clase la representación densa del apartado 6.1.3 y las operaciones sobre polinomios:
+
+```{pyodide}
+class Polinomio:
+    """Polinomio a0 + a1 x + ... + an x^n, guardado como lista de coeficientes."""
+
+    def __init__(self, coefs: list[float]) -> None:
+        """coefs[k] es el coeficiente de x^k."""
+        coefs = list(coefs)          # copia: no compartir la lista del usuario
+        while len(coefs) > 1 and coefs[-1] == 0:
+            coefs.pop()              # elimina los ceros finales
+        if not coefs:
+            coefs = [0]
+        self.coefs = coefs
+
+    def grado(self) -> int:
+        """Grado del polinomio (aquí, 0 para el polinomio nulo)."""
+        return len(self.coefs) - 1
+
+    def evaluar(self, x: float) -> float:
+        """Evalúa p(x) con el esquema de Horner."""
+        resultado = 0
+        for a in reversed(self.coefs):
+            resultado = resultado * x + a
+        return resultado
+
+    def derivada(self) -> "Polinomio":
+        """Devuelve el polinomio derivada p'(x)."""
+        return Polinomio([k * a for k, a in enumerate(self.coefs) if k > 0])
+
+p = Polinomio([-2, 0, 1])        # p(x) = x² - 2
+print(p.grado())                 # 2
+print(p.evaluar(3))              # 7
+print(p.derivada().coefs)        # [0, 2]: p'(x) = 2x
+```
+
+El constructor garantiza que la lista de coeficientes no termine en ceros, de modo que `grado()` siempre es correcto. Además copia la lista recibida: si el usuario modifica después su lista, el polinomio no cambia.
+
+Con `evaluar` y `derivada` ya podemos programar el método de Newton-Raphson para aproximar raíces.
+
+::: {#tip-newton .callout-tip title="Método de Newton-Raphson"}
+Para aproximar una raíz de una función derivable $f$, se parte de un valor inicial $x_0$ y se itera
+$$
+x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}.
+$$
+Geométricamente, $x_{k+1}$ es el punto donde la recta tangente a $f$ en $x_k$ corta al eje $x$. Si $x_0$ está suficientemente cerca de una raíz simple, la convergencia es cuadrática: el número de cifras correctas se duplica aproximadamente en cada paso.
+:::
+
+```{pyodide}
+def newton(p: Polinomio, x0: float, tol: float = 1e-12, max_iter: int = 50) -> float:
+    """Aproxima una raíz de p con el método de Newton-Raphson."""
+    dp = p.derivada()
+    x = x0
+    for _ in range(max_iter):
+        paso = p.evaluar(x) / dp.evaluar(x)
+        x = x - paso
+        if abs(paso) < tol:
+            return x
+    raise ValueError("el método no ha convergido")
+
+raiz = newton(Polinomio([-2, 0, 1]), x0=1.0)
+print(raiz)          # 1.414213562373095 ≈ √2
+```
+
+La función `newton` no sabe cómo está guardado el polinomio: solo usa sus métodos `evaluar` y `derivada`. Si mañana cambiáramos la representación interna de `Polinomio` por un diccionario disperso, `newton` seguiría funcionando sin tocarla. Es la barrera de abstracción del apartado 6.1 en acción.
+
+### **6.2.5 Identidad e igualdad de objetos**
+
+```{pyodide}
+a = Fraccion(1, 2)
+b = Fraccion(1, 2)
+c = a
+print(a == b)    # False: por defecto, == compara la identidad
+print(a is c)    # True: a y c son el mismo objeto
+c.num = 3
+print(a.num)     # 3: modificar c modifica a
+```
+
+::: {#cau-igualdad-objetos .callout-caution title="`==` entre objetos de una clase propia"}
+Si la clase no indica cómo comparar sus objetos, `a == b` equivale a `a is b`: solo es `True` si `a` y `b` son **el mismo objeto**. Por eso `Fraccion(1, 2) == Fraccion(1, 2)` da `False`. En el apartado 6.4 enseñaremos a la clase qué significa que dos fracciones sean iguales.
+
+Además, como con las listas (tema 4), una asignación `c = a` no copia el objeto: crea otro nombre para el mismo objeto (*aliasing*).
+:::
+
+---
+
+## 6.3. Encapsulación básica
+
+La clase `Fraccion` del apartado anterior agrupa datos y operaciones, pero todavía no protege el invariante de los racionales:
+
+```{pyodide}
+r = Fraccion(2, 4)      # no está en forma canónica
+r.den = 0               # y ahora ni siquiera es un racional
+print(vars(r))          # {'num': 2, 'den': 0}
+```
+
+::: {#imp-encapsulacion .callout-important title="Encapsulación"}
+La **encapsulación** consiste en ocultar la representación interna de un objeto y permitir que se use solo a través de su interfaz (sus métodos), de modo que **el objeto esté siempre en un estado válido**.
+
+Una clase bien encapsulada garantiza su **invariante de clase**: una propiedad que se cumple al terminar el constructor y que ningún método rompe.
+:::
+
+::: {#tip-invariante-clase .callout-tip title="Invariante de clase e inducción"}
+El invariante de clase es el análogo del invariante de bucle del tema 5. Si el constructor lo establece (caso base) y cada método que modifica el objeto lo preserva (paso inductivo), entonces se cumple tras cualquier secuencia finita de operaciones. Es una demostración por inducción sobre el número de operaciones aplicadas al objeto.
+:::
+
+En Python, encapsular una clase requiere tres herramientas: validar en el constructor, marcar los atributos internos como privados y ofrecer el acceso a ellos mediante propiedades.
+
+### **6.3.1 Validar y normalizar en el constructor**
+
+El constructor es el único punto por el que se crean objetos, así que es el lugar natural para comprobar las precondiciones (lanzando `ValueError`, como en el tema 3) y para llevar los datos a su forma canónica.
+
+### **6.3.2 Atributos privados por convención**
+
+Python no tiene atributos realmente privados. La convención es que un nombre que empieza por un guion bajo, como `_num`, es **interno**: forma parte de la implementación y no debe usarse fuera de la clase.
+
+::: {#cau-privado .callout-caution title="El guion bajo es una convención, no una prohibición"}
+Escribir `r._den = 0` desde fuera de la clase es posible: Python no lo impide. El guion bajo es un aviso para otros programadores (y para los editores, que lo señalan): «esto es interno; si lo tocas, el invariante deja de estar garantizado». Un nombre con dos guiones bajos, como `__den`, se transforma internamente en `_Fraccion__den` (*name mangling*), lo que hace más difícil el acceso accidental, pero tampoco lo prohíbe.
+:::
+
+### **6.3.3 Propiedades de solo lectura**
+
+Para que el usuario pueda *leer* el numerador y el denominador pero no modificarlos, se definen **propiedades** con el decorador `@property`: un método que se usa con la sintaxis de un atributo, sin paréntesis.
+
+```{pyodide}
+from math import gcd
+
+class Fraccion:
+    """Número racional en forma canónica: den > 0 y mcd(num, den) = 1."""
+
+    def __init__(self, num: int, den: int = 1) -> None:
+        """Crea la fracción num/den en forma canónica."""
+        if den == 0:
+            raise ValueError("el denominador no puede ser 0")
+        if den < 0:
+            num, den = -num, -den
+        m = gcd(num, den)
+        self._num = num // m
+        self._den = den // m
+
+    @property
+    def num(self) -> int:
+        """Numerador (solo lectura)."""
+        return self._num
+
+    @property
+    def den(self) -> int:
+        """Denominador, siempre positivo (solo lectura)."""
+        return self._den
+
+    def valor(self) -> float:
+        """Devuelve la aproximación decimal de la fracción."""
+        return self._num / self._den
+
+r = Fraccion(6, -8)
+print(r.num, r.den)        # -3 4: forma canónica
+print(Fraccion(5).den)     # 1: el denominador por defecto es 1
+
+try:
+    r.den = 0
+except AttributeError:
+    print("den es de solo lectura")
+
+try:
+    Fraccion(1, 0)
+except ValueError as e:
+    print("Error:", e)     # Error: el denominador no puede ser 0
+```
+
+Ahora la única forma de obtener una `Fraccion` es a través del constructor, que siempre deja el objeto en forma canónica, y ningún método la modifica después. El invariante se cumple siempre: una fracción con denominador cero o sin simplificar ya no puede existir (salvo que alguien toque `_den` a propósito).
+
+::: {#wrn-invariante .callout-warning title="Comprobar el invariante durante el desarrollo"}
+Mientras se programa una clase, es útil añadir un método que verifique el invariante con `assert` (tema 5) y llamarlo al final del constructor y de cada método que modifique el objeto:
+
+```python
+def _comprobar_invariante(self) -> None:
+    assert self._den > 0, "el denominador debe ser positivo"
+    assert gcd(self._num, self._den) == 1, "la fracción no es irreducible"
+```
+
+Si algún cambio en el código rompe el invariante, el `assert` lo detecta en el momento exacto en que ocurre.
+:::
+
+### **6.3.4 Propiedades calculadas y con validación**
+
+Una propiedad también sirve para valores que se **calculan** a partir del estado, y puede tener un *setter* que **valide** cada modificación. Veámoslo con un círculo del plano:
+
+```{pyodide}
+import math
+
+class Circulo:
+    """Círculo cerrado de centro (a, b) y radio r > 0."""
+
+    def __init__(self, centro: tuple[float, float], radio: float) -> None:
+        self.centro = centro
+        self.radio = radio            # pasa por el setter: se valida
+
+    @property
+    def radio(self) -> float:
+        """Radio del círculo."""
+        return self._radio
+
+    @radio.setter
+    def radio(self, valor: float) -> None:
+        if valor <= 0:
+            raise ValueError("el radio debe ser positivo")
+        self._radio = valor
+
+    @property
+    def area(self) -> float:
+        """Área: se calcula en cada consulta, siempre coherente con el radio."""
+        return math.pi * self._radio ** 2
+
+    def contiene(self, punto: tuple[float, float]) -> bool:
+        """Devuelve True si el punto pertenece al círculo."""
+        x, y = punto
+        a, b = self.centro
+        return (x - a) ** 2 + (y - b) ** 2 <= self._radio ** 2
+
+c = Circulo((0, 0), 1)
+print(c.contiene((0.5, 0.5)))    # True
+print(c.contiene((1, 1)))        # False
+c.radio = 2                      # el setter valida el nuevo valor
+print(round(c.area, 4))          # 12.5664 = 4π
+
+try:
+    c.radio = -1
+except ValueError as e:
+    print("Error:", e)           # Error: el radio debe ser positivo
+```
+
+`area` no es un atributo guardado, sino un valor que se calcula cada vez que se consulta. Por eso nunca puede quedar desactualizado respecto del radio.
+
+::: {#nte-montecarlo .callout-note title="Estimación de π por el método de Monte Carlo"}
+Si se eligen puntos al azar en el cuadrado $[-1, 1]^2$, la proporción de los que caen en el círculo unidad tiende a $\pi r^2 / (2r)^2 = \pi/4$. El método `contiene` permite estimar $\pi$:
+
+```{pyodide}
+import random
+
+random.seed(23200)                    # semilla fija: resultado reproducible
+unidad = Circulo((0, 0), 1)
+n = 100_000
+dentro = sum(unidad.contiene((random.uniform(-1, 1), random.uniform(-1, 1)))
+             for _ in range(n))
+print(f"π ≈ {4 * dentro / n:.4f}")
+```
+
+El error de esta estimación es del orden de $1/\sqrt{n}$: para ganar una cifra decimal hay que multiplicar por 100 el número de puntos.
+:::
+
+---
+
+## 6.4. Métodos mágicos y sobrecarga de operadores
+
+Nuestra `Fraccion` ya mantiene su invariante, pero todavía es incómoda de usar: `print(r)` muestra algo como `<__main__.Fraccion object at 0x7f...>`, `Fraccion(1, 2) == Fraccion(2, 4)` da `False` y hay que escribir `a.suma(b)` en lugar de `a + b`. Los **métodos mágicos** resuelven todo esto.
+
+::: {#tip-modelo-datos .callout-tip title="Métodos mágicos"}
+Los **métodos mágicos** (o **métodos especiales**, en inglés *dunder methods* por los dobles guiones bajos) son métodos con nombres de la forma `__nombre__` que Python llama automáticamente al evaluar operadores y funciones predefinidas [@pythondatamodel]. Por ejemplo:
+
+| Se escribe | Python ejecuta |
+| :--- | :--- |
+| `Fraccion(1, 2)` | `__init__` |
+| `repr(r)`, `print(r)` | `r.__repr__()`, `r.__str__()` |
+| `a + b`, `a * b` | `a.__add__(b)`, `a.__mul__(b)` |
+| `a == b`, `a < b` | `a.__eq__(b)`, `a.__lt__(b)` |
+| `-a` | `a.__neg__()` |
+| `hash(a)` | `a.__hash__()` |
+| `float(a)` | `a.__float__()` |
+| `p(x)` | `p.__call__(x)` |
+
+Definir estos métodos en una clase se llama **sobrecarga de operadores**: el operador `+`, que ya funcionaba con `int`, `float`, `str` y `list`, pasa a funcionar también con nuestros objetos.
+:::
+
+Es la misma idea que en matemáticas, donde el símbolo $+$ denota operaciones distintas en $\mathbb{Z}$, en $\mathbb{R}^n$, en el anillo de polinomios o en un grupo abstracto. El significado lo da el tipo de los operandos.
+
+### **6.4.1 Representación: `__repr__` y `__str__`**
+
+- `__repr__` devuelve una representación **sin ambigüedades**, pensada para el programador. Idealmente es código Python que recrea el objeto: `Fraccion(3, 4)`. Es la que se ve en el intérprete y dentro de listas.
+- `__str__` devuelve una representación **legible**, pensada para el usuario: `3/4`. Es la que usan `print` y las f-strings. Si no se define, Python usa `__repr__`.
+
+### **6.4.2 Igualdad y *hash*: `__eq__` y `__hash__`**
+
+Gracias a la forma canónica, dos fracciones son iguales si y solo si tienen el mismo numerador y el mismo denominador. Si el otro operando no es una fracción (ni un entero, que convertimos), el método devuelve el valor especial `NotImplemented`, que indica a Python que esta clase no sabe hacer la comparación.
+
+::: {#cau-hash .callout-caution title="Definir `__eq__` sin `__hash__`"}
+Los conjuntos y las claves de los diccionarios (tema 4) usan la función `hash` para localizar los elementos. Python exige la regla
+$$
+a = b \implies \operatorname{hash}(a) = \operatorname{hash}(b).
+$$
+Por eso, **si una clase define `__eq__` y no define `__hash__`, sus objetos dejan de ser *hashables***: `{Fraccion(1, 2)}` lanza `TypeError: unhashable type`. Para objetos que no cambian después de crearse, como nuestras fracciones, basta con definir `__hash__` a partir de los mismos datos que usa `__eq__`. Los objetos que pueden modificarse no deben ser *hashables*: si cambiara su valor dentro de un conjunto, el conjunto quedaría corrupto.
+:::
+
+### **6.4.3 Operadores aritméticos**
+
+Para `a + b`, Python llama a `a.__add__(b)`. Si ese método devuelve `NotImplemented` (por ejemplo, en `2 + Fraccion(1, 3)`, porque `int` no sabe sumar fracciones), Python prueba con el **método reflejado** del operando derecho: `b.__radd__(a)`. Definir `__radd__` permite, por tanto, que funcionen `2 + r` y también `sum(...)`, que empieza sumando desde el entero `0`.
+
+### **6.4.4 Comparación de orden: `__lt__` y `__le__`**
+
+Como el denominador es siempre positivo,
+$$
+\frac{a}{b} < \frac{c}{d} \iff a\,d < c\,b.
+$$
+Basta definir `__lt__` para que funcionen `sorted`, `min` y `max` entre fracciones. Para disponer también de `<=`, `>` y `>=` se definen `__le__`, `__gt__` y `__ge__` (o se usa el decorador `functools.total_ordering`, que los deduce a partir de `__eq__` y `__lt__`). Como con la aritmética, las comparaciones con un entero a la izquierda, como `1 < r`, necesitan el método «reflejado»: Python traduce `1 < r` en `r > 1`, es decir, `r.__gt__(1)`.
+
+### **6.4.5 La clase `Fraccion` completa**
+
+Reunimos todo lo anterior en la versión final de la clase:
+
+```{pyodide}
+from math import gcd
+
+class Fraccion:
+    """Número racional en forma canónica: den > 0 y mcd(num, den) = 1."""
+
+    def __init__(self, num: int, den: int = 1) -> None:
+        """Crea la fracción num/den en forma canónica."""
+        if den == 0:
+            raise ValueError("el denominador no puede ser 0")
+        if den < 0:
+            num, den = -num, -den
+        m = gcd(num, den)
+        self._num = num // m
+        self._den = den // m
+
+    @property
+    def num(self) -> int:
+        """Numerador (solo lectura)."""
+        return self._num
+
+    @property
+    def den(self) -> int:
+        """Denominador, siempre positivo (solo lectura)."""
+        return self._den
+
+    # ---------- representación ----------
+    def __repr__(self) -> str:
+        return f"Fraccion({self._num}, {self._den})"
+
+    def __str__(self) -> str:
+        if self._den == 1:
+            return str(self._num)
+        return f"{self._num}/{self._den}"
+
+    def __float__(self) -> float:
+        return self._num / self._den
+
+    # ---------- conversión de enteros ----------
+    def _convertir(self, otra: object) -> "Fraccion | None":
+        """Devuelve otra como Fraccion si es Fraccion o int; si no, None."""
+        if isinstance(otra, Fraccion):
+            return otra
+        if isinstance(otra, int):
+            return Fraccion(otra)
+        return None
+
+    # ---------- igualdad y hash ----------
+    def __eq__(self, otra: object) -> bool:
+        otra = self._convertir(otra)
+        if otra is None:
+            return NotImplemented
+        return self._num == otra._num and self._den == otra._den
+
+    def __hash__(self) -> int:
+        if self._den == 1:
+            return hash(self._num)    # Fraccion(2) == 2: deben tener el mismo hash
+        return hash((self._num, self._den))
+
+    # ---------- orden ----------
+    def __lt__(self, otra: object) -> bool:
+        otra = self._convertir(otra)
+        if otra is None:
+            return NotImplemented
+        return self._num * otra._den < otra._num * self._den
+
+    def __le__(self, otra: object) -> bool:
+        otra = self._convertir(otra)
+        if otra is None:
+            return NotImplemented
+        return self._num * otra._den <= otra._num * self._den
+
+    def __gt__(self, otra: object) -> bool:
+        otra = self._convertir(otra)
+        if otra is None:
+            return NotImplemented
+        return otra < self
+
+    def __ge__(self, otra: object) -> bool:
+        otra = self._convertir(otra)
+        if otra is None:
+            return NotImplemented
+        return otra <= self
+
+    # ---------- aritmética ----------
+    def __neg__(self) -> "Fraccion":
+        return Fraccion(-self._num, self._den)
+
+    def __add__(self, otra: object) -> "Fraccion":
+        otra = self._convertir(otra)
+        if otra is None:
+            return NotImplemented
+        return Fraccion(self._num * otra._den + otra._num * self._den,
+                        self._den * otra._den)
+
+    def __radd__(self, otra: object) -> "Fraccion":
+        return self + otra                # la suma es conmutativa
+
+    def __sub__(self, otra: object) -> "Fraccion":
+        otra = self._convertir(otra)
+        if otra is None:
+            return NotImplemented
+        return self + (-otra)
+
+    def __rsub__(self, otra: object) -> "Fraccion":
+        return (-self) + otra             # otra - self
+
+    def __mul__(self, otra: object) -> "Fraccion":
+        otra = self._convertir(otra)
+        if otra is None:
+            return NotImplemented
+        return Fraccion(self._num * otra._num, self._den * otra._den)
+
+    def __rmul__(self, otra: object) -> "Fraccion":
+        return self * otra                # el producto es conmutativo
+
+    def __truediv__(self, otra: object) -> "Fraccion":
+        otra = self._convertir(otra)
+        if otra is None:
+            return NotImplemented
+        if otra._num == 0:
+            raise ZeroDivisionError("división de una fracción por cero")
+        return Fraccion(self._num * otra._den, self._den * otra._num)
+
+    def __rtruediv__(self, otra: object) -> "Fraccion":
+        otra = self._convertir(otra)
+        if otra is None:
+            return NotImplemented
+        return otra / self                # otra / self
+```
+
+Ahora las fracciones se comportan como cualquier tipo numérico de Python:
+
+```{pyodide}
+a = Fraccion(1, 2)
+b = Fraccion(1, 3)
+print(a + b, a - b, a * b, a / b)        # 5/6 1/6 1/6 3/2
+print(2 + a, 1 - a, 3 * b, 1 / b)        # 5/2 1/2 1 3
+print(Fraccion(2, 4) == a)               # True
+print(Fraccion(4, 2) == 2)               # True
+print(a < b, min(a, b))                  # False 1/3
+print(repr(a), float(a))                 # Fraccion(1, 2) 0.5
+print({Fraccion(1, 2), Fraccion(2, 4), Fraccion(3, 6)})   # un solo elemento
+```
+
+::: {#imp-aritmetica-exacta .callout-important title="Aritmética exacta frente a coma flotante"}
+Los `float` acumulan errores de redondeo (tema 2); las fracciones no:
+
+```{pyodide}
+print(sum([0.1] * 10) == 1)                  # False
+print(sum([Fraccion(1, 10)] * 10) == 1)      # True
+```
+
+`sum` empieza en el entero `0`; la primera suma, `0 + Fraccion(1, 10)`, funciona gracias a `__radd__`.
+:::
+
+::: {#nte-sumas-exactas .callout-note title="Sumas exactas: serie telescópica y números armónicos"}
+La serie telescópica
+$$
+\sum_{k=1}^{n} \frac{1}{k(k+1)} = \sum_{k=1}^{n} \left(\frac{1}{k} - \frac{1}{k+1}\right) = 1 - \frac{1}{n+1} = \frac{n}{n+1}
+$$
+se puede comprobar exactamente para cualquier $n$. También podemos calcular los **números armónicos** $H_n = \sum_{k=1}^{n} 1/k$ como fracciones exactas:
+
+```{pyodide}
+n = 10
+telescopica = sum(Fraccion(1, k * (k + 1)) for k in range(1, n + 1))
+print(telescopica)                           # 10/11
+print(telescopica == Fraccion(n, n + 1))     # True
+
+armonico = sum(Fraccion(1, k) for k in range(1, n + 1))
+print(armonico, "≈", float(armonico))        # 7381/2520 ≈ 2.9289682539682538
+```
+:::
+
+::: {#nte-farey .callout-note title="La sucesión de Farey"}
+La **sucesión de Farey** de orden $n$, $F_n$, es la lista ordenada de las fracciones irreducibles de $[0, 1]$ con denominador menor o igual que $n$. Se conoce su longitud:
+$$
+|F_n| = 1 + \sum_{k=1}^{n} \varphi(k),
+$$
+donde $\varphi$ es la función totiente de Euler (ejercicios del tema 3). Gracias a `__hash__`, un conjunto elimina las fracciones repetidas ($2/4 = 1/2$), y gracias a `__lt__`, `sorted` las ordena:
+
+```{pyodide}
+def farey(n: int) -> list[Fraccion]:
+    """Sucesión de Farey de orden n."""
+    return sorted({Fraccion(a, b) for b in range(1, n + 1) for a in range(b + 1)})
+
+print(" ".join(str(f) for f in farey(5)))
+# 0 1/5 1/4 1/3 2/5 1/2 3/5 2/3 3/4 4/5 1
+print(len(farey(5)))     # 11 = 1 + (1 + 1 + 2 + 2 + 4)
+```
+:::
+
+### **6.4.6 La clase `Polinomio` con operadores**
+
+Apliquemos lo mismo a los polinomios. Añadimos suma, resta y producto (`+`, `-`, `*`), igualdad, representación y el método `__call__`, que permite escribir `p(x)` como en matemáticas. Un operando que no sea un `Polinomio` (un número, una fracción…) se trata como un polinomio constante.
+
+```{pyodide}
+class Polinomio:
+    """Polinomio a0 + a1 x + ... + an x^n, guardado como lista de coeficientes."""
+
+    def __init__(self, coefs: list) -> None:
+        """coefs[k] es el coeficiente de x^k."""
+        coefs = list(coefs)
+        while len(coefs) > 1 and coefs[-1] == 0:
+            coefs.pop()
+        if not coefs:
+            coefs = [0]
+        self._coefs = coefs
+
+    @property
+    def coefs(self) -> list:
+        """Copia de la lista de coeficientes."""
+        return list(self._coefs)
+
+    def grado(self) -> int:
+        """Grado del polinomio (aquí, 0 para el polinomio nulo)."""
+        return len(self._coefs) - 1
+
+    def derivada(self) -> "Polinomio":
+        """Devuelve el polinomio derivada p'(x)."""
+        return Polinomio([k * a for k, a in enumerate(self._coefs) if k > 0])
+
+    def __call__(self, x):
+        """p(x): evaluación con el esquema de Horner."""
+        resultado = 0
+        for a in reversed(self._coefs):
+            resultado = resultado * x + a
+        return resultado
+
+    def __repr__(self) -> str:
+        return f"Polinomio({self._coefs})"
+
+    def __str__(self) -> str:
+        terminos = []
+        for k, a in enumerate(self._coefs):
+            if a == 0:
+                continue
+            if k == 0:
+                terminos.append(f"{a}")
+            elif k == 1:
+                terminos.append(f"{a}·x")
+            else:
+                terminos.append(f"{a}·x^{k}")
+        return " + ".join(terminos) if terminos else "0"
+
+    def __eq__(self, otro: object) -> bool:
+        if not isinstance(otro, Polinomio):
+            return NotImplemented
+        return self._coefs == otro._coefs
+
+    def __add__(self, otro: object) -> "Polinomio":
+        if not isinstance(otro, Polinomio):
+            otro = Polinomio([otro])          # constante
+        n = max(len(self._coefs), len(otro._coefs))
+        a = self._coefs + [0] * (n - len(self._coefs))
+        b = otro._coefs + [0] * (n - len(otro._coefs))
+        return Polinomio([x + y for x, y in zip(a, b)])
+
+    def __radd__(self, otro: object) -> "Polinomio":
+        return self + otro
+
+    def __neg__(self) -> "Polinomio":
+        return Polinomio([-a for a in self._coefs])
+
+    def __sub__(self, otro: object) -> "Polinomio":
+        if not isinstance(otro, Polinomio):
+            otro = Polinomio([otro])          # constante
+        return self + (-otro)
+
+    def __rsub__(self, otro: object) -> "Polinomio":
+        return (-self) + otro                 # otro - self
+
+    def __mul__(self, otro: object) -> "Polinomio":
+        if not isinstance(otro, Polinomio):
+            otro = Polinomio([otro])          # constante
+        producto = [0] * (len(self._coefs) + len(otro._coefs) - 1)
+        for i, a in enumerate(self._coefs):
+            for j, b in enumerate(otro._coefs):
+                producto[i + j] += a * b      # coeficiente de x^(i+j)
+        return Polinomio(producto)
+
+    def __rmul__(self, otro: object) -> "Polinomio":
+        return self * otro
+```
+
+`Polinomio` no define `__hash__`: como define `__eq__`, sus objetos no son *hashables*, y eso es lo correcto, porque la lista interna `_coefs` podría modificarse.
+
+El producto implementa la fórmula de los coeficientes de un producto de polinomios:
+$$
+\left(\sum_i a_i x^i\right)\left(\sum_j b_j x^j\right) = \sum_k \Bigl(\sum_{i+j=k} a_i b_j\Bigr) x^k.
+$$
+
+```{pyodide}
+x = Polinomio([0, 1])                # el polinomio x
+p = x * x - 2                        # x² - 2
+print(p)                             # -2 + 1·x^2
+print(p(3), p.derivada())            # 7 2·x
+
+uno_mas_x = Polinomio([1, 1])
+potencia = Polinomio([1])
+for _ in range(5):
+    potencia = potencia * uno_mas_x
+print(potencia.coefs)                # [1, 5, 10, 10, 5, 1]
+```
+
+La última línea es la fila 5 del triángulo de Pascal: el binomio de Newton $(1 + x)^n = \sum_{k=0}^{n} \binom{n}{k} x^k$ calculado con productos de polinomios.
+
+::: {#nte-newton-exacto .callout-note title="Newton con fracciones: aproximaciones racionales de √2"}
+`Polinomio` y `Fraccion` no se conocen entre sí, pero funcionan juntos: la evaluación de Horner solo necesita que los valores sepan sumarse y multiplicarse, y las fracciones saben. Esta capacidad de combinar objetos que respetan la misma interfaz se llama ***duck typing*** («si camina como un pato y grazna como un pato, es un pato»).
+
+Si aplicamos el método de Newton a $p(x) = x^2 - 2$ partiendo de $x_0 = 1$ **con aritmética exacta**, obtenemos una sucesión de racionales que converge a $\sqrt{2}$:
+
+```{pyodide}
+p = Polinomio([-2, 0, 1])            # x² - 2
+dp = p.derivada()
+x = Fraccion(1)
+for k in range(1, 5):
+    x = x - p(x) / dp(x)
+    print(f"x_{k} = {x}  ≈ {float(x):.15f}")
+# x_1 = 3/2  ≈ 1.500000000000000
+# x_2 = 17/12  ≈ 1.416666666666667
+# x_3 = 577/408  ≈ 1.414215686274510
+# x_4 = 665857/470832  ≈ 1.414213562374690
+```
+
+Las fracciones $3/2$, $17/12$, $577/408$, … son convergentes de la fracción continua de $\sqrt{2}$, y la convergencia cuadrática se aprecia en que el número de cifras correctas se duplica en cada paso.
+:::
+
+### **6.4.7 Resumen de métodos mágicos**
+
+| Método | Se invoca con | Uso en este tema |
+| :--- | :--- | :--- |
+| `__init__(self, ...)` | `Clase(...)` | Validar y normalizar el estado inicial |
+| `__repr__(self)` | `repr(x)`, intérprete, listas | `Fraccion(3, 4)` |
+| `__str__(self)` | `str(x)`, `print(x)`, f-strings | `3/4` |
+| `__eq__(self, otro)` | `x == y` | Igualdad de racionales y polinomios |
+| `__hash__(self)` | `hash(x)`, conjuntos, claves de diccionario | Conjuntos de fracciones |
+| `__lt__`, `__le__`, `__gt__`, `__ge__` | `x < y`, `x <= y`, `x > y`, `x >= y`, `sorted`, `min`, `max` | Ordenar fracciones |
+| `__neg__(self)` | `-x` | Opuesto |
+| `__add__`, `__radd__` | `x + y`, `y + x`, `sum` | Suma |
+| `__sub__`, `__rsub__` | `x - y`, `y - x` | Resta |
+| `__mul__`, `__rmul__` | `x * y`, `y * x` | Producto |
+| `__truediv__`, `__rtruediv__` | `x / y`, `y / x` | Cociente |
+| `__float__(self)` | `float(x)` | Aproximación decimal |
+| `__call__(self, ...)` | `x(...)` | Evaluar un polinomio |
+
+::: {.callout-note collapse="true" title="Profundización: `fractions.Fraction` de la biblioteca estándar"}
+La biblioteca estándar de Python incluye una clase de racionales exactos, `Fraction`, en el módulo `fractions`, con un diseño muy parecido al de nuestra `Fraccion`: forma canónica, operadores aritméticos y de comparación, `__hash__` compatible con los enteros y conversión a `float`:
+
+```python
+from fractions import Fraction
+
+print(Fraction(6, -8))                  # -3/4
+print(sum(Fraction(1, k) for k in range(1, 11)))   # 7381/2520
+print(Fraction(0.5), Fraction("3/7"))   # 1/2 3/7
+```
+
+En la práctica, se usa `Fraction` en lugar de programar una clase propia. Programar `Fraccion` desde cero, sin embargo, es la mejor forma de entender qué hay detrás de cualquier tipo numérico de Python [@ramalho2022].
+:::
+
+## Bibliografía {.unnumbered}
+
+::: {#refs}
+:::
