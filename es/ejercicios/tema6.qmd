@@ -1,7 +1,650 @@
 ---
-title: "Ejercicios — Tema 6"
+title: "Ejercicios — Tema 6: Programación Orientada a Objetos"
 lang: es
 sidebar: barra-es
 ---
 
-*(Contenido pendiente.)*
+Para la realización de los ejercicios debe utilizar el proyecto `t06-poo` que está disponible en el repositorio del curso: [https://github.com/UIB-23200-Programacion/t06-poo](https://github.com/UIB-23200-Programacion/t06-poo){target="_blank" rel="noopener noreferrer"}. Navega al sitio y sigue las instrucciones en `README.md` para copiar el repositorio en tu entorno local de GitHub y abrir un Codespace para trabajar en los ejercicios.
+
+En todos los ejercicios de este tema se programan **clases**. Las reglas de los temas anteriores se aplican ahora a cada método:
+
+- cada método debe tener anotaciones de tipo y docstring;
+- si no se cumple una precondición, el método debe lanzar `ValueError` con un mensaje descriptivo (véase [sección 3.4 del tema 3](https://uib-23200-programacion.github.io/website/es/contenido/tema3.html#excepciones){target="_blank"});
+- si un operador recibe un operando de un tipo que no sabe tratar, el método mágico debe devolver `NotImplemented` (véase [sección 6.4 del tema 6](https://uib-23200-programacion.github.io/website/es/contenido/tema6.html){target="_blank"}).
+
+## Ejercicios 6.1 a 6.8
+
+Los ejercicios 6.1 al 6.8 se encuentran en el archivo `ejer_t06_01-08_mo.py` contenido en el directorio `/notebooks`. Cada ejercicio tiene una celda con el enunciado, una celda con el **esqueleto de la clase** (nombres de los métodos y anotaciones de tipo, con `pass` en el cuerpo) y una celda con ejemplos y la salida esperada.
+
+| Ejercicio | Clase | Contenido del tema 6 que practica |
+|---|---|---|
+| 6.1 | `Punto2D` | atributos y métodos que devuelven objetos nuevos |
+| 6.2 | `Rectangulo` | validación en el constructor |
+| 6.3 | `SucesionAritmetica` | métodos y fórmulas cerradas (suma de Gauss) |
+| 6.4 | `Estadistico` | estado interno y propiedades (`@property`) |
+| 6.5 | `Triangulo` | invariante de clase (desigualdad triangular), fórmula de Herón |
+| 6.6 | `Vector2D` | sobrecarga de operadores |
+| 6.7 | `Recta` | constructor alternativo con `@classmethod` |
+| 6.8 | `EnteroModular` | aritmética en $\mathbb{Z}_n$, `__eq__` y `__hash__` |
+
+Estos ficheros son tanto scripts de Python como notebooks de Marimo que permiten ejecución interactiva. **Es necesario abrir los ficheros con Marimo para disponer de la ejecución interactiva en celdas del notebook, para ello (si no ocurre de forma automática) debes hacer clic en el botón "Open in Marimo" (![](../../images/openmarimo.png){width="30px"})**
+
+::: {.callout-caution title="Clases en celdas de Marimo"}
+En Marimo, cada nombre (de variable, de función o de clase) solo puede definirse en **una** celda. Por eso el módulo `math` ya está importado en la primera celda del notebook: no vuelvas a escribir `import math` en otra celda. Tampoco definas dos veces la misma clase en celdas distintas: si quieres probar una variante, modifica la celda original.
+:::
+
+---
+
+## Ejercicios 6.9 a 6.11
+
+El proyecto `t06-poo` contiene el paquete `t06_paquete` con tres módulos. Cada módulo contiene el **esqueleto** de una clase que representa un objeto matemático:
+
+| Módulo | Clase | Dominio |
+|---|---|---|
+| `matriz.py` | `Matriz` | álgebra lineal |
+| `intervalo.py` | `Intervalo` | aritmética de intervalos (análisis numérico) |
+| `permutacion.py` | `Permutacion` | grupo simétrico $S_n$ (álgebra) |
+
+Completa cada clase sustituyendo los `pass` por tu implementación. **No cambies los nombres de las clases, de los métodos ni de sus parámetros**: las pruebas dependen de ellos.
+
+::: {.callout-important title="Las pruebas van en pytest"}
+Igual que en el tema 5, las pruebas no se escriben en el bloque `if __name__ == "__main__"`, sino en ficheros `test_*.py` dentro de la carpeta `tests/` (ejercicio 6.12).
+:::
+
+---
+
+## Ejercicio 6.9: Clase `Matriz` (módulo `matriz.py`)
+
+Una `Matriz` de $n$ filas y $m$ columnas se guarda como una lista de filas: `[[a11, a12], [a21, a22]]`. Los elementos son números (`int` o `float`).
+
+::: {.callout-note title="6.9.1 Constructor `__init__(self, filas)`:" collapse="true"}
+
+Crea la matriz a partir de una lista de filas. Precondiciones: la lista no está vacía, las filas no están vacías y todas tienen la misma longitud. El constructor debe **copiar** las filas, para que modificar después la lista original no modifique la matriz.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+A = Matriz([[1, 2], [3, 4]])
+Matriz([[1, 2], [3]])     # ValueError: filas de distinta longitud
+Matriz([])                # ValueError: matriz vacía
+```
+:::
+
+:::
+
+::: {.callout-note title="6.9.2 Métodos de clase `identidad(n)` y `ceros(n, m)`:" collapse="true"}
+
+Constructores alternativos (`@classmethod`): `identidad(n)` devuelve la matriz identidad $I_n$ y `ceros(n, m)` la matriz nula de $n \times m$. Precondición: $n, m \geq 1$.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(repr(Matriz.identidad(2)))   # Matriz([[1, 0], [0, 1]])
+print(repr(Matriz.ceros(2, 3)))    # Matriz([[0, 0, 0], [0, 0, 0]])
+```
+:::
+
+:::
+
+::: {.callout-note title="6.9.3 Propiedad `dimensiones` y acceso `A[i, j]`:" collapse="true"}
+
+La propiedad `dimensiones` devuelve la tupla `(n, m)`. El método `__getitem__` permite leer un elemento con la notación `A[i, j]` (fila `i`, columna `j`, contando desde 0): Python pasa la tupla `(i, j)` como argumento.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+A = Matriz([[1, 2], [3, 4]])
+print(A.dimensiones)                          # (2, 2)
+print(Matriz([[1, 2, 3], [4, 5, 6]]).dimensiones)   # (2, 3)
+print(A[1, 0])                                # 3
+```
+:::
+
+:::
+
+::: {.callout-note title="6.9.4 Representación `__repr__` y `__str__`:" collapse="true"}
+
+`repr(A)` devuelve `Matriz([[1, 2], [3, 4]])`. `str(A)` (y por tanto `print(A)`) devuelve una fila por línea, con los elementos separados por un espacio.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+A = Matriz([[1, 2], [3, 4]])
+print(repr(A))   # Matriz([[1, 2], [3, 4]])
+print(A)
+# 1 2
+# 3 4
+```
+:::
+
+:::
+
+::: {.callout-note title="6.9.5 Igualdad `__eq__`:" collapse="true"}
+
+Dos matrices son iguales si tienen las mismas dimensiones y los mismos elementos. Si el otro operando no es una `Matriz`, devuelve `NotImplemented`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(Matriz([[1, 2], [3, 4]]) == Matriz([[1, 2], [3, 4]]))   # True
+print(Matriz([[1, 2]]) == Matriz([[1], [2]]))                 # False
+```
+:::
+
+:::
+
+::: {.callout-note title="6.9.6 Suma y resta `__add__`, `__sub__`:" collapse="true"}
+
+Suma y resta elemento a elemento. Precondición: las dos matrices tienen las mismas dimensiones.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+A = Matriz([[1, 2], [3, 4]])
+B = Matriz([[0, 1], [1, 0]])
+print(repr(A + B))                    # Matriz([[1, 3], [4, 4]])
+print(A - A == Matriz.ceros(2, 2))    # True
+```
+:::
+
+:::
+
+::: {.callout-note title="6.9.7 Producto por un escalar `__mul__`, `__rmul__`:" collapse="true"}
+
+`A * k` y `k * A`, con `k` un `int` o un `float`, multiplican cada elemento por `k`. Para cualquier otro tipo, devuelven `NotImplemented`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+A = Matriz([[1, 2], [3, 4]])
+print(repr(2 * A))     # Matriz([[2, 4], [6, 8]])
+print(repr(A * 0.5))   # Matriz([[0.5, 1.0], [1.5, 2.0]])
+```
+:::
+
+:::
+
+::: {.callout-note title="6.9.8 Producto de matrices `__matmul__` (operador `@`):" collapse="true"}
+
+Python reserva el operador `@` para el producto de matrices: `A @ B` llama a `A.__matmul__(B)`. Si $A$ es $n \times m$ y $B$ es $m \times p$, el producto es la matriz $n \times p$ con
+$$
+(AB)_{ij} = \sum_{k=1}^{m} a_{ik}\, b_{kj}.
+$$
+Precondición: el número de columnas de $A$ coincide con el número de filas de $B$.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+A = Matriz([[1, 2], [3, 4]])
+B = Matriz([[0, 1], [1, 0]])
+print(repr(A @ B))   # Matriz([[2, 1], [4, 3]])
+print(repr(B @ A))   # Matriz([[3, 4], [1, 2]])  — el producto no es conmutativo
+```
+:::
+
+:::
+
+::: {.callout-note title="6.9.9 Método `traspuesta()`:" collapse="true"}
+
+Devuelve la matriz traspuesta $A^T$, con $(A^T)_{ij} = a_{ji}$.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(repr(Matriz([[1, 2], [3, 4]]).traspuesta()))   # Matriz([[1, 3], [2, 4]])
+print(Matriz([[1, 2, 3], [4, 5, 6]]).traspuesta().dimensiones)   # (3, 2)
+```
+:::
+
+:::
+
+::: {.callout-note title="6.9.10 Método `determinante()`:" collapse="true"}
+
+Calcula el determinante por **desarrollo de Laplace** a lo largo de la primera fila:
+$$
+\det(A) = \sum_{j=1}^{n} (-1)^{1+j}\, a_{1j}\, \det(A_{1j}),
+$$
+donde $A_{1j}$ es la submatriz que resulta de eliminar la fila 1 y la columna $j$. Es una definición **recursiva** (tema 3): el caso base es una matriz $1 \times 1$, cuyo determinante es su único elemento. Precondición: la matriz es cuadrada.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(Matriz([[1, 2], [3, 4]]).determinante())                    # -2
+print(Matriz([[2, 0, 1], [1, 3, 2], [1, 1, 2]]).determinante())   # 6
+print(Matriz.identidad(3).determinante())                         # 1
+```
+:::
+
+::: {.callout-important title="Coste del desarrollo de Laplace"}
+El desarrollo de Laplace hace $n$ llamadas recursivas con matrices de orden $n - 1$, así que su coste crece como $n!$. Es adecuado para matrices pequeñas; para matrices grandes se usa la eliminación gaussiana, que cuesta del orden de $n^3$ operaciones.
+:::
+
+:::
+
+::: {.callout-note title="6.9.11 Potencia `__pow__` y los números de Fibonacci:" collapse="true"}
+
+`A ** k` devuelve la potencia $A^k$, con $A^0 = I$. Precondiciones: la matriz es cuadrada y $k$ es un entero no negativo.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+F = Matriz([[1, 1], [1, 0]])
+print(F ** 10)
+# 89 55
+# 55 34
+print(F ** 0 == Matriz.identidad(2))   # True
+```
+:::
+
+::: {.callout-important title="Fibonacci con matrices"}
+Por inducción se demuestra que
+$$
+\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}^{k} = \begin{pmatrix} F_{k+1} & F_k \\ F_k & F_{k-1} \end{pmatrix},
+$$
+donde $F_k$ es el $k$-ésimo número de Fibonacci. Con **exponenciación rápida** ($A^{2k} = (A^k)^2$ y $A^{2k+1} = A \cdot A^{2k}$) basta con unos $\log_2 k$ productos de matrices para calcular $F_k$, en lugar de los $k$ pasos del bucle del tema 2. Implementar la exponenciación rápida es opcional.
+:::
+
+:::
+
+---
+
+## Ejercicio 6.10: Clase `Intervalo` (módulo `intervalo.py`)
+
+La **aritmética de intervalos** trabaja con intervalos cerrados $[a, b]$ en lugar de con números: si $x \in [a, b]$ e $y \in [c, d]$, la suma, la resta y el producto de $x$ e $y$ están garantizados en intervalos que se calculan solo a partir de los extremos. Se usa en análisis numérico para acotar de forma rigurosa los errores de redondeo y de medida.
+
+::: {.callout-note title="6.10.1 Constructor `__init__(self, inf, sup)`:" collapse="true"}
+
+Crea el intervalo $[\text{inf}, \text{sup}]$. Precondición: $\text{inf} \leq \text{sup}$. Guarda los extremos en atributos privados (`_inf`, `_sup`).
+
+::: {.callout-tip title="Ejemplo"}
+```python
+I = Intervalo(1, 3)
+J = Intervalo(2, 2)    # intervalo degenerado: el número 2
+Intervalo(3, 1)        # ValueError
+```
+:::
+
+:::
+
+::: {.callout-note title="6.10.2 Propiedades de solo lectura `inf` y `sup`:" collapse="true"}
+
+Los extremos se leen con `I.inf` e `I.sup`, pero no se pueden modificar (`@property` sin *setter*).
+
+::: {.callout-tip title="Ejemplo"}
+```python
+I = Intervalo(1, 3)
+print(I.inf, I.sup)    # 1 3
+I.inf = 5              # AttributeError
+```
+:::
+
+:::
+
+::: {.callout-note title="6.10.3 Propiedades `longitud` y `punto_medio`:" collapse="true"}
+
+Propiedades calculadas: la longitud $b - a$ y el punto medio $(a + b)/2$.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+I = Intervalo(1, 3)
+print(I.longitud, I.punto_medio)    # 2 2.0
+```
+:::
+
+:::
+
+::: {.callout-note title="6.10.4 Pertenencia `__contains__` (operador `in`):" collapse="true"}
+
+`x in I` llama a `I.__contains__(x)` y debe devolver `True` si $a \leq x \leq b$.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+I = Intervalo(1, 3)
+print(2 in I, 3 in I, 4 in I)    # True True False
+```
+:::
+
+:::
+
+::: {.callout-note title="6.10.5 Representación `__repr__` y `__str__`:" collapse="true"}
+
+`repr(I)` devuelve `Intervalo(1, 3)` y `str(I)` devuelve `[1, 3]`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+I = Intervalo(1, 3)
+print(repr(I))    # Intervalo(1, 3)
+print(I)          # [1, 3]
+```
+:::
+
+:::
+
+::: {.callout-note title="6.10.6 Igualdad y hash `__eq__`, `__hash__`:" collapse="true"}
+
+Dos intervalos son iguales si tienen los mismos extremos. Como los intervalos no se modifican después de crearse, deben ser *hashables* (véase el apartado 6.4.2 del tema), de modo que puedan guardarse en conjuntos.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(Intervalo(1, 3) == Intervalo(1, 3))                  # True
+print(len({Intervalo(1, 3), Intervalo(1, 3), Intervalo(0, 1)}))   # 2
+```
+:::
+
+:::
+
+::: {.callout-note title="6.10.7 Método `interseccion(otro)`:" collapse="true"}
+
+Devuelve el intervalo $[a, b] \cap [c, d] = [\max(a, c), \min(b, d)]$, o `None` si los intervalos son disjuntos.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+I = Intervalo(1, 3)
+print(I.interseccion(Intervalo(2, 5)))    # [2, 3]
+print(I.interseccion(Intervalo(4, 6)))    # None
+print(I.interseccion(Intervalo(3, 4)))    # [3, 3]
+```
+:::
+
+:::
+
+::: {.callout-note title="6.10.8 Suma y resta `__add__`, `__radd__`, `__sub__`, `__rsub__`:" collapse="true"}
+
+$$
+[a, b] + [c, d] = [a + c,\ b + d], \qquad [a, b] - [c, d] = [a - d,\ b - c].
+$$
+Un número $x$ se trata como el intervalo degenerado $[x, x]$, de modo que también funcionan `I + 1`, `1 + I`, `I - 1` y `1 - I`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+I = Intervalo(1, 3)
+J = Intervalo(2, 5)
+print(I + J, I - J)      # [3, 8] [-4, 1]
+print(I + 1, 10 - I)     # [2, 4] [7, 9]
+```
+:::
+
+:::
+
+::: {.callout-note title="6.10.9 Producto `__mul__`, `__rmul__`:" collapse="true"}
+
+$$
+[a, b] \cdot [c, d] = [\min(ac, ad, bc, bd),\ \max(ac, ad, bc, bd)].
+$$
+Como en la suma, un número $x$ se trata como $[x, x]$.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(Intervalo(1, 3) * Intervalo(2, 5))     # [2, 15]
+print(Intervalo(-1, 2) * Intervalo(-3, 1))   # [-6, 3]
+print(2 * Intervalo(1, 3))                   # [2, 6]
+```
+:::
+
+::: {.callout-important title="El problema de la dependencia"}
+La aritmética de intervalos garantiza que el resultado **contiene** todos los valores posibles, pero puede sobreestimarlos. Si $X = [-1, 1]$:
+
+```python
+X = Intervalo(-1, 1)
+print(X - X)    # [-2, 2], aunque x - x = 0 para todo x
+print(X * X)    # [-1, 1], aunque x² ∈ [0, 1]
+```
+
+La aritmética de intervalos trata cada aparición de $X$ como si fuera una variable independiente. Por eso, en análisis numérico importa cómo se escribe una expresión: fórmulas matemáticamente equivalentes pueden dar intervalos de distinta anchura.
+:::
+
+:::
+
+---
+
+## Ejercicio 6.11: Clase `Permutacion` (módulo `permutacion.py`)
+
+Una **permutación** de $\{0, 1, \ldots, n-1\}$ es una biyección $\sigma$ de ese conjunto en sí mismo. Se representa con la lista de sus imágenes: `Permutacion([1, 2, 0])` es la permutación $\sigma$ con $\sigma(0) = 1$, $\sigma(1) = 2$ y $\sigma(2) = 0$. Con la composición, las permutaciones de $n$ elementos forman el **grupo simétrico** $S_n$, de orden $n!$.
+
+::: {.callout-note title="6.11.1 Constructor `__init__(self, imagen)`:" collapse="true"}
+
+Crea la permutación con la lista de imágenes dada. Precondición: la lista contiene exactamente una vez cada uno de los números $0, 1, \ldots, n-1$ (es decir, define una biyección).
+
+::: {.callout-tip title="Ejemplo"}
+```python
+sigma = Permutacion([1, 2, 0, 4, 3])
+Permutacion([0, 0, 1])    # ValueError: 0 aparece dos veces
+Permutacion([1, 2, 3])    # ValueError: falta el 0
+```
+:::
+
+:::
+
+::: {.callout-note title="6.11.2 Método de clase `identidad(n)`:" collapse="true"}
+
+Devuelve la permutación identidad de $\{0, \ldots, n-1\}$.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(Permutacion.identidad(4))    # Permutacion([0, 1, 2, 3])
+```
+:::
+
+:::
+
+::: {.callout-note title="6.11.3 Evaluación `__call__` y tamaño `__len__`:" collapse="true"}
+
+`sigma(i)` devuelve la imagen de `i` y `len(sigma)` devuelve $n$.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+sigma = Permutacion([1, 2, 0, 4, 3])
+print(sigma(0), sigma(3), len(sigma))    # 1 4 5
+```
+:::
+
+:::
+
+::: {.callout-note title="6.11.4 Representación, igualdad y hash:" collapse="true"}
+
+`repr(sigma)` devuelve `Permutacion([1, 2, 0, 4, 3])`. Dos permutaciones son iguales si tienen la misma lista de imágenes. Las permutaciones deben ser *hashables*.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(Permutacion([1, 0]) == Permutacion([1, 0]))    # True
+print(len({Permutacion([1, 0]), Permutacion([1, 0]), Permutacion([0, 1])}))   # 2
+```
+:::
+
+:::
+
+::: {.callout-note title="6.11.5 Composición `__mul__`:" collapse="true"}
+
+`sigma * tau` es la composición $\sigma \circ \tau$: primero se aplica $\tau$ y después $\sigma$,
+$$
+(\sigma \circ \tau)(i) = \sigma(\tau(i)).
+$$
+Precondición: las dos permutaciones tienen el mismo tamaño.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+s = Permutacion([1, 0, 2])    # intercambia 0 y 1
+t = Permutacion([0, 2, 1])    # intercambia 1 y 2
+print(s * t)                  # Permutacion([1, 2, 0])
+print(t * s)                  # Permutacion([2, 0, 1])  — S_3 no es conmutativo
+```
+:::
+
+:::
+
+::: {.callout-note title="6.11.6 Método `inversa()`:" collapse="true"}
+
+Devuelve la permutación inversa $\sigma^{-1}$, que cumple $\sigma \circ \sigma^{-1} = \sigma^{-1} \circ \sigma = \text{id}$.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+sigma = Permutacion([1, 2, 0, 4, 3])
+print(sigma.inversa())                                       # Permutacion([2, 0, 1, 4, 3])
+print(sigma * sigma.inversa() == Permutacion.identidad(5))   # True
+```
+:::
+
+:::
+
+::: {.callout-note title="6.11.7 Potencia `__pow__`:" collapse="true"}
+
+`sigma ** k` es la composición de $\sigma$ consigo misma $k$ veces, con $\sigma^0 = \text{id}$. Si $k$ es negativo, $\sigma^{k} = (\sigma^{-1})^{-k}$.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+sigma = Permutacion([1, 2, 0, 4, 3])
+print(sigma ** 2)                                   # Permutacion([2, 0, 1, 3, 4])
+print(sigma ** -1 == sigma.inversa())               # True
+print(sigma ** 6 == Permutacion.identidad(5))       # True
+```
+:::
+
+:::
+
+::: {.callout-note title="6.11.8 Método `ciclos()`:" collapse="true"}
+
+Toda permutación se descompone en **ciclos disjuntos**. Por ejemplo, $\sigma = [1, 2, 0, 4, 3]$ envía $0 \to 1 \to 2 \to 0$ y $3 \to 4 \to 3$, así que $\sigma = (0\ 1\ 2)(3\ 4)$. El método devuelve la lista de ciclos como tuplas, **sin los puntos fijos** (ciclos de longitud 1). Cada ciclo empieza por su menor elemento y los ciclos aparecen ordenados por su primer elemento.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(Permutacion([1, 2, 0, 4, 3]).ciclos())    # [(0, 1, 2), (3, 4)]
+print(Permutacion([0, 2, 1, 3]).ciclos())       # [(1, 2)]
+print(Permutacion.identidad(4).ciclos())        # []
+```
+:::
+
+::: {.callout-important title="Algoritmo"}
+Recorre los elementos $i = 0, 1, \ldots, n-1$. Si $i$ no se ha visitado todavía, sigue la órbita $i, \sigma(i), \sigma(\sigma(i)), \ldots$ hasta volver a $i$, marcando cada elemento como visitado. Un conjunto (`set`) es la estructura adecuada para los elementos visitados.
+:::
+
+:::
+
+::: {.callout-note title="6.11.9 Método `orden()`:" collapse="true"}
+
+El **orden** de $\sigma$ es el menor $k \geq 1$ con $\sigma^k = \text{id}$. Es el mínimo común múltiplo de las longitudes de sus ciclos (puedes usar `math.lcm`).
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(Permutacion([1, 2, 0, 4, 3]).orden())    # 6 = mcm(3, 2)
+print(Permutacion.identidad(4).orden())        # 1
+```
+:::
+
+:::
+
+::: {.callout-note title="6.11.10 Método `signo()`:" collapse="true"}
+
+Un ciclo de longitud $\ell$ se escribe como producto de $\ell - 1$ transposiciones. El **signo** de $\sigma$ es $(-1)^t$, donde $t$ es la suma de $\ell - 1$ sobre todos sus ciclos: vale $1$ si la permutación es **par** y $-1$ si es **impar**.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(Permutacion([1, 2, 0, 4, 3]).signo())    # -1   (2 + 1 = 3 transposiciones)
+print(Permutacion([1, 2, 0]).signo())          # 1
+print(Permutacion.identidad(4).signo())        # 1
+```
+:::
+
+::: {.callout-important title="Comprobación con el grupo simétrico"}
+Con `itertools.permutations(range(4))` se generan las $4! = 24$ permutaciones de $S_4$. Exactamente la mitad, 12, son pares (forman el **grupo alternado** $A_4$), y los órdenes que aparecen son $1, 2, 3$ y $4$:
+
+```python
+from itertools import permutations
+
+s4 = [Permutacion(list(p)) for p in permutations(range(4))]
+print(len(s4))                                   # 24
+print(sum(1 for p in s4 if p.signo() == 1))      # 12
+print(sorted({p.orden() for p in s4}))           # [1, 2, 3, 4]
+```
+:::
+
+:::
+
+---
+
+## Ejercicio 6.12: Tests con `pytest`
+
+Escribe las pruebas de las clases de los ejercicios 6.9, 6.10 y 6.11 en la carpeta `tests/` del proyecto:
+
+```
+t06-poo/
+├── src/
+│   └── t06_paquete/
+│       ├── matriz.py
+│       ├── intervalo.py
+│       └── permutacion.py
+└── tests/
+    ├── conftest.py
+    ├── test_matriz.py
+    ├── test_intervalo.py
+    └── test_permutacion.py
+```
+
+Para ejecutar todas las pruebas desde la raíz del proyecto:
+
+```text
+uv run pytest            # todas las pruebas
+uv run pytest -v         # verbose: muestra el nombre de cada prueba
+uv run pytest -x         # para en el primer fallo
+```
+
+::: {.callout-important title="Requisitos mínimos por método"}
+Para cada método de las clases de los ejercicios 6.9, 6.10 y 6.11, el fichero de prueba correspondiente debe incluir:
+
+1. **Al menos 2 casos normales**: entradas típicas con resultados conocidos.
+2. **Al menos 1 caso límite** (si aplica): matriz $1 \times 1$, intervalo degenerado, permutación identidad…
+3. **Al menos 1 test de precondición violada** (si el método tiene precondición): usando `pytest.raises(ValueError)`.
+
+Además, incluye al menos una prueba de una **propiedad algebraica** por clase, por ejemplo: $(AB)^T = B^T A^T$, $\det(AB) = \det(A)\det(B)$, $I \subseteq I + J - J$ para intervalos, o $(\sigma\tau)^{-1} = \tau^{-1}\sigma^{-1}$ y $\operatorname{sgn}(\sigma\tau) = \operatorname{sgn}(\sigma)\operatorname{sgn}(\tau)$ para permutaciones.
+:::
+
+::: {.callout-note title="6.12.1 Fichero `test_matriz.py`:" collapse="true"}
+
+A continuación se muestran pruebas de algunos métodos de `Matriz` como modelo; completa el resto.
+
+```python
+# tests/test_matriz.py
+import pytest
+
+from t06_paquete.matriz import Matriz
+
+# --- constructor ---
+
+def test_constructor_filas_distinta_longitud():
+    with pytest.raises(ValueError):
+        Matriz([[1, 2], [3]])
+
+def test_constructor_copia_las_filas():
+    filas = [[1, 2], [3, 4]]
+    a = Matriz(filas)
+    filas[0][0] = 99                      # modificar la lista original...
+    assert a[0, 0] == 1                   # ...no modifica la matriz
+
+# --- producto de matrices ---
+
+def test_producto_por_identidad():
+    a = Matriz([[1, 2], [3, 4]])
+    assert a @ Matriz.identidad(2) == a
+
+def test_producto_no_conmutativo():
+    a = Matriz([[1, 2], [3, 4]])
+    b = Matriz([[0, 1], [1, 0]])
+    assert a @ b != b @ a
+
+def test_producto_dimensiones_incompatibles():
+    with pytest.raises(ValueError):
+        Matriz([[1, 2, 3]]) @ Matriz([[1, 2, 3]])
+
+# --- determinante ---
+
+def test_determinante_2x2():
+    assert Matriz([[1, 2], [3, 4]]).determinante() == -2
+
+def test_determinante_no_cuadrada():
+    with pytest.raises(ValueError):
+        Matriz([[1, 2, 3], [4, 5, 6]]).determinante()
+
+# --- propiedad algebraica ---
+
+def test_traspuesta_del_producto():
+    a = Matriz([[1, 2], [3, 4], [5, 6]])
+    b = Matriz([[1, 0, 2], [0, 1, 3]])
+    assert (a @ b).traspuesta() == b.traspuesta() @ a.traspuesta()
+
+# Añade aquí las pruebas del resto de métodos
+```
+
+:::
+
+::: {.callout-note title="6.12.2 Ficheros `test_intervalo.py` y `test_permutacion.py`:" collapse="true"}
+
+Escribe estos dos ficheros siguiendo el modelo de `test_matriz.py` y los requisitos mínimos indicados arriba.
+:::
