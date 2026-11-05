@@ -186,7 +186,7 @@ print(type(r).__name__)          # Fraccion
 print(isinstance(r, Fraccion))   # True
 ```
 
-El **contructor o inicializador** es el método especial `__init__` de una clase. Python lo llama automáticamente cada vez que se crea un objeto, y su función es dejar ese objeto **listo y en un estado válido**:
+El **constructor o inicializador** es el método especial `__init__` de una clase. Python lo llama automáticamente cada vez que se crea un objeto, y su función es dejar ese objeto **listo y en un estado válido**.
 
 Al escribir `Fraccion(3, 4)` ocurren dos pasos:
 
@@ -202,7 +202,7 @@ Dentro de `__init__` se hace normalmente esto:
 Algunos detalles:
 
 - `__init__` **no devuelve nada** (su tipo de retorno es `None`). El objeto lo devuelve Python, no el método.
-- Admite **valores por defecto**, como cualquier función: con `den: int = 1`, `Fraccion(5)` crea $5/1$.
+- Admite **valores por defecto**, como cualquier función: con `den: int = 1`, `Fraccion(5)` crea $5/1$ (lo usaremos en el apartado 6.3).
 - **Constructor o inicializador:** en el lenguaje habitual se llama «constructor», pero en sentido estricto es un *inicializador*. El objeto ya existe cuando se llama a `__init__`, porque lo crea antes otro método especial, `__new__`, que casi nunca hace falta tocar.
 
 ::: {#imp-self .callout-important title="El parámetro `self`"}
