@@ -20,7 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -76,6 +131,35 @@ ul.task-list li input[type="checkbox"] {
 <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Tema 6: Programación Orientada a Objetos – Programación (23200)">
@@ -533,8 +617,46 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#tipos-abstractos-de-datos-tads" id="toc-tipos-abstractos-de-datos-tads" class="nav-link active" data-scroll-target="#tipos-abstractos-de-datos-tads">6.1. Tipos Abstractos de Datos (TADs)</a>
+  <ul class="collapse">
+  <li><a href="#especificación-de-un-tad-los-números-racionales" id="toc-especificación-de-un-tad-los-números-racionales" class="nav-link" data-scroll-target="#especificación-de-un-tad-los-números-racionales"><strong>6.1.1 Especificación de un TAD: los números racionales</strong></a></li>
+  <li><a href="#una-implementación-con-tuplas" id="toc-una-implementación-con-tuplas" class="nav-link" data-scroll-target="#una-implementación-con-tuplas"><strong>6.1.2 Una implementación con tuplas</strong></a></li>
+  <li><a href="#la-barrera-de-abstracción-dos-representaciones-del-mismo-tad" id="toc-la-barrera-de-abstracción-dos-representaciones-del-mismo-tad" class="nav-link" data-scroll-target="#la-barrera-de-abstracción-dos-representaciones-del-mismo-tad"><strong>6.1.3 La barrera de abstracción: dos representaciones del mismo TAD</strong></a></li>
+  </ul></li>
+  <li><a href="#clases-objetos-atributos-y-métodos" id="toc-clases-objetos-atributos-y-métodos" class="nav-link" data-scroll-target="#clases-objetos-atributos-y-métodos">6.2. Clases, objetos, atributos y métodos</a>
+  <ul class="collapse">
+  <li><a href="#definir-una-clase" id="toc-definir-una-clase" class="nav-link" data-scroll-target="#definir-una-clase"><strong>6.2.1 Definir una clase</strong></a></li>
+  <li><a href="#atributos-de-instancia-y-estado" id="toc-atributos-de-instancia-y-estado" class="nav-link" data-scroll-target="#atributos-de-instancia-y-estado"><strong>6.2.2 Atributos de instancia y estado</strong></a></li>
+  <li><a href="#métodos" id="toc-métodos" class="nav-link" data-scroll-target="#métodos"><strong>6.2.3 Métodos</strong></a></li>
+  <li><a href="#ejemplo-la-clase-polinomio-y-el-método-de-newton" id="toc-ejemplo-la-clase-polinomio-y-el-método-de-newton" class="nav-link" data-scroll-target="#ejemplo-la-clase-polinomio-y-el-método-de-newton"><strong>6.2.4 Ejemplo: la clase <code>Polinomio</code> y el método de Newton</strong></a></li>
+  <li><a href="#identidad-e-igualdad-de-objetos" id="toc-identidad-e-igualdad-de-objetos" class="nav-link" data-scroll-target="#identidad-e-igualdad-de-objetos"><strong>6.2.5 Identidad e igualdad de objetos</strong></a></li>
+  <li><a href="#métodos-de-clase-y-métodos-estáticos" id="toc-métodos-de-clase-y-métodos-estáticos" class="nav-link" data-scroll-target="#métodos-de-clase-y-métodos-estáticos"><strong>6.2.6 Métodos de clase y métodos estáticos</strong></a></li>
+  </ul></li>
+  <li><a href="#encapsulación-básica" id="toc-encapsulación-básica" class="nav-link" data-scroll-target="#encapsulación-básica">6.3. Encapsulación básica</a>
+  <ul class="collapse">
+  <li><a href="#validar-y-normalizar-en-el-constructor" id="toc-validar-y-normalizar-en-el-constructor" class="nav-link" data-scroll-target="#validar-y-normalizar-en-el-constructor"><strong>6.3.1 Validar y normalizar en el constructor</strong></a></li>
+  <li><a href="#atributos-privados-por-convención" id="toc-atributos-privados-por-convención" class="nav-link" data-scroll-target="#atributos-privados-por-convención"><strong>6.3.2 Atributos privados por convención</strong></a></li>
+  <li><a href="#propiedades-de-solo-lectura" id="toc-propiedades-de-solo-lectura" class="nav-link" data-scroll-target="#propiedades-de-solo-lectura"><strong>6.3.3 Propiedades de solo lectura</strong></a></li>
+  <li><a href="#propiedades-calculadas-y-con-validación" id="toc-propiedades-calculadas-y-con-validación" class="nav-link" data-scroll-target="#propiedades-calculadas-y-con-validación"><strong>6.3.4 Propiedades calculadas y con validación</strong></a></li>
+  </ul></li>
+  <li><a href="#métodos-mágicos-y-sobrecarga-de-operadores" id="toc-métodos-mágicos-y-sobrecarga-de-operadores" class="nav-link" data-scroll-target="#métodos-mágicos-y-sobrecarga-de-operadores">6.4. Métodos mágicos y sobrecarga de operadores</a>
+  <ul class="collapse">
+  <li><a href="#representación-__repr__-y-__str__" id="toc-representación-__repr__-y-__str__" class="nav-link" data-scroll-target="#representación-__repr__-y-__str__"><strong>6.4.1 Representación: <code>__repr__</code> y <code>__str__</code></strong></a></li>
+  <li><a href="#igualdad-y-hash-__eq__-y-__hash__" id="toc-igualdad-y-hash-__eq__-y-__hash__" class="nav-link" data-scroll-target="#igualdad-y-hash-__eq__-y-__hash__"><strong>6.4.2 Igualdad y <em>hash</em>: <code>__eq__</code> y <code>__hash__</code></strong></a></li>
+  <li><a href="#operadores-aritméticos" id="toc-operadores-aritméticos" class="nav-link" data-scroll-target="#operadores-aritméticos"><strong>6.4.3 Operadores aritméticos</strong></a></li>
+  <li><a href="#comparación-de-orden-__lt__-y-__le__" id="toc-comparación-de-orden-__lt__-y-__le__" class="nav-link" data-scroll-target="#comparación-de-orden-__lt__-y-__le__"><strong>6.4.4 Comparación de orden: <code>__lt__</code> y <code>__le__</code></strong></a></li>
+  <li><a href="#la-clase-fraccion-completa" id="toc-la-clase-fraccion-completa" class="nav-link" data-scroll-target="#la-clase-fraccion-completa"><strong>6.4.5 La clase <code>Fraccion</code> completa</strong></a></li>
+  <li><a href="#la-clase-polinomio-con-operadores" id="toc-la-clase-polinomio-con-operadores" class="nav-link" data-scroll-target="#la-clase-polinomio-con-operadores"><strong>6.4.6 La clase <code>Polinomio</code> con operadores</strong></a></li>
+  <li><a href="#resumen-de-métodos-mágicos" id="toc-resumen-de-métodos-mágicos" class="nav-link" data-scroll-target="#resumen-de-métodos-mágicos"><strong>6.4.7 Resumen de métodos mágicos</strong></a></li>
+  </ul></li>
+  <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía">Bibliografía</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -559,11 +681,1005 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contenido pendiente.)</em></p>
+<p>En el tema 4 representamos objetos matemáticos con las estructuras nativas de Python: un vector como una lista, un polinomio como una lista de coeficientes o un diccionario, y un número racional podría guardarse como una tupla <code>(p, q)</code>. Esto funciona, pero tiene un inconveniente: los <strong>datos</strong> y las <strong>operaciones</strong> que actúan sobre ellos viven separados. Una tupla <code>(3, 4)</code> puede ser un racional, un punto del plano o un intervalo; Python no lo sabe, y nada impide construir la tupla <code>(1, 0)</code> aunque no represente ningún número racional.</p>
+<p>La <strong>Programación Orientada a Objetos</strong> (POO) resuelve este problema permitiendo definir <strong>tipos nuevos</strong> que agrupan los datos y las operaciones en una sola unidad. Es la misma idea que usamos en matemáticas: <span class="math inline">\(\mathbb{Q}\)</span> no es solo un conjunto de pares de enteros, es un conjunto <strong>con operaciones</strong> (suma, producto, orden) que cumplen ciertas propiedades.</p>
+<div id="tip-objeto" class="callout callout-style-default callout-tip no-icon callout-titled" title="En Python todo es un objeto">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fundamento Teórico&nbsp;1: En Python todo es un objeto
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cada valor de Python es un <strong>objeto</strong>: tiene un <strong>tipo</strong> (su clase), un <strong>estado</strong> (los datos que guarda) y un conjunto de <strong>métodos</strong> (operaciones que se le pueden aplicar con la notación <code>objeto.metodo()</code>). Los enteros, las cadenas y las listas que ya conocemos son objetos de clases predefinidas: <code>int</code>, <code>str</code> y <code>list</code>. En este tema aprenderemos a definir nuestras propias clases.</p>
+</div>
+</div>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQodHlwZSgzKSwgdHlwZSgzLjUpLCB0eXBlKFwiaG9sYVwiKSwgdHlwZShbMSwgMl0pKVxuXG5saXN0YSA9IFszLCAxLCAyXVxubGlzdGEuc29ydCgpICAgICAgICAgICAgICAgICAgICAgICAjIG3DqXRvZG8gZGUgbGEgY2xhc2UgbGlzdFxucHJpbnQobGlzdGEpICAgICAgICAgICAgICAgICAgICAgICAjIFsxLCAyLCAzXVxuXG5wcmludCgoNSkuYml0X2xlbmd0aCgpKSAgICAgICAgICAgICMgMzogaGFzdGEgbG9zIGVudGVyb3MgdGllbmVuIG3DqXRvZG9zXG5wcmludCgoMi41KS5hc19pbnRlZ2VyX3JhdGlvKCkpICAgICMgKDUsIDIpOiAyLjUgPSA1LzIifQ==
+</script>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Las celdas de código de este tema comparten el mismo entorno de Python: algunas usan clases definidas en celdas anteriores. <strong>Ejecútalas en orden.</strong></p>
+</div>
+</div>
+</div>
+<hr>
+<section id="tipos-abstractos-de-datos-tads" class="level2">
+<h2 class="anchored" data-anchor-id="tipos-abstractos-de-datos-tads">6.1. Tipos Abstractos de Datos (TADs)</h2>
+<p>Antes de escribir una sola línea de código orientado a objetos conviene separar dos preguntas: <em>qué</em> operaciones ofrece un tipo de datos y <em>cómo</em> están implementadas. Esta separación es la idea central de los tipos abstractos de datos <span class="citation" data-cites="liskov1974">(<a href="#ref-liskov1974" role="doc-biblioref">Liskov y Zilles 1974</a>)</span>.</p>
+<div id="tip-tad" class="callout callout-style-default callout-tip no-icon callout-titled" title="Tipo Abstracto de Datos">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fundamento Teórico&nbsp;2: Tipo Abstracto de Datos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>Tipo Abstracto de Datos</strong> (TAD) es un conjunto de valores junto con un conjunto de operaciones sobre ellos, especificadas por su <strong>comportamiento</strong> (qué hacen, qué precondiciones exigen, qué devuelven) y no por su <strong>representación</strong> (cómo se guardan los datos en memoria ni cómo se programan las operaciones).</p>
+<p>La definición es muy cercana a la de estructura algebraica: un grupo <span class="math inline">\((G, \cdot)\)</span> o un cuerpo <span class="math inline">\((\mathbb{K}, +, \cdot)\)</span> se definen por las propiedades de sus operaciones, no por la naturaleza concreta de sus elementos.</p>
+</div>
+</div>
+<div id="imp-especificacion" class="callout callout-style-default callout-important no-icon callout-titled" title="Especificación e implementación">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;1: Especificación e implementación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un TAD tiene dos niveles:</p>
+<ul>
+<li><strong>Especificación</strong> (o <strong>interfaz</strong>): el nombre de cada operación, sus parámetros, sus precondiciones y su resultado. Es lo único que necesita conocer quien <em>usa</em> el tipo.</li>
+<li><strong>Implementación</strong>: la <strong>representación</strong> interna de los datos y el código de cada operación. Es asunto de quien <em>programa</em> el tipo.</li>
+</ul>
+<p>La frontera entre ambos niveles se llama <strong>barrera de abstracción</strong>. Si el usuario solo utiliza la interfaz, la implementación puede cambiarse (por ejemplo, para hacerla más eficiente) sin modificar ni una línea del código que usa el tipo.</p>
+</div>
+</div>
+<section id="especificación-de-un-tad-los-números-racionales" class="level3">
+<h3 class="anchored" data-anchor-id="especificación-de-un-tad-los-números-racionales"><strong>6.1.1 Especificación de un TAD: los números racionales</strong></h3>
+<p>Especifiquemos el TAD <em>Racional</em>. Sus valores son los números racionales <span class="math inline">\(p/q\)</span> con <span class="math inline">\(p, q \in \mathbb{Z}\)</span> y <span class="math inline">\(q \neq 0\)</span>, y sus operaciones son:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Operación</th>
+<th style="text-align: left;">Resultado</th>
+<th style="text-align: left;">Precondición</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>crear(p, q)</code></td>
+<td style="text-align: left;">el racional <span class="math inline">\(p/q\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(q \neq 0\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>numerador(r)</code>, <code>denominador(r)</code></td>
+<td style="text-align: left;">numerador y denominador de <span class="math inline">\(r\)</span> en forma irreducible</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>suma(r, s)</code>, <code>producto(r, s)</code></td>
+<td style="text-align: left;"><span class="math inline">\(r + s\)</span>, <span class="math inline">\(r \cdot s\)</span></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>inverso(r)</code></td>
+<td style="text-align: left;"><span class="math inline">\(1/r\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(r \neq 0\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>iguales(r, s)</code></td>
+<td style="text-align: left;"><code>True</code> si <span class="math inline">\(r = s\)</span></td>
+<td style="text-align: left;">—</td>
+</tr>
+</tbody>
+</table>
+<p>Fíjate en que la especificación no dice nada de tuplas, listas ni variables: solo describe el comportamiento.</p>
+<div id="tip-racionales" class="callout callout-style-default callout-tip no-icon callout-titled" title="Los racionales como clases de equivalencia">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fundamento Teórico&nbsp;3: Los racionales como clases de equivalencia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Formalmente, <span class="math inline">\(\mathbb{Q}\)</span> se construye como el conjunto de clases de equivalencia de pares <span class="math inline">\((p, q) \in \mathbb{Z} \times (\mathbb{Z} \setminus \{0\})\)</span> con la relación <span class="math display">\[
+(p, q) \sim (p', q') \iff p\,q' = p'\,q.
+\]</span> Los pares <span class="math inline">\((1, 2)\)</span>, <span class="math inline">\((2, 4)\)</span> y <span class="math inline">\((-3, -6)\)</span> representan el mismo racional. Para trabajar con un único representante por clase se elige la <strong>forma canónica</strong>: denominador positivo y <span class="math inline">\(\gcd(p, q) = 1\)</span>. Con esa elección, dos racionales son iguales si y solo si sus formas canónicas coinciden.</p>
+</div>
+</div>
+<p>La condición «la representación está en forma canónica» es un ejemplo de <strong>invariante de representación</strong>: una propiedad que todo valor del tipo debe cumplir siempre. Toda la corrección del TAD depende de que se mantenga.</p>
+</section>
+<section id="una-implementación-con-tuplas" class="level3">
+<h3 class="anchored" data-anchor-id="una-implementación-con-tuplas"><strong>6.1.2 Una implementación con tuplas</strong></h3>
+<p>Con lo visto hasta ahora podemos implementar el TAD con tuplas <code>(p, q)</code> y funciones:</p>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZnJvbSBtYXRoIGltcG9ydCBnY2RcblxuZGVmIGNyZWFyX3JhY2lvbmFsKHA6IGludCwgcTogaW50KSAtPiB0dXBsZVtpbnQsIGludF06XG4gICAgXCJcIlwiQ3JlYSBlbCByYWNpb25hbCBwL3EgZW4gZm9ybWEgY2Fuw7NuaWNhIChxID4gMCwgbWNkKHAsIHEpID0gMSkuXCJcIlwiXG4gICAgaWYgcSA9PSAwOlxuICAgICAgICByYWlzZSBWYWx1ZUVycm9yKFwiZWwgZGVub21pbmFkb3Igbm8gcHVlZGUgc2VyIDBcIilcbiAgICBpZiBxIDwgMDpcbiAgICAgICAgcCwgcSA9IC1wLCAtcVxuICAgIG0gPSBnY2QocCwgcSlcbiAgICByZXR1cm4gKHAgLy8gbSwgcSAvLyBtKVxuXG5kZWYgc3VtYV9yYWNpb25hbChyOiB0dXBsZVtpbnQsIGludF0sIHM6IHR1cGxlW2ludCwgaW50XSkgLT4gdHVwbGVbaW50LCBpbnRdOlxuICAgIFwiXCJcIkRldnVlbHZlIHIgKyBzLlwiXCJcIlxuICAgIHJldHVybiBjcmVhcl9yYWNpb25hbChyWzBdICogc1sxXSArIHNbMF0gKiByWzFdLCByWzFdICogc1sxXSlcblxuZGVmIHByb2R1Y3RvX3JhY2lvbmFsKHI6IHR1cGxlW2ludCwgaW50XSwgczogdHVwbGVbaW50LCBpbnRdKSAtPiB0dXBsZVtpbnQsIGludF06XG4gICAgXCJcIlwiRGV2dWVsdmUgciAqIHMuXCJcIlwiXG4gICAgcmV0dXJuIGNyZWFyX3JhY2lvbmFsKHJbMF0gKiBzWzBdLCByWzFdICogc1sxXSlcblxuZGVmIGlndWFsZXNfcmFjaW9uYWwocjogdHVwbGVbaW50LCBpbnRdLCBzOiB0dXBsZVtpbnQsIGludF0pIC0+IGJvb2w6XG4gICAgXCJcIlwiRGV2dWVsdmUgVHJ1ZSBzaSByID0gcyAoYW1ib3MgZGViZW4gZXN0YXIgZW4gZm9ybWEgY2Fuw7NuaWNhKS5cIlwiXCJcbiAgICByZXR1cm4gciA9PSBzXG5cbmEgPSBjcmVhcl9yYWNpb25hbCgxLCAyKVxuYiA9IGNyZWFyX3JhY2lvbmFsKDEsIDMpXG5wcmludChzdW1hX3JhY2lvbmFsKGEsIGIpKSAgICAgICAgIyAoNSwgNilcbnByaW50KHByb2R1Y3RvX3JhY2lvbmFsKGEsIGIpKSAgICAjICgxLCA2KVxucHJpbnQoY3JlYXJfcmFjaW9uYWwoNiwgLTgpKSAgICAgICMgKC0zLCA0KSJ9
+</script>
+</div>
+<p>Mientras todo racional se cree con <code>crear_racional</code>, el invariante se cumple. Pero nada obliga a hacerlo así.</p>
+<div id="cau-tuplas-tad" class="callout callout-style-default callout-caution no-icon callout-titled" title="Una tupla no protege el invariante">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Frecuente&nbsp;1: Una tupla no protege el invariante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYyA9ICgyLCA0KSAgICAgICAgICAgICAgICAgICAgICAgICMgbmFkaWUgaW1waWRlIGNvbnN0cnVpciB1bmEgdHVwbGEgbm8gY2Fuw7NuaWNhXG5wcmludChpZ3VhbGVzX3JhY2lvbmFsKGEsIGMpKSAgICAgIyBGYWxzZSwgwqFhdW5xdWUgMS8yID0gMi80IVxuXG5kID0gKDEsIDApICAgICAgICAgICAgICAgICAgICAgICAgIyBuaSB1biDCq3JhY2lvbmFswrsgY29uIGRlbm9taW5hZG9yIGNlcm9cbnByaW50KHR5cGUoYSkuX19uYW1lX18pICAgICAgICAgICAjIHR1cGxlOiBlbCB0aXBvIG5vIGRpY2UgcXVlIHNlYSB1biByYWNpb25hbCJ9
+</script>
+</div>
+<p>Con tuplas y funciones sueltas:</p>
+<ul>
+<li>el invariante depende de la disciplina de cada usuario;</li>
+<li>el tipo de los datos (<code>tuple</code>) no informa de lo que representan;</li>
+<li>las operaciones no están ligadas a los datos: hay que recordar que <code>suma_racional</code> existe y en qué módulo está.</li>
+</ul>
+<p>Las clases resuelven los tres problemas.</p>
+</div>
+</div>
+</section>
+<section id="la-barrera-de-abstracción-dos-representaciones-del-mismo-tad" class="level3">
+<h3 class="anchored" data-anchor-id="la-barrera-de-abstracción-dos-representaciones-del-mismo-tad"><strong>6.1.3 La barrera de abstracción: dos representaciones del mismo TAD</strong></h3>
+<p>Un mismo TAD admite varias representaciones. Un polinomio <span class="math inline">\(p(x) = a_0 + a_1 x + \cdots + a_n x^n\)</span> puede guardarse como una <strong>lista densa</strong> de coeficientes <code>[a0, a1, ..., an]</code> o como un <strong>diccionario disperso</strong> <code>{k: ak}</code> con solo los coeficientes no nulos (como en el tema 4). Para <span class="math inline">\(1 + x^{10}\)</span>, la lista guarda once números y el diccionario solo dos.</p>
+<div>
+<div id="pyodide-4" class="exercise-cell">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicF9kZW5zbyA9IFsxLCAwLCAwLCAwLCAwLCAwLCAwLCAwLCAwLCAwLCAxXSAgICMgMSArIHheMTAgY29tbyBsaXN0YVxucF9kaXNwZXJzbyA9IHswOiAxLCAxMDogMX0gICAgICAgICAgICAgICAgICAgICAjIDEgKyB4XjEwIGNvbW8gZGljY2lvbmFyaW9cblxuZGVmIGV2YWx1YXJfZGVuc28ocDogbGlzdFtmbG9hdF0sIHg6IGZsb2F0KSAtPiBmbG9hdDpcbiAgICBcIlwiXCJFdmFsw7phIHAoeCkgY29uIGVsIGVzcXVlbWEgZGUgSG9ybmVyLlwiXCJcIlxuICAgIHJlc3VsdGFkbyA9IDBcbiAgICBmb3IgYSBpbiByZXZlcnNlZChwKTpcbiAgICAgICAgcmVzdWx0YWRvID0gcmVzdWx0YWRvICogeCArIGFcbiAgICByZXR1cm4gcmVzdWx0YWRvXG5cbmRlZiBldmFsdWFyX2Rpc3BlcnNvKHA6IGRpY3RbaW50LCBmbG9hdF0sIHg6IGZsb2F0KSAtPiBmbG9hdDpcbiAgICBcIlwiXCJFdmFsw7phIHAoeCkgc3VtYW5kbyBzb2xvIGxvcyB0w6lybWlub3Mgbm8gbnVsb3MuXCJcIlwiXG4gICAgcmV0dXJuIHN1bShhICogeCoqayBmb3IgaywgYSBpbiBwLml0ZW1zKCkpXG5cbnByaW50KGV2YWx1YXJfZGVuc28ocF9kZW5zbywgMikpICAgICAgICAgIyAxMDI1XG5wcmludChldmFsdWFyX2Rpc3BlcnNvKHBfZGlzcGVyc28sIDIpKSAgICMgMTAyNSJ9
+</script>
+</div>
+<p>Las dos funciones calculan lo mismo, pero quien las usa tiene que saber qué representación tiene entre manos y elegir la función correcta. Lo que queremos es una única operación <em>evaluar</em> que funcione sea cual sea la representación interna. Eso es exactamente lo que proporciona una clase.</p>
+<hr>
+</section>
+</section>
+<section id="clases-objetos-atributos-y-métodos" class="level2">
+<h2 class="anchored" data-anchor-id="clases-objetos-atributos-y-métodos">6.2. Clases, objetos, atributos y métodos</h2>
+<div id="tip-clase" class="callout callout-style-default callout-tip no-icon callout-titled" title="Clase, objeto, atributo y método">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fundamento Teórico&nbsp;4: Clase, objeto, atributo y método
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Una <strong>clase</strong> es la definición de un tipo nuevo: describe qué datos guardan sus valores y qué operaciones admiten.</li>
+<li>Un <strong>objeto</strong> (o <strong>instancia</strong>) es un valor concreto de una clase.</li>
+<li>Los <strong>atributos</strong> son los datos que guarda cada objeto; en conjunto forman su <strong>estado</strong>.</li>
+<li>Los <strong>métodos</strong> son las funciones definidas dentro de la clase; operan sobre el objeto.</li>
+</ul>
+<p>La analogía matemática: la clase es el conjunto con su estructura (<span class="math inline">\(\mathbb{Q}\)</span> con <span class="math inline">\(+\)</span> y <span class="math inline">\(\cdot\)</span>); un objeto es un elemento concreto (<span class="math inline">\(3/4\)</span>); los atributos son su numerador y su denominador; los métodos, las operaciones.</p>
+</div>
+</div>
+<section id="definir-una-clase" class="level3">
+<h3 class="anchored" data-anchor-id="definir-una-clase"><strong>6.2.1 Definir una clase</strong></h3>
+<p>Una clase se define con la palabra reservada <code>class</code>. Por convención, los nombres de clase se escriben en <em>CamelCase</em> (cada palabra empieza por mayúscula y no hay guiones bajos) <span class="citation" data-cites="pep8">(<a href="#ref-pep8" role="doc-biblioref">Rossum, Warsaw, y Coghlan 2001</a>)</span>.</p>
+<div>
+<div id="pyodide-5" class="exercise-cell">
+
+</div>
+<script type="pyodide-5-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiY2xhc3MgRnJhY2Npb246XG4gICAgXCJcIlwiTsO6bWVybyByYWNpb25hbCBudW0vZGVuLlwiXCJcIlxuXG4gICAgZGVmIF9faW5pdF9fKHNlbGYsIG51bTogaW50LCBkZW46IGludCkgLT4gTm9uZTpcbiAgICAgICAgXCJcIlwiQ3JlYSBsYSBmcmFjY2nDs24gbnVtL2Rlbi5cIlwiXCJcbiAgICAgICAgc2VsZi5udW0gPSBudW1cbiAgICAgICAgc2VsZi5kZW4gPSBkZW5cblxuciA9IEZyYWNjaW9uKDMsIDQpICAgICAgICAgICAgICAgIyBjcmVhIHVuIG9iamV0bzogUHl0aG9uIGxsYW1hIGEgX19pbml0X19cbnByaW50KHIubnVtLCByLmRlbikgICAgICAgICAgICAgICMgMyA0XG5wcmludCh0eXBlKHIpLl9fbmFtZV9fKSAgICAgICAgICAjIEZyYWNjaW9uXG5wcmludChpc2luc3RhbmNlKHIsIEZyYWNjaW9uKSkgICAjIFRydWUifQ==
+</script>
+</div>
+<p>El <strong>constructor o inicializador</strong> es el método especial <code>__init__</code> de una clase. Python lo llama automáticamente cada vez que se crea un objeto, y su función es dejar ese objeto <strong>listo y en un estado válido</strong>.</p>
+<p>Al escribir <code>Fraccion(3, 4)</code> ocurren dos pasos:</p>
+<ol type="1">
+<li>Python crea un objeto vacío de la clase.</li>
+<li>Llama a <code>__init__</code> pasándole ese objeto como <code>self</code>, seguido de los argumentos (<code>3</code> y <code>4</code>).</li>
+</ol>
+<p>Dentro de <code>__init__</code> se hace normalmente esto:</p>
+<ul>
+<li><strong>Crear los atributos</strong> del objeto: <code>self.num = num</code>.</li>
+<li><strong>Comprobar las precondiciones</strong> y lanzar <code>ValueError</code> si no se cumplen.</li>
+<li><strong>Normalizar los datos</strong>, por ejemplo simplificar la fracción, para que el objeto cumpla desde el principio el invariante de la clase.</li>
+</ul>
+<p>Algunos detalles:</p>
+<ul>
+<li><code>__init__</code> <strong>no devuelve nada</strong> (su tipo de retorno es <code>None</code>). El objeto lo devuelve Python, no el método.</li>
+<li>Admite <strong>valores por defecto</strong>, como cualquier función: con <code>den: int = 1</code>, <code>Fraccion(5)</code> crea <span class="math inline">\(5/1\)</span> (lo usaremos en el apartado 6.3).</li>
+<li><strong>Constructor o inicializador:</strong> en el lenguaje habitual se llama «constructor», pero en sentido estricto es un <em>inicializador</em>. El objeto ya existe cuando se llama a <code>__init__</code>, porque lo crea antes otro método especial, <code>__new__</code>, que casi nunca hace falta tocar.</li>
+</ul>
+<div id="imp-self" class="callout callout-style-default callout-important no-icon callout-titled" title="El parámetro `self`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;2: El parámetro <code>self</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Todo método recibe como primer parámetro el objeto sobre el que actúa. Por convención se llama <code>self</code> («sí mismo»). La llamada</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>r.metodo(x)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>es equivalente a</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Fraccion.metodo(r, x)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Python pasa <code>r</code> automáticamente como <code>self</code>. Dentro del método, <code>self.num</code> es el atributo <code>num</code> <strong>de ese objeto concreto</strong>.</p>
+</div>
+</div>
+<div id="cau-self" class="callout callout-style-default callout-caution no-icon callout-titled" title="Olvidar `self`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Frecuente&nbsp;2: Olvidar <code>self</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dos errores muy frecuentes al empezar con clases:</p>
+<ol type="1">
+<li><strong>Olvidar <code>self</code> en la lista de parámetros</strong>: <code>def valor():</code> en lugar de <code>def valor(self):</code>. Al llamar <code>r.valor()</code>, Python pasa <code>r</code> igualmente y se obtiene <code>TypeError: valor() takes 0 positional arguments but 1 was given</code>.</li>
+<li><strong>Olvidar <code>self.</code> al asignar un atributo</strong>: escribir <code>num = num</code> en lugar de <code>self.num = num</code> dentro de <code>__init__</code> crea una variable local que desaparece al terminar el método. El objeto se queda sin atributo y más adelante aparece <code>AttributeError: 'Fraccion' object has no attribute 'num'</code>.</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="atributos-de-instancia-y-estado" class="level3">
+<h3 class="anchored" data-anchor-id="atributos-de-instancia-y-estado"><strong>6.2.2 Atributos de instancia y estado</strong></h3>
+<p>Cada objeto tiene sus propios atributos: modificar los de uno no afecta a los demás.</p>
+<div>
+<div id="pyodide-6" class="exercise-cell">
+
+</div>
+<script type="pyodide-6-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiciA9IEZyYWNjaW9uKDMsIDQpXG5zID0gRnJhY2Npb24oNSwgNylcbnMubnVtID0gNlxucHJpbnQoci5udW0sIHMubnVtKSAgICAjIDMgNjogY2FkYSBvYmpldG8gZ3VhcmRhIHN1IHByb3BpbyBlc3RhZG9cbnByaW50KHZhcnMocikpICAgICAgICAgIyB7J251bSc6IDMsICdkZW4nOiA0fSJ9
+</script>
+</div>
+<div id="wrn-vars" class="callout callout-style-default callout-warning no-icon callout-titled" title="Inspeccionar el estado de un objeto">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Técnica de Depuración&nbsp;1: Inspeccionar el estado de un objeto
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La función <code>vars(objeto)</code> devuelve un diccionario con todos sus atributos y sus valores. Es la forma más rápida de ver el estado de un objeto mientras se depura. En VS Code, el panel <em>Variables</em> del depurador muestra la misma información al detenerse en un punto de ruptura.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Profundización: atributos de clase">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Profundización: atributos de clase
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Además de los atributos de instancia, una clase puede tener <strong>atributos de clase</strong>, definidos fuera de los métodos y compartidos por todos sus objetos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Polinomio:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    variable <span class="op">=</span> <span class="st">"x"</span>      <span class="co"># atributo de clase: común a todos los polinomios</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, coefs):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.coefs <span class="op">=</span> coefs   <span class="co"># atributo de instancia: propio de cada polinomio</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Se acceden con <code>Polinomio.variable</code> o desde cualquier objeto (<code>p.variable</code>). Son útiles para constantes ligadas a la clase. Evita usar como atributo de clase una lista o un diccionario que luego se modifique: todos los objetos compartirían el mismo.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="métodos" class="level3">
+<h3 class="anchored" data-anchor-id="métodos"><strong>6.2.3 Métodos</strong></h3>
+<p>Los métodos son funciones definidas dentro de la clase. Añadamos a <code>Fraccion</code> tres operaciones:</p>
+<div>
+<div id="pyodide-7" class="exercise-cell">
+
+</div>
+<script type="pyodide-7-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZnJvbSBtYXRoIGltcG9ydCBnY2RcblxuY2xhc3MgRnJhY2Npb246XG4gICAgXCJcIlwiTsO6bWVybyByYWNpb25hbCBudW0vZGVuLlwiXCJcIlxuXG4gICAgZGVmIF9faW5pdF9fKHNlbGYsIG51bTogaW50LCBkZW46IGludCkgLT4gTm9uZTpcbiAgICAgICAgXCJcIlwiQ3JlYSBsYSBmcmFjY2nDs24gbnVtL2Rlbi5cIlwiXCJcbiAgICAgICAgc2VsZi5udW0gPSBudW1cbiAgICAgICAgc2VsZi5kZW4gPSBkZW5cblxuICAgIGRlZiB2YWxvcihzZWxmKSAtPiBmbG9hdDpcbiAgICAgICAgXCJcIlwiRGV2dWVsdmUgbGEgYXByb3hpbWFjacOzbiBkZWNpbWFsIGRlIGxhIGZyYWNjacOzbi5cIlwiXCJcbiAgICAgICAgcmV0dXJuIHNlbGYubnVtIC8gc2VsZi5kZW5cblxuICAgIGRlZiBzaW1wbGlmaWNhcihzZWxmKSAtPiBOb25lOlxuICAgICAgICBcIlwiXCJSZWR1Y2UgbGEgZnJhY2Npw7NuIGEgc3UgZm9ybWEgaXJyZWR1Y2libGUgKG1vZGlmaWNhIGVsIG9iamV0bykuXCJcIlwiXG4gICAgICAgIG0gPSBnY2Qoc2VsZi5udW0sIHNlbGYuZGVuKVxuICAgICAgICBzZWxmLm51bSAvLz0gbVxuICAgICAgICBzZWxmLmRlbiAvLz0gbVxuXG4gICAgZGVmIHN1bWEoc2VsZiwgb3RyYTogXCJGcmFjY2lvblwiKSAtPiBcIkZyYWNjaW9uXCI6XG4gICAgICAgIFwiXCJcIkRldnVlbHZlIHVuYSBmcmFjY2nDs24gTlVFVkEgaWd1YWwgYSBzZWxmICsgb3RyYS5cIlwiXCJcbiAgICAgICAgcmV0dXJuIEZyYWNjaW9uKHNlbGYubnVtICogb3RyYS5kZW4gKyBvdHJhLm51bSAqIHNlbGYuZGVuLFxuICAgICAgICAgICAgICAgICAgICAgICAgc2VsZi5kZW4gKiBvdHJhLmRlbilcblxuYSA9IEZyYWNjaW9uKDEsIDYpXG5iID0gRnJhY2Npb24oMSwgMylcbmMgPSBhLnN1bWEoYikgICAgICAgICAgICAjIGVxdWl2YWxlIGEgRnJhY2Npb24uc3VtYShhLCBiKVxucHJpbnQoYy5udW0sIGMuZGVuKSAgICAgICMgOSAxOFxuYy5zaW1wbGlmaWNhcigpXG5wcmludChjLm51bSwgYy5kZW4pICAgICAgIyAxIDJcbnByaW50KGMudmFsb3IoKSkgICAgICAgICAjIDAuNSJ9
+</script>
+</div>
+<p>La anotación de tipo <code>"Fraccion"</code> va entre comillas porque, mientras se define la clase, el nombre <code>Fraccion</code> todavía no existe.</p>
+<div id="imp-mutar-o-devolver" class="callout callout-style-default callout-important no-icon callout-titled" title="Métodos que modifican y métodos que devuelven un objeto nuevo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;3: Métodos que modifican y métodos que devuelven un objeto nuevo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>simplificar</code> y <code>suma</code> ilustran los dos estilos de método:</p>
+<ul>
+<li><code>c.simplificar()</code> <strong>modifica</strong> el objeto <code>c</code> y devuelve <code>None</code>.</li>
+<li><code>a.suma(b)</code> <strong>no modifica</strong> ni <code>a</code> ni <code>b</code>: devuelve un objeto nuevo.</li>
+</ul>
+<p>Es la misma distinción que entre <code>lista.sort()</code>, que ordena la lista, y <code>sorted(lista)</code>, que devuelve una lista nueva (tema 4). Para objetos que representan valores matemáticos (números, vectores, polinomios) se prefiere el segundo estilo: que <span class="math inline">\(a + b\)</span> cambiara el valor de <span class="math inline">\(a\)</span> sería muy sorprendente.</p>
+</div>
+</div>
+</section>
+<section id="ejemplo-la-clase-polinomio-y-el-método-de-newton" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-la-clase-polinomio-y-el-método-de-newton"><strong>6.2.4 Ejemplo: la clase <code>Polinomio</code> y el método de Newton</strong></h3>
+<p>Agrupemos en una clase la representación densa del apartado 6.1.3 y las operaciones sobre polinomios:</p>
+<div>
+<div id="pyodide-8" class="exercise-cell">
+
+</div>
+<script type="pyodide-8-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiY2xhc3MgUG9saW5vbWlvOlxuICAgIFwiXCJcIlBvbGlub21pbyBhMCArIGExIHggKyAuLi4gKyBhbiB4Xm4sIGd1YXJkYWRvIGNvbW8gbGlzdGEgZGUgY29lZmljaWVudGVzLlwiXCJcIlxuXG4gICAgZGVmIF9faW5pdF9fKHNlbGYsIGNvZWZzOiBsaXN0W2Zsb2F0XSkgLT4gTm9uZTpcbiAgICAgICAgXCJcIlwiY29lZnNba10gZXMgZWwgY29lZmljaWVudGUgZGUgeF5rLlwiXCJcIlxuICAgICAgICBjb2VmcyA9IGxpc3QoY29lZnMpICAgICAgICAgICMgY29waWE6IG5vIGNvbXBhcnRpciBsYSBsaXN0YSBkZWwgdXN1YXJpb1xuICAgICAgICB3aGlsZSBsZW4oY29lZnMpID4gMSBhbmQgY29lZnNbLTFdID09IDA6XG4gICAgICAgICAgICBjb2Vmcy5wb3AoKSAgICAgICAgICAgICAgIyBlbGltaW5hIGxvcyBjZXJvcyBmaW5hbGVzXG4gICAgICAgIGlmIG5vdCBjb2VmczpcbiAgICAgICAgICAgIGNvZWZzID0gWzBdXG4gICAgICAgIHNlbGYuY29lZnMgPSBjb2Vmc1xuXG4gICAgZGVmIGdyYWRvKHNlbGYpIC0+IGludDpcbiAgICAgICAgXCJcIlwiR3JhZG8gZGVsIHBvbGlub21pbyAoYXF1w60sIDAgcGFyYSBlbCBwb2xpbm9taW8gbnVsbykuXCJcIlwiXG4gICAgICAgIHJldHVybiBsZW4oc2VsZi5jb2VmcykgLSAxXG5cbiAgICBkZWYgZXZhbHVhcihzZWxmLCB4OiBmbG9hdCkgLT4gZmxvYXQ6XG4gICAgICAgIFwiXCJcIkV2YWzDumEgcCh4KSBjb24gZWwgZXNxdWVtYSBkZSBIb3JuZXIuXCJcIlwiXG4gICAgICAgIHJlc3VsdGFkbyA9IDBcbiAgICAgICAgZm9yIGEgaW4gcmV2ZXJzZWQoc2VsZi5jb2Vmcyk6XG4gICAgICAgICAgICByZXN1bHRhZG8gPSByZXN1bHRhZG8gKiB4ICsgYVxuICAgICAgICByZXR1cm4gcmVzdWx0YWRvXG5cbiAgICBkZWYgZGVyaXZhZGEoc2VsZikgLT4gXCJQb2xpbm9taW9cIjpcbiAgICAgICAgXCJcIlwiRGV2dWVsdmUgZWwgcG9saW5vbWlvIGRlcml2YWRhIHAnKHgpLlwiXCJcIlxuICAgICAgICByZXR1cm4gUG9saW5vbWlvKFtrICogYSBmb3IgaywgYSBpbiBlbnVtZXJhdGUoc2VsZi5jb2VmcykgaWYgayA+IDBdKVxuXG4gICAgQGNsYXNzbWV0aG9kICAgICAgICAgICAgICAgICAgICAgIyBtw6l0b2RvIGRlIGNsYXNlOiB2w6lhc2UgZWwgYXBhcnRhZG8gNi4yLjZcbiAgICBkZWYgbW9ub21pbyhjbHMsIGE6IGZsb2F0LCBrOiBpbnQpIC0+IFwiUG9saW5vbWlvXCI6XG4gICAgICAgIFwiXCJcIkRldnVlbHZlIGVsIG1vbm9taW8gYcK3eF5rLlwiXCJcIlxuICAgICAgICBpZiBrIDwgMDpcbiAgICAgICAgICAgIHJhaXNlIFZhbHVlRXJyb3IoXCJlbCBleHBvbmVudGUgZGViZSBzZXIgbm8gbmVnYXRpdm9cIilcbiAgICAgICAgcmV0dXJuIGNscyhbMF0gKiBrICsgW2FdKVxuXG5wID0gUG9saW5vbWlvKFstMiwgMCwgMV0pICAgICAgICAjIHAoeCkgPSB4wrIgLSAyXG5wcmludChwLmdyYWRvKCkpICAgICAgICAgICAgICAgICAjIDJcbnByaW50KHAuZXZhbHVhcigzKSkgICAgICAgICAgICAgICMgN1xucHJpbnQocC5kZXJpdmFkYSgpLmNvZWZzKSAgICAgICAgIyBbMCwgMl06IHAnKHgpID0gMngifQ==
+</script>
+</div>
+<p>El constructor garantiza que la lista de coeficientes no termine en ceros, de modo que <code>grado()</code> siempre es correcto. Además copia la lista recibida: si el usuario modifica después su lista, el polinomio no cambia.</p>
+<p>Con <code>evaluar</code> y <code>derivada</code> ya podemos programar el método de Newton-Raphson para aproximar raíces.</p>
+<div id="tip-newton" class="callout callout-style-default callout-tip no-icon callout-titled" title="Método de Newton-Raphson">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fundamento Teórico&nbsp;5: Método de Newton-Raphson
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para aproximar una raíz de una función derivable <span class="math inline">\(f\)</span>, se parte de un valor inicial <span class="math inline">\(x_0\)</span> y se itera <span class="math display">\[
+x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}.
+\]</span> Geométricamente, <span class="math inline">\(x_{k+1}\)</span> es el punto donde la recta tangente a <span class="math inline">\(f\)</span> en <span class="math inline">\(x_k\)</span> corta al eje <span class="math inline">\(x\)</span>. Si <span class="math inline">\(x_0\)</span> está suficientemente cerca de una raíz simple, la convergencia es cuadrática: el número de cifras correctas se duplica aproximadamente en cada paso.</p>
+</div>
+</div>
+<div>
+<div id="pyodide-9" class="exercise-cell">
+
+</div>
+<script type="pyodide-9-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIG5ld3RvbihwOiBQb2xpbm9taW8sIHgwOiBmbG9hdCwgdG9sOiBmbG9hdCA9IDFlLTEyLCBtYXhfaXRlcjogaW50ID0gNTApIC0+IGZsb2F0OlxuICAgIFwiXCJcIkFwcm94aW1hIHVuYSByYcOteiBkZSBwIGNvbiBlbCBtw6l0b2RvIGRlIE5ld3Rvbi1SYXBoc29uLlwiXCJcIlxuICAgIGRwID0gcC5kZXJpdmFkYSgpXG4gICAgeCA9IHgwXG4gICAgZm9yIF8gaW4gcmFuZ2UobWF4X2l0ZXIpOlxuICAgICAgICBwYXNvID0gcC5ldmFsdWFyKHgpIC8gZHAuZXZhbHVhcih4KVxuICAgICAgICB4ID0geCAtIHBhc29cbiAgICAgICAgaWYgYWJzKHBhc28pIDwgdG9sOlxuICAgICAgICAgICAgcmV0dXJuIHhcbiAgICByYWlzZSBWYWx1ZUVycm9yKFwiZWwgbcOpdG9kbyBubyBoYSBjb252ZXJnaWRvXCIpXG5cbnJhaXogPSBuZXd0b24oUG9saW5vbWlvKFstMiwgMCwgMV0pLCB4MD0xLjApXG5wcmludChyYWl6KSAgICAgICAgICAjIDEuNDE0MjEzNTYyMzczMDk1IOKJiCDiiJoyIn0=
+</script>
+</div>
+<p>La función <code>newton</code> no sabe cómo está guardado el polinomio: solo usa sus métodos <code>evaluar</code> y <code>derivada</code>. Si mañana cambiáramos la representación interna de <code>Polinomio</code> por un diccionario disperso, <code>newton</code> seguiría funcionando sin tocarla. Es la barrera de abstracción del apartado 6.1 en acción.</p>
+</section>
+<section id="identidad-e-igualdad-de-objetos" class="level3">
+<h3 class="anchored" data-anchor-id="identidad-e-igualdad-de-objetos"><strong>6.2.5 Identidad e igualdad de objetos</strong></h3>
+<div>
+<div id="pyodide-10" class="exercise-cell">
+
+</div>
+<script type="pyodide-10-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSA9IEZyYWNjaW9uKDEsIDIpXG5iID0gRnJhY2Npb24oMSwgMilcbmMgPSBhXG5wcmludChhID09IGIpICAgICMgRmFsc2U6IHBvciBkZWZlY3RvLCA9PSBjb21wYXJhIGxhIGlkZW50aWRhZFxucHJpbnQoYSBpcyBjKSAgICAjIFRydWU6IGEgeSBjIHNvbiBlbCBtaXNtbyBvYmpldG9cbmMubnVtID0gM1xucHJpbnQoYS5udW0pICAgICAjIDM6IG1vZGlmaWNhciBjIG1vZGlmaWNhIGEifQ==
+</script>
+</div>
+<div id="cau-igualdad-objetos" class="callout callout-style-default callout-caution no-icon callout-titled" title="`==` entre objetos de una clase propia">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Frecuente&nbsp;3: <code>==</code> entre objetos de una clase propia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si la clase no indica cómo comparar sus objetos, <code>a == b</code> equivale a <code>a is b</code>: solo es <code>True</code> si <code>a</code> y <code>b</code> son <strong>el mismo objeto</strong>. Por eso <code>Fraccion(1, 2) == Fraccion(1, 2)</code> da <code>False</code>. En el apartado 6.4 enseñaremos a la clase qué significa que dos fracciones sean iguales.</p>
+<p>Además, como con las listas (tema 4), una asignación <code>c = a</code> no copia el objeto: crea otro nombre para el mismo objeto (<em>aliasing</em>).</p>
+</div>
+</div>
+</section>
+<section id="métodos-de-clase-y-métodos-estáticos" class="level3">
+<h3 class="anchored" data-anchor-id="métodos-de-clase-y-métodos-estáticos"><strong>6.2.6 Métodos de clase y métodos estáticos</strong></h3>
+<p>Todos los métodos vistos hasta ahora son <strong>métodos de instancia</strong>: reciben el objeto como primer parámetro (<code>self</code>) y trabajan con su estado. Python ofrece otros dos tipos de método, que se marcan con un <strong>decorador</strong> (una línea que empieza por <code>@</code> justo antes del <code>def</code>).</p>
+<div id="imp-tipos-metodo" class="callout callout-style-default callout-important no-icon callout-titled" title="Tres tipos de método">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;4: Tres tipos de método
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: left;">Decorador</th>
+<th style="text-align: left;">Primer parámetro</th>
+<th style="text-align: left;">Uso típico</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Método de instancia</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><code>self</code>: el objeto</td>
+<td style="text-align: left;">Operar con el estado de un objeto concreto</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Método de clase</td>
+<td style="text-align: left;"><code>@classmethod</code></td>
+<td style="text-align: left;"><code>cls</code>: la clase</td>
+<td style="text-align: left;">Constructores alternativos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Método estático</td>
+<td style="text-align: left;"><code>@staticmethod</code></td>
+<td style="text-align: left;">ninguno</td>
+<td style="text-align: left;">Funciones auxiliares ligadas a la clase que no necesitan ni el objeto ni la clase</td>
+</tr>
+</tbody>
+</table>
+<p>Los tres se definen dentro de la clase y los tres pueden llamarse a través de la clase (<code>Polinomio.monomio(3, 4)</code>) o de un objeto (<code>p.monomio(3, 4)</code>).</p>
+</div>
+</div>
+<p><strong>Métodos de clase.</strong> El uso más frecuente de <code>@classmethod</code> es ofrecer <strong>constructores alternativos</strong>: otras formas de crear un objeto además de pasar directamente los datos a <code>__init__</code>. La clase <code>Polinomio</code> del apartado 6.2.4 ya incluye uno, <code>monomio</code>, que construye <span class="math inline">\(a x^k\)</span> sin tener que escribir la lista de <span class="math inline">\(k\)</span> ceros:</p>
+<div>
+<div id="pyodide-11" class="exercise-cell">
+
+</div>
+<script type="pyodide-11-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibSA9IFBvbGlub21pby5tb25vbWlvKDMsIDQpICAgICAgIyAzwrd4XjQsIHNpbiBlc2NyaWJpciBbMCwgMCwgMCwgMCwgM11cbnByaW50KG0uY29lZnMpICAgICAgICAgICAgICAgICAgICMgWzAsIDAsIDAsIDAsIDNdXG5wcmludChtLmV2YWx1YXIoMikpICAgICAgICAgICAgICAjIDQ4ID0gMyDCtyAyXjRcbnByaW50KG0uZGVyaXZhZGEoKS5jb2VmcykgICAgICAgICMgWzAsIDAsIDAsIDEyXTogMTLCt3heMyJ9
+</script>
+</div>
+<p>Dentro de <code>monomio</code>, <code>cls</code> es la propia clase <code>Polinomio</code>, y <code>cls([0] * k + [a])</code> equivale a <code>Polinomio([0] * k + [a])</code>. Se escribe <code>cls</code> en lugar del nombre de la clase para que el método siga funcionando si la clase cambia de nombre. La biblioteca estándar usa la misma técnica: <code>int.from_bytes(...)</code> o <code>dict.fromkeys(...)</code> son métodos de clase que crean objetos.</p>
+<p><strong>Métodos estáticos.</strong> Un método marcado con <code>@staticmethod</code> no recibe ni el objeto ni la clase: es una función normal que se coloca dentro de la clase porque solo tiene sentido en relación con ella. Por ejemplo, en la versión final de <code>Fraccion</code> (apartado 6.4.5), el método que convierte un entero en fracción no necesita consultar el estado de ningún objeto, así que es estático:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Fraccion:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _convertir(otra: <span class="bu">object</span>) <span class="op">-&gt;</span> <span class="st">"Fraccion | None"</span>:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Devuelve otra como Fraccion si es Fraccion o int; si no, None."""</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        ...</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>En el apartado 6.4.6 añadiremos a <code>Polinomio</code> otro constructor alternativo, <code>desde_raices</code>, que necesita el producto de polinomios.</p>
+<hr>
+</section>
+</section>
+<section id="encapsulación-básica" class="level2">
+<h2 class="anchored" data-anchor-id="encapsulación-básica">6.3. Encapsulación básica</h2>
+<p>La clase <code>Fraccion</code> del apartado anterior agrupa datos y operaciones, pero todavía no protege el invariante de los racionales:</p>
+<div>
+<div id="pyodide-12" class="exercise-cell">
+
+</div>
+<script type="pyodide-12-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiciA9IEZyYWNjaW9uKDIsIDQpICAgICAgIyBubyBlc3TDoSBlbiBmb3JtYSBjYW7Ds25pY2FcbnIuZGVuID0gMCAgICAgICAgICAgICAgICMgeSBhaG9yYSBuaSBzaXF1aWVyYSBlcyB1biByYWNpb25hbFxucHJpbnQodmFycyhyKSkgICAgICAgICAgIyB7J251bSc6IDIsICdkZW4nOiAwfSJ9
+</script>
+</div>
+<div id="imp-encapsulacion" class="callout callout-style-default callout-important no-icon callout-titled" title="Encapsulación">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;5: Encapsulación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>encapsulación</strong> consiste en ocultar la representación interna de un objeto y permitir que se use solo a través de su interfaz (sus métodos), de modo que <strong>el objeto esté siempre en un estado válido</strong>.</p>
+<p>Una clase bien encapsulada garantiza su <strong>invariante de clase</strong>: una propiedad que se cumple al terminar el constructor y que ningún método rompe.</p>
+</div>
+</div>
+<div id="tip-invariante-clase" class="callout callout-style-default callout-tip no-icon callout-titled" title="Invariante de clase e inducción">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fundamento Teórico&nbsp;6: Invariante de clase e inducción
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El invariante de clase es el análogo del invariante de bucle del tema 5. Si el constructor lo establece (caso base) y cada método que modifica el objeto lo preserva (paso inductivo), entonces se cumple tras cualquier secuencia finita de operaciones. Es una demostración por inducción sobre el número de operaciones aplicadas al objeto.</p>
+</div>
+</div>
+<p>En Python, encapsular una clase requiere tres herramientas: validar en el constructor, marcar los atributos internos como privados y ofrecer el acceso a ellos mediante propiedades.</p>
+<section id="validar-y-normalizar-en-el-constructor" class="level3">
+<h3 class="anchored" data-anchor-id="validar-y-normalizar-en-el-constructor"><strong>6.3.1 Validar y normalizar en el constructor</strong></h3>
+<p>El constructor es el único punto por el que se crean objetos, así que es el lugar natural para comprobar las precondiciones (lanzando <code>ValueError</code>, como en el tema 3) y para llevar los datos a su forma canónica.</p>
+</section>
+<section id="atributos-privados-por-convención" class="level3">
+<h3 class="anchored" data-anchor-id="atributos-privados-por-convención"><strong>6.3.2 Atributos privados por convención</strong></h3>
+<p>Python no tiene atributos realmente privados. La convención es que un nombre que empieza por un guion bajo, como <code>_num</code>, es <strong>interno</strong>: forma parte de la implementación y no debe usarse fuera de la clase.</p>
+<div id="cau-privado" class="callout callout-style-default callout-caution no-icon callout-titled" title="El guion bajo es una convención, no una prohibición">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Frecuente&nbsp;4: El guion bajo es una convención, no una prohibición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Escribir <code>r._den = 0</code> desde fuera de la clase es posible: Python no lo impide. El guion bajo es un aviso para otros programadores (y para los editores, que lo señalan): «esto es interno; si lo tocas, el invariante deja de estar garantizado». Un nombre con dos guiones bajos, como <code>__den</code>, se transforma internamente en <code>_Fraccion__den</code> (<em>name mangling</em>), lo que hace más difícil el acceso accidental, pero tampoco lo prohíbe.</p>
+</div>
+</div>
+</section>
+<section id="propiedades-de-solo-lectura" class="level3">
+<h3 class="anchored" data-anchor-id="propiedades-de-solo-lectura"><strong>6.3.3 Propiedades de solo lectura</strong></h3>
+<p>Para que el usuario pueda <em>leer</em> el numerador y el denominador pero no modificarlos, se definen <strong>propiedades</strong> con el decorador <code>@property</code>: un método que se usa con la sintaxis de un atributo, sin paréntesis.</p>
+<div>
+<div id="pyodide-13" class="exercise-cell">
+
+</div>
+<script type="pyodide-13-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZnJvbSBtYXRoIGltcG9ydCBnY2RcblxuY2xhc3MgRnJhY2Npb246XG4gICAgXCJcIlwiTsO6bWVybyByYWNpb25hbCBlbiBmb3JtYSBjYW7Ds25pY2E6IGRlbiA+IDAgeSBtY2QobnVtLCBkZW4pID0gMS5cIlwiXCJcblxuICAgIGRlZiBfX2luaXRfXyhzZWxmLCBudW06IGludCwgZGVuOiBpbnQgPSAxKSAtPiBOb25lOlxuICAgICAgICBcIlwiXCJDcmVhIGxhIGZyYWNjacOzbiBudW0vZGVuIGVuIGZvcm1hIGNhbsOzbmljYS5cIlwiXCJcbiAgICAgICAgaWYgZGVuID09IDA6XG4gICAgICAgICAgICByYWlzZSBWYWx1ZUVycm9yKFwiZWwgZGVub21pbmFkb3Igbm8gcHVlZGUgc2VyIDBcIilcbiAgICAgICAgaWYgZGVuIDwgMDpcbiAgICAgICAgICAgIG51bSwgZGVuID0gLW51bSwgLWRlblxuICAgICAgICBtID0gZ2NkKG51bSwgZGVuKVxuICAgICAgICBzZWxmLl9udW0gPSBudW0gLy8gbVxuICAgICAgICBzZWxmLl9kZW4gPSBkZW4gLy8gbVxuXG4gICAgQHByb3BlcnR5XG4gICAgZGVmIG51bShzZWxmKSAtPiBpbnQ6XG4gICAgICAgIFwiXCJcIk51bWVyYWRvciAoc29sbyBsZWN0dXJhKS5cIlwiXCJcbiAgICAgICAgcmV0dXJuIHNlbGYuX251bVxuXG4gICAgQHByb3BlcnR5XG4gICAgZGVmIGRlbihzZWxmKSAtPiBpbnQ6XG4gICAgICAgIFwiXCJcIkRlbm9taW5hZG9yLCBzaWVtcHJlIHBvc2l0aXZvIChzb2xvIGxlY3R1cmEpLlwiXCJcIlxuICAgICAgICByZXR1cm4gc2VsZi5fZGVuXG5cbiAgICBkZWYgdmFsb3Ioc2VsZikgLT4gZmxvYXQ6XG4gICAgICAgIFwiXCJcIkRldnVlbHZlIGxhIGFwcm94aW1hY2nDs24gZGVjaW1hbCBkZSBsYSBmcmFjY2nDs24uXCJcIlwiXG4gICAgICAgIHJldHVybiBzZWxmLl9udW0gLyBzZWxmLl9kZW5cblxuciA9IEZyYWNjaW9uKDYsIC04KVxucHJpbnQoci5udW0sIHIuZGVuKSAgICAgICAgIyAtMyA0OiBmb3JtYSBjYW7Ds25pY2FcbnByaW50KEZyYWNjaW9uKDUpLmRlbikgICAgICMgMTogZWwgZGVub21pbmFkb3IgcG9yIGRlZmVjdG8gZXMgMVxuXG50cnk6XG4gICAgci5kZW4gPSAwXG5leGNlcHQgQXR0cmlidXRlRXJyb3I6XG4gICAgcHJpbnQoXCJkZW4gZXMgZGUgc29sbyBsZWN0dXJhXCIpXG5cbnRyeTpcbiAgICBGcmFjY2lvbigxLCAwKVxuZXhjZXB0IFZhbHVlRXJyb3IgYXMgZTpcbiAgICBwcmludChcIkVycm9yOlwiLCBlKSAgICAgIyBFcnJvcjogZWwgZGVub21pbmFkb3Igbm8gcHVlZGUgc2VyIDAifQ==
+</script>
+</div>
+<p>Ahora la única forma de obtener una <code>Fraccion</code> es a través del constructor, que siempre deja el objeto en forma canónica, y ningún método la modifica después. El invariante se cumple siempre: una fracción con denominador cero o sin simplificar ya no puede existir (salvo que alguien toque <code>_den</code> a propósito).</p>
+<div id="wrn-invariante" class="callout callout-style-default callout-warning no-icon callout-titled" title="Comprobar el invariante durante el desarrollo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Técnica de Depuración&nbsp;2: Comprobar el invariante durante el desarrollo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mientras se programa una clase, es útil añadir un método que verifique el invariante con <code>assert</code> (tema 5) y llamarlo al final del constructor y de cada método que modifique el objeto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _comprobar_invariante(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="va">self</span>._den <span class="op">&gt;</span> <span class="dv">0</span>, <span class="st">"el denominador debe ser positivo"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> gcd(<span class="va">self</span>._num, <span class="va">self</span>._den) <span class="op">==</span> <span class="dv">1</span>, <span class="st">"la fracción no es irreducible"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Si algún cambio en el código rompe el invariante, el <code>assert</code> lo detecta en el momento exacto en que ocurre.</p>
+</div>
+</div>
+</section>
+<section id="propiedades-calculadas-y-con-validación" class="level3">
+<h3 class="anchored" data-anchor-id="propiedades-calculadas-y-con-validación"><strong>6.3.4 Propiedades calculadas y con validación</strong></h3>
+<p>Una propiedad también sirve para valores que se <strong>calculan</strong> a partir del estado, y puede tener un <em>setter</em> que <strong>valide</strong> cada modificación. Veámoslo con un círculo del plano:</p>
+<div>
+<div id="pyodide-14" class="exercise-cell">
+
+</div>
+<script type="pyodide-14-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuY2xhc3MgQ2lyY3VsbzpcbiAgICBcIlwiXCJDw61yY3VsbyBjZXJyYWRvIGRlIGNlbnRybyAoYSwgYikgeSByYWRpbyByID4gMC5cIlwiXCJcblxuICAgIGRlZiBfX2luaXRfXyhzZWxmLCBjZW50cm86IHR1cGxlW2Zsb2F0LCBmbG9hdF0sIHJhZGlvOiBmbG9hdCkgLT4gTm9uZTpcbiAgICAgICAgc2VsZi5jZW50cm8gPSBjZW50cm9cbiAgICAgICAgc2VsZi5yYWRpbyA9IHJhZGlvICAgICAgICAgICAgIyBwYXNhIHBvciBlbCBzZXR0ZXI6IHNlIHZhbGlkYVxuXG4gICAgQHByb3BlcnR5XG4gICAgZGVmIHJhZGlvKHNlbGYpIC0+IGZsb2F0OlxuICAgICAgICBcIlwiXCJSYWRpbyBkZWwgY8OtcmN1bG8uXCJcIlwiXG4gICAgICAgIHJldHVybiBzZWxmLl9yYWRpb1xuXG4gICAgQHJhZGlvLnNldHRlclxuICAgIGRlZiByYWRpbyhzZWxmLCB2YWxvcjogZmxvYXQpIC0+IE5vbmU6XG4gICAgICAgIGlmIHZhbG9yIDw9IDA6XG4gICAgICAgICAgICByYWlzZSBWYWx1ZUVycm9yKFwiZWwgcmFkaW8gZGViZSBzZXIgcG9zaXRpdm9cIilcbiAgICAgICAgc2VsZi5fcmFkaW8gPSB2YWxvclxuXG4gICAgQHByb3BlcnR5XG4gICAgZGVmIGFyZWEoc2VsZikgLT4gZmxvYXQ6XG4gICAgICAgIFwiXCJcIsOBcmVhOiBzZSBjYWxjdWxhIGVuIGNhZGEgY29uc3VsdGEsIHNpZW1wcmUgY29oZXJlbnRlIGNvbiBlbCByYWRpby5cIlwiXCJcbiAgICAgICAgcmV0dXJuIG1hdGgucGkgKiBzZWxmLl9yYWRpbyAqKiAyXG5cbiAgICBkZWYgY29udGllbmUoc2VsZiwgcHVudG86IHR1cGxlW2Zsb2F0LCBmbG9hdF0pIC0+IGJvb2w6XG4gICAgICAgIFwiXCJcIkRldnVlbHZlIFRydWUgc2kgZWwgcHVudG8gcGVydGVuZWNlIGFsIGPDrXJjdWxvLlwiXCJcIlxuICAgICAgICB4LCB5ID0gcHVudG9cbiAgICAgICAgYSwgYiA9IHNlbGYuY2VudHJvXG4gICAgICAgIHJldHVybiAoeCAtIGEpICoqIDIgKyAoeSAtIGIpICoqIDIgPD0gc2VsZi5fcmFkaW8gKiogMlxuXG5jID0gQ2lyY3VsbygoMCwgMCksIDEpXG5wcmludChjLmNvbnRpZW5lKCgwLjUsIDAuNSkpKSAgICAjIFRydWVcbnByaW50KGMuY29udGllbmUoKDEsIDEpKSkgICAgICAgICMgRmFsc2VcbmMucmFkaW8gPSAyICAgICAgICAgICAgICAgICAgICAgICMgZWwgc2V0dGVyIHZhbGlkYSBlbCBudWV2byB2YWxvclxucHJpbnQocm91bmQoYy5hcmVhLCA0KSkgICAgICAgICAgIyAxMi41NjY0ID0gNM+AXG5cbnRyeTpcbiAgICBjLnJhZGlvID0gLTFcbmV4Y2VwdCBWYWx1ZUVycm9yIGFzIGU6XG4gICAgcHJpbnQoXCJFcnJvcjpcIiwgZSkgICAgICAgICAgICMgRXJyb3I6IGVsIHJhZGlvIGRlYmUgc2VyIHBvc2l0aXZvIn0=
+</script>
+</div>
+<p><code>area</code> no es un atributo guardado, sino un valor que se calcula cada vez que se consulta. Por eso nunca puede quedar desactualizado respecto del radio.</p>
+<div id="nte-montecarlo" class="callout callout-style-default callout-note no-icon callout-titled" title="Estimación de π por el método de Monte Carlo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo&nbsp;1: Estimación de π por el método de Monte Carlo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si se eligen puntos al azar en el cuadrado <span class="math inline">\([-1, 1]^2\)</span>, la proporción de los que caen en el círculo unidad tiende a <span class="math inline">\(\pi r^2 / (2r)^2 = \pi/4\)</span>. El método <code>contiene</code> permite estimar <span class="math inline">\(\pi\)</span>:</p>
+<div>
+<div id="pyodide-15" class="exercise-cell">
+
+</div>
+<script type="pyodide-15-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IHJhbmRvbVxuXG5yYW5kb20uc2VlZCgyMzIwMCkgICAgICAgICAgICAgICAgICAgICMgc2VtaWxsYSBmaWphOiByZXN1bHRhZG8gcmVwcm9kdWNpYmxlXG51bmlkYWQgPSBDaXJjdWxvKCgwLCAwKSwgMSlcbm4gPSAxMDBfMDAwXG5kZW50cm8gPSBzdW0odW5pZGFkLmNvbnRpZW5lKChyYW5kb20udW5pZm9ybSgtMSwgMSksIHJhbmRvbS51bmlmb3JtKC0xLCAxKSkpXG4gICAgICAgICAgICAgZm9yIF8gaW4gcmFuZ2UobikpXG5wcmludChmXCLPgCDiiYggezQgKiBkZW50cm8gLyBuOi40Zn1cIikifQ==
+</script>
+</div>
+<p>El error de esta estimación es del orden de <span class="math inline">\(1/\sqrt{n}\)</span>: para ganar una cifra decimal hay que multiplicar por 100 el número de puntos.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="métodos-mágicos-y-sobrecarga-de-operadores" class="level2">
+<h2 class="anchored" data-anchor-id="métodos-mágicos-y-sobrecarga-de-operadores">6.4. Métodos mágicos y sobrecarga de operadores</h2>
+<p>Nuestra <code>Fraccion</code> ya mantiene su invariante, pero todavía es incómoda de usar: <code>print(r)</code> muestra algo como <code>&lt;__main__.Fraccion object at 0x7f...&gt;</code>, <code>Fraccion(1, 2) == Fraccion(2, 4)</code> da <code>False</code> y hay que escribir <code>a.suma(b)</code> en lugar de <code>a + b</code>. Los <strong>métodos mágicos</strong> resuelven todo esto.</p>
+<div id="tip-modelo-datos" class="callout callout-style-default callout-tip no-icon callout-titled" title="Métodos mágicos">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fundamento Teórico&nbsp;7: Métodos mágicos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los <strong>métodos mágicos</strong> (o <strong>métodos especiales</strong>, en inglés <em>dunder methods</em> por los dobles guiones bajos) son métodos con nombres de la forma <code>__nombre__</code> que Python llama automáticamente al evaluar operadores y funciones predefinidas <span class="citation" data-cites="pythondatamodel">(<a href="#ref-pythondatamodel" role="doc-biblioref">Python Software Foundation 2025</a>)</span>. Por ejemplo:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Se escribe</th>
+<th style="text-align: left;">Python ejecuta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>Fraccion(1, 2)</code></td>
+<td style="text-align: left;"><code>__init__</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>repr(r)</code>, <code>print(r)</code></td>
+<td style="text-align: left;"><code>r.__repr__()</code>, <code>r.__str__()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>a + b</code>, <code>a * b</code></td>
+<td style="text-align: left;"><code>a.__add__(b)</code>, <code>a.__mul__(b)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>a == b</code>, <code>a &lt; b</code></td>
+<td style="text-align: left;"><code>a.__eq__(b)</code>, <code>a.__lt__(b)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>-a</code></td>
+<td style="text-align: left;"><code>a.__neg__()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>hash(a)</code></td>
+<td style="text-align: left;"><code>a.__hash__()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>float(a)</code></td>
+<td style="text-align: left;"><code>a.__float__()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>p(x)</code></td>
+<td style="text-align: left;"><code>p.__call__(x)</code></td>
+</tr>
+</tbody>
+</table>
+<p>Definir estos métodos en una clase se llama <strong>sobrecarga de operadores</strong>: el operador <code>+</code>, que ya funcionaba con <code>int</code>, <code>float</code>, <code>str</code> y <code>list</code>, pasa a funcionar también con nuestros objetos.</p>
+</div>
+</div>
+<p>Es la misma idea que en matemáticas, donde el símbolo <span class="math inline">\(+\)</span> denota operaciones distintas en <span class="math inline">\(\mathbb{Z}\)</span>, en <span class="math inline">\(\mathbb{R}^n\)</span>, en el anillo de polinomios o en un grupo abstracto. El significado lo da el tipo de los operandos.</p>
+<section id="representación-__repr__-y-__str__" class="level3">
+<h3 class="anchored" data-anchor-id="representación-__repr__-y-__str__"><strong>6.4.1 Representación: <code>__repr__</code> y <code>__str__</code></strong></h3>
+<ul>
+<li><code>__repr__</code> devuelve una representación <strong>sin ambigüedades</strong>, pensada para el programador. Idealmente es código Python que recrea el objeto: <code>Fraccion(3, 4)</code>. Es la que se ve en el intérprete y dentro de listas.</li>
+<li><code>__str__</code> devuelve una representación <strong>legible</strong>, pensada para el usuario: <code>3/4</code>. Es la que usan <code>print</code> y las f-strings. Si no se define, Python usa <code>__repr__</code>.</li>
+</ul>
+</section>
+<section id="igualdad-y-hash-__eq__-y-__hash__" class="level3">
+<h3 class="anchored" data-anchor-id="igualdad-y-hash-__eq__-y-__hash__"><strong>6.4.2 Igualdad y <em>hash</em>: <code>__eq__</code> y <code>__hash__</code></strong></h3>
+<p>Gracias a la forma canónica, dos fracciones son iguales si y solo si tienen el mismo numerador y el mismo denominador. Si el otro operando no es una fracción (ni un entero, que convertimos), el método devuelve el valor especial <code>NotImplemented</code>, que indica a Python que esta clase no sabe hacer la comparación.</p>
+<div id="cau-hash" class="callout callout-style-default callout-caution no-icon callout-titled" title="Definir `__eq__` sin `__hash__`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Frecuente&nbsp;5: Definir <code>__eq__</code> sin <code>__hash__</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los conjuntos y las claves de los diccionarios (tema 4) usan la función <code>hash</code> para localizar los elementos. Python exige la regla <span class="math display">\[
+a = b \implies \operatorname{hash}(a) = \operatorname{hash}(b).
+\]</span> Por eso, <strong>si una clase define <code>__eq__</code> y no define <code>__hash__</code>, sus objetos dejan de ser <em>hashables</em></strong>: <code>{Fraccion(1, 2)}</code> lanza <code>TypeError: unhashable type</code>. Para objetos que no cambian después de crearse, como nuestras fracciones, basta con definir <code>__hash__</code> a partir de los mismos datos que usa <code>__eq__</code>. Los objetos que pueden modificarse no deben ser <em>hashables</em>: si cambiara su valor dentro de un conjunto, el conjunto quedaría corrupto.</p>
+</div>
+</div>
+</section>
+<section id="operadores-aritméticos" class="level3">
+<h3 class="anchored" data-anchor-id="operadores-aritméticos"><strong>6.4.3 Operadores aritméticos</strong></h3>
+<p>Para <code>a + b</code>, Python llama a <code>a.__add__(b)</code>. Si ese método devuelve <code>NotImplemented</code> (por ejemplo, en <code>2 + Fraccion(1, 3)</code>, porque <code>int</code> no sabe sumar fracciones), Python prueba con el <strong>método reflejado</strong> del operando derecho: <code>b.__radd__(a)</code>. Definir <code>__radd__</code> permite, por tanto, que funcionen <code>2 + r</code> y también <code>sum(...)</code>, que empieza sumando desde el entero <code>0</code>.</p>
+</section>
+<section id="comparación-de-orden-__lt__-y-__le__" class="level3">
+<h3 class="anchored" data-anchor-id="comparación-de-orden-__lt__-y-__le__"><strong>6.4.4 Comparación de orden: <code>__lt__</code> y <code>__le__</code></strong></h3>
+<p>Como el denominador es siempre positivo, <span class="math display">\[
+\frac{a}{b} &lt; \frac{c}{d} \iff a\,d &lt; c\,b.
+\]</span> Basta definir <code>__lt__</code> para que funcionen <code>sorted</code>, <code>min</code> y <code>max</code> entre fracciones. Para disponer también de <code>&lt;=</code>, <code>&gt;</code> y <code>&gt;=</code> se definen <code>__le__</code>, <code>__gt__</code> y <code>__ge__</code> (o se usa el decorador <code>functools.total_ordering</code>, que los deduce a partir de <code>__eq__</code> y <code>__lt__</code>). Como con la aritmética, las comparaciones con un entero a la izquierda, como <code>1 &lt; r</code>, necesitan el método «reflejado»: Python traduce <code>1 &lt; r</code> en <code>r &gt; 1</code>, es decir, <code>r.__gt__(1)</code>.</p>
+</section>
+<section id="la-clase-fraccion-completa" class="level3">
+<h3 class="anchored" data-anchor-id="la-clase-fraccion-completa"><strong>6.4.5 La clase <code>Fraccion</code> completa</strong></h3>
+<p>Reunimos todo lo anterior en la versión final de la clase:</p>
+<div>
+<div id="pyodide-16" class="exercise-cell">
+
+</div>
+<script type="pyodide-16-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZnJvbSBtYXRoIGltcG9ydCBnY2RcblxuY2xhc3MgRnJhY2Npb246XG4gICAgXCJcIlwiTsO6bWVybyByYWNpb25hbCBlbiBmb3JtYSBjYW7Ds25pY2E6IGRlbiA+IDAgeSBtY2QobnVtLCBkZW4pID0gMS5cIlwiXCJcblxuICAgIGRlZiBfX2luaXRfXyhzZWxmLCBudW06IGludCwgZGVuOiBpbnQgPSAxKSAtPiBOb25lOlxuICAgICAgICBcIlwiXCJDcmVhIGxhIGZyYWNjacOzbiBudW0vZGVuIGVuIGZvcm1hIGNhbsOzbmljYS5cIlwiXCJcbiAgICAgICAgaWYgZGVuID09IDA6XG4gICAgICAgICAgICByYWlzZSBWYWx1ZUVycm9yKFwiZWwgZGVub21pbmFkb3Igbm8gcHVlZGUgc2VyIDBcIilcbiAgICAgICAgaWYgZGVuIDwgMDpcbiAgICAgICAgICAgIG51bSwgZGVuID0gLW51bSwgLWRlblxuICAgICAgICBtID0gZ2NkKG51bSwgZGVuKVxuICAgICAgICBzZWxmLl9udW0gPSBudW0gLy8gbVxuICAgICAgICBzZWxmLl9kZW4gPSBkZW4gLy8gbVxuXG4gICAgQHByb3BlcnR5XG4gICAgZGVmIG51bShzZWxmKSAtPiBpbnQ6XG4gICAgICAgIFwiXCJcIk51bWVyYWRvciAoc29sbyBsZWN0dXJhKS5cIlwiXCJcbiAgICAgICAgcmV0dXJuIHNlbGYuX251bVxuXG4gICAgQHByb3BlcnR5XG4gICAgZGVmIGRlbihzZWxmKSAtPiBpbnQ6XG4gICAgICAgIFwiXCJcIkRlbm9taW5hZG9yLCBzaWVtcHJlIHBvc2l0aXZvIChzb2xvIGxlY3R1cmEpLlwiXCJcIlxuICAgICAgICByZXR1cm4gc2VsZi5fZGVuXG5cbiAgICAjIC0tLS0tLS0tLS0gcmVwcmVzZW50YWNpw7NuIC0tLS0tLS0tLS1cbiAgICBkZWYgX19yZXByX18oc2VsZikgLT4gc3RyOlxuICAgICAgICByZXR1cm4gZlwiRnJhY2Npb24oe3NlbGYuX251bX0sIHtzZWxmLl9kZW59KVwiXG5cbiAgICBkZWYgX19zdHJfXyhzZWxmKSAtPiBzdHI6XG4gICAgICAgIGlmIHNlbGYuX2RlbiA9PSAxOlxuICAgICAgICAgICAgcmV0dXJuIHN0cihzZWxmLl9udW0pXG4gICAgICAgIHJldHVybiBmXCJ7c2VsZi5fbnVtfS97c2VsZi5fZGVufVwiXG5cbiAgICBkZWYgX19mbG9hdF9fKHNlbGYpIC0+IGZsb2F0OlxuICAgICAgICByZXR1cm4gc2VsZi5fbnVtIC8gc2VsZi5fZGVuXG5cbiAgICAjIC0tLS0tLS0tLS0gY29udmVyc2nDs24gZGUgZW50ZXJvcyAtLS0tLS0tLS0tXG4gICAgQHN0YXRpY21ldGhvZFxuICAgIGRlZiBfY29udmVydGlyKG90cmE6IG9iamVjdCkgLT4gXCJGcmFjY2lvbiB8IE5vbmVcIjpcbiAgICAgICAgXCJcIlwiRGV2dWVsdmUgb3RyYSBjb21vIEZyYWNjaW9uIHNpIGVzIEZyYWNjaW9uIG8gaW50OyBzaSBubywgTm9uZS5cIlwiXCJcbiAgICAgICAgaWYgaXNpbnN0YW5jZShvdHJhLCBGcmFjY2lvbik6XG4gICAgICAgICAgICByZXR1cm4gb3RyYVxuICAgICAgICBpZiBpc2luc3RhbmNlKG90cmEsIGludCk6XG4gICAgICAgICAgICByZXR1cm4gRnJhY2Npb24ob3RyYSlcbiAgICAgICAgcmV0dXJuIE5vbmVcblxuICAgICMgLS0tLS0tLS0tLSBpZ3VhbGRhZCB5IGhhc2ggLS0tLS0tLS0tLVxuICAgIGRlZiBfX2VxX18oc2VsZiwgb3RyYTogb2JqZWN0KSAtPiBib29sOlxuICAgICAgICBvdHJhID0gc2VsZi5fY29udmVydGlyKG90cmEpXG4gICAgICAgIGlmIG90cmEgaXMgTm9uZTpcbiAgICAgICAgICAgIHJldHVybiBOb3RJbXBsZW1lbnRlZFxuICAgICAgICByZXR1cm4gc2VsZi5fbnVtID09IG90cmEuX251bSBhbmQgc2VsZi5fZGVuID09IG90cmEuX2RlblxuXG4gICAgZGVmIF9faGFzaF9fKHNlbGYpIC0+IGludDpcbiAgICAgICAgaWYgc2VsZi5fZGVuID09IDE6XG4gICAgICAgICAgICByZXR1cm4gaGFzaChzZWxmLl9udW0pICAgICMgRnJhY2Npb24oMikgPT0gMjogZGViZW4gdGVuZXIgZWwgbWlzbW8gaGFzaFxuICAgICAgICByZXR1cm4gaGFzaCgoc2VsZi5fbnVtLCBzZWxmLl9kZW4pKVxuXG4gICAgIyAtLS0tLS0tLS0tIG9yZGVuIC0tLS0tLS0tLS1cbiAgICBkZWYgX19sdF9fKHNlbGYsIG90cmE6IG9iamVjdCkgLT4gYm9vbDpcbiAgICAgICAgb3RyYSA9IHNlbGYuX2NvbnZlcnRpcihvdHJhKVxuICAgICAgICBpZiBvdHJhIGlzIE5vbmU6XG4gICAgICAgICAgICByZXR1cm4gTm90SW1wbGVtZW50ZWRcbiAgICAgICAgcmV0dXJuIHNlbGYuX251bSAqIG90cmEuX2RlbiA8IG90cmEuX251bSAqIHNlbGYuX2RlblxuXG4gICAgZGVmIF9fbGVfXyhzZWxmLCBvdHJhOiBvYmplY3QpIC0+IGJvb2w6XG4gICAgICAgIG90cmEgPSBzZWxmLl9jb252ZXJ0aXIob3RyYSlcbiAgICAgICAgaWYgb3RyYSBpcyBOb25lOlxuICAgICAgICAgICAgcmV0dXJuIE5vdEltcGxlbWVudGVkXG4gICAgICAgIHJldHVybiBzZWxmLl9udW0gKiBvdHJhLl9kZW4gPD0gb3RyYS5fbnVtICogc2VsZi5fZGVuXG5cbiAgICBkZWYgX19ndF9fKHNlbGYsIG90cmE6IG9iamVjdCkgLT4gYm9vbDpcbiAgICAgICAgb3RyYSA9IHNlbGYuX2NvbnZlcnRpcihvdHJhKVxuICAgICAgICBpZiBvdHJhIGlzIE5vbmU6XG4gICAgICAgICAgICByZXR1cm4gTm90SW1wbGVtZW50ZWRcbiAgICAgICAgcmV0dXJuIG90cmEgPCBzZWxmXG5cbiAgICBkZWYgX19nZV9fKHNlbGYsIG90cmE6IG9iamVjdCkgLT4gYm9vbDpcbiAgICAgICAgb3RyYSA9IHNlbGYuX2NvbnZlcnRpcihvdHJhKVxuICAgICAgICBpZiBvdHJhIGlzIE5vbmU6XG4gICAgICAgICAgICByZXR1cm4gTm90SW1wbGVtZW50ZWRcbiAgICAgICAgcmV0dXJuIG90cmEgPD0gc2VsZlxuXG4gICAgIyAtLS0tLS0tLS0tIGFyaXRtw6l0aWNhIC0tLS0tLS0tLS1cbiAgICBkZWYgX19uZWdfXyhzZWxmKSAtPiBcIkZyYWNjaW9uXCI6XG4gICAgICAgIHJldHVybiBGcmFjY2lvbigtc2VsZi5fbnVtLCBzZWxmLl9kZW4pXG5cbiAgICBkZWYgX19hZGRfXyhzZWxmLCBvdHJhOiBvYmplY3QpIC0+IFwiRnJhY2Npb25cIjpcbiAgICAgICAgb3RyYSA9IHNlbGYuX2NvbnZlcnRpcihvdHJhKVxuICAgICAgICBpZiBvdHJhIGlzIE5vbmU6XG4gICAgICAgICAgICByZXR1cm4gTm90SW1wbGVtZW50ZWRcbiAgICAgICAgcmV0dXJuIEZyYWNjaW9uKHNlbGYuX251bSAqIG90cmEuX2RlbiArIG90cmEuX251bSAqIHNlbGYuX2RlbixcbiAgICAgICAgICAgICAgICAgICAgICAgIHNlbGYuX2RlbiAqIG90cmEuX2RlbilcblxuICAgIGRlZiBfX3JhZGRfXyhzZWxmLCBvdHJhOiBvYmplY3QpIC0+IFwiRnJhY2Npb25cIjpcbiAgICAgICAgcmV0dXJuIHNlbGYgKyBvdHJhICAgICAgICAgICAgICAgICMgbGEgc3VtYSBlcyBjb25tdXRhdGl2YVxuXG4gICAgZGVmIF9fc3ViX18oc2VsZiwgb3RyYTogb2JqZWN0KSAtPiBcIkZyYWNjaW9uXCI6XG4gICAgICAgIG90cmEgPSBzZWxmLl9jb252ZXJ0aXIob3RyYSlcbiAgICAgICAgaWYgb3RyYSBpcyBOb25lOlxuICAgICAgICAgICAgcmV0dXJuIE5vdEltcGxlbWVudGVkXG4gICAgICAgIHJldHVybiBzZWxmICsgKC1vdHJhKVxuXG4gICAgZGVmIF9fcnN1Yl9fKHNlbGYsIG90cmE6IG9iamVjdCkgLT4gXCJGcmFjY2lvblwiOlxuICAgICAgICByZXR1cm4gKC1zZWxmKSArIG90cmEgICAgICAgICAgICAgIyBvdHJhIC0gc2VsZlxuXG4gICAgZGVmIF9fbXVsX18oc2VsZiwgb3RyYTogb2JqZWN0KSAtPiBcIkZyYWNjaW9uXCI6XG4gICAgICAgIG90cmEgPSBzZWxmLl9jb252ZXJ0aXIob3RyYSlcbiAgICAgICAgaWYgb3RyYSBpcyBOb25lOlxuICAgICAgICAgICAgcmV0dXJuIE5vdEltcGxlbWVudGVkXG4gICAgICAgIHJldHVybiBGcmFjY2lvbihzZWxmLl9udW0gKiBvdHJhLl9udW0sIHNlbGYuX2RlbiAqIG90cmEuX2RlbilcblxuICAgIGRlZiBfX3JtdWxfXyhzZWxmLCBvdHJhOiBvYmplY3QpIC0+IFwiRnJhY2Npb25cIjpcbiAgICAgICAgcmV0dXJuIHNlbGYgKiBvdHJhICAgICAgICAgICAgICAgICMgZWwgcHJvZHVjdG8gZXMgY29ubXV0YXRpdm9cblxuICAgIGRlZiBfX3RydWVkaXZfXyhzZWxmLCBvdHJhOiBvYmplY3QpIC0+IFwiRnJhY2Npb25cIjpcbiAgICAgICAgb3RyYSA9IHNlbGYuX2NvbnZlcnRpcihvdHJhKVxuICAgICAgICBpZiBvdHJhIGlzIE5vbmU6XG4gICAgICAgICAgICByZXR1cm4gTm90SW1wbGVtZW50ZWRcbiAgICAgICAgaWYgb3RyYS5fbnVtID09IDA6XG4gICAgICAgICAgICByYWlzZSBaZXJvRGl2aXNpb25FcnJvcihcImRpdmlzacOzbiBkZSB1bmEgZnJhY2Npw7NuIHBvciBjZXJvXCIpXG4gICAgICAgIHJldHVybiBGcmFjY2lvbihzZWxmLl9udW0gKiBvdHJhLl9kZW4sIHNlbGYuX2RlbiAqIG90cmEuX251bSlcblxuICAgIGRlZiBfX3J0cnVlZGl2X18oc2VsZiwgb3RyYTogb2JqZWN0KSAtPiBcIkZyYWNjaW9uXCI6XG4gICAgICAgIG90cmEgPSBzZWxmLl9jb252ZXJ0aXIob3RyYSlcbiAgICAgICAgaWYgb3RyYSBpcyBOb25lOlxuICAgICAgICAgICAgcmV0dXJuIE5vdEltcGxlbWVudGVkXG4gICAgICAgIHJldHVybiBvdHJhIC8gc2VsZiAgICAgICAgICAgICAgICAjIG90cmEgLyBzZWxmIn0=
+</script>
+</div>
+<p>Ahora las fracciones se comportan como cualquier tipo numérico de Python:</p>
+<div>
+<div id="pyodide-17" class="exercise-cell">
+
+</div>
+<script type="pyodide-17-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSA9IEZyYWNjaW9uKDEsIDIpXG5iID0gRnJhY2Npb24oMSwgMylcbnByaW50KGEgKyBiLCBhIC0gYiwgYSAqIGIsIGEgLyBiKSAgICAgICAgIyA1LzYgMS82IDEvNiAzLzJcbnByaW50KDIgKyBhLCAxIC0gYSwgMyAqIGIsIDEgLyBiKSAgICAgICAgIyA1LzIgMS8yIDEgM1xucHJpbnQoRnJhY2Npb24oMiwgNCkgPT0gYSkgICAgICAgICAgICAgICAjIFRydWVcbnByaW50KEZyYWNjaW9uKDQsIDIpID09IDIpICAgICAgICAgICAgICAgIyBUcnVlXG5wcmludChhIDwgYiwgbWluKGEsIGIpKSAgICAgICAgICAgICAgICAgICMgRmFsc2UgMS8zXG5wcmludChyZXByKGEpLCBmbG9hdChhKSkgICAgICAgICAgICAgICAgICMgRnJhY2Npb24oMSwgMikgMC41XG5wcmludCh7RnJhY2Npb24oMSwgMiksIEZyYWNjaW9uKDIsIDQpLCBGcmFjY2lvbigzLCA2KX0pICAgIyB1biBzb2xvIGVsZW1lbnRvIn0=
+</script>
+</div>
+<div id="imp-aritmetica-exacta" class="callout callout-style-default callout-important no-icon callout-titled" title="Aritmética exacta frente a coma flotante">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepto Clave&nbsp;6: Aritmética exacta frente a coma flotante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los <code>float</code> acumulan errores de redondeo (tema 2); las fracciones no:</p>
+<div>
+<div id="pyodide-18" class="exercise-cell">
+
+</div>
+<script type="pyodide-18-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoc3VtKFswLjFdICogMTApID09IDEpICAgICAgICAgICAgICAgICAgIyBGYWxzZVxucHJpbnQoc3VtKFtGcmFjY2lvbigxLCAxMCldICogMTApID09IDEpICAgICAgIyBUcnVlIn0=
+</script>
+</div>
+<p><code>sum</code> empieza en el entero <code>0</code>; la primera suma, <code>0 + Fraccion(1, 10)</code>, funciona gracias a <code>__radd__</code>.</p>
+</div>
+</div>
+<div id="nte-sumas-exactas" class="callout callout-style-default callout-note no-icon callout-titled" title="Sumas exactas: serie telescópica y números armónicos">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo&nbsp;2: Sumas exactas: serie telescópica y números armónicos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La serie telescópica <span class="math display">\[
+\sum_{k=1}^{n} \frac{1}{k(k+1)} = \sum_{k=1}^{n} \left(\frac{1}{k} - \frac{1}{k+1}\right) = 1 - \frac{1}{n+1} = \frac{n}{n+1}
+\]</span> se puede comprobar exactamente para cualquier <span class="math inline">\(n\)</span>. También podemos calcular los <strong>números armónicos</strong> <span class="math inline">\(H_n = \sum_{k=1}^{n} 1/k\)</span> como fracciones exactas:</p>
+<div>
+<div id="pyodide-19" class="exercise-cell">
+
+</div>
+<script type="pyodide-19-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDEwXG50ZWxlc2NvcGljYSA9IHN1bShGcmFjY2lvbigxLCBrICogKGsgKyAxKSkgZm9yIGsgaW4gcmFuZ2UoMSwgbiArIDEpKVxucHJpbnQodGVsZXNjb3BpY2EpICAgICAgICAgICAgICAgICAgICAgICAgICAgIyAxMC8xMVxucHJpbnQodGVsZXNjb3BpY2EgPT0gRnJhY2Npb24obiwgbiArIDEpKSAgICAgIyBUcnVlXG5cbmFybW9uaWNvID0gc3VtKEZyYWNjaW9uKDEsIGspIGZvciBrIGluIHJhbmdlKDEsIG4gKyAxKSlcbnByaW50KGFybW9uaWNvLCBcIuKJiFwiLCBmbG9hdChhcm1vbmljbykpICAgICAgICAjIDczODEvMjUyMCDiiYggMi45Mjg5NjgyNTM5NjgyNTM4In0=
+</script>
+</div>
+</div>
+</div>
+<div id="nte-farey" class="callout callout-style-default callout-note no-icon callout-titled" title="La sucesión de Farey">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo&nbsp;3: La sucesión de Farey
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>sucesión de Farey</strong> de orden <span class="math inline">\(n\)</span>, <span class="math inline">\(F_n\)</span>, es la lista ordenada de las fracciones irreducibles de <span class="math inline">\([0, 1]\)</span> con denominador menor o igual que <span class="math inline">\(n\)</span>. Se conoce su longitud: <span class="math display">\[
+|F_n| = 1 + \sum_{k=1}^{n} \varphi(k),
+\]</span> donde <span class="math inline">\(\varphi\)</span> es la función totiente de Euler (ejercicios del tema 3). Gracias a <code>__hash__</code>, un conjunto elimina las fracciones repetidas (<span class="math inline">\(2/4 = 1/2\)</span>), y gracias a <code>__lt__</code>, <code>sorted</code> las ordena:</p>
+<div>
+<div id="pyodide-20" class="exercise-cell">
+
+</div>
+<script type="pyodide-20-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGZhcmV5KG46IGludCkgLT4gbGlzdFtGcmFjY2lvbl06XG4gICAgXCJcIlwiU3VjZXNpw7NuIGRlIEZhcmV5IGRlIG9yZGVuIG4uXCJcIlwiXG4gICAgcmV0dXJuIHNvcnRlZCh7RnJhY2Npb24oYSwgYikgZm9yIGIgaW4gcmFuZ2UoMSwgbiArIDEpIGZvciBhIGluIHJhbmdlKGIgKyAxKX0pXG5cbnByaW50KFwiIFwiLmpvaW4oc3RyKGYpIGZvciBmIGluIGZhcmV5KDUpKSlcbiMgMCAxLzUgMS80IDEvMyAyLzUgMS8yIDMvNSAyLzMgMy80IDQvNSAxXG5wcmludChsZW4oZmFyZXkoNSkpKSAgICAgIyAxMSA9IDEgKyAoMSArIDEgKyAyICsgMiArIDQpIn0=
+</script>
+</div>
+</div>
+</div>
+</section>
+<section id="la-clase-polinomio-con-operadores" class="level3">
+<h3 class="anchored" data-anchor-id="la-clase-polinomio-con-operadores"><strong>6.4.6 La clase <code>Polinomio</code> con operadores</strong></h3>
+<p>Apliquemos lo mismo a los polinomios. Añadimos suma, resta y producto (<code>+</code>, <code>-</code>, <code>*</code>), igualdad, representación y el método <code>__call__</code>, que permite escribir <code>p(x)</code> como en matemáticas. Un operando que no sea un <code>Polinomio</code> (un número, una fracción…) se trata como un polinomio constante.</p>
+<div>
+<div id="pyodide-21" class="exercise-cell">
+
+</div>
+<script type="pyodide-21-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiY2xhc3MgUG9saW5vbWlvOlxuICAgIFwiXCJcIlBvbGlub21pbyBhMCArIGExIHggKyAuLi4gKyBhbiB4Xm4sIGd1YXJkYWRvIGNvbW8gbGlzdGEgZGUgY29lZmljaWVudGVzLlwiXCJcIlxuXG4gICAgZGVmIF9faW5pdF9fKHNlbGYsIGNvZWZzOiBsaXN0KSAtPiBOb25lOlxuICAgICAgICBcIlwiXCJjb2Vmc1trXSBlcyBlbCBjb2VmaWNpZW50ZSBkZSB4XmsuXCJcIlwiXG4gICAgICAgIGNvZWZzID0gbGlzdChjb2VmcylcbiAgICAgICAgd2hpbGUgbGVuKGNvZWZzKSA+IDEgYW5kIGNvZWZzWy0xXSA9PSAwOlxuICAgICAgICAgICAgY29lZnMucG9wKClcbiAgICAgICAgaWYgbm90IGNvZWZzOlxuICAgICAgICAgICAgY29lZnMgPSBbMF1cbiAgICAgICAgc2VsZi5fY29lZnMgPSBjb2Vmc1xuXG4gICAgQHByb3BlcnR5XG4gICAgZGVmIGNvZWZzKHNlbGYpIC0+IGxpc3Q6XG4gICAgICAgIFwiXCJcIkNvcGlhIGRlIGxhIGxpc3RhIGRlIGNvZWZpY2llbnRlcy5cIlwiXCJcbiAgICAgICAgcmV0dXJuIGxpc3Qoc2VsZi5fY29lZnMpXG5cbiAgICBkZWYgZ3JhZG8oc2VsZikgLT4gaW50OlxuICAgICAgICBcIlwiXCJHcmFkbyBkZWwgcG9saW5vbWlvIChhcXXDrSwgMCBwYXJhIGVsIHBvbGlub21pbyBudWxvKS5cIlwiXCJcbiAgICAgICAgcmV0dXJuIGxlbihzZWxmLl9jb2VmcykgLSAxXG5cbiAgICBkZWYgZGVyaXZhZGEoc2VsZikgLT4gXCJQb2xpbm9taW9cIjpcbiAgICAgICAgXCJcIlwiRGV2dWVsdmUgZWwgcG9saW5vbWlvIGRlcml2YWRhIHAnKHgpLlwiXCJcIlxuICAgICAgICByZXR1cm4gUG9saW5vbWlvKFtrICogYSBmb3IgaywgYSBpbiBlbnVtZXJhdGUoc2VsZi5fY29lZnMpIGlmIGsgPiAwXSlcblxuICAgICMgLS0tLS0tLS0tLSBjb25zdHJ1Y3RvcmVzIGFsdGVybmF0aXZvcyAtLS0tLS0tLS0tXG4gICAgQGNsYXNzbWV0aG9kXG4gICAgZGVmIG1vbm9taW8oY2xzLCBhLCBrOiBpbnQpIC0+IFwiUG9saW5vbWlvXCI6XG4gICAgICAgIFwiXCJcIkRldnVlbHZlIGVsIG1vbm9taW8gYcK3eF5rLlwiXCJcIlxuICAgICAgICBpZiBrIDwgMDpcbiAgICAgICAgICAgIHJhaXNlIFZhbHVlRXJyb3IoXCJlbCBleHBvbmVudGUgZGViZSBzZXIgbm8gbmVnYXRpdm9cIilcbiAgICAgICAgcmV0dXJuIGNscyhbMF0gKiBrICsgW2FdKVxuXG4gICAgQGNsYXNzbWV0aG9kXG4gICAgZGVmIGRlc2RlX3JhaWNlcyhjbHMsIHJhaWNlczogbGlzdCkgLT4gXCJQb2xpbm9taW9cIjpcbiAgICAgICAgXCJcIlwiUG9saW5vbWlvIG3Ds25pY28gY29uIGxhcyByYcOtY2VzIGRhZGFzOiAoeCAtIHIxKSh4IC0gcjIpwrfCt8K3KHggLSBybikuXCJcIlwiXG4gICAgICAgIHJlc3VsdGFkbyA9IGNscyhbMV0pXG4gICAgICAgIGZvciByIGluIHJhaWNlczpcbiAgICAgICAgICAgIHJlc3VsdGFkbyA9IHJlc3VsdGFkbyAqIGNscyhbLXIsIDFdKSAgICAgIyBtdWx0aXBsaWNhIHBvciAoeCAtIHIpXG4gICAgICAgIHJldHVybiByZXN1bHRhZG9cblxuICAgICMgLS0tLS0tLS0tLSBldmFsdWFjacOzbiB5IHJlcHJlc2VudGFjacOzbiAtLS0tLS0tLS0tXG4gICAgZGVmIF9fY2FsbF9fKHNlbGYsIHgpOlxuICAgICAgICBcIlwiXCJwKHgpOiBldmFsdWFjacOzbiBjb24gZWwgZXNxdWVtYSBkZSBIb3JuZXIuXCJcIlwiXG4gICAgICAgIHJlc3VsdGFkbyA9IDBcbiAgICAgICAgZm9yIGEgaW4gcmV2ZXJzZWQoc2VsZi5fY29lZnMpOlxuICAgICAgICAgICAgcmVzdWx0YWRvID0gcmVzdWx0YWRvICogeCArIGFcbiAgICAgICAgcmV0dXJuIHJlc3VsdGFkb1xuXG4gICAgZGVmIF9fcmVwcl9fKHNlbGYpIC0+IHN0cjpcbiAgICAgICAgcmV0dXJuIGZcIlBvbGlub21pbyh7c2VsZi5fY29lZnN9KVwiXG5cbiAgICBkZWYgX19zdHJfXyhzZWxmKSAtPiBzdHI6XG4gICAgICAgIHRlcm1pbm9zID0gW11cbiAgICAgICAgZm9yIGssIGEgaW4gZW51bWVyYXRlKHNlbGYuX2NvZWZzKTpcbiAgICAgICAgICAgIGlmIGEgPT0gMDpcbiAgICAgICAgICAgICAgICBjb250aW51ZVxuICAgICAgICAgICAgaWYgayA9PSAwOlxuICAgICAgICAgICAgICAgIHRlcm1pbm9zLmFwcGVuZChmXCJ7YX1cIilcbiAgICAgICAgICAgIGVsaWYgayA9PSAxOlxuICAgICAgICAgICAgICAgIHRlcm1pbm9zLmFwcGVuZChmXCJ7YX3Ct3hcIilcbiAgICAgICAgICAgIGVsc2U6XG4gICAgICAgICAgICAgICAgdGVybWlub3MuYXBwZW5kKGZcInthfcK3eF57a31cIilcbiAgICAgICAgcmV0dXJuIFwiICsgXCIuam9pbih0ZXJtaW5vcykgaWYgdGVybWlub3MgZWxzZSBcIjBcIlxuXG4gICAgZGVmIF9fZXFfXyhzZWxmLCBvdHJvOiBvYmplY3QpIC0+IGJvb2w6XG4gICAgICAgIGlmIG5vdCBpc2luc3RhbmNlKG90cm8sIFBvbGlub21pbyk6XG4gICAgICAgICAgICByZXR1cm4gTm90SW1wbGVtZW50ZWRcbiAgICAgICAgcmV0dXJuIHNlbGYuX2NvZWZzID09IG90cm8uX2NvZWZzXG5cbiAgICBkZWYgX19hZGRfXyhzZWxmLCBvdHJvOiBvYmplY3QpIC0+IFwiUG9saW5vbWlvXCI6XG4gICAgICAgIGlmIG5vdCBpc2luc3RhbmNlKG90cm8sIFBvbGlub21pbyk6XG4gICAgICAgICAgICBvdHJvID0gUG9saW5vbWlvKFtvdHJvXSkgICAgICAgICAgIyBjb25zdGFudGVcbiAgICAgICAgbiA9IG1heChsZW4oc2VsZi5fY29lZnMpLCBsZW4ob3Ryby5fY29lZnMpKVxuICAgICAgICBhID0gc2VsZi5fY29lZnMgKyBbMF0gKiAobiAtIGxlbihzZWxmLl9jb2VmcykpXG4gICAgICAgIGIgPSBvdHJvLl9jb2VmcyArIFswXSAqIChuIC0gbGVuKG90cm8uX2NvZWZzKSlcbiAgICAgICAgcmV0dXJuIFBvbGlub21pbyhbeCArIHkgZm9yIHgsIHkgaW4gemlwKGEsIGIpXSlcblxuICAgIGRlZiBfX3JhZGRfXyhzZWxmLCBvdHJvOiBvYmplY3QpIC0+IFwiUG9saW5vbWlvXCI6XG4gICAgICAgIHJldHVybiBzZWxmICsgb3Ryb1xuXG4gICAgZGVmIF9fbmVnX18oc2VsZikgLT4gXCJQb2xpbm9taW9cIjpcbiAgICAgICAgcmV0dXJuIFBvbGlub21pbyhbLWEgZm9yIGEgaW4gc2VsZi5fY29lZnNdKVxuXG4gICAgZGVmIF9fc3ViX18oc2VsZiwgb3Rybzogb2JqZWN0KSAtPiBcIlBvbGlub21pb1wiOlxuICAgICAgICBpZiBub3QgaXNpbnN0YW5jZShvdHJvLCBQb2xpbm9taW8pOlxuICAgICAgICAgICAgb3RybyA9IFBvbGlub21pbyhbb3Ryb10pICAgICAgICAgICMgY29uc3RhbnRlXG4gICAgICAgIHJldHVybiBzZWxmICsgKC1vdHJvKVxuXG4gICAgZGVmIF9fcnN1Yl9fKHNlbGYsIG90cm86IG9iamVjdCkgLT4gXCJQb2xpbm9taW9cIjpcbiAgICAgICAgcmV0dXJuICgtc2VsZikgKyBvdHJvICAgICAgICAgICAgICAgICAjIG90cm8gLSBzZWxmXG5cbiAgICBkZWYgX19tdWxfXyhzZWxmLCBvdHJvOiBvYmplY3QpIC0+IFwiUG9saW5vbWlvXCI6XG4gICAgICAgIGlmIG5vdCBpc2luc3RhbmNlKG90cm8sIFBvbGlub21pbyk6XG4gICAgICAgICAgICBvdHJvID0gUG9saW5vbWlvKFtvdHJvXSkgICAgICAgICAgIyBjb25zdGFudGVcbiAgICAgICAgcHJvZHVjdG8gPSBbMF0gKiAobGVuKHNlbGYuX2NvZWZzKSArIGxlbihvdHJvLl9jb2VmcykgLSAxKVxuICAgICAgICBmb3IgaSwgYSBpbiBlbnVtZXJhdGUoc2VsZi5fY29lZnMpOlxuICAgICAgICAgICAgZm9yIGosIGIgaW4gZW51bWVyYXRlKG90cm8uX2NvZWZzKTpcbiAgICAgICAgICAgICAgICBwcm9kdWN0b1tpICsgal0gKz0gYSAqIGIgICAgICAjIGNvZWZpY2llbnRlIGRlIHheKGkrailcbiAgICAgICAgcmV0dXJuIFBvbGlub21pbyhwcm9kdWN0bylcblxuICAgIGRlZiBfX3JtdWxfXyhzZWxmLCBvdHJvOiBvYmplY3QpIC0+IFwiUG9saW5vbWlvXCI6XG4gICAgICAgIHJldHVybiBzZWxmICogb3RybyJ9
+</script>
+</div>
+<p><code>Polinomio</code> no define <code>__hash__</code>: como define <code>__eq__</code>, sus objetos no son <em>hashables</em>, y eso es lo correcto, porque la lista interna <code>_coefs</code> podría modificarse.</p>
+<p>El producto implementa la fórmula de los coeficientes de un producto de polinomios: <span class="math display">\[
+\left(\sum_i a_i x^i\right)\left(\sum_j b_j x^j\right) = \sum_k \Bigl(\sum_{i+j=k} a_i b_j\Bigr) x^k.
+\]</span></p>
+<div>
+<div id="pyodide-22" class="exercise-cell">
+
+</div>
+<script type="pyodide-22-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IFBvbGlub21pbyhbMCwgMV0pICAgICAgICAgICAgICAgICMgZWwgcG9saW5vbWlvIHhcbnAgPSB4ICogeCAtIDIgICAgICAgICAgICAgICAgICAgICAgICAjIHjCsiAtIDJcbnByaW50KHApICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjIC0yICsgMcK3eF4yXG5wcmludChwKDMpLCBwLmRlcml2YWRhKCkpICAgICAgICAgICAgIyA3IDLCt3hcblxudW5vX21hc194ID0gUG9saW5vbWlvKFsxLCAxXSlcbnBvdGVuY2lhID0gUG9saW5vbWlvKFsxXSlcbmZvciBfIGluIHJhbmdlKDUpOlxuICAgIHBvdGVuY2lhID0gcG90ZW5jaWEgKiB1bm9fbWFzX3hcbnByaW50KHBvdGVuY2lhLmNvZWZzKSAgICAgICAgICAgICAgICAjIFsxLCA1LCAxMCwgMTAsIDUsIDFdIn0=
+</script>
+</div>
+<p>La última línea es la fila 5 del triángulo de Pascal: el binomio de Newton <span class="math inline">\((1 + x)^n = \sum_{k=0}^{n} \binom{n}{k} x^k\)</span> calculado con productos de polinomios.</p>
+<p>El método de clase <code>desde_raices</code> construye el polinomio mónico <span class="math inline">\((x - r_1)(x - r_2)\cdots(x - r_n)\)</span> multiplicando factores lineales, algo que solo es posible ahora que la clase sabe multiplicar:</p>
+<div>
+<div id="pyodide-23" class="exercise-cell">
+
+</div>
+<script type="pyodide-23-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicSA9IFBvbGlub21pby5kZXNkZV9yYWljZXMoWzEsIDIsIDNdKVxucHJpbnQocSkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIyAtNiArIDExwrd4ICsgLTbCt3heMiArIDHCt3heM1xucHJpbnQoW3EocikgZm9yIHIgaW4gKDEsIDIsIDMpXSkgICAgICAgICAgIyBbMCwgMCwgMF1cblxuIyB0YW1iacOpbiBjb24gcmHDrWNlcyByYWNpb25hbGVzOiAoeCAtIDEvMikoeCArIDEvMylcbnByaW50KFBvbGlub21pby5kZXNkZV9yYWljZXMoW0ZyYWNjaW9uKDEsIDIpLCBGcmFjY2lvbigtMSwgMyldKSlcbiMgLTEvNiArIC0xLzbCt3ggKyAxwrd4XjIifQ==
+</script>
+</div>
+<div id="tip-vieta" class="callout callout-style-default callout-tip no-icon callout-titled" title="Fórmulas de Cardano-Vieta">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fundamento Teórico&nbsp;8: Fórmulas de Cardano-Vieta
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los coeficientes que calcula <code>desde_raices</code> son, salvo el signo, las funciones simétricas elementales de las raíces: <span class="math display">\[
+(x - r_1)(x - r_2)(x - r_3) = x^3 - (r_1 + r_2 + r_3)\,x^2 + (r_1 r_2 + r_1 r_3 + r_2 r_3)\,x - r_1 r_2 r_3.
+\]</span> Con las raíces <span class="math inline">\(1, 2, 3\)</span>: <span class="math inline">\(1 + 2 + 3 = 6\)</span>, <span class="math inline">\(1 \cdot 2 + 1 \cdot 3 + 2 \cdot 3 = 11\)</span> y <span class="math inline">\(1 \cdot 2 \cdot 3 = 6\)</span>, que son los coeficientes obtenidos.</p>
+</div>
+</div>
+<div id="nte-newton-exacto" class="callout callout-style-default callout-note no-icon callout-titled" title="Newton con fracciones: aproximaciones racionales de √2">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo&nbsp;4: Newton con fracciones: aproximaciones racionales de √2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>Polinomio</code> y <code>Fraccion</code> no se conocen entre sí, pero funcionan juntos: la evaluación de Horner solo necesita que los valores sepan sumarse y multiplicarse, y las fracciones saben. Esta capacidad de combinar objetos que respetan la misma interfaz se llama <strong><em>duck typing</em></strong> («si camina como un pato y grazna como un pato, es un pato»).</p>
+<p>Si aplicamos el método de Newton a <span class="math inline">\(p(x) = x^2 - 2\)</span> partiendo de <span class="math inline">\(x_0 = 1\)</span> <strong>con aritmética exacta</strong>, obtenemos una sucesión de racionales que converge a <span class="math inline">\(\sqrt{2}\)</span>:</p>
+<div>
+<div id="pyodide-24" class="exercise-cell">
+
+</div>
+<script type="pyodide-24-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicCA9IFBvbGlub21pbyhbLTIsIDAsIDFdKSAgICAgICAgICAgICMgeMKyIC0gMlxuZHAgPSBwLmRlcml2YWRhKClcbnggPSBGcmFjY2lvbigxKVxuZm9yIGsgaW4gcmFuZ2UoMSwgNSk6XG4gICAgeCA9IHggLSBwKHgpIC8gZHAoeClcbiAgICBwcmludChmXCJ4X3trfSA9IHt4fSAg4omIIHtmbG9hdCh4KTouMTVmfVwiKVxuIyB4XzEgPSAzLzIgIOKJiCAxLjUwMDAwMDAwMDAwMDAwMFxuIyB4XzIgPSAxNy8xMiAg4omIIDEuNDE2NjY2NjY2NjY2NjY3XG4jIHhfMyA9IDU3Ny80MDggIOKJiCAxLjQxNDIxNTY4NjI3NDUxMFxuIyB4XzQgPSA2NjU4NTcvNDcwODMyICDiiYggMS40MTQyMTM1NjIzNzQ2OTAifQ==
+</script>
+</div>
+<p>Las fracciones <span class="math inline">\(3/2\)</span>, <span class="math inline">\(17/12\)</span>, <span class="math inline">\(577/408\)</span>, … son convergentes de la fracción continua de <span class="math inline">\(\sqrt{2}\)</span>, y la convergencia cuadrática se aprecia en que el número de cifras correctas se duplica en cada paso.</p>
+</div>
+</div>
+</section>
+<section id="resumen-de-métodos-mágicos" class="level3">
+<h3 class="anchored" data-anchor-id="resumen-de-métodos-mágicos"><strong>6.4.7 Resumen de métodos mágicos</strong></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Método</th>
+<th style="text-align: left;">Se invoca con</th>
+<th style="text-align: left;">Uso en este tema</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>__init__(self, ...)</code></td>
+<td style="text-align: left;"><code>Clase(...)</code></td>
+<td style="text-align: left;">Validar y normalizar el estado inicial</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>__repr__(self)</code></td>
+<td style="text-align: left;"><code>repr(x)</code>, intérprete, listas</td>
+<td style="text-align: left;"><code>Fraccion(3, 4)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>__str__(self)</code></td>
+<td style="text-align: left;"><code>str(x)</code>, <code>print(x)</code>, f-strings</td>
+<td style="text-align: left;"><code>3/4</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>__eq__(self, otro)</code></td>
+<td style="text-align: left;"><code>x == y</code></td>
+<td style="text-align: left;">Igualdad de racionales y polinomios</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>__hash__(self)</code></td>
+<td style="text-align: left;"><code>hash(x)</code>, conjuntos, claves de diccionario</td>
+<td style="text-align: left;">Conjuntos de fracciones</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>__lt__</code>, <code>__le__</code>, <code>__gt__</code>, <code>__ge__</code></td>
+<td style="text-align: left;"><code>x &lt; y</code>, <code>x &lt;= y</code>, <code>x &gt; y</code>, <code>x &gt;= y</code>, <code>sorted</code>, <code>min</code>, <code>max</code></td>
+<td style="text-align: left;">Ordenar fracciones</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>__neg__(self)</code></td>
+<td style="text-align: left;"><code>-x</code></td>
+<td style="text-align: left;">Opuesto</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>__add__</code>, <code>__radd__</code></td>
+<td style="text-align: left;"><code>x + y</code>, <code>y + x</code>, <code>sum</code></td>
+<td style="text-align: left;">Suma</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>__sub__</code>, <code>__rsub__</code></td>
+<td style="text-align: left;"><code>x - y</code>, <code>y - x</code></td>
+<td style="text-align: left;">Resta</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>__mul__</code>, <code>__rmul__</code></td>
+<td style="text-align: left;"><code>x * y</code>, <code>y * x</code></td>
+<td style="text-align: left;">Producto</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>__truediv__</code>, <code>__rtruediv__</code></td>
+<td style="text-align: left;"><code>x / y</code>, <code>y / x</code></td>
+<td style="text-align: left;">Cociente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>__float__(self)</code></td>
+<td style="text-align: left;"><code>float(x)</code></td>
+<td style="text-align: left;">Aproximación decimal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>__call__(self, ...)</code></td>
+<td style="text-align: left;"><code>x(...)</code></td>
+<td style="text-align: left;">Evaluar un polinomio</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Profundización: `fractions.Fraction` de la biblioteca estándar">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Profundización: <code>fractions.Fraction</code> de la biblioteca estándar
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>La biblioteca estándar de Python incluye una clase de racionales exactos, <code>Fraction</code>, en el módulo <code>fractions</code>, con un diseño muy parecido al de nuestra <code>Fraccion</code>: forma canónica, operadores aritméticos y de comparación, <code>__hash__</code> compatible con los enteros y conversión a <code>float</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fractions <span class="im">import</span> Fraction</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Fraction(<span class="dv">6</span>, <span class="op">-</span><span class="dv">8</span>))                  <span class="co"># -3/4</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sum</span>(Fraction(<span class="dv">1</span>, k) <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>)))   <span class="co"># 7381/2520</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Fraction(<span class="fl">0.5</span>), Fraction(<span class="st">"3/7"</span>))   <span class="co"># 1/2 3/7</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>En la práctica, se usa <code>Fraction</code> en lugar de programar una clase propia. Programar <code>Fraccion</code> desde cero, sin embargo, es la mejor forma de entender qué hay detrás de cualquier tipo numérico de Python <span class="citation" data-cites="ramalho2022">(<a href="#ref-ramalho2022" role="doc-biblioref">Ramalho 2022</a>)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="bibliografía" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="bibliografía">Bibliografía</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-liskov1974" class="csl-entry" role="listitem">
+Liskov, Barbara, y Stephen Zilles. 1974. <span>«Programming with Abstract Data Types»</span>. <em>ACM SIGPLAN Notices</em> 9 (4): 50-59. <a href="https://doi.org/10.1145/942572.807045">https://doi.org/10.1145/942572.807045</a>.
+</div>
+<div id="ref-pythondatamodel" class="csl-entry" role="listitem">
+Python Software Foundation. 2025. <span>«The <span>Python</span> Language Reference: Data Model»</span>. <a href="https://docs.python.org/3/reference/datamodel.html">https://docs.python.org/3/reference/datamodel.html</a>.
+</div>
+<div id="ref-ramalho2022" class="csl-entry" role="listitem">
+Ramalho, Luciano. 2022. <em>Fluent Python: Clear, Concise, and Effective Programming</em>. 2nd ed. O’Reilly Media.
+</div>
+<div id="ref-pep8" class="csl-entry" role="listitem">
+Rossum, Guido van, Barry Warsaw, y Alyssa Coghlan. 2001. <span>«<span>PEP 8 – Style Guide for Python Code</span>»</span>. Python Enhancement Proposal. <a href="https://peps.python.org/pep-0008/">https://peps.python.org/pep-0008/</a>.
+</div>
+</div>
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIl19fQ==
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTI0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIxIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIxLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE5IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTkgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE5LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTktY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTggPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE4LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE3LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTctY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTExIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTExLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTkiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl85ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS05LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzkgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl84ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS04LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzggPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl83ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS03LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzcgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTYiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl82ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS02LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzYgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS01LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzUgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -576,6 +1692,7 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
+</section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">

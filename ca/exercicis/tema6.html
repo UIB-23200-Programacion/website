@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercicis — Tema 6 – Programación (23200)</title>
+<title>Exercicis — Tema 6: Programació Orientada a Objectes – Programación (23200)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -72,11 +107,43 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Exercicis — Tema 6 – Programación (23200)">
+<meta property="og:title" content="Exercicis — Tema 6: Programació Orientada a Objectes – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/openmarimo.png">
 <meta property="og:site_name" content="Programación (23200)">
+<meta property="og:image:height" content="34">
+<meta property="og:image:width" content="34">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -529,8 +596,19 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En aquesta pàgina</h2>
+   
+  <ul>
+  <li><a href="#exercicis-6.1-a-6.8" id="toc-exercicis-6.1-a-6.8" class="nav-link active" data-scroll-target="#exercicis-6.1-a-6.8">Exercicis 6.1 a 6.8</a></li>
+  <li><a href="#exercicis-6.9-a-6.11" id="toc-exercicis-6.9-a-6.11" class="nav-link" data-scroll-target="#exercicis-6.9-a-6.11">Exercicis 6.9 a 6.11</a></li>
+  <li><a href="#exercici-6.9-classe-matriz-mòdul-matriz.py" id="toc-exercici-6.9-classe-matriz-mòdul-matriz.py" class="nav-link" data-scroll-target="#exercici-6.9-classe-matriz-mòdul-matriz.py">Exercici 6.9: Classe <code>Matriz</code> (mòdul <code>matriz.py</code>)</a></li>
+  <li><a href="#exercici-6.10-classe-intervalo-mòdul-intervalo.py" id="toc-exercici-6.10-classe-intervalo-mòdul-intervalo.py" class="nav-link" data-scroll-target="#exercici-6.10-classe-intervalo-mòdul-intervalo.py">Exercici 6.10: Classe <code>Intervalo</code> (mòdul <code>intervalo.py</code>)</a></li>
+  <li><a href="#exercici-6.11-classe-permutacion-mòdul-permutacion.py" id="toc-exercici-6.11-classe-permutacion-mòdul-permutacion.py" class="nav-link" data-scroll-target="#exercici-6.11-classe-permutacion-mòdul-permutacion.py">Exercici 6.11: Classe <code>Permutacion</code> (mòdul <code>permutacion.py</code>)</a></li>
+  <li><a href="#exercici-6.12-tests-amb-pytest" id="toc-exercici-6.12-tests-amb-pytest" class="nav-link" data-scroll-target="#exercici-6.12-tests-amb-pytest">Exercici 6.12: Tests amb <code>pytest</code></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -538,7 +616,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ca/exercicis/tema1.html">Exercicis</a></li><li class="breadcrumb-item"><a href="../../ca/exercicis/tema6.html">Exercicis — Tema 6</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercicis — Tema 6</h1>
+<h1 class="title">Exercicis — Tema 6: Programació Orientada a Objectes</h1>
 </div>
 
 
@@ -555,9 +633,1291 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contingut pendent.)</em></p>
+<p>Per a la realització dels exercicis heu d’emprar el projecte <code>t06-poo</code> que està disponible al repositori del curs: <a href="https://github.com/UIB-23200-Programacion/t06-poo" target="_blank" rel="noopener noreferrer">https://github.com/UIB-23200-Programacion/t06-poo</a>. Navegueu al lloc i seguiu les instruccions de <code>README.md</code> per copiar el repositori en el vostre entorn local de GitHub i obrir un Codespace per treballar en els exercicis.</p>
+<p>En tots els exercicis d’aquest tema es programen <strong>classes</strong>. Les regles dels temes anteriors s’apliquen ara a cada mètode:</p>
+<ul>
+<li>cada mètode ha de tenir anotacions de tipus i docstring;</li>
+<li>si no es compleix una precondició, el mètode ha de llançar <code>ValueError</code> amb un missatge descriptiu (vegeu <a href="https://uib-23200-programacion.github.io/website/ca/contingut/tema3.html#excepcions" target="_blank">secció 3.4 del tema 3</a>);</li>
+<li>si un operador rep un operand d’un tipus que no sap tractar, el mètode màgic ha de retornar <code>NotImplemented</code> (vegeu <a href="https://uib-23200-programacion.github.io/website/ca/contingut/tema6.html" target="_blank">secció 6.4 del tema 6</a>).</li>
+</ul>
+<section id="exercicis-6.1-a-6.8" class="level2">
+<h2 class="anchored" data-anchor-id="exercicis-6.1-a-6.8">Exercicis 6.1 a 6.8</h2>
+<p>Els exercicis 6.1 al 6.8 es troben en el fitxer <code>ejer_t06_01-08_mo.py</code> contingut en el directori <code>/notebooks</code>. Cada exercici té una cel·la amb l’enunciat, una cel·la amb l’<strong>esquelet de la classe</strong> (noms dels mètodes i anotacions de tipus, amb <code>pass</code> al cos) i una cel·la amb exemples i la sortida esperada.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Exercici</th>
+<th>Classe</th>
+<th>Contingut del tema 6 que practica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>6.1</td>
+<td><code>Punto2D</code></td>
+<td>atributs i mètodes que retornen objectes nous</td>
+</tr>
+<tr class="even">
+<td>6.2</td>
+<td><code>Rectangulo</code></td>
+<td>validació al constructor</td>
+</tr>
+<tr class="odd">
+<td>6.3</td>
+<td><code>SucesionAritmetica</code></td>
+<td>mètodes i fórmules tancades (suma de Gauss)</td>
+</tr>
+<tr class="even">
+<td>6.4</td>
+<td><code>Estadistico</code></td>
+<td>estat intern i propietats (<code>@property</code>)</td>
+</tr>
+<tr class="odd">
+<td>6.5</td>
+<td><code>Triangulo</code></td>
+<td>invariant de classe (desigualtat triangular), fórmula d’Heró</td>
+</tr>
+<tr class="even">
+<td>6.6</td>
+<td><code>Vector2D</code></td>
+<td>sobrecàrrega d’operadors</td>
+</tr>
+<tr class="odd">
+<td>6.7</td>
+<td><code>Recta</code></td>
+<td>constructor alternatiu amb <code>@classmethod</code></td>
+</tr>
+<tr class="even">
+<td>6.8</td>
+<td><code>EnteroModular</code></td>
+<td>aritmètica a <span class="math inline">\(\mathbb{Z}_n\)</span>, <code>__eq__</code> i <code>__hash__</code></td>
+</tr>
+</tbody>
+</table>
+<p>Aquests fitxers són tant scripts de Python com notebooks de Marimo que permeten execució interactiva. <strong>Cal obrir els fitxers amb Marimo per disposar de l’execució interactiva en cel·les del notebook; per a això (si no ocorre de manera automàtica) heu de fer clic al botó “Open in Marimo” (<img src="../../images/openmarimo.png" class="img-fluid" width="30">)</strong></p>
+<div class="callout callout-style-default callout-caution no-icon callout-titled" title="Classes en cel·les de Marimo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Precaució</span>Classes en cel·les de Marimo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A Marimo, cada nom (de variable, de funció o de classe) només es pot definir en <strong>una</strong> cel·la. Per això el mòdul <code>math</code> ja està importat a la primera cel·la del notebook: no torneu a escriure <code>import math</code> en una altra cel·la. Tampoc no definiu dues vegades la mateixa classe en cel·les diferents: si voleu provar una variant, modifiqueu la cel·la original.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercicis-6.9-a-6.11" class="level2">
+<h2 class="anchored" data-anchor-id="exercicis-6.9-a-6.11">Exercicis 6.9 a 6.11</h2>
+<p>El projecte <code>t06-poo</code> conté el paquet <code>t06_paquete</code> amb tres mòduls. Cada mòdul conté l’<strong>esquelet</strong> d’una classe que representa un objecte matemàtic:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mòdul</th>
+<th>Classe</th>
+<th>Domini</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>matriz.py</code></td>
+<td><code>Matriz</code></td>
+<td>àlgebra lineal</td>
+</tr>
+<tr class="even">
+<td><code>intervalo.py</code></td>
+<td><code>Intervalo</code></td>
+<td>aritmètica d’intervals (anàlisi numèrica)</td>
+</tr>
+<tr class="odd">
+<td><code>permutacion.py</code></td>
+<td><code>Permutacion</code></td>
+<td>grup simètric <span class="math inline">\(S_n\)</span> (àlgebra)</td>
+</tr>
+</tbody>
+</table>
+<p>Completeu cada classe substituint els <code>pass</code> per la vostra implementació. <strong>No canvieu els noms de les classes, dels mètodes ni dels seus paràmetres</strong>: les proves en depenen.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Les proves van en pytest">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Les proves van en pytest
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Igual que al tema 5, les proves no s’escriuen al bloc <code>if __name__ == "__main__"</code>, sinó en fitxers <code>test_*.py</code> dins la carpeta <code>tests/</code> (exercici 6.12).</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercici-6.9-classe-matriz-mòdul-matriz.py" class="level2">
+<h2 class="anchored" data-anchor-id="exercici-6.9-classe-matriz-mòdul-matriz.py">Exercici 6.9: Classe <code>Matriz</code> (mòdul <code>matriz.py</code>)</h2>
+<p>Una <code>Matriz</code> de <span class="math inline">\(n\)</span> files i <span class="math inline">\(m\)</span> columnes es desa com una llista de files: <code>[[a11, a12], [a21, a22]]</code>. Els elements són nombres (<code>int</code> o <code>float</code>).</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.9.1 Constructor `__init__(self, filas)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.9.1 Constructor <code>__init__(self, filas)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Crea la matriu a partir d’una llista de files. Precondicions: la llista no és buida, les files no són buides i totes tenen la mateixa longitud. El constructor ha de <strong>copiar</strong> les files, perquè modificar després la llista original no modifiqui la matriu.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]])</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>]])     <span class="co"># ValueError: filas de distinta longitud</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Matriz([])                <span class="co"># ValueError: matriz vacía</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.9.2 Mètodes de classe `identidad(n)` i `ceros(n, m)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.9.2 Mètodes de classe <code>identidad(n)</code> i <code>ceros(n, m)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Constructors alternatius (<code>@classmethod</code>): <code>identidad(n)</code> retorna la matriu identitat <span class="math inline">\(I_n\)</span> i <code>ceros(n, m)</code> la matriu nul·la de <span class="math inline">\(n \times m\)</span>. Precondició: <span class="math inline">\(n, m \geq 1\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(Matriz.identidad(<span class="dv">2</span>)))   <span class="co"># Matriz([[1, 0], [0, 1]])</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(Matriz.ceros(<span class="dv">2</span>, <span class="dv">3</span>)))    <span class="co"># Matriz([[0, 0, 0], [0, 0, 0]])</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.9.3 Propietat `dimensiones` i accés `A[i, j]`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.9.3 Propietat <code>dimensiones</code> i accés <code>A[i, j]</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>La propietat <code>dimensiones</code> retorna la tupla <code>(n, m)</code>. El mètode <code>__getitem__</code> permet llegir un element amb la notació <code>A[i, j]</code> (fila <code>i</code>, columna <code>j</code>, comptant des de 0): Python passa la tupla <code>(i, j)</code> com a argument.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A.dimensiones)                          <span class="co"># (2, 2)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Matriz([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]]).dimensiones)   <span class="co"># (2, 3)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A[<span class="dv">1</span>, <span class="dv">0</span>])                                <span class="co"># 3</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.9.4 Representació `__repr__` i `__str__`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.9.4 Representació <code>__repr__</code> i <code>__str__</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>repr(A)</code> retorna <code>Matriz([[1, 2], [3, 4]])</code>. <code>str(A)</code> (i per tant <code>print(A)</code>) retorna una fila per línia, amb els elements separats per un espai.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(A))   <span class="co"># Matriz([[1, 2], [3, 4]])</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 2</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 4</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.9.5 Igualtat `__eq__`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.9.5 Igualtat <code>__eq__</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Dues matrius són iguals si tenen les mateixes dimensions i els mateixos elements. Si l’altre operand no és una <code>Matriz</code>, retorna <code>NotImplemented</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]]) <span class="op">==</span> Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]]))   <span class="co"># True</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Matriz([[<span class="dv">1</span>, <span class="dv">2</span>]]) <span class="op">==</span> Matriz([[<span class="dv">1</span>], [<span class="dv">2</span>]]))                 <span class="co"># False</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.9.6 Suma i resta `__add__`, `__sub__`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.9.6 Suma i resta <code>__add__</code>, <code>__sub__</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Suma i resta element a element. Precondició: les dues matrius tenen les mateixes dimensions.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> Matriz([[<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>]])</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(A <span class="op">+</span> B))                    <span class="co"># Matriz([[1, 3], [4, 4]])</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A <span class="op">-</span> A <span class="op">==</span> Matriz.ceros(<span class="dv">2</span>, <span class="dv">2</span>))    <span class="co"># True</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.9.7 Producte per un escalar `__mul__`, `__rmul__`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.9.7 Producte per un escalar <code>__mul__</code>, <code>__rmul__</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>A * k</code> i <code>k * A</code>, amb <code>k</code> un <code>int</code> o un <code>float</code>, multipliquen cada element per <code>k</code>. Per a qualsevol altre tipus, retornen <code>NotImplemented</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(<span class="dv">2</span> <span class="op">*</span> A))     <span class="co"># Matriz([[2, 4], [6, 8]])</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(A <span class="op">*</span> <span class="fl">0.5</span>))   <span class="co"># Matriz([[0.5, 1.0], [1.5, 2.0]])</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.9.8 Producte de matrius `__matmul__` (operador `@`):">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.9.8 Producte de matrius <code>__matmul__</code> (operador <code>@</code>):
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Python reserva l’operador <code>@</code> per al producte de matrius: <code>A @ B</code> crida <code>A.__matmul__(B)</code>. Si <span class="math inline">\(A\)</span> és <span class="math inline">\(n \times m\)</span> i <span class="math inline">\(B\)</span> és <span class="math inline">\(m \times p\)</span>, el producte és la matriu <span class="math inline">\(n \times p\)</span> amb <span class="math display">\[
+(AB)_{ij} = \sum_{k=1}^{m} a_{ik}\, b_{kj}.
+\]</span> Precondició: el nombre de columnes de <span class="math inline">\(A\)</span> coincideix amb el nombre de files de <span class="math inline">\(B\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> Matriz([[<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>]])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(A <span class="op">@</span> B))   <span class="co"># Matriz([[2, 1], [4, 3]])</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(B <span class="op">@</span> A))   <span class="co"># Matriz([[3, 4], [1, 2]])  — el producto no es conmutativo</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.9.9 Mètode `traspuesta()`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.9.9 Mètode <code>traspuesta()</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna la matriu transposada <span class="math inline">\(A^T\)</span>, amb <span class="math inline">\((A^T)_{ij} = a_{ji}\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]]).traspuesta()))   <span class="co"># Matriz([[1, 3], [2, 4]])</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Matriz([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]]).traspuesta().dimensiones)   <span class="co"># (3, 2)</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.9.10 Mètode `determinante()`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.9.10 Mètode <code>determinante()</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcula el determinant per <strong>desenvolupament de Laplace</strong> al llarg de la primera fila: <span class="math display">\[
+\det(A) = \sum_{j=1}^{n} (-1)^{1+j}\, a_{1j}\, \det(A_{1j}),
+\]</span> on <span class="math inline">\(A_{1j}\)</span> és la submatriu que resulta d’eliminar la fila 1 i la columna <span class="math inline">\(j\)</span>. És una definició <strong>recursiva</strong> (tema 3): el cas base és una matriu <span class="math inline">\(1 \times 1\)</span>, el determinant de la qual és el seu únic element. Precondició: la matriu és quadrada.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]]).determinante())                    <span class="co"># -2</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Matriz([[<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>], [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>]]).determinante())   <span class="co"># 6</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Matriz.identidad(<span class="dv">3</span>).determinante())                         <span class="co"># 1</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Cost del desenvolupament de Laplace">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Cost del desenvolupament de Laplace
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El desenvolupament de Laplace fa <span class="math inline">\(n\)</span> crides recursives amb matrius d’ordre <span class="math inline">\(n - 1\)</span>, així que el seu cost creix com <span class="math inline">\(n!\)</span>. És adequat per a matrius petites; per a matrius grans es fa servir l’eliminació gaussiana, que costa de l’ordre de <span class="math inline">\(n^3\)</span> operacions.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.9.11 Potència `__pow__` i els nombres de Fibonacci:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.9.11 Potència <code>__pow__</code> i els nombres de Fibonacci:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>A ** k</code> retorna la potència <span class="math inline">\(A^k\)</span>, amb <span class="math inline">\(A^0 = I\)</span>. Precondicions: la matriu és quadrada i <span class="math inline">\(k\)</span> és un enter no negatiu.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> Matriz([[<span class="dv">1</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>]])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(F <span class="op">**</span> <span class="dv">10</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 89 55</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 55 34</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(F <span class="op">**</span> <span class="dv">0</span> <span class="op">==</span> Matriz.identidad(<span class="dv">2</span>))   <span class="co"># True</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Fibonacci amb matrius">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Fibonacci amb matrius
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Per inducció es demostra que <span class="math display">\[
+\begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}^{k} = \begin{pmatrix} F_{k+1} &amp; F_k \\ F_k &amp; F_{k-1} \end{pmatrix},
+\]</span> on <span class="math inline">\(F_k\)</span> és el <span class="math inline">\(k\)</span>-èsim nombre de Fibonacci. Amb <strong>exponenciació ràpida</strong> (<span class="math inline">\(A^{2k} = (A^k)^2\)</span> i <span class="math inline">\(A^{2k+1} = A \cdot A^{2k}\)</span>) n’hi ha prou amb uns <span class="math inline">\(\log_2 k\)</span> productes de matrius per calcular <span class="math inline">\(F_k\)</span>, en lloc dels <span class="math inline">\(k\)</span> passos del bucle del tema 2. Implementar l’exponenciació ràpida és opcional.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercici-6.10-classe-intervalo-mòdul-intervalo.py" class="level2">
+<h2 class="anchored" data-anchor-id="exercici-6.10-classe-intervalo-mòdul-intervalo.py">Exercici 6.10: Classe <code>Intervalo</code> (mòdul <code>intervalo.py</code>)</h2>
+<p>L’<strong>aritmètica d’intervals</strong> treballa amb intervals tancats <span class="math inline">\([a, b]\)</span> en lloc de amb nombres: si <span class="math inline">\(x \in [a, b]\)</span> i <span class="math inline">\(y \in [c, d]\)</span>, la suma, la resta i el producte de <span class="math inline">\(x\)</span> i <span class="math inline">\(y\)</span> estan garantits en intervals que es calculen només a partir dels extrems. Es fa servir en anàlisi numèrica per fitar de manera rigorosa els errors d’arrodoniment i de mesura.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.10.1 Constructor `__init__(self, inf, sup)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.10.1 Constructor <code>__init__(self, inf, sup)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Crea l’interval <span class="math inline">\([\text{inf}, \text{sup}]\)</span>. Precondició: <span class="math inline">\(\text{inf} \leq \text{sup}\)</span>. Desa els extrems en atributs privats (<code>_inf</code>, <code>_sup</code>).</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> Intervalo(<span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> Intervalo(<span class="dv">2</span>, <span class="dv">2</span>)    <span class="co"># intervalo degenerado: el número 2</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Intervalo(<span class="dv">3</span>, <span class="dv">1</span>)        <span class="co"># ValueError</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.10.2 Propietats de només lectura `inf` i `sup`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.10.2 Propietats de només lectura <code>inf</code> i <code>sup</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Els extrems es llegeixen amb <code>I.inf</code> i <code>I.sup</code>, però no es poden modificar (<code>@property</code> sense <em>setter</em>).</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> Intervalo(<span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(I.inf, I.sup)    <span class="co"># 1 3</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>I.inf <span class="op">=</span> <span class="dv">5</span>              <span class="co"># AttributeError</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.10.3 Propietats `longitud` i `punto_medio`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.10.3 Propietats <code>longitud</code> i <code>punto_medio</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Propietats calculades: la longitud <span class="math inline">\(b - a\)</span> i el punt mitjà <span class="math inline">\((a + b)/2\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> Intervalo(<span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(I.longitud, I.punto_medio)    <span class="co"># 2 2.0</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.10.4 Pertinença `__contains__` (operador `in`):">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.10.4 Pertinença <code>__contains__</code> (operador <code>in</code>):
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-34" class="callout-34-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>x in I</code> crida <code>I.__contains__(x)</code> i ha de retornar <code>True</code> si <span class="math inline">\(a \leq x \leq b\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> Intervalo(<span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="kw">in</span> I, <span class="dv">3</span> <span class="kw">in</span> I, <span class="dv">4</span> <span class="kw">in</span> I)    <span class="co"># True True False</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.10.5 Representació `__repr__` i `__str__`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.10.5 Representació <code>__repr__</code> i <code>__str__</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-36" class="callout-36-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>repr(I)</code> retorna <code>Intervalo(1, 3)</code> i <code>str(I)</code> retorna <code>[1, 3]</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> Intervalo(<span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(I))    <span class="co"># Intervalo(1, 3)</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(I)          <span class="co"># [1, 3]</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.10.6 Igualtat i hash `__eq__`, `__hash__`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.10.6 Igualtat i hash <code>__eq__</code>, <code>__hash__</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-38" class="callout-38-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Dos intervals són iguals si tenen els mateixos extrems. Com que els intervals no es modifiquen després de crear-se, han de ser <em>hashables</em> (vegeu l’apartat 6.4.2 del tema), de manera que es puguin desar en conjunts.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Intervalo(<span class="dv">1</span>, <span class="dv">3</span>) <span class="op">==</span> Intervalo(<span class="dv">1</span>, <span class="dv">3</span>))                  <span class="co"># True</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>({Intervalo(<span class="dv">1</span>, <span class="dv">3</span>), Intervalo(<span class="dv">1</span>, <span class="dv">3</span>), Intervalo(<span class="dv">0</span>, <span class="dv">1</span>)}))   <span class="co"># 2</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.10.7 Mètode `interseccion(otro)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.10.7 Mètode <code>interseccion(otro)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-40" class="callout-40-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna l’interval <span class="math inline">\([a, b] \cap [c, d] = [\max(a, c), \min(b, d)]\)</span>, o <code>None</code> si els intervals són disjunts.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> Intervalo(<span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(I.interseccion(Intervalo(<span class="dv">2</span>, <span class="dv">5</span>)))    <span class="co"># [2, 3]</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(I.interseccion(Intervalo(<span class="dv">4</span>, <span class="dv">6</span>)))    <span class="co"># None</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(I.interseccion(Intervalo(<span class="dv">3</span>, <span class="dv">4</span>)))    <span class="co"># [3, 3]</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.10.8 Suma i resta `__add__`, `__radd__`, `__sub__`, `__rsub__`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.10.8 Suma i resta <code>__add__</code>, <code>__radd__</code>, <code>__sub__</code>, <code>__rsub__</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-42" class="callout-42-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+[a, b] + [c, d] = [a + c,\ b + d], \qquad [a, b] - [c, d] = [a - d,\ b - c].
+\]</span> Un nombre <span class="math inline">\(x\)</span> es tracta com l’interval degenerat <span class="math inline">\([x, x]\)</span>, de manera que també funcionen <code>I + 1</code>, <code>1 + I</code>, <code>I - 1</code> i <code>1 - I</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> Intervalo(<span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> Intervalo(<span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(I <span class="op">+</span> J, I <span class="op">-</span> J)      <span class="co"># [3, 8] [-4, 1]</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(I <span class="op">+</span> <span class="dv">1</span>, <span class="dv">10</span> <span class="op">-</span> I)     <span class="co"># [2, 4] [7, 9]</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.10.9 Producte `__mul__`, `__rmul__`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-45-contents" aria-controls="callout-45" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.10.9 Producte <code>__mul__</code>, <code>__rmul__</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-45" class="callout-45-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+[a, b] \cdot [c, d] = [\min(ac, ad, bc, bd),\ \max(ac, ad, bc, bd)].
+\]</span> Com a la suma, un nombre <span class="math inline">\(x\)</span> es tracta com <span class="math inline">\([x, x]\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Intervalo(<span class="dv">1</span>, <span class="dv">3</span>) <span class="op">*</span> Intervalo(<span class="dv">2</span>, <span class="dv">5</span>))     <span class="co"># [2, 15]</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Intervalo(<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>) <span class="op">*</span> Intervalo(<span class="op">-</span><span class="dv">3</span>, <span class="dv">1</span>))   <span class="co"># [-6, 3]</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">*</span> Intervalo(<span class="dv">1</span>, <span class="dv">3</span>))                   <span class="co"># [2, 6]</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="El problema de la dependència">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>El problema de la dependència
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>L’aritmètica d’intervals garanteix que el resultat <strong>conté</strong> tots els valors possibles, però els pot sobreestimar. Si <span class="math inline">\(X = [-1, 1]\)</span>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> Intervalo(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X <span class="op">-</span> X)    <span class="co"># [-2, 2], aunque x - x = 0 para todo x</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X <span class="op">*</span> X)    <span class="co"># [-1, 1], aunque x² ∈ [0, 1]</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>L’aritmètica d’intervals tracta cada aparició de <span class="math inline">\(X\)</span> com si fos una variable independent. Per això, en anàlisi numèrica importa com s’escriu una expressió: fórmules matemàticament equivalents poden donar intervals d’amplada diferent.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercici-6.11-classe-permutacion-mòdul-permutacion.py" class="level2">
+<h2 class="anchored" data-anchor-id="exercici-6.11-classe-permutacion-mòdul-permutacion.py">Exercici 6.11: Classe <code>Permutacion</code> (mòdul <code>permutacion.py</code>)</h2>
+<p>Una <strong>permutació</strong> de <span class="math inline">\(\{0, 1, \ldots, n-1\}\)</span> és una bijecció <span class="math inline">\(\sigma\)</span> d’aquest conjunt en si mateix. Es representa amb la llista de les seves imatges: <code>Permutacion([1, 2, 0])</code> és la permutació <span class="math inline">\(\sigma\)</span> amb <span class="math inline">\(\sigma(0) = 1\)</span>, <span class="math inline">\(\sigma(1) = 2\)</span> i <span class="math inline">\(\sigma(2) = 0\)</span>. Amb la composició, les permutacions de <span class="math inline">\(n\)</span> elements formen el <strong>grup simètric</strong> <span class="math inline">\(S_n\)</span>, d’ordre <span class="math inline">\(n!\)</span>.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.11.1 Constructor `__init__(self, imagen)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-47-contents" aria-controls="callout-47" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.11.1 Constructor <code>__init__(self, imagen)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-47" class="callout-47-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Crea la permutació amb la llista d’imatges donada. Precondició: la llista conté exactament una vegada cadascun dels nombres <span class="math inline">\(0, 1, \ldots, n-1\)</span> (és a dir, defineix una bijecció).</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> Permutacion([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">3</span>])</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>Permutacion([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>])    <span class="co"># ValueError: 0 aparece dos veces</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>Permutacion([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])    <span class="co"># ValueError: falta el 0</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.11.2 Mètode de classe `identidad(n)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-49-contents" aria-controls="callout-49" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.11.2 Mètode de classe <code>identidad(n)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-49" class="callout-49-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna la permutació identitat de <span class="math inline">\(\{0, \ldots, n-1\}\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Permutacion.identidad(<span class="dv">4</span>))    <span class="co"># Permutacion([0, 1, 2, 3])</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.11.3 Avaluació `__call__` i mida `__len__`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-51-contents" aria-controls="callout-51" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.11.3 Avaluació <code>__call__</code> i mida <code>__len__</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-51" class="callout-51-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>sigma(i)</code> retorna la imatge de <code>i</code> i <code>len(sigma)</code> retorna <span class="math inline">\(n\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> Permutacion([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">3</span>])</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sigma(<span class="dv">0</span>), sigma(<span class="dv">3</span>), <span class="bu">len</span>(sigma))    <span class="co"># 1 4 5</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.11.4 Representació, igualtat i hash:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-53-contents" aria-controls="callout-53" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.11.4 Representació, igualtat i hash:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-53" class="callout-53-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>repr(sigma)</code> retorna <code>Permutacion([1, 2, 0, 4, 3])</code>. Dues permutacions són iguals si tenen la mateixa llista d’imatges. Les permutacions han de ser <em>hashables</em>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Permutacion([<span class="dv">1</span>, <span class="dv">0</span>]) <span class="op">==</span> Permutacion([<span class="dv">1</span>, <span class="dv">0</span>]))    <span class="co"># True</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>({Permutacion([<span class="dv">1</span>, <span class="dv">0</span>]), Permutacion([<span class="dv">1</span>, <span class="dv">0</span>]), Permutacion([<span class="dv">0</span>, <span class="dv">1</span>])}))   <span class="co"># 2</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.11.5 Composició `__mul__`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-55-contents" aria-controls="callout-55" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.11.5 Composició <code>__mul__</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-55" class="callout-55-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>sigma * tau</code> és la composició <span class="math inline">\(\sigma \circ \tau\)</span>: primer s’aplica <span class="math inline">\(\tau\)</span> i després <span class="math inline">\(\sigma\)</span>, <span class="math display">\[
+(\sigma \circ \tau)(i) = \sigma(\tau(i)).
+\]</span> Precondició: les dues permutacions tenen la mateixa mida.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Permutacion([<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>])    <span class="co"># intercambia 0 y 1</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> Permutacion([<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>])    <span class="co"># intercambia 1 y 2</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s <span class="op">*</span> t)                  <span class="co"># Permutacion([1, 2, 0])</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t <span class="op">*</span> s)                  <span class="co"># Permutacion([2, 0, 1])  — S_3 no es conmutativo</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.11.6 Mètode `inversa()`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-57-contents" aria-controls="callout-57" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.11.6 Mètode <code>inversa()</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-57" class="callout-57-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna la permutació inversa <span class="math inline">\(\sigma^{-1}\)</span>, que compleix <span class="math inline">\(\sigma \circ \sigma^{-1} = \sigma^{-1} \circ \sigma = \text{id}\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> Permutacion([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">3</span>])</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sigma.inversa())                                       <span class="co"># Permutacion([2, 0, 1, 4, 3])</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sigma <span class="op">*</span> sigma.inversa() <span class="op">==</span> Permutacion.identidad(<span class="dv">5</span>))   <span class="co"># True</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.11.7 Potència `__pow__`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-59-contents" aria-controls="callout-59" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.11.7 Potència <code>__pow__</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-59" class="callout-59-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>sigma ** k</code> és la composició de <span class="math inline">\(\sigma\)</span> amb si mateixa <span class="math inline">\(k\)</span> vegades, amb <span class="math inline">\(\sigma^0 = \text{id}\)</span>. Si <span class="math inline">\(k\)</span> és negatiu, <span class="math inline">\(\sigma^{k} = (\sigma^{-1})^{-k}\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> Permutacion([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">3</span>])</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sigma <span class="op">**</span> <span class="dv">2</span>)                                   <span class="co"># Permutacion([2, 0, 1, 3, 4])</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sigma <span class="op">**</span> <span class="op">-</span><span class="dv">1</span> <span class="op">==</span> sigma.inversa())               <span class="co"># True</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sigma <span class="op">**</span> <span class="dv">6</span> <span class="op">==</span> Permutacion.identidad(<span class="dv">5</span>))       <span class="co"># True</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.11.8 Mètode `ciclos()`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-62-contents" aria-controls="callout-62" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.11.8 Mètode <code>ciclos()</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-62" class="callout-62-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Tota permutació es descompon en <strong>cicles disjunts</strong>. Per exemple, <span class="math inline">\(\sigma = [1, 2, 0, 4, 3]\)</span> envia <span class="math inline">\(0 \to 1 \to 2 \to 0\)</span> i <span class="math inline">\(3 \to 4 \to 3\)</span>, així que <span class="math inline">\(\sigma = (0\ 1\ 2)(3\ 4)\)</span>. El mètode retorna la llista de cicles com a tuples, <strong>sense els punts fixos</strong> (cicles de longitud 1). Cada cicle comença pel seu element més petit i els cicles apareixen ordenats pel seu primer element.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Permutacion([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">3</span>]).ciclos())    <span class="co"># [(0, 1, 2), (3, 4)]</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Permutacion([<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>]).ciclos())       <span class="co"># [(1, 2)]</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Permutacion.identidad(<span class="dv">4</span>).ciclos())        <span class="co"># []</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Algorisme">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Algorisme
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Recorreu els elements <span class="math inline">\(i = 0, 1, \ldots, n-1\)</span>. Si <span class="math inline">\(i\)</span> encara no s’ha visitat, seguiu l’òrbita <span class="math inline">\(i, \sigma(i), \sigma(\sigma(i)), \ldots\)</span> fins a tornar a <span class="math inline">\(i\)</span>, marcant cada element com a visitat. Un conjunt (<code>set</code>) és l’estructura adequada per als elements visitats.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.11.9 Mètode `orden()`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-64-contents" aria-controls="callout-64" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.11.9 Mètode <code>orden()</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-64" class="callout-64-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>L’<strong>ordre</strong> de <span class="math inline">\(\sigma\)</span> és el menor <span class="math inline">\(k \geq 1\)</span> amb <span class="math inline">\(\sigma^k = \text{id}\)</span>. És el mínim comú múltiple de les longituds dels seus cicles (podeu fer servir <code>math.lcm</code>).</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Permutacion([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">3</span>]).orden())    <span class="co"># 6 = mcm(3, 2)</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Permutacion.identidad(<span class="dv">4</span>).orden())        <span class="co"># 1</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.11.10 Mètode `signo()`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-67-contents" aria-controls="callout-67" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.11.10 Mètode <code>signo()</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-67" class="callout-67-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Un cicle de longitud <span class="math inline">\(\ell\)</span> s’escriu com a producte de <span class="math inline">\(\ell - 1\)</span> transposicions. El <strong>signe</strong> de <span class="math inline">\(\sigma\)</span> és <span class="math inline">\((-1)^t\)</span>, on <span class="math inline">\(t\)</span> és la suma de <span class="math inline">\(\ell - 1\)</span> sobre tots els seus cicles: val <span class="math inline">\(1\)</span> si la permutació és <strong>parella</strong> i <span class="math inline">\(-1\)</span> si és <strong>senar</strong>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Permutacion([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">3</span>]).signo())    <span class="co"># -1   (2 + 1 = 3 transposiciones)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Permutacion([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>]).signo())          <span class="co"># 1</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Permutacion.identidad(<span class="dv">4</span>).signo())        <span class="co"># 1</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Comprovació amb el grup simètric">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Comprovació amb el grup simètric
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Amb <code>itertools.permutations(range(4))</code> es generen les <span class="math inline">\(4! = 24\)</span> permutacions de <span class="math inline">\(S_4\)</span>. Exactament la meitat, 12, són parelles (formen el <strong>grup alternat</strong> <span class="math inline">\(A_4\)</span>), i els ordres que apareixen són <span class="math inline">\(1, 2, 3\)</span> i <span class="math inline">\(4\)</span>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> permutations</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>s4 <span class="op">=</span> [Permutacion(<span class="bu">list</span>(p)) <span class="cf">for</span> p <span class="kw">in</span> permutations(<span class="bu">range</span>(<span class="dv">4</span>))]</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(s4))                                   <span class="co"># 24</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> p <span class="kw">in</span> s4 <span class="cf">if</span> p.signo() <span class="op">==</span> <span class="dv">1</span>))      <span class="co"># 12</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>({p.orden() <span class="cf">for</span> p <span class="kw">in</span> s4}))           <span class="co"># [1, 2, 3, 4]</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercici-6.12-tests-amb-pytest" class="level2">
+<h2 class="anchored" data-anchor-id="exercici-6.12-tests-amb-pytest">Exercici 6.12: Tests amb <code>pytest</code></h2>
+<p>Escriviu les proves de les classes dels exercicis 6.9, 6.10 i 6.11 a la carpeta <code>tests/</code> del projecte:</p>
+<pre><code>t06-poo/
+├── src/
+│   └── t06_paquete/
+│       ├── matriz.py
+│       ├── intervalo.py
+│       └── permutacion.py
+└── tests/
+    ├── conftest.py
+    ├── test_matriz.py
+    ├── test_intervalo.py
+    └── test_permutacion.py</code></pre>
+<p>Per executar totes les proves des de l’arrel del projecte:</p>
+<pre class="text"><code>uv run pytest            # todas las pruebas
+uv run pytest -v         # verbose: muestra el nombre de cada prueba
+uv run pytest -x         # para en el primer fallo</code></pre>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Requisits mínims per mètode">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Requisits mínims per mètode
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Per a cada mètode de les classes dels exercicis 6.9, 6.10 i 6.11, el fitxer de prova corresponent ha d’incloure:</p>
+<ol type="1">
+<li><strong>Almenys 2 casos normals</strong>: entrades típiques amb resultats coneguts.</li>
+<li><strong>Almenys 1 cas límit</strong> (si escau): matriu <span class="math inline">\(1 \times 1\)</span>, interval degenerat, permutació identitat…</li>
+<li><strong>Almenys 1 test de precondició violada</strong> (si el mètode té precondició): fent servir <code>pytest.raises(ValueError)</code>.</li>
+</ol>
+<p>A més, incloeu almenys una prova d’una <strong>propietat algebraica</strong> per classe, per exemple: <span class="math inline">\((AB)^T = B^T A^T\)</span>, <span class="math inline">\(\det(AB) = \det(A)\det(B)\)</span>, <span class="math inline">\(I \subseteq I + J - J\)</span> per a intervals, o <span class="math inline">\((\sigma\tau)^{-1} = \tau^{-1}\sigma^{-1}\)</span> i <span class="math inline">\(\operatorname{sgn}(\sigma\tau) = \operatorname{sgn}(\sigma)\operatorname{sgn}(\tau)\)</span> per a permutacions.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.12.1 Fitxer `test_matriz.py`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-69-contents" aria-controls="callout-69" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.12.1 Fitxer <code>test_matriz.py</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-69" class="callout-69-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A continuació es mostren proves d’alguns mètodes de <code>Matriz</code> com a model; completeu la resta.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tests/test_matriz.py</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> t06_paquete.matriz <span class="im">import</span> Matriz</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co"># --- constructor ---</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_constructor_filas_distinta_longitud():</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>        Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>]])</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_constructor_copia_las_filas():</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>    filas <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]]</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> Matriz(filas)</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>    filas[<span class="dv">0</span>][<span class="dv">0</span>] <span class="op">=</span> <span class="dv">99</span>                      <span class="co"># modificar la lista original...</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> a[<span class="dv">0</span>, <span class="dv">0</span>] <span class="op">==</span> <span class="dv">1</span>                   <span class="co"># ...no modifica la matriz</span></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a><span class="co"># --- producto de matrices ---</span></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_producto_por_identidad():</span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]])</span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> a <span class="op">@</span> Matriz.identidad(<span class="dv">2</span>) <span class="op">==</span> a</span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_producto_no_conmutativo():</span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]])</span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> Matriz([[<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>]])</span>
+<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> a <span class="op">@</span> b <span class="op">!=</span> b <span class="op">@</span> a</span>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_producto_dimensiones_incompatibles():</span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a>        Matriz([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]]) <span class="op">@</span> Matriz([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]])</span>
+<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a><span class="co"># --- determinante ---</span></span>
+<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_determinante_2x2():</span>
+<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]]).determinante() <span class="op">==</span> <span class="op">-</span><span class="dv">2</span></span>
+<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-38"><a href="#cb35-38" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_determinante_no_cuadrada():</span>
+<span id="cb35-39"><a href="#cb35-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb35-40"><a href="#cb35-40" aria-hidden="true" tabindex="-1"></a>        Matriz([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]]).determinante()</span>
+<span id="cb35-41"><a href="#cb35-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-42"><a href="#cb35-42" aria-hidden="true" tabindex="-1"></a><span class="co"># --- propiedad algebraica ---</span></span>
+<span id="cb35-43"><a href="#cb35-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-44"><a href="#cb35-44" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_traspuesta_del_producto():</span>
+<span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> Matriz([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">5</span>, <span class="dv">6</span>]])</span>
+<span id="cb35-46"><a href="#cb35-46" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> Matriz([[<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>], [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>]])</span>
+<span id="cb35-47"><a href="#cb35-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> (a <span class="op">@</span> b).traspuesta() <span class="op">==</span> b.traspuesta() <span class="op">@</span> a.traspuesta()</span>
+<span id="cb35-48"><a href="#cb35-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-49"><a href="#cb35-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Añade aquí las pruebas del resto de métodos</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="6.12.2 Fitxers `test_intervalo.py` i `test_permutacion.py`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-70-contents" aria-controls="callout-70" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>6.12.2 Fitxers <code>test_intervalo.py</code> i <code>test_permutacion.py</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-70" class="callout-70-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Escriviu aquests dos fitxers seguint el model de <code>test_matriz.py</code> i els requisits mínims indicats més amunt.</p>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

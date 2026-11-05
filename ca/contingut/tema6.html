@@ -20,7 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -76,6 +131,35 @@ ul.task-list li input[type="checkbox"] {
 <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Tema 6: Programació Orientada a Objectes – Programación (23200)">
@@ -533,8 +617,46 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En aquesta pàgina</h2>
+   
+  <ul>
+  <li><a href="#tipus-abstractes-de-dades-tad" id="toc-tipus-abstractes-de-dades-tad" class="nav-link active" data-scroll-target="#tipus-abstractes-de-dades-tad">6.1. Tipus Abstractes de Dades (TAD)</a>
+  <ul class="collapse">
+  <li><a href="#especificació-dun-tad-els-nombres-racionals" id="toc-especificació-dun-tad-els-nombres-racionals" class="nav-link" data-scroll-target="#especificació-dun-tad-els-nombres-racionals"><strong>6.1.1 Especificació d’un TAD: els nombres racionals</strong></a></li>
+  <li><a href="#una-implementació-amb-tuples" id="toc-una-implementació-amb-tuples" class="nav-link" data-scroll-target="#una-implementació-amb-tuples"><strong>6.1.2 Una implementació amb tuples</strong></a></li>
+  <li><a href="#la-barrera-dabstracció-dues-representacions-del-mateix-tad" id="toc-la-barrera-dabstracció-dues-representacions-del-mateix-tad" class="nav-link" data-scroll-target="#la-barrera-dabstracció-dues-representacions-del-mateix-tad"><strong>6.1.3 La barrera d’abstracció: dues representacions del mateix TAD</strong></a></li>
+  </ul></li>
+  <li><a href="#classes-objectes-atributs-i-mètodes" id="toc-classes-objectes-atributs-i-mètodes" class="nav-link" data-scroll-target="#classes-objectes-atributs-i-mètodes">6.2. Classes, objectes, atributs i mètodes</a>
+  <ul class="collapse">
+  <li><a href="#definir-una-classe" id="toc-definir-una-classe" class="nav-link" data-scroll-target="#definir-una-classe"><strong>6.2.1 Definir una classe</strong></a></li>
+  <li><a href="#atributs-dinstància-i-estat" id="toc-atributs-dinstància-i-estat" class="nav-link" data-scroll-target="#atributs-dinstància-i-estat"><strong>6.2.2 Atributs d’instància i estat</strong></a></li>
+  <li><a href="#mètodes" id="toc-mètodes" class="nav-link" data-scroll-target="#mètodes"><strong>6.2.3 Mètodes</strong></a></li>
+  <li><a href="#exemple-la-classe-polinomio-i-el-mètode-de-newton" id="toc-exemple-la-classe-polinomio-i-el-mètode-de-newton" class="nav-link" data-scroll-target="#exemple-la-classe-polinomio-i-el-mètode-de-newton"><strong>6.2.4 Exemple: la classe <code>Polinomio</code> i el mètode de Newton</strong></a></li>
+  <li><a href="#identitat-i-igualtat-dobjectes" id="toc-identitat-i-igualtat-dobjectes" class="nav-link" data-scroll-target="#identitat-i-igualtat-dobjectes"><strong>6.2.5 Identitat i igualtat d’objectes</strong></a></li>
+  <li><a href="#mètodes-de-classe-i-mètodes-estàtics" id="toc-mètodes-de-classe-i-mètodes-estàtics" class="nav-link" data-scroll-target="#mètodes-de-classe-i-mètodes-estàtics"><strong>6.2.6 Mètodes de classe i mètodes estàtics</strong></a></li>
+  </ul></li>
+  <li><a href="#encapsulació-bàsica" id="toc-encapsulació-bàsica" class="nav-link" data-scroll-target="#encapsulació-bàsica">6.3. Encapsulació bàsica</a>
+  <ul class="collapse">
+  <li><a href="#validar-i-normalitzar-al-constructor" id="toc-validar-i-normalitzar-al-constructor" class="nav-link" data-scroll-target="#validar-i-normalitzar-al-constructor"><strong>6.3.1 Validar i normalitzar al constructor</strong></a></li>
+  <li><a href="#atributs-privats-per-convenció" id="toc-atributs-privats-per-convenció" class="nav-link" data-scroll-target="#atributs-privats-per-convenció"><strong>6.3.2 Atributs privats per convenció</strong></a></li>
+  <li><a href="#propietats-de-només-lectura" id="toc-propietats-de-només-lectura" class="nav-link" data-scroll-target="#propietats-de-només-lectura"><strong>6.3.3 Propietats de només lectura</strong></a></li>
+  <li><a href="#propietats-calculades-i-amb-validació" id="toc-propietats-calculades-i-amb-validació" class="nav-link" data-scroll-target="#propietats-calculades-i-amb-validació"><strong>6.3.4 Propietats calculades i amb validació</strong></a></li>
+  </ul></li>
+  <li><a href="#mètodes-màgics-i-sobrecàrrega-doperadors" id="toc-mètodes-màgics-i-sobrecàrrega-doperadors" class="nav-link" data-scroll-target="#mètodes-màgics-i-sobrecàrrega-doperadors">6.4. Mètodes màgics i sobrecàrrega d’operadors</a>
+  <ul class="collapse">
+  <li><a href="#representació-__repr__-i-__str__" id="toc-representació-__repr__-i-__str__" class="nav-link" data-scroll-target="#representació-__repr__-i-__str__"><strong>6.4.1 Representació: <code>__repr__</code> i <code>__str__</code></strong></a></li>
+  <li><a href="#igualtat-i-hash-__eq__-i-__hash__" id="toc-igualtat-i-hash-__eq__-i-__hash__" class="nav-link" data-scroll-target="#igualtat-i-hash-__eq__-i-__hash__"><strong>6.4.2 Igualtat i <em>hash</em>: <code>__eq__</code> i <code>__hash__</code></strong></a></li>
+  <li><a href="#operadors-aritmètics" id="toc-operadors-aritmètics" class="nav-link" data-scroll-target="#operadors-aritmètics"><strong>6.4.3 Operadors aritmètics</strong></a></li>
+  <li><a href="#comparació-dordre-__lt__-i-__le__" id="toc-comparació-dordre-__lt__-i-__le__" class="nav-link" data-scroll-target="#comparació-dordre-__lt__-i-__le__"><strong>6.4.4 Comparació d’ordre: <code>__lt__</code> i <code>__le__</code></strong></a></li>
+  <li><a href="#la-classe-fraccion-completa" id="toc-la-classe-fraccion-completa" class="nav-link" data-scroll-target="#la-classe-fraccion-completa"><strong>6.4.5 La classe <code>Fraccion</code> completa</strong></a></li>
+  <li><a href="#la-classe-polinomio-amb-operadors" id="toc-la-classe-polinomio-amb-operadors" class="nav-link" data-scroll-target="#la-classe-polinomio-amb-operadors"><strong>6.4.6 La classe <code>Polinomio</code> amb operadors</strong></a></li>
+  <li><a href="#resum-de-mètodes-màgics" id="toc-resum-de-mètodes-màgics" class="nav-link" data-scroll-target="#resum-de-mètodes-màgics"><strong>6.4.7 Resum de mètodes màgics</strong></a></li>
+  </ul></li>
+  <li><a href="#bibliografia" id="toc-bibliografia" class="nav-link" data-scroll-target="#bibliografia">Bibliografia</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -559,11 +681,1005 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contingut pendent.)</em></p>
+<p>Al tema 4 vam representar objectes matemàtics amb les estructures natives de Python: un vector com una llista, un polinomi com una llista de coeficients o un diccionari, i un nombre racional es podria desar com una tupla <code>(p, q)</code>. Això funciona, però té un inconvenient: les <strong>dades</strong> i les <strong>operacions</strong> que hi actuen viuen separades. Una tupla <code>(3, 4)</code> pot ser un racional, un punt del pla o un interval; Python no ho sap, i res no impedeix construir la tupla <code>(1, 0)</code> encara que no representi cap nombre racional.</p>
+<p>La <strong>Programació Orientada a Objectes</strong> (POO) resol aquest problema permetent definir <strong>tipus nous</strong> que agrupen les dades i les operacions en una sola unitat. És la mateixa idea que fem servir en matemàtiques: <span class="math inline">\(\mathbb{Q}\)</span> no és només un conjunt de parells d’enters, és un conjunt <strong>amb operacions</strong> (suma, producte, ordre) que compleixen certes propietats.</p>
+<div id="tip-objeto" class="callout callout-style-default callout-tip no-icon callout-titled" title="A Python tot és un objecte">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;1: A Python tot és un objecte
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cada valor de Python és un <strong>objecte</strong>: té un <strong>tipus</strong> (la seva classe), un <strong>estat</strong> (les dades que desa) i un conjunt de <strong>mètodes</strong> (operacions que s’hi poden aplicar amb la notació <code>objecte.metode()</code>). Els enters, les cadenes i les llistes que ja coneixem són objectes de classes predefinides: <code>int</code>, <code>str</code> i <code>list</code>. En aquest tema aprendrem a definir les nostres pròpies classes.</p>
+</div>
+</div>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQodHlwZSgzKSwgdHlwZSgzLjUpLCB0eXBlKFwiaG9sYVwiKSwgdHlwZShbMSwgMl0pKVxuXG5saXN0YSA9IFszLCAxLCAyXVxubGlzdGEuc29ydCgpICAgICAgICAgICAgICAgICAgICAgICAjIG3DqXRvZG8gZGUgbGEgY2xhc2UgbGlzdFxucHJpbnQobGlzdGEpICAgICAgICAgICAgICAgICAgICAgICAjIFsxLCAyLCAzXVxuXG5wcmludCgoNSkuYml0X2xlbmd0aCgpKSAgICAgICAgICAgICMgMzogaGFzdGEgbG9zIGVudGVyb3MgdGllbmVuIG3DqXRvZG9zXG5wcmludCgoMi41KS5hc19pbnRlZ2VyX3JhdGlvKCkpICAgICMgKDUsIDIpOiAyLjUgPSA1LzIifQ==
+</script>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Les cel·les de codi d’aquest tema comparteixen el mateix entorn de Python: algunes fan servir classes definides en cel·les anteriors. <strong>Executa-les en ordre.</strong></p>
+</div>
+</div>
+</div>
+<hr>
+<section id="tipus-abstractes-de-dades-tad" class="level2">
+<h2 class="anchored" data-anchor-id="tipus-abstractes-de-dades-tad">6.1. Tipus Abstractes de Dades (TAD)</h2>
+<p>Abans d’escriure una sola línia de codi orientat a objectes convé separar dues preguntes: <em>quines</em> operacions ofereix un tipus de dades i <em>com</em> estan implementades. Aquesta separació és la idea central dels tipus abstractes de dades <span class="citation" data-cites="liskov1974">(<a href="#ref-liskov1974" role="doc-biblioref">Liskov i Zilles 1974</a>)</span>.</p>
+<div id="tip-tad" class="callout callout-style-default callout-tip no-icon callout-titled" title="Tipus Abstracte de Dades">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;2: Tipus Abstracte de Dades
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>Tipus Abstracte de Dades</strong> (TAD) és un conjunt de valors juntament amb un conjunt d’operacions sobre aquests valors, especificades pel seu <strong>comportament</strong> (què fan, quines precondicions exigeixen, què retornen) i no per la seva <strong>representació</strong> (com es desen les dades a la memòria ni com es programen les operacions).</p>
+<p>La definició és molt propera a la d’estructura algebraica: un grup <span class="math inline">\((G, \cdot)\)</span> o un cos <span class="math inline">\((\mathbb{K}, +, \cdot)\)</span> es defineixen per les propietats de les seves operacions, no per la naturalesa concreta dels seus elements.</p>
+</div>
+</div>
+<div id="imp-especificacion" class="callout callout-style-default callout-important no-icon callout-titled" title="Especificació i implementació">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;1: Especificació i implementació
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un TAD té dos nivells:</p>
+<ul>
+<li><strong>Especificació</strong> (o <strong>interfície</strong>): el nom de cada operació, els seus paràmetres, les seves precondicions i el seu resultat. És l’única cosa que necessita conèixer qui <em>fa servir</em> el tipus.</li>
+<li><strong>Implementació</strong>: la <strong>representació</strong> interna de les dades i el codi de cada operació. És cosa de qui <em>programa</em> el tipus.</li>
+</ul>
+<p>La frontera entre tots dos nivells s’anomena <strong>barrera d’abstracció</strong>. Si l’usuari només fa servir la interfície, la implementació es pot canviar (per exemple, per fer-la més eficient) sense modificar ni una línia del codi que fa servir el tipus.</p>
+</div>
+</div>
+<section id="especificació-dun-tad-els-nombres-racionals" class="level3">
+<h3 class="anchored" data-anchor-id="especificació-dun-tad-els-nombres-racionals"><strong>6.1.1 Especificació d’un TAD: els nombres racionals</strong></h3>
+<p>Especifiquem el TAD <em>Racional</em>. Els seus valors són els nombres racionals <span class="math inline">\(p/q\)</span> amb <span class="math inline">\(p, q \in \mathbb{Z}\)</span> i <span class="math inline">\(q \neq 0\)</span>, i les seves operacions són:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Operació</th>
+<th style="text-align: left;">Resultat</th>
+<th style="text-align: left;">Precondició</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>crear(p, q)</code></td>
+<td style="text-align: left;">el racional <span class="math inline">\(p/q\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(q \neq 0\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>numerador(r)</code>, <code>denominador(r)</code></td>
+<td style="text-align: left;">numerador i denominador de <span class="math inline">\(r\)</span> en forma irreductible</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>suma(r, s)</code>, <code>producto(r, s)</code></td>
+<td style="text-align: left;"><span class="math inline">\(r + s\)</span>, <span class="math inline">\(r \cdot s\)</span></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>inverso(r)</code></td>
+<td style="text-align: left;"><span class="math inline">\(1/r\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(r \neq 0\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>iguales(r, s)</code></td>
+<td style="text-align: left;"><code>True</code> si <span class="math inline">\(r = s\)</span></td>
+<td style="text-align: left;">—</td>
+</tr>
+</tbody>
+</table>
+<p>Fixa’t que l’especificació no diu res de tuples, llistes ni variables: només descriu el comportament.</p>
+<div id="tip-racionales" class="callout callout-style-default callout-tip no-icon callout-titled" title="Els racionals com a classes d'equivalència">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;3: Els racionals com a classes d’equivalència
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Formalment, <span class="math inline">\(\mathbb{Q}\)</span> es construeix com el conjunt de classes d’equivalència de parells <span class="math inline">\((p, q) \in \mathbb{Z} \times (\mathbb{Z} \setminus \{0\})\)</span> amb la relació <span class="math display">\[
+(p, q) \sim (p', q') \iff p\,q' = p'\,q.
+\]</span> Els parells <span class="math inline">\((1, 2)\)</span>, <span class="math inline">\((2, 4)\)</span> i <span class="math inline">\((-3, -6)\)</span> representen el mateix racional. Per treballar amb un únic representant per classe es tria la <strong>forma canònica</strong>: denominador positiu i <span class="math inline">\(\gcd(p, q) = 1\)</span>. Amb aquesta elecció, dos racionals són iguals si i només si les seves formes canòniques coincideixen.</p>
+</div>
+</div>
+<p>La condició «la representació està en forma canònica» és un exemple d’<strong>invariant de representació</strong>: una propietat que tot valor del tipus ha de complir sempre. Tota la correcció del TAD depèn que es mantingui.</p>
+</section>
+<section id="una-implementació-amb-tuples" class="level3">
+<h3 class="anchored" data-anchor-id="una-implementació-amb-tuples"><strong>6.1.2 Una implementació amb tuples</strong></h3>
+<p>Amb el que hem vist fins ara podem implementar el TAD amb tuples <code>(p, q)</code> i funcions:</p>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZnJvbSBtYXRoIGltcG9ydCBnY2RcblxuZGVmIGNyZWFyX3JhY2lvbmFsKHA6IGludCwgcTogaW50KSAtPiB0dXBsZVtpbnQsIGludF06XG4gICAgXCJcIlwiQ3JlYSBlbCByYWNpb25hbCBwL3EgZW4gZm9ybWEgY2Fuw7NuaWNhIChxID4gMCwgbWNkKHAsIHEpID0gMSkuXCJcIlwiXG4gICAgaWYgcSA9PSAwOlxuICAgICAgICByYWlzZSBWYWx1ZUVycm9yKFwiZWwgZGVub21pbmFkb3Igbm8gcHVlZGUgc2VyIDBcIilcbiAgICBpZiBxIDwgMDpcbiAgICAgICAgcCwgcSA9IC1wLCAtcVxuICAgIG0gPSBnY2QocCwgcSlcbiAgICByZXR1cm4gKHAgLy8gbSwgcSAvLyBtKVxuXG5kZWYgc3VtYV9yYWNpb25hbChyOiB0dXBsZVtpbnQsIGludF0sIHM6IHR1cGxlW2ludCwgaW50XSkgLT4gdHVwbGVbaW50LCBpbnRdOlxuICAgIFwiXCJcIkRldnVlbHZlIHIgKyBzLlwiXCJcIlxuICAgIHJldHVybiBjcmVhcl9yYWNpb25hbChyWzBdICogc1sxXSArIHNbMF0gKiByWzFdLCByWzFdICogc1sxXSlcblxuZGVmIHByb2R1Y3RvX3JhY2lvbmFsKHI6IHR1cGxlW2ludCwgaW50XSwgczogdHVwbGVbaW50LCBpbnRdKSAtPiB0dXBsZVtpbnQsIGludF06XG4gICAgXCJcIlwiRGV2dWVsdmUgciAqIHMuXCJcIlwiXG4gICAgcmV0dXJuIGNyZWFyX3JhY2lvbmFsKHJbMF0gKiBzWzBdLCByWzFdICogc1sxXSlcblxuZGVmIGlndWFsZXNfcmFjaW9uYWwocjogdHVwbGVbaW50LCBpbnRdLCBzOiB0dXBsZVtpbnQsIGludF0pIC0+IGJvb2w6XG4gICAgXCJcIlwiRGV2dWVsdmUgVHJ1ZSBzaSByID0gcyAoYW1ib3MgZGViZW4gZXN0YXIgZW4gZm9ybWEgY2Fuw7NuaWNhKS5cIlwiXCJcbiAgICByZXR1cm4gciA9PSBzXG5cbmEgPSBjcmVhcl9yYWNpb25hbCgxLCAyKVxuYiA9IGNyZWFyX3JhY2lvbmFsKDEsIDMpXG5wcmludChzdW1hX3JhY2lvbmFsKGEsIGIpKSAgICAgICAgIyAoNSwgNilcbnByaW50KHByb2R1Y3RvX3JhY2lvbmFsKGEsIGIpKSAgICAjICgxLCA2KVxucHJpbnQoY3JlYXJfcmFjaW9uYWwoNiwgLTgpKSAgICAgICMgKC0zLCA0KSJ9
+</script>
+</div>
+<p>Mentre tot racional es creï amb <code>crear_racional</code>, l’invariant es compleix. Però res no obliga a fer-ho així.</p>
+<div id="cau-tuplas-tad" class="callout callout-style-default callout-caution no-icon callout-titled" title="Una tupla no protegeix l'invariant">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;1: Una tupla no protegeix l’invariant
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYyA9ICgyLCA0KSAgICAgICAgICAgICAgICAgICAgICAgICMgbmFkaWUgaW1waWRlIGNvbnN0cnVpciB1bmEgdHVwbGEgbm8gY2Fuw7NuaWNhXG5wcmludChpZ3VhbGVzX3JhY2lvbmFsKGEsIGMpKSAgICAgIyBGYWxzZSwgwqFhdW5xdWUgMS8yID0gMi80IVxuXG5kID0gKDEsIDApICAgICAgICAgICAgICAgICAgICAgICAgIyBuaSB1biDCq3JhY2lvbmFswrsgY29uIGRlbm9taW5hZG9yIGNlcm9cbnByaW50KHR5cGUoYSkuX19uYW1lX18pICAgICAgICAgICAjIHR1cGxlOiBlbCB0aXBvIG5vIGRpY2UgcXVlIHNlYSB1biByYWNpb25hbCJ9
+</script>
+</div>
+<p>Amb tuples i funcions soltes:</p>
+<ul>
+<li>l’invariant depèn de la disciplina de cada usuari;</li>
+<li>el tipus de les dades (<code>tuple</code>) no informa del que representen;</li>
+<li>les operacions no estan lligades a les dades: cal recordar que <code>suma_racional</code> existeix i en quin mòdul és.</li>
+</ul>
+<p>Les classes resolen els tres problemes.</p>
+</div>
+</div>
+</section>
+<section id="la-barrera-dabstracció-dues-representacions-del-mateix-tad" class="level3">
+<h3 class="anchored" data-anchor-id="la-barrera-dabstracció-dues-representacions-del-mateix-tad"><strong>6.1.3 La barrera d’abstracció: dues representacions del mateix TAD</strong></h3>
+<p>Un mateix TAD admet diverses representacions. Un polinomi <span class="math inline">\(p(x) = a_0 + a_1 x + \cdots + a_n x^n\)</span> es pot desar com una <strong>llista densa</strong> de coeficients <code>[a0, a1, ..., an]</code> o com un <strong>diccionari dispers</strong> <code>{k: ak}</code> amb només els coeficients no nuls (com al tema 4). Per a <span class="math inline">\(1 + x^{10}\)</span>, la llista desa onze nombres i el diccionari només dos.</p>
+<div>
+<div id="pyodide-4" class="exercise-cell">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicF9kZW5zbyA9IFsxLCAwLCAwLCAwLCAwLCAwLCAwLCAwLCAwLCAwLCAxXSAgICMgMSArIHheMTAgY29tbyBsaXN0YVxucF9kaXNwZXJzbyA9IHswOiAxLCAxMDogMX0gICAgICAgICAgICAgICAgICAgICAjIDEgKyB4XjEwIGNvbW8gZGljY2lvbmFyaW9cblxuZGVmIGV2YWx1YXJfZGVuc28ocDogbGlzdFtmbG9hdF0sIHg6IGZsb2F0KSAtPiBmbG9hdDpcbiAgICBcIlwiXCJFdmFsw7phIHAoeCkgY29uIGVsIGVzcXVlbWEgZGUgSG9ybmVyLlwiXCJcIlxuICAgIHJlc3VsdGFkbyA9IDBcbiAgICBmb3IgYSBpbiByZXZlcnNlZChwKTpcbiAgICAgICAgcmVzdWx0YWRvID0gcmVzdWx0YWRvICogeCArIGFcbiAgICByZXR1cm4gcmVzdWx0YWRvXG5cbmRlZiBldmFsdWFyX2Rpc3BlcnNvKHA6IGRpY3RbaW50LCBmbG9hdF0sIHg6IGZsb2F0KSAtPiBmbG9hdDpcbiAgICBcIlwiXCJFdmFsw7phIHAoeCkgc3VtYW5kbyBzb2xvIGxvcyB0w6lybWlub3Mgbm8gbnVsb3MuXCJcIlwiXG4gICAgcmV0dXJuIHN1bShhICogeCoqayBmb3IgaywgYSBpbiBwLml0ZW1zKCkpXG5cbnByaW50KGV2YWx1YXJfZGVuc28ocF9kZW5zbywgMikpICAgICAgICAgIyAxMDI1XG5wcmludChldmFsdWFyX2Rpc3BlcnNvKHBfZGlzcGVyc28sIDIpKSAgICMgMTAyNSJ9
+</script>
+</div>
+<p>Les dues funcions calculen el mateix, però qui les fa servir ha de saber quina representació té entre mans i triar la funció correcta. El que volem és una única operació <em>avaluar</em> que funcioni sigui quina sigui la representació interna. Això és exactament el que proporciona una classe.</p>
+<hr>
+</section>
+</section>
+<section id="classes-objectes-atributs-i-mètodes" class="level2">
+<h2 class="anchored" data-anchor-id="classes-objectes-atributs-i-mètodes">6.2. Classes, objectes, atributs i mètodes</h2>
+<div id="tip-clase" class="callout callout-style-default callout-tip no-icon callout-titled" title="Classe, objecte, atribut i mètode">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;4: Classe, objecte, atribut i mètode
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Una <strong>classe</strong> és la definició d’un tipus nou: descriu quines dades desen els seus valors i quines operacions admeten.</li>
+<li>Un <strong>objecte</strong> (o <strong>instància</strong>) és un valor concret d’una classe.</li>
+<li>Els <strong>atributs</strong> són les dades que desa cada objecte; en conjunt formen el seu <strong>estat</strong>.</li>
+<li>Els <strong>mètodes</strong> són les funcions definides dins de la classe; operen sobre l’objecte.</li>
+</ul>
+<p>L’analogia matemàtica: la classe és el conjunt amb la seva estructura (<span class="math inline">\(\mathbb{Q}\)</span> amb <span class="math inline">\(+\)</span> i <span class="math inline">\(\cdot\)</span>); un objecte és un element concret (<span class="math inline">\(3/4\)</span>); els atributs són el seu numerador i el seu denominador; els mètodes, les operacions.</p>
+</div>
+</div>
+<section id="definir-una-classe" class="level3">
+<h3 class="anchored" data-anchor-id="definir-una-classe"><strong>6.2.1 Definir una classe</strong></h3>
+<p>Una classe es defineix amb la paraula reservada <code>class</code>. Per convenció, els noms de classe s’escriuen en <em>CamelCase</em> (cada paraula comença amb majúscula i no hi ha guions baixos) <span class="citation" data-cites="pep8">(<a href="#ref-pep8" role="doc-biblioref">Rossum, Warsaw, i Coghlan 2001</a>)</span>.</p>
+<div>
+<div id="pyodide-5" class="exercise-cell">
+
+</div>
+<script type="pyodide-5-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiY2xhc3MgRnJhY2Npb246XG4gICAgXCJcIlwiTsO6bWVybyByYWNpb25hbCBudW0vZGVuLlwiXCJcIlxuXG4gICAgZGVmIF9faW5pdF9fKHNlbGYsIG51bTogaW50LCBkZW46IGludCkgLT4gTm9uZTpcbiAgICAgICAgXCJcIlwiQ3JlYSBsYSBmcmFjY2nDs24gbnVtL2Rlbi5cIlwiXCJcbiAgICAgICAgc2VsZi5udW0gPSBudW1cbiAgICAgICAgc2VsZi5kZW4gPSBkZW5cblxuciA9IEZyYWNjaW9uKDMsIDQpICAgICAgICAgICAgICAgIyBjcmVhIHVuIG9iamV0bzogUHl0aG9uIGxsYW1hIGEgX19pbml0X19cbnByaW50KHIubnVtLCByLmRlbikgICAgICAgICAgICAgICMgMyA0XG5wcmludCh0eXBlKHIpLl9fbmFtZV9fKSAgICAgICAgICAjIEZyYWNjaW9uXG5wcmludChpc2luc3RhbmNlKHIsIEZyYWNjaW9uKSkgICAjIFRydWUifQ==
+</script>
+</div>
+<p>El <strong>constructor o inicialitzador</strong> és el mètode especial <code>__init__</code> d’una classe. Python el crida automàticament cada vegada que es crea un objecte, i la seva funció és deixar aquest objecte <strong>llest i en un estat vàlid</strong>.</p>
+<p>En escriure <code>Fraccion(3, 4)</code> passen dues coses:</p>
+<ol type="1">
+<li>Python crea un objecte buit de la classe.</li>
+<li>Crida <code>__init__</code> passant-li aquest objecte com a <code>self</code>, seguit dels arguments (<code>3</code> i <code>4</code>).</li>
+</ol>
+<p>Dins de <code>__init__</code> normalment es fa això:</p>
+<ul>
+<li><strong>Crear els atributs</strong> de l’objecte: <code>self.num = num</code>.</li>
+<li><strong>Comprovar les precondicions</strong> i llançar <code>ValueError</code> si no es compleixen.</li>
+<li><strong>Normalitzar les dades</strong>, per exemple simplificar la fracció, perquè l’objecte compleixi des del principi l’invariant de la classe.</li>
+</ul>
+<p>Alguns detalls:</p>
+<ul>
+<li><code>__init__</code> <strong>no retorna res</strong> (el seu tipus de retorn és <code>None</code>). L’objecte el retorna Python, no el mètode.</li>
+<li>Admet <strong>valors per defecte</strong>, com qualsevol funció: amb <code>den: int = 1</code>, <code>Fraccion(5)</code> crea <span class="math inline">\(5/1\)</span> (ho farem servir a l’apartat 6.3).</li>
+<li><strong>Constructor o inicialitzador:</strong> en el llenguatge habitual s’anomena «constructor», però en sentit estricte és un <em>inicialitzador</em>. L’objecte ja existeix quan es crida <code>__init__</code>, perquè el crea abans un altre mètode especial, <code>__new__</code>, que gairebé mai no cal tocar.</li>
+</ul>
+<div id="imp-self" class="callout callout-style-default callout-important no-icon callout-titled" title="El paràmetre `self`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;2: El paràmetre <code>self</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tot mètode rep com a primer paràmetre l’objecte sobre el qual actua. Per convenció s’anomena <code>self</code> («si mateix»). La crida</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>r.metodo(x)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>és equivalent a</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Fraccion.metodo(r, x)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Python passa <code>r</code> automàticament com a <code>self</code>. Dins del mètode, <code>self.num</code> és l’atribut <code>num</code> <strong>d’aquell objecte concret</strong>.</p>
+</div>
+</div>
+<div id="cau-self" class="callout callout-style-default callout-caution no-icon callout-titled" title="Oblidar `self`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;2: Oblidar <code>self</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dos errors molt freqüents en començar amb classes:</p>
+<ol type="1">
+<li><strong>Oblidar <code>self</code> a la llista de paràmetres</strong>: <code>def valor():</code> en lloc de <code>def valor(self):</code>. En cridar <code>r.valor()</code>, Python passa <code>r</code> igualment i s’obté <code>TypeError: valor() takes 0 positional arguments but 1 was given</code>.</li>
+<li><strong>Oblidar <code>self.</code> en assignar un atribut</strong>: escriure <code>num = num</code> en lloc de <code>self.num = num</code> dins de <code>__init__</code> crea una variable local que desapareix en acabar el mètode. L’objecte es queda sense atribut i més endavant apareix <code>AttributeError: 'Fraccion' object has no attribute 'num'</code>.</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="atributs-dinstància-i-estat" class="level3">
+<h3 class="anchored" data-anchor-id="atributs-dinstància-i-estat"><strong>6.2.2 Atributs d’instància i estat</strong></h3>
+<p>Cada objecte té els seus propis atributs: modificar els d’un no afecta els altres.</p>
+<div>
+<div id="pyodide-6" class="exercise-cell">
+
+</div>
+<script type="pyodide-6-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiciA9IEZyYWNjaW9uKDMsIDQpXG5zID0gRnJhY2Npb24oNSwgNylcbnMubnVtID0gNlxucHJpbnQoci5udW0sIHMubnVtKSAgICAjIDMgNjogY2FkYSBvYmpldG8gZ3VhcmRhIHN1IHByb3BpbyBlc3RhZG9cbnByaW50KHZhcnMocikpICAgICAgICAgIyB7J251bSc6IDMsICdkZW4nOiA0fSJ9
+</script>
+</div>
+<div id="wrn-vars" class="callout callout-style-default callout-warning no-icon callout-titled" title="Inspeccionar l'estat d'un objecte">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tècnica de Depuració&nbsp;1: Inspeccionar l’estat d’un objecte
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La funció <code>vars(objecte)</code> retorna un diccionari amb tots els seus atributs i els seus valors. És la manera més ràpida de veure l’estat d’un objecte mentre es depura. A VS Code, el panell <em>Variables</em> del depurador mostra la mateixa informació en aturar-se en un punt de ruptura.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Aprofundiment: atributs de classe">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Aprofundiment: atributs de classe
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A més dels atributs d’instància, una classe pot tenir <strong>atributs de classe</strong>, definits fora dels mètodes i compartits per tots els seus objectes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Polinomio:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    variable <span class="op">=</span> <span class="st">"x"</span>      <span class="co"># atributo de clase: común a todos los polinomios</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, coefs):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.coefs <span class="op">=</span> coefs   <span class="co"># atributo de instancia: propio de cada polinomio</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>S’hi accedeix amb <code>Polinomio.variable</code> o des de qualsevol objecte (<code>p.variable</code>). Són útils per a constants lligades a la classe. Evita fer servir com a atribut de classe una llista o un diccionari que després es modifiqui: tots els objectes compartirien el mateix.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="mètodes" class="level3">
+<h3 class="anchored" data-anchor-id="mètodes"><strong>6.2.3 Mètodes</strong></h3>
+<p>Els mètodes són funcions definides dins de la classe. Afegim a <code>Fraccion</code> tres operacions:</p>
+<div>
+<div id="pyodide-7" class="exercise-cell">
+
+</div>
+<script type="pyodide-7-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZnJvbSBtYXRoIGltcG9ydCBnY2RcblxuY2xhc3MgRnJhY2Npb246XG4gICAgXCJcIlwiTsO6bWVybyByYWNpb25hbCBudW0vZGVuLlwiXCJcIlxuXG4gICAgZGVmIF9faW5pdF9fKHNlbGYsIG51bTogaW50LCBkZW46IGludCkgLT4gTm9uZTpcbiAgICAgICAgXCJcIlwiQ3JlYSBsYSBmcmFjY2nDs24gbnVtL2Rlbi5cIlwiXCJcbiAgICAgICAgc2VsZi5udW0gPSBudW1cbiAgICAgICAgc2VsZi5kZW4gPSBkZW5cblxuICAgIGRlZiB2YWxvcihzZWxmKSAtPiBmbG9hdDpcbiAgICAgICAgXCJcIlwiRGV2dWVsdmUgbGEgYXByb3hpbWFjacOzbiBkZWNpbWFsIGRlIGxhIGZyYWNjacOzbi5cIlwiXCJcbiAgICAgICAgcmV0dXJuIHNlbGYubnVtIC8gc2VsZi5kZW5cblxuICAgIGRlZiBzaW1wbGlmaWNhcihzZWxmKSAtPiBOb25lOlxuICAgICAgICBcIlwiXCJSZWR1Y2UgbGEgZnJhY2Npw7NuIGEgc3UgZm9ybWEgaXJyZWR1Y2libGUgKG1vZGlmaWNhIGVsIG9iamV0bykuXCJcIlwiXG4gICAgICAgIG0gPSBnY2Qoc2VsZi5udW0sIHNlbGYuZGVuKVxuICAgICAgICBzZWxmLm51bSAvLz0gbVxuICAgICAgICBzZWxmLmRlbiAvLz0gbVxuXG4gICAgZGVmIHN1bWEoc2VsZiwgb3RyYTogXCJGcmFjY2lvblwiKSAtPiBcIkZyYWNjaW9uXCI6XG4gICAgICAgIFwiXCJcIkRldnVlbHZlIHVuYSBmcmFjY2nDs24gTlVFVkEgaWd1YWwgYSBzZWxmICsgb3RyYS5cIlwiXCJcbiAgICAgICAgcmV0dXJuIEZyYWNjaW9uKHNlbGYubnVtICogb3RyYS5kZW4gKyBvdHJhLm51bSAqIHNlbGYuZGVuLFxuICAgICAgICAgICAgICAgICAgICAgICAgc2VsZi5kZW4gKiBvdHJhLmRlbilcblxuYSA9IEZyYWNjaW9uKDEsIDYpXG5iID0gRnJhY2Npb24oMSwgMylcbmMgPSBhLnN1bWEoYikgICAgICAgICAgICAjIGVxdWl2YWxlIGEgRnJhY2Npb24uc3VtYShhLCBiKVxucHJpbnQoYy5udW0sIGMuZGVuKSAgICAgICMgOSAxOFxuYy5zaW1wbGlmaWNhcigpXG5wcmludChjLm51bSwgYy5kZW4pICAgICAgIyAxIDJcbnByaW50KGMudmFsb3IoKSkgICAgICAgICAjIDAuNSJ9
+</script>
+</div>
+<p>L’anotació de tipus <code>"Fraccion"</code> va entre cometes perquè, mentre es defineix la classe, el nom <code>Fraccion</code> encara no existeix.</p>
+<div id="imp-mutar-o-devolver" class="callout callout-style-default callout-important no-icon callout-titled" title="Mètodes que modifiquen i mètodes que retornen un objecte nou">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;3: Mètodes que modifiquen i mètodes que retornen un objecte nou
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>simplificar</code> i <code>suma</code> il·lustren els dos estils de mètode:</p>
+<ul>
+<li><code>c.simplificar()</code> <strong>modifica</strong> l’objecte <code>c</code> i retorna <code>None</code>.</li>
+<li><code>a.suma(b)</code> <strong>no modifica</strong> ni <code>a</code> ni <code>b</code>: retorna un objecte nou.</li>
+</ul>
+<p>És la mateixa distinció que entre <code>lista.sort()</code>, que ordena la llista, i <code>sorted(lista)</code>, que retorna una llista nova (tema 4). Per a objectes que representen valors matemàtics (nombres, vectors, polinomis) es prefereix el segon estil: que <span class="math inline">\(a + b\)</span> canviés el valor de <span class="math inline">\(a\)</span> seria molt sorprenent.</p>
+</div>
+</div>
+</section>
+<section id="exemple-la-classe-polinomio-i-el-mètode-de-newton" class="level3">
+<h3 class="anchored" data-anchor-id="exemple-la-classe-polinomio-i-el-mètode-de-newton"><strong>6.2.4 Exemple: la classe <code>Polinomio</code> i el mètode de Newton</strong></h3>
+<p>Agrupem en una classe la representació densa de l’apartat 6.1.3 i les operacions sobre polinomis:</p>
+<div>
+<div id="pyodide-8" class="exercise-cell">
+
+</div>
+<script type="pyodide-8-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiY2xhc3MgUG9saW5vbWlvOlxuICAgIFwiXCJcIlBvbGlub21pbyBhMCArIGExIHggKyAuLi4gKyBhbiB4Xm4sIGd1YXJkYWRvIGNvbW8gbGlzdGEgZGUgY29lZmljaWVudGVzLlwiXCJcIlxuXG4gICAgZGVmIF9faW5pdF9fKHNlbGYsIGNvZWZzOiBsaXN0W2Zsb2F0XSkgLT4gTm9uZTpcbiAgICAgICAgXCJcIlwiY29lZnNba10gZXMgZWwgY29lZmljaWVudGUgZGUgeF5rLlwiXCJcIlxuICAgICAgICBjb2VmcyA9IGxpc3QoY29lZnMpICAgICAgICAgICMgY29waWE6IG5vIGNvbXBhcnRpciBsYSBsaXN0YSBkZWwgdXN1YXJpb1xuICAgICAgICB3aGlsZSBsZW4oY29lZnMpID4gMSBhbmQgY29lZnNbLTFdID09IDA6XG4gICAgICAgICAgICBjb2Vmcy5wb3AoKSAgICAgICAgICAgICAgIyBlbGltaW5hIGxvcyBjZXJvcyBmaW5hbGVzXG4gICAgICAgIGlmIG5vdCBjb2VmczpcbiAgICAgICAgICAgIGNvZWZzID0gWzBdXG4gICAgICAgIHNlbGYuY29lZnMgPSBjb2Vmc1xuXG4gICAgZGVmIGdyYWRvKHNlbGYpIC0+IGludDpcbiAgICAgICAgXCJcIlwiR3JhZG8gZGVsIHBvbGlub21pbyAoYXF1w60sIDAgcGFyYSBlbCBwb2xpbm9taW8gbnVsbykuXCJcIlwiXG4gICAgICAgIHJldHVybiBsZW4oc2VsZi5jb2VmcykgLSAxXG5cbiAgICBkZWYgZXZhbHVhcihzZWxmLCB4OiBmbG9hdCkgLT4gZmxvYXQ6XG4gICAgICAgIFwiXCJcIkV2YWzDumEgcCh4KSBjb24gZWwgZXNxdWVtYSBkZSBIb3JuZXIuXCJcIlwiXG4gICAgICAgIHJlc3VsdGFkbyA9IDBcbiAgICAgICAgZm9yIGEgaW4gcmV2ZXJzZWQoc2VsZi5jb2Vmcyk6XG4gICAgICAgICAgICByZXN1bHRhZG8gPSByZXN1bHRhZG8gKiB4ICsgYVxuICAgICAgICByZXR1cm4gcmVzdWx0YWRvXG5cbiAgICBkZWYgZGVyaXZhZGEoc2VsZikgLT4gXCJQb2xpbm9taW9cIjpcbiAgICAgICAgXCJcIlwiRGV2dWVsdmUgZWwgcG9saW5vbWlvIGRlcml2YWRhIHAnKHgpLlwiXCJcIlxuICAgICAgICByZXR1cm4gUG9saW5vbWlvKFtrICogYSBmb3IgaywgYSBpbiBlbnVtZXJhdGUoc2VsZi5jb2VmcykgaWYgayA+IDBdKVxuXG4gICAgQGNsYXNzbWV0aG9kICAgICAgICAgICAgICAgICAgICAgIyBtw6l0b2RvIGRlIGNsYXNlOiB2w6lhc2UgZWwgYXBhcnRhZG8gNi4yLjZcbiAgICBkZWYgbW9ub21pbyhjbHMsIGE6IGZsb2F0LCBrOiBpbnQpIC0+IFwiUG9saW5vbWlvXCI6XG4gICAgICAgIFwiXCJcIkRldnVlbHZlIGVsIG1vbm9taW8gYcK3eF5rLlwiXCJcIlxuICAgICAgICBpZiBrIDwgMDpcbiAgICAgICAgICAgIHJhaXNlIFZhbHVlRXJyb3IoXCJlbCBleHBvbmVudGUgZGViZSBzZXIgbm8gbmVnYXRpdm9cIilcbiAgICAgICAgcmV0dXJuIGNscyhbMF0gKiBrICsgW2FdKVxuXG5wID0gUG9saW5vbWlvKFstMiwgMCwgMV0pICAgICAgICAjIHAoeCkgPSB4wrIgLSAyXG5wcmludChwLmdyYWRvKCkpICAgICAgICAgICAgICAgICAjIDJcbnByaW50KHAuZXZhbHVhcigzKSkgICAgICAgICAgICAgICMgN1xucHJpbnQocC5kZXJpdmFkYSgpLmNvZWZzKSAgICAgICAgIyBbMCwgMl06IHAnKHgpID0gMngifQ==
+</script>
+</div>
+<p>El constructor garanteix que la llista de coeficients no acabi en zeros, de manera que <code>grado()</code> sempre és correcte. A més copia la llista rebuda: si l’usuari modifica després la seva llista, el polinomi no canvia.</p>
+<p>Amb <code>evaluar</code> i <code>derivada</code> ja podem programar el mètode de Newton-Raphson per aproximar arrels.</p>
+<div id="tip-newton" class="callout callout-style-default callout-tip no-icon callout-titled" title="Mètode de Newton-Raphson">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;5: Mètode de Newton-Raphson
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Per aproximar una arrel d’una funció derivable <span class="math inline">\(f\)</span>, es parteix d’un valor inicial <span class="math inline">\(x_0\)</span> i s’itera <span class="math display">\[
+x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}.
+\]</span> Geomètricament, <span class="math inline">\(x_{k+1}\)</span> és el punt on la recta tangent a <span class="math inline">\(f\)</span> en <span class="math inline">\(x_k\)</span> talla l’eix <span class="math inline">\(x\)</span>. Si <span class="math inline">\(x_0\)</span> és prou a prop d’una arrel simple, la convergència és quadràtica: el nombre de xifres correctes es duplica aproximadament a cada pas.</p>
+</div>
+</div>
+<div>
+<div id="pyodide-9" class="exercise-cell">
+
+</div>
+<script type="pyodide-9-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIG5ld3RvbihwOiBQb2xpbm9taW8sIHgwOiBmbG9hdCwgdG9sOiBmbG9hdCA9IDFlLTEyLCBtYXhfaXRlcjogaW50ID0gNTApIC0+IGZsb2F0OlxuICAgIFwiXCJcIkFwcm94aW1hIHVuYSByYcOteiBkZSBwIGNvbiBlbCBtw6l0b2RvIGRlIE5ld3Rvbi1SYXBoc29uLlwiXCJcIlxuICAgIGRwID0gcC5kZXJpdmFkYSgpXG4gICAgeCA9IHgwXG4gICAgZm9yIF8gaW4gcmFuZ2UobWF4X2l0ZXIpOlxuICAgICAgICBwYXNvID0gcC5ldmFsdWFyKHgpIC8gZHAuZXZhbHVhcih4KVxuICAgICAgICB4ID0geCAtIHBhc29cbiAgICAgICAgaWYgYWJzKHBhc28pIDwgdG9sOlxuICAgICAgICAgICAgcmV0dXJuIHhcbiAgICByYWlzZSBWYWx1ZUVycm9yKFwiZWwgbcOpdG9kbyBubyBoYSBjb252ZXJnaWRvXCIpXG5cbnJhaXogPSBuZXd0b24oUG9saW5vbWlvKFstMiwgMCwgMV0pLCB4MD0xLjApXG5wcmludChyYWl6KSAgICAgICAgICAjIDEuNDE0MjEzNTYyMzczMDk1IOKJiCDiiJoyIn0=
+</script>
+</div>
+<p>La funció <code>newton</code> no sap com està desat el polinomi: només fa servir els seus mètodes <code>evaluar</code> i <code>derivada</code>. Si demà canviéssim la representació interna de <code>Polinomio</code> per un diccionari dispers, <code>newton</code> continuaria funcionant sense tocar-la. És la barrera d’abstracció de l’apartat 6.1 en acció.</p>
+</section>
+<section id="identitat-i-igualtat-dobjectes" class="level3">
+<h3 class="anchored" data-anchor-id="identitat-i-igualtat-dobjectes"><strong>6.2.5 Identitat i igualtat d’objectes</strong></h3>
+<div>
+<div id="pyodide-10" class="exercise-cell">
+
+</div>
+<script type="pyodide-10-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSA9IEZyYWNjaW9uKDEsIDIpXG5iID0gRnJhY2Npb24oMSwgMilcbmMgPSBhXG5wcmludChhID09IGIpICAgICMgRmFsc2U6IHBvciBkZWZlY3RvLCA9PSBjb21wYXJhIGxhIGlkZW50aWRhZFxucHJpbnQoYSBpcyBjKSAgICAjIFRydWU6IGEgeSBjIHNvbiBlbCBtaXNtbyBvYmpldG9cbmMubnVtID0gM1xucHJpbnQoYS5udW0pICAgICAjIDM6IG1vZGlmaWNhciBjIG1vZGlmaWNhIGEifQ==
+</script>
+</div>
+<div id="cau-igualdad-objetos" class="callout callout-style-default callout-caution no-icon callout-titled" title="`==` entre objectes d'una classe pròpia">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;3: <code>==</code> entre objectes d’una classe pròpia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si la classe no indica com comparar els seus objectes, <code>a == b</code> equival a <code>a is b</code>: només és <code>True</code> si <code>a</code> i <code>b</code> són <strong>el mateix objecte</strong>. Per això <code>Fraccion(1, 2) == Fraccion(1, 2)</code> dona <code>False</code>. A l’apartat 6.4 ensenyarem a la classe què vol dir que dues fraccions siguin iguals.</p>
+<p>A més, com amb les llistes (tema 4), una assignació <code>c = a</code> no copia l’objecte: crea un altre nom per al mateix objecte (<em>aliasing</em>).</p>
+</div>
+</div>
+</section>
+<section id="mètodes-de-classe-i-mètodes-estàtics" class="level3">
+<h3 class="anchored" data-anchor-id="mètodes-de-classe-i-mètodes-estàtics"><strong>6.2.6 Mètodes de classe i mètodes estàtics</strong></h3>
+<p>Tots els mètodes vistos fins ara són <strong>mètodes d’instància</strong>: reben l’objecte com a primer paràmetre (<code>self</code>) i treballen amb el seu estat. Python ofereix dos altres tipus de mètode, que es marquen amb un <strong>decorador</strong> (una línia que comença per <code>@</code> just abans del <code>def</code>).</p>
+<div id="imp-tipos-metodo" class="callout callout-style-default callout-important no-icon callout-titled" title="Tres tipus de mètode">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;4: Tres tipus de mètode
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tipus</th>
+<th style="text-align: left;">Decorador</th>
+<th style="text-align: left;">Primer paràmetre</th>
+<th style="text-align: left;">Ús típic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mètode d’instància</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><code>self</code>: l’objecte</td>
+<td style="text-align: left;">Operar amb l’estat d’un objecte concret</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mètode de classe</td>
+<td style="text-align: left;"><code>@classmethod</code></td>
+<td style="text-align: left;"><code>cls</code>: la classe</td>
+<td style="text-align: left;">Constructors alternatius</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mètode estàtic</td>
+<td style="text-align: left;"><code>@staticmethod</code></td>
+<td style="text-align: left;">cap</td>
+<td style="text-align: left;">Funcions auxiliars lligades a la classe que no necessiten ni l’objecte ni la classe</td>
+</tr>
+</tbody>
+</table>
+<p>Tots tres es defineixen dins de la classe i tots tres es poden cridar a través de la classe (<code>Polinomio.monomio(3, 4)</code>) o d’un objecte (<code>p.monomio(3, 4)</code>).</p>
+</div>
+</div>
+<p><strong>Mètodes de classe.</strong> L’ús més freqüent de <code>@classmethod</code> és oferir <strong>constructors alternatius</strong>: altres maneres de crear un objecte a més de passar directament les dades a <code>__init__</code>. La classe <code>Polinomio</code> de l’apartat 6.2.4 ja n’inclou un, <code>monomio</code>, que construeix <span class="math inline">\(a x^k\)</span> sense haver d’escriure la llista de <span class="math inline">\(k\)</span> zeros:</p>
+<div>
+<div id="pyodide-11" class="exercise-cell">
+
+</div>
+<script type="pyodide-11-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibSA9IFBvbGlub21pby5tb25vbWlvKDMsIDQpICAgICAgIyAzwrd4XjQsIHNpbiBlc2NyaWJpciBbMCwgMCwgMCwgMCwgM11cbnByaW50KG0uY29lZnMpICAgICAgICAgICAgICAgICAgICMgWzAsIDAsIDAsIDAsIDNdXG5wcmludChtLmV2YWx1YXIoMikpICAgICAgICAgICAgICAjIDQ4ID0gMyDCtyAyXjRcbnByaW50KG0uZGVyaXZhZGEoKS5jb2VmcykgICAgICAgICMgWzAsIDAsIDAsIDEyXTogMTLCt3heMyJ9
+</script>
+</div>
+<p>Dins de <code>monomio</code>, <code>cls</code> és la mateixa classe <code>Polinomio</code>, i <code>cls([0] * k + [a])</code> equival a <code>Polinomio([0] * k + [a])</code>. S’escriu <code>cls</code> en lloc del nom de la classe perquè el mètode continuï funcionant si la classe canvia de nom. La biblioteca estàndard fa servir la mateixa tècnica: <code>int.from_bytes(...)</code> o <code>dict.fromkeys(...)</code> són mètodes de classe que creen objectes.</p>
+<p><strong>Mètodes estàtics.</strong> Un mètode marcat amb <code>@staticmethod</code> no rep ni l’objecte ni la classe: és una funció normal que es col·loca dins de la classe perquè només té sentit en relació amb ella. Per exemple, a la versió final de <code>Fraccion</code> (apartat 6.4.5), el mètode que converteix un enter en fracció no necessita consultar l’estat de cap objecte, així que és estàtic:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Fraccion:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _convertir(otra: <span class="bu">object</span>) <span class="op">-&gt;</span> <span class="st">"Fraccion | None"</span>:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Devuelve otra como Fraccion si es Fraccion o int; si no, None."""</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        ...</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A l’apartat 6.4.6 afegirem a <code>Polinomio</code> un altre constructor alternatiu, <code>desde_raices</code>, que necessita el producte de polinomis.</p>
+<hr>
+</section>
+</section>
+<section id="encapsulació-bàsica" class="level2">
+<h2 class="anchored" data-anchor-id="encapsulació-bàsica">6.3. Encapsulació bàsica</h2>
+<p>La classe <code>Fraccion</code> de l’apartat anterior agrupa dades i operacions, però encara no protegeix l’invariant dels racionals:</p>
+<div>
+<div id="pyodide-12" class="exercise-cell">
+
+</div>
+<script type="pyodide-12-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiciA9IEZyYWNjaW9uKDIsIDQpICAgICAgIyBubyBlc3TDoSBlbiBmb3JtYSBjYW7Ds25pY2FcbnIuZGVuID0gMCAgICAgICAgICAgICAgICMgeSBhaG9yYSBuaSBzaXF1aWVyYSBlcyB1biByYWNpb25hbFxucHJpbnQodmFycyhyKSkgICAgICAgICAgIyB7J251bSc6IDIsICdkZW4nOiAwfSJ9
+</script>
+</div>
+<div id="imp-encapsulacion" class="callout callout-style-default callout-important no-icon callout-titled" title="Encapsulació">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;5: Encapsulació
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>L’<strong>encapsulació</strong> consisteix a amagar la representació interna d’un objecte i permetre que es faci servir només a través de la seva interfície (els seus mètodes), de manera que <strong>l’objecte estigui sempre en un estat vàlid</strong>.</p>
+<p>Una classe ben encapsulada garanteix el seu <strong>invariant de classe</strong>: una propietat que es compleix en acabar el constructor i que cap mètode no trenca.</p>
+</div>
+</div>
+<div id="tip-invariante-clase" class="callout callout-style-default callout-tip no-icon callout-titled" title="Invariant de classe i inducció">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;6: Invariant de classe i inducció
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>L’invariant de classe és l’anàleg de l’invariant de bucle del tema 5. Si el constructor l’estableix (cas base) i cada mètode que modifica l’objecte el preserva (pas inductiu), aleshores es compleix després de qualsevol seqüència finita d’operacions. És una demostració per inducció sobre el nombre d’operacions aplicades a l’objecte.</p>
+</div>
+</div>
+<p>A Python, encapsular una classe requereix tres eines: validar al constructor, marcar els atributs interns com a privats i oferir-hi l’accés mitjançant propietats.</p>
+<section id="validar-i-normalitzar-al-constructor" class="level3">
+<h3 class="anchored" data-anchor-id="validar-i-normalitzar-al-constructor"><strong>6.3.1 Validar i normalitzar al constructor</strong></h3>
+<p>El constructor és l’únic punt per on es creen objectes, així que és el lloc natural per comprovar les precondicions (llançant <code>ValueError</code>, com al tema 3) i per portar les dades a la seva forma canònica.</p>
+</section>
+<section id="atributs-privats-per-convenció" class="level3">
+<h3 class="anchored" data-anchor-id="atributs-privats-per-convenció"><strong>6.3.2 Atributs privats per convenció</strong></h3>
+<p>Python no té atributs realment privats. La convenció és que un nom que comença amb un guió baix, com <code>_num</code>, és <strong>intern</strong>: forma part de la implementació i no s’ha de fer servir fora de la classe.</p>
+<div id="cau-privado" class="callout callout-style-default callout-caution no-icon callout-titled" title="El guió baix és una convenció, no una prohibició">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;4: El guió baix és una convenció, no una prohibició
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Escriure <code>r._den = 0</code> des de fora de la classe és possible: Python no ho impedeix. El guió baix és un avís per a altres programadors (i per als editors, que l’assenyalen): «això és intern; si ho toques, l’invariant deixa d’estar garantit». Un nom amb dos guions baixos, com <code>__den</code>, es transforma internament en <code>_Fraccion__den</code> (<em>name mangling</em>), cosa que fa més difícil l’accés accidental, però tampoc no el prohibeix.</p>
+</div>
+</div>
+</section>
+<section id="propietats-de-només-lectura" class="level3">
+<h3 class="anchored" data-anchor-id="propietats-de-només-lectura"><strong>6.3.3 Propietats de només lectura</strong></h3>
+<p>Perquè l’usuari pugui <em>llegir</em> el numerador i el denominador però no modificar-los, es defineixen <strong>propietats</strong> amb el decorador <code>@property</code>: un mètode que es fa servir amb la sintaxi d’un atribut, sense parèntesis.</p>
+<div>
+<div id="pyodide-13" class="exercise-cell">
+
+</div>
+<script type="pyodide-13-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZnJvbSBtYXRoIGltcG9ydCBnY2RcblxuY2xhc3MgRnJhY2Npb246XG4gICAgXCJcIlwiTsO6bWVybyByYWNpb25hbCBlbiBmb3JtYSBjYW7Ds25pY2E6IGRlbiA+IDAgeSBtY2QobnVtLCBkZW4pID0gMS5cIlwiXCJcblxuICAgIGRlZiBfX2luaXRfXyhzZWxmLCBudW06IGludCwgZGVuOiBpbnQgPSAxKSAtPiBOb25lOlxuICAgICAgICBcIlwiXCJDcmVhIGxhIGZyYWNjacOzbiBudW0vZGVuIGVuIGZvcm1hIGNhbsOzbmljYS5cIlwiXCJcbiAgICAgICAgaWYgZGVuID09IDA6XG4gICAgICAgICAgICByYWlzZSBWYWx1ZUVycm9yKFwiZWwgZGVub21pbmFkb3Igbm8gcHVlZGUgc2VyIDBcIilcbiAgICAgICAgaWYgZGVuIDwgMDpcbiAgICAgICAgICAgIG51bSwgZGVuID0gLW51bSwgLWRlblxuICAgICAgICBtID0gZ2NkKG51bSwgZGVuKVxuICAgICAgICBzZWxmLl9udW0gPSBudW0gLy8gbVxuICAgICAgICBzZWxmLl9kZW4gPSBkZW4gLy8gbVxuXG4gICAgQHByb3BlcnR5XG4gICAgZGVmIG51bShzZWxmKSAtPiBpbnQ6XG4gICAgICAgIFwiXCJcIk51bWVyYWRvciAoc29sbyBsZWN0dXJhKS5cIlwiXCJcbiAgICAgICAgcmV0dXJuIHNlbGYuX251bVxuXG4gICAgQHByb3BlcnR5XG4gICAgZGVmIGRlbihzZWxmKSAtPiBpbnQ6XG4gICAgICAgIFwiXCJcIkRlbm9taW5hZG9yLCBzaWVtcHJlIHBvc2l0aXZvIChzb2xvIGxlY3R1cmEpLlwiXCJcIlxuICAgICAgICByZXR1cm4gc2VsZi5fZGVuXG5cbiAgICBkZWYgdmFsb3Ioc2VsZikgLT4gZmxvYXQ6XG4gICAgICAgIFwiXCJcIkRldnVlbHZlIGxhIGFwcm94aW1hY2nDs24gZGVjaW1hbCBkZSBsYSBmcmFjY2nDs24uXCJcIlwiXG4gICAgICAgIHJldHVybiBzZWxmLl9udW0gLyBzZWxmLl9kZW5cblxuciA9IEZyYWNjaW9uKDYsIC04KVxucHJpbnQoci5udW0sIHIuZGVuKSAgICAgICAgIyAtMyA0OiBmb3JtYSBjYW7Ds25pY2FcbnByaW50KEZyYWNjaW9uKDUpLmRlbikgICAgICMgMTogZWwgZGVub21pbmFkb3IgcG9yIGRlZmVjdG8gZXMgMVxuXG50cnk6XG4gICAgci5kZW4gPSAwXG5leGNlcHQgQXR0cmlidXRlRXJyb3I6XG4gICAgcHJpbnQoXCJkZW4gZXMgZGUgc29sbyBsZWN0dXJhXCIpXG5cbnRyeTpcbiAgICBGcmFjY2lvbigxLCAwKVxuZXhjZXB0IFZhbHVlRXJyb3IgYXMgZTpcbiAgICBwcmludChcIkVycm9yOlwiLCBlKSAgICAgIyBFcnJvcjogZWwgZGVub21pbmFkb3Igbm8gcHVlZGUgc2VyIDAifQ==
+</script>
+</div>
+<p>Ara l’única manera d’obtenir una <code>Fraccion</code> és a través del constructor, que sempre deixa l’objecte en forma canònica, i cap mètode no la modifica després. L’invariant es compleix sempre: una fracció amb denominador zero o sense simplificar ja no pot existir (llevat que algú toqui <code>_den</code> expressament).</p>
+<div id="wrn-invariante" class="callout callout-style-default callout-warning no-icon callout-titled" title="Comprovar l'invariant durant el desenvolupament">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tècnica de Depuració&nbsp;2: Comprovar l’invariant durant el desenvolupament
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mentre es programa una classe, és útil afegir un mètode que verifiqui l’invariant amb <code>assert</code> (tema 5) i cridar-lo al final del constructor i de cada mètode que modifiqui l’objecte:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _comprobar_invariante(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="va">self</span>._den <span class="op">&gt;</span> <span class="dv">0</span>, <span class="st">"el denominador debe ser positivo"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> gcd(<span class="va">self</span>._num, <span class="va">self</span>._den) <span class="op">==</span> <span class="dv">1</span>, <span class="st">"la fracción no es irreducible"</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Si algun canvi al codi trenca l’invariant, l’<code>assert</code> ho detecta en el moment exacte en què passa.</p>
+</div>
+</div>
+</section>
+<section id="propietats-calculades-i-amb-validació" class="level3">
+<h3 class="anchored" data-anchor-id="propietats-calculades-i-amb-validació"><strong>6.3.4 Propietats calculades i amb validació</strong></h3>
+<p>Una propietat també serveix per a valors que es <strong>calculen</strong> a partir de l’estat, i pot tenir un <em>setter</em> que <strong>validi</strong> cada modificació. Vegem-ho amb un cercle del pla:</p>
+<div>
+<div id="pyodide-14" class="exercise-cell">
+
+</div>
+<script type="pyodide-14-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxuY2xhc3MgQ2lyY3VsbzpcbiAgICBcIlwiXCJDw61yY3VsbyBjZXJyYWRvIGRlIGNlbnRybyAoYSwgYikgeSByYWRpbyByID4gMC5cIlwiXCJcblxuICAgIGRlZiBfX2luaXRfXyhzZWxmLCBjZW50cm86IHR1cGxlW2Zsb2F0LCBmbG9hdF0sIHJhZGlvOiBmbG9hdCkgLT4gTm9uZTpcbiAgICAgICAgc2VsZi5jZW50cm8gPSBjZW50cm9cbiAgICAgICAgc2VsZi5yYWRpbyA9IHJhZGlvICAgICAgICAgICAgIyBwYXNhIHBvciBlbCBzZXR0ZXI6IHNlIHZhbGlkYVxuXG4gICAgQHByb3BlcnR5XG4gICAgZGVmIHJhZGlvKHNlbGYpIC0+IGZsb2F0OlxuICAgICAgICBcIlwiXCJSYWRpbyBkZWwgY8OtcmN1bG8uXCJcIlwiXG4gICAgICAgIHJldHVybiBzZWxmLl9yYWRpb1xuXG4gICAgQHJhZGlvLnNldHRlclxuICAgIGRlZiByYWRpbyhzZWxmLCB2YWxvcjogZmxvYXQpIC0+IE5vbmU6XG4gICAgICAgIGlmIHZhbG9yIDw9IDA6XG4gICAgICAgICAgICByYWlzZSBWYWx1ZUVycm9yKFwiZWwgcmFkaW8gZGViZSBzZXIgcG9zaXRpdm9cIilcbiAgICAgICAgc2VsZi5fcmFkaW8gPSB2YWxvclxuXG4gICAgQHByb3BlcnR5XG4gICAgZGVmIGFyZWEoc2VsZikgLT4gZmxvYXQ6XG4gICAgICAgIFwiXCJcIsOBcmVhOiBzZSBjYWxjdWxhIGVuIGNhZGEgY29uc3VsdGEsIHNpZW1wcmUgY29oZXJlbnRlIGNvbiBlbCByYWRpby5cIlwiXCJcbiAgICAgICAgcmV0dXJuIG1hdGgucGkgKiBzZWxmLl9yYWRpbyAqKiAyXG5cbiAgICBkZWYgY29udGllbmUoc2VsZiwgcHVudG86IHR1cGxlW2Zsb2F0LCBmbG9hdF0pIC0+IGJvb2w6XG4gICAgICAgIFwiXCJcIkRldnVlbHZlIFRydWUgc2kgZWwgcHVudG8gcGVydGVuZWNlIGFsIGPDrXJjdWxvLlwiXCJcIlxuICAgICAgICB4LCB5ID0gcHVudG9cbiAgICAgICAgYSwgYiA9IHNlbGYuY2VudHJvXG4gICAgICAgIHJldHVybiAoeCAtIGEpICoqIDIgKyAoeSAtIGIpICoqIDIgPD0gc2VsZi5fcmFkaW8gKiogMlxuXG5jID0gQ2lyY3VsbygoMCwgMCksIDEpXG5wcmludChjLmNvbnRpZW5lKCgwLjUsIDAuNSkpKSAgICAjIFRydWVcbnByaW50KGMuY29udGllbmUoKDEsIDEpKSkgICAgICAgICMgRmFsc2VcbmMucmFkaW8gPSAyICAgICAgICAgICAgICAgICAgICAgICMgZWwgc2V0dGVyIHZhbGlkYSBlbCBudWV2byB2YWxvclxucHJpbnQocm91bmQoYy5hcmVhLCA0KSkgICAgICAgICAgIyAxMi41NjY0ID0gNM+AXG5cbnRyeTpcbiAgICBjLnJhZGlvID0gLTFcbmV4Y2VwdCBWYWx1ZUVycm9yIGFzIGU6XG4gICAgcHJpbnQoXCJFcnJvcjpcIiwgZSkgICAgICAgICAgICMgRXJyb3I6IGVsIHJhZGlvIGRlYmUgc2VyIHBvc2l0aXZvIn0=
+</script>
+</div>
+<p><code>area</code> no és un atribut desat, sinó un valor que es calcula cada vegada que es consulta. Per això mai no pot quedar desactualitzat respecte del radi.</p>
+<div id="nte-montecarlo" class="callout callout-style-default callout-note no-icon callout-titled" title="Estimació de π pel mètode de Monte Carlo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;1: Estimació de π pel mètode de Monte Carlo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si es trien punts a l’atzar al quadrat <span class="math inline">\([-1, 1]^2\)</span>, la proporció dels que cauen al cercle unitat tendeix a <span class="math inline">\(\pi r^2 / (2r)^2 = \pi/4\)</span>. El mètode <code>contiene</code> permet estimar <span class="math inline">\(\pi\)</span>:</p>
+<div>
+<div id="pyodide-15" class="exercise-cell">
+
+</div>
+<script type="pyodide-15-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IHJhbmRvbVxuXG5yYW5kb20uc2VlZCgyMzIwMCkgICAgICAgICAgICAgICAgICAgICMgc2VtaWxsYSBmaWphOiByZXN1bHRhZG8gcmVwcm9kdWNpYmxlXG51bmlkYWQgPSBDaXJjdWxvKCgwLCAwKSwgMSlcbm4gPSAxMDBfMDAwXG5kZW50cm8gPSBzdW0odW5pZGFkLmNvbnRpZW5lKChyYW5kb20udW5pZm9ybSgtMSwgMSksIHJhbmRvbS51bmlmb3JtKC0xLCAxKSkpXG4gICAgICAgICAgICAgZm9yIF8gaW4gcmFuZ2UobikpXG5wcmludChmXCLPgCDiiYggezQgKiBkZW50cm8gLyBuOi40Zn1cIikifQ==
+</script>
+</div>
+<p>L’error d’aquesta estimació és de l’ordre de <span class="math inline">\(1/\sqrt{n}\)</span>: per guanyar una xifra decimal cal multiplicar per 100 el nombre de punts.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="mètodes-màgics-i-sobrecàrrega-doperadors" class="level2">
+<h2 class="anchored" data-anchor-id="mètodes-màgics-i-sobrecàrrega-doperadors">6.4. Mètodes màgics i sobrecàrrega d’operadors</h2>
+<p>La nostra <code>Fraccion</code> ja manté el seu invariant, però encara és incòmoda de fer servir: <code>print(r)</code> mostra alguna cosa com <code>&lt;__main__.Fraccion object at 0x7f...&gt;</code>, <code>Fraccion(1, 2) == Fraccion(2, 4)</code> dona <code>False</code> i cal escriure <code>a.suma(b)</code> en lloc de <code>a + b</code>. Els <strong>mètodes màgics</strong> resolen tot això.</p>
+<div id="tip-modelo-datos" class="callout callout-style-default callout-tip no-icon callout-titled" title="Mètodes màgics">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;7: Mètodes màgics
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Els <strong>mètodes màgics</strong> (o <strong>mètodes especials</strong>, en anglès <em>dunder methods</em> pels dobles guions baixos) són mètodes amb noms de la forma <code>__nom__</code> que Python crida automàticament en avaluar operadors i funcions predefinides <span class="citation" data-cites="pythondatamodel">(<a href="#ref-pythondatamodel" role="doc-biblioref">Python Software Foundation 2025</a>)</span>. Per exemple:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">S’escriu</th>
+<th style="text-align: left;">Python executa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>Fraccion(1, 2)</code></td>
+<td style="text-align: left;"><code>__init__</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>repr(r)</code>, <code>print(r)</code></td>
+<td style="text-align: left;"><code>r.__repr__()</code>, <code>r.__str__()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>a + b</code>, <code>a * b</code></td>
+<td style="text-align: left;"><code>a.__add__(b)</code>, <code>a.__mul__(b)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>a == b</code>, <code>a &lt; b</code></td>
+<td style="text-align: left;"><code>a.__eq__(b)</code>, <code>a.__lt__(b)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>-a</code></td>
+<td style="text-align: left;"><code>a.__neg__()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>hash(a)</code></td>
+<td style="text-align: left;"><code>a.__hash__()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>float(a)</code></td>
+<td style="text-align: left;"><code>a.__float__()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>p(x)</code></td>
+<td style="text-align: left;"><code>p.__call__(x)</code></td>
+</tr>
+</tbody>
+</table>
+<p>Definir aquests mètodes en una classe s’anomena <strong>sobrecàrrega d’operadors</strong>: l’operador <code>+</code>, que ja funcionava amb <code>int</code>, <code>float</code>, <code>str</code> i <code>list</code>, passa a funcionar també amb els nostres objectes.</p>
+</div>
+</div>
+<p>És la mateixa idea que en matemàtiques, on el símbol <span class="math inline">\(+\)</span> denota operacions diferents a <span class="math inline">\(\mathbb{Z}\)</span>, a <span class="math inline">\(\mathbb{R}^n\)</span>, a l’anell de polinomis o en un grup abstracte. El significat el dona el tipus dels operands.</p>
+<section id="representació-__repr__-i-__str__" class="level3">
+<h3 class="anchored" data-anchor-id="representació-__repr__-i-__str__"><strong>6.4.1 Representació: <code>__repr__</code> i <code>__str__</code></strong></h3>
+<ul>
+<li><code>__repr__</code> retorna una representació <strong>sense ambigüitats</strong>, pensada per al programador. Idealment és codi Python que recrea l’objecte: <code>Fraccion(3, 4)</code>. És la que es veu a l’intèrpret i dins de llistes.</li>
+<li><code>__str__</code> retorna una representació <strong>llegible</strong>, pensada per a l’usuari: <code>3/4</code>. És la que fan servir <code>print</code> i les f-strings. Si no es defineix, Python fa servir <code>__repr__</code>.</li>
+</ul>
+</section>
+<section id="igualtat-i-hash-__eq__-i-__hash__" class="level3">
+<h3 class="anchored" data-anchor-id="igualtat-i-hash-__eq__-i-__hash__"><strong>6.4.2 Igualtat i <em>hash</em>: <code>__eq__</code> i <code>__hash__</code></strong></h3>
+<p>Gràcies a la forma canònica, dues fraccions són iguals si i només si tenen el mateix numerador i el mateix denominador. Si l’altre operand no és una fracció (ni un enter, que convertim), el mètode retorna el valor especial <code>NotImplemented</code>, que indica a Python que aquesta classe no sap fer la comparació.</p>
+<div id="cau-hash" class="callout callout-style-default callout-caution no-icon callout-titled" title="Definir `__eq__` sense `__hash__`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;5: Definir <code>__eq__</code> sense <code>__hash__</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Els conjunts i les claus dels diccionaris (tema 4) fan servir la funció <code>hash</code> per localitzar els elements. Python exigeix la regla <span class="math display">\[
+a = b \implies \operatorname{hash}(a) = \operatorname{hash}(b).
+\]</span> Per això, <strong>si una classe defineix <code>__eq__</code> i no defineix <code>__hash__</code>, els seus objectes deixen de ser <em>hashables</em></strong>: <code>{Fraccion(1, 2)}</code> llança <code>TypeError: unhashable type</code>. Per a objectes que no canvien després de crear-se, com les nostres fraccions, n’hi ha prou de definir <code>__hash__</code> a partir de les mateixes dades que fa servir <code>__eq__</code>. Els objectes que es poden modificar no han de ser <em>hashables</em>: si canviés el seu valor dins d’un conjunt, el conjunt quedaria corrupte.</p>
+</div>
+</div>
+</section>
+<section id="operadors-aritmètics" class="level3">
+<h3 class="anchored" data-anchor-id="operadors-aritmètics"><strong>6.4.3 Operadors aritmètics</strong></h3>
+<p>Per a <code>a + b</code>, Python crida <code>a.__add__(b)</code>. Si aquest mètode retorna <code>NotImplemented</code> (per exemple, a <code>2 + Fraccion(1, 3)</code>, perquè <code>int</code> no sap sumar fraccions), Python prova amb el <strong>mètode reflectit</strong> de l’operand dret: <code>b.__radd__(a)</code>. Definir <code>__radd__</code> permet, per tant, que funcionin <code>2 + r</code> i també <code>sum(...)</code>, que comença sumant des de l’enter <code>0</code>.</p>
+</section>
+<section id="comparació-dordre-__lt__-i-__le__" class="level3">
+<h3 class="anchored" data-anchor-id="comparació-dordre-__lt__-i-__le__"><strong>6.4.4 Comparació d’ordre: <code>__lt__</code> i <code>__le__</code></strong></h3>
+<p>Com que el denominador és sempre positiu, <span class="math display">\[
+\frac{a}{b} &lt; \frac{c}{d} \iff a\,d &lt; c\,b.
+\]</span> N’hi ha prou de definir <code>__lt__</code> perquè funcionin <code>sorted</code>, <code>min</code> i <code>max</code> entre fraccions. Per disposar també de <code>&lt;=</code>, <code>&gt;</code> i <code>&gt;=</code> es defineixen <code>__le__</code>, <code>__gt__</code> i <code>__ge__</code> (o es fa servir el decorador <code>functools.total_ordering</code>, que els dedueix a partir de <code>__eq__</code> i <code>__lt__</code>). Com amb l’aritmètica, les comparacions amb un enter a l’esquerra, com <code>1 &lt; r</code>, necessiten el mètode «reflectit»: Python tradueix <code>1 &lt; r</code> en <code>r &gt; 1</code>, és a dir, <code>r.__gt__(1)</code>.</p>
+</section>
+<section id="la-classe-fraccion-completa" class="level3">
+<h3 class="anchored" data-anchor-id="la-classe-fraccion-completa"><strong>6.4.5 La classe <code>Fraccion</code> completa</strong></h3>
+<p>Reunim tot l’anterior a la versió final de la classe:</p>
+<div>
+<div id="pyodide-16" class="exercise-cell">
+
+</div>
+<script type="pyodide-16-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZnJvbSBtYXRoIGltcG9ydCBnY2RcblxuY2xhc3MgRnJhY2Npb246XG4gICAgXCJcIlwiTsO6bWVybyByYWNpb25hbCBlbiBmb3JtYSBjYW7Ds25pY2E6IGRlbiA+IDAgeSBtY2QobnVtLCBkZW4pID0gMS5cIlwiXCJcblxuICAgIGRlZiBfX2luaXRfXyhzZWxmLCBudW06IGludCwgZGVuOiBpbnQgPSAxKSAtPiBOb25lOlxuICAgICAgICBcIlwiXCJDcmVhIGxhIGZyYWNjacOzbiBudW0vZGVuIGVuIGZvcm1hIGNhbsOzbmljYS5cIlwiXCJcbiAgICAgICAgaWYgZGVuID09IDA6XG4gICAgICAgICAgICByYWlzZSBWYWx1ZUVycm9yKFwiZWwgZGVub21pbmFkb3Igbm8gcHVlZGUgc2VyIDBcIilcbiAgICAgICAgaWYgZGVuIDwgMDpcbiAgICAgICAgICAgIG51bSwgZGVuID0gLW51bSwgLWRlblxuICAgICAgICBtID0gZ2NkKG51bSwgZGVuKVxuICAgICAgICBzZWxmLl9udW0gPSBudW0gLy8gbVxuICAgICAgICBzZWxmLl9kZW4gPSBkZW4gLy8gbVxuXG4gICAgQHByb3BlcnR5XG4gICAgZGVmIG51bShzZWxmKSAtPiBpbnQ6XG4gICAgICAgIFwiXCJcIk51bWVyYWRvciAoc29sbyBsZWN0dXJhKS5cIlwiXCJcbiAgICAgICAgcmV0dXJuIHNlbGYuX251bVxuXG4gICAgQHByb3BlcnR5XG4gICAgZGVmIGRlbihzZWxmKSAtPiBpbnQ6XG4gICAgICAgIFwiXCJcIkRlbm9taW5hZG9yLCBzaWVtcHJlIHBvc2l0aXZvIChzb2xvIGxlY3R1cmEpLlwiXCJcIlxuICAgICAgICByZXR1cm4gc2VsZi5fZGVuXG5cbiAgICAjIC0tLS0tLS0tLS0gcmVwcmVzZW50YWNpw7NuIC0tLS0tLS0tLS1cbiAgICBkZWYgX19yZXByX18oc2VsZikgLT4gc3RyOlxuICAgICAgICByZXR1cm4gZlwiRnJhY2Npb24oe3NlbGYuX251bX0sIHtzZWxmLl9kZW59KVwiXG5cbiAgICBkZWYgX19zdHJfXyhzZWxmKSAtPiBzdHI6XG4gICAgICAgIGlmIHNlbGYuX2RlbiA9PSAxOlxuICAgICAgICAgICAgcmV0dXJuIHN0cihzZWxmLl9udW0pXG4gICAgICAgIHJldHVybiBmXCJ7c2VsZi5fbnVtfS97c2VsZi5fZGVufVwiXG5cbiAgICBkZWYgX19mbG9hdF9fKHNlbGYpIC0+IGZsb2F0OlxuICAgICAgICByZXR1cm4gc2VsZi5fbnVtIC8gc2VsZi5fZGVuXG5cbiAgICAjIC0tLS0tLS0tLS0gY29udmVyc2nDs24gZGUgZW50ZXJvcyAtLS0tLS0tLS0tXG4gICAgQHN0YXRpY21ldGhvZFxuICAgIGRlZiBfY29udmVydGlyKG90cmE6IG9iamVjdCkgLT4gXCJGcmFjY2lvbiB8IE5vbmVcIjpcbiAgICAgICAgXCJcIlwiRGV2dWVsdmUgb3RyYSBjb21vIEZyYWNjaW9uIHNpIGVzIEZyYWNjaW9uIG8gaW50OyBzaSBubywgTm9uZS5cIlwiXCJcbiAgICAgICAgaWYgaXNpbnN0YW5jZShvdHJhLCBGcmFjY2lvbik6XG4gICAgICAgICAgICByZXR1cm4gb3RyYVxuICAgICAgICBpZiBpc2luc3RhbmNlKG90cmEsIGludCk6XG4gICAgICAgICAgICByZXR1cm4gRnJhY2Npb24ob3RyYSlcbiAgICAgICAgcmV0dXJuIE5vbmVcblxuICAgICMgLS0tLS0tLS0tLSBpZ3VhbGRhZCB5IGhhc2ggLS0tLS0tLS0tLVxuICAgIGRlZiBfX2VxX18oc2VsZiwgb3RyYTogb2JqZWN0KSAtPiBib29sOlxuICAgICAgICBvdHJhID0gc2VsZi5fY29udmVydGlyKG90cmEpXG4gICAgICAgIGlmIG90cmEgaXMgTm9uZTpcbiAgICAgICAgICAgIHJldHVybiBOb3RJbXBsZW1lbnRlZFxuICAgICAgICByZXR1cm4gc2VsZi5fbnVtID09IG90cmEuX251bSBhbmQgc2VsZi5fZGVuID09IG90cmEuX2RlblxuXG4gICAgZGVmIF9faGFzaF9fKHNlbGYpIC0+IGludDpcbiAgICAgICAgaWYgc2VsZi5fZGVuID09IDE6XG4gICAgICAgICAgICByZXR1cm4gaGFzaChzZWxmLl9udW0pICAgICMgRnJhY2Npb24oMikgPT0gMjogZGViZW4gdGVuZXIgZWwgbWlzbW8gaGFzaFxuICAgICAgICByZXR1cm4gaGFzaCgoc2VsZi5fbnVtLCBzZWxmLl9kZW4pKVxuXG4gICAgIyAtLS0tLS0tLS0tIG9yZGVuIC0tLS0tLS0tLS1cbiAgICBkZWYgX19sdF9fKHNlbGYsIG90cmE6IG9iamVjdCkgLT4gYm9vbDpcbiAgICAgICAgb3RyYSA9IHNlbGYuX2NvbnZlcnRpcihvdHJhKVxuICAgICAgICBpZiBvdHJhIGlzIE5vbmU6XG4gICAgICAgICAgICByZXR1cm4gTm90SW1wbGVtZW50ZWRcbiAgICAgICAgcmV0dXJuIHNlbGYuX251bSAqIG90cmEuX2RlbiA8IG90cmEuX251bSAqIHNlbGYuX2RlblxuXG4gICAgZGVmIF9fbGVfXyhzZWxmLCBvdHJhOiBvYmplY3QpIC0+IGJvb2w6XG4gICAgICAgIG90cmEgPSBzZWxmLl9jb252ZXJ0aXIob3RyYSlcbiAgICAgICAgaWYgb3RyYSBpcyBOb25lOlxuICAgICAgICAgICAgcmV0dXJuIE5vdEltcGxlbWVudGVkXG4gICAgICAgIHJldHVybiBzZWxmLl9udW0gKiBvdHJhLl9kZW4gPD0gb3RyYS5fbnVtICogc2VsZi5fZGVuXG5cbiAgICBkZWYgX19ndF9fKHNlbGYsIG90cmE6IG9iamVjdCkgLT4gYm9vbDpcbiAgICAgICAgb3RyYSA9IHNlbGYuX2NvbnZlcnRpcihvdHJhKVxuICAgICAgICBpZiBvdHJhIGlzIE5vbmU6XG4gICAgICAgICAgICByZXR1cm4gTm90SW1wbGVtZW50ZWRcbiAgICAgICAgcmV0dXJuIG90cmEgPCBzZWxmXG5cbiAgICBkZWYgX19nZV9fKHNlbGYsIG90cmE6IG9iamVjdCkgLT4gYm9vbDpcbiAgICAgICAgb3RyYSA9IHNlbGYuX2NvbnZlcnRpcihvdHJhKVxuICAgICAgICBpZiBvdHJhIGlzIE5vbmU6XG4gICAgICAgICAgICByZXR1cm4gTm90SW1wbGVtZW50ZWRcbiAgICAgICAgcmV0dXJuIG90cmEgPD0gc2VsZlxuXG4gICAgIyAtLS0tLS0tLS0tIGFyaXRtw6l0aWNhIC0tLS0tLS0tLS1cbiAgICBkZWYgX19uZWdfXyhzZWxmKSAtPiBcIkZyYWNjaW9uXCI6XG4gICAgICAgIHJldHVybiBGcmFjY2lvbigtc2VsZi5fbnVtLCBzZWxmLl9kZW4pXG5cbiAgICBkZWYgX19hZGRfXyhzZWxmLCBvdHJhOiBvYmplY3QpIC0+IFwiRnJhY2Npb25cIjpcbiAgICAgICAgb3RyYSA9IHNlbGYuX2NvbnZlcnRpcihvdHJhKVxuICAgICAgICBpZiBvdHJhIGlzIE5vbmU6XG4gICAgICAgICAgICByZXR1cm4gTm90SW1wbGVtZW50ZWRcbiAgICAgICAgcmV0dXJuIEZyYWNjaW9uKHNlbGYuX251bSAqIG90cmEuX2RlbiArIG90cmEuX251bSAqIHNlbGYuX2RlbixcbiAgICAgICAgICAgICAgICAgICAgICAgIHNlbGYuX2RlbiAqIG90cmEuX2RlbilcblxuICAgIGRlZiBfX3JhZGRfXyhzZWxmLCBvdHJhOiBvYmplY3QpIC0+IFwiRnJhY2Npb25cIjpcbiAgICAgICAgcmV0dXJuIHNlbGYgKyBvdHJhICAgICAgICAgICAgICAgICMgbGEgc3VtYSBlcyBjb25tdXRhdGl2YVxuXG4gICAgZGVmIF9fc3ViX18oc2VsZiwgb3RyYTogb2JqZWN0KSAtPiBcIkZyYWNjaW9uXCI6XG4gICAgICAgIG90cmEgPSBzZWxmLl9jb252ZXJ0aXIob3RyYSlcbiAgICAgICAgaWYgb3RyYSBpcyBOb25lOlxuICAgICAgICAgICAgcmV0dXJuIE5vdEltcGxlbWVudGVkXG4gICAgICAgIHJldHVybiBzZWxmICsgKC1vdHJhKVxuXG4gICAgZGVmIF9fcnN1Yl9fKHNlbGYsIG90cmE6IG9iamVjdCkgLT4gXCJGcmFjY2lvblwiOlxuICAgICAgICByZXR1cm4gKC1zZWxmKSArIG90cmEgICAgICAgICAgICAgIyBvdHJhIC0gc2VsZlxuXG4gICAgZGVmIF9fbXVsX18oc2VsZiwgb3RyYTogb2JqZWN0KSAtPiBcIkZyYWNjaW9uXCI6XG4gICAgICAgIG90cmEgPSBzZWxmLl9jb252ZXJ0aXIob3RyYSlcbiAgICAgICAgaWYgb3RyYSBpcyBOb25lOlxuICAgICAgICAgICAgcmV0dXJuIE5vdEltcGxlbWVudGVkXG4gICAgICAgIHJldHVybiBGcmFjY2lvbihzZWxmLl9udW0gKiBvdHJhLl9udW0sIHNlbGYuX2RlbiAqIG90cmEuX2RlbilcblxuICAgIGRlZiBfX3JtdWxfXyhzZWxmLCBvdHJhOiBvYmplY3QpIC0+IFwiRnJhY2Npb25cIjpcbiAgICAgICAgcmV0dXJuIHNlbGYgKiBvdHJhICAgICAgICAgICAgICAgICMgZWwgcHJvZHVjdG8gZXMgY29ubXV0YXRpdm9cblxuICAgIGRlZiBfX3RydWVkaXZfXyhzZWxmLCBvdHJhOiBvYmplY3QpIC0+IFwiRnJhY2Npb25cIjpcbiAgICAgICAgb3RyYSA9IHNlbGYuX2NvbnZlcnRpcihvdHJhKVxuICAgICAgICBpZiBvdHJhIGlzIE5vbmU6XG4gICAgICAgICAgICByZXR1cm4gTm90SW1wbGVtZW50ZWRcbiAgICAgICAgaWYgb3RyYS5fbnVtID09IDA6XG4gICAgICAgICAgICByYWlzZSBaZXJvRGl2aXNpb25FcnJvcihcImRpdmlzacOzbiBkZSB1bmEgZnJhY2Npw7NuIHBvciBjZXJvXCIpXG4gICAgICAgIHJldHVybiBGcmFjY2lvbihzZWxmLl9udW0gKiBvdHJhLl9kZW4sIHNlbGYuX2RlbiAqIG90cmEuX251bSlcblxuICAgIGRlZiBfX3J0cnVlZGl2X18oc2VsZiwgb3RyYTogb2JqZWN0KSAtPiBcIkZyYWNjaW9uXCI6XG4gICAgICAgIG90cmEgPSBzZWxmLl9jb252ZXJ0aXIob3RyYSlcbiAgICAgICAgaWYgb3RyYSBpcyBOb25lOlxuICAgICAgICAgICAgcmV0dXJuIE5vdEltcGxlbWVudGVkXG4gICAgICAgIHJldHVybiBvdHJhIC8gc2VsZiAgICAgICAgICAgICAgICAjIG90cmEgLyBzZWxmIn0=
+</script>
+</div>
+<p>Ara les fraccions es comporten com qualsevol tipus numèric de Python:</p>
+<div>
+<div id="pyodide-17" class="exercise-cell">
+
+</div>
+<script type="pyodide-17-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSA9IEZyYWNjaW9uKDEsIDIpXG5iID0gRnJhY2Npb24oMSwgMylcbnByaW50KGEgKyBiLCBhIC0gYiwgYSAqIGIsIGEgLyBiKSAgICAgICAgIyA1LzYgMS82IDEvNiAzLzJcbnByaW50KDIgKyBhLCAxIC0gYSwgMyAqIGIsIDEgLyBiKSAgICAgICAgIyA1LzIgMS8yIDEgM1xucHJpbnQoRnJhY2Npb24oMiwgNCkgPT0gYSkgICAgICAgICAgICAgICAjIFRydWVcbnByaW50KEZyYWNjaW9uKDQsIDIpID09IDIpICAgICAgICAgICAgICAgIyBUcnVlXG5wcmludChhIDwgYiwgbWluKGEsIGIpKSAgICAgICAgICAgICAgICAgICMgRmFsc2UgMS8zXG5wcmludChyZXByKGEpLCBmbG9hdChhKSkgICAgICAgICAgICAgICAgICMgRnJhY2Npb24oMSwgMikgMC41XG5wcmludCh7RnJhY2Npb24oMSwgMiksIEZyYWNjaW9uKDIsIDQpLCBGcmFjY2lvbigzLCA2KX0pICAgIyB1biBzb2xvIGVsZW1lbnRvIn0=
+</script>
+</div>
+<div id="imp-aritmetica-exacta" class="callout callout-style-default callout-important no-icon callout-titled" title="Aritmètica exacta enfront de coma flotant">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;6: Aritmètica exacta enfront de coma flotant
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Els <code>float</code> acumulen errors d’arrodoniment (tema 2); les fraccions no:</p>
+<div>
+<div id="pyodide-18" class="exercise-cell">
+
+</div>
+<script type="pyodide-18-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoc3VtKFswLjFdICogMTApID09IDEpICAgICAgICAgICAgICAgICAgIyBGYWxzZVxucHJpbnQoc3VtKFtGcmFjY2lvbigxLCAxMCldICogMTApID09IDEpICAgICAgIyBUcnVlIn0=
+</script>
+</div>
+<p><code>sum</code> comença a l’enter <code>0</code>; la primera suma, <code>0 + Fraccion(1, 10)</code>, funciona gràcies a <code>__radd__</code>.</p>
+</div>
+</div>
+<div id="nte-sumas-exactas" class="callout callout-style-default callout-note no-icon callout-titled" title="Sumes exactes: sèrie telescòpica i nombres harmònics">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;2: Sumes exactes: sèrie telescòpica i nombres harmònics
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La sèrie telescòpica <span class="math display">\[
+\sum_{k=1}^{n} \frac{1}{k(k+1)} = \sum_{k=1}^{n} \left(\frac{1}{k} - \frac{1}{k+1}\right) = 1 - \frac{1}{n+1} = \frac{n}{n+1}
+\]</span> es pot comprovar exactament per a qualsevol <span class="math inline">\(n\)</span>. També podem calcular els <strong>nombres harmònics</strong> <span class="math inline">\(H_n = \sum_{k=1}^{n} 1/k\)</span> com a fraccions exactes:</p>
+<div>
+<div id="pyodide-19" class="exercise-cell">
+
+</div>
+<script type="pyodide-19-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibiA9IDEwXG50ZWxlc2NvcGljYSA9IHN1bShGcmFjY2lvbigxLCBrICogKGsgKyAxKSkgZm9yIGsgaW4gcmFuZ2UoMSwgbiArIDEpKVxucHJpbnQodGVsZXNjb3BpY2EpICAgICAgICAgICAgICAgICAgICAgICAgICAgIyAxMC8xMVxucHJpbnQodGVsZXNjb3BpY2EgPT0gRnJhY2Npb24obiwgbiArIDEpKSAgICAgIyBUcnVlXG5cbmFybW9uaWNvID0gc3VtKEZyYWNjaW9uKDEsIGspIGZvciBrIGluIHJhbmdlKDEsIG4gKyAxKSlcbnByaW50KGFybW9uaWNvLCBcIuKJiFwiLCBmbG9hdChhcm1vbmljbykpICAgICAgICAjIDczODEvMjUyMCDiiYggMi45Mjg5NjgyNTM5NjgyNTM4In0=
+</script>
+</div>
+</div>
+</div>
+<div id="nte-farey" class="callout callout-style-default callout-note no-icon callout-titled" title="La successió de Farey">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;3: La successió de Farey
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>successió de Farey</strong> d’ordre <span class="math inline">\(n\)</span>, <span class="math inline">\(F_n\)</span>, és la llista ordenada de les fraccions irreductibles de <span class="math inline">\([0, 1]\)</span> amb denominador menor o igual que <span class="math inline">\(n\)</span>. Se’n coneix la longitud: <span class="math display">\[
+|F_n| = 1 + \sum_{k=1}^{n} \varphi(k),
+\]</span> on <span class="math inline">\(\varphi\)</span> és la funció totient d’Euler (exercicis del tema 3). Gràcies a <code>__hash__</code>, un conjunt elimina les fraccions repetides (<span class="math inline">\(2/4 = 1/2\)</span>), i gràcies a <code>__lt__</code>, <code>sorted</code> les ordena:</p>
+<div>
+<div id="pyodide-20" class="exercise-cell">
+
+</div>
+<script type="pyodide-20-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGZhcmV5KG46IGludCkgLT4gbGlzdFtGcmFjY2lvbl06XG4gICAgXCJcIlwiU3VjZXNpw7NuIGRlIEZhcmV5IGRlIG9yZGVuIG4uXCJcIlwiXG4gICAgcmV0dXJuIHNvcnRlZCh7RnJhY2Npb24oYSwgYikgZm9yIGIgaW4gcmFuZ2UoMSwgbiArIDEpIGZvciBhIGluIHJhbmdlKGIgKyAxKX0pXG5cbnByaW50KFwiIFwiLmpvaW4oc3RyKGYpIGZvciBmIGluIGZhcmV5KDUpKSlcbiMgMCAxLzUgMS80IDEvMyAyLzUgMS8yIDMvNSAyLzMgMy80IDQvNSAxXG5wcmludChsZW4oZmFyZXkoNSkpKSAgICAgIyAxMSA9IDEgKyAoMSArIDEgKyAyICsgMiArIDQpIn0=
+</script>
+</div>
+</div>
+</div>
+</section>
+<section id="la-classe-polinomio-amb-operadors" class="level3">
+<h3 class="anchored" data-anchor-id="la-classe-polinomio-amb-operadors"><strong>6.4.6 La classe <code>Polinomio</code> amb operadors</strong></h3>
+<p>Apliquem el mateix als polinomis. Afegim suma, resta i producte (<code>+</code>, <code>-</code>, <code>*</code>), igualtat, representació i el mètode <code>__call__</code>, que permet escriure <code>p(x)</code> com en matemàtiques. Un operand que no sigui un <code>Polinomio</code> (un nombre, una fracció…) es tracta com un polinomi constant.</p>
+<div>
+<div id="pyodide-21" class="exercise-cell">
+
+</div>
+<script type="pyodide-21-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiY2xhc3MgUG9saW5vbWlvOlxuICAgIFwiXCJcIlBvbGlub21pbyBhMCArIGExIHggKyAuLi4gKyBhbiB4Xm4sIGd1YXJkYWRvIGNvbW8gbGlzdGEgZGUgY29lZmljaWVudGVzLlwiXCJcIlxuXG4gICAgZGVmIF9faW5pdF9fKHNlbGYsIGNvZWZzOiBsaXN0KSAtPiBOb25lOlxuICAgICAgICBcIlwiXCJjb2Vmc1trXSBlcyBlbCBjb2VmaWNpZW50ZSBkZSB4XmsuXCJcIlwiXG4gICAgICAgIGNvZWZzID0gbGlzdChjb2VmcylcbiAgICAgICAgd2hpbGUgbGVuKGNvZWZzKSA+IDEgYW5kIGNvZWZzWy0xXSA9PSAwOlxuICAgICAgICAgICAgY29lZnMucG9wKClcbiAgICAgICAgaWYgbm90IGNvZWZzOlxuICAgICAgICAgICAgY29lZnMgPSBbMF1cbiAgICAgICAgc2VsZi5fY29lZnMgPSBjb2Vmc1xuXG4gICAgQHByb3BlcnR5XG4gICAgZGVmIGNvZWZzKHNlbGYpIC0+IGxpc3Q6XG4gICAgICAgIFwiXCJcIkNvcGlhIGRlIGxhIGxpc3RhIGRlIGNvZWZpY2llbnRlcy5cIlwiXCJcbiAgICAgICAgcmV0dXJuIGxpc3Qoc2VsZi5fY29lZnMpXG5cbiAgICBkZWYgZ3JhZG8oc2VsZikgLT4gaW50OlxuICAgICAgICBcIlwiXCJHcmFkbyBkZWwgcG9saW5vbWlvIChhcXXDrSwgMCBwYXJhIGVsIHBvbGlub21pbyBudWxvKS5cIlwiXCJcbiAgICAgICAgcmV0dXJuIGxlbihzZWxmLl9jb2VmcykgLSAxXG5cbiAgICBkZWYgZGVyaXZhZGEoc2VsZikgLT4gXCJQb2xpbm9taW9cIjpcbiAgICAgICAgXCJcIlwiRGV2dWVsdmUgZWwgcG9saW5vbWlvIGRlcml2YWRhIHAnKHgpLlwiXCJcIlxuICAgICAgICByZXR1cm4gUG9saW5vbWlvKFtrICogYSBmb3IgaywgYSBpbiBlbnVtZXJhdGUoc2VsZi5fY29lZnMpIGlmIGsgPiAwXSlcblxuICAgICMgLS0tLS0tLS0tLSBjb25zdHJ1Y3RvcmVzIGFsdGVybmF0aXZvcyAtLS0tLS0tLS0tXG4gICAgQGNsYXNzbWV0aG9kXG4gICAgZGVmIG1vbm9taW8oY2xzLCBhLCBrOiBpbnQpIC0+IFwiUG9saW5vbWlvXCI6XG4gICAgICAgIFwiXCJcIkRldnVlbHZlIGVsIG1vbm9taW8gYcK3eF5rLlwiXCJcIlxuICAgICAgICBpZiBrIDwgMDpcbiAgICAgICAgICAgIHJhaXNlIFZhbHVlRXJyb3IoXCJlbCBleHBvbmVudGUgZGViZSBzZXIgbm8gbmVnYXRpdm9cIilcbiAgICAgICAgcmV0dXJuIGNscyhbMF0gKiBrICsgW2FdKVxuXG4gICAgQGNsYXNzbWV0aG9kXG4gICAgZGVmIGRlc2RlX3JhaWNlcyhjbHMsIHJhaWNlczogbGlzdCkgLT4gXCJQb2xpbm9taW9cIjpcbiAgICAgICAgXCJcIlwiUG9saW5vbWlvIG3Ds25pY28gY29uIGxhcyByYcOtY2VzIGRhZGFzOiAoeCAtIHIxKSh4IC0gcjIpwrfCt8K3KHggLSBybikuXCJcIlwiXG4gICAgICAgIHJlc3VsdGFkbyA9IGNscyhbMV0pXG4gICAgICAgIGZvciByIGluIHJhaWNlczpcbiAgICAgICAgICAgIHJlc3VsdGFkbyA9IHJlc3VsdGFkbyAqIGNscyhbLXIsIDFdKSAgICAgIyBtdWx0aXBsaWNhIHBvciAoeCAtIHIpXG4gICAgICAgIHJldHVybiByZXN1bHRhZG9cblxuICAgICMgLS0tLS0tLS0tLSBldmFsdWFjacOzbiB5IHJlcHJlc2VudGFjacOzbiAtLS0tLS0tLS0tXG4gICAgZGVmIF9fY2FsbF9fKHNlbGYsIHgpOlxuICAgICAgICBcIlwiXCJwKHgpOiBldmFsdWFjacOzbiBjb24gZWwgZXNxdWVtYSBkZSBIb3JuZXIuXCJcIlwiXG4gICAgICAgIHJlc3VsdGFkbyA9IDBcbiAgICAgICAgZm9yIGEgaW4gcmV2ZXJzZWQoc2VsZi5fY29lZnMpOlxuICAgICAgICAgICAgcmVzdWx0YWRvID0gcmVzdWx0YWRvICogeCArIGFcbiAgICAgICAgcmV0dXJuIHJlc3VsdGFkb1xuXG4gICAgZGVmIF9fcmVwcl9fKHNlbGYpIC0+IHN0cjpcbiAgICAgICAgcmV0dXJuIGZcIlBvbGlub21pbyh7c2VsZi5fY29lZnN9KVwiXG5cbiAgICBkZWYgX19zdHJfXyhzZWxmKSAtPiBzdHI6XG4gICAgICAgIHRlcm1pbm9zID0gW11cbiAgICAgICAgZm9yIGssIGEgaW4gZW51bWVyYXRlKHNlbGYuX2NvZWZzKTpcbiAgICAgICAgICAgIGlmIGEgPT0gMDpcbiAgICAgICAgICAgICAgICBjb250aW51ZVxuICAgICAgICAgICAgaWYgayA9PSAwOlxuICAgICAgICAgICAgICAgIHRlcm1pbm9zLmFwcGVuZChmXCJ7YX1cIilcbiAgICAgICAgICAgIGVsaWYgayA9PSAxOlxuICAgICAgICAgICAgICAgIHRlcm1pbm9zLmFwcGVuZChmXCJ7YX3Ct3hcIilcbiAgICAgICAgICAgIGVsc2U6XG4gICAgICAgICAgICAgICAgdGVybWlub3MuYXBwZW5kKGZcInthfcK3eF57a31cIilcbiAgICAgICAgcmV0dXJuIFwiICsgXCIuam9pbih0ZXJtaW5vcykgaWYgdGVybWlub3MgZWxzZSBcIjBcIlxuXG4gICAgZGVmIF9fZXFfXyhzZWxmLCBvdHJvOiBvYmplY3QpIC0+IGJvb2w6XG4gICAgICAgIGlmIG5vdCBpc2luc3RhbmNlKG90cm8sIFBvbGlub21pbyk6XG4gICAgICAgICAgICByZXR1cm4gTm90SW1wbGVtZW50ZWRcbiAgICAgICAgcmV0dXJuIHNlbGYuX2NvZWZzID09IG90cm8uX2NvZWZzXG5cbiAgICBkZWYgX19hZGRfXyhzZWxmLCBvdHJvOiBvYmplY3QpIC0+IFwiUG9saW5vbWlvXCI6XG4gICAgICAgIGlmIG5vdCBpc2luc3RhbmNlKG90cm8sIFBvbGlub21pbyk6XG4gICAgICAgICAgICBvdHJvID0gUG9saW5vbWlvKFtvdHJvXSkgICAgICAgICAgIyBjb25zdGFudGVcbiAgICAgICAgbiA9IG1heChsZW4oc2VsZi5fY29lZnMpLCBsZW4ob3Ryby5fY29lZnMpKVxuICAgICAgICBhID0gc2VsZi5fY29lZnMgKyBbMF0gKiAobiAtIGxlbihzZWxmLl9jb2VmcykpXG4gICAgICAgIGIgPSBvdHJvLl9jb2VmcyArIFswXSAqIChuIC0gbGVuKG90cm8uX2NvZWZzKSlcbiAgICAgICAgcmV0dXJuIFBvbGlub21pbyhbeCArIHkgZm9yIHgsIHkgaW4gemlwKGEsIGIpXSlcblxuICAgIGRlZiBfX3JhZGRfXyhzZWxmLCBvdHJvOiBvYmplY3QpIC0+IFwiUG9saW5vbWlvXCI6XG4gICAgICAgIHJldHVybiBzZWxmICsgb3Ryb1xuXG4gICAgZGVmIF9fbmVnX18oc2VsZikgLT4gXCJQb2xpbm9taW9cIjpcbiAgICAgICAgcmV0dXJuIFBvbGlub21pbyhbLWEgZm9yIGEgaW4gc2VsZi5fY29lZnNdKVxuXG4gICAgZGVmIF9fc3ViX18oc2VsZiwgb3Rybzogb2JqZWN0KSAtPiBcIlBvbGlub21pb1wiOlxuICAgICAgICBpZiBub3QgaXNpbnN0YW5jZShvdHJvLCBQb2xpbm9taW8pOlxuICAgICAgICAgICAgb3RybyA9IFBvbGlub21pbyhbb3Ryb10pICAgICAgICAgICMgY29uc3RhbnRlXG4gICAgICAgIHJldHVybiBzZWxmICsgKC1vdHJvKVxuXG4gICAgZGVmIF9fcnN1Yl9fKHNlbGYsIG90cm86IG9iamVjdCkgLT4gXCJQb2xpbm9taW9cIjpcbiAgICAgICAgcmV0dXJuICgtc2VsZikgKyBvdHJvICAgICAgICAgICAgICAgICAjIG90cm8gLSBzZWxmXG5cbiAgICBkZWYgX19tdWxfXyhzZWxmLCBvdHJvOiBvYmplY3QpIC0+IFwiUG9saW5vbWlvXCI6XG4gICAgICAgIGlmIG5vdCBpc2luc3RhbmNlKG90cm8sIFBvbGlub21pbyk6XG4gICAgICAgICAgICBvdHJvID0gUG9saW5vbWlvKFtvdHJvXSkgICAgICAgICAgIyBjb25zdGFudGVcbiAgICAgICAgcHJvZHVjdG8gPSBbMF0gKiAobGVuKHNlbGYuX2NvZWZzKSArIGxlbihvdHJvLl9jb2VmcykgLSAxKVxuICAgICAgICBmb3IgaSwgYSBpbiBlbnVtZXJhdGUoc2VsZi5fY29lZnMpOlxuICAgICAgICAgICAgZm9yIGosIGIgaW4gZW51bWVyYXRlKG90cm8uX2NvZWZzKTpcbiAgICAgICAgICAgICAgICBwcm9kdWN0b1tpICsgal0gKz0gYSAqIGIgICAgICAjIGNvZWZpY2llbnRlIGRlIHheKGkrailcbiAgICAgICAgcmV0dXJuIFBvbGlub21pbyhwcm9kdWN0bylcblxuICAgIGRlZiBfX3JtdWxfXyhzZWxmLCBvdHJvOiBvYmplY3QpIC0+IFwiUG9saW5vbWlvXCI6XG4gICAgICAgIHJldHVybiBzZWxmICogb3RybyJ9
+</script>
+</div>
+<p><code>Polinomio</code> no defineix <code>__hash__</code>: com que defineix <code>__eq__</code>, els seus objectes no són <em>hashables</em>, i això és el correcte, perquè la llista interna <code>_coefs</code> es podria modificar.</p>
+<p>El producte implementa la fórmula dels coeficients d’un producte de polinomis: <span class="math display">\[
+\left(\sum_i a_i x^i\right)\left(\sum_j b_j x^j\right) = \sum_k \Bigl(\sum_{i+j=k} a_i b_j\Bigr) x^k.
+\]</span></p>
+<div>
+<div id="pyodide-22" class="exercise-cell">
+
+</div>
+<script type="pyodide-22-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoieCA9IFBvbGlub21pbyhbMCwgMV0pICAgICAgICAgICAgICAgICMgZWwgcG9saW5vbWlvIHhcbnAgPSB4ICogeCAtIDIgICAgICAgICAgICAgICAgICAgICAgICAjIHjCsiAtIDJcbnByaW50KHApICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjIC0yICsgMcK3eF4yXG5wcmludChwKDMpLCBwLmRlcml2YWRhKCkpICAgICAgICAgICAgIyA3IDLCt3hcblxudW5vX21hc194ID0gUG9saW5vbWlvKFsxLCAxXSlcbnBvdGVuY2lhID0gUG9saW5vbWlvKFsxXSlcbmZvciBfIGluIHJhbmdlKDUpOlxuICAgIHBvdGVuY2lhID0gcG90ZW5jaWEgKiB1bm9fbWFzX3hcbnByaW50KHBvdGVuY2lhLmNvZWZzKSAgICAgICAgICAgICAgICAjIFsxLCA1LCAxMCwgMTAsIDUsIDFdIn0=
+</script>
+</div>
+<p>L’última línia és la fila 5 del triangle de Pascal: el binomi de Newton <span class="math inline">\((1 + x)^n = \sum_{k=0}^{n} \binom{n}{k} x^k\)</span> calculat amb productes de polinomis.</p>
+<p>El mètode de classe <code>desde_raices</code> construeix el polinomi mònic <span class="math inline">\((x - r_1)(x - r_2)\cdots(x - r_n)\)</span> multiplicant factors lineals, cosa que només és possible ara que la classe sap multiplicar:</p>
+<div>
+<div id="pyodide-23" class="exercise-cell">
+
+</div>
+<script type="pyodide-23-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicSA9IFBvbGlub21pby5kZXNkZV9yYWljZXMoWzEsIDIsIDNdKVxucHJpbnQocSkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIyAtNiArIDExwrd4ICsgLTbCt3heMiArIDHCt3heM1xucHJpbnQoW3EocikgZm9yIHIgaW4gKDEsIDIsIDMpXSkgICAgICAgICAgIyBbMCwgMCwgMF1cblxuIyB0YW1iacOpbiBjb24gcmHDrWNlcyByYWNpb25hbGVzOiAoeCAtIDEvMikoeCArIDEvMylcbnByaW50KFBvbGlub21pby5kZXNkZV9yYWljZXMoW0ZyYWNjaW9uKDEsIDIpLCBGcmFjY2lvbigtMSwgMyldKSlcbiMgLTEvNiArIC0xLzbCt3ggKyAxwrd4XjIifQ==
+</script>
+</div>
+<div id="tip-vieta" class="callout callout-style-default callout-tip no-icon callout-titled" title="Fórmules de Cardano-Vieta">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;8: Fórmules de Cardano-Vieta
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Els coeficients que calcula <code>desde_raices</code> són, llevat del signe, les funcions simètriques elementals de les arrels: <span class="math display">\[
+(x - r_1)(x - r_2)(x - r_3) = x^3 - (r_1 + r_2 + r_3)\,x^2 + (r_1 r_2 + r_1 r_3 + r_2 r_3)\,x - r_1 r_2 r_3.
+\]</span> Amb les arrels <span class="math inline">\(1, 2, 3\)</span>: <span class="math inline">\(1 + 2 + 3 = 6\)</span>, <span class="math inline">\(1 \cdot 2 + 1 \cdot 3 + 2 \cdot 3 = 11\)</span> i <span class="math inline">\(1 \cdot 2 \cdot 3 = 6\)</span>, que són els coeficients obtinguts.</p>
+</div>
+</div>
+<div id="nte-newton-exacto" class="callout callout-style-default callout-note no-icon callout-titled" title="Newton amb fraccions: aproximacions racionals de √2">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exemple&nbsp;4: Newton amb fraccions: aproximacions racionals de √2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>Polinomio</code> i <code>Fraccion</code> no es coneixen entre elles, però funcionen juntes: l’avaluació de Horner només necessita que els valors sàpiguen sumar-se i multiplicar-se, i les fraccions en saben. Aquesta capacitat de combinar objectes que respecten la mateixa interfície s’anomena <strong><em>duck typing</em></strong> («si camina com un ànec i fa quac com un ànec, és un ànec»).</p>
+<p>Si apliquem el mètode de Newton a <span class="math inline">\(p(x) = x^2 - 2\)</span> partint de <span class="math inline">\(x_0 = 1\)</span> <strong>amb aritmètica exacta</strong>, obtenim una successió de racionals que convergeix a <span class="math inline">\(\sqrt{2}\)</span>:</p>
+<div>
+<div id="pyodide-24" class="exercise-cell">
+
+</div>
+<script type="pyodide-24-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicCA9IFBvbGlub21pbyhbLTIsIDAsIDFdKSAgICAgICAgICAgICMgeMKyIC0gMlxuZHAgPSBwLmRlcml2YWRhKClcbnggPSBGcmFjY2lvbigxKVxuZm9yIGsgaW4gcmFuZ2UoMSwgNSk6XG4gICAgeCA9IHggLSBwKHgpIC8gZHAoeClcbiAgICBwcmludChmXCJ4X3trfSA9IHt4fSAg4omIIHtmbG9hdCh4KTouMTVmfVwiKVxuIyB4XzEgPSAzLzIgIOKJiCAxLjUwMDAwMDAwMDAwMDAwMFxuIyB4XzIgPSAxNy8xMiAg4omIIDEuNDE2NjY2NjY2NjY2NjY3XG4jIHhfMyA9IDU3Ny80MDggIOKJiCAxLjQxNDIxNTY4NjI3NDUxMFxuIyB4XzQgPSA2NjU4NTcvNDcwODMyICDiiYggMS40MTQyMTM1NjIzNzQ2OTAifQ==
+</script>
+</div>
+<p>Les fraccions <span class="math inline">\(3/2\)</span>, <span class="math inline">\(17/12\)</span>, <span class="math inline">\(577/408\)</span>, … són convergents de la fracció contínua de <span class="math inline">\(\sqrt{2}\)</span>, i la convergència quadràtica s’aprecia en el fet que el nombre de xifres correctes es duplica a cada pas.</p>
+</div>
+</div>
+</section>
+<section id="resum-de-mètodes-màgics" class="level3">
+<h3 class="anchored" data-anchor-id="resum-de-mètodes-màgics"><strong>6.4.7 Resum de mètodes màgics</strong></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Mètode</th>
+<th style="text-align: left;">S’invoca amb</th>
+<th style="text-align: left;">Ús en aquest tema</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>__init__(self, ...)</code></td>
+<td style="text-align: left;"><code>Clase(...)</code></td>
+<td style="text-align: left;">Validar i normalitzar l’estat inicial</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>__repr__(self)</code></td>
+<td style="text-align: left;"><code>repr(x)</code>, intèrpret, llistes</td>
+<td style="text-align: left;"><code>Fraccion(3, 4)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>__str__(self)</code></td>
+<td style="text-align: left;"><code>str(x)</code>, <code>print(x)</code>, f-strings</td>
+<td style="text-align: left;"><code>3/4</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>__eq__(self, otro)</code></td>
+<td style="text-align: left;"><code>x == y</code></td>
+<td style="text-align: left;">Igualtat de racionals i polinomis</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>__hash__(self)</code></td>
+<td style="text-align: left;"><code>hash(x)</code>, conjunts, claus de diccionari</td>
+<td style="text-align: left;">Conjunts de fraccions</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>__lt__</code>, <code>__le__</code>, <code>__gt__</code>, <code>__ge__</code></td>
+<td style="text-align: left;"><code>x &lt; y</code>, <code>x &lt;= y</code>, <code>x &gt; y</code>, <code>x &gt;= y</code>, <code>sorted</code>, <code>min</code>, <code>max</code></td>
+<td style="text-align: left;">Ordenar fraccions</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>__neg__(self)</code></td>
+<td style="text-align: left;"><code>-x</code></td>
+<td style="text-align: left;">Oposat</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>__add__</code>, <code>__radd__</code></td>
+<td style="text-align: left;"><code>x + y</code>, <code>y + x</code>, <code>sum</code></td>
+<td style="text-align: left;">Suma</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>__sub__</code>, <code>__rsub__</code></td>
+<td style="text-align: left;"><code>x - y</code>, <code>y - x</code></td>
+<td style="text-align: left;">Resta</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>__mul__</code>, <code>__rmul__</code></td>
+<td style="text-align: left;"><code>x * y</code>, <code>y * x</code></td>
+<td style="text-align: left;">Producte</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>__truediv__</code>, <code>__rtruediv__</code></td>
+<td style="text-align: left;"><code>x / y</code>, <code>y / x</code></td>
+<td style="text-align: left;">Quocient</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>__float__(self)</code></td>
+<td style="text-align: left;"><code>float(x)</code></td>
+<td style="text-align: left;">Aproximació decimal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>__call__(self, ...)</code></td>
+<td style="text-align: left;"><code>x(...)</code></td>
+<td style="text-align: left;">Avaluar un polinomi</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Aprofundiment: `fractions.Fraction` de la biblioteca estàndard">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Aprofundiment: <code>fractions.Fraction</code> de la biblioteca estàndard
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>La biblioteca estàndard de Python inclou una classe de racionals exactes, <code>Fraction</code>, al mòdul <code>fractions</code>, amb un disseny molt semblant al de la nostra <code>Fraccion</code>: forma canònica, operadors aritmètics i de comparació, <code>__hash__</code> compatible amb els enters i conversió a <code>float</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fractions <span class="im">import</span> Fraction</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Fraction(<span class="dv">6</span>, <span class="op">-</span><span class="dv">8</span>))                  <span class="co"># -3/4</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sum</span>(Fraction(<span class="dv">1</span>, k) <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>)))   <span class="co"># 7381/2520</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Fraction(<span class="fl">0.5</span>), Fraction(<span class="st">"3/7"</span>))   <span class="co"># 1/2 3/7</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A la pràctica, es fa servir <code>Fraction</code> en lloc de programar una classe pròpia. Programar <code>Fraccion</code> des de zero, però, és la millor manera d’entendre què hi ha darrere de qualsevol tipus numèric de Python <span class="citation" data-cites="ramalho2022">(<a href="#ref-ramalho2022" role="doc-biblioref">Ramalho 2022</a>)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="bibliografia" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="bibliografia">Bibliografia</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-liskov1974" class="csl-entry" role="listitem">
+Liskov, Barbara, i Stephen Zilles. 1974. <span>«Programming with Abstract Data Types»</span>. <em>ACM SIGPLAN Notices</em> 9 (4): 50-59. <a href="https://doi.org/10.1145/942572.807045">https://doi.org/10.1145/942572.807045</a>.
+</div>
+<div id="ref-pythondatamodel" class="csl-entry" role="listitem">
+Python Software Foundation. 2025. <span>«The <span>Python</span> Language Reference: Data Model»</span>. <a href="https://docs.python.org/3/reference/datamodel.html">https://docs.python.org/3/reference/datamodel.html</a>.
+</div>
+<div id="ref-ramalho2022" class="csl-entry" role="listitem">
+Ramalho, Luciano. 2022. <em>Fluent Python: Clear, Concise, and Effective Programming</em>. 2nd ed. O’Reilly Media.
+</div>
+<div id="ref-pep8" class="csl-entry" role="listitem">
+Rossum, Guido van, Barry Warsaw, i Alyssa Coghlan. 2001. <span>«<span>PEP 8 – Style Guide for Python Code</span>»</span>. Python Enhancement Proposal. <a href="https://peps.python.org/pep-0008/">https://peps.python.org/pep-0008/</a>.
+</div>
+</div>
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIl19fQ==
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTI0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIxIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIxLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE5IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTkgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE5LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTktY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTggPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE4LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE3LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTctY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTExIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTExLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTkiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl85ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS05LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzkgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl84ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS04LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzggPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl83ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS03LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzcgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTYiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl82ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS02LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzYgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS01LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzUgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -576,6 +1692,7 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
+</section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
