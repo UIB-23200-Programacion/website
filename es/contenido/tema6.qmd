@@ -186,7 +186,24 @@ print(type(r).__name__)          # Fraccion
 print(isinstance(r, Fraccion))   # True
 ```
 
-Al escribir `Fraccion(3, 4)` Python hace dos cosas: crea un objeto vacío de la clase `Fraccion` y llama al método especial `__init__` (el **inicializador** o **constructor**) pasándole ese objeto como primer argumento, seguido de `3` y `4`. Dentro de `__init__`, la instrucción `self.num = num` crea en el objeto un atributo llamado `num`.
+El **contructor o inicializador** es el método especial `__init__` de una clase. Python lo llama automáticamente cada vez que se crea un objeto, y su función es dejar ese objeto **listo y en un estado válido**:
+
+Al escribir `Fraccion(3, 4)` ocurren dos pasos:
+
+1. Python crea un objeto vacío de la clase.
+2. Llama a `__init__` pasándole ese objeto como `self`, seguido de los argumentos (`3` y `4`).
+
+Dentro de `__init__` se hace normalmente esto:
+
+- **Crear los atributos** del objeto: `self.num = num`.
+- **Comprobar las precondiciones** y lanzar `ValueError` si no se cumplen.
+- **Normalizar los datos**, por ejemplo simplificar la fracción, para que el objeto cumpla desde el principio el invariante de la clase.
+
+Algunos detalles:
+
+- `__init__` **no devuelve nada** (su tipo de retorno es `None`). El objeto lo devuelve Python, no el método.
+- Admite **valores por defecto**, como cualquier función: con `den: int = 1`, `Fraccion(5)` crea $5/1$.
+- **Constructor o inicializador:** en el lenguaje habitual se llama «constructor», pero en sentido estricto es un *inicializador*. El objeto ya existe cuando se llama a `__init__`, porque lo crea antes otro método especial, `__new__`, que casi nunca hace falta tocar.
 
 ::: {#imp-self .callout-important title="El parámetro `self`"}
 Todo método recibe como primer parámetro el objeto sobre el que actúa. Por convención se llama `self` («sí mismo»). La llamada
@@ -323,6 +340,13 @@ class Polinomio:
         """Devuelve el polinomio derivada p'(x)."""
         return Polinomio([k * a for k, a in enumerate(self.coefs) if k > 0])
 
+    @classmethod                     # método de clase: véase el apartado 6.2.6
+    def monomio(cls, a: float, k: int) -> "Polinomio":
+        """Devuelve el monomio a·x^k."""
+        if k < 0:
+            raise ValueError("el exponente debe ser no negativo")
+        return cls([0] * k + [a])
+
 p = Polinomio([-2, 0, 1])        # p(x) = x² - 2
 print(p.grado())                 # 2
 print(p.evaluar(3))              # 7
@@ -376,6 +400,44 @@ Si la clase no indica cómo comparar sus objetos, `a == b` equivale a `a is b`: 
 
 Además, como con las listas (tema 4), una asignación `c = a` no copia el objeto: crea otro nombre para el mismo objeto (*aliasing*).
 :::
+
+### **6.2.6 Métodos de clase y métodos estáticos**
+
+Todos los métodos vistos hasta ahora son **métodos de instancia**: reciben el objeto como primer parámetro (`self`) y trabajan con su estado. Python ofrece otros dos tipos de método, que se marcan con un **decorador** (una línea que empieza por `@` justo antes del `def`).
+
+::: {#imp-tipos-metodo .callout-important title="Tres tipos de método"}
+| Tipo | Decorador | Primer parámetro | Uso típico |
+| :--- | :--- | :--- | :--- |
+| Método de instancia | — | `self`: el objeto | Operar con el estado de un objeto concreto |
+| Método de clase | `@classmethod` | `cls`: la clase | Constructores alternativos |
+| Método estático | `@staticmethod` | ninguno | Funciones auxiliares ligadas a la clase que no necesitan ni el objeto ni la clase |
+
+Los tres se definen dentro de la clase y los tres pueden llamarse a través de la clase (`Polinomio.monomio(3, 4)`) o de un objeto (`p.monomio(3, 4)`).
+:::
+
+**Métodos de clase.** El uso más frecuente de `@classmethod` es ofrecer **constructores alternativos**: otras formas de crear un objeto además de pasar directamente los datos a `__init__`. La clase `Polinomio` del apartado 6.2.4 ya incluye uno, `monomio`, que construye $a x^k$ sin tener que escribir la lista de $k$ ceros:
+
+```{pyodide}
+m = Polinomio.monomio(3, 4)      # 3·x^4, sin escribir [0, 0, 0, 0, 3]
+print(m.coefs)                   # [0, 0, 0, 0, 3]
+print(m.evaluar(2))              # 48 = 3 · 2^4
+print(m.derivada().coefs)        # [0, 0, 0, 12]: 12·x^3
+```
+
+Dentro de `monomio`, `cls` es la propia clase `Polinomio`, y `cls([0] * k + [a])` equivale a `Polinomio([0] * k + [a])`. Se escribe `cls` en lugar del nombre de la clase para que el método siga funcionando si la clase cambia de nombre. La biblioteca estándar usa la misma técnica: `int.from_bytes(...)` o `dict.fromkeys(...)` son métodos de clase que crean objetos.
+
+**Métodos estáticos.** Un método marcado con `@staticmethod` no recibe ni el objeto ni la clase: es una función normal que se coloca dentro de la clase porque solo tiene sentido en relación con ella. Por ejemplo, en la versión final de `Fraccion` (apartado 6.4.5), el método que convierte un entero en fracción no necesita consultar el estado de ningún objeto, así que es estático:
+
+```python
+class Fraccion:
+    ...
+    @staticmethod
+    def _convertir(otra: object) -> "Fraccion | None":
+        """Devuelve otra como Fraccion si es Fraccion o int; si no, None."""
+        ...
+```
+
+En el apartado 6.4.6 añadiremos a `Polinomio` otro constructor alternativo, `desde_raices`, que necesita el producto de polinomios.
 
 ---
 
@@ -640,7 +702,8 @@ class Fraccion:
         return self._num / self._den
 
     # ---------- conversión de enteros ----------
-    def _convertir(self, otra: object) -> "Fraccion | None":
+    @staticmethod
+    def _convertir(otra: object) -> "Fraccion | None":
         """Devuelve otra como Fraccion si es Fraccion o int; si no, None."""
         if isinstance(otra, Fraccion):
             return otra
@@ -823,6 +886,23 @@ class Polinomio:
         """Devuelve el polinomio derivada p'(x)."""
         return Polinomio([k * a for k, a in enumerate(self._coefs) if k > 0])
 
+    # ---------- constructores alternativos ----------
+    @classmethod
+    def monomio(cls, a, k: int) -> "Polinomio":
+        """Devuelve el monomio a·x^k."""
+        if k < 0:
+            raise ValueError("el exponente debe ser no negativo")
+        return cls([0] * k + [a])
+
+    @classmethod
+    def desde_raices(cls, raices: list) -> "Polinomio":
+        """Polinomio mónico con las raíces dadas: (x - r1)(x - r2)···(x - rn)."""
+        resultado = cls([1])
+        for r in raices:
+            resultado = resultado * cls([-r, 1])     # multiplica por (x - r)
+        return resultado
+
+    # ---------- evaluación y representación ----------
     def __call__(self, x):
         """p(x): evaluación con el esquema de Horner."""
         resultado = 0
@@ -907,6 +987,26 @@ print(potencia.coefs)                # [1, 5, 10, 10, 5, 1]
 ```
 
 La última línea es la fila 5 del triángulo de Pascal: el binomio de Newton $(1 + x)^n = \sum_{k=0}^{n} \binom{n}{k} x^k$ calculado con productos de polinomios.
+
+El método de clase `desde_raices` construye el polinomio mónico $(x - r_1)(x - r_2)\cdots(x - r_n)$ multiplicando factores lineales, algo que solo es posible ahora que la clase sabe multiplicar:
+
+```{pyodide}
+q = Polinomio.desde_raices([1, 2, 3])
+print(q)                                  # -6 + 11·x + -6·x^2 + 1·x^3
+print([q(r) for r in (1, 2, 3)])          # [0, 0, 0]
+
+# también con raíces racionales: (x - 1/2)(x + 1/3)
+print(Polinomio.desde_raices([Fraccion(1, 2), Fraccion(-1, 3)]))
+# -1/6 + -1/6·x + 1·x^2
+```
+
+::: {#tip-vieta .callout-tip title="Fórmulas de Cardano-Vieta"}
+Los coeficientes que calcula `desde_raices` son, salvo el signo, las funciones simétricas elementales de las raíces:
+$$
+(x - r_1)(x - r_2)(x - r_3) = x^3 - (r_1 + r_2 + r_3)\,x^2 + (r_1 r_2 + r_1 r_3 + r_2 r_3)\,x - r_1 r_2 r_3.
+$$
+Con las raíces $1, 2, 3$: $1 + 2 + 3 = 6$, $1 \cdot 2 + 1 \cdot 3 + 2 \cdot 3 = 11$ y $1 \cdot 2 \cdot 3 = 6$, que son los coeficientes obtenidos.
+:::
 
 ::: {#nte-newton-exacto .callout-note title="Newton con fracciones: aproximaciones racionales de √2"}
 `Polinomio` y `Fraccion` no se conocen entre sí, pero funcionan juntos: la evaluación de Horner solo necesita que los valores sepan sumarse y multiplicarse, y las fracciones saben. Esta capacidad de combinar objetos que respetan la misma interfaz se llama ***duck typing*** («si camina como un pato y grazna como un pato, es un pato»).
