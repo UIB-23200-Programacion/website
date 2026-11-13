@@ -215,7 +215,7 @@ print(a.count(5))   # 2
 ```
 :::
 
-La función built-in `sorted(a)` devuelve una **nueva lista** ordenada sin modificar `a`. La función built-in `reversed(a)` devuelve un iterador inverso.
+La función built-in `sorted(a)` **devuelve una nueva lista** ordenada sin modificar `a`. La función built-in `reversed(a)` devuelve un iterador inverso.
 
 ```{pyodide}
 a = [3, 1, 4, 1, 5, 9, 2, 6]
@@ -223,7 +223,7 @@ a = [3, 1, 4, 1, 5, 9, 2, 6]
 # sorted() — devuelve una nueva lista ordenada, a queda intacta
 b = sorted(a)
 print(b)  # [1, 1, 2, 3, 4, 5, 6, 9]
-c = sorted(a, reverse=True)
+c = sorted(a, reverse=True)  # reverse=True ordena de mayor a menor
 print(c)  # [9, 6, 5, 4, 3, 2, 1, 1]
 print(a)  # [3, 1, 4, 1, 5, 9, 2, 6]  — sin cambios
 
@@ -287,15 +287,22 @@ u = [1.0, 2.0, 3.0]
 v = [4.0, 5.0, 6.0]
 
 # Suma de vectores
-suma = [u[i] + v[i] for i in range(len(u))]
+suma = []
+for i in range(len(u)):
+    suma.append(u[i] + v[i])
 print(suma)                                  # [5.0, 7.0, 9.0]
 
 # Producto escalar u·v = Σ uᵢvᵢ
-prod_escalar = sum(u[i] * v[i] for i in range(len(u)))
+prod_escalar = 0
+for i in range(len(u)):
+    prod_escalar += u[i] * v[i]
 print(prod_escalar)                          # 32.0
 
 # Norma euclidiana ‖u‖ = √(Σ uᵢ²)
-norma = math.sqrt(sum(x**2 for x in u))
+norma = 0
+for x in u:
+    norma += x**2
+norma = math.sqrt(norma)
 print(f"‖u‖ = {norma:.6f}")                 # ‖u‖ = 3.741657
 ```
 :::
