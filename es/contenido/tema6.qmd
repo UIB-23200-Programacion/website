@@ -548,9 +548,9 @@ import math
 class Circulo:
     """Círculo cerrado de centro (a, b) y radio r > 0."""
 
-    def __init__(self, centro: tuple[float, float], radio: float) -> None:
+    def __init__(self, centro: tuple[float, float], r: float) -> None:
         self.centro = centro
-        self.radio = radio            # pasa por el setter: se valida
+        self.radio = r            # pasa por el setter: se valida
 
     @property
     def radio(self) -> float:
@@ -566,13 +566,13 @@ class Circulo:
     @property
     def area(self) -> float:
         """Área: se calcula en cada consulta, siempre coherente con el radio."""
-        return math.pi * self._radio ** 2
+        return math.pi * self.radio ** 2
 
     def contiene(self, punto: tuple[float, float]) -> bool:
         """Devuelve True si el punto pertenece al círculo."""
         x, y = punto
         a, b = self.centro
-        return (x - a) ** 2 + (y - b) ** 2 <= self._radio ** 2
+        return (x - a) ** 2 + (y - b) ** 2 <= self.radio ** 2
 
 c = Circulo((0, 0), 1)
 print(c.contiene((0.5, 0.5)))    # True
