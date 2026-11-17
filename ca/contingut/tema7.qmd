@@ -2,6 +2,670 @@
 title: "Tema 7: Gestió de Dades i Fitxers"
 lang: ca
 sidebar: barra-ca
+bibliography: tema7.bib
+engine: markdown
+pyodide:
+  packages:
+    - pandas
+resources:
+  - datos
 ---
 
-*(Contingut pendent.)*
+Fins ara, totes les dades dels nostres programes vivien a la memòria: les llistes, els diccionaris i els objectes desapareixen tan bon punt el programa acaba. Perquè les dades **persisteixin** (desar resultats, compartir-los, analitzar-los després) cal escriure-les en **fitxers**. I la majoria de les dades amb què treballarem no les generarà el nostre programa: arribaran en fitxers creats per altres (un sensor, un full de càlcul, el registre d'una partida del Pong de la pràctica).
+
+Aquest tema recorre el camí complet: localitzar un fitxer (rutes), llegir i escriure text, llegir i escriure els dos formats d'intercanvi de dades més habituals (CSV i JSON) i, finalment, analitzar i netejar dades tabulars amb la biblioteca **pandas** [@mckinney2022].
+
+::: {#tip-fichero .callout-tip title="Fitxer"}
+Un **fitxer** és una seqüència de bytes desada en un dispositiu d'emmagatzematge (disc, memòria USB, el núvol) i identificada per un nom dins d'un sistema de **directoris** (carpetes) organitzats en arbre. Un **fitxer de text** és un fitxer els bytes del qual representen caràcters segons una **codificació** (en aquest curs, sempre UTF-8); qualsevol altre fitxer és un **fitxer binari** (imatges, executables, PDF…).
+:::
+
+::: {.callout-tip appearance="simple"}
+Les cel·les d'aquest tema s'executen al navegador, que té el seu propi **sistema de fitxers virtual**: el que escriguis en una cel·la es pot llegir en una altra, però desapareix en recarregar la pàgina. La pàgina carrega a més, a la carpeta `datos/`, tres fitxers d'exemple que farem servir al llarg del tema. Les cel·les comparteixen el mateix entorn de Python: **executa-les en ordre**.
+:::
+
+---
+
+## 7.1. Fitxers i rutes
+
+### **7.1.1 Rutes absolutes i relatives**
+
+Per obrir un fitxer cal indicar la seva **ruta** (*path*): el camí que hi porta a través de l'arbre de directoris.
+
+::: {#imp-rutas .callout-important title="Rutes absolutes i relatives"}
+- Una **ruta absoluta** comença a l'arrel del sistema de fitxers: `/workspaces/t07-ficheros/datos/partida.csv` (Linux, macOS, Codespaces) o `C:\Users\ana\datos\partida.csv` (Windows).
+- Una **ruta relativa** s'interpreta a partir del **directori de treball** (*current working directory*) del programa: `datos/partida.csv` vol dir «la carpeta `datos` dins del directori de treball».
+
+Els noms especials `.` i `..` designen el directori actual i el directori pare: `../datos/partida.csv` puja un nivell abans d'entrar a `datos`.
+:::
+
+El directori de treball depèn de **des d'on s'executa** el programa, no d'on està desat el fitxer `.py`. En un Codespace, el terminal s'obre a l'arrel del projecte (`/workspaces/<nom-del-repositori>`), i és des d'allà des d'on s'executen `uv run python ...` i `uv run pytest`.
+
+### **7.1.2 El mòdul `pathlib`**
+
+`pathlib` és el mòdul de la biblioteca estàndard de Python per treballar amb rutes de fitxers i directoris. Existeix des de Python 3.4 i és la manera moderna i recomanada, en lloc de manipular rutes com a cadenes o fer servir l'antic mòdul `os.path` [@pythonpathlib].
+
+La idea central és que una ruta no és una cadena, sinó un **objecte** de la classe `Path` (tema 6), amb atributs i mètodes per consultar-la i manipular-la. L'operador `/` està **sobrecarregat** (`__truediv__`, igual que vam fer amb `+` a `Fraccion`) per unir parts d'una ruta:
+
+```{pyodide}
+from pathlib import Path
+
+ruta = Path("datos") / "partida.csv"     # __truediv__: une partes de la ruta
+print(ruta)                              # datos/partida.csv
+print(ruta.name)                         # partida.csv
+print(ruta.stem, ruta.suffix)            # partida .csv
+print(ruta.parent)                       # datos
+print(ruta.exists())                     # True
+print(Path("datos/no_existe.txt").exists())   # False
+```
+
+::: {#imp-pathlib .callout-important title="Per què fer servir `pathlib`"}
+- **Funciona en qualsevol sistema operatiu.** `Path("datos") / "partida.csv"` fa servir `/` a Linux i macOS i `\` a Windows sense que te n'hagis de preocupar.
+- **Tot és en un mateix objecte.** Les operacions habituals són mètodes de la ruta: `exists()`, `is_file()`, `is_dir()`, `mkdir()`, `iterdir()` (llistar un directori), `glob("*.csv")` (cercar per patró)…
+- **Funciona amb les altres eines.** `open()`, `csv`, `json` i `pandas` accepten directament objectes `Path`.
+:::
+
+Algunes utilitats freqüents. Per llistar el contingut d'un directori es fan servir `iterdir()` (tots els elements) o `glob(patró)` (els que encaixen amb un patró, on `*` vol dir «qualsevol seqüència de caràcters»):
+
+```{pyodide}
+print(Path.cwd())                  # directorio de trabajo (en el navegador, /home/pyodide)
+print(ruta.resolve())              # ruta absoluta de datos/partida.csv
+
+Path("resultados").mkdir(exist_ok=True)   # crea un directorio si no existe
+print(Path("resultados").is_dir())        # True
+
+for f in sorted(Path("datos").iterdir()):     # todo el contenido de una carpeta
+    print(f.name)
+# mediciones.csv
+# partida.csv
+# partida.json
+
+for f in sorted(Path("datos").glob("*.csv")):  # solo los CSV
+    print(f.name)
+# mediciones.csv
+# partida.csv
+
+texto = Path("datos/partida.json").read_text(encoding="utf-8")   # leer un fichero de una vez
+print(len(texto), "caracteres")    # 947 caracteres
+```
+
+`read_text` (i la seva parella `write_text`) llegeixen o escriuen un fitxer de text complet en una sola línia. Per a fitxers grans, o per recórrer-los línia a línia, es fa servir `open`, que veurem a l'apartat 7.2.
+
+::: {#cau-barras .callout-caution title="Rutes escrites com a cadenes a Windows"}
+A Windows les rutes fan servir la barra invertida `\`, que a les cadenes de Python és el caràcter d'**escapament**: `"C:\nuevos\tablas.csv"` conté un salt de línia (`\n`) i un tabulador (`\t`). Hi ha tres solucions: escriure la cadena *raw* `r"C:\nuevos\tablas.csv"`, fer servir barres normals `"C:/nuevos/tablas.csv"` (Windows les accepta) o, millor encara, construir la ruta amb `Path` i l'operador `/`, que tria el separador correcte a cada sistema.
+:::
+
+::: {#wrn-ruta .callout-warning title="`FileNotFoundError`: des d'on s'executa el programa?"}
+Quan un programa no troba un fitxer que sí que existeix, gairebé sempre és perquè s'ha executat des d'un altre directori de treball i la ruta relativa apunta a un altre lloc. Per depurar-ho, imprimeix `Path.cwd()` i `ruta.resolve()` (la ruta absoluta a la qual apunta `ruta`) just abans d'obrir el fitxer. Si el fitxer s'ha de cercar al costat de l'script, independentment de des d'on s'executi, fes servir `Path(__file__).parent / "datos" / "partida.csv"`.
+:::
+
+---
+
+## 7.2. Lectura i escriptura de text
+
+### **7.2.1 Obrir un fitxer: `open` i la instrucció `with`**
+
+La funció `open(ruta, mode, encoding=...)` obre un fitxer i retorna un **objecte fitxer** amb mètodes per llegir o escriure. El **mode** indica què es farà:
+
+| Mode | Significat | Si el fitxer no existeix | Si el fitxer existeix |
+| :--- | :--- | :--- | :--- |
+| `"r"` | lectura (per defecte) | `FileNotFoundError` | es llegeix des del principi |
+| `"w"` | escriptura | es crea | **s'esborra el seu contingut** |
+| `"a"` | afegir al final (*append*) | es crea | s'escriu a continuació |
+| `"x"` | creació exclusiva | es crea | `FileExistsError` |
+
+::: {#imp-with .callout-important title="La instrucció `with`"}
+Un fitxer obert s'ha de **tancar** quan s'acaba de fer servir: fins aleshores, el que s'ha escrit pot no haver arribat al disc i el sistema operatiu manté recursos reservats. La instrucció `with` tanca el fitxer automàticament en sortir del bloc, **fins i tot si es produeix una excepció** dins seu:
+
+```python
+with open("datos/salida.txt", "w", encoding="utf-8") as f:
+    f.write("Hola\n")
+# aquí el fichero ya está cerrado
+```
+
+És la manera recomanada de treballar amb fitxers a Python: amb ella no cal cridar `f.close()`, i no hi ha manera d'oblidar-ho.
+:::
+
+#### La codificació: l'argument `encoding`
+
+Un fitxer de text desa **bytes**, no caràcters. La **codificació** (*encoding*) és la regla que tradueix cada caràcter a un o diversos bytes en escriure, i els bytes de tornada a caràcters en llegir. Les codificacions més habituals són:
+
+| Codificació | Caràcters que representa | Observacions |
+| :--- | :--- | :--- |
+| `"utf-8"` | tots els d'Unicode (qualsevol idioma, símbols matemàtics, emojis) | d'1 a 4 bytes per caràcter; l'estàndard del web, de Linux i de macOS |
+| `"ascii"` | només 128 caràcters: lletres sense accents, dígits i signes bàsics | 1 byte per caràcter; UTF-8 coincideix amb ASCII en aquests caràcters |
+| `"latin-1"` (ISO-8859-1) | els de les llengües d'Europa occidental (á, ñ, ç, à…) | 1 byte per caràcter; no inclou el símbol `€` |
+| `"cp1252"` (Windows-1252) | com Latin-1, més alguns símbols com `€` | codificació tradicional de Windows a Europa occidental |
+| `"utf-16"` | tots els d'Unicode | 2 o 4 bytes per caràcter; habitual internament a Windows |
+
+Un mateix text dona bytes diferents segons la codificació, i llegir amb una codificació diferent de la que s'ha fet servir en escriure produeix caràcters erronis o un error:
+
+```{pyodide}
+print("más".encode("utf-8"))                     # b'm\xc3\xa1s': la «á» ocupa 2 bytes
+print("más".encode("latin-1"))                   # b'm\xe1s': la «á» ocupa 1 byte
+print("más".encode("utf-8").decode("latin-1"))   # mÃ¡s: bytes UTF-8 leídos como Latin-1
+```
+
+::: {#cau-encoding .callout-caution title="Indica sempre `encoding=\"utf-8\"`"}
+Si no s'indica `encoding`, `open` fa servir la codificació per defecte del sistema operatiu, que a Windows ha estat tradicionalment `cp1252` i a Linux i macOS és `utf-8`. El mateix programa pot funcionar en un ordinador i fallar en un altre, amb caràcters estranys (`mÃ¡s` en lloc de `más`) o amb un `UnicodeDecodeError`. En aquest curs escriurem **sempre** `encoding="utf-8"` en obrir fitxers de text.
+:::
+
+### **7.2.2 Escriure text**
+
+Hi ha tres maneres habituals d'escriure text en un fitxer obert `f`:
+
+- **`f.write(cadena)`** escriu la cadena tal qual i **no afegeix el salt de línia**, que s'ha d'escriure explícitament amb `"\n"`. És la manera més bàsica.
+- **`f.writelines(llista)`** escriu una llista (o qualsevol iterable) de cadenes, una darrere l'altra. **Tampoc no afegeix** salts de línia: cada cadena ha d'incloure el seu `"\n"`.
+- **`print(..., file=f)`** és la funció `print` de sempre, però dirigida al fitxer en lloc de la pantalla. **Sí que afegeix** el salt de línia al final, admet diversos arguments (que separa amb un espai) i és còmoda amb f-strings.
+
+L'exemple següent escriu un text de diverses línies fent servir les tres maneres. El primer bloc obre el fitxer en mode `"w"`, que el crea (o el buida si ja existia); els dos següents fan servir el mode `"a"` per afegir línies al final sense esborrar el que hi havia:
+
+```{pyodide}
+lineas = [
+    "Teorema de Pitágoras",
+    "En un triángulo rectángulo, el cuadrado de la hipotenusa",
+    "es igual a la suma de los cuadrados de los catetos:",
+    "a² + b² = c²",
+]
+
+# Forma 1: write, añadiendo el salto de línea a mano
+with open("pitagoras.txt", "w", encoding="utf-8") as f:
+    for linea in lineas:
+        f.write(linea + "\n")
+
+# Forma 2: writelines escribe una lista de cadenas (tampoco añade "\n")
+with open("pitagoras.txt", "a", encoding="utf-8") as f:
+    f.writelines(["\n", "Ejemplos:\n", "3² + 4² = 5²\n"])
+
+# Forma 3: print con file=f, que sí añade el salto de línea
+with open("pitagoras.txt", "a", encoding="utf-8") as f:
+    print("5² + 12² = 13²", file=f)
+    print(f"{8}² + {15}² = {17}²", file=f)
+
+with open("pitagoras.txt", encoding="utf-8") as f:
+    print(f.read())
+```
+
+El text conté caràcters que no són ASCII (`á`, `²`): sense `encoding="utf-8"`, el resultat dependria de la codificació per defecte del sistema.
+
+Un cas molt habitual és escriure dades numèriques generades pel mateix programa. Escrivim els primers nombres primers, un per línia:
+
+```{pyodide}
+def es_primo(n: int) -> bool:
+    """Devuelve True si n es primo."""
+    if n < 2:
+        return False
+    return all(n % d != 0 for d in range(2, int(n**0.5) + 1))
+
+primos = [n for n in range(2, 60) if es_primo(n)]
+
+with open("primos.txt", "w", encoding="utf-8") as f:
+    for p in primos:
+        f.write(f"{p}\n")
+
+print(f"Escritos {len(primos)} primos en primos.txt")   # Escritos 17 primos en primos.txt
+```
+
+### **7.2.3 Llegir text**
+
+Hi ha tres maneres habituals de llegir un fitxer de text obert `f`:
+
+- **`f.read()`** retorna el contingut complet del fitxer com **una sola cadena**.
+- **`f.readlines()`** retorna una **llista de cadenes**, una per línia, cadascuna amb el seu `"\n"` final.
+- **`for linea in f`** recorre el fitxer **línia a línia**: a cada iteració, `linea` és la cadena de la línia següent, també amb el seu `"\n"`.
+
+A l'exemple, `repr` mostra el `"\n"` que acompanya cada línia i que normalment no es veu:
+
+```{pyodide}
+# Forma 1: read() devuelve todo el fichero en una sola cadena
+with open("primos.txt", encoding="utf-8") as f:
+    contenido = f.read()
+print(repr(contenido[:11]))     # '2\n3\n5\n7\n11\n'
+
+# Forma 2: readlines() devuelve una lista con una cadena por línea (con su '\n')
+with open("primos.txt", encoding="utf-8") as f:
+    lineas = f.readlines()
+print(lineas[:3])               # ['2\n', '3\n', '5\n']
+print(len(lineas))              # 17
+
+# Forma 3: recorrer el fichero con for: una línea en cada iteración
+with open("primos.txt", encoding="utf-8") as f:
+    for linea in f:
+        print(repr(linea), end=" ")
+# '2\n' '3\n' '5\n' '7\n' '11\n' ... '53\n' '59\n'
+```
+
+::: {#tip-fichero-flujo .callout-tip title="Un fitxer és un flux de dades"}
+Recórrer un fitxer amb `for linea in f` és un **algorisme d'una sola passada** (tema 5): Python llegeix una línia cada vegada, sense carregar el fitxer sencer a la memòria. És la manera adequada de processar fitxers molt grans, com els registres de milions de mesuraments. En canvi, `read()` i `readlines()` carreguen el fitxer complet (processament per lots).
+:::
+
+#### Processar les línies: de text a nombres
+
+El que es llegeix d'un fitxer de text són **cadenes**: la primera línia de `primos.txt` és `'2\n'`, no el nombre `2`. Per operar amb els valors cal fer dos passos a cada línia: netejar la cadena amb `strip()`, que elimina el `"\n"` i els espais dels extrems, i convertir-la amb `int()` o `float()`:
+
+```{pyodide}
+suma = 0
+with open("primos.txt", encoding="utf-8") as f:
+    for linea in f:
+        n = int(linea.strip())   # 1) strip() quita el '\n'   2) int() convierte a entero
+        suma += n
+print(f"Suma de los primos: {suma}")    # Suma de los primos: 440
+```
+
+::: {#cau-texto-numeros .callout-caution title="El que es llegeix d'un fitxer de text són cadenes"}
+Un fitxer de text no desa nombres, sinó caràcters. El que retorna la lectura sempre és `str`: `"17\n" + "1"` dona `"17\n1"`, no `18`. Cal convertir explícitament amb `int()` o `float()`, i per eliminar el salt de línia i els espais dels extrems es fa servir `linea.strip()`.
+:::
+
+::: {#cau-modo-w .callout-caution title="El mode `\"w\"` esborra el fitxer"}
+Obrir un fitxer existent en mode `"w"` el **buida immediatament**, abans d'escriure res. Per afegir línies a un fitxer sense perdre'n el contingut es fa servir el mode `"a"`. Si no vols sobreescriure per accident un fitxer existent, fes servir el mode `"x"`, que llança `FileExistsError` en aquest cas.
+:::
+
+### **7.2.4 Exemple: taula de valors d'una funció**
+
+Escriure una taula de valors amb un format fix és un ús típic dels fitxers de text. Amb f-strings podem alinear les columnes:
+
+```{pyodide}
+import math
+
+with open("tabla_seno.txt", "w", encoding="utf-8") as f:
+    f.write(f"{'x':>6} {'sen(x)':>10}\n")
+    for k in range(5):
+        x = k * math.pi / 4
+        f.write(f"{x:6.4f} {math.sin(x):10.6f}\n")
+
+with open("tabla_seno.txt", encoding="utf-8") as f:
+    print(f.read())
+```
+
+El problema d'aquest format és que, per llegir la taula després, cal saber exactament com es va escriure: quants espais separen les columnes, què hi ha a la primera línia… Els formats estàndard CSV i JSON resolen aquest problema.
+
+---
+
+## 7.3. Fitxers CSV i JSON
+
+### **7.3.1 CSV: dades tabulars**
+
+::: {#tip-csv .callout-tip title="Format CSV"}
+Un fitxer **CSV** (*Comma-Separated Values*) és un fitxer de text que representa una **taula**: cada línia és una fila i, dins de cada fila, els valors de les columnes se separen amb comes. La primera línia sol ser la **capçalera**, amb els noms de les columnes. És el format d'intercanvi més estès per a dades tabulars: el llegeixen i l'escriuen tots els fulls de càlcul, els gestors de bases de dades i els llenguatges de programació.
+:::
+
+El fitxer `datos/partida.csv` registra una partida de Pong amb una estructura semblant (simplificada) a la dels registres de la pràctica: una fila per tick amb l'estat del joc.
+
+```{pyodide}
+with open("datos/partida.csv", encoding="utf-8") as f:
+    for _ in range(3):
+        print(f.readline(), end="")
+# tick,state,ball_x,ball_y,p_left,p_right,cmd_left,cmd_right,server,rally_hits
+# 0,serving,400.0,300.0,300.0,300.0,STAY,STAY,left,0
+# 1,serving,400.0,300.0,300.0,300.0,STAY,STAY,left,0
+```
+
+Separar cada línia amb `linea.split(",")` funciona en casos senzills, però falla si algun valor conté una coma (per exemple, `"Palma, Mallorca"` entre cometes). El mòdul `csv` de la biblioteca estàndard resol tots aquests casos [@pythoncsv].
+
+#### Llegir un CSV amb `csv.reader`
+
+La funció `csv.reader` rep un fitxer obert i retorna un objecte **lector** que es recorre fila a fila: cada fila és una **llista de cadenes**. Comptem quants ticks es van jugar amb la bola en joc i quin va ser el nombre més gran de cops d'un intercanvi:
+
+```{pyodide}
+import csv
+
+with open("datos/partida.csv", encoding="utf-8", newline="") as f:
+    lector = csv.reader(f)
+    cabecera = next(lector)              # la primera fila: los nombres de las columnas
+    print(cabecera)
+
+    i_state = cabecera.index("state")    # posición de cada columna que nos interesa
+    i_hits = cabecera.index("rally_hits")
+
+    en_juego = 0
+    max_golpes = 0
+    for numero, fila in enumerate(lector):   # el resto de filas, una a una
+        if numero == 0:
+            print(fila)                  # cada fila es una lista de cadenas
+        if fila[i_state] == "playing":
+            en_juego += 1
+        max_golpes = max(max_golpes, int(fila[i_hits]))   # ¡convertir a int!
+
+print(en_juego, max_golpes)              # 2532 10
+```
+
+- **`next(lector)`** llegeix una sola fila. Aquí serveix per separar la capçalera abans del bucle, que recorre només les files de dades.
+- Com que cada fila és una llista, els valors s'obtenen **per posició**. Per no escriure nombres «màgics» com `fila[9]`, la posició de cada columna es cerca a la capçalera amb `cabecera.index("rally_hits")`.
+- **Tots els valors són cadenes**, fins i tot `'0'` i `'400.0'`: cal convertir-los amb `int()` o `float()`.
+
+#### Llegir un CSV amb `csv.DictReader`
+
+`csv.DictReader` resol el mateix problema d'una manera més llegible: llegeix la capçalera automàticament i retorna cada fila com un **diccionari** `{nom_de_columna: valor}`, de manera que els valors s'obtenen pel nom de la columna (`fila["rally_hits"]`) en lloc de per la seva posició. Repetim el recompte anterior, ara separat per estats:
+
+```{pyodide}
+import csv
+
+conteo_estados: dict[str, int] = {}
+max_golpes = 0
+
+with open("datos/partida.csv", encoding="utf-8", newline="") as f:
+    for fila in csv.DictReader(f):
+        estado = fila["state"]
+        conteo_estados[estado] = conteo_estados.get(estado, 0) + 1
+        max_golpes = max(max_golpes, int(fila["rally_hits"]))   # ¡convertir a int!
+
+print(conteo_estados)    # {'serving': 120, 'playing': 2532}
+print(max_golpes)        # 10
+```
+
+Fixa't que el recorregut és d'una sola passada (patró de recompte del tema 5) i que cal convertir `fila["rally_hits"]` a `int`: el mòdul `csv` retorna **tots** els valors com a cadenes.
+
+#### Escriure un CSV amb `csv.writer`
+
+`csv.writer` escriu files a partir de llistes o tuples. L'argument `newline=""` d'`open` és necessari perquè el mòdul `csv` controli ell mateix els salts de línia (a Windows, sense ell apareixen línies en blanc intercalades).
+
+```{pyodide}
+import csv
+
+def ternas_pitagoricas(limite: int) -> list[tuple[int, int, int]]:
+    """Ternas (a, b, c) con a < b < c <= limite y a² + b² = c²."""
+    return [(a, b, c) for c in range(1, limite + 1) for a in range(1, c)
+            for b in range(a + 1, c) if a * a + b * b == c * c]
+
+with open("ternas.csv", "w", encoding="utf-8", newline="") as f:
+    escritor = csv.writer(f)
+    escritor.writerow(["a", "b", "c"])                   # cabecera
+    escritor.writerows(ternas_pitagoricas(20))           # una fila por terna
+
+with open("ternas.csv", encoding="utf-8") as f:
+    print(f.read())
+```
+
+### **7.3.2 JSON: dades jeràrquiques**
+
+No totes les dades són taules. El registre d'una partida té informació general (els noms dels bots, el resultat) i una **llista** d'intercanvis, cadascun amb els seus propis camps: és una estructura **niada**, en forma d'arbre.
+
+::: {#tip-json .callout-tip title="Format JSON"}
+**JSON** (*JavaScript Object Notation*) és un format de text per a dades jeràrquiques, basat en dues estructures que es poden niar a qualsevol profunditat: **objectes** (parells `"clau": valor` entre claus) i **arrays** (llistes de valors entre claudàtors). És el format estàndard d'intercanvi de dades al web i a la configuració de programes (com el `devcontainer.json` dels nostres repositoris).
+:::
+
+El mòdul `json` de la biblioteca estàndard tradueix entre JSON i Python [@pythonjson]. Els tipus de JSON es corresponen de manera natural amb els de Python:
+
+| JSON | Python |
+| :--- | :--- |
+| objecte `{"clau": valor}` | `dict` |
+| array `[1, 2, 3]` | `list` |
+| cadena `"text"` | `str` |
+| nombre `42`, `3.14` | `int`, `float` |
+| `true`, `false` | `True`, `False` |
+| `null` | `None` |
+
+#### Llegir un JSON amb `json.load`
+
+```{pyodide}
+import json
+
+with open("datos/partida.json", encoding="utf-8") as f:
+    registro = json.load(f)        # el fichero completo, como dict de Python
+
+print(type(registro).__name__)             # dict
+print(list(registro))                      # ['semilla', 'bots', 'puntos', 'resultado', 'intercambios']
+print(registro["bots"]["right"])           # mi_bot
+print(len(registro["intercambios"]))       # 6
+print(registro["intercambios"][0])
+# {'start_tick': 0, 'end_tick': 512, 'hits': 4, 'outcome': 'point', 'winner': 'left'}
+```
+
+A diferència d'un CSV, un JSON es llegeix **sencer** d'una vegada i es navega amb els índexs i les claus de les estructures del tema 4. Per exemple, comptem els punts de cada bot i el total de cops:
+
+```{pyodide}
+puntos: dict[str, int] = {}
+for inter in registro["intercambios"]:
+    puntos[inter["winner"]] = puntos.get(inter["winner"], 0) + 1
+
+total_golpes = sum(inter["hits"] for inter in registro["intercambios"])
+print(puntos)          # {'left': 2, 'right': 4}
+print(total_golpes)    # 21
+```
+
+#### Escriure un JSON amb `json.dump`
+
+`json.dump(objecte, fitxer)` escriu un objecte de Python en format JSON. L'argument `indent` el fa llegible per a les persones, i `ensure_ascii=False` conserva les lletres accentuades tal qual.
+
+```{pyodide}
+import json
+
+resumen = {"bot": "mi_bot", "victorias": 4, "golpes": [4, 1, 3, 1, 2, 10], "comentario": "más agresivo"}
+
+with open("resumen.json", "w", encoding="utf-8") as f:
+    json.dump(resumen, f, indent=2, ensure_ascii=False)
+
+with open("resumen.json", encoding="utf-8") as f:
+    print(f.read())
+```
+
+::: {#cau-json-claves .callout-caution title="El que JSON no conserva: claus enteres i tuples"}
+JSON no té tuples, i les claus dels seus objectes són **sempre cadenes**. En desar i tornar a llegir un diccionari de Python, tots dos detalls canvien sense avisar. Recorda el diccionari de ternes pitagòriques agrupades per perímetre:
+
+```{pyodide}
+import json
+
+por_perimetro = {12: [(3, 4, 5)], 24: [(6, 8, 10)], 30: [(5, 12, 13)]}
+
+texto = json.dumps(por_perimetro)        # dumps: a una cadena, no a un fichero
+print(texto)                             # {"12": [[3, 4, 5]], "24": [[6, 8, 10]], "30": [[5, 12, 13]]}
+
+recuperado = json.loads(texto)           # loads: desde una cadena
+print(recuperado == por_perimetro)       # False
+print(list(recuperado))                  # ['12', '24', '30']: claves str
+
+# Reconstruir los tipos originales
+reparado = {int(p): [tuple(t) for t in ternas] for p, ternas in recuperado.items()}
+print(reparado == por_perimetro)         # True
+```
+:::
+
+### **7.3.3 CSV o JSON**
+
+| | CSV | JSON |
+| :--- | :--- | :--- |
+| **Estructura** | taula: files i columnes | arbre: objectes i llistes niats |
+| **Tipus** | tot són cadenes | nombres, cadenes, booleans, `null` |
+| **Lectura** | fila a fila (flux) | el fitxer complet (lot) |
+| **Ús típic** | mesuraments, registres tick a tick, fulls de càlcul | configuració, resultats amb estructura, dades del web |
+| **A la pràctica** | `partida_<semilla>.csv` | `partida_<semilla>.json` |
+
+---
+
+## 7.4. Pandas: manipulació i neteja de dades estructurades
+
+Amb el mòdul `csv` hem hagut d'escriure un bucle per a cada consulta i convertir els valors a mà. Per analitzar dades tabulars, l'eina estàndard a Python és **pandas** [@pandas], que carrega una taula completa a la memòria i permet consultar-la i transformar-la amb operacions sobre columnes senceres, sense escriure bucles.
+
+::: {#tip-dataframe .callout-tip title="`DataFrame` i `Series`"}
+Un **`DataFrame`** és una taula amb columnes amb nom, cadascuna amb el seu propi tipus de dades (`int64`, `float64`, `object` per a cadenes…). Cada columna és una **`Series`**: una seqüència de valors del mateix tipus amb un **índex** que identifica les files (per defecte, `0, 1, 2, …`).
+
+Les operacions de pandas són **vectoritzades**: s'apliquen a tots els valors d'una columna alhora. `df["ball_x"] / 800` divideix els 2 652 valors de la columna sense escriure cap bucle.
+:::
+
+::: {.callout-tip appearance="simple"}
+pandas no forma part de la biblioteca estàndard. Al navegador, aquesta pàgina el carrega automàticament; en un Codespace, és al grup `data` del `pyproject.toml` i s'instal·la amb `uv sync --all-groups`. Per convenció s'importa amb el nom curt `pd`.
+:::
+
+### **7.4.1 Llegir i explorar un `DataFrame`**
+
+```{pyodide}
+import pandas as pd
+
+df = pd.read_csv("datos/partida.csv")
+print(df.shape)           # (2652, 10): filas y columnas
+print(df.head(3))         # las 3 primeras filas
+print(df.dtypes)          # tipo de cada columna
+```
+
+`read_csv` ha deduït el tipus de cada columna: `tick` i `rally_hits` són enters, les posicions són `float64` i les columnes de text són `object`. Ja no cal convertir res a mà.
+
+Per a una primera exploració, `describe()` calcula els estadístics bàsics de les columnes numèriques, i `value_counts()` compta les aparicions de cada valor d'una columna:
+
+```{pyodide}
+print(df[["ball_x", "ball_y", "p_left"]].describe().round(1))
+print(df["state"].value_counts())
+```
+
+#### Llegir dades des d'una URL
+
+`pd.read_csv` accepta, en lloc d'una ruta, la **URL** d'un fitxer CSV publicat al web: pandas el descarrega i el llegeix en un sol pas. Per exemple, el conjunt de dades dels passatgers del Titanic (891 passatgers), procedent de la [competició *Titanic - Machine Learning from Disaster* de Kaggle](https://www.kaggle.com/competitions/titanic){target="_blank" rel="noopener noreferrer"} i [publicat a Hugging Face](https://huggingface.co/datasets/phihung/titanic){target="_blank" rel="noopener noreferrer"}. [Hugging Face](https://huggingface.co){target="_blank" rel="noopener noreferrer"} és una plataforma que allotja milers de conjunts de dades i models d'intel·ligència artificial oberts.
+
+```python
+import pandas as pd
+
+url = "https://huggingface.co/datasets/phihung/titanic/resolve/main/train.csv"
+titanic = pd.read_csv(url)                       # lectura desde una URL
+
+print(titanic.shape)                             # (891, 12)
+print(titanic[["Name", "Sex", "Age", "Survived"]].head(3))
+print(titanic.groupby("Sex")["Survived"].mean().round(3))
+# Sex
+# female    0.742
+# male      0.189
+```
+
+La columna `Name` conté comes dins de les cometes (`"Braund, Mr. Owen Harris"`): és just el cas de l'apartat 7.3.1 que fa fallar `split(",")` i que `read_csv`, igual que el mòdul `csv`, resol correctament.
+
+En un script de Python o al Codespace, això és tot. Al **navegador**, en canvi, Python s'executa amb Pyodide, que no pot obrir connexions de xarxa per si mateix. Abans de llegir des d'una URL cal activar el paquet `pyodide_http`, que redirigeix les descàrregues a través del navegador:
+
+```python
+import pyodide_http
+pyodide_http.patch_all()     # solo en el navegador (Pyodide)
+
+import pandas as pd
+titanic = pd.read_csv("https://huggingface.co/datasets/phihung/titanic/resolve/main/train.csv")
+```
+
+::: {#cau-pyodide-http .callout-caution title="`pyodide_http` només existeix al navegador"}
+Les dues primeres línies **no s'escriuen en un script ni al Codespace**: allà `pyodide_http` no està instal·lat, i `import pyodide_http` llançaria `ModuleNotFoundError`. A més, al navegador només es poden descarregar dades de servidors que ho permeten (CORS); Hugging Face i els enllaços *raw* de GitHub ho permeten.
+:::
+
+::: {.callout-tip appearance="simple"}
+A Hugging Face (i a GitHub), la URL que es passa a `read_csv` ha de ser la del **fitxer en brut**, que conté `/resolve/` (a GitHub, `raw.githubusercontent.com`). La URL que apareix en navegar pel web (amb `/blob/`) és una pàgina HTML, no el CSV.
+:::
+
+### **7.4.2 Seleccionar columnes i filtrar files**
+
+- `df["columna"]` selecciona una columna (una `Series`); `df[["c1", "c2"]]`, amb una **llista** de noms, un `DataFrame` amb aquestes columnes.
+- `df[mascara]` selecciona les files en què una **màscara booleana** (una `Series` de `True`/`False`) val `True`.
+
+```{pyodide}
+mascara = df["state"] == "playing"        # Series de booleanos, una por fila
+print(mascara.sum())                      # 2532: True cuenta como 1
+
+en_juego = df[mascara]                    # solo las filas en juego
+print(len(en_juego))                      # 2532
+
+# Varias condiciones: & (y), | (o), ~ (no). ¡Paréntesis obligatorios!
+bola_arriba = df[(df["state"] == "playing") & (df["ball_y"] < 100)]
+print(len(bola_arriba))                  # 382: ticks en juego con la bola cerca de la pared de arriba
+
+# Filtrar y seleccionar columnas a la vez con .loc[filas, columnas]
+print(df.loc[df["rally_hits"] == 10, ["tick", "ball_x", "ball_y"]].head(3))
+```
+
+::: {#cau-and-pandas .callout-caution title="`and`/`or` no funcionen amb màscares de pandas"}
+Per combinar màscares es fan servir `&`, `|` i `~`, no `and`, `or` i `not`, i cada comparació ha d'anar **entre parèntesis**, perquè `&` té més prioritat que `==`. Escriure `df["state"] == "playing" and df["ball_y"] < 100` llança `ValueError: The truth value of a Series is ambiguous`.
+:::
+
+### **7.4.3 Columnes noves i operacions vectoritzades**
+
+Una columna nova es crea assignant una expressió sobre altres columnes. Calculem, a cada tick, la distància vertical entre la bola i el centre de la raqueta esquerra, i si la bola seria dins de la seva franja d'impacte (46 píxels, com a la pràctica):
+
+```{pyodide}
+en_juego = df[df["state"] == "playing"].copy()      # copia independiente (véase abajo)
+
+en_juego["dist_izq"] = (en_juego["ball_y"] - en_juego["p_left"]).abs()
+en_juego["alcanza_izq"] = en_juego["dist_izq"] <= 46
+
+print(en_juego[["tick", "ball_y", "p_left", "dist_izq", "alcanza_izq"]].head(4))
+print(f"{en_juego['alcanza_izq'].mean():.1%} de los ticks al alcance")   # 83.8% de los ticks al alcance
+```
+
+La mitjana d'una columna booleana és la **proporció** de valors `True`, perquè `True` compta com a 1 i `False` com a 0.
+
+::: {#cau-copy .callout-caution title="Modificar un subconjunt: fes servir `.copy()`"}
+Un `DataFrame` obtingut en filtrar-ne un altre pot compartir dades amb l'original. Si després s'hi afegeixen o modifiquen columnes, pandas avisa amb un `SettingWithCopyWarning` (i el resultat pot dependre de la versió). Per treballar amb un subconjunt com amb una taula independent, fes-ne una còpia explícita amb `.copy()`, com a l'exemple anterior.
+:::
+
+### **7.4.4 Agrupar i agregar: `groupby`**
+
+L'operació més potent de pandas és **agrupar** les files segons el valor d'una columna i **resumir** cada grup amb una funció d'agregació (`count`, `sum`, `mean`, `max`…). És la versió vectoritzada del patró de recompte amb diccionaris del tema 5.
+
+```{pyodide}
+# ¿Cuántos ticks se jugaron con cada bot sacando, y cuál fue el máximo de golpes?
+print(df.groupby("server")["rally_hits"].agg(["count", "max"]))
+
+# Frecuencia de cada comando del bot izquierdo mientras la bola está en juego
+print(df[df["state"] == "playing"]["cmd_left"].value_counts())
+```
+
+Un `DataFrame` també es pot construir a partir de dades ja carregades a Python: una llista de diccionaris (com els intercanvis del JSON) es converteix en una taula amb una columna per clau.
+
+```{pyodide}
+intercambios = pd.DataFrame(registro["intercambios"])
+intercambios["duracion"] = intercambios["end_tick"] - intercambios["start_tick"] + 1
+print(intercambios)
+
+print(intercambios.groupby("winner")[["hits", "duracion"]].mean().round(1))
+```
+
+### **7.4.5 Neteja de dades**
+
+Les dades reals gairebé mai no arriben netes: hi falten valors, hi ha files duplicades, apareixen valors impossibles (un sensor que marca `-999` quan falla) o text on hi hauria d'haver nombres. El fitxer `datos/mediciones.csv` conté mesuraments de tres estacions meteorològiques amb tots aquests problemes:
+
+```{pyodide}
+med = pd.read_csv("datos/mediciones.csv")
+print(med)
+print(med.dtypes)
+```
+
+La columna `temperatura` és de tipus `object` (text), no `float64`: n'hi ha prou amb un valor no numèric (`error`) perquè pandas no la pugui llegir com a nombres. Les cel·les buides apareixen com a **`NaN`** (*Not a Number*), el valor que fa servir pandas per a les dades absents.
+
+::: {#imp-limpieza .callout-important title="Passos d'una neteja de dades"}
+1. **Convertir els tipus**: `pd.to_numeric(columna, errors="coerce")` converteix una columna a nombres i substitueix per `NaN` el que no es pugui convertir.
+2. **Eliminar duplicats**: `drop_duplicates()`.
+3. **Marcar els valors impossibles com a absents**, segons el significat de les dades (una humitat relativa no pot superar el 100 %).
+4. **Decidir què fer amb els absents**: eliminar les files (`dropna()`), omplir-los (`fillna(valor)`) o deixar-los i que els càlculs els ignorin (`mean()`, `sum()`… ometen els `NaN` per defecte).
+
+Cada decisió de neteja modifica els resultats de l'anàlisi, així que s'ha de poder justificar i ha de quedar documentada al codi.
+:::
+
+```{pyodide}
+limpio = med.copy()
+
+# 1. Tipos: "error" -> NaN
+limpio["temperatura"] = pd.to_numeric(limpio["temperatura"], errors="coerce")
+
+# 2. Duplicados
+limpio = limpio.drop_duplicates()
+
+# 3. Valores imposibles -> NaN
+limpio.loc[limpio["temperatura"] < -50, "temperatura"] = float("nan")
+limpio.loc[limpio["humedad"] > 100, "humedad"] = float("nan")
+
+print(limpio.isna().sum())      # valores ausentes por columna
+print(len(med), "->", len(limpio), "filas")
+```
+
+Amb les dades netes, l'anàlisi és directa. `mean()` ignora els `NaN`, i `count()` diu quants valors vàlids ha fet servir cada mitjana:
+
+```{pyodide}
+resumen = limpio.groupby("estacion")["temperatura"].agg(["count", "mean", "min", "max"])
+print(resumen.round(2))
+
+limpio.to_csv("mediciones_limpias.csv", index=False)     # guardar el resultado
+print(Path("mediciones_limpias.csv").exists())           # True
+```
+
+::: {#cau-nan .callout-caution title="`NaN` no és igual a res, ni a si mateix"}
+Per definició (norma IEEE 754 de coma flotant), `NaN == NaN` és `False`. Per això `df["temperatura"] == float("nan")` no troba mai els valors absents. Per detectar-los es fan servir els mètodes `isna()` i `notna()`.
+:::
+
+::: {.callout-note collapse="true" title="Aprofundiment: més enllà d'aquest tema"}
+pandas té moltes més eines de les que caben en aquest tema: `merge` per combinar taules per columnes comunes (com un `JOIN` de bases de dades), `pivot_table` per a taules dinàmiques, `pd.cut` per agrupar valors numèrics en intervals, `read_json` i `json_normalize` per a JSON niats, i lectura i escriptura d'Excel (`read_excel`, `to_excel`). La referència completa és la documentació oficial [@pandas], i el llibre del seu creador, Wes McKinney, està disponible gratuïtament en línia [@mckinney2022]. Al tema 8 combinarem pandas amb NumPy i Matplotlib.
+:::
+
+## Bibliografia {.unnumbered}
+
+::: {#refs}
+:::
