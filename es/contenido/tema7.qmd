@@ -505,6 +505,44 @@ print(df[["ball_x", "ball_y", "p_left"]].describe().round(1))
 print(df["state"].value_counts())
 ```
 
+#### Leer datos desde una URL
+
+`pd.read_csv` acepta, en lugar de una ruta, la **URL** de un fichero CSV publicado en la web: pandas lo descarga y lo lee en un solo paso. Por ejemplo, el conjunto de datos de los pasajeros del Titanic (891 pasajeros), procedente de la [competición *Titanic - Machine Learning from Disaster* de Kaggle](https://www.kaggle.com/competitions/titanic){target="_blank" rel="noopener noreferrer"} y [publicado en Hugging Face](https://huggingface.co/datasets/phihung/titanic){target="_blank" rel="noopener noreferrer"}. [Hugging Face](https://huggingface.co){target="_blank" rel="noopener noreferrer"} es una plataforma que aloja miles de conjuntos de datos y modelos de inteligencia artificial abiertos.
+
+```python
+import pandas as pd
+
+url = "https://huggingface.co/datasets/phihung/titanic/resolve/main/train.csv"
+titanic = pd.read_csv(url)                       # lectura desde una URL
+
+print(titanic.shape)                             # (891, 12)
+print(titanic[["Name", "Sex", "Age", "Survived"]].head(3))
+print(titanic.groupby("Sex")["Survived"].mean().round(3))
+# Sex
+# female    0.742
+# male      0.189
+```
+
+La columna `Name` contiene comas dentro de las comillas (`"Braund, Mr. Owen Harris"`): es justo el caso del apartado 7.3.1 que hace fallar a `split(",")` y que `read_csv`, igual que el módulo `csv`, resuelve correctamente.
+
+En un script de Python o en el Codespace, eso es todo. En el **navegador**, en cambio, Python se ejecuta con Pyodide, que no puede abrir conexiones de red por sí mismo. Antes de leer desde una URL hay que activar el paquete `pyodide_http`, que redirige las descargas a través del navegador:
+
+```python
+import pyodide_http
+pyodide_http.patch_all()     # solo en el navegador (Pyodide)
+
+import pandas as pd
+titanic = pd.read_csv("https://huggingface.co/datasets/phihung/titanic/resolve/main/train.csv")
+```
+
+::: {#cau-pyodide-http .callout-caution title="`pyodide_http` solo existe en el navegador"}
+Las dos primeras líneas **no se escriben en un script ni en el Codespace**: allí `pyodide_http` no está instalado, y `import pyodide_http` lanzaría `ModuleNotFoundError`. Además, en el navegador solo se pueden descargar datos de servidores que lo permiten (CORS); Hugging Face y los enlaces *raw* de GitHub lo permiten.
+:::
+
+::: {.callout-tip appearance="simple"}
+En Hugging Face (y en GitHub), la URL que se pasa a `read_csv` debe ser la del **fichero en bruto**, que contiene `/resolve/` (en GitHub, `raw.githubusercontent.com`). La URL que aparece al navegar por la web (con `/blob/`) es una página HTML, no el CSV.
+:::
+
 ### **7.4.2 Seleccionar columnas y filtrar filas**
 
 - `df["columna"]` selecciona una columna (una `Series`); `df[["c1", "c2"]]`, con una **lista** de nombres, un `DataFrame` con esas columnas.
