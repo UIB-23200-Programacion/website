@@ -42,7 +42,9 @@ El directorio de trabajo depende de **desde dónde se ejecuta** el programa, no 
 
 ### **7.1.2 El módulo `pathlib`**
 
-El módulo `pathlib` de la biblioteca estándar representa las rutas como objetos de la clase `Path` (tema 6), con atributos y métodos para consultarlas y combinarlas [@pythonpathlib]. El operador `/` está **sobrecargado** para unir partes de una ruta, y funciona igual en Linux, macOS y Windows:
+`pathlib` es el módulo de la biblioteca estándar de Python para trabajar con rutas de ficheros y directorios. Existe desde Python 3.4 y es la forma moderna y recomendada, en lugar de manipular rutas como cadenas o usar el antiguo módulo `os.path` [@pythonpathlib].
+
+La idea central es que una ruta no es una cadena, sino un **objeto** de la clase `Path` (tema 6), con atributos y métodos para consultarla y manipularla. El operador `/` está **sobrecargado** (`__truediv__`, igual que hicimos con `+` en `Fraccion`) para unir partes de una ruta:
 
 ```{pyodide}
 from pathlib import Path
@@ -56,20 +58,37 @@ print(ruta.exists())                     # True
 print(Path("datos/no_existe.txt").exists())   # False
 ```
 
-Para listar el contenido de un directorio se usan `iterdir()` (todos los elementos) o `glob(patrón)` (los que encajan con un patrón, donde `*` significa «cualquier secuencia de caracteres»):
+::: {#imp-pathlib .callout-important title="Por qué usar `pathlib`"}
+- **Funciona en cualquier sistema operativo.** `Path("datos") / "partida.csv"` usa `/` en Linux y macOS y `\` en Windows sin que tengas que preocuparte.
+- **Todo está en un mismo objeto.** Las operaciones habituales son métodos de la ruta: `exists()`, `is_file()`, `is_dir()`, `mkdir()`, `iterdir()` (listar un directorio), `glob("*.csv")` (buscar por patrón)…
+- **Funciona con las demás herramientas.** `open()`, `csv`, `json` y `pandas` aceptan directamente objetos `Path`.
+:::
+
+Algunas utilidades frecuentes. Para listar el contenido de un directorio se usan `iterdir()` (todos los elementos) o `glob(patrón)` (los que encajan con un patrón, donde `*` significa «cualquier secuencia de caracteres»):
 
 ```{pyodide}
-for f in sorted(Path("datos").iterdir()):
+print(Path.cwd())                  # directorio de trabajo (en el navegador, /home/pyodide)
+print(ruta.resolve())              # ruta absoluta de datos/partida.csv
+
+Path("resultados").mkdir(exist_ok=True)   # crea un directorio si no existe
+print(Path("resultados").is_dir())        # True
+
+for f in sorted(Path("datos").iterdir()):     # todo el contenido de una carpeta
     print(f.name)
 # mediciones.csv
 # partida.csv
 # partida.json
 
-print(sorted(f.name for f in Path("datos").glob("*.csv")))
-# ['mediciones.csv', 'partida.csv']
+for f in sorted(Path("datos").glob("*.csv")):  # solo los CSV
+    print(f.name)
+# mediciones.csv
+# partida.csv
 
-print(Path.cwd())    # directorio de trabajo (en el navegador, /home/pyodide)
+texto = Path("datos/partida.json").read_text(encoding="utf-8")   # leer un fichero de una vez
+print(len(texto), "caracteres")    # 947 caracteres
 ```
+
+`read_text` (y su pareja `write_text`) leen o escriben un fichero de texto completo en una sola línea. Para ficheros grandes, o para recorrerlos línea a línea, se usa `open`, que veremos en el apartado 7.2.
 
 ::: {#cau-barras .callout-caution title="Rutas escritas como cadenas en Windows"}
 En Windows las rutas usan la barra invertida `\`, que en las cadenas de Python es el carácter de **escape**: `"C:\nuevos\tablas.csv"` contiene un salto de línea (`\n`) y un tabulador (`\t`). Hay tres soluciones: escribir la cadena *raw* `r"C:\nuevos\tablas.csv"`, usar barras normales `"C:/nuevos/tablas.csv"` (Windows las acepta), o, mejor aún, construir la ruta con `Path` y el operador `/`, que elige el separador correcto en cada sistema.
@@ -106,9 +125,69 @@ with open("datos/salida.txt", "w", encoding="utf-8") as f:
 Es la forma recomendada de trabajar con ficheros en Python: con ella no hace falta llamar a `f.close()`, y no hay forma de olvidarlo.
 :::
 
+#### La codificación: el argumento `encoding`
+
+Un fichero de texto guarda **bytes**, no caracteres. La **codificación** (*encoding*) es la regla que traduce cada carácter a uno o varios bytes al escribir, y los bytes de vuelta a caracteres al leer. Las codificaciones más habituales son:
+
+| Codificación | Caracteres que representa | Observaciones |
+| :--- | :--- | :--- |
+| `"utf-8"` | todos los de Unicode (cualquier idioma, símbolos matemáticos, emojis) | de 1 a 4 bytes por carácter; el estándar de la web, de Linux y de macOS |
+| `"ascii"` | solo 128 caracteres: letras sin acentos, dígitos y signos básicos | 1 byte por carácter; UTF-8 coincide con ASCII en estos caracteres |
+| `"latin-1"` (ISO-8859-1) | los de las lenguas de Europa occidental (á, ñ, ç, à…) | 1 byte por carácter; no incluye el símbolo `€` |
+| `"cp1252"` (Windows-1252) | como Latin-1, más algunos símbolos como `€` | codificación tradicional de Windows en Europa occidental |
+| `"utf-16"` | todos los de Unicode | 2 o 4 bytes por carácter; habitual internamente en Windows |
+
+Un mismo texto da bytes distintos según la codificación, y leer con una codificación distinta de la usada al escribir produce caracteres erróneos o un error:
+
+```{pyodide}
+print("más".encode("utf-8"))                     # b'm\xc3\xa1s': la «á» ocupa 2 bytes
+print("más".encode("latin-1"))                   # b'm\xe1s': la «á» ocupa 1 byte
+print("más".encode("utf-8").decode("latin-1"))   # mÃ¡s: bytes UTF-8 leídos como Latin-1
+```
+
+::: {#cau-encoding .callout-caution title="Indica siempre `encoding=\"utf-8\"`"}
+Si no se indica `encoding`, `open` usa la codificación por defecto del sistema operativo, que en Windows ha sido tradicionalmente `cp1252` y en Linux y macOS es `utf-8`. El mismo programa puede funcionar en un ordenador y fallar en otro, con caracteres extraños (`mÃ¡s` en lugar de `más`) o con un `UnicodeDecodeError`. En este curso escribiremos **siempre** `encoding="utf-8"` al abrir ficheros de texto.
+:::
+
 ### **7.2.2 Escribir texto**
 
-El método `write` escribe una cadena tal cual: **no añade el salto de línea**, que hay que escribir explícitamente con `"\n"`. Escribamos los primeros números primos, uno por línea:
+Hay tres formas habituales de escribir texto en un fichero abierto `f`:
+
+- **`f.write(cadena)`** escribe la cadena tal cual y **no añade el salto de línea**, que hay que escribir explícitamente con `"\n"`. Es la forma más básica.
+- **`f.writelines(lista)`** escribe una lista (o cualquier iterable) de cadenas, una detrás de otra. **Tampoco añade** saltos de línea: cada cadena debe incluir su `"\n"`.
+- **`print(..., file=f)`** es la función `print` de siempre, pero dirigida al fichero en lugar de a la pantalla. **Sí añade** el salto de línea al final, admite varios argumentos (que separa con un espacio) y es cómoda con f-strings.
+
+El siguiente ejemplo escribe un texto de varias líneas usando las tres formas. El primer bloque abre el fichero en modo `"w"`, que lo crea (o lo vacía si ya existía); los dos siguientes usan el modo `"a"` para añadir líneas al final sin borrar lo anterior:
+
+```{pyodide}
+lineas = [
+    "Teorema de Pitágoras",
+    "En un triángulo rectángulo, el cuadrado de la hipotenusa",
+    "es igual a la suma de los cuadrados de los catetos:",
+    "a² + b² = c²",
+]
+
+# Forma 1: write, añadiendo el salto de línea a mano
+with open("pitagoras.txt", "w", encoding="utf-8") as f:
+    for linea in lineas:
+        f.write(linea + "\n")
+
+# Forma 2: writelines escribe una lista de cadenas (tampoco añade "\n")
+with open("pitagoras.txt", "a", encoding="utf-8") as f:
+    f.writelines(["\n", "Ejemplos:\n", "3² + 4² = 5²\n"])
+
+# Forma 3: print con file=f, que sí añade el salto de línea
+with open("pitagoras.txt", "a", encoding="utf-8") as f:
+    print("5² + 12² = 13²", file=f)
+    print(f"{8}² + {15}² = {17}²", file=f)
+
+with open("pitagoras.txt", encoding="utf-8") as f:
+    print(f.read())
+```
+
+El texto contiene caracteres que no son ASCII (`á`, `²`): sin `encoding="utf-8"`, el resultado dependería de la codificación por defecto del sistema.
+
+Un caso muy habitual es escribir datos numéricos generados por el propio programa. Escribamos los primeros números primos, uno por línea:
 
 ```{pyodide}
 def es_primo(n: int) -> bool:
