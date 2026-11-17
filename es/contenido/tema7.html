@@ -1276,6 +1276,51 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IHBhbmRhcyBhcyBw
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoZGZbW1wiYmFsbF94XCIsIFwiYmFsbF95XCIsIFwicF9sZWZ0XCJdXS5kZXNjcmliZSgpLnJvdW5kKDEpKVxucHJpbnQoZGZbXCJzdGF0ZVwiXS52YWx1ZV9jb3VudHMoKSkifQ==
 </script>
 </div>
+<section id="leer-datos-desde-una-url" class="level4">
+<h4 class="anchored" data-anchor-id="leer-datos-desde-una-url">Leer datos desde una URL</h4>
+<p><code>pd.read_csv</code> acepta, en lugar de una ruta, la <strong>URL</strong> de un fichero CSV publicado en la web: pandas lo descarga y lo lee en un solo paso. Por ejemplo, el conjunto de datos de los pasajeros del Titanic (891 pasajeros), procedente de la <a href="https://www.kaggle.com/competitions/titanic" target="_blank" rel="noopener noreferrer">competición <em>Titanic - Machine Learning from Disaster</em> de Kaggle</a> y <a href="https://huggingface.co/datasets/phihung/titanic" target="_blank" rel="noopener noreferrer">publicado en Hugging Face</a>. <a href="https://huggingface.co" target="_blank" rel="noopener noreferrer">Hugging Face</a> es una plataforma que aloja miles de conjuntos de datos y modelos de inteligencia artificial abiertos.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://huggingface.co/datasets/phihung/titanic/resolve/main/train.csv"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>titanic <span class="op">=</span> pd.read_csv(url)                       <span class="co"># lectura desde una URL</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(titanic.shape)                             <span class="co"># (891, 12)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(titanic[[<span class="st">"Name"</span>, <span class="st">"Sex"</span>, <span class="st">"Age"</span>, <span class="st">"Survived"</span>]].head(<span class="dv">3</span>))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(titanic.groupby(<span class="st">"Sex"</span>)[<span class="st">"Survived"</span>].mean().<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Sex</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># female    0.742</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># male      0.189</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La columna <code>Name</code> contiene comas dentro de las comillas (<code>"Braund, Mr. Owen Harris"</code>): es justo el caso del apartado 7.3.1 que hace fallar a <code>split(",")</code> y que <code>read_csv</code>, igual que el módulo <code>csv</code>, resuelve correctamente.</p>
+<p>En un script de Python o en el Codespace, eso es todo. En el <strong>navegador</strong>, en cambio, Python se ejecuta con Pyodide, que no puede abrir conexiones de red por sí mismo. Antes de leer desde una URL hay que activar el paquete <code>pyodide_http</code>, que redirige las descargas a través del navegador:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyodide_http</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pyodide_http.patch_all()     <span class="co"># solo en el navegador (Pyodide)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>titanic <span class="op">=</span> pd.read_csv(<span class="st">"https://huggingface.co/datasets/phihung/titanic/resolve/main/train.csv"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cau-pyodide-http" class="callout callout-style-default callout-caution no-icon callout-titled" title="`pyodide_http` solo existe en el navegador">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Frecuente&nbsp;6: <code>pyodide_http</code> solo existe en el navegador
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Las dos primeras líneas <strong>no se escriben en un script ni en el Codespace</strong>: allí <code>pyodide_http</code> no está instalado, y <code>import pyodide_http</code> lanzaría <code>ModuleNotFoundError</code>. Además, en el navegador solo se pueden descargar datos de servidores que lo permiten (CORS); Hugging Face y los enlaces <em>raw</em> de GitHub lo permiten.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>En Hugging Face (y en GitHub), la URL que se pasa a <code>read_csv</code> debe ser la del <strong>fichero en bruto</strong>, que contiene <code>/resolve/</code> (en GitHub, <code>raw.githubusercontent.com</code>). La URL que aparece al navegar por la web (con <code>/blob/</code>) es una página HTML, no el CSV.</p>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="seleccionar-columnas-y-filtrar-filas" class="level3">
 <h3 class="anchored" data-anchor-id="seleccionar-columnas-y-filtrar-filas"><strong>7.4.2 Seleccionar columnas y filtrar filas</strong></h3>
@@ -1297,7 +1342,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibWFzY2FyYSA9IGRmW1wic3Rh
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Error Frecuente&nbsp;6: <code>and</code>/<code>or</code> no funcionan con máscaras de pandas
+Error Frecuente&nbsp;7: <code>and</code>/<code>or</code> no funcionan con máscaras de pandas
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1323,7 +1368,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZW5fanVlZ28gPSBkZltkZltc
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Error Frecuente&nbsp;7: Modificar un subconjunto: usa <code>.copy()</code>
+Error Frecuente&nbsp;8: Modificar un subconjunto: usa <code>.copy()</code>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1406,7 +1451,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicmVzdW1lbiA9IGxpbXBpby5n
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Error Frecuente&nbsp;8: <code>NaN</code> no es igual a nada, ni a sí mismo
+Error Frecuente&nbsp;9: <code>NaN</code> no es igual a nada, ni a sí mismo
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1414,7 +1459,7 @@ Error Frecuente&nbsp;8: <code>NaN</code> no es igual a nada, ni a sí mismo
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Profundización: más allá de este tema">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1423,7 +1468,7 @@ Error Frecuente&nbsp;8: <code>NaN</code> no es igual a nada, ni a sí mismo
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>pandas tiene muchas más herramientas de las que caben en este tema: <code>merge</code> para combinar tablas por columnas comunes (como un <code>JOIN</code> de bases de datos), <code>pivot_table</code> para tablas dinámicas, <code>pd.cut</code> para agrupar valores numéricos en intervalos, <code>read_json</code> y <code>json_normalize</code> para JSON anidados, y lectura y escritura de Excel (<code>read_excel</code>, <code>to_excel</code>). La referencia completa es la documentación oficial <span class="citation" data-cites="pandas">(<a href="#ref-pandas" role="doc-biblioref">The pandas development team 2025</a>)</span>, y el libro de su creador, Wes McKinney, está disponible gratuitamente en línea <span class="citation" data-cites="mckinney2022">(<a href="#ref-mckinney2022" role="doc-biblioref">McKinney 2022</a>)</span>. En el tema 8 combinaremos pandas con NumPy y Matplotlib.</p>
 </div>
