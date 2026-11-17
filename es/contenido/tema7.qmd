@@ -301,9 +301,40 @@ with open("datos/partida.csv", encoding="utf-8") as f:
 
 Separar cada línea con `linea.split(",")` funciona en casos sencillos, pero falla si algún valor contiene una coma (por ejemplo, `"Palma, Mallorca"` entre comillas). El módulo `csv` de la biblioteca estándar resuelve todos esos casos [@pythoncsv].
 
+#### Leer un CSV con `csv.reader`
+
+La función `csv.reader` recibe un fichero abierto y devuelve un objeto **lector** que se recorre fila a fila: cada fila es una **lista de cadenas**. Contemos cuántos ticks se jugaron con la bola en juego y cuál fue el mayor número de golpes de un intercambio:
+
+```{pyodide}
+import csv
+
+with open("datos/partida.csv", encoding="utf-8", newline="") as f:
+    lector = csv.reader(f)
+    cabecera = next(lector)              # la primera fila: los nombres de las columnas
+    print(cabecera)
+
+    i_state = cabecera.index("state")    # posición de cada columna que nos interesa
+    i_hits = cabecera.index("rally_hits")
+
+    en_juego = 0
+    max_golpes = 0
+    for numero, fila in enumerate(lector):   # el resto de filas, una a una
+        if numero == 0:
+            print(fila)                  # cada fila es una lista de cadenas
+        if fila[i_state] == "playing":
+            en_juego += 1
+        max_golpes = max(max_golpes, int(fila[i_hits]))   # ¡convertir a int!
+
+print(en_juego, max_golpes)              # 2532 10
+```
+
+- **`next(lector)`** lee una sola fila. Aquí sirve para separar la cabecera antes del bucle, que recorre solo las filas de datos.
+- Como cada fila es una lista, los valores se obtienen **por posición**. Para no escribir números «mágicos» como `fila[9]`, la posición de cada columna se busca en la cabecera con `cabecera.index("rally_hits")`.
+- **Todos los valores son cadenas**, incluso `'0'` y `'400.0'`: hay que convertirlos con `int()` o `float()`.
+
 #### Leer un CSV con `csv.DictReader`
 
-`csv.DictReader` lee la cabecera y devuelve cada fila como un **diccionario** `{nombre_de_columna: valor}`:
+`csv.DictReader` resuelve el mismo problema de forma más legible: lee la cabecera automáticamente y devuelve cada fila como un **diccionario** `{nombre_de_columna: valor}`, de modo que los valores se obtienen por el nombre de la columna (`fila["rally_hits"]`) en lugar de por su posición. Repitamos el recuento anterior, ahora separado por estados:
 
 ```{pyodide}
 import csv
