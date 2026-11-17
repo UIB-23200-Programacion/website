@@ -207,27 +207,49 @@ print(f"Escritos {len(primos)} primos en primos.txt")   # Escritos 17 primos en 
 
 ### **7.2.3 Leer texto**
 
-Hay tres formas habituales de leer un fichero de texto:
+Hay tres formas habituales de leer un fichero de texto abierto `f`:
+
+- **`f.read()`** devuelve el contenido completo del fichero como **una sola cadena**.
+- **`f.readlines()`** devuelve una **lista de cadenas**, una por línea, cada una con su `"\n"` final.
+- **`for linea in f`** recorre el fichero **línea a línea**: en cada iteración, `linea` es la cadena de la línea siguiente, también con su `"\n"`.
+
+En el ejemplo, `repr` muestra el `"\n"` que acompaña a cada línea y que normalmente no se ve:
 
 ```{pyodide}
+# Forma 1: read() devuelve todo el fichero en una sola cadena
 with open("primos.txt", encoding="utf-8") as f:
-    contenido = f.read()            # todo el fichero en una sola cadena
-print(repr(contenido[:11]))         # '2\n3\n5\n7\n11\n'
+    contenido = f.read()
+print(repr(contenido[:11]))     # '2\n3\n5\n7\n11\n'
 
+# Forma 2: readlines() devuelve una lista con una cadena por línea (con su '\n')
 with open("primos.txt", encoding="utf-8") as f:
-    lineas = f.readlines()          # lista de líneas (con su '\n')
-print(lineas[:3])                   # ['2\n', '3\n', '5\n']
+    lineas = f.readlines()
+print(lineas[:3])               # ['2\n', '3\n', '5\n']
+print(len(lineas))              # 17
 
-suma = 0
+# Forma 3: recorrer el fichero con for: una línea en cada iteración
 with open("primos.txt", encoding="utf-8") as f:
-    for linea in f:                 # recorrido línea a línea
-        suma += int(linea)          # int() ignora el '\n' final
-print(f"Suma de los primos: {suma}")   # Suma de los primos: 440
+    for linea in f:
+        print(repr(linea), end=" ")
+# '2\n' '3\n' '5\n' '7\n' '11\n' ... '53\n' '59\n'
 ```
 
 ::: {#tip-fichero-flujo .callout-tip title="Un fichero es un flujo de datos"}
 Recorrer un fichero con `for linea in f` es un **algoritmo de una sola pasada** (tema 5): Python lee una línea cada vez, sin cargar el fichero entero en memoria. Es la forma adecuada de procesar ficheros muy grandes, como los registros de millones de mediciones. En cambio, `read()` y `readlines()` cargan el fichero completo (procesamiento por lotes).
 :::
+
+#### Procesar las líneas: de texto a números
+
+Lo que se lee de un fichero de texto son **cadenas**: la primera línea de `primos.txt` es `'2\n'`, no el número `2`. Para operar con los valores hay que dar dos pasos en cada línea: limpiar la cadena con `strip()`, que elimina el `"\n"` y los espacios de los extremos, y convertirla con `int()` o `float()`:
+
+```{pyodide}
+suma = 0
+with open("primos.txt", encoding="utf-8") as f:
+    for linea in f:
+        n = int(linea.strip())   # 1) strip() quita el '\n'   2) int() convierte a entero
+        suma += n
+print(f"Suma de los primos: {suma}")    # Suma de los primos: 440
+```
 
 ::: {#cau-texto-numeros .callout-caution title="Lo que se lee de un fichero de texto son cadenas"}
 Un fichero de texto no guarda números, sino caracteres. Lo que devuelve la lectura siempre es `str`: `"17\n" + "1"` da `"17\n1"`, no `18`. Hay que convertir explícitamente con `int()` o `float()`, y para eliminar el salto de línea y los espacios de los extremos se usa `linea.strip()`.
