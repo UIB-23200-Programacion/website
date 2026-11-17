@@ -20,7 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -533,8 +588,40 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En aquesta pàgina</h2>
+   
+  <ul>
+  <li><a href="#fitxers-i-rutes" id="toc-fitxers-i-rutes" class="nav-link active" data-scroll-target="#fitxers-i-rutes">7.1. Fitxers i rutes</a>
+  <ul class="collapse">
+  <li><a href="#rutes-absolutes-i-relatives" id="toc-rutes-absolutes-i-relatives" class="nav-link" data-scroll-target="#rutes-absolutes-i-relatives"><strong>7.1.1 Rutes absolutes i relatives</strong></a></li>
+  <li><a href="#el-mòdul-pathlib" id="toc-el-mòdul-pathlib" class="nav-link" data-scroll-target="#el-mòdul-pathlib"><strong>7.1.2 El mòdul <code>pathlib</code></strong></a></li>
+  </ul></li>
+  <li><a href="#lectura-i-escriptura-de-text" id="toc-lectura-i-escriptura-de-text" class="nav-link" data-scroll-target="#lectura-i-escriptura-de-text">7.2. Lectura i escriptura de text</a>
+  <ul class="collapse">
+  <li><a href="#obrir-un-fitxer-open-i-la-instrucció-with" id="toc-obrir-un-fitxer-open-i-la-instrucció-with" class="nav-link" data-scroll-target="#obrir-un-fitxer-open-i-la-instrucció-with"><strong>7.2.1 Obrir un fitxer: <code>open</code> i la instrucció <code>with</code></strong></a></li>
+  <li><a href="#escriure-text" id="toc-escriure-text" class="nav-link" data-scroll-target="#escriure-text"><strong>7.2.2 Escriure text</strong></a></li>
+  <li><a href="#llegir-text" id="toc-llegir-text" class="nav-link" data-scroll-target="#llegir-text"><strong>7.2.3 Llegir text</strong></a></li>
+  <li><a href="#exemple-taula-de-valors-duna-funció" id="toc-exemple-taula-de-valors-duna-funció" class="nav-link" data-scroll-target="#exemple-taula-de-valors-duna-funció"><strong>7.2.4 Exemple: taula de valors d’una funció</strong></a></li>
+  </ul></li>
+  <li><a href="#fitxers-csv-i-json" id="toc-fitxers-csv-i-json" class="nav-link" data-scroll-target="#fitxers-csv-i-json">7.3. Fitxers CSV i JSON</a>
+  <ul class="collapse">
+  <li><a href="#csv-dades-tabulars" id="toc-csv-dades-tabulars" class="nav-link" data-scroll-target="#csv-dades-tabulars"><strong>7.3.1 CSV: dades tabulars</strong></a></li>
+  <li><a href="#json-dades-jeràrquiques" id="toc-json-dades-jeràrquiques" class="nav-link" data-scroll-target="#json-dades-jeràrquiques"><strong>7.3.2 JSON: dades jeràrquiques</strong></a></li>
+  <li><a href="#csv-o-json" id="toc-csv-o-json" class="nav-link" data-scroll-target="#csv-o-json"><strong>7.3.3 CSV o JSON</strong></a></li>
+  </ul></li>
+  <li><a href="#pandas-manipulació-i-neteja-de-dades-estructurades" id="toc-pandas-manipulació-i-neteja-de-dades-estructurades" class="nav-link" data-scroll-target="#pandas-manipulació-i-neteja-de-dades-estructurades">7.4. Pandas: manipulació i neteja de dades estructurades</a>
+  <ul class="collapse">
+  <li><a href="#llegir-i-explorar-un-dataframe" id="toc-llegir-i-explorar-un-dataframe" class="nav-link" data-scroll-target="#llegir-i-explorar-un-dataframe"><strong>7.4.1 Llegir i explorar un <code>DataFrame</code></strong></a></li>
+  <li><a href="#seleccionar-columnes-i-filtrar-files" id="toc-seleccionar-columnes-i-filtrar-files" class="nav-link" data-scroll-target="#seleccionar-columnes-i-filtrar-files"><strong>7.4.2 Seleccionar columnes i filtrar files</strong></a></li>
+  <li><a href="#columnes-noves-i-operacions-vectoritzades" id="toc-columnes-noves-i-operacions-vectoritzades" class="nav-link" data-scroll-target="#columnes-noves-i-operacions-vectoritzades"><strong>7.4.3 Columnes noves i operacions vectoritzades</strong></a></li>
+  <li><a href="#agrupar-i-agregar-groupby" id="toc-agrupar-i-agregar-groupby" class="nav-link" data-scroll-target="#agrupar-i-agregar-groupby"><strong>7.4.4 Agrupar i agregar: <code>groupby</code></strong></a></li>
+  <li><a href="#neteja-de-dades" id="toc-neteja-de-dades" class="nav-link" data-scroll-target="#neteja-de-dades"><strong>7.4.5 Neteja de dades</strong></a></li>
+  </ul></li>
+  <li><a href="#bibliografia" id="toc-bibliografia" class="nav-link" data-scroll-target="#bibliografia">Bibliografia</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -559,11 +646,862 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contingut pendent.)</em></p>
+<p>Fins ara, totes les dades dels nostres programes vivien a la memòria: les llistes, els diccionaris i els objectes desapareixen tan bon punt el programa acaba. Perquè les dades <strong>persisteixin</strong> (desar resultats, compartir-los, analitzar-los després) cal escriure-les en <strong>fitxers</strong>. I la majoria de les dades amb què treballarem no les generarà el nostre programa: arribaran en fitxers creats per altres (un sensor, un full de càlcul, el registre d’una partida del Pong de la pràctica).</p>
+<p>Aquest tema recorre el camí complet: localitzar un fitxer (rutes), llegir i escriure text, llegir i escriure els dos formats d’intercanvi de dades més habituals (CSV i JSON) i, finalment, analitzar i netejar dades tabulars amb la biblioteca <strong>pandas</strong> <span class="citation" data-cites="mckinney2022">(<a href="#ref-mckinney2022" role="doc-biblioref">McKinney 2022</a>)</span>.</p>
+<div id="tip-fichero" class="callout callout-style-default callout-tip no-icon callout-titled" title="Fitxer">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;1: Fitxer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>fitxer</strong> és una seqüència de bytes desada en un dispositiu d’emmagatzematge (disc, memòria USB, el núvol) i identificada per un nom dins d’un sistema de <strong>directoris</strong> (carpetes) organitzats en arbre. Un <strong>fitxer de text</strong> és un fitxer els bytes del qual representen caràcters segons una <strong>codificació</strong> (en aquest curs, sempre UTF-8); qualsevol altre fitxer és un <strong>fitxer binari</strong> (imatges, executables, PDF…).</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Les cel·les d’aquest tema s’executen al navegador, que té el seu propi <strong>sistema de fitxers virtual</strong>: el que escriguis en una cel·la es pot llegir en una altra, però desapareix en recarregar la pàgina. La pàgina carrega a més, a la carpeta <code>datos/</code>, tres fitxers d’exemple que farem servir al llarg del tema. Les cel·les comparteixen el mateix entorn de Python: <strong>executa-les en ordre</strong>.</p>
+</div>
+</div>
+</div>
+<hr>
+<section id="fitxers-i-rutes" class="level2">
+<h2 class="anchored" data-anchor-id="fitxers-i-rutes">7.1. Fitxers i rutes</h2>
+<section id="rutes-absolutes-i-relatives" class="level3">
+<h3 class="anchored" data-anchor-id="rutes-absolutes-i-relatives"><strong>7.1.1 Rutes absolutes i relatives</strong></h3>
+<p>Per obrir un fitxer cal indicar la seva <strong>ruta</strong> (<em>path</em>): el camí que hi porta a través de l’arbre de directoris.</p>
+<div id="imp-rutas" class="callout callout-style-default callout-important no-icon callout-titled" title="Rutes absolutes i relatives">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;1: Rutes absolutes i relatives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Una <strong>ruta absoluta</strong> comença a l’arrel del sistema de fitxers: <code>/workspaces/t07-ficheros/datos/partida.csv</code> (Linux, macOS, Codespaces) o <code>C:\Users\ana\datos\partida.csv</code> (Windows).</li>
+<li>Una <strong>ruta relativa</strong> s’interpreta a partir del <strong>directori de treball</strong> (<em>current working directory</em>) del programa: <code>datos/partida.csv</code> vol dir «la carpeta <code>datos</code> dins del directori de treball».</li>
+</ul>
+<p>Els noms especials <code>.</code> i <code>..</code> designen el directori actual i el directori pare: <code>../datos/partida.csv</code> puja un nivell abans d’entrar a <code>datos</code>.</p>
+</div>
+</div>
+<p>El directori de treball depèn de <strong>des d’on s’executa</strong> el programa, no d’on està desat el fitxer <code>.py</code>. En un Codespace, el terminal s’obre a l’arrel del projecte (<code>/workspaces/&lt;nom-del-repositori&gt;</code>), i és des d’allà des d’on s’executen <code>uv run python ...</code> i <code>uv run pytest</code>.</p>
+</section>
+<section id="el-mòdul-pathlib" class="level3">
+<h3 class="anchored" data-anchor-id="el-mòdul-pathlib"><strong>7.1.2 El mòdul <code>pathlib</code></strong></h3>
+<p><code>pathlib</code> és el mòdul de la biblioteca estàndard de Python per treballar amb rutes de fitxers i directoris. Existeix des de Python 3.4 i és la manera moderna i recomanada, en lloc de manipular rutes com a cadenes o fer servir l’antic mòdul <code>os.path</code> <span class="citation" data-cites="pythonpathlib">(<a href="#ref-pythonpathlib" role="doc-biblioref">Python Software Foundation 2025c</a>)</span>.</p>
+<p>La idea central és que una ruta no és una cadena, sinó un <strong>objecte</strong> de la classe <code>Path</code> (tema 6), amb atributs i mètodes per consultar-la i manipular-la. L’operador <code>/</code> està <strong>sobrecarregat</strong> (<code>__truediv__</code>, igual que vam fer amb <code>+</code> a <code>Fraccion</code>) per unir parts d’una ruta:</p>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZnJvbSBwYXRobGliIGltcG9ydCBQYXRoXG5cbnJ1dGEgPSBQYXRoKFwiZGF0b3NcIikgLyBcInBhcnRpZGEuY3N2XCIgICAgICMgX190cnVlZGl2X186IHVuZSBwYXJ0ZXMgZGUgbGEgcnV0YVxucHJpbnQocnV0YSkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjIGRhdG9zL3BhcnRpZGEuY3N2XG5wcmludChydXRhLm5hbWUpICAgICAgICAgICAgICAgICAgICAgICAgICMgcGFydGlkYS5jc3ZcbnByaW50KHJ1dGEuc3RlbSwgcnV0YS5zdWZmaXgpICAgICAgICAgICAgIyBwYXJ0aWRhIC5jc3ZcbnByaW50KHJ1dGEucGFyZW50KSAgICAgICAgICAgICAgICAgICAgICAgIyBkYXRvc1xucHJpbnQocnV0YS5leGlzdHMoKSkgICAgICAgICAgICAgICAgICAgICAjIFRydWVcbnByaW50KFBhdGgoXCJkYXRvcy9ub19leGlzdGUudHh0XCIpLmV4aXN0cygpKSAgICMgRmFsc2UifQ==
+</script>
+</div>
+<div id="imp-pathlib" class="callout callout-style-default callout-important no-icon callout-titled" title="Per què fer servir `pathlib`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;2: Per què fer servir <code>pathlib</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Funciona en qualsevol sistema operatiu.</strong> <code>Path("datos") / "partida.csv"</code> fa servir <code>/</code> a Linux i macOS i <code>\</code> a Windows sense que te n’hagis de preocupar.</li>
+<li><strong>Tot és en un mateix objecte.</strong> Les operacions habituals són mètodes de la ruta: <code>exists()</code>, <code>is_file()</code>, <code>is_dir()</code>, <code>mkdir()</code>, <code>iterdir()</code> (llistar un directori), <code>glob("*.csv")</code> (cercar per patró)…</li>
+<li><strong>Funciona amb les altres eines.</strong> <code>open()</code>, <code>csv</code>, <code>json</code> i <code>pandas</code> accepten directament objectes <code>Path</code>.</li>
+</ul>
+</div>
+</div>
+<p>Algunes utilitats freqüents. Per llistar el contingut d’un directori es fan servir <code>iterdir()</code> (tots els elements) o <code>glob(patró)</code> (els que encaixen amb un patró, on <code>*</code> vol dir «qualsevol seqüència de caràcters»):</p>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoUGF0aC5jd2QoKSkgICAgICAgICAgICAgICAgICAjIGRpcmVjdG9yaW8gZGUgdHJhYmFqbyAoZW4gZWwgbmF2ZWdhZG9yLCAvaG9tZS9weW9kaWRlKVxucHJpbnQocnV0YS5yZXNvbHZlKCkpICAgICAgICAgICAgICAjIHJ1dGEgYWJzb2x1dGEgZGUgZGF0b3MvcGFydGlkYS5jc3ZcblxuUGF0aChcInJlc3VsdGFkb3NcIikubWtkaXIoZXhpc3Rfb2s9VHJ1ZSkgICAjIGNyZWEgdW4gZGlyZWN0b3JpbyBzaSBubyBleGlzdGVcbnByaW50KFBhdGgoXCJyZXN1bHRhZG9zXCIpLmlzX2RpcigpKSAgICAgICAgIyBUcnVlXG5cbmZvciBmIGluIHNvcnRlZChQYXRoKFwiZGF0b3NcIikuaXRlcmRpcigpKTogICAgICMgdG9kbyBlbCBjb250ZW5pZG8gZGUgdW5hIGNhcnBldGFcbiAgICBwcmludChmLm5hbWUpXG4jIG1lZGljaW9uZXMuY3N2XG4jIHBhcnRpZGEuY3N2XG4jIHBhcnRpZGEuanNvblxuXG5mb3IgZiBpbiBzb3J0ZWQoUGF0aChcImRhdG9zXCIpLmdsb2IoXCIqLmNzdlwiKSk6ICAjIHNvbG8gbG9zIENTVlxuICAgIHByaW50KGYubmFtZSlcbiMgbWVkaWNpb25lcy5jc3ZcbiMgcGFydGlkYS5jc3ZcblxudGV4dG8gPSBQYXRoKFwiZGF0b3MvcGFydGlkYS5qc29uXCIpLnJlYWRfdGV4dChlbmNvZGluZz1cInV0Zi04XCIpICAgIyBsZWVyIHVuIGZpY2hlcm8gZGUgdW5hIHZlelxucHJpbnQobGVuKHRleHRvKSwgXCJjYXJhY3RlcmVzXCIpICAgICMgOTQ3IGNhcmFjdGVyZXMifQ==
+</script>
+</div>
+<p><code>read_text</code> (i la seva parella <code>write_text</code>) llegeixen o escriuen un fitxer de text complet en una sola línia. Per a fitxers grans, o per recórrer-los línia a línia, es fa servir <code>open</code>, que veurem a l’apartat 7.2.</p>
+<div id="cau-barras" class="callout callout-style-default callout-caution no-icon callout-titled" title="Rutes escrites com a cadenes a Windows">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;1: Rutes escrites com a cadenes a Windows
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A Windows les rutes fan servir la barra invertida <code>\</code>, que a les cadenes de Python és el caràcter d’<strong>escapament</strong>: <code>"C:\nuevos\tablas.csv"</code> conté un salt de línia (<code>\n</code>) i un tabulador (<code>\t</code>). Hi ha tres solucions: escriure la cadena <em>raw</em> <code>r"C:\nuevos\tablas.csv"</code>, fer servir barres normals <code>"C:/nuevos/tablas.csv"</code> (Windows les accepta) o, millor encara, construir la ruta amb <code>Path</code> i l’operador <code>/</code>, que tria el separador correcte a cada sistema.</p>
+</div>
+</div>
+<div id="wrn-ruta" class="callout callout-style-default callout-warning no-icon callout-titled" title="`FileNotFoundError`: des d'on s'executa el programa?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tècnica de Depuració&nbsp;1: <code>FileNotFoundError</code>: des d’on s’executa el programa?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quan un programa no troba un fitxer que sí que existeix, gairebé sempre és perquè s’ha executat des d’un altre directori de treball i la ruta relativa apunta a un altre lloc. Per depurar-ho, imprimeix <code>Path.cwd()</code> i <code>ruta.resolve()</code> (la ruta absoluta a la qual apunta <code>ruta</code>) just abans d’obrir el fitxer. Si el fitxer s’ha de cercar al costat de l’script, independentment de des d’on s’executi, fes servir <code>Path(__file__).parent / "datos" / "partida.csv"</code>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="lectura-i-escriptura-de-text" class="level2">
+<h2 class="anchored" data-anchor-id="lectura-i-escriptura-de-text">7.2. Lectura i escriptura de text</h2>
+<section id="obrir-un-fitxer-open-i-la-instrucció-with" class="level3">
+<h3 class="anchored" data-anchor-id="obrir-un-fitxer-open-i-la-instrucció-with"><strong>7.2.1 Obrir un fitxer: <code>open</code> i la instrucció <code>with</code></strong></h3>
+<p>La funció <code>open(ruta, mode, encoding=...)</code> obre un fitxer i retorna un <strong>objecte fitxer</strong> amb mètodes per llegir o escriure. El <strong>mode</strong> indica què es farà:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Mode</th>
+<th style="text-align: left;">Significat</th>
+<th style="text-align: left;">Si el fitxer no existeix</th>
+<th style="text-align: left;">Si el fitxer existeix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>"r"</code></td>
+<td style="text-align: left;">lectura (per defecte)</td>
+<td style="text-align: left;"><code>FileNotFoundError</code></td>
+<td style="text-align: left;">es llegeix des del principi</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"w"</code></td>
+<td style="text-align: left;">escriptura</td>
+<td style="text-align: left;">es crea</td>
+<td style="text-align: left;"><strong>s’esborra el seu contingut</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>"a"</code></td>
+<td style="text-align: left;">afegir al final (<em>append</em>)</td>
+<td style="text-align: left;">es crea</td>
+<td style="text-align: left;">s’escriu a continuació</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"x"</code></td>
+<td style="text-align: left;">creació exclusiva</td>
+<td style="text-align: left;">es crea</td>
+<td style="text-align: left;"><code>FileExistsError</code></td>
+</tr>
+</tbody>
+</table>
+<div id="imp-with" class="callout callout-style-default callout-important no-icon callout-titled" title="La instrucció `with`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;3: La instrucció <code>with</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un fitxer obert s’ha de <strong>tancar</strong> quan s’acaba de fer servir: fins aleshores, el que s’ha escrit pot no haver arribat al disc i el sistema operatiu manté recursos reservats. La instrucció <code>with</code> tanca el fitxer automàticament en sortir del bloc, <strong>fins i tot si es produeix una excepció</strong> dins seu:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"datos/salida.txt"</span>, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"Hola</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># aquí el fichero ya está cerrado</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>És la manera recomanada de treballar amb fitxers a Python: amb ella no cal cridar <code>f.close()</code>, i no hi ha manera d’oblidar-ho.</p>
+</div>
+</div>
+<section id="la-codificació-largument-encoding" class="level4">
+<h4 class="anchored" data-anchor-id="la-codificació-largument-encoding">La codificació: l’argument <code>encoding</code></h4>
+<p>Un fitxer de text desa <strong>bytes</strong>, no caràcters. La <strong>codificació</strong> (<em>encoding</em>) és la regla que tradueix cada caràcter a un o diversos bytes en escriure, i els bytes de tornada a caràcters en llegir. Les codificacions més habituals són:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Codificació</th>
+<th style="text-align: left;">Caràcters que representa</th>
+<th style="text-align: left;">Observacions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>"utf-8"</code></td>
+<td style="text-align: left;">tots els d’Unicode (qualsevol idioma, símbols matemàtics, emojis)</td>
+<td style="text-align: left;">d’1 a 4 bytes per caràcter; l’estàndard del web, de Linux i de macOS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"ascii"</code></td>
+<td style="text-align: left;">només 128 caràcters: lletres sense accents, dígits i signes bàsics</td>
+<td style="text-align: left;">1 byte per caràcter; UTF-8 coincideix amb ASCII en aquests caràcters</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>"latin-1"</code> (ISO-8859-1)</td>
+<td style="text-align: left;">els de les llengües d’Europa occidental (á, ñ, ç, à…)</td>
+<td style="text-align: left;">1 byte per caràcter; no inclou el símbol <code>€</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"cp1252"</code> (Windows-1252)</td>
+<td style="text-align: left;">com Latin-1, més alguns símbols com <code>€</code></td>
+<td style="text-align: left;">codificació tradicional de Windows a Europa occidental</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>"utf-16"</code></td>
+<td style="text-align: left;">tots els d’Unicode</td>
+<td style="text-align: left;">2 o 4 bytes per caràcter; habitual internament a Windows</td>
+</tr>
+</tbody>
+</table>
+<p>Un mateix text dona bytes diferents segons la codificació, i llegir amb una codificació diferent de la que s’ha fet servir en escriure produeix caràcters erronis o un error:</p>
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoXCJtw6FzXCIuZW5jb2RlKFwidXRmLThcIikpICAgICAgICAgICAgICAgICAgICAgIyBiJ21cXHhjM1xceGExcyc6IGxhIMKrw6HCuyBvY3VwYSAyIGJ5dGVzXG5wcmludChcIm3DoXNcIi5lbmNvZGUoXCJsYXRpbi0xXCIpKSAgICAgICAgICAgICAgICAgICAjIGInbVxceGUxcyc6IGxhIMKrw6HCuyBvY3VwYSAxIGJ5dGVcbnByaW50KFwibcOhc1wiLmVuY29kZShcInV0Zi04XCIpLmRlY29kZShcImxhdGluLTFcIikpICAgIyBtw4PCoXM6IGJ5dGVzIFVURi04IGxlw61kb3MgY29tbyBMYXRpbi0xIn0=
+</script>
+</div>
+<div id="cau-encoding" class="callout callout-style-default callout-caution no-icon callout-titled" title="Indica sempre `encoding=&quot;utf-8&quot;`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;2: Indica sempre <code>encoding="utf-8"</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si no s’indica <code>encoding</code>, <code>open</code> fa servir la codificació per defecte del sistema operatiu, que a Windows ha estat tradicionalment <code>cp1252</code> i a Linux i macOS és <code>utf-8</code>. El mateix programa pot funcionar en un ordinador i fallar en un altre, amb caràcters estranys (<code>mÃ¡s</code> en lloc de <code>más</code>) o amb un <code>UnicodeDecodeError</code>. En aquest curs escriurem <strong>sempre</strong> <code>encoding="utf-8"</code> en obrir fitxers de text.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="escriure-text" class="level3">
+<h3 class="anchored" data-anchor-id="escriure-text"><strong>7.2.2 Escriure text</strong></h3>
+<p>Hi ha tres maneres habituals d’escriure text en un fitxer obert <code>f</code>:</p>
+<ul>
+<li><strong><code>f.write(cadena)</code></strong> escriu la cadena tal qual i <strong>no afegeix el salt de línia</strong>, que s’ha d’escriure explícitament amb <code>"\n"</code>. És la manera més bàsica.</li>
+<li><strong><code>f.writelines(llista)</code></strong> escriu una llista (o qualsevol iterable) de cadenes, una darrere l’altra. <strong>Tampoc no afegeix</strong> salts de línia: cada cadena ha d’incloure el seu <code>"\n"</code>.</li>
+<li><strong><code>print(..., file=f)</code></strong> és la funció <code>print</code> de sempre, però dirigida al fitxer en lloc de la pantalla. <strong>Sí que afegeix</strong> el salt de línia al final, admet diversos arguments (que separa amb un espai) i és còmoda amb f-strings.</li>
+</ul>
+<p>L’exemple següent escriu un text de diverses línies fent servir les tres maneres. El primer bloc obre el fitxer en mode <code>"w"</code>, que el crea (o el buida si ja existia); els dos següents fan servir el mode <code>"a"</code> per afegir línies al final sense esborrar el que hi havia:</p>
+<div>
+<div id="pyodide-4" class="exercise-cell">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibGluZWFzID0gW1xuICAgIFwiVGVvcmVtYSBkZSBQaXTDoWdvcmFzXCIsXG4gICAgXCJFbiB1biB0cmnDoW5ndWxvIHJlY3TDoW5ndWxvLCBlbCBjdWFkcmFkbyBkZSBsYSBoaXBvdGVudXNhXCIsXG4gICAgXCJlcyBpZ3VhbCBhIGxhIHN1bWEgZGUgbG9zIGN1YWRyYWRvcyBkZSBsb3MgY2F0ZXRvczpcIixcbiAgICBcImHCsiArIGLCsiA9IGPCslwiLFxuXVxuXG4jIEZvcm1hIDE6IHdyaXRlLCBhw7FhZGllbmRvIGVsIHNhbHRvIGRlIGzDrW5lYSBhIG1hbm9cbndpdGggb3BlbihcInBpdGFnb3Jhcy50eHRcIiwgXCJ3XCIsIGVuY29kaW5nPVwidXRmLThcIikgYXMgZjpcbiAgICBmb3IgbGluZWEgaW4gbGluZWFzOlxuICAgICAgICBmLndyaXRlKGxpbmVhICsgXCJcXG5cIilcblxuIyBGb3JtYSAyOiB3cml0ZWxpbmVzIGVzY3JpYmUgdW5hIGxpc3RhIGRlIGNhZGVuYXMgKHRhbXBvY28gYcOxYWRlIFwiXFxuXCIpXG53aXRoIG9wZW4oXCJwaXRhZ29yYXMudHh0XCIsIFwiYVwiLCBlbmNvZGluZz1cInV0Zi04XCIpIGFzIGY6XG4gICAgZi53cml0ZWxpbmVzKFtcIlxcblwiLCBcIkVqZW1wbG9zOlxcblwiLCBcIjPCsiArIDTCsiA9IDXCslxcblwiXSlcblxuIyBGb3JtYSAzOiBwcmludCBjb24gZmlsZT1mLCBxdWUgc8OtIGHDsWFkZSBlbCBzYWx0byBkZSBsw61uZWFcbndpdGggb3BlbihcInBpdGFnb3Jhcy50eHRcIiwgXCJhXCIsIGVuY29kaW5nPVwidXRmLThcIikgYXMgZjpcbiAgICBwcmludChcIjXCsiArIDEywrIgPSAxM8KyXCIsIGZpbGU9ZilcbiAgICBwcmludChmXCJ7OH3CsiArIHsxNX3CsiA9IHsxN33CslwiLCBmaWxlPWYpXG5cbndpdGggb3BlbihcInBpdGFnb3Jhcy50eHRcIiwgZW5jb2Rpbmc9XCJ1dGYtOFwiKSBhcyBmOlxuICAgIHByaW50KGYucmVhZCgpKSJ9
+</script>
+</div>
+<p>El text conté caràcters que no són ASCII (<code>á</code>, <code>²</code>): sense <code>encoding="utf-8"</code>, el resultat dependria de la codificació per defecte del sistema.</p>
+<p>Un cas molt habitual és escriure dades numèriques generades pel mateix programa. Escrivim els primers nombres primers, un per línia:</p>
+<div>
+<div id="pyodide-5" class="exercise-cell">
+
+</div>
+<script type="pyodide-5-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGVzX3ByaW1vKG46IGludCkgLT4gYm9vbDpcbiAgICBcIlwiXCJEZXZ1ZWx2ZSBUcnVlIHNpIG4gZXMgcHJpbW8uXCJcIlwiXG4gICAgaWYgbiA8IDI6XG4gICAgICAgIHJldHVybiBGYWxzZVxuICAgIHJldHVybiBhbGwobiAlIGQgIT0gMCBmb3IgZCBpbiByYW5nZSgyLCBpbnQobioqMC41KSArIDEpKVxuXG5wcmltb3MgPSBbbiBmb3IgbiBpbiByYW5nZSgyLCA2MCkgaWYgZXNfcHJpbW8obildXG5cbndpdGggb3BlbihcInByaW1vcy50eHRcIiwgXCJ3XCIsIGVuY29kaW5nPVwidXRmLThcIikgYXMgZjpcbiAgICBmb3IgcCBpbiBwcmltb3M6XG4gICAgICAgIGYud3JpdGUoZlwie3B9XFxuXCIpXG5cbnByaW50KGZcIkVzY3JpdG9zIHtsZW4ocHJpbW9zKX0gcHJpbW9zIGVuIHByaW1vcy50eHRcIikgICAjIEVzY3JpdG9zIDE3IHByaW1vcyBlbiBwcmltb3MudHh0In0=
+</script>
+</div>
+</section>
+<section id="llegir-text" class="level3">
+<h3 class="anchored" data-anchor-id="llegir-text"><strong>7.2.3 Llegir text</strong></h3>
+<p>Hi ha tres maneres habituals de llegir un fitxer de text obert <code>f</code>:</p>
+<ul>
+<li><strong><code>f.read()</code></strong> retorna el contingut complet del fitxer com <strong>una sola cadena</strong>.</li>
+<li><strong><code>f.readlines()</code></strong> retorna una <strong>llista de cadenes</strong>, una per línia, cadascuna amb el seu <code>"\n"</code> final.</li>
+<li><strong><code>for linea in f</code></strong> recorre el fitxer <strong>línia a línia</strong>: a cada iteració, <code>linea</code> és la cadena de la línia següent, també amb el seu <code>"\n"</code>.</li>
+</ul>
+<p>A l’exemple, <code>repr</code> mostra el <code>"\n"</code> que acompanya cada línia i que normalment no es veu:</p>
+<div>
+<div id="pyodide-6" class="exercise-cell">
+
+</div>
+<script type="pyodide-6-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBGb3JtYSAxOiByZWFkKCkgZGV2dWVsdmUgdG9kbyBlbCBmaWNoZXJvIGVuIHVuYSBzb2xhIGNhZGVuYVxud2l0aCBvcGVuKFwicHJpbW9zLnR4dFwiLCBlbmNvZGluZz1cInV0Zi04XCIpIGFzIGY6XG4gICAgY29udGVuaWRvID0gZi5yZWFkKClcbnByaW50KHJlcHIoY29udGVuaWRvWzoxMV0pKSAgICAgIyAnMlxcbjNcXG41XFxuN1xcbjExXFxuJ1xuXG4jIEZvcm1hIDI6IHJlYWRsaW5lcygpIGRldnVlbHZlIHVuYSBsaXN0YSBjb24gdW5hIGNhZGVuYSBwb3IgbMOtbmVhIChjb24gc3UgJ1xcbicpXG53aXRoIG9wZW4oXCJwcmltb3MudHh0XCIsIGVuY29kaW5nPVwidXRmLThcIikgYXMgZjpcbiAgICBsaW5lYXMgPSBmLnJlYWRsaW5lcygpXG5wcmludChsaW5lYXNbOjNdKSAgICAgICAgICAgICAgICMgWycyXFxuJywgJzNcXG4nLCAnNVxcbiddXG5wcmludChsZW4obGluZWFzKSkgICAgICAgICAgICAgICMgMTdcblxuIyBGb3JtYSAzOiByZWNvcnJlciBlbCBmaWNoZXJvIGNvbiBmb3I6IHVuYSBsw61uZWEgZW4gY2FkYSBpdGVyYWNpw7NuXG53aXRoIG9wZW4oXCJwcmltb3MudHh0XCIsIGVuY29kaW5nPVwidXRmLThcIikgYXMgZjpcbiAgICBmb3IgbGluZWEgaW4gZjpcbiAgICAgICAgcHJpbnQocmVwcihsaW5lYSksIGVuZD1cIiBcIilcbiMgJzJcXG4nICczXFxuJyAnNVxcbicgJzdcXG4nICcxMVxcbicgLi4uICc1M1xcbicgJzU5XFxuJyJ9
+</script>
+</div>
+<div id="tip-fichero-flujo" class="callout callout-style-default callout-tip no-icon callout-titled" title="Un fitxer és un flux de dades">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;2: Un fitxer és un flux de dades
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Recórrer un fitxer amb <code>for linea in f</code> és un <strong>algorisme d’una sola passada</strong> (tema 5): Python llegeix una línia cada vegada, sense carregar el fitxer sencer a la memòria. És la manera adequada de processar fitxers molt grans, com els registres de milions de mesuraments. En canvi, <code>read()</code> i <code>readlines()</code> carreguen el fitxer complet (processament per lots).</p>
+</div>
+</div>
+<section id="processar-les-línies-de-text-a-nombres" class="level4">
+<h4 class="anchored" data-anchor-id="processar-les-línies-de-text-a-nombres">Processar les línies: de text a nombres</h4>
+<p>El que es llegeix d’un fitxer de text són <strong>cadenes</strong>: la primera línia de <code>primos.txt</code> és <code>'2\n'</code>, no el nombre <code>2</code>. Per operar amb els valors cal fer dos passos a cada línia: netejar la cadena amb <code>strip()</code>, que elimina el <code>"\n"</code> i els espais dels extrems, i convertir-la amb <code>int()</code> o <code>float()</code>:</p>
+<div>
+<div id="pyodide-7" class="exercise-cell">
+
+</div>
+<script type="pyodide-7-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoic3VtYSA9IDBcbndpdGggb3BlbihcInByaW1vcy50eHRcIiwgZW5jb2Rpbmc9XCJ1dGYtOFwiKSBhcyBmOlxuICAgIGZvciBsaW5lYSBpbiBmOlxuICAgICAgICBuID0gaW50KGxpbmVhLnN0cmlwKCkpICAgIyAxKSBzdHJpcCgpIHF1aXRhIGVsICdcXG4nICAgMikgaW50KCkgY29udmllcnRlIGEgZW50ZXJvXG4gICAgICAgIHN1bWEgKz0gblxucHJpbnQoZlwiU3VtYSBkZSBsb3MgcHJpbW9zOiB7c3VtYX1cIikgICAgIyBTdW1hIGRlIGxvcyBwcmltb3M6IDQ0MCJ9
+</script>
+</div>
+<div id="cau-texto-numeros" class="callout callout-style-default callout-caution no-icon callout-titled" title="El que es llegeix d'un fitxer de text són cadenes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;3: El que es llegeix d’un fitxer de text són cadenes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un fitxer de text no desa nombres, sinó caràcters. El que retorna la lectura sempre és <code>str</code>: <code>"17\n" + "1"</code> dona <code>"17\n1"</code>, no <code>18</code>. Cal convertir explícitament amb <code>int()</code> o <code>float()</code>, i per eliminar el salt de línia i els espais dels extrems es fa servir <code>linea.strip()</code>.</p>
+</div>
+</div>
+<div id="cau-modo-w" class="callout callout-style-default callout-caution no-icon callout-titled" title="El mode `&quot;w&quot;` esborra el fitxer">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;4: El mode <code>"w"</code> esborra el fitxer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Obrir un fitxer existent en mode <code>"w"</code> el <strong>buida immediatament</strong>, abans d’escriure res. Per afegir línies a un fitxer sense perdre’n el contingut es fa servir el mode <code>"a"</code>. Si no vols sobreescriure per accident un fitxer existent, fes servir el mode <code>"x"</code>, que llança <code>FileExistsError</code> en aquest cas.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="exemple-taula-de-valors-duna-funció" class="level3">
+<h3 class="anchored" data-anchor-id="exemple-taula-de-valors-duna-funció"><strong>7.2.4 Exemple: taula de valors d’una funció</strong></h3>
+<p>Escriure una taula de valors amb un format fix és un ús típic dels fitxers de text. Amb f-strings podem alinear les columnes:</p>
+<div>
+<div id="pyodide-8" class="exercise-cell">
+
+</div>
+<script type="pyodide-8-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG1hdGhcblxud2l0aCBvcGVuKFwidGFibGFfc2Vuby50eHRcIiwgXCJ3XCIsIGVuY29kaW5nPVwidXRmLThcIikgYXMgZjpcbiAgICBmLndyaXRlKGZcInsneCc6PjZ9IHsnc2VuKHgpJzo+MTB9XFxuXCIpXG4gICAgZm9yIGsgaW4gcmFuZ2UoNSk6XG4gICAgICAgIHggPSBrICogbWF0aC5waSAvIDRcbiAgICAgICAgZi53cml0ZShmXCJ7eDo2LjRmfSB7bWF0aC5zaW4oeCk6MTAuNmZ9XFxuXCIpXG5cbndpdGggb3BlbihcInRhYmxhX3Nlbm8udHh0XCIsIGVuY29kaW5nPVwidXRmLThcIikgYXMgZjpcbiAgICBwcmludChmLnJlYWQoKSkifQ==
+</script>
+</div>
+<p>El problema d’aquest format és que, per llegir la taula després, cal saber exactament com es va escriure: quants espais separen les columnes, què hi ha a la primera línia… Els formats estàndard CSV i JSON resolen aquest problema.</p>
+<hr>
+</section>
+</section>
+<section id="fitxers-csv-i-json" class="level2">
+<h2 class="anchored" data-anchor-id="fitxers-csv-i-json">7.3. Fitxers CSV i JSON</h2>
+<section id="csv-dades-tabulars" class="level3">
+<h3 class="anchored" data-anchor-id="csv-dades-tabulars"><strong>7.3.1 CSV: dades tabulars</strong></h3>
+<div id="tip-csv" class="callout callout-style-default callout-tip no-icon callout-titled" title="Format CSV">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;3: Format CSV
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un fitxer <strong>CSV</strong> (<em>Comma-Separated Values</em>) és un fitxer de text que representa una <strong>taula</strong>: cada línia és una fila i, dins de cada fila, els valors de les columnes se separen amb comes. La primera línia sol ser la <strong>capçalera</strong>, amb els noms de les columnes. És el format d’intercanvi més estès per a dades tabulars: el llegeixen i l’escriuen tots els fulls de càlcul, els gestors de bases de dades i els llenguatges de programació.</p>
+</div>
+</div>
+<p>El fitxer <code>datos/partida.csv</code> registra una partida de Pong amb una estructura semblant (simplificada) a la dels registres de la pràctica: una fila per tick amb l’estat del joc.</p>
+<div>
+<div id="pyodide-9" class="exercise-cell">
+
+</div>
+<script type="pyodide-9-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoid2l0aCBvcGVuKFwiZGF0b3MvcGFydGlkYS5jc3ZcIiwgZW5jb2Rpbmc9XCJ1dGYtOFwiKSBhcyBmOlxuICAgIGZvciBfIGluIHJhbmdlKDMpOlxuICAgICAgICBwcmludChmLnJlYWRsaW5lKCksIGVuZD1cIlwiKVxuIyB0aWNrLHN0YXRlLGJhbGxfeCxiYWxsX3kscF9sZWZ0LHBfcmlnaHQsY21kX2xlZnQsY21kX3JpZ2h0LHNlcnZlcixyYWxseV9oaXRzXG4jIDAsc2VydmluZyw0MDAuMCwzMDAuMCwzMDAuMCwzMDAuMCxTVEFZLFNUQVksbGVmdCwwXG4jIDEsc2VydmluZyw0MDAuMCwzMDAuMCwzMDAuMCwzMDAuMCxTVEFZLFNUQVksbGVmdCwwIn0=
+</script>
+</div>
+<p>Separar cada línia amb <code>linea.split(",")</code> funciona en casos senzills, però falla si algun valor conté una coma (per exemple, <code>"Palma, Mallorca"</code> entre cometes). El mòdul <code>csv</code> de la biblioteca estàndard resol tots aquests casos <span class="citation" data-cites="pythoncsv">(<a href="#ref-pythoncsv" role="doc-biblioref">Python Software Foundation 2025a</a>)</span>.</p>
+<section id="llegir-un-csv-amb-csv.reader" class="level4">
+<h4 class="anchored" data-anchor-id="llegir-un-csv-amb-csv.reader">Llegir un CSV amb <code>csv.reader</code></h4>
+<p>La funció <code>csv.reader</code> rep un fitxer obert i retorna un objecte <strong>lector</strong> que es recorre fila a fila: cada fila és una <strong>llista de cadenes</strong>. Comptem quants ticks es van jugar amb la bola en joc i quin va ser el nombre més gran de cops d’un intercanvi:</p>
+<div>
+<div id="pyodide-10" class="exercise-cell">
+
+</div>
+<script type="pyodide-10-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IGNzdlxuXG53aXRoIG9wZW4oXCJkYXRvcy9wYXJ0aWRhLmNzdlwiLCBlbmNvZGluZz1cInV0Zi04XCIsIG5ld2xpbmU9XCJcIikgYXMgZjpcbiAgICBsZWN0b3IgPSBjc3YucmVhZGVyKGYpXG4gICAgY2FiZWNlcmEgPSBuZXh0KGxlY3RvcikgICAgICAgICAgICAgICMgbGEgcHJpbWVyYSBmaWxhOiBsb3Mgbm9tYnJlcyBkZSBsYXMgY29sdW1uYXNcbiAgICBwcmludChjYWJlY2VyYSlcblxuICAgIGlfc3RhdGUgPSBjYWJlY2VyYS5pbmRleChcInN0YXRlXCIpICAgICMgcG9zaWNpw7NuIGRlIGNhZGEgY29sdW1uYSBxdWUgbm9zIGludGVyZXNhXG4gICAgaV9oaXRzID0gY2FiZWNlcmEuaW5kZXgoXCJyYWxseV9oaXRzXCIpXG5cbiAgICBlbl9qdWVnbyA9IDBcbiAgICBtYXhfZ29scGVzID0gMFxuICAgIGZvciBudW1lcm8sIGZpbGEgaW4gZW51bWVyYXRlKGxlY3Rvcik6ICAgIyBlbCByZXN0byBkZSBmaWxhcywgdW5hIGEgdW5hXG4gICAgICAgIGlmIG51bWVybyA9PSAwOlxuICAgICAgICAgICAgcHJpbnQoZmlsYSkgICAgICAgICAgICAgICAgICAjIGNhZGEgZmlsYSBlcyB1bmEgbGlzdGEgZGUgY2FkZW5hc1xuICAgICAgICBpZiBmaWxhW2lfc3RhdGVdID09IFwicGxheWluZ1wiOlxuICAgICAgICAgICAgZW5fanVlZ28gKz0gMVxuICAgICAgICBtYXhfZ29scGVzID0gbWF4KG1heF9nb2xwZXMsIGludChmaWxhW2lfaGl0c10pKSAgICMgwqFjb252ZXJ0aXIgYSBpbnQhXG5cbnByaW50KGVuX2p1ZWdvLCBtYXhfZ29scGVzKSAgICAgICAgICAgICAgIyAyNTMyIDEwIn0=
+</script>
+</div>
+<ul>
+<li><strong><code>next(lector)</code></strong> llegeix una sola fila. Aquí serveix per separar la capçalera abans del bucle, que recorre només les files de dades.</li>
+<li>Com que cada fila és una llista, els valors s’obtenen <strong>per posició</strong>. Per no escriure nombres «màgics» com <code>fila[9]</code>, la posició de cada columna es cerca a la capçalera amb <code>cabecera.index("rally_hits")</code>.</li>
+<li><strong>Tots els valors són cadenes</strong>, fins i tot <code>'0'</code> i <code>'400.0'</code>: cal convertir-los amb <code>int()</code> o <code>float()</code>.</li>
+</ul>
+</section>
+<section id="llegir-un-csv-amb-csv.dictreader" class="level4">
+<h4 class="anchored" data-anchor-id="llegir-un-csv-amb-csv.dictreader">Llegir un CSV amb <code>csv.DictReader</code></h4>
+<p><code>csv.DictReader</code> resol el mateix problema d’una manera més llegible: llegeix la capçalera automàticament i retorna cada fila com un <strong>diccionari</strong> <code>{nom_de_columna: valor}</code>, de manera que els valors s’obtenen pel nom de la columna (<code>fila["rally_hits"]</code>) en lloc de per la seva posició. Repetim el recompte anterior, ara separat per estats:</p>
+<div>
+<div id="pyodide-11" class="exercise-cell">
+
+</div>
+<script type="pyodide-11-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IGNzdlxuXG5jb250ZW9fZXN0YWRvczogZGljdFtzdHIsIGludF0gPSB7fVxubWF4X2dvbHBlcyA9IDBcblxud2l0aCBvcGVuKFwiZGF0b3MvcGFydGlkYS5jc3ZcIiwgZW5jb2Rpbmc9XCJ1dGYtOFwiLCBuZXdsaW5lPVwiXCIpIGFzIGY6XG4gICAgZm9yIGZpbGEgaW4gY3N2LkRpY3RSZWFkZXIoZik6XG4gICAgICAgIGVzdGFkbyA9IGZpbGFbXCJzdGF0ZVwiXVxuICAgICAgICBjb250ZW9fZXN0YWRvc1tlc3RhZG9dID0gY29udGVvX2VzdGFkb3MuZ2V0KGVzdGFkbywgMCkgKyAxXG4gICAgICAgIG1heF9nb2xwZXMgPSBtYXgobWF4X2dvbHBlcywgaW50KGZpbGFbXCJyYWxseV9oaXRzXCJdKSkgICAjIMKhY29udmVydGlyIGEgaW50IVxuXG5wcmludChjb250ZW9fZXN0YWRvcykgICAgIyB7J3NlcnZpbmcnOiAxMjAsICdwbGF5aW5nJzogMjUzMn1cbnByaW50KG1heF9nb2xwZXMpICAgICAgICAjIDEwIn0=
+</script>
+</div>
+<p>Fixa’t que el recorregut és d’una sola passada (patró de recompte del tema 5) i que cal convertir <code>fila["rally_hits"]</code> a <code>int</code>: el mòdul <code>csv</code> retorna <strong>tots</strong> els valors com a cadenes.</p>
+</section>
+<section id="escriure-un-csv-amb-csv.writer" class="level4">
+<h4 class="anchored" data-anchor-id="escriure-un-csv-amb-csv.writer">Escriure un CSV amb <code>csv.writer</code></h4>
+<p><code>csv.writer</code> escriu files a partir de llistes o tuples. L’argument <code>newline=""</code> d’<code>open</code> és necessari perquè el mòdul <code>csv</code> controli ell mateix els salts de línia (a Windows, sense ell apareixen línies en blanc intercalades).</p>
+<div>
+<div id="pyodide-12" class="exercise-cell">
+
+</div>
+<script type="pyodide-12-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IGNzdlxuXG5kZWYgdGVybmFzX3BpdGFnb3JpY2FzKGxpbWl0ZTogaW50KSAtPiBsaXN0W3R1cGxlW2ludCwgaW50LCBpbnRdXTpcbiAgICBcIlwiXCJUZXJuYXMgKGEsIGIsIGMpIGNvbiBhIDwgYiA8IGMgPD0gbGltaXRlIHkgYcKyICsgYsKyID0gY8KyLlwiXCJcIlxuICAgIHJldHVybiBbKGEsIGIsIGMpIGZvciBjIGluIHJhbmdlKDEsIGxpbWl0ZSArIDEpIGZvciBhIGluIHJhbmdlKDEsIGMpXG4gICAgICAgICAgICBmb3IgYiBpbiByYW5nZShhICsgMSwgYykgaWYgYSAqIGEgKyBiICogYiA9PSBjICogY11cblxud2l0aCBvcGVuKFwidGVybmFzLmNzdlwiLCBcIndcIiwgZW5jb2Rpbmc9XCJ1dGYtOFwiLCBuZXdsaW5lPVwiXCIpIGFzIGY6XG4gICAgZXNjcml0b3IgPSBjc3Yud3JpdGVyKGYpXG4gICAgZXNjcml0b3Iud3JpdGVyb3coW1wiYVwiLCBcImJcIiwgXCJjXCJdKSAgICAgICAgICAgICAgICAgICAjIGNhYmVjZXJhXG4gICAgZXNjcml0b3Iud3JpdGVyb3dzKHRlcm5hc19waXRhZ29yaWNhcygyMCkpICAgICAgICAgICAjIHVuYSBmaWxhIHBvciB0ZXJuYVxuXG53aXRoIG9wZW4oXCJ0ZXJuYXMuY3N2XCIsIGVuY29kaW5nPVwidXRmLThcIikgYXMgZjpcbiAgICBwcmludChmLnJlYWQoKSkifQ==
+</script>
+</div>
+</section>
+</section>
+<section id="json-dades-jeràrquiques" class="level3">
+<h3 class="anchored" data-anchor-id="json-dades-jeràrquiques"><strong>7.3.2 JSON: dades jeràrquiques</strong></h3>
+<p>No totes les dades són taules. El registre d’una partida té informació general (els noms dels bots, el resultat) i una <strong>llista</strong> d’intercanvis, cadascun amb els seus propis camps: és una estructura <strong>niada</strong>, en forma d’arbre.</p>
+<div id="tip-json" class="callout callout-style-default callout-tip no-icon callout-titled" title="Format JSON">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;4: Format JSON
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>JSON</strong> (<em>JavaScript Object Notation</em>) és un format de text per a dades jeràrquiques, basat en dues estructures que es poden niar a qualsevol profunditat: <strong>objectes</strong> (parells <code>"clau": valor</code> entre claus) i <strong>arrays</strong> (llistes de valors entre claudàtors). És el format estàndard d’intercanvi de dades al web i a la configuració de programes (com el <code>devcontainer.json</code> dels nostres repositoris).</p>
+</div>
+</div>
+<p>El mòdul <code>json</code> de la biblioteca estàndard tradueix entre JSON i Python <span class="citation" data-cites="pythonjson">(<a href="#ref-pythonjson" role="doc-biblioref">Python Software Foundation 2025b</a>)</span>. Els tipus de JSON es corresponen de manera natural amb els de Python:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">JSON</th>
+<th style="text-align: left;">Python</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">objecte <code>{"clau": valor}</code></td>
+<td style="text-align: left;"><code>dict</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">array <code>[1, 2, 3]</code></td>
+<td style="text-align: left;"><code>list</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cadena <code>"text"</code></td>
+<td style="text-align: left;"><code>str</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">nombre <code>42</code>, <code>3.14</code></td>
+<td style="text-align: left;"><code>int</code>, <code>float</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>true</code>, <code>false</code></td>
+<td style="text-align: left;"><code>True</code>, <code>False</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>null</code></td>
+<td style="text-align: left;"><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<section id="llegir-un-json-amb-json.load" class="level4">
+<h4 class="anchored" data-anchor-id="llegir-un-json-amb-json.load">Llegir un JSON amb <code>json.load</code></h4>
+<div>
+<div id="pyodide-13" class="exercise-cell">
+
+</div>
+<script type="pyodide-13-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IGpzb25cblxud2l0aCBvcGVuKFwiZGF0b3MvcGFydGlkYS5qc29uXCIsIGVuY29kaW5nPVwidXRmLThcIikgYXMgZjpcbiAgICByZWdpc3RybyA9IGpzb24ubG9hZChmKSAgICAgICAgIyBlbCBmaWNoZXJvIGNvbXBsZXRvLCBjb21vIGRpY3QgZGUgUHl0aG9uXG5cbnByaW50KHR5cGUocmVnaXN0cm8pLl9fbmFtZV9fKSAgICAgICAgICAgICAjIGRpY3RcbnByaW50KGxpc3QocmVnaXN0cm8pKSAgICAgICAgICAgICAgICAgICAgICAjIFsnc2VtaWxsYScsICdib3RzJywgJ3B1bnRvcycsICdyZXN1bHRhZG8nLCAnaW50ZXJjYW1iaW9zJ11cbnByaW50KHJlZ2lzdHJvW1wiYm90c1wiXVtcInJpZ2h0XCJdKSAgICAgICAgICAgIyBtaV9ib3RcbnByaW50KGxlbihyZWdpc3Ryb1tcImludGVyY2FtYmlvc1wiXSkpICAgICAgICMgNlxucHJpbnQocmVnaXN0cm9bXCJpbnRlcmNhbWJpb3NcIl1bMF0pXG4jIHsnc3RhcnRfdGljayc6IDAsICdlbmRfdGljayc6IDUxMiwgJ2hpdHMnOiA0LCAnb3V0Y29tZSc6ICdwb2ludCcsICd3aW5uZXInOiAnbGVmdCd9In0=
+</script>
+</div>
+<p>A diferència d’un CSV, un JSON es llegeix <strong>sencer</strong> d’una vegada i es navega amb els índexs i les claus de les estructures del tema 4. Per exemple, comptem els punts de cada bot i el total de cops:</p>
+<div>
+<div id="pyodide-14" class="exercise-cell">
+
+</div>
+<script type="pyodide-14-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHVudG9zOiBkaWN0W3N0ciwgaW50XSA9IHt9XG5mb3IgaW50ZXIgaW4gcmVnaXN0cm9bXCJpbnRlcmNhbWJpb3NcIl06XG4gICAgcHVudG9zW2ludGVyW1wid2lubmVyXCJdXSA9IHB1bnRvcy5nZXQoaW50ZXJbXCJ3aW5uZXJcIl0sIDApICsgMVxuXG50b3RhbF9nb2xwZXMgPSBzdW0oaW50ZXJbXCJoaXRzXCJdIGZvciBpbnRlciBpbiByZWdpc3Ryb1tcImludGVyY2FtYmlvc1wiXSlcbnByaW50KHB1bnRvcykgICAgICAgICAgIyB7J2xlZnQnOiAyLCAncmlnaHQnOiA0fVxucHJpbnQodG90YWxfZ29scGVzKSAgICAjIDIxIn0=
+</script>
+</div>
+</section>
+<section id="escriure-un-json-amb-json.dump" class="level4">
+<h4 class="anchored" data-anchor-id="escriure-un-json-amb-json.dump">Escriure un JSON amb <code>json.dump</code></h4>
+<p><code>json.dump(objecte, fitxer)</code> escriu un objecte de Python en format JSON. L’argument <code>indent</code> el fa llegible per a les persones, i <code>ensure_ascii=False</code> conserva les lletres accentuades tal qual.</p>
+<div>
+<div id="pyodide-15" class="exercise-cell">
+
+</div>
+<script type="pyodide-15-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IGpzb25cblxucmVzdW1lbiA9IHtcImJvdFwiOiBcIm1pX2JvdFwiLCBcInZpY3Rvcmlhc1wiOiA0LCBcImdvbHBlc1wiOiBbNCwgMSwgMywgMSwgMiwgMTBdLCBcImNvbWVudGFyaW9cIjogXCJtw6FzIGFncmVzaXZvXCJ9XG5cbndpdGggb3BlbihcInJlc3VtZW4uanNvblwiLCBcIndcIiwgZW5jb2Rpbmc9XCJ1dGYtOFwiKSBhcyBmOlxuICAgIGpzb24uZHVtcChyZXN1bWVuLCBmLCBpbmRlbnQ9MiwgZW5zdXJlX2FzY2lpPUZhbHNlKVxuXG53aXRoIG9wZW4oXCJyZXN1bWVuLmpzb25cIiwgZW5jb2Rpbmc9XCJ1dGYtOFwiKSBhcyBmOlxuICAgIHByaW50KGYucmVhZCgpKSJ9
+</script>
+</div>
+<div id="cau-json-claves" class="callout callout-style-default callout-caution no-icon callout-titled" title="El que JSON no conserva: claus enteres i tuples">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;5: El que JSON no conserva: claus enteres i tuples
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>JSON no té tuples, i les claus dels seus objectes són <strong>sempre cadenes</strong>. En desar i tornar a llegir un diccionari de Python, tots dos detalls canvien sense avisar. Recorda el diccionari de ternes pitagòriques agrupades per perímetre:</p>
+<div>
+<div id="pyodide-16" class="exercise-cell">
+
+</div>
+<script type="pyodide-16-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IGpzb25cblxucG9yX3BlcmltZXRybyA9IHsxMjogWygzLCA0LCA1KV0sIDI0OiBbKDYsIDgsIDEwKV0sIDMwOiBbKDUsIDEyLCAxMyldfVxuXG50ZXh0byA9IGpzb24uZHVtcHMocG9yX3BlcmltZXRybykgICAgICAgICMgZHVtcHM6IGEgdW5hIGNhZGVuYSwgbm8gYSB1biBmaWNoZXJvXG5wcmludCh0ZXh0bykgICAgICAgICAgICAgICAgICAgICAgICAgICAgICMge1wiMTJcIjogW1szLCA0LCA1XV0sIFwiMjRcIjogW1s2LCA4LCAxMF1dLCBcIjMwXCI6IFtbNSwgMTIsIDEzXV19XG5cbnJlY3VwZXJhZG8gPSBqc29uLmxvYWRzKHRleHRvKSAgICAgICAgICAgIyBsb2FkczogZGVzZGUgdW5hIGNhZGVuYVxucHJpbnQocmVjdXBlcmFkbyA9PSBwb3JfcGVyaW1ldHJvKSAgICAgICAjIEZhbHNlXG5wcmludChsaXN0KHJlY3VwZXJhZG8pKSAgICAgICAgICAgICAgICAgICMgWycxMicsICcyNCcsICczMCddOiBjbGF2ZXMgc3RyXG5cbiMgUmVjb25zdHJ1aXIgbG9zIHRpcG9zIG9yaWdpbmFsZXNcbnJlcGFyYWRvID0ge2ludChwKTogW3R1cGxlKHQpIGZvciB0IGluIHRlcm5hc10gZm9yIHAsIHRlcm5hcyBpbiByZWN1cGVyYWRvLml0ZW1zKCl9XG5wcmludChyZXBhcmFkbyA9PSBwb3JfcGVyaW1ldHJvKSAgICAgICAgICMgVHJ1ZSJ9
+</script>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="csv-o-json" class="level3">
+<h3 class="anchored" data-anchor-id="csv-o-json"><strong>7.3.3 CSV o JSON</strong></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">CSV</th>
+<th style="text-align: left;">JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Estructura</strong></td>
+<td style="text-align: left;">taula: files i columnes</td>
+<td style="text-align: left;">arbre: objectes i llistes niats</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Tipus</strong></td>
+<td style="text-align: left;">tot són cadenes</td>
+<td style="text-align: left;">nombres, cadenes, booleans, <code>null</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Lectura</strong></td>
+<td style="text-align: left;">fila a fila (flux)</td>
+<td style="text-align: left;">el fitxer complet (lot)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Ús típic</strong></td>
+<td style="text-align: left;">mesuraments, registres tick a tick, fulls de càlcul</td>
+<td style="text-align: left;">configuració, resultats amb estructura, dades del web</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>A la pràctica</strong></td>
+<td style="text-align: left;"><code>partida_&lt;semilla&gt;.csv</code></td>
+<td style="text-align: left;"><code>partida_&lt;semilla&gt;.json</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="pandas-manipulació-i-neteja-de-dades-estructurades" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-manipulació-i-neteja-de-dades-estructurades">7.4. Pandas: manipulació i neteja de dades estructurades</h2>
+<p>Amb el mòdul <code>csv</code> hem hagut d’escriure un bucle per a cada consulta i convertir els valors a mà. Per analitzar dades tabulars, l’eina estàndard a Python és <strong>pandas</strong> <span class="citation" data-cites="pandas">(<a href="#ref-pandas" role="doc-biblioref">The pandas development team 2025</a>)</span>, que carrega una taula completa a la memòria i permet consultar-la i transformar-la amb operacions sobre columnes senceres, sense escriure bucles.</p>
+<div id="tip-dataframe" class="callout callout-style-default callout-tip no-icon callout-titled" title="`DataFrame` i `Series`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fonament Teòric&nbsp;5: <code>DataFrame</code> i <code>Series</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong><code>DataFrame</code></strong> és una taula amb columnes amb nom, cadascuna amb el seu propi tipus de dades (<code>int64</code>, <code>float64</code>, <code>object</code> per a cadenes…). Cada columna és una <strong><code>Series</code></strong>: una seqüència de valors del mateix tipus amb un <strong>índex</strong> que identifica les files (per defecte, <code>0, 1, 2, …</code>).</p>
+<p>Les operacions de pandas són <strong>vectoritzades</strong>: s’apliquen a tots els valors d’una columna alhora. <code>df["ball_x"] / 800</code> divideix els 2 652 valors de la columna sense escriure cap bucle.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>pandas no forma part de la biblioteca estàndard. Al navegador, aquesta pàgina el carrega automàticament; en un Codespace, és al grup <code>data</code> del <code>pyproject.toml</code> i s’instal·la amb <code>uv sync --all-groups</code>. Per convenció s’importa amb el nom curt <code>pd</code>.</p>
+</div>
+</div>
+</div>
+<section id="llegir-i-explorar-un-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="llegir-i-explorar-un-dataframe"><strong>7.4.1 Llegir i explorar un <code>DataFrame</code></strong></h3>
+<div>
+<div id="pyodide-17" class="exercise-cell">
+
+</div>
+<script type="pyodide-17-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IHBhbmRhcyBhcyBwZFxuXG5kZiA9IHBkLnJlYWRfY3N2KFwiZGF0b3MvcGFydGlkYS5jc3ZcIilcbnByaW50KGRmLnNoYXBlKSAgICAgICAgICAgIyAoMjY1MiwgMTApOiBmaWxhcyB5IGNvbHVtbmFzXG5wcmludChkZi5oZWFkKDMpKSAgICAgICAgICMgbGFzIDMgcHJpbWVyYXMgZmlsYXNcbnByaW50KGRmLmR0eXBlcykgICAgICAgICAgIyB0aXBvIGRlIGNhZGEgY29sdW1uYSJ9
+</script>
+</div>
+<p><code>read_csv</code> ha deduït el tipus de cada columna: <code>tick</code> i <code>rally_hits</code> són enters, les posicions són <code>float64</code> i les columnes de text són <code>object</code>. Ja no cal convertir res a mà.</p>
+<p>Per a una primera exploració, <code>describe()</code> calcula els estadístics bàsics de les columnes numèriques, i <code>value_counts()</code> compta les aparicions de cada valor d’una columna:</p>
+<div>
+<div id="pyodide-18" class="exercise-cell">
+
+</div>
+<script type="pyodide-18-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoZGZbW1wiYmFsbF94XCIsIFwiYmFsbF95XCIsIFwicF9sZWZ0XCJdXS5kZXNjcmliZSgpLnJvdW5kKDEpKVxucHJpbnQoZGZbXCJzdGF0ZVwiXS52YWx1ZV9jb3VudHMoKSkifQ==
+</script>
+</div>
+<section id="llegir-dades-des-duna-url" class="level4">
+<h4 class="anchored" data-anchor-id="llegir-dades-des-duna-url">Llegir dades des d’una URL</h4>
+<p><code>pd.read_csv</code> accepta, en lloc d’una ruta, la <strong>URL</strong> d’un fitxer CSV publicat al web: pandas el descarrega i el llegeix en un sol pas. Per exemple, el conjunt de dades dels passatgers del Titanic (891 passatgers), procedent de la <a href="https://www.kaggle.com/competitions/titanic" target="_blank" rel="noopener noreferrer">competició <em>Titanic - Machine Learning from Disaster</em> de Kaggle</a> i <a href="https://huggingface.co/datasets/phihung/titanic" target="_blank" rel="noopener noreferrer">publicat a Hugging Face</a>. <a href="https://huggingface.co" target="_blank" rel="noopener noreferrer">Hugging Face</a> és una plataforma que allotja milers de conjunts de dades i models d’intel·ligència artificial oberts.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://huggingface.co/datasets/phihung/titanic/resolve/main/train.csv"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>titanic <span class="op">=</span> pd.read_csv(url)                       <span class="co"># lectura desde una URL</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(titanic.shape)                             <span class="co"># (891, 12)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(titanic[[<span class="st">"Name"</span>, <span class="st">"Sex"</span>, <span class="st">"Age"</span>, <span class="st">"Survived"</span>]].head(<span class="dv">3</span>))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(titanic.groupby(<span class="st">"Sex"</span>)[<span class="st">"Survived"</span>].mean().<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Sex</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># female    0.742</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># male      0.189</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La columna <code>Name</code> conté comes dins de les cometes (<code>"Braund, Mr. Owen Harris"</code>): és just el cas de l’apartat 7.3.1 que fa fallar <code>split(",")</code> i que <code>read_csv</code>, igual que el mòdul <code>csv</code>, resol correctament.</p>
+<p>En un script de Python o al Codespace, això és tot. Al <strong>navegador</strong>, en canvi, Python s’executa amb Pyodide, que no pot obrir connexions de xarxa per si mateix. Abans de llegir des d’una URL cal activar el paquet <code>pyodide_http</code>, que redirigeix les descàrregues a través del navegador:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyodide_http</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pyodide_http.patch_all()     <span class="co"># solo en el navegador (Pyodide)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>titanic <span class="op">=</span> pd.read_csv(<span class="st">"https://huggingface.co/datasets/phihung/titanic/resolve/main/train.csv"</span>)</span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cau-pyodide-http" class="callout callout-style-default callout-caution no-icon callout-titled" title="`pyodide_http` només existeix al navegador">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;6: <code>pyodide_http</code> només existeix al navegador
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les dues primeres línies <strong>no s’escriuen en un script ni al Codespace</strong>: allà <code>pyodide_http</code> no està instal·lat, i <code>import pyodide_http</code> llançaria <code>ModuleNotFoundError</code>. A més, al navegador només es poden descarregar dades de servidors que ho permeten (CORS); Hugging Face i els enllaços <em>raw</em> de GitHub ho permeten.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>A Hugging Face (i a GitHub), la URL que es passa a <code>read_csv</code> ha de ser la del <strong>fitxer en brut</strong>, que conté <code>/resolve/</code> (a GitHub, <code>raw.githubusercontent.com</code>). La URL que apareix en navegar pel web (amb <code>/blob/</code>) és una pàgina HTML, no el CSV.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="seleccionar-columnes-i-filtrar-files" class="level3">
+<h3 class="anchored" data-anchor-id="seleccionar-columnes-i-filtrar-files"><strong>7.4.2 Seleccionar columnes i filtrar files</strong></h3>
+<ul>
+<li><code>df["columna"]</code> selecciona una columna (una <code>Series</code>); <code>df[["c1", "c2"]]</code>, amb una <strong>llista</strong> de noms, un <code>DataFrame</code> amb aquestes columnes.</li>
+<li><code>df[mascara]</code> selecciona les files en què una <strong>màscara booleana</strong> (una <code>Series</code> de <code>True</code>/<code>False</code>) val <code>True</code>.</li>
+</ul>
+<div>
+<div id="pyodide-19" class="exercise-cell">
+
+</div>
+<script type="pyodide-19-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibWFzY2FyYSA9IGRmW1wic3RhdGVcIl0gPT0gXCJwbGF5aW5nXCIgICAgICAgICMgU2VyaWVzIGRlIGJvb2xlYW5vcywgdW5hIHBvciBmaWxhXG5wcmludChtYXNjYXJhLnN1bSgpKSAgICAgICAgICAgICAgICAgICAgICAjIDI1MzI6IFRydWUgY3VlbnRhIGNvbW8gMVxuXG5lbl9qdWVnbyA9IGRmW21hc2NhcmFdICAgICAgICAgICAgICAgICAgICAjIHNvbG8gbGFzIGZpbGFzIGVuIGp1ZWdvXG5wcmludChsZW4oZW5fanVlZ28pKSAgICAgICAgICAgICAgICAgICAgICAjIDI1MzJcblxuIyBWYXJpYXMgY29uZGljaW9uZXM6ICYgKHkpLCB8IChvKSwgfiAobm8pLiDCoVBhcsOpbnRlc2lzIG9ibGlnYXRvcmlvcyFcbmJvbGFfYXJyaWJhID0gZGZbKGRmW1wic3RhdGVcIl0gPT0gXCJwbGF5aW5nXCIpICYgKGRmW1wiYmFsbF95XCJdIDwgMTAwKV1cbnByaW50KGxlbihib2xhX2FycmliYSkpICAgICAgICAgICAgICAgICAgIyAzODI6IHRpY2tzIGVuIGp1ZWdvIGNvbiBsYSBib2xhIGNlcmNhIGRlIGxhIHBhcmVkIGRlIGFycmliYVxuXG4jIEZpbHRyYXIgeSBzZWxlY2Npb25hciBjb2x1bW5hcyBhIGxhIHZleiBjb24gLmxvY1tmaWxhcywgY29sdW1uYXNdXG5wcmludChkZi5sb2NbZGZbXCJyYWxseV9oaXRzXCJdID09IDEwLCBbXCJ0aWNrXCIsIFwiYmFsbF94XCIsIFwiYmFsbF95XCJdXS5oZWFkKDMpKSJ9
+</script>
+</div>
+<div id="cau-and-pandas" class="callout callout-style-default callout-caution no-icon callout-titled" title="`and`/`or` no funcionen amb màscares de pandas">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;7: <code>and</code>/<code>or</code> no funcionen amb màscares de pandas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Per combinar màscares es fan servir <code>&amp;</code>, <code>|</code> i <code>~</code>, no <code>and</code>, <code>or</code> i <code>not</code>, i cada comparació ha d’anar <strong>entre parèntesis</strong>, perquè <code>&amp;</code> té més prioritat que <code>==</code>. Escriure <code>df["state"] == "playing" and df["ball_y"] &lt; 100</code> llança <code>ValueError: The truth value of a Series is ambiguous</code>.</p>
+</div>
+</div>
+</section>
+<section id="columnes-noves-i-operacions-vectoritzades" class="level3">
+<h3 class="anchored" data-anchor-id="columnes-noves-i-operacions-vectoritzades"><strong>7.4.3 Columnes noves i operacions vectoritzades</strong></h3>
+<p>Una columna nova es crea assignant una expressió sobre altres columnes. Calculem, a cada tick, la distància vertical entre la bola i el centre de la raqueta esquerra, i si la bola seria dins de la seva franja d’impacte (46 píxels, com a la pràctica):</p>
+<div>
+<div id="pyodide-20" class="exercise-cell">
+
+</div>
+<script type="pyodide-20-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZW5fanVlZ28gPSBkZltkZltcInN0YXRlXCJdID09IFwicGxheWluZ1wiXS5jb3B5KCkgICAgICAjIGNvcGlhIGluZGVwZW5kaWVudGUgKHbDqWFzZSBhYmFqbylcblxuZW5fanVlZ29bXCJkaXN0X2l6cVwiXSA9IChlbl9qdWVnb1tcImJhbGxfeVwiXSAtIGVuX2p1ZWdvW1wicF9sZWZ0XCJdKS5hYnMoKVxuZW5fanVlZ29bXCJhbGNhbnphX2l6cVwiXSA9IGVuX2p1ZWdvW1wiZGlzdF9penFcIl0gPD0gNDZcblxucHJpbnQoZW5fanVlZ29bW1widGlja1wiLCBcImJhbGxfeVwiLCBcInBfbGVmdFwiLCBcImRpc3RfaXpxXCIsIFwiYWxjYW56YV9penFcIl1dLmhlYWQoNCkpXG5wcmludChmXCJ7ZW5fanVlZ29bJ2FsY2FuemFfaXpxJ10ubWVhbigpOi4xJX0gZGUgbG9zIHRpY2tzIGFsIGFsY2FuY2VcIikgICAjIDgzLjglIGRlIGxvcyB0aWNrcyBhbCBhbGNhbmNlIn0=
+</script>
+</div>
+<p>La mitjana d’una columna booleana és la <strong>proporció</strong> de valors <code>True</code>, perquè <code>True</code> compta com a 1 i <code>False</code> com a 0.</p>
+<div id="cau-copy" class="callout callout-style-default callout-caution no-icon callout-titled" title="Modificar un subconjunt: fes servir `.copy()`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;8: Modificar un subconjunt: fes servir <code>.copy()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <code>DataFrame</code> obtingut en filtrar-ne un altre pot compartir dades amb l’original. Si després s’hi afegeixen o modifiquen columnes, pandas avisa amb un <code>SettingWithCopyWarning</code> (i el resultat pot dependre de la versió). Per treballar amb un subconjunt com amb una taula independent, fes-ne una còpia explícita amb <code>.copy()</code>, com a l’exemple anterior.</p>
+</div>
+</div>
+</section>
+<section id="agrupar-i-agregar-groupby" class="level3">
+<h3 class="anchored" data-anchor-id="agrupar-i-agregar-groupby"><strong>7.4.4 Agrupar i agregar: <code>groupby</code></strong></h3>
+<p>L’operació més potent de pandas és <strong>agrupar</strong> les files segons el valor d’una columna i <strong>resumir</strong> cada grup amb una funció d’agregació (<code>count</code>, <code>sum</code>, <code>mean</code>, <code>max</code>…). És la versió vectoritzada del patró de recompte amb diccionaris del tema 5.</p>
+<div>
+<div id="pyodide-21" class="exercise-cell">
+
+</div>
+<script type="pyodide-21-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyDCv0N1w6FudG9zIHRpY2tzIHNlIGp1Z2Fyb24gY29uIGNhZGEgYm90IHNhY2FuZG8sIHkgY3XDoWwgZnVlIGVsIG3DoXhpbW8gZGUgZ29scGVzP1xucHJpbnQoZGYuZ3JvdXBieShcInNlcnZlclwiKVtcInJhbGx5X2hpdHNcIl0uYWdnKFtcImNvdW50XCIsIFwibWF4XCJdKSlcblxuIyBGcmVjdWVuY2lhIGRlIGNhZGEgY29tYW5kbyBkZWwgYm90IGl6cXVpZXJkbyBtaWVudHJhcyBsYSBib2xhIGVzdMOhIGVuIGp1ZWdvXG5wcmludChkZltkZltcInN0YXRlXCJdID09IFwicGxheWluZ1wiXVtcImNtZF9sZWZ0XCJdLnZhbHVlX2NvdW50cygpKSJ9
+</script>
+</div>
+<p>Un <code>DataFrame</code> també es pot construir a partir de dades ja carregades a Python: una llista de diccionaris (com els intercanvis del JSON) es converteix en una taula amb una columna per clau.</p>
+<div>
+<div id="pyodide-22" class="exercise-cell">
+
+</div>
+<script type="pyodide-22-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW50ZXJjYW1iaW9zID0gcGQuRGF0YUZyYW1lKHJlZ2lzdHJvW1wiaW50ZXJjYW1iaW9zXCJdKVxuaW50ZXJjYW1iaW9zW1wiZHVyYWNpb25cIl0gPSBpbnRlcmNhbWJpb3NbXCJlbmRfdGlja1wiXSAtIGludGVyY2FtYmlvc1tcInN0YXJ0X3RpY2tcIl0gKyAxXG5wcmludChpbnRlcmNhbWJpb3MpXG5cbnByaW50KGludGVyY2FtYmlvcy5ncm91cGJ5KFwid2lubmVyXCIpW1tcImhpdHNcIiwgXCJkdXJhY2lvblwiXV0ubWVhbigpLnJvdW5kKDEpKSJ9
+</script>
+</div>
+</section>
+<section id="neteja-de-dades" class="level3">
+<h3 class="anchored" data-anchor-id="neteja-de-dades"><strong>7.4.5 Neteja de dades</strong></h3>
+<p>Les dades reals gairebé mai no arriben netes: hi falten valors, hi ha files duplicades, apareixen valors impossibles (un sensor que marca <code>-999</code> quan falla) o text on hi hauria d’haver nombres. El fitxer <code>datos/mediciones.csv</code> conté mesuraments de tres estacions meteorològiques amb tots aquests problemes:</p>
+<div>
+<div id="pyodide-23" class="exercise-cell">
+
+</div>
+<script type="pyodide-23-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibWVkID0gcGQucmVhZF9jc3YoXCJkYXRvcy9tZWRpY2lvbmVzLmNzdlwiKVxucHJpbnQobWVkKVxucHJpbnQobWVkLmR0eXBlcykifQ==
+</script>
+</div>
+<p>La columna <code>temperatura</code> és de tipus <code>object</code> (text), no <code>float64</code>: n’hi ha prou amb un valor no numèric (<code>error</code>) perquè pandas no la pugui llegir com a nombres. Les cel·les buides apareixen com a <strong><code>NaN</code></strong> (<em>Not a Number</em>), el valor que fa servir pandas per a les dades absents.</p>
+<div id="imp-limpieza" class="callout callout-style-default callout-important no-icon callout-titled" title="Passos d'una neteja de dades">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepte Clau&nbsp;4: Passos d’una neteja de dades
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Convertir els tipus</strong>: <code>pd.to_numeric(columna, errors="coerce")</code> converteix una columna a nombres i substitueix per <code>NaN</code> el que no es pugui convertir.</li>
+<li><strong>Eliminar duplicats</strong>: <code>drop_duplicates()</code>.</li>
+<li><strong>Marcar els valors impossibles com a absents</strong>, segons el significat de les dades (una humitat relativa no pot superar el 100 %).</li>
+<li><strong>Decidir què fer amb els absents</strong>: eliminar les files (<code>dropna()</code>), omplir-los (<code>fillna(valor)</code>) o deixar-los i que els càlculs els ignorin (<code>mean()</code>, <code>sum()</code>… ometen els <code>NaN</code> per defecte).</li>
+</ol>
+<p>Cada decisió de neteja modifica els resultats de l’anàlisi, així que s’ha de poder justificar i ha de quedar documentada al codi.</p>
+</div>
+</div>
+<div>
+<div id="pyodide-24" class="exercise-cell">
+
+</div>
+<script type="pyodide-24-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibGltcGlvID0gbWVkLmNvcHkoKVxuXG4jIDEuIFRpcG9zOiBcImVycm9yXCIgLT4gTmFOXG5saW1waW9bXCJ0ZW1wZXJhdHVyYVwiXSA9IHBkLnRvX251bWVyaWMobGltcGlvW1widGVtcGVyYXR1cmFcIl0sIGVycm9ycz1cImNvZXJjZVwiKVxuXG4jIDIuIER1cGxpY2Fkb3NcbmxpbXBpbyA9IGxpbXBpby5kcm9wX2R1cGxpY2F0ZXMoKVxuXG4jIDMuIFZhbG9yZXMgaW1wb3NpYmxlcyAtPiBOYU5cbmxpbXBpby5sb2NbbGltcGlvW1widGVtcGVyYXR1cmFcIl0gPCAtNTAsIFwidGVtcGVyYXR1cmFcIl0gPSBmbG9hdChcIm5hblwiKVxubGltcGlvLmxvY1tsaW1waW9bXCJodW1lZGFkXCJdID4gMTAwLCBcImh1bWVkYWRcIl0gPSBmbG9hdChcIm5hblwiKVxuXG5wcmludChsaW1waW8uaXNuYSgpLnN1bSgpKSAgICAgICMgdmFsb3JlcyBhdXNlbnRlcyBwb3IgY29sdW1uYVxucHJpbnQobGVuKG1lZCksIFwiLT5cIiwgbGVuKGxpbXBpbyksIFwiZmlsYXNcIikifQ==
+</script>
+</div>
+<p>Amb les dades netes, l’anàlisi és directa. <code>mean()</code> ignora els <code>NaN</code>, i <code>count()</code> diu quants valors vàlids ha fet servir cada mitjana:</p>
+<div>
+<div id="pyodide-25" class="exercise-cell">
+
+</div>
+<script type="pyodide-25-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicmVzdW1lbiA9IGxpbXBpby5ncm91cGJ5KFwiZXN0YWNpb25cIilbXCJ0ZW1wZXJhdHVyYVwiXS5hZ2coW1wiY291bnRcIiwgXCJtZWFuXCIsIFwibWluXCIsIFwibWF4XCJdKVxucHJpbnQocmVzdW1lbi5yb3VuZCgyKSlcblxubGltcGlvLnRvX2NzdihcIm1lZGljaW9uZXNfbGltcGlhcy5jc3ZcIiwgaW5kZXg9RmFsc2UpICAgICAjIGd1YXJkYXIgZWwgcmVzdWx0YWRvXG5wcmludChQYXRoKFwibWVkaWNpb25lc19saW1waWFzLmNzdlwiKS5leGlzdHMoKSkgICAgICAgICAgICMgVHJ1ZSJ9
+</script>
+</div>
+<div id="cau-nan" class="callout callout-style-default callout-caution no-icon callout-titled" title="`NaN` no és igual a res, ni a si mateix">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Error Freqüent&nbsp;9: <code>NaN</code> no és igual a res, ni a si mateix
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Per definició (norma IEEE 754 de coma flotant), <code>NaN == NaN</code> és <code>False</code>. Per això <code>df["temperatura"] == float("nan")</code> no troba mai els valors absents. Per detectar-los es fan servir els mètodes <code>isna()</code> i <code>notna()</code>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Aprofundiment: més enllà d'aquest tema">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Aprofundiment: més enllà d’aquest tema
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>pandas té moltes més eines de les que caben en aquest tema: <code>merge</code> per combinar taules per columnes comunes (com un <code>JOIN</code> de bases de dades), <code>pivot_table</code> per a taules dinàmiques, <code>pd.cut</code> per agrupar valors numèrics en intervals, <code>read_json</code> i <code>json_normalize</code> per a JSON niats, i lectura i escriptura d’Excel (<code>read_excel</code>, <code>to_excel</code>). La referència completa és la documentació oficial <span class="citation" data-cites="pandas">(<a href="#ref-pandas" role="doc-biblioref">The pandas development team 2025</a>)</span>, i el llibre del seu creador, Wes McKinney, està disponible gratuïtament en línia <span class="citation" data-cites="mckinney2022">(<a href="#ref-mckinney2022" role="doc-biblioref">McKinney 2022</a>)</span>. Al tema 8 combinarem pandas amb NumPy i Matplotlib.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="bibliografia" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="bibliografia">Bibliografia</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-mckinney2022" class="csl-entry" role="listitem">
+McKinney, Wes. 2022. <em>Python for Data Analysis: Data Wrangling with pandas, NumPy, and Jupyter</em>. 3rd ed. O’Reilly Media. <a href="https://wesmckinney.com/book/">https://wesmckinney.com/book/</a>.
+</div>
+<div id="ref-pythoncsv" class="csl-entry" role="listitem">
+Python Software Foundation. 2025a. <span>«csv — CSV File Reading and Writing»</span>. <a href="https://docs.python.org/3/library/csv.html">https://docs.python.org/3/library/csv.html</a>.
+</div>
+<div id="ref-pythonjson" class="csl-entry" role="listitem">
+———. 2025b. <span>«json — JSON encoder and decoder»</span>. <a href="https://docs.python.org/3/library/json.html">https://docs.python.org/3/library/json.html</a>.
+</div>
+<div id="ref-pythonpathlib" class="csl-entry" role="listitem">
+———. 2025c. <span>«pathlib — Object-oriented filesystem paths»</span>. <a href="https://docs.python.org/3/library/pathlib.html">https://docs.python.org/3/library/pathlib.html</a>.
+</div>
+<div id="ref-pandas" class="csl-entry" role="listitem">
+The pandas development team. 2025. <span>«pandas documentation»</span>. <a href="https://pandas.pydata.org/docs/">https://pandas.pydata.org/docs/</a>.
+</div>
+</div>
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwicGFuZGFzIl19fQ==
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTI1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yNSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTI0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTI0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIxIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIxLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMjAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMjAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8yMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMjAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE5IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTkgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE5LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTktY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTggPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE4LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE3LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTctY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTExIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTExLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTkiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl85ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS05LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzkgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl84ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS04LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzggPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl83ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS03LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzcgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTYiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl82ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS02LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzYgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS01LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzUgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -574,8 +1512,9 @@ eyJjb250ZW50cyI6W119
 </div>
 </div>
 <script type="vfs-file">
-W10=
+WyJkYXRvcy9wYXJ0aWRhLmpzb24iLCJkYXRvcy9wYXJ0aWRhLmNzdiIsImRhdG9zL21lZGljaW9uZXMuY3N2Il0=
 </script>
+</section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
