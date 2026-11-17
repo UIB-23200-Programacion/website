@@ -1,0 +1,56 @@
+{
+  "semilla": 1,
+  "bots": {
+    "left": "facil",
+    "right": "mi_bot"
+  },
+  "puntos": {
+    "left": 2,
+    "right": 4
+  },
+  "resultado": "right",
+  "intercambios": [
+    {
+      "start_tick": 0,
+      "end_tick": 512,
+      "hits": 4,
+      "outcome": "point",
+      "winner": "left"
+    },
+    {
+      "start_tick": 513,
+      "end_tick": 709,
+      "hits": 1,
+      "outcome": "point",
+      "winner": "right"
+    },
+    {
+      "start_tick": 710,
+      "end_tick": 1122,
+      "hits": 3,
+      "outcome": "point",
+      "winner": "left"
+    },
+    {
+      "start_tick": 1123,
+      "end_tick": 1319,
+      "hits": 1,
+      "outcome": "point",
+      "winner": "right"
+    },
+    {
+      "start_tick": 1320,
+      "end_tick": 1627,
+      "hits": 2,
+      "outcome": "point",
+      "winner": "right"
+    },
+    {
+      "start_tick": 1628,
+      "end_tick": 2651,
+      "hits": 10,
+      "outcome": "point",
+      "winner": "right"
+    }
+  ]
+}

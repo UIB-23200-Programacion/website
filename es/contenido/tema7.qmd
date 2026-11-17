@@ -2,6 +2,500 @@
 title: "Tema 7: Gestión de Datos y Ficheros"
 lang: es
 sidebar: barra-es
+bibliography: tema7.bib
+engine: markdown
+pyodide:
+  packages:
+    - pandas
+resources:
+  - datos
 ---
 
-*(Contenido pendiente.)*
+Hasta ahora, todos los datos de nuestros programas vivían en la memoria: las listas, los diccionarios y los objetos desaparecen en cuanto el programa termina. Para que los datos **persistan** (guardar resultados, compartirlos, analizarlos después) hay que escribirlos en **ficheros**. Y la mayoría de los datos con los que trabajaremos no los generará nuestro programa: llegarán en ficheros creados por otros (un sensor, una hoja de cálculo, el registro de una partida del Pong de la práctica).
+
+Este tema recorre el camino completo: localizar un fichero (rutas), leer y escribir texto, leer y escribir los dos formatos de intercambio de datos más habituales (CSV y JSON) y, por último, analizar y limpiar datos tabulares con la biblioteca **pandas** [@mckinney2022].
+
+::: {#tip-fichero .callout-tip title="Fichero"}
+Un **fichero** es una secuencia de bytes guardada en un dispositivo de almacenamiento (disco, memoria USB, la nube) e identificada por un nombre dentro de un sistema de **directorios** (carpetas) organizados en árbol. Un **fichero de texto** es un fichero cuyos bytes representan caracteres según una **codificación** (en este curso, siempre UTF-8); cualquier otro fichero es un **fichero binario** (imágenes, ejecutables, PDF…).
+:::
+
+::: {.callout-tip appearance="simple"}
+Las celdas de este tema se ejecutan en el navegador, que tiene su propio **sistema de ficheros virtual**: lo que escribas en una celda se puede leer en otra, pero desaparece al recargar la página. La página carga además, en la carpeta `datos/`, tres ficheros de ejemplo que usaremos a lo largo del tema. Las celdas comparten el mismo entorno de Python: **ejecútalas en orden**.
+:::
+
+---
+
+## 7.1. Ficheros y rutas
+
+### **7.1.1 Rutas absolutas y relativas**
+
+Para abrir un fichero hay que indicar su **ruta** (*path*): el camino que lleva hasta él a través del árbol de directorios.
+
+::: {#imp-rutas .callout-important title="Rutas absolutas y relativas"}
+- Una **ruta absoluta** empieza en la raíz del sistema de ficheros: `/workspaces/t07-ficheros/datos/partida.csv` (Linux, macOS, Codespaces) o `C:\Users\ana\datos\partida.csv` (Windows).
+- Una **ruta relativa** se interpreta a partir del **directorio de trabajo** (*current working directory*) del programa: `datos/partida.csv` significa «la carpeta `datos` dentro del directorio de trabajo».
+
+Los nombres especiales `.` y `..` designan el directorio actual y el directorio padre: `../datos/partida.csv` sube un nivel antes de entrar en `datos`.
+:::
+
+El directorio de trabajo depende de **desde dónde se ejecuta** el programa, no de dónde está guardado el fichero `.py`. En un Codespace, la terminal se abre en la raíz del proyecto (`/workspaces/<nombre-del-repositorio>`), y es desde ahí desde donde se ejecutan `uv run python ...` y `uv run pytest`.
+
+### **7.1.2 El módulo `pathlib`**
+
+El módulo `pathlib` de la biblioteca estándar representa las rutas como objetos de la clase `Path` (tema 6), con atributos y métodos para consultarlas y combinarlas [@pythonpathlib]. El operador `/` está **sobrecargado** para unir partes de una ruta, y funciona igual en Linux, macOS y Windows:
+
+```{pyodide}
+from pathlib import Path
+
+ruta = Path("datos") / "partida.csv"     # __truediv__: une partes de la ruta
+print(ruta)                              # datos/partida.csv
+print(ruta.name)                         # partida.csv
+print(ruta.stem, ruta.suffix)            # partida .csv
+print(ruta.parent)                       # datos
+print(ruta.exists())                     # True
+print(Path("datos/no_existe.txt").exists())   # False
+```
+
+Para listar el contenido de un directorio se usan `iterdir()` (todos los elementos) o `glob(patrón)` (los que encajan con un patrón, donde `*` significa «cualquier secuencia de caracteres»):
+
+```{pyodide}
+for f in sorted(Path("datos").iterdir()):
+    print(f.name)
+# mediciones.csv
+# partida.csv
+# partida.json
+
+print(sorted(f.name for f in Path("datos").glob("*.csv")))
+# ['mediciones.csv', 'partida.csv']
+
+print(Path.cwd())    # directorio de trabajo (en el navegador, /home/pyodide)
+```
+
+::: {#cau-barras .callout-caution title="Rutas escritas como cadenas en Windows"}
+En Windows las rutas usan la barra invertida `\`, que en las cadenas de Python es el carácter de **escape**: `"C:\nuevos\tablas.csv"` contiene un salto de línea (`\n`) y un tabulador (`\t`). Hay tres soluciones: escribir la cadena *raw* `r"C:\nuevos\tablas.csv"`, usar barras normales `"C:/nuevos/tablas.csv"` (Windows las acepta), o, mejor aún, construir la ruta con `Path` y el operador `/`, que elige el separador correcto en cada sistema.
+:::
+
+::: {#wrn-ruta .callout-warning title="`FileNotFoundError`: ¿desde dónde se ejecuta el programa?"}
+Cuando un programa no encuentra un fichero que sí existe, casi siempre es porque se ha ejecutado desde otro directorio de trabajo y la ruta relativa apunta a otro sitio. Para depurarlo, imprime `Path.cwd()` y `ruta.resolve()` (la ruta absoluta a la que apunta `ruta`) justo antes de abrir el fichero. Si el fichero debe buscarse junto al script, independientemente de desde dónde se ejecute, usa `Path(__file__).parent / "datos" / "partida.csv"`.
+:::
+
+---
+
+## 7.2. Lectura y escritura de texto
+
+### **7.2.1 Abrir un fichero: `open` y la instrucción `with`**
+
+La función `open(ruta, modo, encoding=...)` abre un fichero y devuelve un **objeto fichero** con métodos para leer o escribir. El **modo** indica qué se va a hacer:
+
+| Modo | Significado | Si el fichero no existe | Si el fichero existe |
+| :--- | :--- | :--- | :--- |
+| `"r"` | lectura (por defecto) | `FileNotFoundError` | se lee desde el principio |
+| `"w"` | escritura | se crea | **se borra su contenido** |
+| `"a"` | añadir al final (*append*) | se crea | se escribe a continuación |
+| `"x"` | creación exclusiva | se crea | `FileExistsError` |
+
+::: {#imp-with .callout-important title="La instrucción `with`"}
+Un fichero abierto debe **cerrarse** cuando se termina de usar: hasta entonces, lo escrito puede no haber llegado al disco y el sistema operativo mantiene recursos reservados. La instrucción `with` cierra el fichero automáticamente al salir del bloque, **incluso si se produce una excepción** dentro de él:
+
+```python
+with open("datos/salida.txt", "w", encoding="utf-8") as f:
+    f.write("Hola\n")
+# aquí el fichero ya está cerrado
+```
+
+Es la forma recomendada de trabajar con ficheros en Python: con ella no hace falta llamar a `f.close()`, y no hay forma de olvidarlo.
+:::
+
+### **7.2.2 Escribir texto**
+
+El método `write` escribe una cadena tal cual: **no añade el salto de línea**, que hay que escribir explícitamente con `"\n"`. Escribamos los primeros números primos, uno por línea:
+
+```{pyodide}
+def es_primo(n: int) -> bool:
+    """Devuelve True si n es primo."""
+    if n < 2:
+        return False
+    return all(n % d != 0 for d in range(2, int(n**0.5) + 1))
+
+primos = [n for n in range(2, 60) if es_primo(n)]
+
+with open("primos.txt", "w", encoding="utf-8") as f:
+    for p in primos:
+        f.write(f"{p}\n")
+
+print(f"Escritos {len(primos)} primos en primos.txt")   # Escritos 17 primos en primos.txt
+```
+
+### **7.2.3 Leer texto**
+
+Hay tres formas habituales de leer un fichero de texto:
+
+```{pyodide}
+with open("primos.txt", encoding="utf-8") as f:
+    contenido = f.read()            # todo el fichero en una sola cadena
+print(repr(contenido[:11]))         # '2\n3\n5\n7\n11\n'
+
+with open("primos.txt", encoding="utf-8") as f:
+    lineas = f.readlines()          # lista de líneas (con su '\n')
+print(lineas[:3])                   # ['2\n', '3\n', '5\n']
+
+suma = 0
+with open("primos.txt", encoding="utf-8") as f:
+    for linea in f:                 # recorrido línea a línea
+        suma += int(linea)          # int() ignora el '\n' final
+print(f"Suma de los primos: {suma}")   # Suma de los primos: 440
+```
+
+::: {#tip-fichero-flujo .callout-tip title="Un fichero es un flujo de datos"}
+Recorrer un fichero con `for linea in f` es un **algoritmo de una sola pasada** (tema 5): Python lee una línea cada vez, sin cargar el fichero entero en memoria. Es la forma adecuada de procesar ficheros muy grandes, como los registros de millones de mediciones. En cambio, `read()` y `readlines()` cargan el fichero completo (procesamiento por lotes).
+:::
+
+::: {#cau-texto-numeros .callout-caution title="Lo que se lee de un fichero de texto son cadenas"}
+Un fichero de texto no guarda números, sino caracteres. Lo que devuelve la lectura siempre es `str`: `"17\n" + "1"` da `"17\n1"`, no `18`. Hay que convertir explícitamente con `int()` o `float()`, y para eliminar el salto de línea y los espacios de los extremos se usa `linea.strip()`.
+:::
+
+::: {#cau-modo-w .callout-caution title="El modo `\"w\"` borra el fichero"}
+Abrir un fichero existente en modo `"w"` lo **vacía inmediatamente**, antes de escribir nada. Para añadir líneas a un fichero sin perder su contenido se usa el modo `"a"`. Si no quieres sobrescribir por accidente un fichero existente, usa el modo `"x"`, que lanza `FileExistsError` en ese caso.
+:::
+
+### **7.2.4 Ejemplo: tabla de valores de una función**
+
+Escribir una tabla de valores con un formato fijo es un uso típico de los ficheros de texto. Con f-strings podemos alinear las columnas:
+
+```{pyodide}
+import math
+
+with open("tabla_seno.txt", "w", encoding="utf-8") as f:
+    f.write(f"{'x':>6} {'sen(x)':>10}\n")
+    for k in range(5):
+        x = k * math.pi / 4
+        f.write(f"{x:6.4f} {math.sin(x):10.6f}\n")
+
+with open("tabla_seno.txt", encoding="utf-8") as f:
+    print(f.read())
+```
+
+El problema de este formato es que, para leer la tabla después, hay que saber exactamente cómo se escribió: cuántos espacios separan las columnas, qué hay en la primera línea… Los formatos estándar CSV y JSON resuelven ese problema.
+
+---
+
+## 7.3. Ficheros CSV y JSON
+
+### **7.3.1 CSV: datos tabulares**
+
+::: {#tip-csv .callout-tip title="Formato CSV"}
+Un fichero **CSV** (*Comma-Separated Values*) es un fichero de texto que representa una **tabla**: cada línea es una fila y, dentro de cada fila, los valores de las columnas se separan con comas. La primera línea suele ser la **cabecera**, con los nombres de las columnas. Es el formato de intercambio más extendido para datos tabulares: lo leen y escriben todas las hojas de cálculo, los gestores de bases de datos y los lenguajes de programación.
+:::
+
+El fichero `datos/partida.csv` registra una partida de Pong con una estructura parecida (simplificada) a la de los registros de la práctica: una fila por tick con el estado del juego.
+
+```{pyodide}
+with open("datos/partida.csv", encoding="utf-8") as f:
+    for _ in range(3):
+        print(f.readline(), end="")
+# tick,state,ball_x,ball_y,p_left,p_right,cmd_left,cmd_right,server,rally_hits
+# 0,serving,400.0,300.0,300.0,300.0,STAY,STAY,left,0
+# 1,serving,400.0,300.0,300.0,300.0,STAY,STAY,left,0
+```
+
+Separar cada línea con `linea.split(",")` funciona en casos sencillos, pero falla si algún valor contiene una coma (por ejemplo, `"Palma, Mallorca"` entre comillas). El módulo `csv` de la biblioteca estándar resuelve todos esos casos [@pythoncsv].
+
+#### Leer un CSV con `csv.DictReader`
+
+`csv.DictReader` lee la cabecera y devuelve cada fila como un **diccionario** `{nombre_de_columna: valor}`:
+
+```{pyodide}
+import csv
+
+conteo_estados: dict[str, int] = {}
+max_golpes = 0
+
+with open("datos/partida.csv", encoding="utf-8", newline="") as f:
+    for fila in csv.DictReader(f):
+        estado = fila["state"]
+        conteo_estados[estado] = conteo_estados.get(estado, 0) + 1
+        max_golpes = max(max_golpes, int(fila["rally_hits"]))   # ¡convertir a int!
+
+print(conteo_estados)    # {'serving': 120, 'playing': 2532}
+print(max_golpes)        # 10
+```
+
+Fíjate en que el recorrido es de una sola pasada (patrón de conteo del tema 5) y en que hay que convertir `fila["rally_hits"]` a `int`: el módulo `csv` devuelve **todos** los valores como cadenas.
+
+#### Escribir un CSV con `csv.writer`
+
+`csv.writer` escribe filas a partir de listas o tuplas. El argumento `newline=""` de `open` es necesario para que el módulo `csv` controle él mismo los saltos de línea (en Windows, sin él aparecen líneas en blanco intercaladas).
+
+```{pyodide}
+import csv
+
+def ternas_pitagoricas(limite: int) -> list[tuple[int, int, int]]:
+    """Ternas (a, b, c) con a < b < c <= limite y a² + b² = c²."""
+    return [(a, b, c) for c in range(1, limite + 1) for a in range(1, c)
+            for b in range(a + 1, c) if a * a + b * b == c * c]
+
+with open("ternas.csv", "w", encoding="utf-8", newline="") as f:
+    escritor = csv.writer(f)
+    escritor.writerow(["a", "b", "c"])                   # cabecera
+    escritor.writerows(ternas_pitagoricas(20))           # una fila por terna
+
+with open("ternas.csv", encoding="utf-8") as f:
+    print(f.read())
+```
+
+### **7.3.2 JSON: datos jerárquicos**
+
+No todos los datos son tablas. El registro de una partida tiene información general (los nombres de los bots, el resultado) y una **lista** de intercambios, cada uno con sus propios campos: es una estructura **anidada**, en forma de árbol.
+
+::: {#tip-json .callout-tip title="Formato JSON"}
+**JSON** (*JavaScript Object Notation*) es un formato de texto para datos jerárquicos, basado en dos estructuras que pueden anidarse a cualquier profundidad: **objetos** (pares `"clave": valor` entre llaves) y **arrays** (listas de valores entre corchetes). Es el formato estándar de intercambio de datos en la web y en la configuración de programas (como el `devcontainer.json` de nuestros repositorios).
+:::
+
+El módulo `json` de la biblioteca estándar traduce entre JSON y Python [@pythonjson]. Los tipos de JSON se corresponden de forma natural con los de Python:
+
+| JSON | Python |
+| :--- | :--- |
+| objeto `{"clave": valor}` | `dict` |
+| array `[1, 2, 3]` | `list` |
+| cadena `"texto"` | `str` |
+| número `42`, `3.14` | `int`, `float` |
+| `true`, `false` | `True`, `False` |
+| `null` | `None` |
+
+#### Leer un JSON con `json.load`
+
+```{pyodide}
+import json
+
+with open("datos/partida.json", encoding="utf-8") as f:
+    registro = json.load(f)        # el fichero completo, como dict de Python
+
+print(type(registro).__name__)             # dict
+print(list(registro))                      # ['semilla', 'bots', 'puntos', 'resultado', 'intercambios']
+print(registro["bots"]["right"])           # mi_bot
+print(len(registro["intercambios"]))       # 6
+print(registro["intercambios"][0])
+# {'start_tick': 0, 'end_tick': 512, 'hits': 4, 'outcome': 'point', 'winner': 'left'}
+```
+
+A diferencia de un CSV, un JSON se lee **entero** de una vez y se navega con los índices y las claves de las estructuras del tema 4. Por ejemplo, contemos los puntos de cada bot y el total de golpes:
+
+```{pyodide}
+puntos: dict[str, int] = {}
+for inter in registro["intercambios"]:
+    puntos[inter["winner"]] = puntos.get(inter["winner"], 0) + 1
+
+total_golpes = sum(inter["hits"] for inter in registro["intercambios"])
+print(puntos)          # {'left': 2, 'right': 4}
+print(total_golpes)    # 21
+```
+
+#### Escribir un JSON con `json.dump`
+
+`json.dump(objeto, fichero)` escribe un objeto de Python en formato JSON. El argumento `indent` lo hace legible para las personas, y `ensure_ascii=False` conserva las letras acentuadas tal cual.
+
+```{pyodide}
+import json
+
+resumen = {"bot": "mi_bot", "victorias": 4, "golpes": [4, 1, 3, 1, 2, 10], "comentario": "más agresivo"}
+
+with open("resumen.json", "w", encoding="utf-8") as f:
+    json.dump(resumen, f, indent=2, ensure_ascii=False)
+
+with open("resumen.json", encoding="utf-8") as f:
+    print(f.read())
+```
+
+::: {#cau-json-claves .callout-caution title="Lo que JSON no conserva: claves enteras y tuplas"}
+JSON no tiene tuplas, y las claves de sus objetos son **siempre cadenas**. Al guardar y volver a leer un diccionario de Python, los dos detalles cambian sin avisar. Recuerda el diccionario de ternas pitagóricas agrupadas por perímetro:
+
+```{pyodide}
+import json
+
+por_perimetro = {12: [(3, 4, 5)], 24: [(6, 8, 10)], 30: [(5, 12, 13)]}
+
+texto = json.dumps(por_perimetro)        # dumps: a una cadena, no a un fichero
+print(texto)                             # {"12": [[3, 4, 5]], "24": [[6, 8, 10]], "30": [[5, 12, 13]]}
+
+recuperado = json.loads(texto)           # loads: desde una cadena
+print(recuperado == por_perimetro)       # False
+print(list(recuperado))                  # ['12', '24', '30']: claves str
+
+# Reconstruir los tipos originales
+reparado = {int(p): [tuple(t) for t in ternas] for p, ternas in recuperado.items()}
+print(reparado == por_perimetro)         # True
+```
+:::
+
+### **7.3.3 CSV o JSON**
+
+| | CSV | JSON |
+| :--- | :--- | :--- |
+| **Estructura** | tabla: filas y columnas | árbol: objetos y listas anidados |
+| **Tipos** | todo son cadenas | números, cadenas, booleanos, `null` |
+| **Lectura** | fila a fila (flujo) | el fichero completo (lote) |
+| **Uso típico** | mediciones, registros tick a tick, hojas de cálculo | configuración, resultados con estructura, datos de la web |
+| **En la práctica** | `partida_<semilla>.csv` | `partida_<semilla>.json` |
+
+---
+
+## 7.4. Pandas: manipulación y limpieza de datos estructurados
+
+Con el módulo `csv` hemos tenido que escribir un bucle para cada consulta y convertir los valores a mano. Para analizar datos tabulares, la herramienta estándar en Python es **pandas** [@pandas], que carga una tabla completa en memoria y permite consultarla y transformarla con operaciones sobre columnas enteras, sin escribir bucles.
+
+::: {#tip-dataframe .callout-tip title="`DataFrame` y `Series`"}
+Un **`DataFrame`** es una tabla con columnas con nombre, cada una con su propio tipo de datos (`int64`, `float64`, `object` para cadenas…). Cada columna es una **`Series`**: una secuencia de valores del mismo tipo con un **índice** que identifica las filas (por defecto, `0, 1, 2, …`).
+
+Las operaciones de pandas son **vectorizadas**: se aplican a todos los valores de una columna a la vez. `df["ball_x"] / 800` divide los 2 652 valores de la columna sin escribir ningún bucle.
+:::
+
+::: {.callout-tip appearance="simple"}
+pandas no forma parte de la biblioteca estándar. En el navegador, esta página lo carga automáticamente; en un Codespace, está en el grupo `data` del `pyproject.toml` y se instala con `uv sync --all-groups`. Por convención se importa con el nombre corto `pd`.
+:::
+
+### **7.4.1 Leer y explorar un `DataFrame`**
+
+```{pyodide}
+import pandas as pd
+
+df = pd.read_csv("datos/partida.csv")
+print(df.shape)           # (2652, 10): filas y columnas
+print(df.head(3))         # las 3 primeras filas
+print(df.dtypes)          # tipo de cada columna
+```
+
+`read_csv` ha deducido el tipo de cada columna: `tick` y `rally_hits` son enteros, las posiciones son `float64` y las columnas de texto son `object`. Ya no hay que convertir nada a mano.
+
+Para una primera exploración, `describe()` calcula los estadísticos básicos de las columnas numéricas, y `value_counts()` cuenta las apariciones de cada valor de una columna:
+
+```{pyodide}
+print(df[["ball_x", "ball_y", "p_left"]].describe().round(1))
+print(df["state"].value_counts())
+```
+
+### **7.4.2 Seleccionar columnas y filtrar filas**
+
+- `df["columna"]` selecciona una columna (una `Series`); `df[["c1", "c2"]]`, con una **lista** de nombres, un `DataFrame` con esas columnas.
+- `df[mascara]` selecciona las filas en las que una **máscara booleana** (una `Series` de `True`/`False`) vale `True`.
+
+```{pyodide}
+mascara = df["state"] == "playing"        # Series de booleanos, una por fila
+print(mascara.sum())                      # 2532: True cuenta como 1
+
+en_juego = df[mascara]                    # solo las filas en juego
+print(len(en_juego))                      # 2532
+
+# Varias condiciones: & (y), | (o), ~ (no). ¡Paréntesis obligatorios!
+bola_arriba = df[(df["state"] == "playing") & (df["ball_y"] < 100)]
+print(len(bola_arriba))                  # 382: ticks en juego con la bola cerca de la pared de arriba
+
+# Filtrar y seleccionar columnas a la vez con .loc[filas, columnas]
+print(df.loc[df["rally_hits"] == 10, ["tick", "ball_x", "ball_y"]].head(3))
+```
+
+::: {#cau-and-pandas .callout-caution title="`and`/`or` no funcionan con máscaras de pandas"}
+Para combinar máscaras se usan `&`, `|` y `~`, no `and`, `or` y `not`, y cada comparación debe ir **entre paréntesis**, porque `&` tiene más prioridad que `==`. Escribir `df["state"] == "playing" and df["ball_y"] < 100` lanza `ValueError: The truth value of a Series is ambiguous`.
+:::
+
+### **7.4.3 Columnas nuevas y operaciones vectorizadas**
+
+Una columna nueva se crea asignando una expresión sobre otras columnas. Calculemos, en cada tick, la distancia vertical entre la bola y el centro de la raqueta izquierda, y si la bola estaría dentro de su franja de impacto (46 píxeles, como en la práctica):
+
+```{pyodide}
+en_juego = df[df["state"] == "playing"].copy()      # copia independiente (véase abajo)
+
+en_juego["dist_izq"] = (en_juego["ball_y"] - en_juego["p_left"]).abs()
+en_juego["alcanza_izq"] = en_juego["dist_izq"] <= 46
+
+print(en_juego[["tick", "ball_y", "p_left", "dist_izq", "alcanza_izq"]].head(4))
+print(f"{en_juego['alcanza_izq'].mean():.1%} de los ticks al alcance")   # 83.8% de los ticks al alcance
+```
+
+La media de una columna booleana es la **proporción** de valores `True`, porque `True` cuenta como 1 y `False` como 0.
+
+::: {#cau-copy .callout-caution title="Modificar un subconjunto: usa `.copy()`"}
+Un `DataFrame` obtenido al filtrar otro puede compartir datos con el original. Si después se le añaden o modifican columnas, pandas avisa con un `SettingWithCopyWarning` (y el resultado puede depender de la versión). Para trabajar con un subconjunto como con una tabla independiente, haz una copia explícita con `.copy()`, como en el ejemplo anterior.
+:::
+
+### **7.4.4 Agrupar y agregar: `groupby`**
+
+La operación más potente de pandas es **agrupar** las filas según el valor de una columna y **resumir** cada grupo con una función de agregación (`count`, `sum`, `mean`, `max`…). Es la versión vectorizada del patrón de conteo con diccionarios del tema 5.
+
+```{pyodide}
+# ¿Cuántos ticks se jugaron con cada bot sacando, y cuál fue el máximo de golpes?
+print(df.groupby("server")["rally_hits"].agg(["count", "max"]))
+
+# Frecuencia de cada comando del bot izquierdo mientras la bola está en juego
+print(df[df["state"] == "playing"]["cmd_left"].value_counts())
+```
+
+Un `DataFrame` también se puede construir desde datos ya cargados en Python: una lista de diccionarios (como los intercambios del JSON) se convierte en una tabla con una columna por clave.
+
+```{pyodide}
+intercambios = pd.DataFrame(registro["intercambios"])
+intercambios["duracion"] = intercambios["end_tick"] - intercambios["start_tick"] + 1
+print(intercambios)
+
+print(intercambios.groupby("winner")[["hits", "duracion"]].mean().round(1))
+```
+
+### **7.4.5 Limpieza de datos**
+
+Los datos reales casi nunca llegan limpios: faltan valores, hay filas duplicadas, aparecen valores imposibles (un sensor que marca `-999` cuando falla) o texto donde debería haber números. El fichero `datos/mediciones.csv` contiene mediciones de tres estaciones meteorológicas con todos esos problemas:
+
+```{pyodide}
+med = pd.read_csv("datos/mediciones.csv")
+print(med)
+print(med.dtypes)
+```
+
+La columna `temperatura` es de tipo `object` (texto), no `float64`: basta un valor no numérico (`error`) para que pandas no pueda leerla como números. Las celdas vacías aparecen como **`NaN`** (*Not a Number*), el valor que usa pandas para los datos ausentes.
+
+::: {#imp-limpieza .callout-important title="Pasos de una limpieza de datos"}
+1. **Convertir los tipos**: `pd.to_numeric(columna, errors="coerce")` convierte una columna a números y sustituye por `NaN` lo que no se pueda convertir.
+2. **Eliminar duplicados**: `drop_duplicates()`.
+3. **Marcar valores imposibles como ausentes**, según el significado de los datos (una humedad relativa no puede superar el 100 %).
+4. **Decidir qué hacer con los ausentes**: eliminar las filas (`dropna()`), rellenarlos (`fillna(valor)`) o dejarlos y que los cálculos los ignoren (`mean()`, `sum()`… omiten los `NaN` por defecto).
+
+Cada decisión de limpieza modifica los resultados del análisis, así que debe poder justificarse y quedar documentada en el código.
+:::
+
+```{pyodide}
+limpio = med.copy()
+
+# 1. Tipos: "error" -> NaN
+limpio["temperatura"] = pd.to_numeric(limpio["temperatura"], errors="coerce")
+
+# 2. Duplicados
+limpio = limpio.drop_duplicates()
+
+# 3. Valores imposibles -> NaN
+limpio.loc[limpio["temperatura"] < -50, "temperatura"] = float("nan")
+limpio.loc[limpio["humedad"] > 100, "humedad"] = float("nan")
+
+print(limpio.isna().sum())      # valores ausentes por columna
+print(len(med), "->", len(limpio), "filas")
+```
+
+Con los datos limpios, el análisis es directo. `mean()` ignora los `NaN`, y `count()` dice cuántos valores válidos ha usado cada media:
+
+```{pyodide}
+resumen = limpio.groupby("estacion")["temperatura"].agg(["count", "mean", "min", "max"])
+print(resumen.round(2))
+
+limpio.to_csv("mediciones_limpias.csv", index=False)     # guardar el resultado
+print(Path("mediciones_limpias.csv").exists())           # True
+```
+
+::: {#cau-nan .callout-caution title="`NaN` no es igual a nada, ni a sí mismo"}
+Por definición (norma IEEE 754 de coma flotante), `NaN == NaN` es `False`. Por eso `df["temperatura"] == float("nan")` no encuentra nunca los valores ausentes. Para detectarlos se usan los métodos `isna()` y `notna()`.
+:::
+
+::: {.callout-note collapse="true" title="Profundización: más allá de este tema"}
+pandas tiene muchas más herramientas de las que caben en este tema: `merge` para combinar tablas por columnas comunes (como un `JOIN` de bases de datos), `pivot_table` para tablas dinámicas, `pd.cut` para agrupar valores numéricos en intervalos, `read_json` y `json_normalize` para JSON anidados, y lectura y escritura de Excel (`read_excel`, `to_excel`). La referencia completa es la documentación oficial [@pandas], y el libro de su creador, Wes McKinney, está disponible gratuitamente en línea [@mckinney2022]. En el tema 8 combinaremos pandas con NumPy y Matplotlib.
+:::
+
+## Bibliografía {.unnumbered}
+
+::: {#refs}
+:::
