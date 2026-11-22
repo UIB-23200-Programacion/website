@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Ejercicios — Tema 7 – Programación (23200)</title>
+<title>Ejercicios — Tema 7: Gestión de Datos y Ficheros – Programación (23200)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -72,11 +107,43 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Ejercicios — Tema 7 – Programación (23200)">
+<meta property="og:title" content="Ejercicios — Tema 7: Gestión de Datos y Ficheros – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/openmarimo.png">
 <meta property="og:site_name" content="Programación (23200)">
+<meta property="og:image:height" content="34">
+<meta property="og:image:width" content="34">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -529,8 +596,18 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#ejercicios-7.1-y-7.2" id="toc-ejercicios-7.1-y-7.2" class="nav-link active" data-scroll-target="#ejercicios-7.1-y-7.2">Ejercicios 7.1 y 7.2</a></li>
+  <li><a href="#ejercicios-7.3-a-7.5" id="toc-ejercicios-7.3-a-7.5" class="nav-link" data-scroll-target="#ejercicios-7.3-a-7.5">Ejercicios 7.3 a 7.5</a></li>
+  <li><a href="#ejercicio-7.3-guardar-y-recuperar-un-grafo-en-json-módulo-grafos_json.py" id="toc-ejercicio-7.3-guardar-y-recuperar-un-grafo-en-json-módulo-grafos_json.py" class="nav-link" data-scroll-target="#ejercicio-7.3-guardar-y-recuperar-un-grafo-en-json-módulo-grafos_json.py">Ejercicio 7.3: Guardar y recuperar un grafo en JSON (módulo <code>grafos_json.py</code>)</a></li>
+  <li><a href="#ejercicio-7.4-limpieza-y-análisis-de-mediciones-módulo-mediciones.py" id="toc-ejercicio-7.4-limpieza-y-análisis-de-mediciones-módulo-mediciones.py" class="nav-link" data-scroll-target="#ejercicio-7.4-limpieza-y-análisis-de-mediciones-módulo-mediciones.py">Ejercicio 7.4: Limpieza y análisis de mediciones (módulo <code>mediciones.py</code>)</a></li>
+  <li><a href="#ejercicio-7.5-el-titanic-desde-una-url-módulo-titanic.py" id="toc-ejercicio-7.5-el-titanic-desde-una-url-módulo-titanic.py" class="nav-link" data-scroll-target="#ejercicio-7.5-el-titanic-desde-una-url-módulo-titanic.py">Ejercicio 7.5: El Titanic desde una URL (módulo <code>titanic.py</code>)</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -538,7 +615,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../es/ejercicios/tema1.html">Ejercicios</a></li><li class="breadcrumb-item"><a href="../../es/ejercicios/tema7.html">Ejercicios — Tema 7</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Ejercicios — Tema 7</h1>
+<h1 class="title">Ejercicios — Tema 7: Gestión de Datos y Ficheros</h1>
 </div>
 
 
@@ -555,9 +632,468 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contenido pendiente.)</em></p>
+<p>Para la realización de los ejercicios debe utilizar el proyecto <code>t07-ficheros</code> que está disponible en el repositorio del curso: <a href="https://github.com/UIB-23200-Programacion/t07-ficheros" target="_blank" rel="noopener noreferrer">https://github.com/UIB-23200-Programacion/t07-ficheros</a>. Navega al sitio y sigue las instrucciones en <code>README.md</code> para copiar el repositorio en tu entorno local de GitHub y abrir un Codespace para trabajar en los ejercicios.</p>
+<p>Las reglas de los temas anteriores se mantienen:</p>
+<ul>
+<li>cada función debe tener anotaciones de tipo y docstring;</li>
+<li>si no se cumple una precondición, la función debe lanzar <code>ValueError</code> con un mensaje descriptivo (véase <a href="https://uib-23200-programacion.github.io/website/es/contenido/tema3.html#excepciones" target="_blank">sección 3.4 del tema 3</a>);</li>
+<li>los ficheros de texto se abren siempre con <code>encoding="utf-8"</code> (véase <a href="https://uib-23200-programacion.github.io/website/es/contenido/tema7.html" target="_blank">sección 7.2.1 del tema 7</a>).</li>
+</ul>
+<p>El proyecto se organiza así:</p>
+<pre><code>t07-ficheros/
+├── notebooks/ejer_t07_01-02_mo.py     # ejercicios 7.1 y 7.2
+├── src/t07_paquete/
+│   ├── grafos_json.py                 # ejercicio 7.3
+│   ├── mediciones.py                  # ejercicio 7.4
+│   └── titanic.py                     # ejercicio 7.5
+├── datos/estaciones.csv               # datos simulados del ejercicio 7.4
+└── tests/                             # pruebas de los ejercicios 7.3 a 7.5</code></pre>
+<section id="ejercicios-7.1-y-7.2" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicios-7.1-y-7.2">Ejercicios 7.1 y 7.2</h2>
+<p>Los ejercicios 7.1 y 7.2 se encuentran en el archivo <code>ejer_t07_01-02_mo.py</code> contenido en el directorio <code>/notebooks</code>. Cada ejercicio tiene una celda con el enunciado, una celda con el <strong>esqueleto de las funciones</strong> (nombres, parámetros y anotaciones de tipo, con <code>pass</code> en el cuerpo) y una celda con ejemplos y la salida esperada.</p>
+<p>La primera celda del notebook define <code>CARPETA = mo.notebook_dir() / "salida"</code>: una carpeta junto al notebook donde se guardan todos los ficheros que escriben los ejemplos. Así las rutas no dependen del directorio desde el que se abra Marimo. Esa celda importa también <code>csv</code>, <code>math</code> y <code>Path</code>: <strong>no los vuelvas a importar en otra celda</strong>, porque Marimo no permite que dos celdas definan el mismo nombre.</p>
+<p><strong>Es necesario abrir los ficheros con Marimo para disponer de la ejecución interactiva en celdas del notebook, para ello (si no ocurre de forma automática) debes hacer clic en el botón “Open in Marimo” (<img src="../../images/openmarimo.png" class="img-fluid" width="30">)</strong></p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Ejercicio 7.1: números en ficheros de texto">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Ejercicio 7.1: números en ficheros de texto
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Un fichero de texto con un número por línea es la forma más sencilla de guardar una lista de números para usarla después.</p>
+<p><strong>7.1.1</strong> <code>guardar_primos(n: int, ruta: Path) -&gt; int</code>. Escribe en el fichero de texto <code>ruta</code> todos los números primos menores o iguales que <code>n</code>, uno por línea y en orden creciente, y devuelve cuántos ha escrito. Si el fichero ya existe, se sobrescribe. Puedes definir una función auxiliar <code>es_primo</code> como la del tema 3. Precondición: <code>n &gt;= 2</code>.</p>
+<p><strong>7.1.2</strong> <code>leer_enteros(ruta: Path) -&gt; list[int]</code>. Lee un fichero de texto que contiene un entero por línea y devuelve la lista de esos enteros, en el orden en que aparecen. Para que el fichero pueda documentarse, se ignoran las líneas vacías (o solo con espacios) y las que empiezan por <code>#</code>, que se consideran comentarios. Si alguna línea no es un entero, se lanza <code>ValueError</code> con un mensaje que indique el <strong>número de línea</strong> (contando desde 1) y su contenido, para que sea fácil localizar el error.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(guardar_primos(<span class="dv">30</span>, CARPETA <span class="op">/</span> <span class="st">"primos.txt"</span>))    <span class="co"># 10</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(leer_enteros(CARPETA <span class="op">/</span> <span class="st">"primos.txt"</span>))          <span class="co"># [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Un fichero con un comentario, una línea vacía y una línea errónea</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>(CARPETA <span class="op">/</span> <span class="st">"malo.txt"</span>).write_text(<span class="st">"# primos pequeños</span><span class="ch">\n</span><span class="st">2</span><span class="ch">\n\n</span><span class="st">3</span><span class="ch">\n</span><span class="st">xyz</span><span class="ch">\n</span><span class="st">"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>leer_enteros(CARPETA <span class="op">/</span> <span class="st">"malo.txt"</span>)    <span class="co"># ValueError: línea 5: 'xyz' no es un entero</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Pista">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Pista
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>enumerate(f, start=1)</code> recorre las líneas del fichero numerándolas desde 1. Para lanzar un <code>ValueError</code> con tu propio mensaje cuando <code>int()</code> falla, captura el error con <code>try/except ValueError</code> y lanza uno nuevo con <code>raise ValueError(...)</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Ejercicio 7.2: tabla de valores y regla del trapecio">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Ejercicio 7.2: tabla de valores y regla del trapecio
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Muchas veces no se dispone de la fórmula de una función, sino solo de una <strong>tabla de valores</strong> (medidas, resultados de una simulación…). La regla del trapecio permite aproximar una integral a partir de esa tabla.</p>
+<p><strong>7.2.1</strong> <code>tabular(f, a: float, b: float, n: int, ruta: Path) -&gt; None</code>. Escribe en <code>ruta</code> un fichero CSV con cabecera <code>x,fx</code> y <code>n + 1</code> filas: los puntos equiespaciados <span class="math inline">\(x_i = a + i\,\frac{b - a}{n}\)</span>, para <span class="math inline">\(i = 0, 1, \ldots, n\)</span>, y los valores <span class="math inline">\(f(x_i)\)</span>. El parámetro <code>f</code> es cualquier función de un argumento: una función propia, <code>math.sin</code> o una <code>lambda</code>. Usa <code>csv.writer</code>. Precondiciones: <code>a &lt; b</code> y <code>n &gt;= 1</code>.</p>
+<p><strong>7.2.2</strong> <code>integral_trapecios(ruta: Path) -&gt; float</code>. Lee una tabla CSV con columnas <code>x,fx</code> (con <code>csv.DictReader</code>) y aproxima la integral con la <strong>regla del trapecio compuesta</strong>: en cada intervalo <span class="math inline">\([x_i, x_{i+1}]\)</span> se sustituye la función por el segmento que une <span class="math inline">\((x_i, f(x_i))\)</span> y <span class="math inline">\((x_{i+1}, f(x_{i+1}))\)</span>, y se suman las áreas de los trapecios resultantes: <span class="math display">\[
+\int_a^b f(x)\,dx \approx \sum_{i=0}^{n-1} (x_{i+1} - x_i)\,\frac{f(x_i) + f(x_{i+1})}{2}.
+\]</span> La función no recibe <code>f</code>: trabaja solo con los datos del fichero, así que sirve igual para una tabla de valores medidos, aunque sus puntos no estén equiespaciados. Precondición: la tabla tiene al menos dos filas.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tabular(<span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">4</span>, CARPETA <span class="op">/</span> <span class="st">"cuadrado.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(integral_trapecios(CARPETA <span class="op">/</span> <span class="st">"cuadrado.csv"</span>))    <span class="co"># 0.34375</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>tabular(<span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1000</span>, CARPETA <span class="op">/</span> <span class="st">"cuadrado.csv"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(integral_trapecios(CARPETA <span class="op">/</span> <span class="st">"cuadrado.csv"</span>))    <span class="co"># 0.3333334999999997   (exacto: 1/3)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>tabular(math.sin, <span class="dv">0</span>, math.pi, <span class="dv">100</span>, CARPETA <span class="op">/</span> <span class="st">"seno.csv"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(integral_trapecios(CARPETA <span class="op">/</span> <span class="st">"seno.csv"</span>))        <span class="co"># 1.999835503887444    (exacto: 2)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Conexión matemática: el error de la regla del trapecio">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Conexión matemática: el error de la regla del trapecio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si <span class="math inline">\(f\)</span> tiene segunda derivada continua, el error de la regla del trapecio compuesta con paso <span class="math inline">\(h = (b - a)/n\)</span> es de orden <span class="math inline">\(h^2\)</span>: al multiplicar <span class="math inline">\(n\)</span> por 10, el error se divide aproximadamente por 100. Los dos ejemplos con <span class="math inline">\(f(x) = x^2\)</span> lo muestran: con <span class="math inline">\(n = 4\)</span> el error es <span class="math inline">\(0.34375 - 1/3 \approx 10^{-2}\)</span>, y con <span class="math inline">\(n = 1000\)</span> es del orden de <span class="math inline">\(10^{-7}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="ejercicios-7.3-a-7.5" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicios-7.3-a-7.5">Ejercicios 7.3 a 7.5</h2>
+<p>El paquete <code>t07_paquete</code> contiene tres módulos con el <strong>esqueleto</strong> de sus funciones. Completa cada función sustituyendo el <code>pass</code> por tu implementación. <strong>No cambies los nombres de las funciones ni de sus parámetros</strong>: las pruebas dependen de ellos.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Pruebas incluidas">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Pruebas incluidas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La carpeta <code>tests/</code> ya contiene pruebas de los ejercicios 7.3, 7.4 y 7.5. Las del ejercicio 7.3 usan el <em>fixture</em> <code>tmp_path</code> de pytest, que proporciona una carpeta temporal donde escribir ficheros sin ensuciar el proyecto. Las del ejercicio 7.5 no descargan nada: construyen un pequeño <code>DataFrame</code> con la estructura del Titanic, así que funcionan sin conexión.</p>
+<p>Ejecútalas con <code>uv run pytest -v</code>. <strong>Mientras no implementes las funciones, las pruebas fallarán</strong> y la comprobación automática de GitHub (pestaña <em>Actions</em>) aparecerá en rojo: es lo esperado. A medida que completes los ejercicios, irán pasando.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="ejercicio-7.3-guardar-y-recuperar-un-grafo-en-json-módulo-grafos_json.py" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-7.3-guardar-y-recuperar-un-grafo-en-json-módulo-grafos_json.py">Ejercicio 7.3: Guardar y recuperar un grafo en JSON (módulo <code>grafos_json.py</code>)</h2>
+<p>Un grafo no dirigido se representa, como en el tema 4, con un diccionario <code>dict[int, set[int]]</code> que asocia a cada vértice el conjunto de sus vecinos. Para conservar un grafo entre dos ejecuciones de un programa hay que guardarlo en un fichero, pero JSON no tiene conjuntos y sus claves son siempre cadenas (véase el aviso «Lo que JSON no conserva» del <a href="https://uib-23200-programacion.github.io/website/es/contenido/tema7.html" target="_blank">apartado 7.3.2 del tema 7</a>). Por eso guardar y cargar no son operaciones triviales.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.3.1 Función `guardar_grafo(grafo, ruta)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.3.1 Función <code>guardar_grafo(grafo, ruta)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Guarda el grafo en un fichero JSON. Cada conjunto de vecinos se guarda como una <strong>lista ordenada</strong>, para que el fichero sea siempre el mismo para el mismo grafo y resulte fácil de leer.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> {<span class="dv">1</span>: {<span class="dv">2</span>, <span class="dv">3</span>}, <span class="dv">2</span>: {<span class="dv">1</span>}, <span class="dv">3</span>: {<span class="dv">1</span>}}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>guardar_grafo(g, Path(<span class="st">"grafo.json"</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Path(<span class="st">"grafo.json"</span>).read_text(encoding<span class="op">=</span><span class="st">"utf-8"</span>))   <span class="co"># {"1": [2, 3], "2": [1], "3": [1]}</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.3.2 Función `cargar_grafo(ruta)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.3.2 Función <code>cargar_grafo(ruta)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Lee el fichero JSON y reconstruye el grafo <strong>con los tipos originales</strong>: claves <code>int</code> y conjuntos de vecinos <code>set[int]</code>. Precondición: el grafo leído es <strong>simétrico</strong> (si <code>v</code> es vecino de <code>u</code>, entonces <code>u</code> es vecino de <code>v</code>), como corresponde a un grafo no dirigido. Si no lo es, se lanza <code>ValueError</code> indicando una arista sin su recíproca.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cargar_grafo(Path(<span class="st">"grafo.json"</span>)) <span class="op">==</span> g)    <span class="co"># True</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Path(<span class="st">"asimetrico.json"</span>).write_text(<span class="st">'{"1": [2], "2": []}'</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>cargar_grafo(Path(<span class="st">"asimetrico.json"</span>))   <span class="co"># ValueError: la arista 1-2 no tiene su recíproca</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="La propiedad de ida y vuelta">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>La propiedad de ida y vuelta
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para cualquier grafo <code>g</code>, guardarlo y volver a cargarlo debe devolver un grafo igual a <code>g</code>. Es la forma natural de probar cualquier par de funciones «guardar/cargar», y es una de las pruebas incluidas en <code>tests/test_grafos_json.py</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="ejercicio-7.4-limpieza-y-análisis-de-mediciones-módulo-mediciones.py" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-7.4-limpieza-y-análisis-de-mediciones-módulo-mediciones.py">Ejercicio 7.4: Limpieza y análisis de mediciones (módulo <code>mediciones.py</code>)</h2>
+<p>El fichero <code>datos/estaciones.csv</code> contiene <strong>datos simulados</strong> (generados por ordenador, no medidos realmente) de cuatro estaciones meteorológicas de Mallorca: Palma, Sóller, Manacor y Lluc. Para cada estación hay una medición diaria durante noviembre de 2026, con las columnas <code>estacion</code>, <code>fecha</code>, <code>temperatura</code> (°C) y <code>humedad</code> (%).</p>
+<p>Como ocurre con los datos reales, el fichero tiene defectos: filas duplicadas, celdas vacías, textos en lugar de números (<code>error</code>, <code>s/d</code>), el valor <code>-999</code> que registra un sensor averiado y humedades imposibles por encima del 100 %. El fichero tiene 124 filas de datos.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.4.1 Función `cargar_mediciones(ruta)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.4.1 Función <code>cargar_mediciones(ruta)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Lee el CSV y devuelve un <code>DataFrame</code> limpio. Para ello:</p>
+<ol type="1">
+<li>convierte <code>temperatura</code> a número, sustituyendo por <code>NaN</code> lo que no pueda convertirse;</li>
+<li>elimina las filas duplicadas;</li>
+<li>marca como <code>NaN</code> las temperaturas fuera del intervalo <span class="math inline">\([-30, 50]\)</span> °C y las humedades fuera de <span class="math inline">\([0, 100]\)</span> %;</li>
+<li>convierte la columna <code>fecha</code> al tipo fecha de pandas con <code>pd.to_datetime</code>.</li>
+</ol>
+<p>Las filas con algún <code>NaN</code> <strong>no</strong> se eliminan: los cálculos posteriores ignorarán los valores ausentes.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> cargar_mediciones(Path(<span class="st">"datos/estaciones.csv"</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(df))                 <span class="co"># 120   (124 filas menos 4 duplicadas)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.isna().<span class="bu">sum</span>())         <span class="co"># temperatura 7, humedad 3</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"fecha"</span>].dtype)       <span class="co"># datetime64[ns]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.4.2 Función `resumen_por_estacion(df)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.4.2 Función <code>resumen_por_estacion(df)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Devuelve una tabla con una fila por estación (el índice es el nombre de la estación) y las columnas <code>n</code> (número de temperaturas válidas), <code>media</code>, <code>minima</code> y <code>maxima</code>, ordenada de mayor a menor temperatura media.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(resumen_por_estacion(df).<span class="bu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#           n  media  minima  maxima</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># estacion</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Palma    28  16.31    12.9    21.0</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Manacor  29  15.53    12.3    21.2</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Soller   28  14.48     9.4    19.8</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lluc     28  10.09     6.1    14.4</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Lluc tiene la media más baja porque está a unos 500 m de altitud, en la Serra de Tramuntana.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Pista">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Pista
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>agg</code> admite argumentos con nombre para elegir el nombre de cada columna del resultado: <code>groupby("estacion")["temperatura"].agg(n="count", media="mean", ...)</code>. Para ordenar, usa <code>sort_values</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.4.3 Función `dias_calurosos(df, umbral)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.4.3 Función <code>dias_calurosos(df, umbral)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Devuelve las filas con temperatura estrictamente mayor que <code>umbral</code>, ordenadas por fecha y, para la misma fecha, por estación.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dias_calurosos(df, <span class="dv">19</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#     estacion      fecha  temperatura  humedad</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      Manacor 2026-11-01         21.2     74.0</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#        Palma 2026-11-01         21.0     72.0</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#        Palma 2026-11-03         20.0     70.0</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#       Soller 2026-11-06         19.8     70.0</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#        Palma 2026-11-30         19.5     70.0</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="ejercicio-7.5-el-titanic-desde-una-url-módulo-titanic.py" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-7.5-el-titanic-desde-una-url-módulo-titanic.py">Ejercicio 7.5: El Titanic desde una URL (módulo <code>titanic.py</code>)</h2>
+<p>El módulo define la constante <code>URL_TITANIC</code> con la dirección del conjunto de datos del Titanic en Hugging Face (véase el <a href="https://uib-23200-programacion.github.io/website/es/contenido/tema7.html" target="_blank">apartado 7.4.1 del tema 7</a>). El ejercicio se resuelve en el Codespace, donde <strong>no</strong> hace falta <code>pyodide_http</code>. Cada fila es un pasajero; las columnas que se usan son <code>Survived</code> (1 si sobrevivió, 0 si no), <code>Pclass</code> (clase del billete: 1, 2 o 3), <code>Sex</code> y <code>Age</code> (edad, con valores ausentes).</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.5.1 Función `cargar_titanic(url)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.5.1 Función <code>cargar_titanic(url)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Lee el CSV desde la URL y lo devuelve como <code>DataFrame</code>. El parámetro tiene como valor por defecto <code>URL_TITANIC</code>; así se puede usar otra copia del fichero (por ejemplo, una local) sin cambiar el código.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> cargar_titanic()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.shape)    <span class="co"># (891, 12)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.5.2 Función `tasa_supervivencia(df, columna)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.5.2 Función <code>tasa_supervivencia(df, columna)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Devuelve, para cada valor distinto de <code>columna</code>, la proporción de pasajeros que sobrevivieron (un número entre 0 y 1). Por ejemplo, con <code>columna="Sex"</code> da la tasa de supervivencia de hombres y de mujeres. Precondición: <code>columna</code> es una columna de <code>df</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tasa_supervivencia(df, <span class="st">"Sex"</span>).<span class="bu">round</span>(<span class="dv">3</span>))      <span class="co"># female 0.742   male 0.189</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tasa_supervivencia(df, <span class="st">"Pclass"</span>).<span class="bu">round</span>(<span class="dv">3</span>))   <span class="co"># 1: 0.630   2: 0.473   3: 0.242</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.5.3 Función `edad_media_por_clase(df)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.5.3 Función <code>edad_media_por_clase(df)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Devuelve la edad media de los pasajeros de cada clase, <strong>ignorando las edades ausentes</strong> (hay 177 pasajeros sin edad registrada).</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(edad_media_por_clase(df).<span class="bu">round</span>(<span class="dv">1</span>))           <span class="co"># 1: 38.2   2: 29.9   3: 25.1</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Conexión con la estadística">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Conexión con la estadística
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los datos reflejan la consigna «las mujeres y los niños primero»: la tasa de supervivencia de las mujeres casi cuadruplica la de los hombres. Pero una diferencia entre proporciones no basta para concluir una relación causal: la clase y el sexo están relacionados entre sí (había más hombres en tercera clase), y la estadística dispone de herramientas para separar ambos efectos.</p>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

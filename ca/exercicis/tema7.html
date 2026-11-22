@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercicis — Tema 7 – Programación (23200)</title>
+<title>Exercicis — Tema 7: Gestió de Dades i Fitxers – Programación (23200)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -72,11 +107,43 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Exercicis — Tema 7 – Programación (23200)">
+<meta property="og:title" content="Exercicis — Tema 7: Gestió de Dades i Fitxers – Programación (23200)">
 <meta property="og:description" content="Material docente de la asignatura Programación (23200), UIB-EPS.">
+<meta property="og:image" content="https://uib-23200-programacion.github.io/website/images/openmarimo.png">
 <meta property="og:site_name" content="Programación (23200)">
+<meta property="og:image:height" content="34">
+<meta property="og:image:width" content="34">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -529,8 +596,18 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En aquesta pàgina</h2>
+   
+  <ul>
+  <li><a href="#exercicis-7.1-i-7.2" id="toc-exercicis-7.1-i-7.2" class="nav-link active" data-scroll-target="#exercicis-7.1-i-7.2">Exercicis 7.1 i 7.2</a></li>
+  <li><a href="#exercicis-7.3-a-7.5" id="toc-exercicis-7.3-a-7.5" class="nav-link" data-scroll-target="#exercicis-7.3-a-7.5">Exercicis 7.3 a 7.5</a></li>
+  <li><a href="#exercici-7.3-desar-i-recuperar-un-graf-en-json-mòdul-grafos_json.py" id="toc-exercici-7.3-desar-i-recuperar-un-graf-en-json-mòdul-grafos_json.py" class="nav-link" data-scroll-target="#exercici-7.3-desar-i-recuperar-un-graf-en-json-mòdul-grafos_json.py">Exercici 7.3: Desar i recuperar un graf en JSON (mòdul <code>grafos_json.py</code>)</a></li>
+  <li><a href="#exercici-7.4-neteja-i-anàlisi-de-mesuraments-mòdul-mediciones.py" id="toc-exercici-7.4-neteja-i-anàlisi-de-mesuraments-mòdul-mediciones.py" class="nav-link" data-scroll-target="#exercici-7.4-neteja-i-anàlisi-de-mesuraments-mòdul-mediciones.py">Exercici 7.4: Neteja i anàlisi de mesuraments (mòdul <code>mediciones.py</code>)</a></li>
+  <li><a href="#exercici-7.5-el-titanic-des-duna-url-mòdul-titanic.py" id="toc-exercici-7.5-el-titanic-des-duna-url-mòdul-titanic.py" class="nav-link" data-scroll-target="#exercici-7.5-el-titanic-des-duna-url-mòdul-titanic.py">Exercici 7.5: El Titanic des d’una URL (mòdul <code>titanic.py</code>)</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -538,7 +615,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ca/exercicis/tema1.html">Exercicis</a></li><li class="breadcrumb-item"><a href="../../ca/exercicis/tema7.html">Exercicis — Tema 7</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercicis — Tema 7</h1>
+<h1 class="title">Exercicis — Tema 7: Gestió de Dades i Fitxers</h1>
 </div>
 
 
@@ -555,9 +632,468 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>(Contingut pendent.)</em></p>
+<p>Per a la realització dels exercicis heu d’emprar el projecte <code>t07-ficheros</code> que està disponible al repositori del curs: <a href="https://github.com/UIB-23200-Programacion/t07-ficheros" target="_blank" rel="noopener noreferrer">https://github.com/UIB-23200-Programacion/t07-ficheros</a>. Navegueu al lloc i seguiu les instruccions de <code>README.md</code> per copiar el repositori en el vostre entorn local de GitHub i obrir un Codespace per treballar en els exercicis.</p>
+<p>Les regles dels temes anteriors es mantenen:</p>
+<ul>
+<li>cada funció ha de tenir anotacions de tipus i docstring;</li>
+<li>si no es compleix una precondició, la funció ha de llançar <code>ValueError</code> amb un missatge descriptiu (vegeu <a href="https://uib-23200-programacion.github.io/website/ca/contingut/tema3.html#excepcions" target="_blank">secció 3.4 del tema 3</a>);</li>
+<li>els fitxers de text s’obren sempre amb <code>encoding="utf-8"</code> (vegeu <a href="https://uib-23200-programacion.github.io/website/ca/contingut/tema7.html" target="_blank">secció 7.2.1 del tema 7</a>).</li>
+</ul>
+<p>El projecte s’organitza així:</p>
+<pre><code>t07-ficheros/
+├── notebooks/ejer_t07_01-02_mo.py     # ejercicios 7.1 y 7.2
+├── src/t07_paquete/
+│   ├── grafos_json.py                 # ejercicio 7.3
+│   ├── mediciones.py                  # ejercicio 7.4
+│   └── titanic.py                     # ejercicio 7.5
+├── datos/estaciones.csv               # datos simulados del ejercicio 7.4
+└── tests/                             # pruebas de los ejercicios 7.3 a 7.5</code></pre>
+<section id="exercicis-7.1-i-7.2" class="level2">
+<h2 class="anchored" data-anchor-id="exercicis-7.1-i-7.2">Exercicis 7.1 i 7.2</h2>
+<p>Els exercicis 7.1 i 7.2 es troben en el fitxer <code>ejer_t07_01-02_mo.py</code> contingut en el directori <code>/notebooks</code>. Cada exercici té una cel·la amb l’enunciat, una cel·la amb l’<strong>esquelet de les funcions</strong> (noms, paràmetres i anotacions de tipus, amb <code>pass</code> al cos) i una cel·la amb exemples i la sortida esperada.</p>
+<p>La primera cel·la del notebook defineix <code>CARPETA = mo.notebook_dir() / "salida"</code>: una carpeta al costat del notebook on es desen tots els fitxers que escriuen els exemples. Així les rutes no depenen del directori des del qual s’obri Marimo. Aquesta cel·la importa també <code>csv</code>, <code>math</code> i <code>Path</code>: <strong>no els torneu a importar en una altra cel·la</strong>, perquè Marimo no permet que dues cel·les defineixin el mateix nom.</p>
+<p><strong>Cal obrir els fitxers amb Marimo per disposar de l’execució interactiva en cel·les del notebook; per a això (si no ocorre de manera automàtica) heu de fer clic al botó “Open in Marimo” (<img src="../../images/openmarimo.png" class="img-fluid" width="30">)</strong></p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercici 7.1: nombres en fitxers de text">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Exercici 7.1: nombres en fitxers de text
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Un fitxer de text amb un nombre per línia és la manera més senzilla de desar una llista de nombres per fer-la servir després.</p>
+<p><strong>7.1.1</strong> <code>guardar_primos(n: int, ruta: Path) -&gt; int</code>. Escriu en el fitxer de text <code>ruta</code> tots els nombres primers menors o iguals que <code>n</code>, un per línia i en ordre creixent, i retorna quants n’ha escrit. Si el fitxer ja existeix, se sobreescriu. Podeu definir una funció auxiliar <code>es_primo</code> com la del tema 3. Precondició: <code>n &gt;= 2</code>.</p>
+<p><strong>7.1.2</strong> <code>leer_enteros(ruta: Path) -&gt; list[int]</code>. Llegeix un fitxer de text que conté un enter per línia i retorna la llista d’aquests enters, en l’ordre en què apareixen. Perquè el fitxer es pugui documentar, s’ignoren les línies buides (o només amb espais) i les que comencen per <code>#</code>, que es consideren comentaris. Si alguna línia no és un enter, es llança <code>ValueError</code> amb un missatge que indiqui el <strong>número de línia</strong> (comptant des d’1) i el seu contingut, perquè sigui fàcil localitzar l’error.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(guardar_primos(<span class="dv">30</span>, CARPETA <span class="op">/</span> <span class="st">"primos.txt"</span>))    <span class="co"># 10</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(leer_enteros(CARPETA <span class="op">/</span> <span class="st">"primos.txt"</span>))          <span class="co"># [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Un fichero con un comentario, una línea vacía y una línea errónea</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>(CARPETA <span class="op">/</span> <span class="st">"malo.txt"</span>).write_text(<span class="st">"# primos pequeños</span><span class="ch">\n</span><span class="st">2</span><span class="ch">\n\n</span><span class="st">3</span><span class="ch">\n</span><span class="st">xyz</span><span class="ch">\n</span><span class="st">"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>leer_enteros(CARPETA <span class="op">/</span> <span class="st">"malo.txt"</span>)    <span class="co"># ValueError: línea 5: 'xyz' no es un entero</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Pista">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Pista
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>enumerate(f, start=1)</code> recorre les línies del fitxer numerant-les des d’1. Per llançar un <code>ValueError</code> amb el vostre propi missatge quan <code>int()</code> falla, captureu l’error amb <code>try/except ValueError</code> i llanceu-ne un de nou amb <code>raise ValueError(...)</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Exercici 7.2: taula de valors i regla del trapezi">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Exercici 7.2: taula de valors i regla del trapezi
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Moltes vegades no es disposa de la fórmula d’una funció, sinó només d’una <strong>taula de valors</strong> (mesures, resultats d’una simulació…). La regla del trapezi permet aproximar una integral a partir d’aquesta taula.</p>
+<p><strong>7.2.1</strong> <code>tabular(f, a: float, b: float, n: int, ruta: Path) -&gt; None</code>. Escriu a <code>ruta</code> un fitxer CSV amb capçalera <code>x,fx</code> i <code>n + 1</code> files: els punts equiespaiats <span class="math inline">\(x_i = a + i\,\frac{b - a}{n}\)</span>, per a <span class="math inline">\(i = 0, 1, \ldots, n\)</span>, i els valors <span class="math inline">\(f(x_i)\)</span>. El paràmetre <code>f</code> és qualsevol funció d’un argument: una funció pròpia, <code>math.sin</code> o una <code>lambda</code>. Feu servir <code>csv.writer</code>. Precondicions: <code>a &lt; b</code> i <code>n &gt;= 1</code>.</p>
+<p><strong>7.2.2</strong> <code>integral_trapecios(ruta: Path) -&gt; float</code>. Llegeix una taula CSV amb columnes <code>x,fx</code> (amb <code>csv.DictReader</code>) i aproxima la integral amb la <strong>regla del trapezi composta</strong>: a cada interval <span class="math inline">\([x_i, x_{i+1}]\)</span> se substitueix la funció pel segment que uneix <span class="math inline">\((x_i, f(x_i))\)</span> i <span class="math inline">\((x_{i+1}, f(x_{i+1}))\)</span>, i se sumen les àrees dels trapezis resultants: <span class="math display">\[
+\int_a^b f(x)\,dx \approx \sum_{i=0}^{n-1} (x_{i+1} - x_i)\,\frac{f(x_i) + f(x_{i+1})}{2}.
+\]</span> La funció no rep <code>f</code>: treballa només amb les dades del fitxer, així que serveix igual per a una taula de valors mesurats, encara que els seus punts no siguin equiespaiats. Precondició: la taula té almenys dues files.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tabular(<span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">4</span>, CARPETA <span class="op">/</span> <span class="st">"cuadrado.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(integral_trapecios(CARPETA <span class="op">/</span> <span class="st">"cuadrado.csv"</span>))    <span class="co"># 0.34375</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>tabular(<span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1000</span>, CARPETA <span class="op">/</span> <span class="st">"cuadrado.csv"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(integral_trapecios(CARPETA <span class="op">/</span> <span class="st">"cuadrado.csv"</span>))    <span class="co"># 0.3333334999999997   (exacto: 1/3)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>tabular(math.sin, <span class="dv">0</span>, math.pi, <span class="dv">100</span>, CARPETA <span class="op">/</span> <span class="st">"seno.csv"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(integral_trapecios(CARPETA <span class="op">/</span> <span class="st">"seno.csv"</span>))        <span class="co"># 1.999835503887444    (exacto: 2)</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Connexió matemàtica: l'error de la regla del trapezi">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Connexió matemàtica: l’error de la regla del trapezi
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si <span class="math inline">\(f\)</span> té segona derivada contínua, l’error de la regla del trapezi composta amb pas <span class="math inline">\(h = (b - a)/n\)</span> és d’ordre <span class="math inline">\(h^2\)</span>: en multiplicar <span class="math inline">\(n\)</span> per 10, l’error es divideix aproximadament per 100. Els dos exemples amb <span class="math inline">\(f(x) = x^2\)</span> ho mostren: amb <span class="math inline">\(n = 4\)</span> l’error és <span class="math inline">\(0.34375 - 1/3 \approx 10^{-2}\)</span>, i amb <span class="math inline">\(n = 1000\)</span> és de l’ordre de <span class="math inline">\(10^{-7}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercicis-7.3-a-7.5" class="level2">
+<h2 class="anchored" data-anchor-id="exercicis-7.3-a-7.5">Exercicis 7.3 a 7.5</h2>
+<p>El paquet <code>t07_paquete</code> conté tres mòduls amb l’<strong>esquelet</strong> de les seves funcions. Completeu cada funció substituint el <code>pass</code> per la vostra implementació. <strong>No canvieu els noms de les funcions ni dels seus paràmetres</strong>: les proves en depenen.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Proves incloses">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Proves incloses
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La carpeta <code>tests/</code> ja conté proves dels exercicis 7.3, 7.4 i 7.5. Les de l’exercici 7.3 fan servir el <em>fixture</em> <code>tmp_path</code> de pytest, que proporciona una carpeta temporal on escriure fitxers sense embrutar el projecte. Les de l’exercici 7.5 no descarreguen res: construeixen un petit <code>DataFrame</code> amb l’estructura del Titanic, així que funcionen sense connexió.</p>
+<p>Executeu-les amb <code>uv run pytest -v</code>. <strong>Mentre no implementeu les funcions, les proves fallaran</strong> i la comprovació automàtica de GitHub (pestanya <em>Actions</em>) apareixerà en vermell: és l’esperat. A mesura que completeu els exercicis, aniran passant.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercici-7.3-desar-i-recuperar-un-graf-en-json-mòdul-grafos_json.py" class="level2">
+<h2 class="anchored" data-anchor-id="exercici-7.3-desar-i-recuperar-un-graf-en-json-mòdul-grafos_json.py">Exercici 7.3: Desar i recuperar un graf en JSON (mòdul <code>grafos_json.py</code>)</h2>
+<p>Un graf no dirigit es representa, com al tema 4, amb un diccionari <code>dict[int, set[int]]</code> que associa a cada vèrtex el conjunt dels seus veïns. Per conservar un graf entre dues execucions d’un programa cal desar-lo en un fitxer, però JSON no té conjunts i les seves claus són sempre cadenes (vegeu l’avís «El que JSON no conserva» de l’<a href="https://uib-23200-programacion.github.io/website/ca/contingut/tema7.html" target="_blank">apartat 7.3.2 del tema 7</a>). Per això desar i carregar no són operacions trivials.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.3.1 Funció `guardar_grafo(grafo, ruta)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.3.1 Funció <code>guardar_grafo(grafo, ruta)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Desa el graf en un fitxer JSON. Cada conjunt de veïns es desa com una <strong>llista ordenada</strong>, perquè el fitxer sigui sempre el mateix per al mateix graf i resulti fàcil de llegir.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> {<span class="dv">1</span>: {<span class="dv">2</span>, <span class="dv">3</span>}, <span class="dv">2</span>: {<span class="dv">1</span>}, <span class="dv">3</span>: {<span class="dv">1</span>}}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>guardar_grafo(g, Path(<span class="st">"grafo.json"</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Path(<span class="st">"grafo.json"</span>).read_text(encoding<span class="op">=</span><span class="st">"utf-8"</span>))   <span class="co"># {"1": [2, 3], "2": [1], "3": [1]}</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.3.2 Funció `cargar_grafo(ruta)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.3.2 Funció <code>cargar_grafo(ruta)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Llegeix el fitxer JSON i reconstrueix el graf <strong>amb els tipus originals</strong>: claus <code>int</code> i conjunts de veïns <code>set[int]</code>. Precondició: el graf llegit és <strong>simètric</strong> (si <code>v</code> és veí de <code>u</code>, aleshores <code>u</code> és veí de <code>v</code>), com correspon a un graf no dirigit. Si no ho és, es llança <code>ValueError</code> indicant una aresta sense la seva recíproca.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cargar_grafo(Path(<span class="st">"grafo.json"</span>)) <span class="op">==</span> g)    <span class="co"># True</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Path(<span class="st">"asimetrico.json"</span>).write_text(<span class="st">'{"1": [2], "2": []}'</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>cargar_grafo(Path(<span class="st">"asimetrico.json"</span>))   <span class="co"># ValueError: la arista 1-2 no tiene su recíproca</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="La propietat d'anada i tornada">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>La propietat d’anada i tornada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Per a qualsevol graf <code>g</code>, desar-lo i tornar-lo a carregar ha de retornar un graf igual a <code>g</code>. És la manera natural de provar qualsevol parell de funcions «desar/carregar», i és una de les proves incloses a <code>tests/test_grafos_json.py</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercici-7.4-neteja-i-anàlisi-de-mesuraments-mòdul-mediciones.py" class="level2">
+<h2 class="anchored" data-anchor-id="exercici-7.4-neteja-i-anàlisi-de-mesuraments-mòdul-mediciones.py">Exercici 7.4: Neteja i anàlisi de mesuraments (mòdul <code>mediciones.py</code>)</h2>
+<p>El fitxer <code>datos/estaciones.csv</code> conté <strong>dades simulades</strong> (generades per ordinador, no mesurades realment) de quatre estacions meteorològiques de Mallorca: Palma, Sóller, Manacor i Lluc. Per a cada estació hi ha un mesurament diari durant el novembre de 2026, amb les columnes <code>estacion</code>, <code>fecha</code>, <code>temperatura</code> (°C) i <code>humedad</code> (%).</p>
+<p>Com passa amb les dades reals, el fitxer té defectes: files duplicades, cel·les buides, textos en lloc de nombres (<code>error</code>, <code>s/d</code>), el valor <code>-999</code> que registra un sensor avariat i humitats impossibles per damunt del 100 %. El fitxer té 124 files de dades.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.4.1 Funció `cargar_mediciones(ruta)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.4.1 Funció <code>cargar_mediciones(ruta)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Llegeix el CSV i retorna un <code>DataFrame</code> net. Per a això:</p>
+<ol type="1">
+<li>converteix <code>temperatura</code> a nombre, substituint per <code>NaN</code> el que no es pugui convertir;</li>
+<li>elimina les files duplicades;</li>
+<li>marca com a <code>NaN</code> les temperatures fora de l’interval <span class="math inline">\([-30, 50]\)</span> °C i les humitats fora de <span class="math inline">\([0, 100]\)</span> %;</li>
+<li>converteix la columna <code>fecha</code> al tipus data de pandas amb <code>pd.to_datetime</code>.</li>
+</ol>
+<p>Les files amb algun <code>NaN</code> <strong>no</strong> s’eliminen: els càlculs posteriors ignoraran els valors absents.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> cargar_mediciones(Path(<span class="st">"datos/estaciones.csv"</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(df))                 <span class="co"># 120   (124 filas menos 4 duplicadas)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.isna().<span class="bu">sum</span>())         <span class="co"># temperatura 7, humedad 3</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"fecha"</span>].dtype)       <span class="co"># datetime64[ns]</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.4.2 Funció `resumen_por_estacion(df)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.4.2 Funció <code>resumen_por_estacion(df)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna una taula amb una fila per estació (l’índex és el nom de l’estació) i les columnes <code>n</code> (nombre de temperatures vàlides), <code>media</code>, <code>minima</code> i <code>maxima</code>, ordenada de més gran a més petita temperatura mitjana.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(resumen_por_estacion(df).<span class="bu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#           n  media  minima  maxima</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># estacion</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Palma    28  16.31    12.9    21.0</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Manacor  29  15.53    12.3    21.2</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Soller   28  14.48     9.4    19.8</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lluc     28  10.09     6.1    14.4</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Lluc té la mitjana més baixa perquè és a uns 500 m d’altitud, a la serra de Tramuntana.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Pista">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Pista
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>agg</code> admet arguments amb nom per triar el nom de cada columna del resultat: <code>groupby("estacion")["temperatura"].agg(n="count", media="mean", ...)</code>. Per ordenar, feu servir <code>sort_values</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.4.3 Funció `dias_calurosos(df, umbral)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.4.3 Funció <code>dias_calurosos(df, umbral)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna les files amb temperatura estrictament més gran que <code>umbral</code>, ordenades per data i, per a la mateixa data, per estació.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dias_calurosos(df, <span class="dv">19</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#     estacion      fecha  temperatura  humedad</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      Manacor 2026-11-01         21.2     74.0</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#        Palma 2026-11-01         21.0     72.0</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#        Palma 2026-11-03         20.0     70.0</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#       Soller 2026-11-06         19.8     70.0</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#        Palma 2026-11-30         19.5     70.0</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercici-7.5-el-titanic-des-duna-url-mòdul-titanic.py" class="level2">
+<h2 class="anchored" data-anchor-id="exercici-7.5-el-titanic-des-duna-url-mòdul-titanic.py">Exercici 7.5: El Titanic des d’una URL (mòdul <code>titanic.py</code>)</h2>
+<p>El mòdul defineix la constant <code>URL_TITANIC</code> amb l’adreça del conjunt de dades del Titanic a Hugging Face (vegeu l’<a href="https://uib-23200-programacion.github.io/website/ca/contingut/tema7.html" target="_blank">apartat 7.4.1 del tema 7</a>). L’exercici es resol al Codespace, on <strong>no</strong> cal <code>pyodide_http</code>. Cada fila és un passatger; les columnes que es fan servir són <code>Survived</code> (1 si va sobreviure, 0 si no), <code>Pclass</code> (classe del bitllet: 1, 2 o 3), <code>Sex</code> i <code>Age</code> (edat, amb valors absents).</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.5.1 Funció `cargar_titanic(url)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.5.1 Funció <code>cargar_titanic(url)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Llegeix el CSV des de la URL i el retorna com a <code>DataFrame</code>. El paràmetre té com a valor per defecte <code>URL_TITANIC</code>; així es pot fer servir una altra còpia del fitxer (per exemple, una de local) sense canviar el codi.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> cargar_titanic()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.shape)    <span class="co"># (891, 12)</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.5.2 Funció `tasa_supervivencia(df, columna)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.5.2 Funció <code>tasa_supervivencia(df, columna)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna, per a cada valor diferent de <code>columna</code>, la proporció de passatgers que van sobreviure (un nombre entre 0 i 1). Per exemple, amb <code>columna="Sex"</code> dona la taxa de supervivència d’homes i de dones. Precondició: <code>columna</code> és una columna de <code>df</code>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tasa_supervivencia(df, <span class="st">"Sex"</span>).<span class="bu">round</span>(<span class="dv">3</span>))      <span class="co"># female 0.742   male 0.189</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tasa_supervivencia(df, <span class="st">"Pclass"</span>).<span class="bu">round</span>(<span class="dv">3</span>))   <span class="co"># 1: 0.630   2: 0.473   3: 0.242</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="7.5.3 Funció `edad_media_por_clase(df)`:">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>7.5.3 Funció <code>edad_media_por_clase(df)</code>:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Retorna l’edat mitjana dels passatgers de cada classe, <strong>ignorant les edats absents</strong> (hi ha 177 passatgers sense edat registrada).</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Exemple">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Consell</span>Exemple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(edad_media_por_clase(df).<span class="bu">round</span>(<span class="dv">1</span>))           <span class="co"># 1: 38.2   2: 29.9   3: 25.1</span></span></code></pre></div><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled" title="Connexió amb l'estadística">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Connexió amb l’estadística
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les dades reflecteixen la consigna «les dones i els infants primer»: la taxa de supervivència de les dones gairebé quadruplica la dels homes. Però una diferència entre proporcions no basta per concloure una relació causal: la classe i el sexe estan relacionats entre si (hi havia més homes a tercera classe), i l’estadística disposa d’eines per separar tots dos efectes.</p>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
