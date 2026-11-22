@@ -1,7 +1,261 @@
 ---
-title: "Ejercicios — Tema 7"
+title: "Ejercicios — Tema 7: Gestión de Datos y Ficheros"
 lang: es
 sidebar: barra-es
 ---
 
-*(Contenido pendiente.)*
+Para la realización de los ejercicios debe utilizar el proyecto `t07-ficheros` que está disponible en el repositorio del curso: [https://github.com/UIB-23200-Programacion/t07-ficheros](https://github.com/UIB-23200-Programacion/t07-ficheros){target="_blank" rel="noopener noreferrer"}. Navega al sitio y sigue las instrucciones en `README.md` para copiar el repositorio en tu entorno local de GitHub y abrir un Codespace para trabajar en los ejercicios.
+
+Las reglas de los temas anteriores se mantienen:
+
+- cada función debe tener anotaciones de tipo y docstring;
+- si no se cumple una precondición, la función debe lanzar `ValueError` con un mensaje descriptivo (véase [sección 3.4 del tema 3](https://uib-23200-programacion.github.io/website/es/contenido/tema3.html#excepciones){target="_blank"});
+- los ficheros de texto se abren siempre con `encoding="utf-8"` (véase [sección 7.2.1 del tema 7](https://uib-23200-programacion.github.io/website/es/contenido/tema7.html){target="_blank"}).
+
+El proyecto se organiza así:
+
+```
+t07-ficheros/
+├── notebooks/ejer_t07_01-02_mo.py     # ejercicios 7.1 y 7.2
+├── src/t07_paquete/
+│   ├── grafos_json.py                 # ejercicio 7.3
+│   ├── mediciones.py                  # ejercicio 7.4
+│   └── titanic.py                     # ejercicio 7.5
+├── datos/estaciones.csv               # datos simulados del ejercicio 7.4
+└── tests/                             # pruebas de los ejercicios 7.3 a 7.5
+```
+
+## Ejercicios 7.1 y 7.2
+
+Los ejercicios 7.1 y 7.2 se encuentran en el archivo `ejer_t07_01-02_mo.py` contenido en el directorio `/notebooks`. Cada ejercicio tiene una celda con el enunciado, una celda con el **esqueleto de las funciones** (nombres, parámetros y anotaciones de tipo, con `pass` en el cuerpo) y una celda con ejemplos y la salida esperada.
+
+La primera celda del notebook define `CARPETA = mo.notebook_dir() / "salida"`: una carpeta junto al notebook donde se guardan todos los ficheros que escriben los ejemplos. Así las rutas no dependen del directorio desde el que se abra Marimo. Esa celda importa también `csv`, `math` y `Path`: **no los vuelvas a importar en otra celda**, porque Marimo no permite que dos celdas definan el mismo nombre.
+
+**Es necesario abrir los ficheros con Marimo para disponer de la ejecución interactiva en celdas del notebook, para ello (si no ocurre de forma automática) debes hacer clic en el botón "Open in Marimo" (![](../../images/openmarimo.png){width="30px"})**
+
+::: {.callout-note title="Ejercicio 7.1: números en ficheros de texto" collapse="true"}
+
+Un fichero de texto con un número por línea es la forma más sencilla de guardar una lista de números para usarla después.
+
+**7.1.1** `guardar_primos(n: int, ruta: Path) -> int`. Escribe en el fichero de texto `ruta` todos los números primos menores o iguales que `n`, uno por línea y en orden creciente, y devuelve cuántos ha escrito. Si el fichero ya existe, se sobrescribe. Puedes definir una función auxiliar `es_primo` como la del tema 3. Precondición: `n >= 2`.
+
+**7.1.2** `leer_enteros(ruta: Path) -> list[int]`. Lee un fichero de texto que contiene un entero por línea y devuelve la lista de esos enteros, en el orden en que aparecen. Para que el fichero pueda documentarse, se ignoran las líneas vacías (o solo con espacios) y las que empiezan por `#`, que se consideran comentarios. Si alguna línea no es un entero, se lanza `ValueError` con un mensaje que indique el **número de línea** (contando desde 1) y su contenido, para que sea fácil localizar el error.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(guardar_primos(30, CARPETA / "primos.txt"))    # 10
+print(leer_enteros(CARPETA / "primos.txt"))          # [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+
+# Un fichero con un comentario, una línea vacía y una línea errónea
+(CARPETA / "malo.txt").write_text("# primos pequeños\n2\n\n3\nxyz\n", encoding="utf-8")
+leer_enteros(CARPETA / "malo.txt")    # ValueError: línea 5: 'xyz' no es un entero
+```
+:::
+
+::: {.callout-important title="Pista"}
+`enumerate(f, start=1)` recorre las líneas del fichero numerándolas desde 1. Para lanzar un `ValueError` con tu propio mensaje cuando `int()` falla, captura el error con `try/except ValueError` y lanza uno nuevo con `raise ValueError(...)`.
+:::
+
+:::
+
+::: {.callout-note title="Ejercicio 7.2: tabla de valores y regla del trapecio" collapse="true"}
+
+Muchas veces no se dispone de la fórmula de una función, sino solo de una **tabla de valores** (medidas, resultados de una simulación…). La regla del trapecio permite aproximar una integral a partir de esa tabla.
+
+**7.2.1** `tabular(f, a: float, b: float, n: int, ruta: Path) -> None`. Escribe en `ruta` un fichero CSV con cabecera `x,fx` y `n + 1` filas: los puntos equiespaciados $x_i = a + i\,\frac{b - a}{n}$, para $i = 0, 1, \ldots, n$, y los valores $f(x_i)$. El parámetro `f` es cualquier función de un argumento: una función propia, `math.sin` o una `lambda`. Usa `csv.writer`. Precondiciones: `a < b` y `n >= 1`.
+
+**7.2.2** `integral_trapecios(ruta: Path) -> float`. Lee una tabla CSV con columnas `x,fx` (con `csv.DictReader`) y aproxima la integral con la **regla del trapecio compuesta**: en cada intervalo $[x_i, x_{i+1}]$ se sustituye la función por el segmento que une $(x_i, f(x_i))$ y $(x_{i+1}, f(x_{i+1}))$, y se suman las áreas de los trapecios resultantes:
+$$
+\int_a^b f(x)\,dx \approx \sum_{i=0}^{n-1} (x_{i+1} - x_i)\,\frac{f(x_i) + f(x_{i+1})}{2}.
+$$
+La función no recibe `f`: trabaja solo con los datos del fichero, así que sirve igual para una tabla de valores medidos, aunque sus puntos no estén equiespaciados. Precondición: la tabla tiene al menos dos filas.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+tabular(lambda x: x**2, 0, 1, 4, CARPETA / "cuadrado.csv")
+print(integral_trapecios(CARPETA / "cuadrado.csv"))    # 0.34375
+
+tabular(lambda x: x**2, 0, 1, 1000, CARPETA / "cuadrado.csv")
+print(integral_trapecios(CARPETA / "cuadrado.csv"))    # 0.3333334999999997   (exacto: 1/3)
+
+tabular(math.sin, 0, math.pi, 100, CARPETA / "seno.csv")
+print(integral_trapecios(CARPETA / "seno.csv"))        # 1.999835503887444    (exacto: 2)
+```
+:::
+
+::: {.callout-important title="Conexión matemática: el error de la regla del trapecio"}
+Si $f$ tiene segunda derivada continua, el error de la regla del trapecio compuesta con paso $h = (b - a)/n$ es de orden $h^2$: al multiplicar $n$ por 10, el error se divide aproximadamente por 100. Los dos ejemplos con $f(x) = x^2$ lo muestran: con $n = 4$ el error es $0.34375 - 1/3 \approx 10^{-2}$, y con $n = 1000$ es del orden de $10^{-7}$.
+:::
+
+:::
+
+---
+
+## Ejercicios 7.3 a 7.5
+
+El paquete `t07_paquete` contiene tres módulos con el **esqueleto** de sus funciones. Completa cada función sustituyendo el `pass` por tu implementación. **No cambies los nombres de las funciones ni de sus parámetros**: las pruebas dependen de ellos.
+
+::: {.callout-important title="Pruebas incluidas"}
+La carpeta `tests/` ya contiene pruebas de los ejercicios 7.3, 7.4 y 7.5. Las del ejercicio 7.3 usan el *fixture* `tmp_path` de pytest, que proporciona una carpeta temporal donde escribir ficheros sin ensuciar el proyecto. Las del ejercicio 7.5 no descargan nada: construyen un pequeño `DataFrame` con la estructura del Titanic, así que funcionan sin conexión.
+
+Ejecútalas con `uv run pytest -v`. **Mientras no implementes las funciones, las pruebas fallarán** y la comprobación automática de GitHub (pestaña *Actions*) aparecerá en rojo: es lo esperado. A medida que completes los ejercicios, irán pasando.
+:::
+
+---
+
+## Ejercicio 7.3: Guardar y recuperar un grafo en JSON (módulo `grafos_json.py`)
+
+Un grafo no dirigido se representa, como en el tema 4, con un diccionario `dict[int, set[int]]` que asocia a cada vértice el conjunto de sus vecinos. Para conservar un grafo entre dos ejecuciones de un programa hay que guardarlo en un fichero, pero JSON no tiene conjuntos y sus claves son siempre cadenas (véase el aviso «Lo que JSON no conserva» del [apartado 7.3.2 del tema 7](https://uib-23200-programacion.github.io/website/es/contenido/tema7.html){target="_blank"}). Por eso guardar y cargar no son operaciones triviales.
+
+::: {.callout-note title="7.3.1 Función `guardar_grafo(grafo, ruta)`:" collapse="true"}
+
+Guarda el grafo en un fichero JSON. Cada conjunto de vecinos se guarda como una **lista ordenada**, para que el fichero sea siempre el mismo para el mismo grafo y resulte fácil de leer.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+g = {1: {2, 3}, 2: {1}, 3: {1}}
+guardar_grafo(g, Path("grafo.json"))
+print(Path("grafo.json").read_text(encoding="utf-8"))   # {"1": [2, 3], "2": [1], "3": [1]}
+```
+:::
+
+:::
+
+::: {.callout-note title="7.3.2 Función `cargar_grafo(ruta)`:" collapse="true"}
+
+Lee el fichero JSON y reconstruye el grafo **con los tipos originales**: claves `int` y conjuntos de vecinos `set[int]`. Precondición: el grafo leído es **simétrico** (si `v` es vecino de `u`, entonces `u` es vecino de `v`), como corresponde a un grafo no dirigido. Si no lo es, se lanza `ValueError` indicando una arista sin su recíproca.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(cargar_grafo(Path("grafo.json")) == g)    # True
+
+Path("asimetrico.json").write_text('{"1": [2], "2": []}', encoding="utf-8")
+cargar_grafo(Path("asimetrico.json"))   # ValueError: la arista 1-2 no tiene su recíproca
+```
+:::
+
+::: {.callout-important title="La propiedad de ida y vuelta"}
+Para cualquier grafo `g`, guardarlo y volver a cargarlo debe devolver un grafo igual a `g`. Es la forma natural de probar cualquier par de funciones «guardar/cargar», y es una de las pruebas incluidas en `tests/test_grafos_json.py`.
+:::
+
+:::
+
+---
+
+## Ejercicio 7.4: Limpieza y análisis de mediciones (módulo `mediciones.py`)
+
+El fichero `datos/estaciones.csv` contiene **datos simulados** (generados por ordenador, no medidos realmente) de cuatro estaciones meteorológicas de Mallorca: Palma, Sóller, Manacor y Lluc. Para cada estación hay una medición diaria durante noviembre de 2026, con las columnas `estacion`, `fecha`, `temperatura` (°C) y `humedad` (%).
+
+Como ocurre con los datos reales, el fichero tiene defectos: filas duplicadas, celdas vacías, textos en lugar de números (`error`, `s/d`), el valor `-999` que registra un sensor averiado y humedades imposibles por encima del 100 %. El fichero tiene 124 filas de datos.
+
+::: {.callout-note title="7.4.1 Función `cargar_mediciones(ruta)`:" collapse="true"}
+
+Lee el CSV y devuelve un `DataFrame` limpio. Para ello:
+
+1. convierte `temperatura` a número, sustituyendo por `NaN` lo que no pueda convertirse;
+2. elimina las filas duplicadas;
+3. marca como `NaN` las temperaturas fuera del intervalo $[-30, 50]$ °C y las humedades fuera de $[0, 100]$ %;
+4. convierte la columna `fecha` al tipo fecha de pandas con `pd.to_datetime`.
+
+Las filas con algún `NaN` **no** se eliminan: los cálculos posteriores ignorarán los valores ausentes.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+df = cargar_mediciones(Path("datos/estaciones.csv"))
+print(len(df))                 # 120   (124 filas menos 4 duplicadas)
+print(df.isna().sum())         # temperatura 7, humedad 3
+print(df["fecha"].dtype)       # datetime64[ns]
+```
+:::
+
+:::
+
+::: {.callout-note title="7.4.2 Función `resumen_por_estacion(df)`:" collapse="true"}
+
+Devuelve una tabla con una fila por estación (el índice es el nombre de la estación) y las columnas `n` (número de temperaturas válidas), `media`, `minima` y `maxima`, ordenada de mayor a menor temperatura media.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(resumen_por_estacion(df).round(2))
+#           n  media  minima  maxima
+# estacion
+# Palma    28  16.31    12.9    21.0
+# Manacor  29  15.53    12.3    21.2
+# Soller   28  14.48     9.4    19.8
+# Lluc     28  10.09     6.1    14.4
+```
+:::
+
+Lluc tiene la media más baja porque está a unos 500 m de altitud, en la Serra de Tramuntana.
+
+::: {.callout-important title="Pista"}
+`agg` admite argumentos con nombre para elegir el nombre de cada columna del resultado: `groupby("estacion")["temperatura"].agg(n="count", media="mean", ...)`. Para ordenar, usa `sort_values`.
+:::
+
+:::
+
+::: {.callout-note title="7.4.3 Función `dias_calurosos(df, umbral)`:" collapse="true"}
+
+Devuelve las filas con temperatura estrictamente mayor que `umbral`, ordenadas por fecha y, para la misma fecha, por estación.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(dias_calurosos(df, 19))
+#     estacion      fecha  temperatura  humedad
+#      Manacor 2026-11-01         21.2     74.0
+#        Palma 2026-11-01         21.0     72.0
+#        Palma 2026-11-03         20.0     70.0
+#       Soller 2026-11-06         19.8     70.0
+#        Palma 2026-11-30         19.5     70.0
+```
+:::
+
+:::
+
+---
+
+## Ejercicio 7.5: El Titanic desde una URL (módulo `titanic.py`)
+
+El módulo define la constante `URL_TITANIC` con la dirección del conjunto de datos del Titanic en Hugging Face (véase el [apartado 7.4.1 del tema 7](https://uib-23200-programacion.github.io/website/es/contenido/tema7.html){target="_blank"}). El ejercicio se resuelve en el Codespace, donde **no** hace falta `pyodide_http`. Cada fila es un pasajero; las columnas que se usan son `Survived` (1 si sobrevivió, 0 si no), `Pclass` (clase del billete: 1, 2 o 3), `Sex` y `Age` (edad, con valores ausentes).
+
+::: {.callout-note title="7.5.1 Función `cargar_titanic(url)`:" collapse="true"}
+
+Lee el CSV desde la URL y lo devuelve como `DataFrame`. El parámetro tiene como valor por defecto `URL_TITANIC`; así se puede usar otra copia del fichero (por ejemplo, una local) sin cambiar el código.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+df = cargar_titanic()
+print(df.shape)    # (891, 12)
+```
+:::
+
+:::
+
+::: {.callout-note title="7.5.2 Función `tasa_supervivencia(df, columna)`:" collapse="true"}
+
+Devuelve, para cada valor distinto de `columna`, la proporción de pasajeros que sobrevivieron (un número entre 0 y 1). Por ejemplo, con `columna="Sex"` da la tasa de supervivencia de hombres y de mujeres. Precondición: `columna` es una columna de `df`.
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(tasa_supervivencia(df, "Sex").round(3))      # female 0.742   male 0.189
+print(tasa_supervivencia(df, "Pclass").round(3))   # 1: 0.630   2: 0.473   3: 0.242
+```
+:::
+
+:::
+
+::: {.callout-note title="7.5.3 Función `edad_media_por_clase(df)`:" collapse="true"}
+
+Devuelve la edad media de los pasajeros de cada clase, **ignorando las edades ausentes** (hay 177 pasajeros sin edad registrada).
+
+::: {.callout-tip title="Ejemplo"}
+```python
+print(edad_media_por_clase(df).round(1))           # 1: 38.2   2: 29.9   3: 25.1
+```
+:::
+
+:::
+
+::: {.callout-important title="Conexión con la estadística"}
+Los datos reflejan la consigna «las mujeres y los niños primero»: la tasa de supervivencia de las mujeres casi cuadruplica la de los hombres. Pero una diferencia entre proporciones no basta para concluir una relación causal: la clase y el sexo están relacionados entre sí (había más hombres en tercera clase), y la estadística dispone de herramientas para separar ambos efectos.
+:::

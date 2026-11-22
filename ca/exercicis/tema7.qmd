@@ -1,7 +1,261 @@
 ---
-title: "Exercicis — Tema 7"
+title: "Exercicis — Tema 7: Gestió de Dades i Fitxers"
 lang: ca
 sidebar: barra-ca
 ---
 
-*(Contingut pendent.)*
+Per a la realització dels exercicis heu d'emprar el projecte `t07-ficheros` que està disponible al repositori del curs: [https://github.com/UIB-23200-Programacion/t07-ficheros](https://github.com/UIB-23200-Programacion/t07-ficheros){target="_blank" rel="noopener noreferrer"}. Navegueu al lloc i seguiu les instruccions de `README.md` per copiar el repositori en el vostre entorn local de GitHub i obrir un Codespace per treballar en els exercicis.
+
+Les regles dels temes anteriors es mantenen:
+
+- cada funció ha de tenir anotacions de tipus i docstring;
+- si no es compleix una precondició, la funció ha de llançar `ValueError` amb un missatge descriptiu (vegeu [secció 3.4 del tema 3](https://uib-23200-programacion.github.io/website/ca/contingut/tema3.html#excepcions){target="_blank"});
+- els fitxers de text s'obren sempre amb `encoding="utf-8"` (vegeu [secció 7.2.1 del tema 7](https://uib-23200-programacion.github.io/website/ca/contingut/tema7.html){target="_blank"}).
+
+El projecte s'organitza així:
+
+```
+t07-ficheros/
+├── notebooks/ejer_t07_01-02_mo.py     # ejercicios 7.1 y 7.2
+├── src/t07_paquete/
+│   ├── grafos_json.py                 # ejercicio 7.3
+│   ├── mediciones.py                  # ejercicio 7.4
+│   └── titanic.py                     # ejercicio 7.5
+├── datos/estaciones.csv               # datos simulados del ejercicio 7.4
+└── tests/                             # pruebas de los ejercicios 7.3 a 7.5
+```
+
+## Exercicis 7.1 i 7.2
+
+Els exercicis 7.1 i 7.2 es troben en el fitxer `ejer_t07_01-02_mo.py` contingut en el directori `/notebooks`. Cada exercici té una cel·la amb l'enunciat, una cel·la amb l'**esquelet de les funcions** (noms, paràmetres i anotacions de tipus, amb `pass` al cos) i una cel·la amb exemples i la sortida esperada.
+
+La primera cel·la del notebook defineix `CARPETA = mo.notebook_dir() / "salida"`: una carpeta al costat del notebook on es desen tots els fitxers que escriuen els exemples. Així les rutes no depenen del directori des del qual s'obri Marimo. Aquesta cel·la importa també `csv`, `math` i `Path`: **no els torneu a importar en una altra cel·la**, perquè Marimo no permet que dues cel·les defineixin el mateix nom.
+
+**Cal obrir els fitxers amb Marimo per disposar de l'execució interactiva en cel·les del notebook; per a això (si no ocorre de manera automàtica) heu de fer clic al botó "Open in Marimo" (![](../../images/openmarimo.png){width="30px"})**
+
+::: {.callout-note title="Exercici 7.1: nombres en fitxers de text" collapse="true"}
+
+Un fitxer de text amb un nombre per línia és la manera més senzilla de desar una llista de nombres per fer-la servir després.
+
+**7.1.1** `guardar_primos(n: int, ruta: Path) -> int`. Escriu en el fitxer de text `ruta` tots els nombres primers menors o iguals que `n`, un per línia i en ordre creixent, i retorna quants n'ha escrit. Si el fitxer ja existeix, se sobreescriu. Podeu definir una funció auxiliar `es_primo` com la del tema 3. Precondició: `n >= 2`.
+
+**7.1.2** `leer_enteros(ruta: Path) -> list[int]`. Llegeix un fitxer de text que conté un enter per línia i retorna la llista d'aquests enters, en l'ordre en què apareixen. Perquè el fitxer es pugui documentar, s'ignoren les línies buides (o només amb espais) i les que comencen per `#`, que es consideren comentaris. Si alguna línia no és un enter, es llança `ValueError` amb un missatge que indiqui el **número de línia** (comptant des d'1) i el seu contingut, perquè sigui fàcil localitzar l'error.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(guardar_primos(30, CARPETA / "primos.txt"))    # 10
+print(leer_enteros(CARPETA / "primos.txt"))          # [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+
+# Un fichero con un comentario, una línea vacía y una línea errónea
+(CARPETA / "malo.txt").write_text("# primos pequeños\n2\n\n3\nxyz\n", encoding="utf-8")
+leer_enteros(CARPETA / "malo.txt")    # ValueError: línea 5: 'xyz' no es un entero
+```
+:::
+
+::: {.callout-important title="Pista"}
+`enumerate(f, start=1)` recorre les línies del fitxer numerant-les des d'1. Per llançar un `ValueError` amb el vostre propi missatge quan `int()` falla, captureu l'error amb `try/except ValueError` i llanceu-ne un de nou amb `raise ValueError(...)`.
+:::
+
+:::
+
+::: {.callout-note title="Exercici 7.2: taula de valors i regla del trapezi" collapse="true"}
+
+Moltes vegades no es disposa de la fórmula d'una funció, sinó només d'una **taula de valors** (mesures, resultats d'una simulació…). La regla del trapezi permet aproximar una integral a partir d'aquesta taula.
+
+**7.2.1** `tabular(f, a: float, b: float, n: int, ruta: Path) -> None`. Escriu a `ruta` un fitxer CSV amb capçalera `x,fx` i `n + 1` files: els punts equiespaiats $x_i = a + i\,\frac{b - a}{n}$, per a $i = 0, 1, \ldots, n$, i els valors $f(x_i)$. El paràmetre `f` és qualsevol funció d'un argument: una funció pròpia, `math.sin` o una `lambda`. Feu servir `csv.writer`. Precondicions: `a < b` i `n >= 1`.
+
+**7.2.2** `integral_trapecios(ruta: Path) -> float`. Llegeix una taula CSV amb columnes `x,fx` (amb `csv.DictReader`) i aproxima la integral amb la **regla del trapezi composta**: a cada interval $[x_i, x_{i+1}]$ se substitueix la funció pel segment que uneix $(x_i, f(x_i))$ i $(x_{i+1}, f(x_{i+1}))$, i se sumen les àrees dels trapezis resultants:
+$$
+\int_a^b f(x)\,dx \approx \sum_{i=0}^{n-1} (x_{i+1} - x_i)\,\frac{f(x_i) + f(x_{i+1})}{2}.
+$$
+La funció no rep `f`: treballa només amb les dades del fitxer, així que serveix igual per a una taula de valors mesurats, encara que els seus punts no siguin equiespaiats. Precondició: la taula té almenys dues files.
+
+::: {.callout-tip title="Exemple"}
+```python
+tabular(lambda x: x**2, 0, 1, 4, CARPETA / "cuadrado.csv")
+print(integral_trapecios(CARPETA / "cuadrado.csv"))    # 0.34375
+
+tabular(lambda x: x**2, 0, 1, 1000, CARPETA / "cuadrado.csv")
+print(integral_trapecios(CARPETA / "cuadrado.csv"))    # 0.3333334999999997   (exacto: 1/3)
+
+tabular(math.sin, 0, math.pi, 100, CARPETA / "seno.csv")
+print(integral_trapecios(CARPETA / "seno.csv"))        # 1.999835503887444    (exacto: 2)
+```
+:::
+
+::: {.callout-important title="Connexió matemàtica: l'error de la regla del trapezi"}
+Si $f$ té segona derivada contínua, l'error de la regla del trapezi composta amb pas $h = (b - a)/n$ és d'ordre $h^2$: en multiplicar $n$ per 10, l'error es divideix aproximadament per 100. Els dos exemples amb $f(x) = x^2$ ho mostren: amb $n = 4$ l'error és $0.34375 - 1/3 \approx 10^{-2}$, i amb $n = 1000$ és de l'ordre de $10^{-7}$.
+:::
+
+:::
+
+---
+
+## Exercicis 7.3 a 7.5
+
+El paquet `t07_paquete` conté tres mòduls amb l'**esquelet** de les seves funcions. Completeu cada funció substituint el `pass` per la vostra implementació. **No canvieu els noms de les funcions ni dels seus paràmetres**: les proves en depenen.
+
+::: {.callout-important title="Proves incloses"}
+La carpeta `tests/` ja conté proves dels exercicis 7.3, 7.4 i 7.5. Les de l'exercici 7.3 fan servir el *fixture* `tmp_path` de pytest, que proporciona una carpeta temporal on escriure fitxers sense embrutar el projecte. Les de l'exercici 7.5 no descarreguen res: construeixen un petit `DataFrame` amb l'estructura del Titanic, així que funcionen sense connexió.
+
+Executeu-les amb `uv run pytest -v`. **Mentre no implementeu les funcions, les proves fallaran** i la comprovació automàtica de GitHub (pestanya *Actions*) apareixerà en vermell: és l'esperat. A mesura que completeu els exercicis, aniran passant.
+:::
+
+---
+
+## Exercici 7.3: Desar i recuperar un graf en JSON (mòdul `grafos_json.py`)
+
+Un graf no dirigit es representa, com al tema 4, amb un diccionari `dict[int, set[int]]` que associa a cada vèrtex el conjunt dels seus veïns. Per conservar un graf entre dues execucions d'un programa cal desar-lo en un fitxer, però JSON no té conjunts i les seves claus són sempre cadenes (vegeu l'avís «El que JSON no conserva» de l'[apartat 7.3.2 del tema 7](https://uib-23200-programacion.github.io/website/ca/contingut/tema7.html){target="_blank"}). Per això desar i carregar no són operacions trivials.
+
+::: {.callout-note title="7.3.1 Funció `guardar_grafo(grafo, ruta)`:" collapse="true"}
+
+Desa el graf en un fitxer JSON. Cada conjunt de veïns es desa com una **llista ordenada**, perquè el fitxer sigui sempre el mateix per al mateix graf i resulti fàcil de llegir.
+
+::: {.callout-tip title="Exemple"}
+```python
+g = {1: {2, 3}, 2: {1}, 3: {1}}
+guardar_grafo(g, Path("grafo.json"))
+print(Path("grafo.json").read_text(encoding="utf-8"))   # {"1": [2, 3], "2": [1], "3": [1]}
+```
+:::
+
+:::
+
+::: {.callout-note title="7.3.2 Funció `cargar_grafo(ruta)`:" collapse="true"}
+
+Llegeix el fitxer JSON i reconstrueix el graf **amb els tipus originals**: claus `int` i conjunts de veïns `set[int]`. Precondició: el graf llegit és **simètric** (si `v` és veí de `u`, aleshores `u` és veí de `v`), com correspon a un graf no dirigit. Si no ho és, es llança `ValueError` indicant una aresta sense la seva recíproca.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(cargar_grafo(Path("grafo.json")) == g)    # True
+
+Path("asimetrico.json").write_text('{"1": [2], "2": []}', encoding="utf-8")
+cargar_grafo(Path("asimetrico.json"))   # ValueError: la arista 1-2 no tiene su recíproca
+```
+:::
+
+::: {.callout-important title="La propietat d'anada i tornada"}
+Per a qualsevol graf `g`, desar-lo i tornar-lo a carregar ha de retornar un graf igual a `g`. És la manera natural de provar qualsevol parell de funcions «desar/carregar», i és una de les proves incloses a `tests/test_grafos_json.py`.
+:::
+
+:::
+
+---
+
+## Exercici 7.4: Neteja i anàlisi de mesuraments (mòdul `mediciones.py`)
+
+El fitxer `datos/estaciones.csv` conté **dades simulades** (generades per ordinador, no mesurades realment) de quatre estacions meteorològiques de Mallorca: Palma, Sóller, Manacor i Lluc. Per a cada estació hi ha un mesurament diari durant el novembre de 2026, amb les columnes `estacion`, `fecha`, `temperatura` (°C) i `humedad` (%).
+
+Com passa amb les dades reals, el fitxer té defectes: files duplicades, cel·les buides, textos en lloc de nombres (`error`, `s/d`), el valor `-999` que registra un sensor avariat i humitats impossibles per damunt del 100 %. El fitxer té 124 files de dades.
+
+::: {.callout-note title="7.4.1 Funció `cargar_mediciones(ruta)`:" collapse="true"}
+
+Llegeix el CSV i retorna un `DataFrame` net. Per a això:
+
+1. converteix `temperatura` a nombre, substituint per `NaN` el que no es pugui convertir;
+2. elimina les files duplicades;
+3. marca com a `NaN` les temperatures fora de l'interval $[-30, 50]$ °C i les humitats fora de $[0, 100]$ %;
+4. converteix la columna `fecha` al tipus data de pandas amb `pd.to_datetime`.
+
+Les files amb algun `NaN` **no** s'eliminen: els càlculs posteriors ignoraran els valors absents.
+
+::: {.callout-tip title="Exemple"}
+```python
+df = cargar_mediciones(Path("datos/estaciones.csv"))
+print(len(df))                 # 120   (124 filas menos 4 duplicadas)
+print(df.isna().sum())         # temperatura 7, humedad 3
+print(df["fecha"].dtype)       # datetime64[ns]
+```
+:::
+
+:::
+
+::: {.callout-note title="7.4.2 Funció `resumen_por_estacion(df)`:" collapse="true"}
+
+Retorna una taula amb una fila per estació (l'índex és el nom de l'estació) i les columnes `n` (nombre de temperatures vàlides), `media`, `minima` i `maxima`, ordenada de més gran a més petita temperatura mitjana.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(resumen_por_estacion(df).round(2))
+#           n  media  minima  maxima
+# estacion
+# Palma    28  16.31    12.9    21.0
+# Manacor  29  15.53    12.3    21.2
+# Soller   28  14.48     9.4    19.8
+# Lluc     28  10.09     6.1    14.4
+```
+:::
+
+Lluc té la mitjana més baixa perquè és a uns 500 m d'altitud, a la serra de Tramuntana.
+
+::: {.callout-important title="Pista"}
+`agg` admet arguments amb nom per triar el nom de cada columna del resultat: `groupby("estacion")["temperatura"].agg(n="count", media="mean", ...)`. Per ordenar, feu servir `sort_values`.
+:::
+
+:::
+
+::: {.callout-note title="7.4.3 Funció `dias_calurosos(df, umbral)`:" collapse="true"}
+
+Retorna les files amb temperatura estrictament més gran que `umbral`, ordenades per data i, per a la mateixa data, per estació.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(dias_calurosos(df, 19))
+#     estacion      fecha  temperatura  humedad
+#      Manacor 2026-11-01         21.2     74.0
+#        Palma 2026-11-01         21.0     72.0
+#        Palma 2026-11-03         20.0     70.0
+#       Soller 2026-11-06         19.8     70.0
+#        Palma 2026-11-30         19.5     70.0
+```
+:::
+
+:::
+
+---
+
+## Exercici 7.5: El Titanic des d'una URL (mòdul `titanic.py`)
+
+El mòdul defineix la constant `URL_TITANIC` amb l'adreça del conjunt de dades del Titanic a Hugging Face (vegeu l'[apartat 7.4.1 del tema 7](https://uib-23200-programacion.github.io/website/ca/contingut/tema7.html){target="_blank"}). L'exercici es resol al Codespace, on **no** cal `pyodide_http`. Cada fila és un passatger; les columnes que es fan servir són `Survived` (1 si va sobreviure, 0 si no), `Pclass` (classe del bitllet: 1, 2 o 3), `Sex` i `Age` (edat, amb valors absents).
+
+::: {.callout-note title="7.5.1 Funció `cargar_titanic(url)`:" collapse="true"}
+
+Llegeix el CSV des de la URL i el retorna com a `DataFrame`. El paràmetre té com a valor per defecte `URL_TITANIC`; així es pot fer servir una altra còpia del fitxer (per exemple, una de local) sense canviar el codi.
+
+::: {.callout-tip title="Exemple"}
+```python
+df = cargar_titanic()
+print(df.shape)    # (891, 12)
+```
+:::
+
+:::
+
+::: {.callout-note title="7.5.2 Funció `tasa_supervivencia(df, columna)`:" collapse="true"}
+
+Retorna, per a cada valor diferent de `columna`, la proporció de passatgers que van sobreviure (un nombre entre 0 i 1). Per exemple, amb `columna="Sex"` dona la taxa de supervivència d'homes i de dones. Precondició: `columna` és una columna de `df`.
+
+::: {.callout-tip title="Exemple"}
+```python
+print(tasa_supervivencia(df, "Sex").round(3))      # female 0.742   male 0.189
+print(tasa_supervivencia(df, "Pclass").round(3))   # 1: 0.630   2: 0.473   3: 0.242
+```
+:::
+
+:::
+
+::: {.callout-note title="7.5.3 Funció `edad_media_por_clase(df)`:" collapse="true"}
+
+Retorna l'edat mitjana dels passatgers de cada classe, **ignorant les edats absents** (hi ha 177 passatgers sense edat registrada).
+
+::: {.callout-tip title="Exemple"}
+```python
+print(edad_media_por_clase(df).round(1))           # 1: 38.2   2: 29.9   3: 25.1
+```
+:::
+
+:::
+
+::: {.callout-important title="Connexió amb l'estadística"}
+Les dades reflecteixen la consigna «les dones i els infants primer»: la taxa de supervivència de les dones gairebé quadruplica la dels homes. Però una diferència entre proporcions no basta per concloure una relació causal: la classe i el sexe estan relacionats entre si (hi havia més homes a tercera classe), i l'estadística disposa d'eines per separar tots dos efectes.
+:::
